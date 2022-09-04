@@ -2,7 +2,7 @@
 
 **Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/telegram-posting.11/)
 
-**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 1.7.0
+**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 1.7.3
 
 ## **Установка / Обновление**
 
@@ -50,7 +50,7 @@
 $allow_cron = 
 ```
 
-Если дальше стоит **0**, то меняем его на **1**, в противом случае - пропускаешм шаг.
+Если дальше стоит **0**, то меняем его на **1**, в противом случае - пропускаем шаг.
 
 Далее, ищем
 
@@ -61,7 +61,7 @@ $allow_cron =
 **Выше** добавляем:
 
 ```php
-elseif($cronmode == "telegram") {
+} elseif($cronmode == "telegram") {
             include_once (DLEPlugins::Check(ENGINE_DIR . "/ajax/maharder/telegram/cronadd.php"));
             die ("done");
 ```
