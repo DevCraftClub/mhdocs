@@ -12,7 +12,10 @@ nav:
     -   Пользование сайтом:
             -   Как покупать: site/how-to-buy.md
             -   Тех. Поддержка: site/how-to-ask-for-support.md
+    -   Инструкции:
+            -   Composer: dev/composer.md
     -   Бесплатные разработки:
+            -   DLE Faker
             -   Telegram Posting:
                     -   Установка: dev/telegramposting/install.md
                     -   Подключение в сторонние разработки: dev/telegramposting/custom_add.md
