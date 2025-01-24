@@ -1,6 +1,6 @@
 site_name: DevCraft Документации
-repo_url: https://github.com/Gokujo/mhdocs
-repo_name: Gokujo/mhdocs
+repo_url: https://github.com/DevCraftClub/mhdocs
+repo_name: DevCraftClub/mhdocs
 edit_uri: edit/main/docs/
 site_url: https://readme.devcraft.club
 site_author: Maxim Harder
@@ -12,7 +12,20 @@ nav:
     -   Пользование сайтом:
             -   Как покупать: site/how-to-buy.md
             -   Тех. Поддержка: site/how-to-ask-for-support.md
+    -   Инструкции:
+            -   Composer: dev/composer.md
     -   Бесплатные разработки:
+            -   DLE Faker:
+                    -   Установка: dev/dle_faker/install.md
+                    -   Теги для оформления шаблонов:
+                            - Общие: dev/dle_faker/tag_for_all.md
+                            - Для пользователей: dev/dle_faker/tag_for_users.md
+                            - Пля новостей: dev/dle_faker/tag_for_news.md
+                    -   Генератор:
+                        -   Генерация пользователей: dev/dle_faker/gen_users.md
+                        -   Генерация новостей: dev/dle_faker/gen_news.md
+                    -   Функционал парсера данных: dev/dle_faker/parser.md
+                    -   История изменений: dev/dle_faker/changelog.md
             -   Telegram Posting:
                     -   Установка: dev/telegramposting/install.md
                     -   Подключение в сторонние разработки: dev/telegramposting/custom_add.md
