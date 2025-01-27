@@ -14,6 +14,7 @@ nav:
             -   Тех. Поддержка: site/how-to-ask-for-support.md
     -   Инструкции:
             -   Composer: dev/composer.md
+            -   Crowdin: dev/crowdin.md
     -   Бесплатные разработки:
             -   DLE Faker:
                     -   Установка: dev/dle_faker/install.md
@@ -39,16 +40,40 @@ nav:
                     -   Для разработчиков:
                             -   Генератор модулей: dev/mhadmin/new_module.md
                             -   Back-End:
-                                    -   Admin: dev/mhadmin/backend/admin.md
-                                    -   Ajax: dev/mhadmin/backend/ajax.md
-                                    -   AssetsChecker: dev/mhadmin/backend/assetschecker.md
-                                    -   DataLoader: dev/mhadmin/backend/dataloader.md
-                                    -   DleData: dev/mhadmin/backend/dledata.md
-                                    -   LogGenerator: dev/mhadmin/backend/loggenerator.md
-                                    -   Model: dev/mhadmin/backend/model.md
-                                    -   Table: dev/mhadmin/backend/table.md
+								-	Главная: dev/mhadmin/backend/index.md
+								-	Трейты:
+                                	- 	AssetsChecker: dev/mhadmin/classes/AssetsChecker.md
+                                    - 	DataLoader: dev/mhadmin/classes/DataLoader.md
+                                    - 	DleData: dev/mhadmin/classes/DleData.md
+                                    - 	UpdatesChecker: dev/mhadmin/classes/UpdatesChecker.md
+								-	Классы:
+									-	Admin: dev/mhadmin/classes/Admin.md
+									-	AdminLink: dev/mhadmin/classes/AdminLink.md
+									-	AdminUrlExtension: dev/mhadmin/classes/AdminUrlExtension.md
+									-	AjaxAbstractResponse: dev/mhadmin/classes/AjaxAbstractResponse.md
+									-	Author: dev/mhadmin/classes/Author.md
+									-	BasisModel: dev/mhadmin/classes/BasisModel.md
+									-	BasisRepository: dev/mhadmin/classes/BasisRepository.md
+									-	BreadCrumb: dev/mhadmin/classes/BreadCrumb.md
+									-	CacheControl: dev/mhadmin/classes/CacheControl.md
+									-	ComposerAction: dev/mhadmin/classes/ComposerAction.md
+									-	DataManager: dev/mhadmin/classes/DataManager.md
+									-	DateTimeFormatter: dev/mhadmin/classes/DateTimeFormatter.md
+									-	DeclineExtension: dev/mhadmin/classes/DeclineExtension.md
+									-	ErrorResponseAjax: dev/mhadmin/classes/ErrorResponseAjax.md
+									-	LogGenerator: dev/mhadmin/classes/LogGenerator.md
+									-	MhAjax: dev/mhadmin/classes/MhAjax.md
+									-	MhDB: dev/mhadmin/classes/MhDB.md
+									-	MhLog: dev/mhadmin/classes/MhLog.md
+									-	MhLogRepository: dev/mhadmin/classes/MhLogRepository.md
+									-	MhTranslation: dev/mhadmin/classes/MhTranslation.md
+									-	MobileDetectExtension: dev/mhadmin/classes/MobileDetectExtension.md
+									-	SuccessResponseAjax: dev/mhadmin/classes/SuccessResponseAjax.md
+									-	TextLimiter: dev/mhadmin/classes/TextLimiter.md
+									-	TwigFilter: dev/mhadmin/classes/TwigFilter.md
                             -   Front-End:
                                     -   Шаблоны: dev/mhadmin/frontend/templates.md
+									-	Настройка: dev/admin/frontend/manage.md
                     -   История изменений: dev/mhadmin/changelog.md
             -   MyStatus: dev/mystatus.md
             -   Release Status: dev/releasestatus.md
