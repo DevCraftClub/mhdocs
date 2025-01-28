@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\AdminUrlExtension
+# Класс: AdminUrlExtension
 
 ## Краткое содержание:
 
@@ -38,7 +38,7 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/twigExtensions/AdminUrlExtension.php](../../engine/inc/maharder/_includes/twigExtensions/AdminUrlExtension.php)
+* Путь: engine/inc/maharder/_includes/twigExtensions/AdminUrlExtension.php
 
 ---
 
@@ -124,8 +124,8 @@ static protected getAssetsUrl() : string
 
 ##### Смотри так-же:
 
- * [\AdminUrlExtension::getServerData()](../../classes/AdminUrlExtension.md#method_getServerData)
- * [\AdminUrlExtension::getThisHost()](../../classes/AdminUrlExtension.md#method_getThisHost)
+ * [\AdminUrlExtension::getServerData()](#method_getServerData)
+ * [\AdminUrlExtension::getThisHost()](#method_getThisHost)
 
 ##### Возвращает:
 
@@ -185,8 +185,8 @@ static protected getModulesUrl() : string
 
 ##### Смотри так-же:
 
- * [\AdminUrlExtension::getServerData()](../../classes/AdminUrlExtension.md#method_getServerData)
- * [\AdminUrlExtension::getThisSelf()](../../classes/AdminUrlExtension.md#method_getThisSelf)
+ * [\AdminUrlExtension::getServerData()](#method_getServerData)
+ * [\AdminUrlExtension::getThisSelf()](#method_getThisSelf)
 
 ##### Возвращает:
 

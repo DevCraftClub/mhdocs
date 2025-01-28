@@ -1,4 +1,4 @@
-# Abstract Класс: [\Default](../../packages/Default.md)\AjaxAbstractResponse
+# Абстрактный класс: AjaxAbstractResponse
 
 ## Краткое содержание:
 
@@ -43,7 +43,7 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/responses/AjaxAbstractResponse.php](../../engine/inc/maharder/_includes/responses/AjaxAbstractResponse.php)
+* Путь: engine/inc/maharder/_includes/responses/AjaxAbstractResponse.php
 
 ---
 
@@ -55,9 +55,7 @@
 
 Основные данные ответа.
 
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="array">Массив</abbr>
 
 
 <a id="property_message"></a>
@@ -67,9 +65,7 @@
 
 Текстовое сообщение, сопровождающее ответ.
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="string">Текст</abbr>
 
 
 <a id="property_meta"></a>
@@ -79,9 +75,7 @@
 
 Дополнительные мета-данные.
 
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="array">Массив</abbr>
 
 
 <a id="property_status"></a>
@@ -91,9 +85,7 @@
 
 HTTP статус ответа.
 
-**Тип:** <a href="../int"><abbr title="int">int</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="int">Целое число</abbr>
 
 
 <a id="property_success"></a>
@@ -103,31 +95,25 @@ HTTP статус ответа.
 
 Указывает, успешен ли ответ.
 
-**Тип:** <a href="../bool"><abbr title="bool">bool</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="bool">Логические значения</abbr>
 
 
 <a id="property_data"></a>
 #### protected $data : array
 ---
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="array">Массив</abbr>
 
 
 <a id="property_message"></a>
 #### protected $message : string
 ---
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="string">Текст</abbr>
 
 
 <a id="property_meta"></a>
 #### protected $meta : array
 ---
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
+**Тип:** <abbr title="array">Массив</abbr>
 
 **Подробности:**
 
@@ -135,25 +121,19 @@ HTTP статус ответа.
 <a id="property_redirect"></a>
 #### protected $redirect : ?string
 ---
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
 
 <a id="property_status"></a>
 #### protected $status : int
 ---
-**Тип:** <a href="../int"><abbr title="int">int</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="int">Целое число</abbr>
 
 
 <a id="property_success"></a>
 #### protected $success : bool
 ---
-**Тип:** <a href="../bool"><abbr title="bool">bool</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="bool">Логические значения</abbr>
 
 
 
@@ -174,8 +154,7 @@ public getRedirect() : null|string
 
 ##### Смотри так-же:
 
- * [](../)
- * [\AjaxAbstractResponse::setRedirect()](../../classes/AjaxAbstractResponse.md#method_setRedirect)
+ * [\AjaxAbstractResponse::setRedirect()](#method_setRedirect)
 
 ##### Возвращает:
 
@@ -199,7 +178,7 @@ public isSuccess() : bool
 
 ##### Смотри так-же:
 
- * [\AjaxAbstractResponse::$success](../../classes/AjaxAbstractResponse.md#property_success)
+ * [\AjaxAbstractResponse::$success](#property_success)
 
 ##### Возвращает:
 
@@ -231,12 +210,12 @@ HTTP-статус, тело ответа в формате JSON, а затем �
 
 ##### Смотри так-же:
 
- * [\AjaxAbstractResponse::buildResponse()](../../classes/AjaxAbstractResponse.md#method_buildResponse)
- * [\AjaxAbstractResponse::$status](../../classes/AjaxAbstractResponse.md#property_status)
- * [\AjaxAbstractResponse::$success](../../classes/AjaxAbstractResponse.md#property_success)
- * [\AjaxAbstractResponse::$message](../../classes/AjaxAbstractResponse.md#property_message)
- * [\AjaxAbstractResponse::$data](../../classes/AjaxAbstractResponse.md#property_data)
- * [\AjaxAbstractResponse::$meta](../../classes/AjaxAbstractResponse.md#property_meta)
+ * [\AjaxAbstractResponse::buildResponse()](#method_buildResponse)
+ * [\AjaxAbstractResponse::$status](#property_status)
+ * [\AjaxAbstractResponse::$success](#property_success)
+ * [\AjaxAbstractResponse::$message](#property_message)
+ * [\AjaxAbstractResponse::$data](#property_data)
+ * [\AjaxAbstractResponse::$meta](#property_meta)
 
 ##### Возвращает:
 
@@ -259,7 +238,7 @@ public setData(array  data) : self
 
 ##### Смотри так-же:
 
- * [\AjaxAbstractResponse::$data](../../classes/AjaxAbstractResponse.md#property_data)
+ * [\AjaxAbstractResponse::$data](#property_data)
 
 ##### Свойства:
 
@@ -289,7 +268,7 @@ public setMessage(string  message) : self
 
 ##### Смотри так-же:
 
- * [\AjaxAbstractResponse::$message](../../classes/AjaxAbstractResponse.md#property_message)
+ * [\AjaxAbstractResponse::$message](#property_message)
 
 ##### Свойства:
 
@@ -319,7 +298,7 @@ public setMeta(array  meta) : self
 
 ##### Смотри так-же:
 
- * [\AjaxAbstractResponse::$meta](../../classes/AjaxAbstractResponse.md#property_meta)
+ * [\AjaxAbstractResponse::$meta](#property_meta)
 
 ##### Свойства:
 
@@ -354,7 +333,7 @@ public setRedirect(string  redirect) : \AjaxAbstractResponse
 
 ##### Смотри так-же:
 
- * [\AjaxAbstractResponse::$redirect](../../classes/AjaxAbstractResponse.md#property_redirect)
+ * [\AjaxAbstractResponse::$redirect](#property_redirect)
 
 ##### Свойства:
 
@@ -384,7 +363,7 @@ public setStatus(int  status) : self
 
 ##### Смотри так-же:
 
- * [\AjaxAbstractResponse::$status](../../classes/AjaxAbstractResponse.md#property_status)
+ * [\AjaxAbstractResponse::$status](#property_status)
 
 ##### Свойства:
 
@@ -419,7 +398,7 @@ public setSuccess(bool  success) : \AjaxAbstractResponse
 
 ##### Смотри так-же:
 
- * [\AjaxAbstractResponse::$success](../../classes/AjaxAbstractResponse.md#property_success)
+ * [\AjaxAbstractResponse::$success](#property_success)
 
 ##### Свойства:
 
@@ -454,11 +433,11 @@ HTTP-статус, сообщение, данные и мета-информац
 
 ##### Смотри так-же:
 
- * [\AjaxAbstractResponse::$success](../../classes/AjaxAbstractResponse.md#property_success)
- * [\AjaxAbstractResponse::$status](../../classes/AjaxAbstractResponse.md#property_status)
- * [\AjaxAbstractResponse::$message](../../classes/AjaxAbstractResponse.md#property_message)
- * [\AjaxAbstractResponse::$data](../../classes/AjaxAbstractResponse.md#property_data)
- * [\AjaxAbstractResponse::$meta](../../classes/AjaxAbstractResponse.md#property_meta)
+ * [\AjaxAbstractResponse::$success](#property_success)
+ * [\AjaxAbstractResponse::$status](#property_status)
+ * [\AjaxAbstractResponse::$message](#property_message)
+ * [\AjaxAbstractResponse::$data](#property_data)
+ * [\AjaxAbstractResponse::$meta](#property_meta)
 
 ##### Возвращает:
 

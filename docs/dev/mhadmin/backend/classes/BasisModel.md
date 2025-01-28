@@ -1,4 +1,4 @@
-# Abstract Класс: [\Default](../../packages/Default.md)\BasisModel
+# Абстрактный класс: BasisModel
 
 ## Краткое содержание:
 
@@ -50,7 +50,7 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/database/BasisModel.php](../../engine/inc/maharder/_includes/database/BasisModel.php)
+* Путь: engine/inc/maharder/_includes/database/BasisModel.php
 
 ---
 
@@ -62,9 +62,7 @@
 
 Дата и время создания записи. Автоматически проставляется при создании.
 
-**Тип:** \DateTimeImmutable
-
-**Подробности:**
+**Тип:** <abbr title="DateTimeImmutable">Дата и время</abbr>
 
 
 <a id="property_id"></a>
@@ -74,9 +72,7 @@
 
 ID сущности (уникальный первичный ключ).
 
-**Тип:** <a href="../int"><abbr title="int">int</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="int">Целое число</abbr>
 
 
 <a id="property_updatedAt"></a>
@@ -90,7 +86,7 @@ ID сущности (уникальный первичный ключ).
 
 Автоматически обновляется при изменении записи.
 
-**Тип:** <a href="../?\DateTimeImmutable"><abbr title="?\DateTimeImmutable">DateTimeImmutable</abbr></a>
+**Тип:** <abbr title="?\DateTimeImmutable">Дата и время или null</abbr>
 
 **Подробности:**
 

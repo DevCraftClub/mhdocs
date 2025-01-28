@@ -19,12 +19,12 @@ nav:
             -   DLE Faker:
                     -   Установка: dev/dle_faker/install.md
                     -   Теги для оформления шаблонов:
-                            - Общие: dev/dle_faker/tag_for_all.md
-                            - Для пользователей: dev/dle_faker/tag_for_users.md
-                            - Пля новостей: dev/dle_faker/tag_for_news.md
+                            -   Общие: dev/dle_faker/tag_for_all.md
+                            -   Для пользователей: dev/dle_faker/tag_for_users.md
+                            -   Пля новостей: dev/dle_faker/tag_for_news.md
                     -   Генератор:
-                        -   Генерация пользователей: dev/dle_faker/gen_users.md
-                        -   Генерация новостей: dev/dle_faker/gen_news.md
+                            -   Генерация пользователей: dev/dle_faker/gen_users.md
+                            -   Генерация новостей: dev/dle_faker/gen_news.md
                     -   Функционал парсера данных: dev/dle_faker/parser.md
                     -   История изменений: dev/dle_faker/changelog.md
             -   Telegram Posting:
@@ -39,41 +39,46 @@ nav:
                             -   Настройка: dev/mhadmin/frontend/manage.md
                     -   Для разработчиков:
                             -   Генератор модулей: dev/mhadmin/new_module.md
+                            -   Главный файл в папке inc: dev/mhadmin/backend/inc_main.md
+                            -   Модуль главной страницы: dev/mhadmin/backend/module.md
                             -   Back-End:
-								-	Главная: dev/mhadmin/backend/index.md
-								-	Трейты:
-                                	- 	AssetsChecker: dev/mhadmin/classes/AssetsChecker.md
-                                    - 	DataLoader: dev/mhadmin/classes/DataLoader.md
-                                    - 	DleData: dev/mhadmin/classes/DleData.md
-                                    - 	UpdatesChecker: dev/mhadmin/classes/UpdatesChecker.md
-								-	Классы:
-									-	Admin: dev/mhadmin/classes/Admin.md
-									-	AdminLink: dev/mhadmin/classes/AdminLink.md
-									-	AdminUrlExtension: dev/mhadmin/classes/AdminUrlExtension.md
-									-	AjaxAbstractResponse: dev/mhadmin/classes/AjaxAbstractResponse.md
-									-	Author: dev/mhadmin/classes/Author.md
-									-	BasisModel: dev/mhadmin/classes/BasisModel.md
-									-	BasisRepository: dev/mhadmin/classes/BasisRepository.md
-									-	BreadCrumb: dev/mhadmin/classes/BreadCrumb.md
-									-	CacheControl: dev/mhadmin/classes/CacheControl.md
-									-	ComposerAction: dev/mhadmin/classes/ComposerAction.md
-									-	DataManager: dev/mhadmin/classes/DataManager.md
-									-	DateTimeFormatter: dev/mhadmin/classes/DateTimeFormatter.md
-									-	DeclineExtension: dev/mhadmin/classes/DeclineExtension.md
-									-	ErrorResponseAjax: dev/mhadmin/classes/ErrorResponseAjax.md
-									-	LogGenerator: dev/mhadmin/classes/LogGenerator.md
-									-	MhAjax: dev/mhadmin/classes/MhAjax.md
-									-	MhDB: dev/mhadmin/classes/MhDB.md
-									-	MhLog: dev/mhadmin/classes/MhLog.md
-									-	MhLogRepository: dev/mhadmin/classes/MhLogRepository.md
-									-	MhTranslation: dev/mhadmin/classes/MhTranslation.md
-									-	MobileDetectExtension: dev/mhadmin/classes/MobileDetectExtension.md
-									-	SuccessResponseAjax: dev/mhadmin/classes/SuccessResponseAjax.md
-									-	TextLimiter: dev/mhadmin/classes/TextLimiter.md
-									-	TwigFilter: dev/mhadmin/classes/TwigFilter.md
+                                    -   Главная: dev/mhadmin/backend/index.md
+                                    -   База данных:
+                                            -   BasisModel: dev/mhadmin/classes/BasisModel.md
+                                            -   BasisRepository: dev/mhadmin/classes/BasisRepository.md
+                                            -   MhDB: dev/mhadmin/classes/MhDB.md
+                                    -   Классы:
+                                            -   Admin: dev/mhadmin/classes/Admin.md
+                                            -   CacheControl: dev/mhadmin/classes/CacheControl.md
+                                            -   ComposerAction: dev/mhadmin/classes/ComposerAction.md
+                                            -   DataManager: dev/mhadmin/classes/DataManager.md
+                                            -   LogGenerator: dev/mhadmin/classes/LogGenerator.md
+                                            -   MhAjax: dev/mhadmin/classes/MhAjax.md
+                                            -   MhLog: dev/mhadmin/classes/MhLog.md
+                                            -   MhLogRepository: dev/mhadmin/classes/MhLogRepository.md
+                                            -   MhTranslation: dev/mhadmin/classes/MhTranslation.md
+                                            -   TwigFilter: dev/mhadmin/classes/TwigFilter.md
+                                    -   Ответы на запросы AJAX:
+                                            -   AjaxAbstractResponse: dev/mhadmin/classes/AjaxAbstractResponse.md
+                                            -   ErrorResponseAjax: dev/mhadmin/classes/ErrorResponseAjax.md
+                                            -   SuccessResponseAjax: dev/mhadmin/classes/SuccessResponseAjax.md
+                                    -   Твиг (Twig) дополнения:
+                                            -   AdminUrlExtension: dev/mhadmin/classes/AdminUrlExtension.md
+                                            -   DateTimeFormatter: dev/mhadmin/classes/DateTimeFormatter.md
+                                            -   DeclineExtension: dev/mhadmin/classes/DeclineExtension.md
+                                            -   MobileDetectExtension: dev/mhadmin/classes/MobileDetectExtension.md
+                                            -   TextLimiter: dev/mhadmin/classes/TextLimiter.md
+                                    -   Типы:
+                                            -   AdminLink: dev/mhadmin/classes/AdminLink.md
+                                            -   Author: dev/mhadmin/classes/Author.md
+                                            -   BreadCrumb: dev/mhadmin/classes/BreadCrumb.md
+                                    -   Трейты:
+                                            -   AssetsChecker: dev/mhadmin/classes/AssetsChecker.md
+                                            -   DataLoader: dev/mhadmin/classes/DataLoader.md
+                                            -   DleData: dev/mhadmin/classes/DleData.md
+                                            -   UpdatesChecker: dev/mhadmin/classes/UpdatesChecker.md
                             -   Front-End:
                                     -   Шаблоны: dev/mhadmin/frontend/templates.md
-									-	Настройка: dev/admin/frontend/manage.md
                     -   История изменений: dev/mhadmin/changelog.md
             -   MyStatus: dev/mystatus.md
             -   Release Status: dev/releasestatus.md

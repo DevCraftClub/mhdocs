@@ -86,8 +86,6 @@ $mh_template->addExtension(new TranslationExtension(MhTranslation::getTranslator
 // Загружаем шаблон
 $template = $mh_template->load($htmlTemplate);
 
-// Отображаем всё на сайте
-// При помощи array_merge() можно объединить любое кол-во массивов
 echo $template->render($mh->getVariables());
 
 ```
@@ -113,8 +111,56 @@ $modInfo = [
 
 Вся основная информация хранится в массиве `$modInfo`. Именно отсюда формуруются все ссылки, настройки и прочее.
 
+Подробнее о Crowdin можно узнать [здесь](../../crowdin.md).
+
 ## Ссылки в меню / навигацию
 Все ссылки добавляются через класс [админки](./classes/Admin.md), а точнее через [метод](./classes/Admin.md#method_setLink):
+
 ```php
 $mh->setLink(new AdminLink('new_module', __('Генератор модулей'), '?mod='.$modInfo['module_code'].'&sites=new_module'), 'new_module');
 ```
+
+Подробнее о содержании ссылки можно узнать в классе [AdminLink](./classes/AdminLink.md).
+
+
+## Подключение страниц
+
+```php
+switch ($_GET['sites']) {
+	case 'changelog':
+		require_once DLEPlugins::Check(MH_MODULES.'/admin/module/changelog.php');
+		break;
+	
+	default:
+		require_once DLEPlugins::Check(MH_MODULES.'/admin/module/main.php');
+		break;
+}
+```
+
+Это основное подключение страниц. К ним подключаются пользовательские модули страниц. Данные страниц содержат доп. переменные, что важны в отображении и обработки самой оболочки!
+
+## Вывод информации
+
+```php
+$xtraVariable = [
+	'breadcrumbs' => $mh->getBreadcrumb(),
+	'settings'    => DataManager::getConfig($modInfo['module_code']),
+	'links'       => $mh->getVariables('menu')
+];
+
+$mh->setVars($modInfo);
+$mh->setVars($xtraVariable);
+$mh->setVars($modVars);
+
+// Устанавливаем язык панели
+$mh_template->addExtension(new TranslationExtension(MhTranslation::getTranslator()));
+
+// Загружаем шаблон
+$template = $mh_template->load($htmlTemplate);
+
+echo $template->render($mh->getVariables());
+```
+
+Добавляем в общий массив переменных прим помощи [setVars](./classes/Admin.md#method_setVars). 
+
+Отображение самой страницы происходит при помощи подгружения шаблона, чья переменная указывается в модуле страницы.

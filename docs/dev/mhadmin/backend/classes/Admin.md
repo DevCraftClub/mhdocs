@@ -257,12 +257,14 @@
 
 **Тип:** <abbr title="array">массив</abbr>
 Значение свойств этой переменной задаётся по умолчанию или изменяется через методы класса.
+
 **Подробности:**
 * Смотри так-же:
   * [Для установки/обновления одного или нескольких значений.](#method_setVar)
   * [Для получения массива переменных.](#method_getVariables)
   * [Для настройки информации об авторе.](#method_setDefaultAuthor)
   * [Для присвоения ссылок (например, для меню или хлебных крошек).](#method_setLinks)
+  * [\Author](./Author.md)
 
 
 
@@ -408,13 +410,13 @@ static public generate_link(string  name, string  href, string  type = "link", a
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string |  |
-| **$href** | string |  |
-| **$type** | string | &#039;link&#039; |
-| **$children** | array | [] |
-| **$data_val** | string|null | null |
+| Название | Тип           | По умолчанию |
+|----------|---------------|--------------|
+| **$name** | string        |              |
+| **$href** | string        |              |
+| **$type** | string        | "link"        |
+| **$children** | array         | []           |
+| **$data_val** | string\| null | null |
 
 ##### Возвращает:
 
@@ -670,7 +672,7 @@ public getLinkUrl(string  name) : string|false
 
 ##### Смотри так-же:
 
- * [\self::getLinkInfo()](../\self::getLinkInfo())
+ * [\self::getLinkInfo()](#method_getLinkInfo)
  * [\AdminLink::getLink()](./AdminLink.md#method_getLink)
 
 ##### Свойства:
@@ -740,10 +742,10 @@ public getUser(int|null  id = null, string|null  uname = null) : array|false
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$id** | int|null | null |
-| **$uname** | string|null | null |
+| Название | Тип          | По умолчанию |
+|----------|--------------|----------|
+| **$id** | int\|null    | null |
+| **$uname** | string\|null | null |
 
 ##### Ошибки:
 
@@ -860,9 +862,9 @@ public getVariables(string|null  name = null) : array
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string|null | null |
+| Название | Тип          | По умолчанию |
+|----------|--------------|----------|
+| **$name** | string\|null | null |
 
 ##### Возвращает:
 
@@ -886,7 +888,7 @@ public getXfieldInfo(string  name, string  type = &#039;post&#039;) : array|null
 
 ##### Смотри так-же:
 
- * [\loadXfields()](../\loadXfields())
+ * [\loadXfields()](./DataLoader.md#method_loadXfields)
  * [\CacheControl::getCache()](./CacheControl.md#method_getCache)
 
 ##### Свойства:
@@ -910,7 +912,7 @@ array|null
 ### htmlStatic
 
 ```
-public htmlStatic(string|array  data, string  view = &#039;html&#039;, string  type = &#039;css&#039;) : array
+public htmlStatic(string|array  data, string  view = "html", string  type = "css") : array
 ```
 
 ##### Краткое содержание
@@ -921,23 +923,23 @@ public htmlStatic(string|array  data, string  view = &#039;html&#039;, string  t
 ##### Описание
 
 Формирование HTML производится для типов файлов `css` и `js`, добавляя соответствующие теги
-(`&lt;link&gt;` или `&lt;script&gt;`). В случае, если используются ссылки, возвращается только массив ссылок.
+(`<link>` или `<script>`). В случае, если используются ссылки, возвращается только массив ссылок.
 
 ##### Смотри так-же:
 
  * [\Admin::$cssArr](#property_cssArr)
  * [\Admin::$jsArr](#property_jsArr)
- * [\self::setCss()](../\self::setCss())
- * [\self::setJs()](../\self::setJs())
- * [\self::__construct()](../\self::__construct())
+ * [\Admin::setCss()](#method_setCss)
+ * [\Admin::setJs()](#method_setJs)
+ * [\Admin::__construct()](#method___construct)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$data** | string|array |  |
-| **$view** | string | &#039;html&#039; |
-| **$type** | string | &#039;css&#039; |
+| Название | Тип           | По умолчанию |
+|----------|---------------|----------|
+| **$data** | string\|array |  |
+| **$view** | string        | &#039;html&#039; |
+| **$type** | string        | &#039;css&#039; |
 
 ##### Возвращает:
 
@@ -997,7 +999,7 @@ array
 ### loadXfields
 
 ```
-public loadXfields(string  type = &#039;post&#039;) : array|false
+public loadXfields(string  type = "post") : array|false
 ```
 
 ##### Краткое содержание
@@ -1010,8 +1012,8 @@ public loadXfields(string  type = &#039;post&#039;) : array|false
 Возвращает ассоциативный массив, где ключами являются названия дополнительных полей, а значениями - их
 параметры.
 Данные загружаются в зависимости от значения параметра `$type`:
-- `&#039;post&#039;`: данные загружаются из файла `xfields.txt`.
-- `&#039;user&#039;`: данные загружаются из файла `xprofile.txt`.
+- `"post"`: данные загружаются из файла `xfields.txt`.
+- `"user"`: данные загружаются из файла `xprofile.txt`.
 Ключи массива, формируемого из файла конфигурации, соответствуют предопределённым ключам, указанным
 в свойствах `userXfieldKeys` или `postXfieldKeys`.
 
@@ -1019,8 +1021,6 @@ public loadXfields(string  type = &#039;post&#039;) : array|false
 
  * [\CacheControl::getCache()](./CacheControl.md#method_getCache)
  * [\CacheControl::setCache()](./CacheControl.md#method_setCache)
- * [\file()](../\file())
- * [\fclose()](../\fclose())
 
 ##### Свойства:
 
@@ -1056,8 +1056,7 @@ public parseAssets(bool  parse = false) : void
 
 ##### Смотри так-же:
 
- * [](../)
- * [\parse_assets()](../\parse_assets())
+ * [\parse_assets()](./AssetsChecker.md#method_parse_assets)
 
 ##### Свойства:
 
@@ -1067,9 +1066,9 @@ public parseAssets(bool  parse = false) : void
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | В случае ошибок в процессах обработки JSON-файлов. |
+| Тип                        | Описание |
+|----------------------------|----------|
+| \JsonException\|\Throwable | В случае ошибок в процессах обработки JSON-файлов. |
 
 ##### Возвращает:
 
@@ -1107,9 +1106,9 @@ public save_asset(array  data, string  file) : array|false
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Генерирует исключение, если возникает ошибка обработки JSON. |
+| Тип                        | Описание |
+|----------------------------|----------|
+| \JsonException\|\Throwable | Генерирует исключение, если возникает ошибка обработки JSON. |
 
 ##### Возвращает:
 
@@ -1233,14 +1232,14 @@ public setCss(array|string  css) : void
 ##### Смотри так-же:
 
  * [\Admin::$cssArr](#property_cssArr)
- * [\Admin::setVar](../\Admin::setVar)
- * [\Admin::htmlStatic](../\Admin::htmlStatic)
+ * [\Admin::setVar](#method_setVar)
+ * [\Admin::htmlStatic](#method_htmlStatic)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$css** | array|string |  |
+| Название | Тип           | По умолчанию |
+|----------|---------------|----------|
+| **$css** | array\|string |  |
 
 ##### Возвращает:
 
@@ -1265,7 +1264,7 @@ public setJs(array|string  js) : void
 
 Метод принимает один или несколько путей до JavaScript файлов и объединяет их
 с массивом `$jsArr`. После этого обновляет переменную `js` с помощью вызова метода `htmlStatic`
-для формирования HTML-тегов `&lt;script&gt;`, необходимых для подключения этих файлов.
+для формирования HTML-тегов `<script>`, необходимых для подключения этих файлов.
 
 ##### Смотри так-же:
 
@@ -1275,9 +1274,9 @@ public setJs(array|string  js) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$js** | array|string |  |
+| Название | Тип           | По умолчанию |
+|----------|---------------|----------|
+| **$js** | array\|string |  |
 
 ##### Возвращает:
 
@@ -1377,9 +1376,9 @@ public setPrefix(string|null  name = null) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string|null | null |
+| Название | Тип          | По умолчанию |
+|----------|--------------|----------|
+| **$name** | string\|null | null |
 
 ##### Возвращает:
 
@@ -1405,9 +1404,6 @@ public setVar(string  name, mixed  value) : void
 Метод добавляет новую переменную в массив `$variables` или обновляет значение
 уже существующей, идентифицируемой по имени.
 
-##### Смотри так-же:
-
- * [](../)
 
 ##### Свойства:
 
@@ -1496,9 +1492,6 @@ private fetchFileContent(array  data) : string|null
 при необходимости, с альтернативной (`alt`) ссылки, если содержимое
 по основной ссылке пустое.
 
-##### Смотри так-же:
-
- * [\file_get_contents()](../\file_get_contents())
 
 ##### Свойства:
 
@@ -1526,10 +1519,6 @@ private generateFileMetadata(string  file_path) : array
 ##### Краткое содержание
 
 Генерирует метаданные для указанного файла.
-
-##### Смотри так-же:
-
- * [\format_bytes()](../\format_bytes())
 
 ##### Свойства:
 
@@ -1587,17 +1576,15 @@ private parse_assets() : void
 
 ##### Смотри так-же:
 
- * [\self::save_asset()](../\self::save_asset())
- * [\self::prepare_assets()](../\self::prepare_assets())
- * [](../)
- * [](../)
+ * [\AssetsChecker::save_asset()](./AssetsChecker.md#method_save_asset)
+ * [\AssetsChecker::prepare_assets()](./AssetsChecker.md#method_repare_assets)
  * [\DataManager::dirToArray()](./DataManager.md#method_dirToArray)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Исключение выбрасывается в случае ошибки при работе с JSON. |
+| Тип                        | Описание |
+|----------------------------|----------|
+| \JsonException\|\Throwable | Исключение выбрасывается в случае ошибки при работе с JSON. |
 
 ##### Возвращает:
 
@@ -1623,17 +1610,12 @@ private prepare_assets(array  arr, string  dir = __DIR__) : void
 Метод рекурсивно обрабатывает массив с файлами и создает запись для каждого файла в конечном массиве `assets_arr`,
 содержащую путь, имя файла и его хэш.
 
-##### Смотри так-же:
-
- * [\hash_file()](../\hash_file())
- * [\pathinfo()](../\pathinfo())
-
 ##### Свойства:
 
 | Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$arr** | array |  |
-| **$dir** | string | __DIR__ |
+|----------|-----|--------------|
+| **$arr** | array |              |
+| **$dir** | string | \_\_DIR\_\_  |
 
 ##### Возвращает:
 
@@ -1752,8 +1734,7 @@ private setDefaultAuthor() : void
 
 ##### Смотри так-же:
 
- * [\variables](../\variables)
- * [\__](../\__)
+ * [\Admin::$variables](#property_variables)
  * [\Author](./Author.md)
 
 ##### Ошибки:

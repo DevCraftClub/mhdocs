@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\MobileDetectExtension
+# Класс: MobileDetectExtension
 
 ## Краткое содержание:
 
@@ -13,6 +13,7 @@
 ---
 
 ### Свойства
+
 * protected $[detector](#property_detector)
 
 ---
@@ -31,21 +32,18 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/twigExtensions/MobileDetectExtension.php](../../engine/inc/maharder/_includes/twigExtensions/MobileDetectExtension.php)
-* Смотри так-же:
-  * [](../)
-  * [](../)
+* Путь: engine/inc/maharder/_includes/twigExtensions/MobileDetectExtension.php
 
 ---
 
 ## Свойства
+
 <a id="property_detector"></a>
 #### protected $detector : ?\Detection\MobileDetect
 ---
-**Тип:** <a href="../?\Detection\MobileDetect"><abbr title="?\Detection\MobileDetect">MobileDetect</abbr></a>
-
-**Подробности:**
-
+**Тип:
+** <a href="https://docs.mobiledetect.net/home/the-constructor" target="_blank"><abbr title="?\Detection\MobileDetect">
+MobileDetect</abbr></a>
 
 
 ---
@@ -53,6 +51,7 @@
 ## Методы
 
 <a id="method___call"></a>
+
 ### __call
 
 ```
@@ -65,10 +64,10 @@ Pass through calls of undefined methods to the mobile detect library
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | mixed |  |
-| **$arguments** | mixed |  |
+| Название       | Тип   | По умолчанию |
+|----------------|-------|--------------|
+| **$name**      | mixed |              |
+| **$arguments** | mixed |              |
 
 ##### Возвращает:
 
@@ -79,6 +78,7 @@ mixed
 ---
 
 <a id="method___construct"></a>
+
 ### __construct
 
 ```
@@ -98,6 +98,7 @@ mixed
 ---
 
 <a id="method_getAvailableDevices"></a>
+
 ### getAvailableDevices
 
 ```
@@ -117,6 +118,7 @@ array
 ---
 
 <a id="method_getFunctions"></a>
+
 ### getFunctions
 
 ```
@@ -136,6 +138,7 @@ array
 ---
 
 <a id="method_getName"></a>
+
 ### getName
 
 ```
@@ -155,10 +158,11 @@ string
 ---
 
 <a id="method_fromCamelCase"></a>
+
 ### fromCamelCase
 
 ```
-static protected fromCamelCase(string  string, string  separator = &#039;_&#039;) : string
+static protected fromCamelCase(string  string, string  separator = "_") : string
 ```
 
 ##### Краткое содержание
@@ -167,10 +171,10 @@ Converts a string from camel case
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$string** | string |  |
-| **$separator** | string | &#039;_&#039; |
+| Название       | Тип    | По умолчанию |
+|----------------|--------|--------------|
+| **$string**    | string |              |
+| **$separator** | string | "_"          |
 
 ##### Возвращает:
 
@@ -181,6 +185,7 @@ string
 ---
 
 <a id="method_toCamelCase"></a>
+
 ### toCamelCase
 
 ```
@@ -193,9 +198,9 @@ Converts a string to camel case
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$string** | string |  |
+| Название    | Тип    | По умолчанию |
+|-------------|--------|--------------|
+| **$string** | string |              |
 
 ##### Возвращает:
 

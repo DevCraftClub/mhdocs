@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\MhLogRepository
+# Класс: MhLogRepository
 
 ## Краткое содержание:
 
@@ -22,13 +22,14 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_modules/admin/repositories/MhLogRepository.php](../../engine/inc/maharder/_modules/admin/repositories/MhLogRepository.php)
+* Путь: engine/inc/maharder/_modules/admin/repositories/MhLogRepository.php
 
 ---
 
 ## Методы
 
 <a id="method_getFirst"></a>
+
 ### getFirst
 
 ```
@@ -44,11 +45,13 @@ public getFirst() : \Entity|null
 ```
 \Entity|null
 ```
+
 Возвращает первую сущность или null, если записи отсутствуют.
 
 ---
 
 <a id="method_getLast"></a>
+
 ### getLast
 
 ```
@@ -64,11 +67,13 @@ public getLast() : \Entity|null
 ```
 \Entity|null
 ```
+
 Возвращает последнюю сущность или null, если записи отсутствуют.
 
 ---
 
 <a id="method_limit"></a>
+
 ### limit
 
 ```
@@ -81,21 +86,23 @@ public limit(int  total, int  start) : array
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$total** | int |  |
-| **$start** | int | 0 |
+| Название   | Тип | По умолчанию |
+|------------|-----|--------------|
+| **$total** | int |              |
+| **$start** | int | 0            |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Массив сущностей, соответствующих указанным критериям.
 
 ---
 
 <a id="method_total"></a>
+
 ### total
 
 ```
@@ -111,4 +118,5 @@ public total() : int
 ```
 int
 ```
+
 Количество записей.

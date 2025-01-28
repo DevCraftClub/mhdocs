@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\DeclineExtension
+# Класс: DeclineExtension
 
 ## Краткое содержание:
 
@@ -22,31 +22,26 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/twigExtensions/DeclineExtension.php](../../engine/inc/maharder/_includes/twigExtensions/DeclineExtension.php)
-* Смотри так-же:
-  * [](../)
+* Путь: engine/inc/maharder/_includes/twigExtensions/DeclineExtension.php
 
 ---
 
 ## Методы
 
 <a id="method_decline"></a>
+
 ### decline
 
 ```
 public decline(int|float  number, array  titles) : mixed
 ```
 
-##### Смотри так-же:
-
- * [](../)
-
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$number** | int|float |  |
-| **$titles** | array |  |
+| Название    | Тип        | По умолчанию |
+|-------------|------------|--------------|
+| **$number** | int\|float |              |
+| **$titles** | array      |              |
 
 ##### Возвращает:
 
@@ -57,6 +52,7 @@ mixed
 ---
 
 <a id="method_getFunctions"></a>
+
 ### getFunctions
 
 ```

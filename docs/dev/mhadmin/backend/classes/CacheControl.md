@@ -1,4 +1,4 @@
-# Abstract Класс: [\Default](../../packages/Default.md)\CacheControl
+# Абстрактный класс: CacheControl
 
 ## Краткое содержание:
 
@@ -32,7 +32,7 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/classes/CacheControl.php](../../engine/inc/maharder/_includes/classes/CacheControl.php)
+* Путь: engine/inc/maharder/_includes/classes/CacheControl.php
 
 ---
 
@@ -49,12 +49,12 @@
 Используется для хранения или извлечения пути, где будут сохраняться
 данные кеша. Значение может быть `null`, если путь не был задан.
 
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
 **Подробности:**
 * Смотри так-же:
-  * [Для получения текущего пути.](../classes/CacheControl.md#method_getPath)
-  * [Для задания пути.](../classes/CacheControl.md#method_setPath)
+    * [Для получения текущего пути.](#method_getPath)
+    * [Для задания пути.](#method_setPath)
 
 ##### Tags
 | Тэг | Версия | Описание |
@@ -70,7 +70,7 @@
 ### clearCache
 
 ```
-static public clearCache(string|array  type = &#039;all&#039;) : void
+static public clearCache(string|array  type = "all") : void
 ```
 
 ##### Краткое содержание
@@ -80,29 +80,28 @@ static public clearCache(string|array  type = &#039;all&#039;) : void
 ##### Описание
 
 Работает по следующему алгоритму:
-- Если передан строковый тип и значение `&#039;all&#039;`, очищается вся директория кеша.
+- Если передан строковый тип и значение `"all"`, очищается вся директория кеша.
 - Если передан массив типов, очистка выполняется рекурсивно для каждого типа.
 - В случае конкретного типа, очищается соответствующий подкаталог.
 
 ##### Смотри так-же:
 
- * [\self::init()](../\self::init())
- * [\DataManager::deleteDir()](../../classes/DataManager.md#method_deleteDir)
- * [\DataManager::toTranslit()](../../classes/DataManager.md#method_toTranslit)
- * [\self::getPath()](../\self::getPath())
+* [\CacheControl::init()](#method_init)
+* [\DataManager::deleteDir()](./DataManager.md#method_deleteDir)
+* [\DataManager::toTranslit()](./DataManager.md#method_toTranslit)
+* [\CacheControl::getPath()](#method_getPath)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$type** | string|array | &#039;all&#039; |
+| Название | Тип           | По умолчанию |
+|----------|---------------|----------|
+| **$type** | string\|array | &#039;all&#039; |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException | Исключение может быть выброшено, если возникают ошибки при работе с JSON-библиотекой
-(например, при вызовах методов, зависящих от внутренних реализаций). |
+| Тип                                                                  | Описание |
+|----------------------------------------------------------------------|----------|
+| \JsonException                                                       |Исключение может быть выброшено, если возникают ошибки при работе с JSON-библиотекой (например, при вызовах методов, зависящих от внутренних реализаций). |
 
 ##### Возвращает:
 
@@ -135,10 +134,9 @@ static public getCache(string  type, string  name) : false|array|int
 
 ##### Смотри так-же:
 
- * [\DataManager::toTranslit()](../../classes/DataManager.md#method_toTranslit)
- * [\DataManager::normalizePath()](../../classes/DataManager.md#method_normalizePath)
- * [\json_decode()](../\json_decode())
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
+* [\DataManager::toTranslit()](./DataManager.md#method_toTranslit)
+* [\DataManager::normalizePath()](./DataManager.md#method_normalizePath)
+* [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
 
 ##### Свойства:
 
@@ -149,9 +147,9 @@ static public getCache(string  type, string  name) : false|array|int
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Если произошла ошибка при декодировании JSON. |
+| Тип                        | Описание |
+|----------------------------|----------|
+| \JsonException\|\Throwable | Если произошла ошибка при декодировании JSON. |
 
 ##### Возвращает:
 
@@ -172,10 +170,6 @@ static public getPath() : string|null
 ##### Краткое содержание
 
 Возвращает текущий путь, если он установлен.
-
-##### Смотри так-же:
-
- * [](../)
 
 ##### Возвращает:
 
@@ -205,15 +199,15 @@ static public init(string|null  path = null) : void
 
 ##### Смотри так-же:
 
- * [\DataManager::normalizePath()](../../classes/DataManager.md#method_normalizePath)
- * [\DataManager::getConfig()](../../classes/DataManager.md#method_getConfig)
- * [\self::setPath()](../\self::setPath())
+* [\DataManager::normalizePath()](./DataManager.md#method_normalizePath)
+* [\DataManager::getConfig()](./DataManager.md#method_getConfig)
+* [\CacheControl::setPath()](#method_setPath)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$path** | string|null | null |
+| Название | Тип          | По умолчанию |
+|----------|--------------|----------|
+| **$path** | string\|null | null |
 
 ##### Ошибки:
 
@@ -250,13 +244,10 @@ static public setCache(string  type, string  name, mixed  data) : void
 
 ##### Смотри так-же:
 
- * [\DataManager::toTranslit()](../../classes/DataManager.md#method_toTranslit)
- * [\DataManager::normalizePath()](../../classes/DataManager.md#method_normalizePath)
- * [\DataManager::createDir()](../../classes/DataManager.md#method_createDir)
- * [\json_encode()](../\json_encode())
- * [\file_put_contents()](../\file_put_contents())
- * [\chmod()](../\chmod())
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
+* [\DataManager::toTranslit()](./DataManager.md#method_toTranslit)
+* [\DataManager::normalizePath()](./DataManager.md#method_normalizePath)
+* [\DataManager::createDir()](./DataManager.md#method_createDir)
+* [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
 
 ##### Свойства:
 
@@ -299,7 +290,7 @@ static public setPath(string  path) : void
 
 ##### Смотри так-же:
 
- * [\self::$path](../\self::$path)
+* [\CacheControl::$path](#property_path)
 
 ##### Свойства:
 

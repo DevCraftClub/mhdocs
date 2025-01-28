@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\Author
+# Класс: Author
 
 ## Краткое содержание:
 
@@ -27,7 +27,7 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/types/Author.php](../../engine/inc/maharder/_includes/types/Author.php)
+* Путь: engine/inc/maharder/_includes/types/Author.php
 
 ---
 
@@ -35,25 +35,19 @@
 <a id="property_contacts"></a>
 #### private $contacts : array
 ---
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="array">Массив</abbr>
 
 
 <a id="property_donations"></a>
 #### private $donations : array
 ---
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="array">Массив</abbr>
 
 
 <a id="property_name"></a>
 #### private $name : string
 ---
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="string">Текст</abbr>
 
 
 

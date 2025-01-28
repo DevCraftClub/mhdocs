@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\TwigFilter
+# Класс: TwigFilter
 
 ## Краткое содержание:
 
@@ -8,6 +8,7 @@
 ---
 
 ### Свойства
+
 * private $[repository](#property_repository)
 
 ---
@@ -26,17 +27,16 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/classes/TwigFilter.php](../../engine/inc/maharder/_includes/classes/TwigFilter.php)
+* Путь: engine/inc/maharder/_includes/classes/TwigFilter.php
 
 ---
 
 ## Свойства
+
 <a id="property_repository"></a>
 #### private $repository : \Cycle\ORM\RepositoryInterface
 ---
 **Тип:** \Cycle\ORM\RepositoryInterface
-
-**Подробности:**
 
 
 
@@ -45,6 +45,7 @@
 ## Методы
 
 <a id="method___construct"></a>
+
 ### __construct
 
 ```
@@ -57,9 +58,9 @@ public __construct(\RepositoryInterface  repository) : mixed
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$repository** | \RepositoryInterface |  |
+| Название        | Тип                  | По умолчанию |
+|-----------------|----------------------|--------------|
+| **$repository** | \RepositoryInterface |              |
 
 ##### Возвращает:
 
@@ -70,6 +71,7 @@ mixed
 ---
 
 <a id="method_createFilter"></a>
+
 ### createFilter
 
 ```
@@ -82,24 +84,23 @@ public createFilter(string  column_name, string  type, string  label, string|nul
 
 ##### Смотри так-же:
 
- * [\createFilterChoices()](../\createFilterChoices())
- * [\getRepository()](../\getRepository())
- * [\__()](../../namespaces/default.md#function___)
+* [\createFilterChoices()](#method_createFilterChoices)
+* [\getRepository()](#method_getRepository)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$column_name** | string |  |
-| **$type** | string |  |
-| **$label** | string |  |
-| **$select_value** | string|null | null |
-| **$choices** | array|null | null |
+| Название          | Тип          | По умолчанию |
+|-------------------|--------------|--------------|
+| **$column_name**  | string       |              |
+| **$type**         | string       |              |
+| **$label**        | string       |              |
+| **$select_value** | string\|null | null         |
+| **$choices**      | array\|null  | null         |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип                       | Описание                                          |
+|---------------------------|---------------------------------------------------|
 | \InvalidArgumentException | Если значение `$type` не соответствует ожидаемым. |
 
 ##### Возвращает:
@@ -107,11 +108,13 @@ public createFilter(string  column_name, string  type, string  label, string|nul
 ```
 array
 ```
+
 Возвращает массив конфигурации фильтра.
 
 ---
 
 <a id="method_createFilterChoices"></a>
+
 ### createFilterChoices
 
 ```
@@ -124,33 +127,34 @@ public createFilterChoices(string  name, string  select) : array
 
 ##### Смотри так-же:
 
- * [\translate](../\translate)
- * [\getRepository](../\getRepository)
- * [\__](../\__)
+* [\translate](./index.md#function_translate)
+* [\getRepository](#method_getRepository)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string |  |
-| **$select** | string |  |
+| Название    | Тип    | По умолчанию |
+|-------------|--------|--------------|
+| **$name**   | string |              |
+| **$select** | string |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \Throwable |  |
+| Тип        | Описание |
+|------------|----------|
+| \Throwable |          |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Ассоциативный массив, где ключи — значения фильтров, а значения — отображаемые имена фильтров.
 
 ---
 
 <a id="method_getDefaultFilters"></a>
+
 ### getDefaultFilters
 
 ```
@@ -164,30 +168,35 @@ static public getDefaultFilters(array  additionalFilters = []) : array
 ##### Описание
 
 Стандартные фильтры включают:
+
 - &#039;page&#039; — валидация целого числа.
-- &#039;mod&#039;, &#039;action&#039;, &#039;sites&#039;, &#039;order&#039; — очистка данных с помощью `FILTER_SANITIZE_FULL_SPECIAL_CHARS`
+- &#039;mod&#039;, &#039;action&#039;, &#039;sites&#039;, &#039;order&#039; — очистка данных с помощью
+  `FILTER_SANITIZE_FULL_SPECIAL_CHARS`
   и возврат `null`, если фильтрация не удалась.
 - &#039;sort&#039; — очистка данных аналогично предыдущим, но с приведением к верхнему регистру.
 
 Метод предоставляет возможность добавлять пользовательские фильтры с помощью аргумента `$additionalFilters`.
-Если значение пользовательского фильтра равно `null`, используется стандартный фильтр `FILTER_SANITIZE_FULL_SPECIAL_CHARS`.
+Если значение пользовательского фильтра равно `null`, используется стандартный фильтр
+`FILTER_SANITIZE_FULL_SPECIAL_CHARS`.
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$additionalFilters** | array | [] |
+| Название               | Тип   | По умолчанию |
+|------------------------|-------|--------------|
+| **$additionalFilters** | array | []           |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Ассоциативный массив, содержащий объединенные стандартные и дополнительные фильтры.
 
 ---
 
 <a id="method_getRepository"></a>
+
 ### getRepository
 
 ```
@@ -200,19 +209,21 @@ public getRepository() : \RepositoryInterface
 
 ##### Смотри так-же:
 
- * [\TwigFilter::$repository](../../classes/TwigFilter.md#property_repository)
- * [\TwigFilter::setRepository()](../../classes/TwigFilter.md#method_setRepository)
+* [\TwigFilter::$repository](#property_repository)
+* [\TwigFilter::setRepository()](#method_setRepository)
 
 ##### Возвращает:
 
 ```
 \RepositoryInterface
 ```
+
 Текущий экземпляр репозитория, связанный с данным объектом.
 
 ---
 
 <a id="method_getSort"></a>
+
 ### getSort
 
 ```
@@ -226,29 +237,28 @@ static public getSort(string  sort) : string
 ##### Описание
 
 Возвращает значение константы, соответствующее направлению сортировки:
+
 - Если передана строка &#039;asc&#039; или &#039;ASC&#039;, возвращается SelectQuery::SORT_ASC.
 - В остальных случаях возвращается SelectQuery::SORT_DESC.
 
-##### Смотри так-же:
-
- * [\SelectQuery](../\SelectQuery)
-
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$sort** | string |  |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$sort** | string |              |
 
 ##### Возвращает:
 
 ```
 string
 ```
+
 Возвращаемое значение сортировки: SelectQuery::SORT_ASC или SelectQuery::SORT_DESC.
 
 ---
 
 <a id="method_setRepository"></a>
+
 ### setRepository
 
 ```
@@ -261,13 +271,13 @@ public setRepository(\RepositoryInterface  repository) : void
 
 ##### Смотри так-же:
 
- * [\TwigFilter::$repository](../../classes/TwigFilter.md#property_repository)
+* [\TwigFilter::$repository](#property_repository)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$repository** | \RepositoryInterface |  |
+| Название        | Тип                  | По умолчанию |
+|-----------------|----------------------|--------------|
+| **$repository** | \RepositoryInterface |              |
 
 ##### Возвращает:
 

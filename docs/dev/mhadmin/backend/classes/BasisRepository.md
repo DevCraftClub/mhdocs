@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\BasisRepository
+# Класс: BasisRepository
 
 ## Краткое содержание:
 
@@ -22,7 +22,7 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/database/BasisRepository.php](../../engine/inc/maharder/_includes/database/BasisRepository.php)
+* Путь: engine/inc/maharder/_includes/database/BasisRepository.php
 
 ---
 

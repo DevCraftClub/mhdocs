@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\TextLimiter
+# Класс: TextLimiter
 
 ## Краткое содержание:
 
@@ -23,13 +23,14 @@ Twig-расширение, предоставляющее инструмент �
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/twigExtensions/TextLimiter.php](../../engine/inc/maharder/_includes/twigExtensions/TextLimiter.php)
+* Путь: engine/inc/maharder/_includes/twigExtensions/TextLimiter.php
 
 ---
 
 ## Методы
 
 <a id="method_getFilters"></a>
+
 ### getFilters
 
 ```
@@ -45,6 +46,7 @@ array
 ---
 
 <a id="method_getFunctions"></a>
+
 ### getFunctions
 
 ```
@@ -60,6 +62,7 @@ array
 ---
 
 <a id="method_limit"></a>
+
 ### limit
 
 ```
@@ -68,10 +71,10 @@ public limit(?string  text, int  limit = 100) : string
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$text** | ?string |  |
-| **$limit** | int | 100 |
+| Название   | Тип     | По умолчанию |
+|------------|---------|--------------|
+| **$text**  | ?string |              |
+| **$limit** | int     | 100          |
 
 ##### Возвращает:
 

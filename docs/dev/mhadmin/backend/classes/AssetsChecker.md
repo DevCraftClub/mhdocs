@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\AssetsChecker
+# Класс: \AssetsChecker
 
 ## Краткое содержание:
 
@@ -29,7 +29,7 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/traits/AssetsChecker.php](../../engine/inc/maharder/_includes/traits/AssetsChecker.php)
+* Путь: engine/inc/maharder/_includes/traits/AssetsChecker.php
 
 ---
 
@@ -41,9 +41,7 @@
 
 Файл с информацией и хешами вспомогательных файлов
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="string">Текст</abbr>
 
 
 <a id="property_assets_arr"></a>
@@ -53,9 +51,7 @@
 
 Массив со всеми данными для обновления стилей и скриптов
 
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="array">Массив</abbr>
 
 
 <a id="property_assets_dir"></a>
@@ -65,9 +61,7 @@
 
 Путь до всех вспомогательных файлов
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
+**Тип:** <abbr title="string">Текст</abbr>
 
 
 
@@ -94,8 +88,8 @@ public checkAssets(bool  rewrite = false) : array
 
 ##### Смотри так-же:
 
- * [\DataManager::dirToArray()](../../classes/DataManager.md#method_dirToArray)
- * [\self::prepare_assets()](../\self::prepare_assets())
+ * [\DataManager::dirToArray()](#method_dirToArray)
+ * [\AssetsChecker::prepare_assets()](#method_prepare_assets)
 
 ##### Свойства:
 
@@ -142,8 +136,7 @@ public parseAssets(bool  parse = false) : void
 
 ##### Смотри так-же:
 
- * [](../)
- * [\parse_assets()](../\parse_assets())
+ * [\parse_assets()](#method_parse_assets)
 
 ##### Свойства:
 
@@ -153,9 +146,9 @@ public parseAssets(bool  parse = false) : void
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | В случае ошибок в процессах обработки JSON-файлов. |
+| Тип                        | Описание |
+|----------------------------|----------|
+| \JsonException\|\Throwable | В случае ошибок в процессах обработки JSON-файлов. |
 
 ##### Возвращает:
 
@@ -178,11 +171,11 @@ public save_asset(array  data, string  file) : array|false
 
 ##### Смотри так-же:
 
- * [\DataManager::createDir()](../../classes/DataManager.md#method_createDir)
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
- * [\AssetsChecker::fetchFileContent()](../../classes/AssetsChecker.md#method_fetchFileContent)
- * [\AssetsChecker::saveFile()](../../classes/AssetsChecker.md#method_saveFile)
- * [\AssetsChecker::generateFileMetadata()](../../classes/AssetsChecker.md#method_generateFileMetadata)
+ * [\DataManager::createDir()](./DataManager.md#method_createDir)
+ * [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
+ * [\AssetsChecker::fetchFileContent()](#method_fetchFileContent)
+ * [\AssetsChecker::saveFile()](#method_saveFile)
+ * [\AssetsChecker::generateFileMetadata()](#method_generateFileMetadata)
 
 ##### Свойства:
 
@@ -236,10 +229,6 @@ private fetchFileContent(array  data) : string|null
 при необходимости, с альтернативной (`alt`) ссылки, если содержимое
 по основной ссылке пустое.
 
-##### Смотри так-же:
-
- * [\file_get_contents()](../\file_get_contents())
-
 ##### Свойства:
 
 | Название | Тип | По умолчанию |
@@ -266,10 +255,6 @@ private generateFileMetadata(string  file_path) : array
 ##### Краткое содержание
 
 Генерирует метаданные для указанного файла.
-
-##### Смотри так-же:
-
- * [\format_bytes()](../\format_bytes())
 
 ##### Свойства:
 
@@ -327,17 +312,15 @@ private parse_assets() : void
 
 ##### Смотри так-же:
 
- * [\self::save_asset()](../\self::save_asset())
- * [\self::prepare_assets()](../\self::prepare_assets())
- * [](../)
- * [](../)
- * [\DataManager::dirToArray()](../../classes/DataManager.md#method_dirToArray)
+ * [\AssetsChecker::save_asset()](#method_save_asset)
+ * [\self::prepare_assets()](#method_prepare_assets)
+ * [\DataManager::dirToArray()](./DataManager.md#method_dirToArray)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Исключение выбрасывается в случае ошибки при работе с JSON. |
+| Тип                        | Описание |
+|----------------------------|----------|
+| \JsonException\|\Throwable | Исключение выбрасывается в случае ошибки при работе с JSON. |
 
 ##### Возвращает:
 
@@ -363,17 +346,12 @@ private prepare_assets(array  arr, string  dir = __DIR__) : void
 Метод рекурсивно обрабатывает массив с файлами и создает запись для каждого файла в конечном массиве `assets_arr`,
 содержащую путь, имя файла и его хэш.
 
-##### Смотри так-же:
-
- * [\hash_file()](../\hash_file())
- * [\pathinfo()](../\pathinfo())
-
 ##### Свойства:
 
 | Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$arr** | array |  |
-| **$dir** | string | __DIR__ |
+|----------|-----|--------------|
+| **$arr** | array |              |
+| **$dir** | string | \_\_DIR\_\_  |
 
 ##### Возвращает:
 
@@ -401,7 +379,7 @@ private saveFile(string  file_path, string  content, string  file) : bool
 
 ##### Смотри так-же:
 
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
+ * [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
 
 ##### Свойства:
 

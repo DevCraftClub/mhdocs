@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\DateTimeFormatter
+# Класс: DateTimeFormatter
 
 ## Краткое содержание:
 
@@ -22,53 +22,50 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/twigExtensions/DateTimeFormatter.php](../../engine/inc/maharder/_includes/twigExtensions/DateTimeFormatter.php)
+* Путь: engine/inc/maharder/_includes/twigExtensions/DateTimeFormatter.php
 
 ---
 
 ## Методы
 
 <a id="method_dateTimeImmutable"></a>
+
 ### dateTimeImmutable
 
 ```
-public dateTimeImmutable(\DateTimeImmutable|string|null  dateString, string  format = &#039;Y-m-d H:i:s&#039;, string  sourceFormat = &#039;Y-m-d H:i:s&#039;) : string
+public dateTimeImmutable(\DateTimeImmutable|string|null  dateString, string  format = "Y-m-d H:i:s", string  sourceFormat = "Y-m-d H:i:s") : string
 ```
 
 ##### Краткое содержание
 
 Преобразует объект DateTimeImmutable или строку в строку формата даты и времени.
 
-##### Смотри так-же:
-
- * [\DateTimeImmutable::createFromFormat()](../\DateTimeImmutable::createFromFormat())
- * [\DateTimeImmutable::format()](../\DateTimeImmutable::format())
-
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$dateString** | \DateTimeImmutable|string|null |  |
-| **$format** | string | &#039;Y-m-d H:i:s&#039; |
-| **$sourceFormat** | string | &#039;Y-m-d H:i:s&#039; |
+| Название          | Тип                              | По умолчанию  |
+|-------------------|----------------------------------|---------------|
+| **$dateString**   | \DateTimeImmutable\|string\|null |               |
+| **$format**       | string                           | "Y-m-d H:i:s" |
+| **$sourceFormat** | string                           | "Y-m-d H:i:s" |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \ValueError | Выбрасывается, если невозможно создать объект DateTimeImmutable из строки
-с помощью указанного формата. |
+| Тип         | Описание                                                                                                |
+|-------------|---------------------------------------------------------------------------------------------------------|
+| \ValueError | Выбрасывается, если невозможно создать объект DateTimeImmutable из строки с помощью указанного формата. |
 
 ##### Возвращает:
 
 ```
 string
 ```
+
 Отформатированное значение даты и времени или пустая строка, если $dateString равно null.
 
 ---
 
 <a id="method_getFilters"></a>
+
 ### getFilters
 
 ```
@@ -84,6 +81,7 @@ array
 ---
 
 <a id="method_getFunctions"></a>
+
 ### getFunctions
 
 ```

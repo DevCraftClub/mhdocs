@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\MhAjax
+# Класс: MhAjax
 
 ## Краткое содержание:
 
@@ -14,6 +14,7 @@ Class MhAjax
 ---
 
 ### Свойства
+
 * protected $[postXfieldKeys](#property_postXfieldKeys)
 * protected $[userXfieldKeys](#property_userXfieldKeys)
 * private $[api_key](#property_api_key)
@@ -66,31 +67,36 @@ Class MhAjax
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/classes/MhAjax.php](../../engine/inc/maharder/_includes/classes/MhAjax.php)
+* Путь: engine/inc/maharder/_includes/classes/MhAjax.php
 * Использованные трейты:
-  * [\AssetsChecker](../classes/AssetsChecker.md)
-  * [\UpdatesChecker](../classes/UpdatesChecker.md)
-  * [\DataLoader](../classes/DataLoader.md)
-  * [\DleData](../classes/DleData.md)
+    * [\AssetsChecker](./AssetsChecker.md)
+    * [\UpdatesChecker](./UpdatesChecker.md)
+    * [\DataLoader](./DataLoader.md)
+    * [\DleData](./DleData.md)
 
 ---
 
 ## Свойства
+
 <a id="property_postXfieldKeys"></a>
 #### protected $postXfieldKeys : array
 ---
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
+**Тип:** <abbr title="array">Массив</abbr>
 
 **Подробности:**
 
+* Смотри так-же:
+    * [DleData::$postXfieldKeys](./DleData.md#property_postXfieldKeys)
 
 <a id="property_userXfieldKeys"></a>
 #### protected $userXfieldKeys : array
 ---
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
+**Тип:** <abbr title="array">Массив</abbr>
 
 **Подробности:**
 
+* Смотри так-же:
+    * [DleData::$userXfieldKeys](./DleData.md#property_userXfieldKeys)
 
 <a id="property_api_key"></a>
 #### private $api_key : string
@@ -99,10 +105,7 @@ Class MhAjax
 
 Гостевой ключ с доступом на просмотр информации ресурса на сайте
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_asset_file"></a>
 #### private $asset_file : string
@@ -111,10 +114,7 @@ Class MhAjax
 
 Файл с информацией и хешами вспомогательных файлов
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_assets_arr"></a>
 #### private $assets_arr : array
@@ -123,10 +123,7 @@ Class MhAjax
 
 Массив со всеми данными для обновления стилей и скриптов
 
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="array">Массив</abbr>
 
 <a id="property_assets_dir"></a>
 #### private $assets_dir : string
@@ -135,10 +132,7 @@ Class MhAjax
 
 Путь до всех вспомогательных файлов
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_cache_folder"></a>
 #### private $cache_folder : string
@@ -147,34 +141,24 @@ Class MhAjax
 
 Папка кеша
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_prefix"></a>
 #### private $prefix : ?string
 ---
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
 <a id="property_recource_id"></a>
 #### private $recource_id : ?int
 ---
-**Тип:** <a href="../?int"><abbr title="?int">?int</abbr></a>
+**Тип:** <a href="../?int"><abbr title="?int">Целое число или null</abbr></a>
 
 **Подробности:**
-
 
 <a id="property_update_url"></a>
 #### private $update_url : string
 ---
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 
 ---
@@ -182,6 +166,7 @@ Class MhAjax
 ## Методы
 
 <a id="method___construct"></a>
+
 ### __construct
 
 ```
@@ -194,8 +179,8 @@ public __construct() : mixed
 
 ##### Описание
 
-Инициализирует объект класса, содержащего вспомогательные методы
-для работы с DLE, загрузкой данных и проверкой ресурсов.
+Инициализирует объект класса, содержащего вспомогательные методы для работы с DLE, загрузкой данных и проверкой
+ресурсов.
 
 ##### Возвращает:
 
@@ -206,6 +191,7 @@ mixed
 ---
 
 <a id="method_checkAssets"></a>
+
 ### checkAssets
 
 ```
@@ -224,27 +210,29 @@ public checkAssets(bool  rewrite = false) : array
 
 ##### Смотри так-же:
 
- * [\DataManager::dirToArray()](../../classes/DataManager.md#method_dirToArray)
- * [\self::prepare_assets()](../\self::prepare_assets())
+* [\DataManager::dirToArray()](./DataManager.md#method_dirToArray)
+* [\AssetsChecker::prepare_assets()](./AssetsChecker.md#method_prepare_assets)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$rewrite** | bool | false |
+| Название     | Тип  | По умолчанию |
+|--------------|------|--------------|
+| **$rewrite** | bool | false        |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Ассоциативный массив с информацией о проверке файлов:
+
 - `on_server` (int): Количество файлов, находящихся на сервере разработчика.
 - `local` (int): Количество локальных файлов.
 - `missing_count` (int): Количество недостающих файлов.
@@ -255,6 +243,7 @@ array
 ---
 
 <a id="method_checkUpdate"></a>
+
 ### checkUpdate
 
 ```
@@ -267,36 +256,36 @@ public checkUpdate(int|null  res = null) : array
 
 ##### Смотри так-же:
 
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
- * [\Curl](../\Curl)
+* [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$res** | int|null | null |
+| Название | Тип       | По умолчанию |
+|----------|-----------|--------------|
+| **$res** | int\|null | null         |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Исключение, связанное с ошибками в JSON-конверсии (может быть выброшено
-при выполнении Telegram-лога). |
+| Тип                        | Описание                                                                                               |
+|----------------------------|--------------------------------------------------------------------------------------------------------|
+| \JsonException\|\Throwable | Исключение, связанное с ошибками в JSON-конверсии (может быть выброшено при выполнении Telegram-лога). |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Возвращает массив с данными об обновлении ресурса или список ошибок.
 
 ---
 
 <a id="method_clear_cache"></a>
+
 ### clear_cache
 
 ```
-public clear_cache(string  type = &#039;all&#039;) : void
+public clear_cache(string  type = "all") : void
 ```
 
 ##### Краткое содержание
@@ -310,13 +299,13 @@ public clear_cache(string  type = &#039;all&#039;) : void
 
 ##### Смотри так-же:
 
- * [\CacheControl::clearCache()](../../classes/CacheControl.md#method_clearCache)
+* [\CacheControl::clearCache()](./CacheControl.md#method_clearCache)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$type** | string | &#039;all&#039; |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$type** | string | "all"        |
 
 ##### Возвращает:
 
@@ -327,6 +316,7 @@ void
 ---
 
 <a id="method_get_cache"></a>
+
 ### get_cache
 
 ```
@@ -343,38 +333,40 @@ public get_cache(string  type, string  name) : array|false
 
 ##### Смотри так-же:
 
- * [\DataManager::toTranslit()](../../classes/DataManager.md#method_toTranslit)
- * [\DataManager::normalizePath()](../../classes/DataManager.md#method_normalizePath)
- * [\CacheControl::getCache()](../../classes/CacheControl.md#method_getCache)
+* [\DataManager::toTranslit()](./DataManager.md#method_toTranslit)
+* [\DataManager::normalizePath()](./DataManager.md#method_normalizePath)
+* [\CacheControl::getCache()](./CacheControl.md#method_getCache)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$type** | string |  |
-| **$name** | string |  |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$type** | string |              |
+| **$name** | string |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 
 ```
 array|false
 ```
+
 Возвращает массив декодированных данных, если файл кеша успешно найден и данные корректны,
 или `false`, если произошла ошибка (например, файл не найден или данные некорректны).
 
 ---
 
 <a id="method_get_used_xfields"></a>
+
 ### get_used_xfields
 
 ```
-public get_used_xfields(int  id, string  type = &#039;post&#039;) : array|bool
+public get_used_xfields(int  id, string  type = "post") : array|bool
 ```
 
 ##### Краткое содержание
@@ -388,19 +380,19 @@ public get_used_xfields(int  id, string  type = &#039;post&#039;) : array|bool
 
 ##### Смотри так-же:
 
- * [\load_data()](../\load_data())
+* [\DataLoader::load_data()](./DataLoader.md#method_load_data)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$id** | int |  |
-| **$type** | string | &#039;post&#039; |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$id**   | int    |              |
+| **$type** | string | "post"       |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                                           |
+|----------------|--------------------------------------------------------------------|
 | \JsonException | Исключение выбрасывается, если произошла ошибка при работе с JSON. |
 
 ##### Возвращает:
@@ -408,12 +400,14 @@ public get_used_xfields(int  id, string  type = &#039;post&#039;) : array|bool
 ```
 array|bool
 ```
+
 Возвращает массив дополнительных полей объекта в формате
 ключ =&gt; значение, либо `false`, если данные отсутствуют.
 
 ---
 
 <a id="method_getApiKey"></a>
+
 ### getApiKey
 
 ```
@@ -429,6 +423,7 @@ string
 ---
 
 <a id="method_getCacheFolder"></a>
+
 ### getCacheFolder
 
 ```
@@ -444,6 +439,7 @@ string
 ---
 
 <a id="method_getCats"></a>
+
 ### getCats
 
 ```
@@ -463,24 +459,26 @@ public getCats() : array
 
 ##### Смотри так-же:
 
- * [\load_data()](../\load_data())
+* [\DataLoader::load_data()](./DataLoader.md#method_load_data)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Ассоциативный массив категорий, где ключ — ID категории, а значение — её название.
 
 ---
 
 <a id="method_getDleUrl"></a>
+
 ### getDleUrl
 
 ```
@@ -501,11 +499,13 @@ public getDleUrl() : string
 ```
 string
 ```
+
 Конечный URL панели администратора DLE.
 
 ---
 
 <a id="method_getPrefix"></a>
+
 ### getPrefix
 
 ```
@@ -523,19 +523,21 @@ public getPrefix() : string
 
 ##### Смотри так-же:
 
- * [\DataLoader::$prefix](../../classes/DataLoader.md#property_prefix)
- * [\DataLoader::setPrefix()](../../classes/DataLoader.md#method_setPrefix)
+* [\DataLoader::$prefix](./DataLoader.md#property_prefix)
+* [\DataLoader::setPrefix()](./DataLoader.md#method_setPrefix)
 
 ##### Возвращает:
 
 ```
 string
 ```
+
 Префикс, используемый для построения SQL-запросов.
 
 ---
 
 <a id="method_getRecourceId"></a>
+
 ### getRecourceId
 
 ```
@@ -551,6 +553,7 @@ int|null
 ---
 
 <a id="method_getUpdateUrl"></a>
+
 ### getUpdateUrl
 
 ```
@@ -566,6 +569,7 @@ string
 ---
 
 <a id="method_getUser"></a>
+
 ### getUser
 
 ```
@@ -583,32 +587,34 @@ public getUser(int|null  id = null, string|null  uname = null) : array|false
 
 ##### Смотри так-же:
 
- * [\load_data()](../\load_data())
+* [\DataLoader::load_data()](./DataLoader.md#method_load_data)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$id** | int|null | null |
-| **$uname** | string|null | null |
+| Название   | Тип          | По умолчанию |
+|------------|--------------|--------------|
+| **$id**    | int\|null    | null         |
+| **$uname** | string\|null | null         |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 
 ```
 array|false
 ```
+
 Ассоциативный массив с данными о пользователе, если пользователь найден.
 Возвращает `false`, если пользователь не найден или если критерии поиска не заданы.
 
 ---
 
 <a id="method_getUserGroups"></a>
+
 ### getUserGroups
 
 ```
@@ -628,24 +634,26 @@ public getUserGroups() : array
 
 ##### Смотри так-же:
 
- * [\load_data()](../\load_data())
+* [\DataLoader::load_data()](./DataLoader.md#method_load_data)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Ассоциативный массив, где ключ — идентификатор группы, значение — имя группы.
 
 ---
 
 <a id="method_getUsers"></a>
+
 ### getUsers
 
 ```
@@ -664,29 +672,31 @@ public getUsers() : array
 
 ##### Смотри так-же:
 
- * [\load_data()](../\load_data())
+* [\DataLoader::load_data()](./DataLoader.md#method_load_data)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Ассоциативный массив пользователей, где ключи — идентификаторы пользователей (user_id), а значения
 — их имена.
 
 ---
 
 <a id="method_getXfieldInfo"></a>
+
 ### getXfieldInfo
 
 ```
-public getXfieldInfo(string  name, string  type = &#039;post&#039;) : array|null
+public getXfieldInfo(string  name, string  type = "post") : array|null
 ```
 
 ##### Краткое содержание
@@ -695,27 +705,29 @@ public getXfieldInfo(string  name, string  type = &#039;post&#039;) : array|null
 
 ##### Смотри так-же:
 
- * [\loadXfields()](../\loadXfields())
- * [\CacheControl::getCache()](../../classes/CacheControl.md#method_getCache)
+* [\DleData::loadXfields()](./DleData.md#method_loadXfields)
+* [\CacheControl::getCache()](./CacheControl.md#method_getCache)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string |  |
-| **$type** | string | &#039;post&#039; |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$name** | string |              |
+| **$type** | string | "post"       |
 
 ##### Возвращает:
 
 ```
 array|null
 ```
+
 Возвращает информацию о поле в виде ассоциативного массива, либо null,
 если поле не найдено.
 
 ---
 
 <a id="method_load_data"></a>
+
 ### load_data
 
 ```
@@ -733,22 +745,22 @@ public load_data(string  name, mixed  ..._vars) : array
 
 ##### Смотри так-же:
 
- * [\DataManager::getDb()](../../classes/DataManager.md#method_getDb)
- * [\DataManager::nameArgs()](../../classes/DataManager.md#method_nameArgs)
- * [\DataManager::getComparer()](../../classes/DataManager.md#method_getComparer)
- * [\DataManager::getConfig()](../../classes/DataManager.md#method_getConfig)
+* [\DataManager::getDb()](./DataManager.md#method_getDb)
+* [\DataManager::nameArgs()](./DataManager.md#method_nameArgs)
+* [\DataManager::getComparer()](./DataManager.md#method_getComparer)
+* [\DataManager::getConfig()](./DataManager.md#method_getConfig)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string |  |
-| **$_vars** | mixed |  |
+| Название   | Тип    | По умолчанию |
+|------------|--------|--------------|
+| **$name**  | string |              |
+| **$_vars** | mixed  |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                 |
+|----------------|------------------------------------------|
 | \JsonException | В случае JSON-ошибок при работе с кешем. |
 
 ##### Возвращает:
@@ -756,15 +768,17 @@ public load_data(string  name, mixed  ..._vars) : array
 ```
 array
 ```
+
 Результат выборки из базы данных, либо из кеша.
 
 ---
 
 <a id="method_loadXfields"></a>
+
 ### loadXfields
 
 ```
-public loadXfields(string  type = &#039;post&#039;) : array|false
+public loadXfields(string  type = "post") : array|false
 ```
 
 ##### Краткое содержание
@@ -777,35 +791,36 @@ public loadXfields(string  type = &#039;post&#039;) : array|false
 Возвращает ассоциативный массив, где ключами являются названия дополнительных полей, а значениями - их
 параметры.
 Данные загружаются в зависимости от значения параметра `$type`:
-- `&#039;post&#039;`: данные загружаются из файла `xfields.txt`.
-- `&#039;user&#039;`: данные загружаются из файла `xprofile.txt`.
-Ключи массива, формируемого из файла конфигурации, соответствуют предопределённым ключам, указанным
-в свойствах `userXfieldKeys` или `postXfieldKeys`.
+
+- `"post"`: данные загружаются из файла `xfields.txt`.
+- `"user"`: данные загружаются из файла `xprofile.txt`.
+  Ключи массива, формируемого из файла конфигурации, соответствуют предопределённым ключам, указанным
+  в свойствах `userXfieldKeys` или `postXfieldKeys`.
 
 ##### Смотри так-же:
 
- * [\CacheControl::getCache()](../../classes/CacheControl.md#method_getCache)
- * [\CacheControl::setCache()](../../classes/CacheControl.md#method_setCache)
- * [\file()](../\file())
- * [\fclose()](../\fclose())
+* [\CacheControl::getCache()](./CacheControl.md#method_getCache)
+* [\CacheControl::setCache()](./CacheControl.md#method_setCache)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$type** | string | &#039;post&#039; |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$type** | string | "post"       |
 
 ##### Возвращает:
 
 ```
 array|false
 ```
+
 Ассоциативный массив дополнительных полей, где ключ - название поля, значение - его
 параметры. Возвращает `false` в случае невозможности прочитать файл.
 
 ---
 
 <a id="method_parseAssets"></a>
+
 ### parseAssets
 
 ```
@@ -823,20 +838,19 @@ public parseAssets(bool  parse = false) : void
 
 ##### Смотри так-же:
 
- * [](../)
- * [\parse_assets()](../\parse_assets())
+* [\AssetsChecker::parse_assets()](./AssetsChecker.md#method_parse_assetsc)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$parse** | bool | false |
+| Название   | Тип  | По умолчанию |
+|------------|------|--------------|
+| **$parse** | bool | false        |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | В случае ошибок в процессах обработки JSON-файлов. |
+| Тип                        | Описание                                           |
+|----------------------------|----------------------------------------------------|
+| \JsonException\|\Throwable | В случае ошибок в процессах обработки JSON-файлов. |
 
 ##### Возвращает:
 
@@ -847,6 +861,7 @@ void
 ---
 
 <a id="method_save_asset"></a>
+
 ### save_asset
 
 ```
@@ -859,48 +874,51 @@ public save_asset(array  data, string  file) : array|false
 
 ##### Смотри так-же:
 
- * [\DataManager::createDir()](../../classes/DataManager.md#method_createDir)
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
- * [\AssetsChecker::fetchFileContent()](../../classes/AssetsChecker.md#method_fetchFileContent)
- * [\AssetsChecker::saveFile()](../../classes/AssetsChecker.md#method_saveFile)
- * [\AssetsChecker::generateFileMetadata()](../../classes/AssetsChecker.md#method_generateFileMetadata)
+* [\DataManager::createDir()](./DataManager.md#method_createDir)
+* [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
+* [\AssetsChecker::fetchFileContent()](./AssetsChecker.md#method_fetchFileContent)
+* [\AssetsChecker::saveFile()](./AssetsChecker.md#method_saveFile)
+* [\AssetsChecker::generateFileMetadata()](./AssetsChecker.md#method_generateFileMetadata)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$data** | array |  |
-| **$file** | string |  |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$data** | array  |              |
+| **$file** | string |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Генерирует исключение, если возникает ошибка обработки JSON. |
+| Тип                        | Описание                                                     |
+|----------------------------|--------------------------------------------------------------|
+| \JsonException\|\Throwable | Генерирует исключение, если возникает ошибка обработки JSON. |
 
 ##### Возвращает:
 
 ```
 array|false
 ```
+
 Возвращает массив с информацией о сохранённом файле или false, если файл не удалось сохранить.
 Массив содержит следующие ключи:
-- &#039;realpath&#039; (string): Полный реальный путь до файла.
-- &#039;dirname&#039; (string): Директория файла.
-- &#039;basename&#039; (string): Имя файла с расширением.
-- &#039;filename&#039; (string): Имя файла без расширения.
-- &#039;extension&#039; (string): Расширение файла.
-- &#039;mime&#039; (string): MIME-тип файла.
-- &#039;encoding&#039; (string): Тип кодирования файла.
-- &#039;size&#039; (int): Размер файла в байтах.
-- &#039;size_string&#039; (string): Размер файла в человекочитаемом формате (например, &quot;1.5MB&quot;).
-- &#039;atime&#039; (int): Время последнего доступа к файлу (в метках времени Unix).
-- &#039;mtime&#039; (int): Время последней модификации файла (в метках времени Unix).
-- &#039;permission&#039; (string): Права доступа на файл (в формате UNIX-подобной строки, например, &quot;0755&quot;).
+
+- "realpath" (string): Полный реальный путь до файла.
+- "dirname" (string): Директория файла.
+- "basename" (string): Имя файла с расширением.
+- "filename" (string): Имя файла без расширения.
+- "extension" (string): Расширение файла.
+- "mime" (string): MIME-тип файла.
+- "encoding" (string): Тип кодирования файла.
+- "size" (int): Размер файла в байтах.
+- "size_string" (string): Размер файла в человекочитаемом формате (например, &quot;1.5MB&quot;).
+- "atime" (int): Время последнего доступа к файлу (в метках времени Unix).
+- "mtime" (int): Время последней модификации файла (в метках времени Unix).
+- "permission" (string): Права доступа на файл (в формате UNIX-подобной строки, например, &quot;0755&quot;).
 
 ---
 
 <a id="method_setApiKey"></a>
+
 ### setApiKey
 
 ```
@@ -909,9 +927,9 @@ public setApiKey(string  api_key) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$api_key** | string |  |
+| Название     | Тип    | По умолчанию |
+|--------------|--------|--------------|
+| **$api_key** | string |              |
 
 ##### Возвращает:
 
@@ -922,6 +940,7 @@ void
 ---
 
 <a id="method_setCacheFolder"></a>
+
 ### setCacheFolder
 
 ```
@@ -930,9 +949,9 @@ public setCacheFolder(string  cache_folder) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$cache_folder** | string |  |
+| Название          | Тип    | По умолчанию |
+|-------------------|--------|--------------|
+| **$cache_folder** | string |              |
 
 ##### Возвращает:
 
@@ -943,6 +962,7 @@ void
 ---
 
 <a id="method_setPrefix"></a>
+
 ### setPrefix
 
 ```
@@ -961,9 +981,9 @@ public setPrefix(string|null  name = null) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string|null | null |
+| Название  | Тип          | По умолчанию |
+|-----------|--------------|--------------|
+| **$name** | string\|null | null         |
 
 ##### Возвращает:
 
@@ -974,6 +994,7 @@ void
 ---
 
 <a id="method_setRecourceId"></a>
+
 ### setRecourceId
 
 ```
@@ -982,9 +1003,9 @@ public setRecourceId(int  recource_id) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$recource_id** | int |  |
+| Название         | Тип | По умолчанию |
+|------------------|-----|--------------|
+| **$recource_id** | int |              |
 
 ##### Возвращает:
 
@@ -995,6 +1016,7 @@ void
 ---
 
 <a id="method_setUpdateUrl"></a>
+
 ### setUpdateUrl
 
 ```
@@ -1003,9 +1025,9 @@ public setUpdateUrl(string  update_url) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$update_url** | string |  |
+| Название        | Тип    | По умолчанию |
+|-----------------|--------|--------------|
+| **$update_url** | string |              |
 
 ##### Возвращает:
 
@@ -1016,6 +1038,7 @@ void
 ---
 
 <a id="method_fetchFileContent"></a>
+
 ### fetchFileContent
 
 ```
@@ -1032,27 +1055,25 @@ private fetchFileContent(array  data) : string|null
 при необходимости, с альтернативной (`alt`) ссылки, если содержимое
 по основной ссылке пустое.
 
-##### Смотри так-же:
-
- * [\file_get_contents()](../\file_get_contents())
-
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$data** | array |  |
+| Название  | Тип   | По умолчанию |
+|-----------|-------|--------------|
+| **$data** | array |              |
 
 ##### Возвращает:
 
 ```
 string|null
 ```
+
 Возвращает содержимое файла, либо null, если
 не удалось загрузить файл.
 
 ---
 
 <a id="method_generateFileMetadata"></a>
+
 ### generateFileMetadata
 
 ```
@@ -1063,20 +1084,16 @@ private generateFileMetadata(string  file_path) : array
 
 Генерирует метаданные для указанного файла.
 
-##### Смотри так-же:
-
- * [\format_bytes()](../\format_bytes())
-
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$file_path** | string |  |
+| Название       | Тип    | По умолчанию |
+|----------------|--------|--------------|
+| **$file_path** | string |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип               | Описание                                |
+|-------------------|-----------------------------------------|
 | \RuntimeException | Если файл не существует или недоступен. |
 
 ##### Возвращает:
@@ -1084,23 +1101,26 @@ private generateFileMetadata(string  file_path) : array
 ```
 array
 ```
+
 Ассоциативный массив, содержащий следующую информацию о файле:
-- &#039;realpath&#039; (string|null): Абсолютный путь до файла.
-- &#039;dirname&#039; (string): Путь к директории, содержащей файл.
-- &#039;basename&#039; (string): Имя файла с расширением.
-- &#039;filename&#039; (string): Имя файла без расширения.
-- &#039;extension&#039; (string|null): Расширение файла.
-- &#039;mime&#039; (string): MIME-тип файла.
-- &#039;encoding&#039; (string): Кодировка файла.
-- &#039;size&#039; (int): Размер файла в байтах.
-- &#039;size_string&#039; (string): Читаемое представление размера файла (например, &quot;10.5 KB&quot;).
-- &#039;atime&#039; (int): Временная метка последнего доступа к файлу.
-- &#039;mtime&#039; (int): Временная метка последней модификации файла.
-- &#039;permission&#039; (string): Права доступа к файлу (например, &quot;0755&quot;).
+
+- "realpath" (string|null): Абсолютный путь до файла.
+- "dirname" (string): Путь к директории, содержащей файл.
+- "basename" (string): Имя файла с расширением.
+- "filename" (string): Имя файла без расширения.
+- "extension" (string|null): Расширение файла.
+- "mime" (string): MIME-тип файла.
+- "encoding" (string): Кодировка файла.
+- "size" (int): Размер файла в байтах.
+- "size_string" (string): Читаемое представление размера файла (например, &quot;10.5 KB&quot;).
+- "atime" (int): Временная метка последнего доступа к файлу.
+- "mtime" (int): Временная метка последней модификации файла.
+- "permission" (string): Права доступа к файлу (например, &quot;0755&quot;).
 
 ---
 
 <a id="method_parse_assets"></a>
+
 ### parse_assets
 
 ```
@@ -1115,6 +1135,7 @@ private parse_assets() : void
 ##### Описание
 
 Процесс включает следующие этапы:
+
 1. Получение списка локальных файлов и их данных через метод `prepare_assets`.
 2. Получение данных об удаленных ресурсах через URL.
 3. Сравнение данных о хэшах локальных и удаленных ресурсов.
@@ -1123,17 +1144,15 @@ private parse_assets() : void
 
 ##### Смотри так-же:
 
- * [\self::save_asset()](../\self::save_asset())
- * [\self::prepare_assets()](../\self::prepare_assets())
- * [](../)
- * [](../)
- * [\DataManager::dirToArray()](../../classes/DataManager.md#method_dirToArray)
+* [\AssetsChecker::save_asset()](./AssetsChecker.md#method_save_asset)
+* [\AssetsChecker::prepare_assets()](./AssetsChecker.md#method_prepare_assets)
+* [\DataManager::dirToArray()](./DataManager.md#method_dirToArray)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Исключение выбрасывается в случае ошибки при работе с JSON. |
+| Тип                        | Описание                                                    |
+|----------------------------|-------------------------------------------------------------|
+| \JsonException\|\Throwable | Исключение выбрасывается в случае ошибки при работе с JSON. |
 
 ##### Возвращает:
 
@@ -1144,6 +1163,7 @@ void
 ---
 
 <a id="method_prepare_assets"></a>
+
 ### prepare_assets
 
 ```
@@ -1159,17 +1179,12 @@ private prepare_assets(array  arr, string  dir = __DIR__) : void
 Метод рекурсивно обрабатывает массив с файлами и создает запись для каждого файла в конечном массиве `assets_arr`,
 содержащую путь, имя файла и его хэш.
 
-##### Смотри так-же:
-
- * [\hash_file()](../\hash_file())
- * [\pathinfo()](../\pathinfo())
-
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$arr** | array |  |
-| **$dir** | string | __DIR__ |
+| Название | Тип    | По умолчанию |
+|----------|--------|--------------|
+| **$arr** | array  |              |
+| **$dir** | string | __DIR__      |
 
 ##### Возвращает:
 
@@ -1180,6 +1195,7 @@ void
 ---
 
 <a id="method_saveFile"></a>
+
 ### saveFile
 
 ```
@@ -1197,32 +1213,34 @@ private saveFile(string  file_path, string  content, string  file) : bool
 
 ##### Смотри так-же:
 
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
+* [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$file_path** | string |  |
-| **$content** | string |  |
-| **$file** | string |  |
+| Название       | Тип    | По умолчанию |
+|----------------|--------|--------------|
+| **$file_path** | string |              |
+| **$content**   | string |              |
+| **$file**      | string |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \Throwable |  |
+| Тип        | Описание |
+|------------|----------|
+| \Throwable |          |
 
 ##### Возвращает:
 
 ```
 bool
 ```
+
 Возвращает true, если файл успешно сохранён, или false — в случае ошибки.
 
 ---
 
 <a id="method_set_cache"></a>
+
 ### set_cache
 
 ```
@@ -1242,21 +1260,21 @@ private set_cache(string  type, string  name, mixed  data) : void
 
 ##### Смотри так-же:
 
- * [\CacheControl::setCache()](../../classes/CacheControl.md#method_setCache)
+* [\CacheControl::setCache()](./CacheControl.md#method_setCache)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$type** | string |  |
-| **$name** | string |  |
-| **$data** | mixed |  |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$type** | string |              |
+| **$name** | string |              |
+| **$data** | mixed  |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 

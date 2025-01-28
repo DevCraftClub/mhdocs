@@ -1,9 +1,9 @@
-# Abstract Класс: [\Default](../../packages/Default.md)\ComposerAction
-
+# Абстрактный класс: ComposerAction
 
 ---
 
 ### Свойства
+
 * private $[packages](#property_packages)
 
 ---
@@ -21,20 +21,16 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/classes/ComposerAction.php](../../engine/inc/maharder/_includes/classes/ComposerAction.php)
-* Смотри так-же:
-  * [](../)
+* Путь: engine/inc/maharder/_includes/classes/ComposerAction.php
 
 ---
 
 ## Свойства
+
 <a id="property_packages"></a>
 #### private $packages : array
 ---
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="array">Массив</abbr>
 
 
 ---
@@ -42,6 +38,7 @@
 ## Методы
 
 <a id="method_destroy"></a>
+
 ### destroy
 
 ```
@@ -56,6 +53,7 @@ static public destroy() : void
 
 Метод проверяет, существует ли файл автозагрузчика Composer по заданному пути.
 Если файл существует:
+
 - Удаляются все файлы в указанной директории Composer с помощью функции `array_map` и `unlink`.
 - Удаляется сама директория Composer с помощью функции `rmdir`.
 - Устанавливается окружение Composer через `putenv`, указывая путь к исполняемому файлу Composer.
@@ -71,6 +69,7 @@ void
 ---
 
 <a id="method_init"></a>
+
 ### init
 
 ```
@@ -79,9 +78,9 @@ static public init() : void
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 
@@ -92,6 +91,7 @@ void
 ---
 
 <a id="method_install"></a>
+
 ### install
 
 ```
@@ -112,8 +112,8 @@ static public install() : void
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                                               |
+|----------------|------------------------------------------------------------------------|
 | \JsonException | Может быть вызвано при ошибке обработки JSON в методе `application()`. |
 
 ##### Возвращает:
@@ -125,10 +125,11 @@ void
 ---
 
 <a id="method_require"></a>
+
 ### require
 
 ```
-static public require(string|null  name = null, string  version = &quot;*&quot;) : void
+static public require(string|null  name = null, string  version = "*") : void
 ```
 
 ##### Краткое содержание
@@ -146,15 +147,15 @@ static public require(string|null  name = null, string  version = &quot;*&quot;)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string|null | null |
-| **$version** | string | &quot;*&quot; |
+| Название     | Тип          | По умолчанию  |
+|--------------|--------------|---------------|
+| **$name**    | string\|null | null          |
+| **$version** | string       | &quot;*&quot; |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                                                                 |
+|----------------|------------------------------------------------------------------------------------------|
 | \JsonException | Может выбросить исключение при ошибке обработки JSON (например, в методе `application`). |
 
 ##### Возвращает:
@@ -166,6 +167,7 @@ void
 ---
 
 <a id="method_update"></a>
+
 ### update
 
 ```
@@ -183,8 +185,8 @@ static public update() : void
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                                          |
+|----------------|-------------------------------------------------------------------|
 | \JsonException | Может быть выброшено при обработке JSON в методе `application()`. |
 
 ##### Возвращает:
@@ -196,6 +198,7 @@ void
 ---
 
 <a id="method_application"></a>
+
 ### application
 
 ```
@@ -208,8 +211,8 @@ static private application() : \Application
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                                                                 |
+|----------------|------------------------------------------------------------------------------------------|
 | \JsonException | Исключение может быть выброшено, если возникнет ошибка обработки JSON при инициализации. |
 
 ##### Возвращает:
@@ -217,4 +220,5 @@ static private application() : \Application
 ```
 \Application
 ```
+
 Экземпляр инициализированного приложения.

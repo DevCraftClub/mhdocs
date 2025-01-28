@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\AdminLink
+# Класс: AdminLink
 
 ## Краткое содержание:
 
@@ -11,6 +11,7 @@
 такими как добавление, установка и рекурсивное построение иерархии.
 
 Основные свойства включают:
+
 - `$parent` – идентификатор родительского элемента.
 - `$name` – имя ссылки.
 - `$link` – URL-адрес.
@@ -18,10 +19,10 @@
 - `$extra` – дополнительные параметры.
 - `$children` – массив дочерних элементов.
 
-
 ---
 
 ### Свойства
+
 * private $[children](#property_children)
 * private $[extra](#property_extra)
 * private $[link](#property_link)
@@ -52,62 +53,58 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/types/AdminLink.php](../../engine/inc/maharder/_includes/types/AdminLink.php)
+* Путь: `engine/inc/maharder/_includes/types/AdminLink.php`
 
 ---
 
 ## Свойства
+
 <a id="property_children"></a>
 #### private $children : array
 ---
-**Тип:** <a href="../array"><abbr title="array">array</abbr></a>
-Список дочерних элементов. Устанавливается через метод {@see}.
-**Подробности:**
+**Тип:** <abbr title="array">Массив</abbr>
 
+Список дочерних элементов. Устанавливается через метод [\AdminLink::setChildren()](#method_setChildren).
 
 <a id="property_extra"></a>
 #### private $extra : ?string
 ---
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
-Дополнительная информация. Устанавливается через метод {@see}
-и фильтруется с помощью FILTER_SANITIZE_FULL_SPECIAL_CHARS.
-**Подробности:**
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
+Дополнительная информация. Устанавливается через метод [\AdminLink::setExtra()](#method_setExtra)
+и фильтруется с помощью FILTER_SANITIZE_FULL_SPECIAL_CHARS.
 
 <a id="property_link"></a>
 #### private $link : ?string
 ---
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
-URL ссылки. Устанавливается через метод {@see}
-и валидируется с помощью FILTER_VALIDATE_URL.
-**Подробности:**
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
+URL ссылки. Устанавливается через метод [\AdminLink::setLink()](#method_setLink)
+и валидируется с помощью FILTER_VALIDATE_URL.
 
 <a id="property_name"></a>
 #### private $name : ?string
 ---
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
-Имя ссылки. Устанавливается через метод {@see}
-и фильтруется с помощью FILTER_SANITIZE_FULL_SPECIAL_CHARS.
-**Подробности:**
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
+Имя ссылки. Устанавливается через метод [\AdminLink::setName()](#method_setName)
+и фильтруется с помощью FILTER_SANITIZE_FULL_SPECIAL_CHARS.
 
 <a id="property_parent"></a>
 #### private $parent : ?string
 ---
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
-Родительский элемент. Устанавливается через метод {@see}.
-**Подробности:**
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
+Родительский элемент. Устанавливается через метод [\AdminLink::setParent()](#method_setParent).
 
 <a id="property_type"></a>
 #### private $type : ?string
 ---
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
-Тип ссылки. Устанавливается через метод {@see}.
+**Тип:** <abbr title="?string">Текст или null</abbr>
+
+Тип ссылки. Устанавливается через метод [\AdminLink::setType()](#method_setType).
 Ожидаемые значения: &#039;link&#039;, &#039;dropdown&#039;, &#039;divider&#039;, &#039;data&#039;.
 По умолчанию: &#039;link&#039;.
-**Подробности:**
 
 
 
@@ -116,6 +113,7 @@ URL ссылки. Устанавливается через метод {@see}
 ## Методы
 
 <a id="method___construct"></a>
+
 ### __construct
 
 ```
@@ -133,23 +131,23 @@ public __construct(string|null  parent = null, string|null  name = null, string|
 
 ##### Смотри так-же:
 
- * [\AdminLink::setParent()](../../classes/AdminLink.md#method_setParent)
- * [\AdminLink::setName()](../../classes/AdminLink.md#method_setName)
- * [\AdminLink::setLink()](../../classes/AdminLink.md#method_setLink)
- * [\AdminLink::setType()](../../classes/AdminLink.md#method_setType)
- * [\AdminLink::setExtra()](../../classes/AdminLink.md#method_setExtra)
- * [\AdminLink::setChildren()](../../classes/AdminLink.md#method_setChildren)
+* [\AdminLink::setParent()](#method_setParent)
+* [\AdminLink::setName()](#method_setName)
+* [\AdminLink::setLink()](#method_setLink)
+* [\AdminLink::setType()](#method_setType)
+* [\AdminLink::setExtra()](#method_setExtra)
+* [\AdminLink::setChildren()](#method_setChildren)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$parent** | string|null | null |
-| **$name** | string|null | null |
-| **$link** | string|null | null |
-| **$type** | string|null | null |
-| **$extra** | string|null | null |
-| **$children** | array | [] |
+| Название      | Тип          | По умолчанию |
+|---------------|--------------|--------------|
+| **$parent**   | string\|null | null         |
+| **$name**     | string\|null | null         |
+| **$link**     | string\|null | null         |
+| **$type**     | string\|null | null         |
+| **$extra**    | string\|null | null         |
+| **$children** | array        | []           |
 
 ##### Возвращает:
 
@@ -160,6 +158,7 @@ mixed
 ---
 
 <a id="method_addChild"></a>
+
 ### addChild
 
 ```
@@ -179,25 +178,27 @@ public addChild(\AdminLink  link) : \AdminLink
 
 ##### Смотри так-же:
 
- * [\AdminLink::getParent()](../../classes/AdminLink.md#method_getParent)
- * [\AdminLink::getChildren()](../../classes/AdminLink.md#method_getChildren)
+* [\AdminLink::getParent()](#method_getParent)
+* [\AdminLink::getChildren()](#method_getChildren)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$link** | \AdminLink |  |
+| Название  | Тип        | По умолчанию |
+|-----------|------------|--------------|
+| **$link** | \AdminLink |              |
 
 ##### Возвращает:
 
 ```
 \AdminLink
 ```
+
 Возвращает текущий экземпляр `AdminLink` для возможности дальнейшей цепочки вызовов.
 
 ---
 
 <a id="method_getChildren"></a>
+
 ### getChildren
 
 ```
@@ -210,19 +211,21 @@ public getChildren() : array
 
 ##### Смотри так-же:
 
- * [\AdminLink::$children](../../classes/AdminLink.md#property_children)
- * [\AdminLink::setChildren()](../../classes/AdminLink.md#method_setChildren)
+* [\AdminLink::$children](#property_children)
+* [\AdminLink::setChildren()](#method_setChildren)
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Список объектов, являющихся потомками текущего объекта.
 
 ---
 
 <a id="method_getExtra"></a>
+
 ### getExtra
 
 ```
@@ -238,11 +241,13 @@ public getExtra() : string|null
 ```
 string|null
 ```
+
 Дополнительный параметр или null, если он не установлен.
 
 ---
 
 <a id="method_getLink"></a>
+
 ### getLink
 
 ```
@@ -255,18 +260,20 @@ public getLink() : string|null
 
 ##### Смотри так-же:
 
- * [\AdminLink::setLink()](../../classes/AdminLink.md#method_setLink)
+* [\AdminLink::setLink()](#method_setLink)
 
 ##### Возвращает:
 
 ```
 string|null
 ```
+
 Вернётся строка с URL или `null`, если ссылка не установлена.
 
 ---
 
 <a id="method_getName"></a>
+
 ### getName
 
 ```
@@ -282,6 +289,7 @@ public getName() : ?string
 ---
 
 <a id="method_getParent"></a>
+
 ### getParent
 
 ```
@@ -297,11 +305,13 @@ public getParent() : string|null
 ```
 string|null
 ```
+
 Идентификатор родителя или null, если родитель не установлен.
 
 ---
 
 <a id="method_getType"></a>
+
 ### getType
 
 ```
@@ -319,19 +329,21 @@ public getType() : string|null
 
 ##### Смотри так-же:
 
- * [\AdminLink::setType()](../../classes/AdminLink.md#method_setType)
- * [\AdminLink::$type](../../classes/AdminLink.md#property_type)
+* [\AdminLink::setType()](#method_setType)
+* [\AdminLink::$type](#property_type)
 
 ##### Возвращает:
 
 ```
 string|null
 ```
+
 Текущий тип элемента или null, если тип не задан.
 
 ---
 
 <a id="method_setChildren"></a>
+
 ### setChildren
 
 ```
@@ -348,25 +360,27 @@ public setChildren(array  children) : \AdminLink
 
 ##### Смотри так-же:
 
- * [\AdminLink::getChildren()](../../classes/AdminLink.md#method_getChildren)
- * [\AdminLink::addChild()](../../classes/AdminLink.md#method_addChild)
+* [\AdminLink::getChildren()](#method_getChildren)
+* [\AdminLink::addChild()](#method_addChild)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$children** | array |  |
+| Название      | Тип   | По умолчанию |
+|---------------|-------|--------------|
+| **$children** | array |              |
 
 ##### Возвращает:
 
 ```
 \AdminLink
 ```
+
 Возвращает текущий экземпляр класса для возможности цепочки вызовов.
 
 ---
 
 <a id="method_setExtra"></a>
+
 ### setExtra
 
 ```
@@ -379,20 +393,22 @@ public setExtra(string|null  extra) : \AdminLink
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$extra** | string|null |  |
+| Название   | Тип          | По умолчанию |
+|------------|--------------|--------------|
+| **$extra** | string\|null |  |
 
 ##### Возвращает:
 
 ```
 \AdminLink
 ```
+
 Возвращает текущий экземпляр класса для цепочки вызовов.
 
 ---
 
 <a id="method_setLink"></a>
+
 ### setLink
 
 ```
@@ -410,25 +426,27 @@ public setLink(string|null  link) : \AdminLink
 
 ##### Смотри так-же:
 
- * [\AdminLink::$link](../../classes/AdminLink.md#property_link)
- * [\AdminLink::getLink()](../../classes/AdminLink.md#method_getLink)
+* [\AdminLink::$link](#property_link)
+* [\AdminLink::getLink()](#method_getLink)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$link** | string|null |  |
+| Название  | Тип           | По умолчанию |
+|-----------|---------------|--------------|
+| **$link** | string\|null |  |
 
 ##### Возвращает:
 
 ```
 \AdminLink
 ```
+
 Возвращает текущий экземпляр объекта `AdminLink` для возможности цепочки вызовов.
 
 ---
 
 <a id="method_setName"></a>
+
 ### setName
 
 ```
@@ -441,20 +459,22 @@ public setName(string|null  name) : \AdminLink
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string|null |  |
+| Название  | Тип          | По умолчанию |
+|-----------|--------------|--------------|
+| **$name** | string\|null |  |
 
 ##### Возвращает:
 
 ```
 \AdminLink
 ```
+
 Возвращает текущий экземпляр класса AdminLink.
 
 ---
 
 <a id="method_setParent"></a>
+
 ### setParent
 
 ```
@@ -467,20 +487,22 @@ public setParent(string|null  parent) : \AdminLink
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$parent** | string|null |  |
+| Название    | Тип          | По умолчанию |
+|-------------|--------------|--------------|
+| **$parent** | string\|null |  |
 
 ##### Возвращает:
 
 ```
 \AdminLink
 ```
+
 Возвращает текущий экземпляр класса для цепочки вызовов.
 
 ---
 
 <a id="method_setType"></a>
+
 ### setType
 
 ```
@@ -499,18 +521,19 @@ public setType(string|null  type) : \AdminLink
 
 ##### Смотри так-же:
 
- * [\AdminLink::$type](../../classes/AdminLink.md#property_type)
- * [\AdminLink::getType()](../../classes/AdminLink.md#method_getType)
+* [\AdminLink::$type](#property_type)
+* [\AdminLink::getType()](#method_getType)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$type** | string|null |  |
+| Название  | Тип          | По умолчанию |
+|-----------|--------------|--------------|
+| **$type** | string\|null |  |
 
 ##### Возвращает:
 
 ```
 \AdminLink
 ```
+
 Возвращает текущий экземпляр `AdminLink` для возможности цепочки вызовов.

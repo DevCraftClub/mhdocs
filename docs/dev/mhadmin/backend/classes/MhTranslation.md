@@ -1,4 +1,4 @@
-# Abstract Класс: [\Default](../../packages/Default.md)\MhTranslation
+# Абстрактный класс: MhTranslation
 
 ## Краткое содержание:
 
@@ -8,6 +8,7 @@
 ---
 
 ### Свойства
+
 * private $[cache_folder](#property_cache_folder)
 * private $[locale](#property_locale)
 * private $[localization_path](#property_localization_path)
@@ -54,13 +55,14 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/classes/MhTranslation.php](../../engine/inc/maharder/_includes/classes/MhTranslation.php)
+* Путь: engine/inc/maharder/_includes/classes/MhTranslation.php
 * Использованные трейты:
-  * [\DataLoader](../classes/DataLoader.md)
+    * [\DataLoader](./DataLoader.md)
 
 ---
 
 ## Свойства
+
 <a id="property_cache_folder"></a>
 #### private $cache_folder : string
 ---
@@ -68,10 +70,7 @@
 
 Папка кеша
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_locale"></a>
 #### private $locale : ?string
@@ -80,15 +79,16 @@
 
 Название локали
 
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
 **Подробности:**
 
 ##### Tags
-| Тэг | Версия | Описание |
-|-----|--------|----------|
-| version | 173.3.0 |  |
-| since | 173.3.0 |  |
+
+| Тэг     | Версия  | Описание |
+|---------|---------|----------|
+| version | 173.3.0 |          |
+| since   | 173.3.0 |          |
 
 <a id="property_localization_path"></a>
 #### private $localization_path : ?string
@@ -97,23 +97,23 @@
 
 Путь до фраз перевода
 
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
 **Подробности:**
 
 ##### Tags
-| Тэг | Версия | Описание |
-|-----|--------|----------|
-| version | 173.3.0 |  |
-| since | 173.3.0 |  |
+
+| Тэг     | Версия  | Описание |
+|---------|---------|----------|
+| version | 173.3.0 |          |
+| since   | 173.3.0 |          |
 
 <a id="property_prefix"></a>
 #### private $prefix : ?string
 ---
-**Тип:** <a href="../?string"><abbr title="?string">?string</abbr></a>
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
 **Подробности:**
-
 
 <a id="property_translator"></a>
 #### private $translator : ?\Symfony\Component\Translation\Translator
@@ -122,20 +122,23 @@
 
 Класс переводчика
 
-**Тип:** <a href="../?\Symfony\Component\Translation\Translator"><abbr title="?\Symfony\Component\Translation\Translator">Translator</abbr></a>
+**Тип:
+** <a href="https://symfony.com/doc/current/translation.html" target="_blank"><abbr title="?\Symfony\Component\Translation\Translator">
+Translator</abbr></a>
 
 **Подробности:**
 
 ##### Tags
-| Тэг | Версия | Описание |
-|-----|--------|----------|
-| version | 173.3.0 |  |
-| since | 173.3.0 |  |
+
+| Тэг     | Версия  | Описание |
+|---------|---------|----------|
+| version | 173.3.0 |          |
+| since   | 173.3.0 |          |
 
 <a id="property_use_translator"></a>
 #### private $use_translator : bool
 ---
-**Тип:** <a href="../bool"><abbr title="bool">bool</abbr></a>
+**Тип:** <abbr title="bool">Логические значения</abbr>
 
 **Подробности:**
 
@@ -146,10 +149,11 @@
 ## Методы
 
 <a id="method_clear_cache"></a>
+
 ### clear_cache
 
 ```
-public clear_cache(string  type = &#039;all&#039;) : void
+public clear_cache(string  type = "all") : void
 ```
 
 ##### Краткое содержание
@@ -163,13 +167,13 @@ public clear_cache(string  type = &#039;all&#039;) : void
 
 ##### Смотри так-же:
 
- * [\CacheControl::clearCache()](../../classes/CacheControl.md#method_clearCache)
+* [\CacheControl::clearCache()](./CacheControl.md#method_clearCache)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$type** | string | &#039;all&#039; |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$type** | string | "all"        |
 
 ##### Возвращает:
 
@@ -180,6 +184,7 @@ void
 ---
 
 <a id="method_convertXliffToJs"></a>
+
 ### convertXliffToJs
 
 ```
@@ -198,17 +203,17 @@ static public convertXliffToJs() : void
 
 ##### Смотри так-же:
 
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
- * [\self::getLanguages()](../\self::getLanguages())
- * [\CacheControl::getCache()](../../classes/CacheControl.md#method_getCache)
- * [\DataManager::normalizePath()](../../classes/DataManager.md#method_normalizePath)
- * [\DataManager::dirToArray()](../../classes/DataManager.md#method_dirToArray)
+* [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
+* [\MhTranslation::getLanguages()](#method_getLanguages)
+* [\CacheControl::getCache()](./CacheControl.md#method_getCache)
+* [\DataManager::normalizePath()](./DataManager.md#method_normalizePath)
+* [\DataManager::dirToArray()](./DataManager.md#method_dirToArray)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable |  |
+| Тип            | Описание   |
+|----------------|------------|
+| \JsonException | \Throwable |  |
 
 ##### Возвращает:
 
@@ -219,6 +224,7 @@ void
 ---
 
 <a id="method_get_cache"></a>
+
 ### get_cache
 
 ```
@@ -235,34 +241,36 @@ public get_cache(string  type, string  name) : array|false
 
 ##### Смотри так-же:
 
- * [\DataManager::toTranslit()](../../classes/DataManager.md#method_toTranslit)
- * [\DataManager::normalizePath()](../../classes/DataManager.md#method_normalizePath)
- * [\CacheControl::getCache()](../../classes/CacheControl.md#method_getCache)
+* [\DataManager::toTranslit()](./DataManager.md#method_toTranslit)
+* [\DataManager::normalizePath()](./DataManager.md#method_normalizePath)
+* [\CacheControl::getCache()](./CacheControl.md#method_getCache)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$type** | string |  |
-| **$name** | string |  |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$type** | string |              |
+| **$name** | string |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 
 ```
 array|false
 ```
+
 Возвращает массив декодированных данных, если файл кеша успешно найден и данные корректны,
 или `false`, если произошла ошибка (например, файл не найден или данные некорректны).
 
 ---
 
 <a id="method_getCacheFolder"></a>
+
 ### getCacheFolder
 
 ```
@@ -278,10 +286,11 @@ string
 ---
 
 <a id="method_getFormattedLanguageList"></a>
+
 ### getFormattedLanguageList
 
 ```
-static public getFormattedLanguageList(string|null  format = &#039;{original} ({english})&#039;) : array
+static public getFormattedLanguageList(string|null  format = "{original} ({english})") : array
 ```
 
 ##### Краткое содержание
@@ -291,41 +300,45 @@ static public getFormattedLanguageList(string|null  format = &#039;{original} ({
 ##### Описание
 
 Поддерживаемые подстановочные шаблоны в строке формата:
+
 - `{original}` - заменяется на переведённое название языка.
 - `{english}` - заменяется на английское название языка.
 - `{iso2}` - заменяется на двузначный код языка (например: `ru`).
 - `{tag}` - заменяется на код языка (например: `ru_RU`).
-Если формат не указан, по умолчанию используется шаблон: &quot;{original} ({english})&quot;.
+  Если формат не указан, по умолчанию используется шаблон: &quot;{original} ({english})&quot;.
 
 ##### Смотри так-же:
 
- * [\self::getLanguages()](../\self::getLanguages())
+* [\MhTranslation::getLanguages()](#method_getLanguages)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$format** | string|null | &#039;{original} ({english})&#039; |
+| Название    | Тип          | По умолчанию             |
+|-------------|--------------|--------------------------|
+| **$format** | string\|null | "{original} ({english})" |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                          |
+|----------------|---------------------------------------------------|
 | \JsonException | Выбрасывается в случае ошибок при JSON-операциях. |
-| \Throwable |  |
+| \Throwable     |                                                   |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Возвращает массив языков, где каждый элемент содержит:
+
 - `tag` - код языка,
 - `name` - сгенерированное название языка на основе переданного формата.
 
 ---
 
 <a id="method_getLanguages"></a>
+
 ### getLanguages
 
 ```
@@ -344,25 +357,27 @@ static public getLanguages() : array
 
 ##### Смотри так-же:
 
- * [\CacheControl::setCache()](../../classes/CacheControl.md#method_setCache)
- * [\CacheControl::getCache()](../../classes/CacheControl.md#method_getCache)
+* [\CacheControl::setCache()](./CacheControl.md#method_setCache)
+* [\CacheControl::getCache()](./CacheControl.md#method_getCache)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Возникает при ошибке декодирования JSON в момент работы с кэшем. |
+| Тип                        | Описание                                                         |
+|----------------------------|------------------------------------------------------------------|
+| \JsonException\|\Throwable | Возникает при ошибке декодирования JSON в момент работы с кэшем. |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Массив доступных языков, где ключ — идентификатор языка, а значение — данные языка.
 
 ---
 
 <a id="method_getLocale"></a>
+
 ### getLocale
 
 ```
@@ -371,18 +386,20 @@ static public getLocale() : string
 
 ##### Краткое содержание
 
-Возвращает текущую локаль или значение по умолчанию (&#039;ru_RU&#039;), если локаль не определена.
+Возвращает текущую локаль или значение по умолчанию ("ru_RU"), если локаль не определена.
 
 ##### Возвращает:
 
 ```
 string
 ```
-Текущая локаль или значение по умолчанию (&#039;ru_RU&#039;).
+
+Текущая локаль или значение по умолчанию ("ru_RU").
 
 ---
 
 <a id="method_getLocaleData"></a>
+
 ### getLocaleData
 
 ```
@@ -395,31 +412,33 @@ static public getLocaleData(string  locale) : array
 
 ##### Смотри так-же:
 
- * [\self::getLanguages()](../\self::getLanguages())
+* [\MhTranslation::getLanguages()](#method_getLanguages)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$locale** | string |  |
+| Название    | Тип    | По умолчанию |
+|-------------|--------|--------------|
+| **$locale** | string |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException | Если возникли ошибки при декодировании JSON-данных. |
-| \Throwable | Если возникают ошибки при работе с кешем или файловой системой. |
+| Тип            | Описание                                                        |
+|----------------|-----------------------------------------------------------------|
+| \JsonException | Если возникли ошибки при декодировании JSON-данных.             |
+| \Throwable     | Если возникают ошибки при работе с кешем или файловой системой. |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Массив данных локализации для указанного языка.
 
 ---
 
 <a id="method_getLocalizationPath"></a>
+
 ### getLocalizationPath
 
 ```
@@ -438,13 +457,13 @@ static public getLocalizationPath() : string|null
 
 ##### Смотри так-же:
 
- * [\DataManager::getConfig()](../../classes/DataManager.md#method_getConfig)
- * [\self::$localization_path](../\self::$localization_path)
+* [\DataManager::getConfig()](./DataManager.md#method_getConfig)
+* [\MhTranslation::$localization_path](#property_localization_path)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                         |
+|----------------|--------------------------------------------------|
 | \JsonException | Если возникает ошибка при загрузке конфигурации. |
 
 ##### Возвращает:
@@ -452,11 +471,13 @@ static public getLocalizationPath() : string|null
 ```
 string|null
 ```
+
 Полный путь к локализации, или null, если ROOT_DIR не определён.
 
 ---
 
 <a id="method_getPrefix"></a>
+
 ### getPrefix
 
 ```
@@ -474,19 +495,21 @@ public getPrefix() : string
 
 ##### Смотри так-же:
 
- * [\DataLoader::$prefix](../../classes/DataLoader.md#property_prefix)
- * [\DataLoader::setPrefix()](../../classes/DataLoader.md#method_setPrefix)
+* [\DataLoader::$prefix](./DataLoader.md#property_prefix)
+* [\DataLoader::setPrefix()](./DataLoader.md#method_setPrefix)
 
 ##### Возвращает:
 
 ```
 string
 ```
+
 Префикс, используемый для построения SQL-запросов.
 
 ---
 
 <a id="method_getTranslation"></a>
+
 ### getTranslation
 
 ```
@@ -504,31 +527,32 @@ static public getTranslation(string  phrase) : string
 
 ##### Смотри так-же:
 
- * [\self::getTranslationWithParameters](../\self::getTranslationWithParameters)
+* [\MhTranslation::getTranslationWithParameters](#method_getTranslationWithParameters)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$phrase** | string |  |
+| Название    | Тип    | По умолчанию |
+|-------------|--------|--------------|
+| **$phrase** | string |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException | Исключение, выбрасываемое при ошибках обработки JSON
-(возможные ошибки в логе или настройках переводчика). |
+| Тип            | Описание                                                                                                   |
+|----------------|------------------------------------------------------------------------------------------------------------|
+| \JsonException | Исключение, выбрасываемое при ошибках обработки JSON (возможные ошибки в логе или настройках переводчика). |
 
 ##### Возвращает:
 
 ```
 string
 ```
+
 Переведённая строка.
 
 ---
 
 <a id="method_getTranslationPlural"></a>
+
 ### getTranslationPlural
 
 ```
@@ -546,19 +570,19 @@ static public getTranslationPlural(string  phrase, int  count) : string
 
 ##### Смотри так-же:
 
- * [\getTranslationPluralWithParameters()](../\getTranslationPluralWithParameters())
+* [\getTranslationPluralWithParameters()](#method_getTranslationPluralWithParameters)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$phrase** | string |  |
-| **$count** | int |  |
+| Название    | Тип    | По умолчанию |
+|-------------|--------|--------------|
+| **$phrase** | string |              |
+| **$count**  | int    |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                                    |
+|----------------|-------------------------------------------------------------|
 | \JsonException | Если в процессе выполнения произошла ошибка обработки JSON. |
 
 ##### Возвращает:
@@ -566,11 +590,13 @@ static public getTranslationPlural(string  phrase, int  count) : string
 ```
 string
 ```
+
 Переведённая строка с учётом параметров множественного числа/склонения.
 
 ---
 
 <a id="method_getTranslationPluralWithParameters"></a>
+
 ### getTranslationPluralWithParameters
 
 ```
@@ -584,37 +610,39 @@ static public getTranslationPluralWithParameters(string  phrase, int  count, arr
 
 ##### Смотри так-же:
 
- * [\self::$translator](../\self::$translator)
- * [\self::isUseTranslator()](../\self::isUseTranslator())
- * [\self::setTranslator()](../\self::setTranslator())
- * [\self::getTranslationWithParameters()](../\self::getTranslationWithParameters())
- * [\self::nonTranslator()](../\self::nonTranslator())
+* [\MhTranslation::$translator](#property_translator)
+* [\MhTranslation::isUseTranslator()](#method_isUseTranslator)
+* [\MhTranslation::setTranslator()](#method_setTranslator)
+* [\MhTranslation::getTranslationWithParameters()](#method_getTranslationWithParameters)
+* [\MhTranslation::nonTranslator()](#method_nonTranslator)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$phrase** | string |  |
-| **$count** | int |  |
-| **$parameters** | array |  |
+| Название        | Тип    | По умолчанию |
+|-----------------|--------|--------------|
+| **$phrase**     | string |              |
+| **$count**      | int    |              |
+| **$parameters** | array  |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                         |
+|----------------|--------------------------------------------------|
 | \JsonException | Если возникает ошибка при обработке JSON данных. |
-| \Throwable |  |
+| \Throwable     |                                                  |
 
 ##### Возвращает:
 
 ```
 string
 ```
+
 Переведённая фраза с учетом склонений и параметров.
 
 ---
 
 <a id="method_getTranslationWithParameters"></a>
+
 ### getTranslationWithParameters
 
 ```
@@ -633,21 +661,21 @@ static public getTranslationWithParameters(string  phrase, array  parameters) : 
 
 ##### Смотри так-же:
 
- * [\self::$translator](../\self::$translator)
- * [\self::isUseTranslator](../\self::isUseTranslator)
- * [\self::nonTranslator](../\self::nonTranslator)
+* [\MhTranslation::$translator](#property_translator)
+* [\MhTranslation::isUseTranslator](#method_isUseTranslator)
+* [\MhTranslation::nonTranslator](#method_nonTranslator)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$phrase** | string |  |
-| **$parameters** | array |  |
+| Название        | Тип    | По умолчанию |
+|-----------------|--------|--------------|
+| **$phrase**     | string |              |
+| **$parameters** | array  |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                                 |
+|----------------|----------------------------------------------------------|
 | \JsonException | В случае возникновения ошибки при работе с переводчиком. |
 
 ##### Возвращает:
@@ -655,11 +683,13 @@ static public getTranslationWithParameters(string  phrase, array  parameters) : 
 ```
 string
 ```
+
 Переведённая фраза или исходная строка при отключённом переводчике.
 
 ---
 
 <a id="method_getTranslator"></a>
+
 ### getTranslator
 
 ```
@@ -677,14 +707,14 @@ static public getTranslator() : \Translator|null
 
 ##### Смотри так-же:
 
- * [\self::$translator](../\self::$translator)
- * [\self::setTranslator()](../\self::setTranslator())
+* [\MhTranslation::$translator](#property_translator)
+* [\MhTranslation::setTranslator()](#method_setTranslator())
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \Throwable |  |
+| Тип            | Описание                                                      |
+|----------------|---------------------------------------------------------------|
+| \Throwable     |                                                               |
 | \JsonException | Генерируется при ошибках работы с JSON во внутренних методах. |
 
 ##### Возвращает:
@@ -692,11 +722,13 @@ static public getTranslator() : \Translator|null
 ```
 \Translator|null
 ```
+
 Экземпляр переводчика или null, если переводчик не установлен.
 
 ---
 
 <a id="method_isUseTranslator"></a>
+
 ### isUseTranslator
 
 ```
@@ -718,11 +750,13 @@ static public isUseTranslator() : bool
 ```
 bool
 ```
+
 Возвращает true, если переводчик задан; иначе false.
 
 ---
 
 <a id="method_load_data"></a>
+
 ### load_data
 
 ```
@@ -740,22 +774,22 @@ public load_data(string  name, mixed  ..._vars) : array
 
 ##### Смотри так-же:
 
- * [\DataManager::getDb()](../../classes/DataManager.md#method_getDb)
- * [\DataManager::nameArgs()](../../classes/DataManager.md#method_nameArgs)
- * [\DataManager::getComparer()](../../classes/DataManager.md#method_getComparer)
- * [\DataManager::getConfig()](../../classes/DataManager.md#method_getConfig)
+* [\DataManager::getDb()](./DataManager.md#method_getDb)
+* [\DataManager::nameArgs()](./DataManager.md#method_nameArgs)
+* [\DataManager::getComparer()](./DataManager.md#method_getComparer)
+* [\DataManager::getConfig()](./DataManager.md#method_getConfig)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string |  |
-| **$_vars** | mixed |  |
+| Название   | Тип    | По умолчанию |
+|------------|--------|--------------|
+| **$name**  | string |              |
+| **$_vars** | mixed  |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
+| Тип            | Описание                                 |
+|----------------|------------------------------------------|
 | \JsonException | В случае JSON-ошибок при работе с кешем. |
 
 ##### Возвращает:
@@ -763,11 +797,13 @@ public load_data(string  name, mixed  ..._vars) : array
 ```
 array
 ```
+
 Результат выборки из базы данных, либо из кеша.
 
 ---
 
 <a id="method_setCacheFolder"></a>
+
 ### setCacheFolder
 
 ```
@@ -776,9 +812,9 @@ public setCacheFolder(string  cache_folder) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$cache_folder** | string |  |
+| Название          | Тип    | По умолчанию |
+|-------------------|--------|--------------|
+| **$cache_folder** | string |              |
 
 ##### Возвращает:
 
@@ -789,6 +825,7 @@ void
 ---
 
 <a id="method_setLocale"></a>
+
 ### setLocale
 
 ```
@@ -801,9 +838,9 @@ static public setLocale(string  locale) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$locale** | string |  |
+| Название    | Тип    | По умолчанию |
+|-------------|--------|--------------|
+| **$locale** | string |              |
 
 ##### Возвращает:
 
@@ -814,6 +851,7 @@ void
 ---
 
 <a id="method_setLocalizationPath"></a>
+
 ### setLocalizationPath
 
 ```
@@ -826,9 +864,9 @@ static public setLocalizationPath(string  localization_path) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$localization_path** | string |  |
+| Название               | Тип    | По умолчанию |
+|------------------------|--------|--------------|
+| **$localization_path** | string |              |
 
 ##### Возвращает:
 
@@ -839,6 +877,7 @@ void
 ---
 
 <a id="method_setPrefix"></a>
+
 ### setPrefix
 
 ```
@@ -857,9 +896,9 @@ public setPrefix(string|null  name = null) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string|null | null |
+| Название  | Тип          | По умолчанию |
+|-----------|--------------|--------------|
+| **$name** | string\|null | null         |
 
 ##### Возвращает:
 
@@ -870,6 +909,7 @@ void
 ---
 
 <a id="method_setTranslator"></a>
+
 ### setTranslator
 
 ```
@@ -887,17 +927,13 @@ static public setTranslator() : void
 
 ##### Смотри так-же:
 
- * [\DataManager::getConfig()](../../classes/DataManager.md#method_getConfig)
- * [\Translator::setFallbackLocales()](../\Translator::setFallbackLocales())
- * [\Translator::addLoader()](../\Translator::addLoader())
- * [\Translator::addResource()](../\Translator::addResource())
- * [\ArrayLoader](../\ArrayLoader)
+* [\DataManager::getConfig()](./DataManager.md#method_getConfig)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Если возникла ошибка при работе с JSON-файлами. |
+| Тип                        | Описание                                        |
+|----------------------------|-------------------------------------------------|
+| \JsonException\|\Throwable | Если возникла ошибка при работе с JSON-файлами. |
 
 ##### Возвращает:
 
@@ -908,6 +944,7 @@ void
 ---
 
 <a id="method_setUseTranslator"></a>
+
 ### setUseTranslator
 
 ```
@@ -920,9 +957,9 @@ static public setUseTranslator(bool  use_translator) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$use_translator** | bool |  |
+| Название            | Тип  | По умолчанию |
+|---------------------|------|--------------|
+| **$use_translator** | bool |              |
 
 ##### Возвращает:
 
@@ -933,6 +970,7 @@ void
 ---
 
 <a id="method_generateJsTranslationContent"></a>
+
 ### generateJsTranslationContent
 
 ```
@@ -945,20 +983,22 @@ static private generateJsTranslationContent(array  translations) : string
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$translations** | array |  |
+| Название          | Тип   | По умолчанию |
+|-------------------|-------|--------------|
+| **$translations** | array |              |
 
 ##### Возвращает:
 
 ```
 string
 ```
+
 Содержимое для JavaScript, включающее объект переводов и экспорт по умолчанию.
 
 ---
 
 <a id="method_getTranslationArray"></a>
+
 ### getTranslationArray
 
 ```
@@ -978,28 +1018,30 @@ static private getTranslationArray() : array
 
 ##### Смотри так-же:
 
- * [\DataManager::normalizePath()](../../classes/DataManager.md#method_normalizePath)
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
- * [\CacheControl::getCache()](../../classes/CacheControl.md#method_getCache)
- * [\CacheControl::setCache()](../../classes/CacheControl.md#method_setCache)
+* [\DataManager::normalizePath()](./DataManager.md#method_normalizePath)
+* [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
+* [\CacheControl::getCache()](./CacheControl.md#method_getCache)
+* [\CacheControl::setCache()](./CacheControl.md#method_setCache)
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException | Исключение при ошибке работы с JSON при кэшировании. |
-| \Throwable | Исключение при неизвестной ошибке в процессе обработки файла. |
+| Тип            | Описание                                                      |
+|----------------|---------------------------------------------------------------|
+| \JsonException | Исключение при ошибке работы с JSON при кэшировании.          |
+| \Throwable     | Исключение при неизвестной ошибке в процессе обработки файла. |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Ассоциативный массив переводов.
 
 ---
 
 <a id="method_languageList"></a>
+
 ### languageList
 
 ```
@@ -1012,20 +1054,22 @@ static private languageList(string  lang) : array
 
 ##### Смотри так-же:
 
- * [\__](../\__)
+* [\__](../index.md#function___)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$lang** | string |  |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$lang** | string |              |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Ассоциативный массив с данными о языке. Содержит следующие ключи:
+
 - `original` (string): Название языка на его родном языке.
 - `english` (string): Название языка на английском.
 - `iso2` (string): Код ISO 639-1 языка.
@@ -1034,6 +1078,7 @@ array
 ---
 
 <a id="method_nonTranslator"></a>
+
 ### nonTranslator
 
 ```
@@ -1051,21 +1096,23 @@ static private nonTranslator(string  phrase, array  params = []) : string
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$phrase** | string |  |
-| **$params** | array | [] |
+| Название    | Тип    | По умолчанию |
+|-------------|--------|--------------|
+| **$phrase** | string |              |
+| **$params** | array  | []           |
 
 ##### Возвращает:
 
 ```
 string
 ```
+
 Обработанная строка с произведёнными заменами.
 
 ---
 
 <a id="method_parseXliffFile"></a>
+
 ### parseXliffFile
 
 ```
@@ -1074,9 +1121,9 @@ static private parseXliffFile(string  filePath) : array
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$filePath** | string |  |
+| Название      | Тип    | По умолчанию |
+|---------------|--------|--------------|
+| **$filePath** | string |              |
 
 ##### Возвращает:
 
@@ -1087,6 +1134,7 @@ array
 ---
 
 <a id="method_set_cache"></a>
+
 ### set_cache
 
 ```
@@ -1106,21 +1154,21 @@ private set_cache(string  type, string  name, mixed  data) : void
 
 ##### Смотри так-же:
 
- * [\CacheControl::setCache()](../../classes/CacheControl.md#method_setCache)
+* [\CacheControl::setCache()](./CacheControl.md#method_setCache)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$type** | string |  |
-| **$name** | string |  |
-| **$data** | mixed |  |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$type** | string |              |
+| **$name** | string |              |
+| **$data** | mixed  |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException |  |
+| Тип            | Описание |
+|----------------|----------|
+| \JsonException |          |
 
 ##### Возвращает:
 
@@ -1131,6 +1179,7 @@ void
 ---
 
 <a id="method_writeJsFile"></a>
+
 ### writeJsFile
 
 ```
@@ -1147,24 +1196,25 @@ static private writeJsFile(string  path, string  content) : bool
 
 ##### Смотри так-же:
 
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
+* [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$path** | string |  |
-| **$content** | string |  |
+| Название     | Тип    | По умолчанию |
+|--------------|--------|--------------|
+| **$path**    | string |              |
+| **$content** | string |              |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \Throwable |  |
+| Тип        | Описание |
+|------------|----------|
+| \Throwable |          |
 
 ##### Возвращает:
 
 ```
 bool
 ```
+
 Возвращает true, если запись прошла успешно, или false, если возникла ошибка.

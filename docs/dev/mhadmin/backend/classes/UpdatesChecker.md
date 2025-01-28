@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\UpdatesChecker
+# Класс: UpdatesChecker
 
 ## Краткое содержание:
 
@@ -13,6 +13,7 @@
 ---
 
 ### Свойства
+
 * public $[api_key](#property_api_key)
 * public $[recource_id](#property_recource_id)
 * public $[update_url](#property_update_url)
@@ -36,11 +37,12 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_includes/traits/UpdatesChecker.php](../../engine/inc/maharder/_includes/traits/UpdatesChecker.php)
+* Путь: engine/inc/maharder/_includes/traits/UpdatesChecker.php
 
 ---
 
 ## Свойства
+
 <a id="property_api_key"></a>
 #### public $api_key : string
 ---
@@ -48,10 +50,7 @@
 
 Гостевой ключ с доступом к информации о ресурсе.
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_recource_id"></a>
 #### public $recource_id : int|null
@@ -60,10 +59,7 @@
 
 Идентификатор ресурса, для которого проверяются обновления.
 
-**Тип:** <a href="../int|null"><abbr title="int|null">int|null</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="int|null">Целое число или null</abbr>
 
 <a id="property_update_url"></a>
 #### public $update_url : string
@@ -72,10 +68,7 @@
 
 URL API, используемый для проверки обновлений.
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_api_key"></a>
 #### private $api_key : string
@@ -84,23 +77,17 @@ URL API, используемый для проверки обновлений.
 
 Гостевой ключ с доступом на просмотр информации ресурса на сайте
 
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_recource_id"></a>
 #### private $recource_id : ?int
 ---
-**Тип:** <a href="../?int"><abbr title="?int">?int</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="?int">Целое число или null</abbr>
 
 <a id="property_update_url"></a>
 #### private $update_url : string
 ---
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
+**Тип:** <abbr title="string">Текст</abbr>
 
 **Подробности:**
 
@@ -111,6 +98,7 @@ URL API, используемый для проверки обновлений.
 ## Методы
 
 <a id="method_checkUpdate"></a>
+
 ### checkUpdate
 
 ```
@@ -123,32 +111,32 @@ public checkUpdate(int|null  res = null) : array
 
 ##### Смотри так-же:
 
- * [\LogGenerator::generateLog()](../../classes/LogGenerator.md#method_generateLog)
- * [\Curl](../\Curl)
+* [\LogGenerator::generateLog()](./LogGenerator.md#method_generateLog)
 
 ##### Свойства:
 
 | Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$res** | int|null | null |
+|----------|-----|--------------|
+| **$res** | int | null         | null |
 
 ##### Ошибки:
 
-| Тип | Описание |
-|-----|----------|
-| \JsonException|\Throwable | Исключение, связанное с ошибками в JSON-конверсии (может быть выброшено
-при выполнении Telegram-лога). |
+| Тип                        | Описание                                                                                               |
+|----------------------------|--------------------------------------------------------------------------------------------------------|
+| \JsonException\|\Throwable | Исключение, связанное с ошибками в JSON-конверсии (может быть выброшено при выполнении Telegram-лога). |
 
 ##### Возвращает:
 
 ```
 array
 ```
+
 Возвращает массив с данными об обновлении ресурса или список ошибок.
 
 ---
 
 <a id="method_getApiKey"></a>
+
 ### getApiKey
 
 ```
@@ -164,6 +152,7 @@ string
 ---
 
 <a id="method_getRecourceId"></a>
+
 ### getRecourceId
 
 ```
@@ -179,6 +168,7 @@ int|null
 ---
 
 <a id="method_getUpdateUrl"></a>
+
 ### getUpdateUrl
 
 ```
@@ -194,6 +184,7 @@ string
 ---
 
 <a id="method_setApiKey"></a>
+
 ### setApiKey
 
 ```
@@ -202,9 +193,9 @@ public setApiKey(string  api_key) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$api_key** | string |  |
+| Название     | Тип    | По умолчанию |
+|--------------|--------|--------------|
+| **$api_key** | string |              |
 
 ##### Возвращает:
 
@@ -215,6 +206,7 @@ void
 ---
 
 <a id="method_setRecourceId"></a>
+
 ### setRecourceId
 
 ```
@@ -223,9 +215,9 @@ public setRecourceId(int  recource_id) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$recource_id** | int |  |
+| Название         | Тип | По умолчанию |
+|------------------|-----|--------------|
+| **$recource_id** | int |              |
 
 ##### Возвращает:
 
@@ -236,6 +228,7 @@ void
 ---
 
 <a id="method_setUpdateUrl"></a>
+
 ### setUpdateUrl
 
 ```
@@ -244,9 +237,9 @@ public setUpdateUrl(string  update_url) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$update_url** | string |  |
+| Название        | Тип    | По умолчанию |
+|-----------------|--------|--------------|
+| **$update_url** | string |              |
 
 ##### Возвращает:
 

@@ -1,4 +1,4 @@
-# Класс: [\Default](../../packages/Default.md)\MhLog
+# Класс: MhLog
 
 ## Краткое содержание:
 
@@ -10,29 +10,39 @@
 уникальный идентификатор (`id`), дата создания (`createdAt`) и дата последнего обновления (`updatedAt`).
 Предназначен для расширения в конкретных классах моделей, которые реализуют бизнес-логику
 и определяют дополнительные свойства и методы.
+
 ## Свойства:
+
 - **`id`** — уникальный первичный ключ записи.
 - **`createdAt`** — дата и время создания записи.
 - **`updatedAt`** — дата последнего обновления записи (null, если данных об изменениях нет).
+
 ## Методы:
+
 Класс предоставляет доступные методы для получения базовой информации о записи:
+
 - `getId()` — возвращает уникальный идентификатор сущности.
 - `getCreatedAt()` — возвращает дату и время создания записи.
 - `getUpdatedAt()` — возвращает дату последнего обновления или null, если обновления не было.
 - `getColumnVal(string $name)` — возвращает значение конкретного столбца по его имени (реализуется в наследниках).
+
 ## Аннотации:
+
 Класс использует аннотации для указания схемы базы данных с помощью библиотеки `Cycle ORM`.
 Например:
+
 - `#[Column()]` определяет параметры поля таблицы.
 - `#[Index()]` задаёт индексированные столбцы (например, `created_at` для быстрого поиска).
-## Расширяемость:
-- Класс **абстрактный**. Для его использования необходимо создать наследника и, как минимум,
-реализовать метод `getColumnVal()`, который позволяет получить значение столбца.
 
+## Расширяемость:
+
+- Класс **абстрактный**. Для его использования необходимо создать наследника и, как минимум,
+  реализовать метод `getColumnVal()`, который позволяет получить значение столбца.
 
 ---
 
 ### Свойства
+
 * protected $[createdAt](#property_createdAt)
 * protected $[id](#property_id)
 * protected $[updatedAt](#property_updatedAt)
@@ -68,11 +78,12 @@
 
 ### Подробности
 
-* File: [engine/inc/maharder/_modules/admin/models/MhLog.php](../../engine/inc/maharder/_modules/admin/models/MhLog.php)
+* Путь: engine/inc/maharder/_modules/admin/models/MhLog.php
 
 ---
 
 ## Свойства
+
 <a id="property_createdAt"></a>
 #### protected $createdAt : \DateTimeImmutable
 ---
@@ -83,8 +94,8 @@
 **Тип:** \DateTimeImmutable
 
 **Подробности:**
-* Унаследовано от: [\BasisModel](../classes/BasisModel.md)
 
+* Унаследовано от: [\BasisModel](./BasisModel.md)
 
 <a id="property_id"></a>
 #### protected $id : int
@@ -93,11 +104,11 @@
 
 ID сущности (уникальный первичный ключ).
 
-**Тип:** <a href="../int"><abbr title="int">int</abbr></a>
+**Тип:** <abbr title="int">Целое число</abbr>
 
 **Подробности:**
-* Унаследовано от: [\BasisModel](../classes/BasisModel.md)
 
+* Унаследовано от: [\BasisModel](./BasisModel.md)
 
 <a id="property_updatedAt"></a>
 #### protected $updatedAt : ?\DateTimeImmutable
@@ -110,51 +121,36 @@ ID сущности (уникальный первичный ключ).
 
 Автоматически обновляется при изменении записи.
 
-**Тип:** <a href="../?\DateTimeImmutable"><abbr title="?\DateTimeImmutable">DateTimeImmutable</abbr></a>
+**Тип:** <abbr title="?\DateTimeImmutable">Дата и время или null</abbr>
 
 **Подробности:**
-* Унаследовано от: [\BasisModel](../classes/BasisModel.md)
 
+* Унаследовано от: [\BasisModel](./BasisModel.md)
 
 <a id="property_fn_name"></a>
 #### private $fn_name : string
 ---
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_log_type"></a>
 #### private $log_type : string
 ---
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_message"></a>
 #### private $message : string
 ---
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_plugin"></a>
 #### private $plugin : string
 ---
-**Тип:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Подробности:**
-
+**Тип:** <abbr title="string">Текст</abbr>
 
 <a id="property_time"></a>
 #### private $time : \DateTimeImmutable
 ---
 **Тип:** \DateTimeImmutable
-
-**Подробности:**
-
 
 <a id="property_uuid"></a>
 #### private $uuid : \Ramsey\Uuid\UuidInterface
@@ -170,6 +166,7 @@ ID сущности (уникальный первичный ключ).
 ## Методы
 
 <a id="method_getColumnVal"></a>
+
 ### getColumnVal
 
 ```
@@ -182,20 +179,22 @@ public getColumnVal(string  name) : mixed
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$name** | string |  |
+| Название  | Тип    | По умолчанию |
+|-----------|--------|--------------|
+| **$name** | string |              |
 
 ##### Возвращает:
 
 ```
 mixed
 ```
+
 Значение столбца.
 
 ---
 
 <a id="method_getCreatedAt"></a>
+
 ### getCreatedAt
 
 ```
@@ -211,11 +210,13 @@ public getCreatedAt() : \DateTimeImmutable
 ```
 \DateTimeImmutable
 ```
+
 Дата и время создания записи.
 
 ---
 
 <a id="method_getFnName"></a>
+
 ### getFnName
 
 ```
@@ -231,6 +232,7 @@ string
 ---
 
 <a id="method_getId"></a>
+
 ### getId
 
 ```
@@ -246,11 +248,13 @@ public getId() : int
 ```
 int
 ```
+
 Уникальный идентификатор сущности.
 
 ---
 
 <a id="method_getLogType"></a>
+
 ### getLogType
 
 ```
@@ -266,6 +270,7 @@ string
 ---
 
 <a id="method_getMessage"></a>
+
 ### getMessage
 
 ```
@@ -281,6 +286,7 @@ string
 ---
 
 <a id="method_getPlugin"></a>
+
 ### getPlugin
 
 ```
@@ -296,6 +302,7 @@ string
 ---
 
 <a id="method_getTime"></a>
+
 ### getTime
 
 ```
@@ -311,6 +318,7 @@ public getTime() : \DateTimeImmutable
 ---
 
 <a id="method_getUpdatedAt"></a>
+
 ### getUpdatedAt
 
 ```
@@ -326,11 +334,13 @@ public getUpdatedAt() : \DateTimeImmutable|null
 ```
 \DateTimeImmutable|null
 ```
+
 Дата и время последнего обновления или null, если обновления не было.
 
 ---
 
 <a id="method_getUuid"></a>
+
 ### getUuid
 
 ```
@@ -346,6 +356,7 @@ public getUuid() : \Ramsey\Uuid\UuidInterface
 ---
 
 <a id="method_setFnName"></a>
+
 ### setFnName
 
 ```
@@ -354,9 +365,9 @@ public setFnName(string  fn_name) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$fn_name** | string |  |
+| Название     | Тип    | По умолчанию |
+|--------------|--------|--------------|
+| **$fn_name** | string |              |
 
 ##### Возвращает:
 
@@ -367,6 +378,7 @@ void
 ---
 
 <a id="method_setLogType"></a>
+
 ### setLogType
 
 ```
@@ -375,9 +387,9 @@ public setLogType(string  log_type) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$log_type** | string |  |
+| Название      | Тип    | По умолчанию |
+|---------------|--------|--------------|
+| **$log_type** | string |              |
 
 ##### Возвращает:
 
@@ -388,6 +400,7 @@ void
 ---
 
 <a id="method_setMessage"></a>
+
 ### setMessage
 
 ```
@@ -396,9 +409,9 @@ public setMessage(string  message) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$message** | string |  |
+| Название     | Тип    | По умолчанию |
+|--------------|--------|--------------|
+| **$message** | string |              |
 
 ##### Возвращает:
 
@@ -409,6 +422,7 @@ void
 ---
 
 <a id="method_setPlugin"></a>
+
 ### setPlugin
 
 ```
@@ -417,9 +431,9 @@ public setPlugin(string  plugin) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$plugin** | string |  |
+| Название    | Тип    | По умолчанию |
+|-------------|--------|--------------|
+| **$plugin** | string |              |
 
 ##### Возвращает:
 
@@ -430,6 +444,7 @@ void
 ---
 
 <a id="method_setTime"></a>
+
 ### setTime
 
 ```
@@ -438,9 +453,9 @@ public setTime(\DateTimeImmutable  time) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$time** | \DateTimeImmutable |  |
+| Название  | Тип                | По умолчанию |
+|-----------|--------------------|--------------|
+| **$time** | \DateTimeImmutable |              |
 
 ##### Возвращает:
 
@@ -451,6 +466,7 @@ void
 ---
 
 <a id="method_setUuid"></a>
+
 ### setUuid
 
 ```
@@ -459,9 +475,9 @@ public setUuid(\Ramsey\Uuid\UuidInterface  uuid) : void
 
 ##### Свойства:
 
-| Название | Тип | По умолчанию |
-|----------|-----|----------|
-| **$uuid** | \Ramsey\Uuid\UuidInterface |  |
+| Название  | Тип                        | По умолчанию |
+|-----------|----------------------------|--------------|
+| **$uuid** | \Ramsey\Uuid\UuidInterface |              |
 
 ##### Возвращает:
 
