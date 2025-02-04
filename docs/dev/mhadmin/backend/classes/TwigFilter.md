@@ -127,7 +127,7 @@ public createFilterChoices(string  name, string  select) : array
 
 ##### Смотри так-же:
 
-* [\translate](./index.md#function_translate)
+* [\translate](../index.md#function_translate)
 * [\getRepository](#method_getRepository)
 
 ##### Свойства:

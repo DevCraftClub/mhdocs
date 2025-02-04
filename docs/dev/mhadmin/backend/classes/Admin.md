@@ -80,7 +80,7 @@
 * Путь: engine/inc/maharder/_includes/classes/Admin.php
 * Использованные трейты:
   * [\DataLoader](./DataLoader.md)
-  * [\DleData](./DleData)
+  * [\DleData](./DleData.md)
   * [\AssetsChecker](./AssetsChecker.md)
 
 ---
