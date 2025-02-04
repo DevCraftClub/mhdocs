@@ -59,14 +59,14 @@
 
 ## Свойства
 
-<a id="property_children"></a>
+[](){#property_children}
 #### private $children : array
 ---
 **Тип:** <abbr title="array">Массив</abbr>
 
 Список дочерних элементов. Устанавливается через метод [\AdminLink::setChildren()](#method_setChildren).
 
-<a id="property_extra"></a>
+[](){#property_extra}
 #### private $extra : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
@@ -74,7 +74,7 @@
 Дополнительная информация. Устанавливается через метод [\AdminLink::setExtra()](#method_setExtra)
 и фильтруется с помощью FILTER_SANITIZE_FULL_SPECIAL_CHARS.
 
-<a id="property_link"></a>
+[](){#property_link}
 #### private $link : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
@@ -82,7 +82,7 @@
 URL ссылки. Устанавливается через метод [\AdminLink::setLink()](#method_setLink)
 и валидируется с помощью FILTER_VALIDATE_URL.
 
-<a id="property_name"></a>
+[](){#property_name}
 #### private $name : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
@@ -90,14 +90,14 @@ URL ссылки. Устанавливается через метод [\AdminLi
 Имя ссылки. Устанавливается через метод [\AdminLink::setName()](#method_setName)
 и фильтруется с помощью FILTER_SANITIZE_FULL_SPECIAL_CHARS.
 
-<a id="property_parent"></a>
+[](){#property_parent}
 #### private $parent : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
 
 Родительский элемент. Устанавливается через метод [\AdminLink::setParent()](#method_setParent).
 
-<a id="property_type"></a>
+[](){#property_type}
 #### private $type : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
@@ -112,7 +112,7 @@ URL ссылки. Устанавливается через метод [\AdminLi
 
 ## Методы
 
-<a id="method___construct"></a>
+[](){#method___construct}
 
 ### __construct
 
@@ -157,7 +157,7 @@ mixed
 
 ---
 
-<a id="method_addChild"></a>
+[](){#method_addChild}
 
 ### addChild
 
@@ -197,7 +197,7 @@ public addChild(\AdminLink  link) : \AdminLink
 
 ---
 
-<a id="method_getChildren"></a>
+[](){#method_getChildren}
 
 ### getChildren
 
@@ -224,7 +224,7 @@ array
 
 ---
 
-<a id="method_getExtra"></a>
+[](){#method_getExtra}
 
 ### getExtra
 
@@ -246,7 +246,7 @@ string|null
 
 ---
 
-<a id="method_getLink"></a>
+[](){#method_getLink}
 
 ### getLink
 
@@ -272,7 +272,7 @@ string|null
 
 ---
 
-<a id="method_getName"></a>
+[](){#method_getName}
 
 ### getName
 
@@ -288,7 +288,7 @@ public getName() : ?string
 
 ---
 
-<a id="method_getParent"></a>
+[](){#method_getParent}
 
 ### getParent
 
@@ -310,7 +310,7 @@ string|null
 
 ---
 
-<a id="method_getType"></a>
+[](){#method_getType}
 
 ### getType
 
@@ -342,7 +342,7 @@ string|null
 
 ---
 
-<a id="method_setChildren"></a>
+[](){#method_setChildren}
 
 ### setChildren
 
@@ -379,7 +379,7 @@ public setChildren(array  children) : \AdminLink
 
 ---
 
-<a id="method_setExtra"></a>
+[](){#method_setExtra}
 
 ### setExtra
 
@@ -407,7 +407,7 @@ public setExtra(string|null  extra) : \AdminLink
 
 ---
 
-<a id="method_setLink"></a>
+[](){#method_setLink}
 
 ### setLink
 
@@ -445,7 +445,7 @@ public setLink(string|null  link) : \AdminLink
 
 ---
 
-<a id="method_setName"></a>
+[](){#method_setName}
 
 ### setName
 
@@ -473,7 +473,7 @@ public setName(string|null  name) : \AdminLink
 
 ---
 
-<a id="method_setParent"></a>
+[](){#method_setParent}
 
 ### setParent
 
@@ -501,7 +501,7 @@ public setParent(string|null  parent) : \AdminLink
 
 ---
 
-<a id="method_setType"></a>
+[](){#method_setType}
 
 ### setType
 

@@ -53,7 +53,7 @@
 
 ## Свойства
 
-<a id="property_db"></a>
+[](){#property_db}
 #### protected $db : ?\db
 ---
 **Краткое содержание**
@@ -67,7 +67,7 @@
 
 ## Методы
 
-<a id="method_abbr"></a>
+[](){#method_abbr}
 
 ### abbr
 
@@ -109,7 +109,7 @@ string
 
 ---
 
-<a id="method_connect"></a>
+[](){#method_connect}
 
 ### connect
 
@@ -139,7 +139,7 @@ void
 
 ---
 
-<a id="method_createDir"></a>
+[](){#method_createDir}
 
 ### createDir
 
@@ -183,7 +183,7 @@ bool
 
 ---
 
-<a id="method_createLockFile"></a>
+[](){#method_createLockFile}
 
 ### createLockFile
 
@@ -212,7 +212,7 @@ mixed
 
 ---
 
-<a id="method_defType"></a>
+[](){#method_defType}
 
 ### defType
 
@@ -262,7 +262,7 @@ float|bool|int|string
 
 ---
 
-<a id="method_deleteDir"></a>
+[](){#method_deleteDir}
 
 ### deleteDir
 
@@ -300,7 +300,7 @@ void
 
 ---
 
-<a id="method_dirToArray"></a>
+[](){#method_dirToArray}
 
 ### dirToArray
 
@@ -340,7 +340,7 @@ array
 
 ---
 
-<a id="method_getComparer"></a>
+[](){#method_getComparer}
 
 ### getComparer
 
@@ -385,7 +385,7 @@ string
 
 ---
 
-<a id="method_getConfig"></a>
+[](){#method_getConfig}
 
 ### getConfig
 
@@ -428,7 +428,7 @@ array
 
 ---
 
-<a id="method_getDb"></a>
+[](){#method_getDb}
 
 ### getDb
 
@@ -459,7 +459,7 @@ static public getDb() : \db
 
 ---
 
-<a id="method_getPrefix"></a>
+[](){#method_getPrefix}
 
 ### getPrefix
 
@@ -481,7 +481,7 @@ string
 
 ---
 
-<a id="method_getUserPrefix"></a>
+[](){#method_getUserPrefix}
 
 ### getUserPrefix
 
@@ -507,7 +507,7 @@ string
 
 ---
 
-<a id="method_joinPaths"></a>
+[](){#method_joinPaths}
 
 ### joinPaths
 
@@ -546,7 +546,7 @@ string
 
 ---
 
-<a id="method_nameArgs"></a>
+[](){#method_nameArgs}
 
 ### nameArgs
 
@@ -590,7 +590,7 @@ array
 
 ---
 
-<a id="method_normalizePath"></a>
+[](){#method_normalizePath}
 
 ### normalizePath
 
@@ -634,7 +634,7 @@ string
 
 ---
 
-<a id="method_normalizeUrl"></a>
+[](){#method_normalizeUrl}
 
 ### normalizeUrl
 
@@ -669,7 +669,7 @@ string
 
 ---
 
-<a id="method_sanitizeArrayInput"></a>
+[](){#method_sanitizeArrayInput}
 
 ### sanitizeArrayInput
 
@@ -704,7 +704,7 @@ mixed
 
 ---
 
-<a id="method_sanitizeInput"></a>
+[](){#method_sanitizeInput}
 
 ### sanitizeInput
 
@@ -739,7 +739,7 @@ string|null
 
 ---
 
-<a id="method_setDb"></a>
+[](){#method_setDb}
 
 ### setDb
 
@@ -773,7 +773,7 @@ void
 
 ---
 
-<a id="method_toTranslit"></a>
+[](){#method_toTranslit}
 
 ### toTranslit
 
@@ -822,7 +822,7 @@ string
 
 ---
 
-<a id="method_loadJsonConfig"></a>
+[](){#method_loadJsonConfig}
 
 ### loadJsonConfig
 
@@ -863,7 +863,7 @@ array
 
 ---
 
-<a id="method_migrateOldConfig"></a>
+[](){#method_migrateOldConfig}
 
 ### migrateOldConfig
 

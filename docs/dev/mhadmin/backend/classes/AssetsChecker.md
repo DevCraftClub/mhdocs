@@ -34,7 +34,7 @@
 ---
 
 ## Свойства
-<a id="property_asset_file"></a>
+[](){#property_asset_file}
 #### private $asset_file : string
 ---
 **Краткое содержание**
@@ -44,7 +44,7 @@
 **Тип:** <abbr title="string">Текст</abbr>
 
 
-<a id="property_assets_arr"></a>
+[](){#property_assets_arr}
 #### private $assets_arr : array
 ---
 **Краткое содержание**
@@ -54,7 +54,7 @@
 **Тип:** <abbr title="array">Массив</abbr>
 
 
-<a id="property_assets_dir"></a>
+[](){#property_assets_dir}
 #### private $assets_dir : string
 ---
 **Краткое содержание**
@@ -69,7 +69,7 @@
 
 ## Методы
 
-<a id="method_checkAssets"></a>
+[](){#method_checkAssets}
 ### checkAssets
 
 ```
@@ -118,7 +118,7 @@ array
 
 ---
 
-<a id="method_parseAssets"></a>
+[](){#method_parseAssets}
 ### parseAssets
 
 ```
@@ -158,7 +158,7 @@ void
 
 ---
 
-<a id="method_save_asset"></a>
+[](){#method_save_asset}
 ### save_asset
 
 ```
@@ -212,7 +212,7 @@ array|false
 
 ---
 
-<a id="method_fetchFileContent"></a>
+[](){#method_fetchFileContent}
 ### fetchFileContent
 
 ```
@@ -245,7 +245,7 @@ string|null
 
 ---
 
-<a id="method_generateFileMetadata"></a>
+[](){#method_generateFileMetadata}
 ### generateFileMetadata
 
 ```
@@ -289,7 +289,7 @@ array
 
 ---
 
-<a id="method_parse_assets"></a>
+[](){#method_parse_assets}
 ### parse_assets
 
 ```
@@ -330,7 +330,7 @@ void
 
 ---
 
-<a id="method_prepare_assets"></a>
+[](){#method_prepare_assets}
 ### prepare_assets
 
 ```
@@ -361,7 +361,7 @@ void
 
 ---
 
-<a id="method_saveFile"></a>
+[](){#method_saveFile}
 ### saveFile
 
 ```

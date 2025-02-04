@@ -37,7 +37,7 @@
 ---
 
 ## Свойства
-<a id="property_path"></a>
+[](){#property_path}
 #### private $path : ?string
 ---
 **Краткое содержание**
@@ -66,7 +66,7 @@
 
 ## Методы
 
-<a id="method_clearCache"></a>
+[](){#method_clearCache}
 ### clearCache
 
 ```
@@ -112,7 +112,7 @@ void
 
 ---
 
-<a id="method_getCache"></a>
+[](){#method_getCache}
 ### getCache
 
 ```
@@ -160,7 +160,7 @@ false|array|int
 
 ---
 
-<a id="method_getPath"></a>
+[](){#method_getPath}
 ### getPath
 
 ```
@@ -180,7 +180,7 @@ string|null
 
 ---
 
-<a id="method_init"></a>
+[](){#method_init}
 ### init
 
 ```
@@ -223,7 +223,7 @@ void
 
 ---
 
-<a id="method_setCache"></a>
+[](){#method_setCache}
 ### setCache
 
 ```
@@ -272,7 +272,7 @@ void
 
 ---
 
-<a id="method_setPath"></a>
+[](){#method_setPath}
 ### setPath
 
 ```

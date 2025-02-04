@@ -32,19 +32,19 @@
 ---
 
 ## Свойства
-<a id="property_contacts"></a>
+[](){#property_contacts}
 #### private $contacts : array
 ---
 **Тип:** <abbr title="array">Массив</abbr>
 
 
-<a id="property_donations"></a>
+[](){#property_donations}
 #### private $donations : array
 ---
 **Тип:** <abbr title="array">Массив</abbr>
 
 
-<a id="property_name"></a>
+[](){#property_name}
 #### private $name : string
 ---
 **Тип:** <abbr title="string">Текст</abbr>
@@ -55,7 +55,7 @@
 
 ## Методы
 
-<a id="method___construct"></a>
+[](){#method___construct}
 ### __construct
 
 ```
@@ -80,7 +80,7 @@ mixed
 
 ---
 
-<a id="method_addContact"></a>
+[](){#method_addContact}
 ### addContact
 
 ```
@@ -107,7 +107,7 @@ public addContact(string  name, string  link) : \Author
 
 ---
 
-<a id="method_addDonation"></a>
+[](){#method_addDonation}
 ### addDonation
 
 ```
@@ -135,7 +135,7 @@ public addDonation(string  name, string  value, string  link) : \Author
 
 ---
 
-<a id="method_getContacts"></a>
+[](){#method_getContacts}
 ### getContacts
 
 ```
@@ -155,7 +155,7 @@ array
 
 ---
 
-<a id="method_getDonations"></a>
+[](){#method_getDonations}
 ### getDonations
 
 ```
@@ -176,7 +176,7 @@ array
 
 ---
 
-<a id="method_getName"></a>
+[](){#method_getName}
 ### getName
 
 ```

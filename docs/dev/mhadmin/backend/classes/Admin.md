@@ -86,7 +86,7 @@
 ---
 
 ## Свойства
-<a id="property_postXfieldKeys"></a>
+[](){#property_postXfieldKeys}
 #### protected $postXfieldKeys : array
 ---
 **Тип:** <abbr title="array">массив</abbr>
@@ -94,7 +94,7 @@
 **Подробности:**
 
 
-<a id="property_userXfieldKeys"></a>
+[](){#property_userXfieldKeys}
 #### protected $userXfieldKeys : array
 ---
 **Тип:** <abbr title="array">массив</abbr>
@@ -102,7 +102,7 @@
 **Подробности:**
 
 
-<a id="property_asset_file"></a>
+[](){#property_asset_file}
 #### private $asset_file : string
 ---
 **Краткое содержание**
@@ -114,7 +114,7 @@
 **Подробности:**
 
 
-<a id="property_assets_arr"></a>
+[](){#property_assets_arr}
 #### private $assets_arr : array
 ---
 **Краткое содержание**
@@ -126,7 +126,7 @@
 **Подробности:**
 
 
-<a id="property_assets_dir"></a>
+[](){#property_assets_dir}
 #### private $assets_dir : string
 ---
 **Краткое содержание**
@@ -138,7 +138,7 @@
 **Подробности:**
 
 
-<a id="property_breadcrumb"></a>
+[](){#property_breadcrumb}
 #### private $breadcrumb : array
 ---
 **Краткое содержание**
@@ -153,7 +153,7 @@
   * [Используется для получения текущих значений хлебных крошек.](#method_getBreadcrumb)
 
 
-<a id="property_cache_folder"></a>
+[](){#property_cache_folder}
 #### private $cache_folder : string
 ---
 **Краткое содержание**
@@ -165,7 +165,7 @@
 **Подробности:**
 
 
-<a id="property_cssArr"></a>
+[](){#property_cssArr}
 #### private $cssArr : array
 ---
 **Краткое содержание**
@@ -183,7 +183,7 @@
 |-----|--------|----------|
 | global |  | string URL Глобальная переменная, содержащая базовый URL проекта. |
 
-<a id="property_jsArr"></a>
+[](){#property_jsArr}
 #### private $jsArr : array
 ---
 **Краткое содержание**
@@ -208,7 +208,7 @@
 |-----|--------|----------|
 | global |  | string URL Глобальная переменная, определяющая базовый URL приложения. |
 
-<a id="property_links"></a>
+[](){#property_links}
 #### private $links : array
 ---
 **Тип:** <abbr title="array">массив</abbr>
@@ -216,7 +216,7 @@
 **Подробности:**
 
 
-<a id="property_prefix"></a>
+[](){#property_prefix}
 #### private $prefix : ?string
 ---
 **Тип:** <abbr title="?string">текст или null</abbr>
@@ -224,7 +224,7 @@
 **Подробности:**
 
 
-<a id="property_variables"></a>
+[](){#property_variables}
 #### private $variables : array
 ---
 **Краткое содержание**
@@ -272,7 +272,7 @@
 
 ## Методы
 
-<a id="method___construct"></a>
+[](){#method___construct}
 ### __construct
 
 ```
@@ -310,7 +310,7 @@ mixed
 
 ---
 
-<a id="method_checkAssets"></a>
+[](){#method_checkAssets}
 ### checkAssets
 
 ```
@@ -359,7 +359,7 @@ array
 
 ---
 
-<a id="method_clear_cache"></a>
+[](){#method_clear_cache}
 ### clear_cache
 
 ```
@@ -393,7 +393,7 @@ void
 
 ---
 
-<a id="method_generate_link"></a>
+[](){#method_generate_link}
 ### generate_link
 
 ```
@@ -427,7 +427,7 @@ static public generate_link(string  name, string  href, string  type = "link", a
 
 ---
 
-<a id="method_get_cache"></a>
+[](){#method_get_cache}
 ### get_cache
 
 ```
@@ -471,7 +471,7 @@ array|false
 
 ---
 
-<a id="method_get_used_xfields"></a>
+[](){#method_get_used_xfields}
 ### get_used_xfields
 
 ```
@@ -514,7 +514,7 @@ array|bool
 
 ---
 
-<a id="method_getBreadcrumb"></a>
+[](){#method_getBreadcrumb}
 ### getBreadcrumb
 
 ```
@@ -538,7 +538,7 @@ array
 
 ---
 
-<a id="method_getCacheFolder"></a>
+[](){#method_getCacheFolder}
 ### getCacheFolder
 
 ```
@@ -553,7 +553,7 @@ string
 
 ---
 
-<a id="method_getCats"></a>
+[](){#method_getCats}
 ### getCats
 
 ```
@@ -590,7 +590,7 @@ array
 
 ---
 
-<a id="method_getLinkInfo"></a>
+[](){#method_getLinkInfo}
 ### getLinkInfo
 
 ```
@@ -616,7 +616,7 @@ bool|\AdminLink
 
 ---
 
-<a id="method_getLinkName"></a>
+[](){#method_getLinkName}
 ### getLinkName
 
 ```
@@ -653,7 +653,7 @@ string|false
 
 ---
 
-<a id="method_getLinkUrl"></a>
+[](){#method_getLinkUrl}
 ### getLinkUrl
 
 ```
@@ -690,7 +690,7 @@ URL ссылки, если информация доступна, или false, 
 
 ---
 
-<a id="method_getPrefix"></a>
+[](){#method_getPrefix}
 ### getPrefix
 
 ```
@@ -720,7 +720,7 @@ string
 
 ---
 
-<a id="method_getUser"></a>
+[](){#method_getUser}
 ### getUser
 
 ```
@@ -763,7 +763,7 @@ array|false
 
 ---
 
-<a id="method_getUserGroups"></a>
+[](){#method_getUserGroups}
 ### getUserGroups
 
 ```
@@ -800,7 +800,7 @@ array
 
 ---
 
-<a id="method_getUsers"></a>
+[](){#method_getUsers}
 ### getUsers
 
 ```
@@ -837,7 +837,7 @@ array
 
 ---
 
-<a id="method_getVariables"></a>
+[](){#method_getVariables}
 ### getVariables
 
 ```
@@ -875,7 +875,7 @@ array
 
 ---
 
-<a id="method_getXfieldInfo"></a>
+[](){#method_getXfieldInfo}
 ### getXfieldInfo
 
 ```
@@ -908,7 +908,7 @@ array|null
 
 ---
 
-<a id="method_htmlStatic"></a>
+[](){#method_htmlStatic}
 ### htmlStatic
 
 ```
@@ -950,7 +950,7 @@ array
 
 ---
 
-<a id="method_load_data"></a>
+[](){#method_load_data}
 ### load_data
 
 ```
@@ -995,7 +995,7 @@ array
 
 ---
 
-<a id="method_loadXfields"></a>
+[](){#method_loadXfields}
 ### loadXfields
 
 ```
@@ -1038,7 +1038,7 @@ array|false
 
 ---
 
-<a id="method_parseAssets"></a>
+[](){#method_parseAssets}
 ### parseAssets
 
 ```
@@ -1078,7 +1078,7 @@ void
 
 ---
 
-<a id="method_save_asset"></a>
+[](){#method_save_asset}
 ### save_asset
 
 ```
@@ -1132,7 +1132,7 @@ array|false
 
 ---
 
-<a id="method_setAuthor"></a>
+[](){#method_setAuthor}
 ### setAuthor
 
 ```
@@ -1161,7 +1161,7 @@ void
 
 ---
 
-<a id="method_setBreadcrumb"></a>
+[](){#method_setBreadcrumb}
 ### setBreadcrumb
 
 ```
@@ -1190,7 +1190,7 @@ void
 
 ---
 
-<a id="method_setCacheFolder"></a>
+[](){#method_setCacheFolder}
 ### setCacheFolder
 
 ```
@@ -1211,7 +1211,7 @@ void
 
 ---
 
-<a id="method_setCss"></a>
+[](){#method_setCss}
 ### setCss
 
 ```
@@ -1249,7 +1249,7 @@ void
 
 ---
 
-<a id="method_setJs"></a>
+[](){#method_setJs}
 ### setJs
 
 ```
@@ -1286,7 +1286,7 @@ void
 
 ---
 
-<a id="method_setLink"></a>
+[](){#method_setLink}
 ### setLink
 
 ```
@@ -1324,7 +1324,7 @@ void
 
 ---
 
-<a id="method_setLinks"></a>
+[](){#method_setLinks}
 ### setLinks
 
 ```
@@ -1357,7 +1357,7 @@ void
 
 ---
 
-<a id="method_setPrefix"></a>
+[](){#method_setPrefix}
 ### setPrefix
 
 ```
@@ -1388,7 +1388,7 @@ void
 
 ---
 
-<a id="method_setVar"></a>
+[](){#method_setVar}
 ### setVar
 
 ```
@@ -1420,7 +1420,7 @@ void
 
 ---
 
-<a id="method_setVars"></a>
+[](){#method_setVars}
 ### setVars
 
 ```
@@ -1456,7 +1456,7 @@ void
 
 ---
 
-<a id="method_upload_file"></a>
+[](){#method_upload_file}
 ### upload_file
 
 ```
@@ -1475,7 +1475,7 @@ void
 
 ---
 
-<a id="method_fetchFileContent"></a>
+[](){#method_fetchFileContent}
 ### fetchFileContent
 
 ```
@@ -1509,7 +1509,7 @@ string|null
 
 ---
 
-<a id="method_generateFileMetadata"></a>
+[](){#method_generateFileMetadata}
 ### generateFileMetadata
 
 ```
@@ -1553,7 +1553,7 @@ array
 
 ---
 
-<a id="method_parse_assets"></a>
+[](){#method_parse_assets}
 ### parse_assets
 
 ```
@@ -1594,7 +1594,7 @@ void
 
 ---
 
-<a id="method_prepare_assets"></a>
+[](){#method_prepare_assets}
 ### prepare_assets
 
 ```
@@ -1625,7 +1625,7 @@ void
 
 ---
 
-<a id="method_saveFile"></a>
+[](){#method_saveFile}
 ### saveFile
 
 ```
@@ -1668,7 +1668,7 @@ bool
 
 ---
 
-<a id="method_set_cache"></a>
+[](){#method_set_cache}
 ### set_cache
 
 ```
@@ -1712,7 +1712,7 @@ void
 
 ---
 
-<a id="method_setDefaultAuthor"></a>
+[](){#method_setDefaultAuthor}
 ### setDefaultAuthor
 
 ```

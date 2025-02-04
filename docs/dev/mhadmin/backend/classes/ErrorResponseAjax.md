@@ -54,7 +54,7 @@
 ---
 
 ## Свойства
-<a id="property_data"></a>
+[](){#property_data}
 #### public $data : array
 ---
 ***Описание***
@@ -67,7 +67,7 @@
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_message"></a>
+[](){#property_message}
 #### public $message : string
 ---
 ***Описание***
@@ -80,7 +80,7 @@
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_meta"></a>
+[](){#property_meta}
 #### public $meta : array
 ---
 ***Описание***
@@ -93,7 +93,7 @@
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_status"></a>
+[](){#property_status}
 #### public $status : int
 ---
 ***Описание***
@@ -106,7 +106,7 @@ HTTP статус ответа.
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_success"></a>
+[](){#property_success}
 #### public $success : bool
 ---
 ***Описание***
@@ -119,7 +119,7 @@ HTTP статус ответа.
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_data"></a>
+[](){#property_data}
 #### protected $data : array
 ---
 **Тип:** <abbr title="array">Массив</abbr>
@@ -128,7 +128,7 @@ HTTP статус ответа.
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_message"></a>
+[](){#property_message}
 #### protected $message : string
 ---
 **Тип:** <abbr title="string">Текст</abbr>
@@ -137,7 +137,7 @@ HTTP статус ответа.
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_meta"></a>
+[](){#property_meta}
 #### protected $meta : array
 ---
 **Тип:** <abbr title="array">Массив</abbr>
@@ -146,7 +146,7 @@ HTTP статус ответа.
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_redirect"></a>
+[](){#property_redirect}
 #### protected $redirect : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
@@ -155,7 +155,7 @@ HTTP статус ответа.
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_status"></a>
+[](){#property_status}
 #### protected $status : int
 ---
 **Тип:** <abbr title="int">Целое число</abbr>
@@ -164,7 +164,7 @@ HTTP статус ответа.
 * Унаследовано от: [\AjaxAbstractResponse](./AjaxAbstractResponse.md)
 
 
-<a id="property_success"></a>
+[](){#property_success}
 #### protected $success : bool
 ---
 **Тип:** <abbr title="bool">Логические значения</abbr>
@@ -178,7 +178,7 @@ HTTP статус ответа.
 
 ## Методы
 
-<a id="method___construct"></a>
+[](){#method___construct}
 ### __construct
 
 ```
@@ -221,7 +221,7 @@ mixed
 
 ---
 
-<a id="method_getRedirect"></a>
+[](){#method_getRedirect}
 ### getRedirect
 
 ```
@@ -245,7 +245,7 @@ URL-адрес перенаправления.
 
 ---
 
-<a id="method_isSuccess"></a>
+[](){#method_isSuccess}
 ### isSuccess
 
 ```
@@ -269,7 +269,7 @@ bool
 
 ---
 
-<a id="method_send"></a>
+[](){#method_send}
 ### send
 
 ```
@@ -305,7 +305,7 @@ string
 
 ---
 
-<a id="method_setData"></a>
+[](){#method_setData}
 ### setData
 
 ```
@@ -335,7 +335,7 @@ self
 
 ---
 
-<a id="method_setMessage"></a>
+[](){#method_setMessage}
 ### setMessage
 
 ```
@@ -365,7 +365,7 @@ self
 
 ---
 
-<a id="method_setMeta"></a>
+[](){#method_setMeta}
 ### setMeta
 
 ```
@@ -395,7 +395,7 @@ self
 
 ---
 
-<a id="method_setRedirect"></a>
+[](){#method_setRedirect}
 ### setRedirect
 
 ```
@@ -430,7 +430,7 @@ public setRedirect(string  redirect) : \AjaxAbstractResponse
 
 ---
 
-<a id="method_setStatus"></a>
+[](){#method_setStatus}
 ### setStatus
 
 ```
@@ -460,7 +460,7 @@ self
 
 ---
 
-<a id="method_setSuccess"></a>
+[](){#method_setSuccess}
 ### setSuccess
 
 ```
@@ -495,7 +495,7 @@ public setSuccess(bool  success) : \AjaxAbstractResponse
 
 ---
 
-<a id="method_buildResponse"></a>
+[](){#method_buildResponse}
 ### buildResponse
 
 ```

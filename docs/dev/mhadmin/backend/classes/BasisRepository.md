@@ -28,7 +28,7 @@
 
 ## Методы
 
-<a id="method_getFirst"></a>
+[](){#method_getFirst}
 ### getFirst
 
 ```
@@ -48,7 +48,7 @@ public getFirst() : \Entity|null
 
 ---
 
-<a id="method_getLast"></a>
+[](){#method_getLast}
 ### getLast
 
 ```
@@ -68,7 +68,7 @@ public getLast() : \Entity|null
 
 ---
 
-<a id="method_limit"></a>
+[](){#method_limit}
 ### limit
 
 ```
@@ -95,7 +95,7 @@ array
 
 ---
 
-<a id="method_total"></a>
+[](){#method_total}
 ### total
 
 ```

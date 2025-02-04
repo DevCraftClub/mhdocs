@@ -32,12 +32,12 @@
 
 ## Свойства
 
-### private $[composerPath][property_composerPath] : ?string
+### private $composerPath[](){#property_composerPath} : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
 
 
-### private $[projectPath][property_projectPath] : ?string
+### private $projectPath[](){#property_projectPath} : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
 
@@ -46,7 +46,7 @@
 
 ## Методы
 
-### public [init][method_init]() : void
+### public init[](){#method_init} : void
 
 #### Описание
 
@@ -61,7 +61,7 @@
 
 ---
 
-### public [isComposerInstalled][method_isComposerInstalled]() : bool
+### public isComposerInstalled[](){#method_isComposerInstalled} : bool
 
 #### Описание
 
@@ -69,7 +69,7 @@
 
 ---
 
-### public [installTemporaryComposer][method_installTemporaryComposer]() : void
+### public installTemporaryComposer[](){#method_installTemporaryComposer} : void
 
 #### Описание
 
@@ -77,7 +77,7 @@
 
 ---
 
-### public [installDependencies][method_installDependencies]() : void
+### public installDependencies[](){#method_installDependencies} : void
 
 #### Описание
 
@@ -85,7 +85,7 @@
 
 ---
 
-### public [updateDependencies][method_updateDependencies]() : void
+### public updateDependencies[](){#method_updateDependencies} : void
 
 #### Описание
 
@@ -93,7 +93,7 @@
 
 ---
 
-### public [removePackage][method_removePackage]() : void
+### public removePackage[](){#method_removePackage} : void
 
 #### Описание
 
@@ -107,7 +107,7 @@
 
 ---
 
-### public [requirePackage][method_requirePackage]() : void
+### public requirePackage[](){#method_requirePackage} : void
 
 #### Описание
 
@@ -124,7 +124,7 @@
 
 ---
 
-### private [runCommand][method_runCommand]() : void
+### private runCommand[](){#method_runCommand} : void
 
 #### Описание
 
@@ -138,7 +138,7 @@
 
 ---
 
-### private [getComposerCommand][method_getComposerCommand]() : void
+### private getComposerCommand()[](){#method_getComposerCommand} : void
 
 #### Описание
 
@@ -146,7 +146,7 @@
 
 ---
 
-### private [executeCommand][method_executeCommand]() : void
+### private executeCommand[](){#method_executeCommand} : void
 
 #### Описание
 

@@ -44,7 +44,7 @@
 
 ## Методы
 
-<a id="method_getFunctions"></a>
+[](){#method_getFunctions}
 ### getFunctions
 
 ```
@@ -59,7 +59,7 @@ array
 
 ---
 
-<a id="method_getGlobals"></a>
+[](){#method_getGlobals}
 ### getGlobals
 
 ```
@@ -74,7 +74,7 @@ array
 
 ---
 
-<a id="method_parseUrl"></a>
+[](){#method_parseUrl}
 ### parseUrl
 
 ```
@@ -105,7 +105,7 @@ string
 
 ---
 
-<a id="method_getAssetsUrl"></a>
+[](){#method_getAssetsUrl}
 ### getAssetsUrl
 
 ```
@@ -136,7 +136,7 @@ URL для статических ресурсов.
 
 ---
 
-<a id="method_getDleConfig"></a>
+[](){#method_getDleConfig}
 ### getDleConfig
 
 ```
@@ -151,7 +151,7 @@ array
 
 ---
 
-<a id="method_getGetParams"></a>
+[](){#method_getGetParams}
 ### getGetParams
 
 ```
@@ -166,7 +166,7 @@ static protected getGetParams() : ?array
 
 ---
 
-<a id="method_getModulesUrl"></a>
+[](){#method_getModulesUrl}
 ### getModulesUrl
 
 ```
@@ -197,7 +197,7 @@ URL модуля.
 
 ---
 
-<a id="method_getPostParams"></a>
+[](){#method_getPostParams}
 ### getPostParams
 
 ```
@@ -212,7 +212,7 @@ static protected getPostParams() : ?array
 
 ---
 
-<a id="method_getServerData"></a>
+[](){#method_getServerData}
 ### getServerData
 
 ```
@@ -227,7 +227,7 @@ array
 
 ---
 
-<a id="method_getThisHost"></a>
+[](){#method_getThisHost}
 ### getThisHost
 
 ```
@@ -242,7 +242,7 @@ mixed
 
 ---
 
-<a id="method_getThisRoot"></a>
+[](){#method_getThisRoot}
 ### getThisRoot
 
 ```
@@ -257,7 +257,7 @@ mixed
 
 ---
 
-<a id="method_getThisSelf"></a>
+[](){#method_getThisSelf}
 ### getThisSelf
 
 ```
@@ -272,7 +272,7 @@ mixed
 
 ---
 
-<a id="method_getUserHash"></a>
+[](){#method_getUserHash}
 ### getUserHash
 
 ```

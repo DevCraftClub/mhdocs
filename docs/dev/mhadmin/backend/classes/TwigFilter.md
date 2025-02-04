@@ -33,7 +33,7 @@
 
 ## Свойства
 
-<a id="property_repository"></a>
+[](){#property_repository}
 #### private $repository : \Cycle\ORM\RepositoryInterface
 ---
 **Тип:** \Cycle\ORM\RepositoryInterface
@@ -44,7 +44,7 @@
 
 ## Методы
 
-<a id="method___construct"></a>
+[](){#method___construct}
 
 ### __construct
 
@@ -70,7 +70,7 @@ mixed
 
 ---
 
-<a id="method_createFilter"></a>
+[](){#method_createFilter}
 
 ### createFilter
 
@@ -113,7 +113,7 @@ array
 
 ---
 
-<a id="method_createFilterChoices"></a>
+[](){#method_createFilterChoices}
 
 ### createFilterChoices
 
@@ -153,7 +153,7 @@ array
 
 ---
 
-<a id="method_getDefaultFilters"></a>
+[](){#method_getDefaultFilters}
 
 ### getDefaultFilters
 
@@ -195,7 +195,7 @@ array
 
 ---
 
-<a id="method_getRepository"></a>
+[](){#method_getRepository}
 
 ### getRepository
 
@@ -222,7 +222,7 @@ public getRepository() : \RepositoryInterface
 
 ---
 
-<a id="method_getSort"></a>
+[](){#method_getSort}
 
 ### getSort
 
@@ -257,7 +257,7 @@ string
 
 ---
 
-<a id="method_setRepository"></a>
+[](){#method_setRepository}
 
 ### setRepository
 
