@@ -18,6 +18,7 @@ nav:
     -   Бесплатные разработки:
             -   DLE Faker:
                     -   Установка: dev/dle_faker/install.md
+                    -   Настройка: dev/dle_faker/settings.md
                     -   Теги для оформления шаблонов:
                             -   Общие: dev/dle_faker/tag_for_all.md
                             -   Для пользователей: dev/dle_faker/tag_for_users.md

@@ -72,7 +72,7 @@ Class MhAjax
     * [\AssetsChecker](./AssetsChecker.md)
     * [\UpdatesChecker](./UpdatesChecker.md)
     * [\DataLoader](./DataLoader.md)
-    * [\DleData](./DleData)
+    * [\DleData](./DleData.md)
 
 ---
 
@@ -86,7 +86,7 @@ Class MhAjax
 **Подробности:**
 
 * Смотри так-же:
-    * [DleData::$postXfieldKeys](./DleData#property_postXfieldKeys)
+    * [DleData::$postXfieldKeys](./DleData.md#property_postXfieldKeys)
 
 <a id="property_userXfieldKeys"></a>
 #### protected $userXfieldKeys : array
@@ -96,7 +96,7 @@ Class MhAjax
 **Подробности:**
 
 * Смотри так-же:
-    * [DleData::$userXfieldKeys](./DleData#property_userXfieldKeys)
+    * [DleData::$userXfieldKeys](./DleData.md#property_userXfieldKeys)
 
 <a id="property_api_key"></a>
 #### private $api_key : string
@@ -705,7 +705,7 @@ public getXfieldInfo(string  name, string  type = "post") : array|null
 
 ##### Смотри так-же:
 
-* [\DleData::loadXfields()](./DleData#method_loadXfields)
+* [\DleData::loadXfields()](./DleData.md#method_loadXfields)
 * [\CacheControl::getCache()](./CacheControl.md#method_getCache)
 
 ##### Свойства:
