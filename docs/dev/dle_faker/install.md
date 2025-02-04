@@ -1,10 +1,11 @@
 # DLE Faker
 **Ссылка на
-разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/maharder-assets.4/)
+разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/dle-faker.29/)
 
 DLE Faker - лагин, что позволяет вам генерировать случайные данные для DLE. На данный момент поддерживаются следующие компоненты: новости и пользователи.
 
-**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 173.1.0
+* **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 173.1.1
+* **Минимальная версия MH Admin**: [<i class="fa-duotone fa-code-branch"></i> 173.3.3](../mhadmin/install.md)
 
 ## **Установка / Обновление**
 

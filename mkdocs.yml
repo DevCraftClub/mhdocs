@@ -5,7 +5,7 @@ edit_uri: edit/main/docs/
 site_url: https://readme.devcraft.club
 site_author: Maxim Harder
 site_description: "Сайт с документациями, который построен на Python и системе MKDocs. Исходники всегда будут доступны на GitHub."
-copyright: "Документация защищена лицензией <a href='https://github.com/Gokujo/mhdocs/blob/master/LICENSE.md'>MIT license</a>"
+copyright: "Документация защищена лицензией <a href='https://github.com/DevCraftClub/mhdocs/blob/master/LICENSE.md'>MIT license</a>"
 
 nav:
     -   Главная: index.md
@@ -41,42 +41,43 @@ nav:
                             -   Генератор модулей: dev/mhadmin/new_module.md
                             -   Главный файл в папке inc: dev/mhadmin/backend/inc_main.md
                             -   Модуль главной страницы: dev/mhadmin/backend/module.md
+                            -   Генератор языковых файлов: dev/mhadmin/generate_languages.md
                             -   Back-End:
                                     -   Главная: dev/mhadmin/backend/index.md
                                     -   База данных:
-                                            -   BasisModel: dev/mhadmin/classes/BasisModel.md
-                                            -   BasisRepository: dev/mhadmin/classes/BasisRepository.md
-                                            -   MhDB: dev/mhadmin/classes/MhDB.md
+                                            -   BasisModel: dev/mhadmin/backend/classes/BasisModel.md
+                                            -   BasisRepository: dev/mhadmin/backend/classes/BasisRepository.md
+                                            -   MhDB: dev/mhadmin/backend/classes/MhDB.md
                                     -   Классы:
-                                            -   Admin: dev/mhadmin/classes/Admin.md
-                                            -   CacheControl: dev/mhadmin/classes/CacheControl.md
-                                            -   ComposerAction: dev/mhadmin/classes/ComposerAction.md
-                                            -   DataManager: dev/mhadmin/classes/DataManager.md
-                                            -   LogGenerator: dev/mhadmin/classes/LogGenerator.md
-                                            -   MhAjax: dev/mhadmin/classes/MhAjax.md
-                                            -   MhLog: dev/mhadmin/classes/MhLog.md
-                                            -   MhLogRepository: dev/mhadmin/classes/MhLogRepository.md
-                                            -   MhTranslation: dev/mhadmin/classes/MhTranslation.md
-                                            -   TwigFilter: dev/mhadmin/classes/TwigFilter.md
+                                            -   Admin: dev/mhadmin/backend/classes/Admin.md
+                                            -   CacheControl: dev/mhadmin/backend/classes/CacheControl.md
+                                            -   ComposerAction: dev/mhadmin/backend/classes/ComposerAction.md
+                                            -   DataManager: dev/mhadmin/backend/classes/DataManager.md
+                                            -   LogGenerator: dev/mhadmin/backend/classes/LogGenerator.md
+                                            -   MhAjax: dev/mhadmin/backend/classes/MhAjax.md
+                                            -   MhLog: dev/mhadmin/backend/classes/MhLog.md
+                                            -   MhLogRepository: dev/mhadmin/backend/classes/MhLogRepository.md
+                                            -   MhTranslation: dev/mhadmin/backend/classes/MhTranslation.md
+                                            -   TwigFilter: dev/mhadmin/backend/classes/TwigFilter.md
                                     -   Ответы на запросы AJAX:
-                                            -   AjaxAbstractResponse: dev/mhadmin/classes/AjaxAbstractResponse.md
-                                            -   ErrorResponseAjax: dev/mhadmin/classes/ErrorResponseAjax.md
-                                            -   SuccessResponseAjax: dev/mhadmin/classes/SuccessResponseAjax.md
+                                            -   AjaxAbstractResponse: dev/mhadmin/backend/classes/AjaxAbstractResponse.md
+                                            -   ErrorResponseAjax: dev/mhadmin/backend/classes/ErrorResponseAjax.md
+                                            -   SuccessResponseAjax: dev/mhadmin/backend/classes/SuccessResponseAjax.md
                                     -   Твиг (Twig) дополнения:
-                                            -   AdminUrlExtension: dev/mhadmin/classes/AdminUrlExtension.md
-                                            -   DateTimeFormatter: dev/mhadmin/classes/DateTimeFormatter.md
-                                            -   DeclineExtension: dev/mhadmin/classes/DeclineExtension.md
-                                            -   MobileDetectExtension: dev/mhadmin/classes/MobileDetectExtension.md
-                                            -   TextLimiter: dev/mhadmin/classes/TextLimiter.md
+                                            -   AdminUrlExtension: dev/mhadmin/backend/classes/AdminUrlExtension.md
+                                            -   DateTimeFormatter: dev/mhadmin/backend/classes/DateTimeFormatter.md
+                                            -   DeclineExtension: dev/mhadmin/backend/classes/DeclineExtension.md
+                                            -   MobileDetectExtension: dev/mhadmin/backend/classes/MobileDetectExtension.md
+                                            -   TextLimiter: dev/mhadmin/backend/classes/TextLimiter.md
                                     -   Типы:
-                                            -   AdminLink: dev/mhadmin/classes/AdminLink.md
-                                            -   Author: dev/mhadmin/classes/Author.md
-                                            -   BreadCrumb: dev/mhadmin/classes/BreadCrumb.md
+                                            -   AdminLink: dev/mhadmin/backend/classes/AdminLink.md
+                                            -   Author: dev/mhadmin/backend/classes/Author.md
+                                            -   BreadCrumb: dev/mhadmin/backend/classes/BreadCrumb.md
                                     -   Трейты:
-                                            -   AssetsChecker: dev/mhadmin/classes/AssetsChecker.md
-                                            -   DataLoader: dev/mhadmin/classes/DataLoader.md
-                                            -   DleData: dev/mhadmin/classes/DleData.md
-                                            -   UpdatesChecker: dev/mhadmin/classes/UpdatesChecker.md
+                                            -   AssetsChecker: dev/mhadmin/backend/classes/AssetsChecker.md
+                                            -   DataLoader: dev/mhadmin/backend/classes/DataLoader.md
+                                            -   DleData: dev/mhadmin/backend/classes/DleData.md
+                                            -   UpdatesChecker: dev/mhadmin/backend/classes/UpdatesChecker.md
                             -   Front-End:
                                     -   Шаблоны: dev/mhadmin/frontend/templates.md
                     -   История изменений: dev/mhadmin/changelog.md
@@ -115,15 +116,17 @@ theme:
         primary: indigo
 
 plugins:
-    - git-revision-date
+    -   git-revision-date
     -   git-revision-date-localized:
             enable_creation_date: true
-    - tags
+    -   tags
     -   search:
             lang:
                 - ru
                 - de
                 - en
+    -   autorefs:
+            resolve_closest: true
     -   minify:
             minify_html: true
             minify_js: true
@@ -144,7 +147,7 @@ markdown_extensions:
     - md_in_html
     - admonition
     - pymdownx.details
-    -   pymdownx.highlight:
+    - pymdownx.highlight:
             linenums: true
             anchor_linenums: true
             use_pygments: true
@@ -152,7 +155,7 @@ markdown_extensions:
     #    - pymdownx.inlinehilite
     - pymdownx.snippets
     - pymdownx.superfences
-    -   pymdownx.tabbed:
+    - pymdownx.tabbed:
             alternate_style: true
     - tables
     - footnotes

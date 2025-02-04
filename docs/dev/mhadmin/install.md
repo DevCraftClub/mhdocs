@@ -4,7 +4,7 @@
 разработку
 **: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/maharder-assets.4/)
 
-**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 173.3.0
+**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 173.3.3
 
 ## Минимальные требования
 
