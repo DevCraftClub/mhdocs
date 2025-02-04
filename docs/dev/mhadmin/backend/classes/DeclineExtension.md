@@ -28,7 +28,7 @@
 
 ## Методы
 
-<a id="method_decline"></a>
+[](){#method_decline}
 
 ### decline
 
@@ -51,7 +51,7 @@ mixed
 
 ---
 
-<a id="method_getFunctions"></a>
+[](){#method_getFunctions}
 
 ### getFunctions
 

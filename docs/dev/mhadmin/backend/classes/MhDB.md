@@ -48,7 +48,7 @@
 
 ## Свойства
 
-<a id="property_em"></a>
+[](){#property_em}
 #### private $em : ?\Cycle\ORM\EntityManager
 ---
 **Краткое содержание**
@@ -63,7 +63,7 @@
 ** <a href="https://cycle-orm.dev/docs/advanced-entity-manager/current" target="_blank"><abbr title="?\Cycle\ORM\EntityManager">
 EntityManager</abbr></a>
 
-<a id="property_orm"></a>
+[](){#property_orm}
 #### private $orm : ?\Cycle\ORM\ORM
 ---
 **Краткое содержание**
@@ -79,7 +79,7 @@ ORM-класс для управления объектами и предост�
 ** <a href="https://cycle-orm.dev/docs/intro-quick-start/current/en#orm" target="_blank"><abbr title="?\Cycle\ORM\ORM">
 ORM</abbr></a>
 
-<a id="property_orm_config"></a>
+[](){#property_orm_config}
 #### private $orm_config : ?\Cycle\Database\Config\DatabaseConfig
 ---
 **Краткое содержание**
@@ -94,7 +94,7 @@ ORM</abbr></a>
 ** <a href="https://cycle-orm.dev/docs/database-isolation/current/en#configuration" target="_blank"><abbr title="?\Cycle\Database\Config\DatabaseConfig">
 DatabaseConfig</abbr></a>
 
-<a id="property_orm_manager"></a>
+[](){#property_orm_manager}
 #### private $orm_manager : ?\Cycle\Database\DatabaseManager
 ---
 **Краткое содержание**
@@ -111,7 +111,7 @@ DatabaseManager</abbr></a>
 
 **Подробности:**
 
-<a id="property_user_db"></a>
+[](){#property_user_db}
 #### private $user_db : bool
 ---
 **Краткое содержание**
@@ -130,7 +130,7 @@ DatabaseManager</abbr></a>
 
 ## Методы
 
-<a id="method___construct"></a>
+[](){#method___construct}
 
 ### __construct
 
@@ -168,7 +168,7 @@ mixed
 
 ---
 
-<a id="method_count"></a>
+[](){#method_count}
 
 ### count
 
@@ -201,7 +201,7 @@ int
 
 ---
 
-<a id="method_create"></a>
+[](){#method_create}
 
 ### create
 
@@ -241,7 +241,7 @@ public create(object  entity) : \ORM\Transaction\StateInterface
 
 ---
 
-<a id="method_delete"></a>
+[](){#method_delete}
 
 ### delete
 
@@ -284,7 +284,7 @@ public delete(object|string  entity, int  pk) : \ORM\Transaction\StateInterface
 
 ---
 
-<a id="method_get"></a>
+[](){#method_get}
 
 ### get
 
@@ -314,7 +314,7 @@ object|null
 
 ---
 
-<a id="method_getAll"></a>
+[](){#method_getAll}
 
 ### getAll
 
@@ -348,7 +348,7 @@ array
 
 ---
 
-<a id="method_getManager"></a>
+[](){#method_getManager}
 
 ### getManager
 
@@ -364,7 +364,7 @@ public getManager() : \Cycle\ORM\EntityManager
 
 ---
 
-<a id="method_getOrm"></a>
+[](){#method_getOrm}
 
 ### getOrm
 
@@ -398,7 +398,7 @@ public getOrm() : \ORM\ORM
 
 ---
 
-<a id="method_paginate"></a>
+[](){#method_paginate}
 
 ### paginate
 
@@ -435,7 +435,7 @@ public paginate(object|string  entity, string  orderby, string  sortby = &#039;D
 
 ---
 
-<a id="method_query"></a>
+[](){#method_query}
 
 ### query
 
@@ -477,7 +477,7 @@ public query(string  sql, array  params = []) : \StatementInterface
 
 ---
 
-<a id="method_repository"></a>
+[](){#method_repository}
 
 ### repository
 
@@ -516,7 +516,7 @@ public repository(object|string  entity) : \ORM\RepositoryInterface
 
 ---
 
-<a id="method_run"></a>
+[](){#method_run}
 
 ### run
 
@@ -557,7 +557,7 @@ public run(object  entity) : \ORM\Transaction\StateInterface
 
 ---
 
-<a id="method_setManager"></a>
+[](){#method_setManager}
 
 ### setManager
 
@@ -590,7 +590,7 @@ void
 
 ---
 
-<a id="method_update"></a>
+[](){#method_update}
 
 ### update
 
@@ -630,7 +630,7 @@ public update(object  entity) : \ORM\Transaction\StateInterface
 
 ---
 
-<a id="method_compileSchema"></a>
+[](){#method_compileSchema}
 
 ### compileSchema
 
@@ -672,7 +672,7 @@ array
 
 ---
 
-<a id="method_generateManager"></a>
+[](){#method_generateManager}
 
 ### generateManager
 
@@ -710,7 +710,7 @@ private generateManager() : \DatabaseManager
 
 ---
 
-<a id="method_generateOrm"></a>
+[](){#method_generateOrm}
 
 ### generateOrm
 
@@ -748,7 +748,7 @@ private generateOrm() : \ORM\ORM
 
 ---
 
-<a id="method_generateOrmConfig"></a>
+[](){#method_generateOrmConfig}
 
 ### generateOrmConfig
 

@@ -63,7 +63,7 @@
 
 ## Свойства
 
-<a id="property_cache_folder"></a>
+[](){#property_cache_folder}
 #### private $cache_folder : string
 ---
 **Краткое содержание**
@@ -72,7 +72,7 @@
 
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_locale"></a>
+[](){#property_locale}
 #### private $locale : ?string
 ---
 **Краткое содержание**
@@ -90,7 +90,7 @@
 | version | 173.3.0 |          |
 | since   | 173.3.0 |          |
 
-<a id="property_localization_path"></a>
+[](){#property_localization_path}
 #### private $localization_path : ?string
 ---
 **Краткое содержание**
@@ -108,14 +108,14 @@
 | version | 173.3.0 |          |
 | since   | 173.3.0 |          |
 
-<a id="property_prefix"></a>
+[](){#property_prefix}
 #### private $prefix : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
 
 **Подробности:**
 
-<a id="property_translator"></a>
+[](){#property_translator}
 #### private $translator : ?\Symfony\Component\Translation\Translator
 ---
 **Краткое содержание**
@@ -135,7 +135,7 @@ Translator</abbr></a>
 | version | 173.3.0 |          |
 | since   | 173.3.0 |          |
 
-<a id="property_use_translator"></a>
+[](){#property_use_translator}
 #### private $use_translator : bool
 ---
 **Тип:** <abbr title="bool">Логические значения</abbr>
@@ -148,7 +148,7 @@ Translator</abbr></a>
 
 ## Методы
 
-<a id="method_clear_cache"></a>
+[](){#method_clear_cache}
 
 ### clear_cache
 
@@ -183,7 +183,7 @@ void
 
 ---
 
-<a id="method_convertXliffToJs"></a>
+[](){#method_convertXliffToJs}
 
 ### convertXliffToJs
 
@@ -223,7 +223,7 @@ void
 
 ---
 
-<a id="method_get_cache"></a>
+[](){#method_get_cache}
 
 ### get_cache
 
@@ -269,7 +269,7 @@ array|false
 
 ---
 
-<a id="method_getCacheFolder"></a>
+[](){#method_getCacheFolder}
 
 ### getCacheFolder
 
@@ -285,7 +285,7 @@ string
 
 ---
 
-<a id="method_getFormattedLanguageList"></a>
+[](){#method_getFormattedLanguageList}
 
 ### getFormattedLanguageList
 
@@ -337,7 +337,7 @@ array
 
 ---
 
-<a id="method_getLanguages"></a>
+[](){#method_getLanguages}
 
 ### getLanguages
 
@@ -376,7 +376,7 @@ array
 
 ---
 
-<a id="method_getLocale"></a>
+[](){#method_getLocale}
 
 ### getLocale
 
@@ -398,7 +398,7 @@ string
 
 ---
 
-<a id="method_getLocaleData"></a>
+[](){#method_getLocaleData}
 
 ### getLocaleData
 
@@ -437,7 +437,7 @@ array
 
 ---
 
-<a id="method_getLocalizationPath"></a>
+[](){#method_getLocalizationPath}
 
 ### getLocalizationPath
 
@@ -476,7 +476,7 @@ string|null
 
 ---
 
-<a id="method_getPrefix"></a>
+[](){#method_getPrefix}
 
 ### getPrefix
 
@@ -508,7 +508,7 @@ string
 
 ---
 
-<a id="method_getTranslation"></a>
+[](){#method_getTranslation}
 
 ### getTranslation
 
@@ -551,7 +551,7 @@ string
 
 ---
 
-<a id="method_getTranslationPlural"></a>
+[](){#method_getTranslationPlural}
 
 ### getTranslationPlural
 
@@ -595,7 +595,7 @@ string
 
 ---
 
-<a id="method_getTranslationPluralWithParameters"></a>
+[](){#method_getTranslationPluralWithParameters}
 
 ### getTranslationPluralWithParameters
 
@@ -641,7 +641,7 @@ string
 
 ---
 
-<a id="method_getTranslationWithParameters"></a>
+[](){#method_getTranslationWithParameters}
 
 ### getTranslationWithParameters
 
@@ -688,7 +688,7 @@ string
 
 ---
 
-<a id="method_getTranslator"></a>
+[](){#method_getTranslator}
 
 ### getTranslator
 
@@ -727,7 +727,7 @@ static public getTranslator() : \Translator|null
 
 ---
 
-<a id="method_isUseTranslator"></a>
+[](){#method_isUseTranslator}
 
 ### isUseTranslator
 
@@ -755,7 +755,7 @@ bool
 
 ---
 
-<a id="method_load_data"></a>
+[](){#method_load_data}
 
 ### load_data
 
@@ -802,7 +802,7 @@ array
 
 ---
 
-<a id="method_setCacheFolder"></a>
+[](){#method_setCacheFolder}
 
 ### setCacheFolder
 
@@ -824,7 +824,7 @@ void
 
 ---
 
-<a id="method_setLocale"></a>
+[](){#method_setLocale}
 
 ### setLocale
 
@@ -850,7 +850,7 @@ void
 
 ---
 
-<a id="method_setLocalizationPath"></a>
+[](){#method_setLocalizationPath}
 
 ### setLocalizationPath
 
@@ -876,7 +876,7 @@ void
 
 ---
 
-<a id="method_setPrefix"></a>
+[](){#method_setPrefix}
 
 ### setPrefix
 
@@ -908,7 +908,7 @@ void
 
 ---
 
-<a id="method_setTranslator"></a>
+[](){#method_setTranslator}
 
 ### setTranslator
 
@@ -943,7 +943,7 @@ void
 
 ---
 
-<a id="method_setUseTranslator"></a>
+[](){#method_setUseTranslator}
 
 ### setUseTranslator
 
@@ -969,7 +969,7 @@ void
 
 ---
 
-<a id="method_generateJsTranslationContent"></a>
+[](){#method_generateJsTranslationContent}
 
 ### generateJsTranslationContent
 
@@ -997,7 +997,7 @@ string
 
 ---
 
-<a id="method_getTranslationArray"></a>
+[](){#method_getTranslationArray}
 
 ### getTranslationArray
 
@@ -1040,7 +1040,7 @@ array
 
 ---
 
-<a id="method_languageList"></a>
+[](){#method_languageList}
 
 ### languageList
 
@@ -1077,7 +1077,7 @@ array
 
 ---
 
-<a id="method_nonTranslator"></a>
+[](){#method_nonTranslator}
 
 ### nonTranslator
 
@@ -1111,7 +1111,7 @@ string
 
 ---
 
-<a id="method_parseXliffFile"></a>
+[](){#method_parseXliffFile}
 
 ### parseXliffFile
 
@@ -1133,7 +1133,7 @@ array
 
 ---
 
-<a id="method_set_cache"></a>
+[](){#method_set_cache}
 
 ### set_cache
 
@@ -1178,7 +1178,7 @@ void
 
 ---
 
-<a id="method_writeJsFile"></a>
+[](){#method_writeJsFile}
 
 ### writeJsFile
 

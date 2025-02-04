@@ -43,7 +43,7 @@
 
 ## Свойства
 
-<a id="property_api_key"></a>
+[](){#property_api_key}
 #### public $api_key : string
 ---
 ***Описание***
@@ -52,7 +52,7 @@
 
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_recource_id"></a>
+[](){#property_recource_id}
 #### public $recource_id : int|null
 ---
 ***Описание***
@@ -61,7 +61,7 @@
 
 **Тип:** <abbr title="int|null">Целое число или null</abbr>
 
-<a id="property_update_url"></a>
+[](){#property_update_url}
 #### public $update_url : string
 ---
 ***Описание***
@@ -70,7 +70,7 @@ URL API, используемый для проверки обновлений.
 
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_api_key"></a>
+[](){#property_api_key}
 #### private $api_key : string
 ---
 **Краткое содержание**
@@ -79,12 +79,12 @@ URL API, используемый для проверки обновлений.
 
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_recource_id"></a>
+[](){#property_recource_id}
 #### private $recource_id : ?int
 ---
 **Тип:** <abbr title="?int">Целое число или null</abbr>
 
-<a id="property_update_url"></a>
+[](){#property_update_url}
 #### private $update_url : string
 ---
 **Тип:** <abbr title="string">Текст</abbr>
@@ -97,7 +97,7 @@ URL API, используемый для проверки обновлений.
 
 ## Методы
 
-<a id="method_checkUpdate"></a>
+[](){#method_checkUpdate}
 
 ### checkUpdate
 
@@ -135,7 +135,7 @@ array
 
 ---
 
-<a id="method_getApiKey"></a>
+[](){#method_getApiKey}
 
 ### getApiKey
 
@@ -151,7 +151,7 @@ string
 
 ---
 
-<a id="method_getRecourceId"></a>
+[](){#method_getRecourceId}
 
 ### getRecourceId
 
@@ -167,7 +167,7 @@ int|null
 
 ---
 
-<a id="method_getUpdateUrl"></a>
+[](){#method_getUpdateUrl}
 
 ### getUpdateUrl
 
@@ -183,7 +183,7 @@ string
 
 ---
 
-<a id="method_setApiKey"></a>
+[](){#method_setApiKey}
 
 ### setApiKey
 
@@ -205,7 +205,7 @@ void
 
 ---
 
-<a id="method_setRecourceId"></a>
+[](){#method_setRecourceId}
 
 ### setRecourceId
 
@@ -227,7 +227,7 @@ void
 
 ---
 
-<a id="method_setUpdateUrl"></a>
+[](){#method_setUpdateUrl}
 
 ### setUpdateUrl
 

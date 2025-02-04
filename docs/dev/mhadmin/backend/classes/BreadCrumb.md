@@ -32,7 +32,7 @@
 
 ## Свойства
 
-<a id="property_link"></a>
+[](){#property_link}
 #### private $link : ?string
 ---
 **Краткое содержание**
@@ -41,7 +41,7 @@
 
 **Тип:** <abbr title="?string">Текст или null</abbr>
 
-<a id="property_name"></a>
+[](){#property_name}
 #### private $name : ?string
 ---
 **Краткое содержание**
@@ -57,7 +57,7 @@
 
 ## Методы
 
-<a id="method___construct"></a>
+[](){#method___construct}
 
 ### __construct
 
@@ -80,7 +80,7 @@ mixed
 
 ---
 
-<a id="method_getLink"></a>
+[](){#method_getLink}
 
 ### getLink
 
@@ -106,7 +106,7 @@ string|null
 
 ---
 
-<a id="method_getName"></a>
+[](){#method_getName}
 
 ### getName
 
@@ -132,7 +132,7 @@ string|null
 
 ---
 
-<a id="method_setLink"></a>
+[](){#method_setLink}
 
 ### setLink
 
@@ -164,7 +164,7 @@ public setLink(string|null  link) : \BreadCrumb
 
 ---
 
-<a id="method_setName"></a>
+[](){#method_setName}
 
 ### setName
 

@@ -78,7 +78,7 @@ Class MhAjax
 
 ## Свойства
 
-<a id="property_postXfieldKeys"></a>
+[](){#property_postXfieldKeys}
 #### protected $postXfieldKeys : array
 ---
 **Тип:** <abbr title="array">Массив</abbr>
@@ -88,7 +88,7 @@ Class MhAjax
 * Смотри так-же:
     * [DleData::$postXfieldKeys](./DleData.md#property_postXfieldKeys)
 
-<a id="property_userXfieldKeys"></a>
+[](){#property_userXfieldKeys}
 #### protected $userXfieldKeys : array
 ---
 **Тип:** <abbr title="array">Массив</abbr>
@@ -98,7 +98,7 @@ Class MhAjax
 * Смотри так-же:
     * [DleData::$userXfieldKeys](./DleData.md#property_userXfieldKeys)
 
-<a id="property_api_key"></a>
+[](){#property_api_key}
 #### private $api_key : string
 ---
 **Краткое содержание**
@@ -107,7 +107,7 @@ Class MhAjax
 
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_asset_file"></a>
+[](){#property_asset_file}
 #### private $asset_file : string
 ---
 **Краткое содержание**
@@ -116,7 +116,7 @@ Class MhAjax
 
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_assets_arr"></a>
+[](){#property_assets_arr}
 #### private $assets_arr : array
 ---
 **Краткое содержание**
@@ -125,7 +125,7 @@ Class MhAjax
 
 **Тип:** <abbr title="array">Массив</abbr>
 
-<a id="property_assets_dir"></a>
+[](){#property_assets_dir}
 #### private $assets_dir : string
 ---
 **Краткое содержание**
@@ -134,7 +134,7 @@ Class MhAjax
 
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_cache_folder"></a>
+[](){#property_cache_folder}
 #### private $cache_folder : string
 ---
 **Краткое содержание**
@@ -143,19 +143,19 @@ Class MhAjax
 
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_prefix"></a>
+[](){#property_prefix}
 #### private $prefix : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
 
-<a id="property_recource_id"></a>
+[](){#property_recource_id}
 #### private $recource_id : ?int
 ---
 **Тип:** <a href="../?int"><abbr title="?int">Целое число или null</abbr></a>
 
 **Подробности:**
 
-<a id="property_update_url"></a>
+[](){#property_update_url}
 #### private $update_url : string
 ---
 **Тип:** <abbr title="string">Текст</abbr>
@@ -165,7 +165,7 @@ Class MhAjax
 
 ## Методы
 
-<a id="method___construct"></a>
+[](){#method___construct}
 
 ### __construct
 
@@ -190,7 +190,7 @@ mixed
 
 ---
 
-<a id="method_checkAssets"></a>
+[](){#method_checkAssets}
 
 ### checkAssets
 
@@ -242,7 +242,7 @@ array
 
 ---
 
-<a id="method_checkUpdate"></a>
+[](){#method_checkUpdate}
 
 ### checkUpdate
 
@@ -280,7 +280,7 @@ array
 
 ---
 
-<a id="method_clear_cache"></a>
+[](){#method_clear_cache}
 
 ### clear_cache
 
@@ -315,7 +315,7 @@ void
 
 ---
 
-<a id="method_get_cache"></a>
+[](){#method_get_cache}
 
 ### get_cache
 
@@ -361,7 +361,7 @@ array|false
 
 ---
 
-<a id="method_get_used_xfields"></a>
+[](){#method_get_used_xfields}
 
 ### get_used_xfields
 
@@ -406,7 +406,7 @@ array|bool
 
 ---
 
-<a id="method_getApiKey"></a>
+[](){#method_getApiKey}
 
 ### getApiKey
 
@@ -422,7 +422,7 @@ string
 
 ---
 
-<a id="method_getCacheFolder"></a>
+[](){#method_getCacheFolder}
 
 ### getCacheFolder
 
@@ -438,7 +438,7 @@ string
 
 ---
 
-<a id="method_getCats"></a>
+[](){#method_getCats}
 
 ### getCats
 
@@ -477,7 +477,7 @@ array
 
 ---
 
-<a id="method_getDleUrl"></a>
+[](){#method_getDleUrl}
 
 ### getDleUrl
 
@@ -504,7 +504,7 @@ string
 
 ---
 
-<a id="method_getPrefix"></a>
+[](){#method_getPrefix}
 
 ### getPrefix
 
@@ -536,7 +536,7 @@ string
 
 ---
 
-<a id="method_getRecourceId"></a>
+[](){#method_getRecourceId}
 
 ### getRecourceId
 
@@ -552,7 +552,7 @@ int|null
 
 ---
 
-<a id="method_getUpdateUrl"></a>
+[](){#method_getUpdateUrl}
 
 ### getUpdateUrl
 
@@ -568,7 +568,7 @@ string
 
 ---
 
-<a id="method_getUser"></a>
+[](){#method_getUser}
 
 ### getUser
 
@@ -613,7 +613,7 @@ array|false
 
 ---
 
-<a id="method_getUserGroups"></a>
+[](){#method_getUserGroups}
 
 ### getUserGroups
 
@@ -652,7 +652,7 @@ array
 
 ---
 
-<a id="method_getUsers"></a>
+[](){#method_getUsers}
 
 ### getUsers
 
@@ -691,7 +691,7 @@ array
 
 ---
 
-<a id="method_getXfieldInfo"></a>
+[](){#method_getXfieldInfo}
 
 ### getXfieldInfo
 
@@ -726,7 +726,7 @@ array|null
 
 ---
 
-<a id="method_load_data"></a>
+[](){#method_load_data}
 
 ### load_data
 
@@ -773,7 +773,7 @@ array
 
 ---
 
-<a id="method_loadXfields"></a>
+[](){#method_loadXfields}
 
 ### loadXfields
 
@@ -819,7 +819,7 @@ array|false
 
 ---
 
-<a id="method_parseAssets"></a>
+[](){#method_parseAssets}
 
 ### parseAssets
 
@@ -860,7 +860,7 @@ void
 
 ---
 
-<a id="method_save_asset"></a>
+[](){#method_save_asset}
 
 ### save_asset
 
@@ -917,7 +917,7 @@ array|false
 
 ---
 
-<a id="method_setApiKey"></a>
+[](){#method_setApiKey}
 
 ### setApiKey
 
@@ -939,7 +939,7 @@ void
 
 ---
 
-<a id="method_setCacheFolder"></a>
+[](){#method_setCacheFolder}
 
 ### setCacheFolder
 
@@ -961,7 +961,7 @@ void
 
 ---
 
-<a id="method_setPrefix"></a>
+[](){#method_setPrefix}
 
 ### setPrefix
 
@@ -993,7 +993,7 @@ void
 
 ---
 
-<a id="method_setRecourceId"></a>
+[](){#method_setRecourceId}
 
 ### setRecourceId
 
@@ -1015,7 +1015,7 @@ void
 
 ---
 
-<a id="method_setUpdateUrl"></a>
+[](){#method_setUpdateUrl}
 
 ### setUpdateUrl
 
@@ -1037,7 +1037,7 @@ void
 
 ---
 
-<a id="method_fetchFileContent"></a>
+[](){#method_fetchFileContent}
 
 ### fetchFileContent
 
@@ -1072,7 +1072,7 @@ string|null
 
 ---
 
-<a id="method_generateFileMetadata"></a>
+[](){#method_generateFileMetadata}
 
 ### generateFileMetadata
 
@@ -1119,7 +1119,7 @@ array
 
 ---
 
-<a id="method_parse_assets"></a>
+[](){#method_parse_assets}
 
 ### parse_assets
 
@@ -1162,7 +1162,7 @@ void
 
 ---
 
-<a id="method_prepare_assets"></a>
+[](){#method_prepare_assets}
 
 ### prepare_assets
 
@@ -1194,7 +1194,7 @@ void
 
 ---
 
-<a id="method_saveFile"></a>
+[](){#method_saveFile}
 
 ### saveFile
 
@@ -1239,7 +1239,7 @@ bool
 
 ---
 
-<a id="method_set_cache"></a>
+[](){#method_set_cache}
 
 ### set_cache
 

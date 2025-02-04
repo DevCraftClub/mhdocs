@@ -57,7 +57,7 @@
 
 ## Свойства
 
-<a id="property_postXfieldKeys"></a>
+[](){#property_postXfieldKeys}
 #### protected $postXfieldKeys : array
 ---
 **Тип:** <abbr title="array">Массив</abbr>
@@ -107,7 +107,7 @@
 | image_max_size_side | 38                | По которой стороне определять максимальный размер оригинального изображения       |
 | image_min_size_side | 39                | По которой стороне определять размер уменьшенной копии изображения                |
 
-<a id="property_userXfieldKeys"></a>
+[](){#property_userXfieldKeys}
 #### protected $userXfieldKeys : array
 ---
 **Тип:** <abbr title="array">Массив</abbr>
@@ -129,7 +129,7 @@
 
 ## Методы
 
-<a id="method_get_used_xfields"></a>
+[](){#method_get_used_xfields}
 
 ### get_used_xfields
 
@@ -174,7 +174,7 @@ array|bool
 
 ---
 
-<a id="method_getCats"></a>
+[](){#method_getCats}
 
 ### getCats
 
@@ -213,7 +213,7 @@ array
 
 ---
 
-<a id="method_getUser"></a>
+[](){#method_getUser}
 
 ### getUser
 
@@ -258,7 +258,7 @@ array|false
 
 ---
 
-<a id="method_getUserGroups"></a>
+[](){#method_getUserGroups}
 
 ### getUserGroups
 
@@ -297,7 +297,7 @@ array
 
 ---
 
-<a id="method_getUsers"></a>
+[](){#method_getUsers}
 
 ### getUsers
 
@@ -336,7 +336,7 @@ array
 
 ---
 
-<a id="method_getXfieldInfo"></a>
+[](){#method_getXfieldInfo}
 
 ### getXfieldInfo
 
@@ -371,7 +371,7 @@ array|null
 
 ---
 
-<a id="method_loadXfields"></a>
+[](){#method_loadXfields}
 
 ### loadXfields
 

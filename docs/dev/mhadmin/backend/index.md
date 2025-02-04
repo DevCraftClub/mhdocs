@@ -40,13 +40,7 @@
 
 ## Константы
 
-<a id="constant_COMPOSER_DIRECTORY"></a>
-### COMPOSER_DIRECTORY
-```
-COMPOSER_DIRECTORY = ENGINE_DIR . '/inc/maharder/_includes/composer'
-```
-
-<a id="constant_MH_INIT"></a>
+[](){#constant_MH_INIT}
 ### MH_INIT
 Определяет константу, используемую для инициализации системы.
 
@@ -56,7 +50,7 @@ COMPOSER_DIRECTORY = ENGINE_DIR . '/inc/maharder/_includes/composer'
 define("MH_INIT", true);
 ```
 
-<a id="constant_MH_ROOT"></a>
+[](){#constant_MH_ROOT}
 ### MH_ROOT
 Константа `MH_ROOT` указывает на путь к директории `engine/inc/maharder` в структуре проекта.
 Этот путь формируется на основе значения константы `ROOT_DIR`, определяющей корневую директорию проекта.
@@ -65,7 +59,7 @@ define("MH_INIT", true);
 define("MH_ROOT", ROOT_DIR . '/engine/inc/maharder');
 ```
 
-<a id="constant_MH_ADMIN"></a>
+[](){#constant_MH_ADMIN}
 ### MH_LOCALES
 Константа MH_ADMIN определяет путь к административной директории.
 Формируется путем объединения константы MH_ROOT с поддиректорией '/admin'.
@@ -74,7 +68,7 @@ define("MH_ROOT", ROOT_DIR . '/engine/inc/maharder');
 define("MH_ADMIN", MH_ROOT . '/admin');
 ```
 
-<a id="constant_MH_LOCALES"></a>
+[](){#constant_MH_LOCALES}
 ### MH_LOCALES
 Константа, задающая путь к локализациям.
 
@@ -84,7 +78,7 @@ define("MH_ADMIN", MH_ROOT . '/admin');
 define("MH_LOCALES", MH_ROOT . '/_locales');
 ```
 
-<a id="constant_MH_MODULES"></a>
+[](){#constant_MH_MODULES}
 ### MH_MODULES
 Определяет константу MH_MODULES, указывающую на путь к папке модулей в корневой директории.
 
@@ -94,7 +88,7 @@ define("MH_LOCALES", MH_ROOT . '/_locales');
 define("MH_LOCALES", MH_ROOT . '/_modules');
 ```
 
-<a id="constant_MH_INCLUDES"></a>
+[](){#constant_MH_INCLUDES}
 ### MH_INCLUDES
 Определяет константу `MH_INCLUDES`, содержащую путь к директории `_includes` внутри корневой директории.
 
@@ -105,7 +99,7 @@ define("MH_LOCALES", MH_ROOT . '/_modules');
 define("MH_LOCALES", MH_ROOT . '/_includes');
 ```
 
-<a id="constant_MH_CONFIG"></a>
+[](){#constant_MH_CONFIG}
 ### MH_CONFIG
 Определяет путь к папке конфигурации приложения.
 
@@ -115,7 +109,7 @@ define("MH_LOCALES", MH_ROOT . '/_includes');
 define("MH_LOCALES", MH_ROOT . '/_config');
 ```
 
-<a id="constant_MH_TEMPLATES"></a>
+[](){#constant_MH_TEMPLATES}
 ### MH_TEMPLATES
 Определяет константу MH_TEMPLATES, которая содержит путь к директории с шаблонами проекта.
 Значение пути формируется на основе константы MH_ROOT с добавлением поддиректории '_templates'.
@@ -124,7 +118,7 @@ define("MH_LOCALES", MH_ROOT . '/_config');
 define("MH_LOCALES", MH_ROOT . '/_templates');
 ```
 
-### [COMPOSER_DIR][constant_COMPOSER_DIR]
+### COMPOSER_DIR[](){#constant_COMPOSER_DIR}
 Определяет константу COMPOSER_DIR, которая содержит путь к директории с [композером](../../composer.md).
 
 ```
@@ -134,7 +128,7 @@ define("COMPOSER_DIR", MH_INCLUDES . '/composer');
 
 ## Функции / Методы
 
-<a id="method___"></a>
+[](){#method___}
 ### __
 
 ```
@@ -175,7 +169,7 @@ string
 ```
 Переведённая строка.
 
-<a id="method_br2nl"></a>
+[](){#method_br2nl}
 ### br2nl
 
 ```
@@ -212,7 +206,7 @@ string
 ```
 Строка, в которой все `&lt;br&gt;` заменены на указанный разделитель.
 
-<a id="method_clearfilepath"></a>
+[](){#method_clearfilepath}
 ### clearfilepath
 
 ```
@@ -232,7 +226,7 @@ string
 string
 ```
 
-<a id="method_dirToArray"></a>
+[](){#method_dirToArray}
 ### dirToArray
 
 ```
@@ -269,7 +263,7 @@ array
 ```
 Массив, представляющий собой дерево файловой структуры. Каждая директория содержит вложенные файлы/папки.
 
-<a id="method_execute_query"></a>
+[](){#method_execute_query}
 ### execute_query
 
 ```
@@ -289,7 +283,7 @@ array
 void
 ```
 
-<a id="method_translate"></a>
+[](){#method_translate}
 ### translate
 
 ```

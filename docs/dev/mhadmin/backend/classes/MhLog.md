@@ -84,7 +84,7 @@
 
 ## Свойства
 
-<a id="property_createdAt"></a>
+[](){#property_createdAt}
 #### protected $createdAt : \DateTimeImmutable
 ---
 **Краткое содержание**
@@ -97,7 +97,7 @@
 
 * Унаследовано от: [\BasisModel](./BasisModel.md)
 
-<a id="property_id"></a>
+[](){#property_id}
 #### protected $id : int
 ---
 **Краткое содержание**
@@ -110,7 +110,7 @@ ID сущности (уникальный первичный ключ).
 
 * Унаследовано от: [\BasisModel](./BasisModel.md)
 
-<a id="property_updatedAt"></a>
+[](){#property_updatedAt}
 #### protected $updatedAt : ?\DateTimeImmutable
 ---
 **Краткое содержание**
@@ -127,32 +127,32 @@ ID сущности (уникальный первичный ключ).
 
 * Унаследовано от: [\BasisModel](./BasisModel.md)
 
-<a id="property_fn_name"></a>
+[](){#property_fn_name}
 #### private $fn_name : string
 ---
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_log_type"></a>
+[](){#property_log_type}
 #### private $log_type : string
 ---
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_message"></a>
+[](){#property_message}
 #### private $message : string
 ---
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_plugin"></a>
+[](){#property_plugin}
 #### private $plugin : string
 ---
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_time"></a>
+[](){#property_time}
 #### private $time : \DateTimeImmutable
 ---
 **Тип:** \DateTimeImmutable
 
-<a id="property_uuid"></a>
+[](){#property_uuid}
 #### private $uuid : \Ramsey\Uuid\UuidInterface
 ---
 **Тип:** \Ramsey\Uuid\UuidInterface
@@ -165,7 +165,7 @@ ID сущности (уникальный первичный ключ).
 
 ## Методы
 
-<a id="method_getColumnVal"></a>
+[](){#method_getColumnVal}
 
 ### getColumnVal
 
@@ -193,7 +193,7 @@ mixed
 
 ---
 
-<a id="method_getCreatedAt"></a>
+[](){#method_getCreatedAt}
 
 ### getCreatedAt
 
@@ -215,7 +215,7 @@ public getCreatedAt() : \DateTimeImmutable
 
 ---
 
-<a id="method_getFnName"></a>
+[](){#method_getFnName}
 
 ### getFnName
 
@@ -231,7 +231,7 @@ string
 
 ---
 
-<a id="method_getId"></a>
+[](){#method_getId}
 
 ### getId
 
@@ -253,7 +253,7 @@ int
 
 ---
 
-<a id="method_getLogType"></a>
+[](){#method_getLogType}
 
 ### getLogType
 
@@ -269,7 +269,7 @@ string
 
 ---
 
-<a id="method_getMessage"></a>
+[](){#method_getMessage}
 
 ### getMessage
 
@@ -285,7 +285,7 @@ string
 
 ---
 
-<a id="method_getPlugin"></a>
+[](){#method_getPlugin}
 
 ### getPlugin
 
@@ -301,7 +301,7 @@ string
 
 ---
 
-<a id="method_getTime"></a>
+[](){#method_getTime}
 
 ### getTime
 
@@ -317,7 +317,7 @@ public getTime() : \DateTimeImmutable
 
 ---
 
-<a id="method_getUpdatedAt"></a>
+[](){#method_getUpdatedAt}
 
 ### getUpdatedAt
 
@@ -339,7 +339,7 @@ public getUpdatedAt() : \DateTimeImmutable|null
 
 ---
 
-<a id="method_getUuid"></a>
+[](){#method_getUuid}
 
 ### getUuid
 
@@ -355,7 +355,7 @@ public getUuid() : \Ramsey\Uuid\UuidInterface
 
 ---
 
-<a id="method_setFnName"></a>
+[](){#method_setFnName}
 
 ### setFnName
 
@@ -377,7 +377,7 @@ void
 
 ---
 
-<a id="method_setLogType"></a>
+[](){#method_setLogType}
 
 ### setLogType
 
@@ -399,7 +399,7 @@ void
 
 ---
 
-<a id="method_setMessage"></a>
+[](){#method_setMessage}
 
 ### setMessage
 
@@ -421,7 +421,7 @@ void
 
 ---
 
-<a id="method_setPlugin"></a>
+[](){#method_setPlugin}
 
 ### setPlugin
 
@@ -443,7 +443,7 @@ void
 
 ---
 
-<a id="method_setTime"></a>
+[](){#method_setTime}
 
 ### setTime
 
@@ -465,7 +465,7 @@ void
 
 ---
 
-<a id="method_setUuid"></a>
+[](){#method_setUuid}
 
 ### setUuid
 

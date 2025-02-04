@@ -38,7 +38,7 @@
 
 ## Свойства
 
-<a id="property_detector"></a>
+[](){#property_detector}
 #### protected $detector : ?\Detection\MobileDetect
 ---
 **Тип:
@@ -50,7 +50,7 @@ MobileDetect</abbr></a>
 
 ## Методы
 
-<a id="method___call"></a>
+[](){#method___call}
 
 ### __call
 
@@ -77,7 +77,7 @@ mixed
 
 ---
 
-<a id="method___construct"></a>
+[](){#method___construct}
 
 ### __construct
 
@@ -97,7 +97,7 @@ mixed
 
 ---
 
-<a id="method_getAvailableDevices"></a>
+[](){#method_getAvailableDevices}
 
 ### getAvailableDevices
 
@@ -117,7 +117,7 @@ array
 
 ---
 
-<a id="method_getFunctions"></a>
+[](){#method_getFunctions}
 
 ### getFunctions
 
@@ -137,7 +137,7 @@ array
 
 ---
 
-<a id="method_getName"></a>
+[](){#method_getName}
 
 ### getName
 
@@ -157,7 +157,7 @@ string
 
 ---
 
-<a id="method_fromCamelCase"></a>
+[](){#method_fromCamelCase}
 
 ### fromCamelCase
 
@@ -184,7 +184,7 @@ string
 
 ---
 
-<a id="method_toCamelCase"></a>
+[](){#method_toCamelCase}
 
 ### toCamelCase
 

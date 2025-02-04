@@ -55,7 +55,7 @@
 ---
 
 ## Свойства
-<a id="property_createdAt"></a>
+[](){#property_createdAt}
 #### protected $createdAt : \DateTimeImmutable
 ---
 **Краткое содержание**
@@ -65,7 +65,7 @@
 **Тип:** <abbr title="DateTimeImmutable">Дата и время</abbr>
 
 
-<a id="property_id"></a>
+[](){#property_id}
 #### protected $id : int
 ---
 **Краткое содержание**
@@ -75,7 +75,7 @@ ID сущности (уникальный первичный ключ).
 **Тип:** <abbr title="int">Целое число</abbr>
 
 
-<a id="property_updatedAt"></a>
+[](){#property_updatedAt}
 #### protected $updatedAt : ?\DateTimeImmutable
 ---
 **Краткое содержание**
@@ -96,7 +96,7 @@ ID сущности (уникальный первичный ключ).
 
 ## Методы
 
-<a id="method_getColumnVal"></a>
+[](){#method_getColumnVal}
 ### getColumnVal
 
 ```
@@ -128,7 +128,7 @@ mixed
 
 ---
 
-<a id="method_getCreatedAt"></a>
+[](){#method_getCreatedAt}
 ### getCreatedAt
 
 ```
@@ -148,7 +148,7 @@ public getCreatedAt() : \DateTimeImmutable
 
 ---
 
-<a id="method_getId"></a>
+[](){#method_getId}
 ### getId
 
 ```
@@ -168,7 +168,7 @@ int
 
 ---
 
-<a id="method_getUpdatedAt"></a>
+[](){#method_getUpdatedAt}
 ### getUpdatedAt
 
 ```

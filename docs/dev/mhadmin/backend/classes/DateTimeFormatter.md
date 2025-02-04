@@ -28,7 +28,7 @@
 
 ## Методы
 
-<a id="method_dateTimeImmutable"></a>
+[](){#method_dateTimeImmutable}
 
 ### dateTimeImmutable
 
@@ -64,7 +64,7 @@ string
 
 ---
 
-<a id="method_getFilters"></a>
+[](){#method_getFilters}
 
 ### getFilters
 
@@ -80,7 +80,7 @@ array
 
 ---
 
-<a id="method_getFunctions"></a>
+[](){#method_getFunctions}
 
 ### getFunctions
 

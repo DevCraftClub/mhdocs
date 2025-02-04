@@ -43,7 +43,7 @@
 
 ## Свойства
 
-<a id="property_cache_folder"></a>
+[](){#property_cache_folder}
 #### private $cache_folder : string
 ---
 **Краткое содержание**
@@ -52,7 +52,7 @@
 
 **Тип:** <abbr title="string">Текст</abbr>
 
-<a id="property_prefix"></a>
+[](){#property_prefix}
 #### private $prefix : ?string
 ---
 **Тип:** <abbr title="?string">Текст или null</abbr>
@@ -62,7 +62,7 @@
 
 ## Методы
 
-<a id="method_clear_cache"></a>
+[](){#method_clear_cache}
 
 ### clear_cache
 
@@ -97,7 +97,7 @@ void
 
 ---
 
-<a id="method_get_cache"></a>
+[](){#method_get_cache}
 
 ### get_cache
 
@@ -143,7 +143,7 @@ array|false
 
 ---
 
-<a id="method_getCacheFolder"></a>
+[](){#method_getCacheFolder}
 
 ### getCacheFolder
 
@@ -159,7 +159,7 @@ string
 
 ---
 
-<a id="method_getPrefix"></a>
+[](){#method_getPrefix}
 
 ### getPrefix
 
@@ -191,7 +191,7 @@ string
 
 ---
 
-<a id="method_load_data"></a>
+[](){#method_load_data}
 
 ### load_data
 
@@ -238,7 +238,7 @@ array
 
 ---
 
-<a id="method_setCacheFolder"></a>
+[](){#method_setCacheFolder}
 
 ### setCacheFolder
 
@@ -260,7 +260,7 @@ void
 
 ---
 
-<a id="method_setPrefix"></a>
+[](){#method_setPrefix}
 
 ### setPrefix
 
@@ -292,7 +292,7 @@ void
 
 ---
 
-<a id="method_set_cache"></a>
+[](){#method_set_cache}
 
 ### set_cache
 

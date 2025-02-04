@@ -55,7 +55,7 @@
 
 ## Свойства
 
-<a id="property_db_logs"></a>
+[](){#property_db_logs}
 #### protected $db_logs : bool
 ---
 **Краткое содержание**
@@ -64,7 +64,7 @@
 
 **Тип:** <abbr title="bool">Логические значения</abbr>
 
-<a id="property_initialized"></a>
+[](){#property_initialized}
 #### protected $initialized : bool
 ---
 **Краткое содержание**
@@ -79,7 +79,7 @@
 |-------|---------|----------|
 | since | 173.3.0 |          |
 
-<a id="property_logs"></a>
+[](){#property_logs}
 #### protected $logs : bool
 ---
 **Краткое содержание**
@@ -88,7 +88,7 @@
 
 **Тип:** <abbr title="bool">Логические значения</abbr>
 
-<a id="property_telegram_bot"></a>
+[](){#property_telegram_bot}
 #### protected $telegram_bot : ?string
 ---
 **Краткое содержание**
@@ -97,7 +97,7 @@ API телеграм бота, который будет отправлять л
 
 **Тип:** <abbr title="?string">Текст или null</abbr>
 
-<a id="property_telegram_channel"></a>
+[](){#property_telegram_channel}
 #### protected $telegram_channel : string|int|null
 ---
 **Краткое содержание**
@@ -106,7 +106,7 @@ ID канала, куда будут отправляться логи
 
 **Тип:** <abbr title="string|int|null">Текст / целое число / null</abbr>
 
-<a id="property_telegram_send"></a>
+[](){#property_telegram_send}
 #### protected $telegram_send : bool
 ---
 **Краткое содержание**
@@ -116,7 +116,7 @@ ID канала, куда будут отправляться логи
 
 **Тип:** <abbr title="bool">Логические значения</abbr>
 
-<a id="property_telegram_type"></a>
+[](){#property_telegram_type}
 #### protected $telegram_type : ?string
 ---
 **Краткое содержание**
@@ -133,7 +133,7 @@ ID канала, куда будут отправляться логи
 
 ## Методы
 
-<a id="method_generateLog"></a>
+[](){#method_generateLog}
 
 ### generateLog
 
@@ -174,7 +174,7 @@ void
 
 ---
 
-<a id="method_getAllowedType"></a>
+[](){#method_getAllowedType}
 
 ### getAllowedType
 
@@ -210,7 +210,7 @@ string
 
 ---
 
-<a id="method_getAllowedTypes"></a>
+[](){#method_getAllowedTypes}
 
 ### getAllowedTypes
 
@@ -240,7 +240,7 @@ array
 
 ---
 
-<a id="method_getLogs"></a>
+[](){#method_getLogs}
 
 ### getLogs
 
@@ -275,7 +275,7 @@ bool
 
 ---
 
-<a id="method_getTelegramBot"></a>
+[](){#method_getTelegramBot}
 
 ### getTelegramBot
 
@@ -308,7 +308,7 @@ string
 
 ---
 
-<a id="method_getTelegramChannel"></a>
+[](){#method_getTelegramChannel}
 
 ### getTelegramChannel
 
@@ -339,7 +339,7 @@ int|string|null
 
 ---
 
-<a id="method_getTelegramType"></a>
+[](){#method_getTelegramType}
 
 ### getTelegramType
 
@@ -367,7 +367,7 @@ string
 
 ---
 
-<a id="method_init"></a>
+[](){#method_init}
 
 ### init
 
@@ -395,7 +395,7 @@ void
 
 ---
 
-<a id="method_isDbLogs"></a>
+[](){#method_isDbLogs}
 
 ### isDbLogs
 
@@ -430,7 +430,7 @@ bool
 
 ---
 
-<a id="method_isTelegramSend"></a>
+[](){#method_isTelegramSend}
 
 ### isTelegramSend
 
@@ -464,7 +464,7 @@ bool
 
 ---
 
-<a id="method_setDbLogs"></a>
+[](){#method_setDbLogs}
 
 ### setDbLogs
 
@@ -490,7 +490,7 @@ void
 
 ---
 
-<a id="method_setLogs"></a>
+[](){#method_setLogs}
 
 ### setLogs
 
@@ -533,7 +533,7 @@ void
 
 ---
 
-<a id="method_setTelegramBot"></a>
+[](){#method_setTelegramBot}
 
 ### setTelegramBot
 
@@ -564,7 +564,7 @@ void
 
 ---
 
-<a id="method_setTelegramChannel"></a>
+[](){#method_setTelegramChannel}
 
 ### setTelegramChannel
 
@@ -595,7 +595,7 @@ void
 
 ---
 
-<a id="method_setTelegramSend"></a>
+[](){#method_setTelegramSend}
 
 ### setTelegramSend
 
@@ -628,7 +628,7 @@ void
 
 ---
 
-<a id="method_setTelegramType"></a>
+[](){#method_setTelegramType}
 
 ### setTelegramType
 
@@ -654,7 +654,7 @@ void
 
 ---
 
-<a id="method_createLogDirectory"></a>
+[](){#method_createLogDirectory}
 
 ### createLogDirectory
 
@@ -696,7 +696,7 @@ false, если создание директории завершилось о�
 
 ---
 
-<a id="method_dbLog"></a>
+[](){#method_dbLog}
 
 ### dbLog
 
@@ -735,7 +735,7 @@ void
 
 ---
 
-<a id="method_fileLog"></a>
+[](){#method_fileLog}
 
 ### fileLog
 
@@ -776,7 +776,7 @@ void
 
 ---
 
-<a id="method_formatMessage"></a>
+[](){#method_formatMessage}
 
 ### formatMessage
 
@@ -821,7 +821,7 @@ string
 
 ---
 
-<a id="method_getErrorNotification"></a>
+[](){#method_getErrorNotification}
 
 ### getErrorNotification
 
@@ -858,7 +858,7 @@ string
 
 ---
 
-<a id="method_telegramLog"></a>
+[](){#method_telegramLog}
 
 ### telegramLog
 
