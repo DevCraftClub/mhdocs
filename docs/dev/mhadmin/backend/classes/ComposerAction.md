@@ -4,18 +4,23 @@
 
 ### Свойства
 
-* private $[packages](#property_packages)
+* private $[composerPath](#property_composerPath)
+* private $[projectPath](#property_projectPath)
 
 ---
 
 ### Методы
 
-* public [destroy()](#method_destroy)
 * public [init()](#method_init)
-* public [install()](#method_install)
-* public [require()](#method_require)
-* public [update()](#method_update)
-* private [application()](#method_application)
+* public [isComposerInstalled()](#method_isComposerInstalled)
+* public [installTemporaryComposer()](#method_installTemporaryComposer)
+* public [installDependencies()](#method_installDependencies)
+* public [updateDependencies()](#method_updateDependencies)
+* public [removePackage()](#method_removePackage)
+* public [requirePackage()](#method_requirePackage)
+* private [runCommand()](#method_runCommand)
+* private [getComposerCommand()](#method_getComposerCommand)
+* private [executeCommand()](#method_executeCommand)
 
 ---
 
@@ -27,198 +32,129 @@
 
 ## Свойства
 
-<a id="property_packages"></a>
-#### private $packages : array
+### private $[composerPath][property_composerPath] : ?string
 ---
-**Тип:** <abbr title="array">Массив</abbr>
+**Тип:** <abbr title="?string">Текст или null</abbr>
+
+
+### private $[projectPath][property_projectPath] : ?string
+---
+**Тип:** <abbr title="?string">Текст или null</abbr>
 
 
 ---
 
 ## Методы
 
-<a id="method_destroy"></a>
+### public [init][method_init]() : void
 
-### destroy
+#### Описание
 
-```
-static public destroy() : void
-```
+Инициализация класса
 
-##### Краткое содержание
+#### Свойства:
 
-Удаляет содержащиеся в директории файлы и настройки, связанные с Composer.
-
-##### Описание
-
-Метод проверяет, существует ли файл автозагрузчика Composer по заданному пути.
-Если файл существует:
-
-- Удаляются все файлы в указанной директории Composer с помощью функции `array_map` и `unlink`.
-- Удаляется сама директория Composer с помощью функции `rmdir`.
-- Устанавливается окружение Composer через `putenv`, указывая путь к исполняемому файлу Composer.
-
-Данный метод не возвращает значения и предназначен для очистки и удаления данных Composer.
-
-##### Возвращает:
-
-```
-void
-```
+| Название          | Тип          | Описание                                            | По умолчанию                                                         |
+|-------------------|--------------|-----------------------------------------------------|----------------------------------------------------------------------|
+| **$projectPath**  | string\|null | Путь до папки, где находится основной composer.json | [MH_ADMIN](../index.md#constant_MH_ADMIN)                            |
+| **$composerPath** | string\|null | Путь до испольняемого файла composer                | [COMPOSER_DIR](../index.md#constant_COMPOSER_DIR) . '/composer.phar' |
 
 ---
 
-<a id="method_init"></a>
+### public [isComposerInstalled][method_isComposerInstalled]() : bool
 
-### init
+#### Описание
 
-```
-static public init() : void
-```
-
-##### Ошибки:
-
-| Тип            | Описание |
-|----------------|----------|
-| \JsonException |          |
-
-##### Возвращает:
-
-```
-void
-```
+Проверяет наличие установленного Composer в системе
 
 ---
 
-<a id="method_install"></a>
+### public [installTemporaryComposer][method_installTemporaryComposer]() : void
 
-### install
+#### Описание
 
-```
-static public install() : void
-```
-
-##### Краткое содержание
-
-Устанавливает зависимости проекта через Composer.
-
-##### Описание
-
-Метод инициализирует приложение Composer с помощью метода `application()`,
-создает объект `ArrayInput` для команды `install` и выполняет её с помощью
-метода `run()` экземпляра приложения.
-
-Используется для выполнения командной строки Composer в коде PHP.
-
-##### Ошибки:
-
-| Тип            | Описание                                                               |
-|----------------|------------------------------------------------------------------------|
-| \JsonException | Может быть вызвано при ошибке обработки JSON в методе `application()`. |
-
-##### Возвращает:
-
-```
-void
-```
+Устанавливает временный Composer
 
 ---
 
-<a id="method_require"></a>
+### public [installDependencies][method_installDependencies]() : void
 
-### require
+#### Описание
 
-```
-static public require(string|null  name = null, string  version = "*") : void
-```
-
-##### Краткое содержание
-
-Добавляет указанный пакет или все зарегистрированные пакеты в зависимости от переданных параметров.
-
-##### Описание
-
-Если имя пакета (`$name`) не указано, метод проходит по всем зарегистрированным
-в `$packages` пакетам и вызывает себя для каждого из них.
-
-В противном случае создается экземпляр `ArrayInput`, передающий команду для
-установки указанного пакета с версией `$version`. После этого команда
-выполняется с помощью метода `run()` приложения Composer.
-
-##### Свойства:
-
-| Название     | Тип          | По умолчанию  |
-|--------------|--------------|---------------|
-| **$name**    | string\|null | null          |
-| **$version** | string       | &quot;*&quot; |
-
-##### Ошибки:
-
-| Тип            | Описание                                                                                 |
-|----------------|------------------------------------------------------------------------------------------|
-| \JsonException | Может выбросить исключение при ошибке обработки JSON (например, в методе `application`). |
-
-##### Возвращает:
-
-```
-void
-```
+Устанавливает зависимости
 
 ---
 
-<a id="method_update"></a>
+### public [updateDependencies][method_updateDependencies]() : void
 
-### update
+#### Описание
 
-```
-static public update() : void
-```
-
-##### Краткое содержание
-
-Выполняет обновление зависимостей проекта через Composer.
-
-##### Описание
-
-Метод создает экземпляр приложения Composer, используя метод `application()`,
-передает команду `update` через объект `ArrayInput` и выполняет ее с помощью `run()`.
-
-##### Ошибки:
-
-| Тип            | Описание                                                          |
-|----------------|-------------------------------------------------------------------|
-| \JsonException | Может быть выброшено при обработке JSON в методе `application()`. |
-
-##### Возвращает:
-
-```
-void
-```
+Обновляет зависимости
 
 ---
 
-<a id="method_application"></a>
+### public [removePackage][method_removePackage]() : void
 
-### application
+#### Описание
 
-```
-static private application() : \Application
-```
+Обновляет зависимости
 
-##### Краткое содержание
+#### Свойства:
 
-Инициализирует приложение и возвращает экземпляр класса Application.
+| Название     | Тип    | Описание        | По умолчанию |
+|--------------|--------|-----------------|--------------|
+| **$package** | string | Название пакета |              |
 
-##### Ошибки:
+---
 
-| Тип            | Описание                                                                                 |
-|----------------|------------------------------------------------------------------------------------------|
-| \JsonException | Исключение может быть выброшено, если возникнет ошибка обработки JSON при инициализации. |
+### public [requirePackage][method_requirePackage]() : void
 
-##### Возвращает:
+#### Описание
 
-```
-\Application
-```
+Устанавливает новый пакет
 
-Экземпляр инициализированного приложения.
+#### Свойства:
+
+| Название        | Тип           | Описание                                                                                                                                | По умолчанию |
+|-----------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| **$package**    | string\|array | Название пакета, либо массив из пакетов в формате "name" => "version". В случае массива, свойство $version игнорируется                 |              |
+| **$version**    | string\|null  | Версия пакета (опционально)                                                                                                             | null         |
+| **$isDev**      | bool          | Добавление пакета в массив зависимостей для разработки                                                                                  | false        |
+| **$lockerFile** | string\|null  | Файл блокировки от повторной установки пакета для плагина. Если свойство заполнено, то скрипт устанавливает зависимость только один раз | null         |
+
+---
+
+### private [runCommand][method_runCommand]() : void
+
+#### Описание
+
+Выполняет команду Composer
+
+#### Свойства:
+
+| Название     | Тип    | Описание                     | По умолчанию |
+|--------------|--------|------------------------------|--------------|
+| **$command** | string | Строка команды для композера |              |
+
+---
+
+### private [getComposerCommand][method_getComposerCommand]() : void
+
+#### Описание
+
+Возвращает команду для вызова Composer
+
+---
+
+### private [executeCommand][method_executeCommand]() : void
+
+#### Описание
+
+Выполняет команду в оболочке
+
+#### Свойства:
+
+| Название     | Тип    | Описание                     | По умолчанию |
+|--------------|--------|------------------------------|--------------|
+| **$command** | string | Строка команды для композера |              |
+
