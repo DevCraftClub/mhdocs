@@ -15,7 +15,12 @@ nav:
     -   Инструкции:
             -   Composer: dev/composer.md
             -   Crowdin: dev/crowdin.md
+            -   Инструкция по установке: dev/install_instructions.md
     -   Бесплатные разработки:
+            -   DB Manager:
+                    -   Установка: dev/db_manager/install.md
+            -   RePost:
+                    -   Главная: dev/repost/index.md
             -   DLE Faker:
                     -   Установка: dev/dle_faker/install.md
                     -   Настройка: dev/dle_faker/settings.md
@@ -28,7 +33,7 @@ nav:
                             -   Генерация новостей: dev/dle_faker/gen_news.md
                     -   Функционал парсера данных: dev/dle_faker/parser.md
                     -   История изменений: dev/dle_faker/changelog.md
-            -   Telegram Posting:
+            -   Telegram Posting (Не поддерживается!):
                     -   Установка: dev/telegramposting/install.md
                     -   Подключение в сторонние разработки: dev/telegramposting/custom_add.md
                     -   Теги для оформления шаблонов: dev/telegramposting/template_tags.md
@@ -106,6 +111,8 @@ theme:
     language: ru
     features:
         - content.code.annotate
+        - content.code.copy
+        - content.code.select
         - navigation.instant
         - navigation.tracking
         #        - navigation.tabs
@@ -166,6 +173,9 @@ markdown_extensions:
     - pymdownx.mark
     - pymdownx.tilde
     - md_in_html
+    - toc:
+          permalink: true
+          toc_depth: 2
 
 extra:
     homepage: https://devcraft.club
