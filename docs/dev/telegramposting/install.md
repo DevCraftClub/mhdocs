@@ -1,8 +1,12 @@
-# Telegram Posting
+# Telegram Posting (ПЛАГИН НЕ ПОДДЕРЖИВАЕТСЯ)
+
+!!! danger "ПЛАГИН НЕ ПОДДЕРЖИВАЕТСЯ"
+	Плагин устарел и не имеет дальнейшую поддержку в разработке! Использовать на свой страх и риск!
+	Используйте [Re: Post](../repost/index.md), как продолжение этого плагина!
 
 **Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/telegram-posting.11/)
 
-**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 1.7.3
+**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 173.8.0
 
 ## **Установка / Обновление**
 
