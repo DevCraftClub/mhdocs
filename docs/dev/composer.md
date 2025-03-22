@@ -33,4 +33,15 @@ Fatal error: Uncaught RuntimeException: Ошибка (2): No composer.lock file 
 
 Решение такое, нужно загрузить уже готовый архив с зависимостями и залить его на сервер.
 
-1. Закачиваем архив с зависимостями [composer.zip](https://assets.devcraft.club/composer_).
+1. Закачиваем архив с зависимостями [composer.zip](https://assets.devcraft.club/composer_data.zip).
+2. Загружаем его в корень сайта (структура папок сохранена).
+
+!!! info "Внимание!"
+    Все дальнейшие действия с композером выполняются при помощи флажка `--ignore-platform-req=php`.
+
+    Пример:
+
+    ```bash
+    composer update --ignore-platform-req=php
+    ```
+
