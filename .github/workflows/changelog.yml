@@ -1,0 +1,121 @@
+name: Generate Changelog
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog
+        id: changelog
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: commits } = await github.rest.repos.compareCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              base: 'main',
+              head: context.sha
+            });
+
+            let changelog = '# 📋 Changelog\n\n';
+            changelog += `## Version ${context.ref.replace('refs/tags/', '')}\n\n`;
+            changelog += `**Release Date:** ${new Date().toISOString().split('T')[0]}\n\n`;
+
+            const categories = {
+              'feat': '🚀 Features',
+              'fix': '🐛 Bug Fixes',
+              'docs': '📚 Documentation',
+              'style': '💄 Style',
+              'refactor': '♻️ Refactoring',
+              'test': '🧪 Tests',
+              'chore': '🔧 Chores',
+              'ci': '⚙️ CI/CD',
+              'perf': '⚡ Performance',
+              'build': '📦 Build',
+              'revert': '⏪ Reverts'
+            };
+
+            const categorizedCommits = {};
+
+            for (const commit of commits.commits) {
+              const message = commit.commit.message;
+              const lines = message.split('\n');
+              const firstLine = lines[0];
+              
+              // Парсим conventional commits
+              const match = firstLine.match(/^(\w+)(?:\(([^)]+)\))?:\s*(.+)$/);
+              
+              if (match) {
+                const [, type, scope, description] = match;
+                const category = categories[type] || '📝 Other';
+                
+                if (!categorizedCommits[category]) {
+                  categorizedCommits[category] = [];
+                }
+                
+                const scopeText = scope ? `**${scope}:** ` : '';
+                categorizedCommits[category].push(`- ${scopeText}${description}`);
+              } else {
+                // Не conventional commit
+                if (!categorizedCommits['📝 Other']) {
+                  categorizedCommits['📝 Other'] = [];
+                }
+                categorizedCommits['📝 Other'].push(`- ${firstLine}`);
+              }
+            }
+
+            // Добавляем категории в changelog
+            for (const [category, commits] of Object.entries(categorizedCommits)) {
+              if (commits.length > 0) {
+                changelog += `### ${category}\n\n`;
+                for (const commit of commits) {
+                  changelog += `${commit}\n`;
+                }
+                changelog += '\n';
+              }
+            }
+
+            // Добавляем статистику
+            changelog += '## 📊 Statistics\n\n';
+            changelog += `- **Total commits:** ${commits.commits.length}\n`;
+            changelog += `- **Files changed:** ${commits.files ? commits.files.length : 'N/A'}\n`;
+            changelog += `- **Additions:** ${commits.stats ? commits.stats.additions : 'N/A'}\n`;
+            changelog += `- **Deletions:** ${commits.stats ? commits.stats.deletions : 'N/A'}\n\n`;
+
+            // Добавляем ссылки
+            changelog += '## 🔗 Links\n\n';
+            changelog += `- [Full diff](https://github.com/${context.repo.owner}/${context.repo.repo}/compare/main...${context.ref})\n`;
+            changelog += `- [Documentation](https://devcraftclub.github.io/mhdocs/)\n`;
+            changelog += `- [Readme DevCraft](https://readme.devcraft.club)\n`;
+
+            core.setOutput('changelog', changelog);
+            console.log('Generated changelog:', changelog);
+
+      - name: Create changelog file
+        run: |
+          echo "${{ steps.changelog.outputs.changelog }}" > CHANGELOG.md
+
+      - name: Commit changelog
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add CHANGELOG.md
+          git commit -m "docs: update changelog for ${{ github.ref_name }}" || echo "No changes to commit"
+          git push
+
+      - name: Upload changelog as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: changelog-${{ github.ref_name }}
+          path: CHANGELOG.md
+          retention-days: 90
