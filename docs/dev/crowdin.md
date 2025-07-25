@@ -1,3 +1,19 @@
+---
+tags:
+  - Инструкция
+  - crowdin
+  - Локализация
+title: "Crowdin - DevCraft Документации"
+description: "Инструкция по работе с Crowdin для локализации проектов DevCraft."
+keywords: "Crowdin, локализация, переводы, DevCraft"
+author: "Maxim Harder"
+og:title: "Crowdin - локализация проектов"
+og:description: "Инструкция по работе с Crowdin для локализации"
+og:image: "https://devcraft.club/assets/images/logo.png"
+twitter:title: "Crowdin - локализация проектов"
+twitter:description: "Инструкция по работе с Crowdin для локализации"
+---
+
 # Система локализаций Crowdin
 
 Crowdin - платформа переводов локализаций. Именно эту платформу использую я для переводов.
@@ -13,13 +29,14 @@ Crowdin - платформа переводов локализаций. Имен
 
 Переходим в проект и в адресной строке копируем последнее значение.
 Пример:
+
 - **Исходная ссылка**: https://crowdin.com/project/ **dle_faker**
 - **Последнее значение**: dle_faker
-Название проекта: **dle_faker**
+  Название проекта: **dle_faker**
 
 ## Как получить ID статистики?
 
-Для этого нужно установить / добавить в проект дополнение **[Badges & Status Images](https://crowdin.com/store/apps/bds)**. 
+Для этого нужно установить / добавить в проект дополнение **[Badges & Status Images](https://crowdin.com/store/apps/bds)**.
 Переходим в Tools > Badges & Status Images и включаем его.
 ![Badges & Status Images](./assets/crowdin_tools.png)
 

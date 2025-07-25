@@ -1,3 +1,9 @@
+---
+tags:
+  - DLE
+  - PHP
+  - Плагин
+---
 # Webmaster Verification
 
 **Ссылка на

@@ -1,3 +1,21 @@
+---
+tags:
+  - PHP
+  - API
+  - Плагин
+  - Kinopoisk
+  - Wrapper
+title: "NotKinopoiskPHP - DevCraft Документации"
+description: "PHP wrapper для API КиноПоиска. Полная документация по использованию NotKinopoiskPHP."
+keywords: "NotKinopoiskPHP, КиноПоиск, API, PHP, wrapper, kinopoiskunofficial.tech"
+author: "Maxim Harder"
+og:title: "NotKinopoiskPHP - PHP wrapper для КиноПоиска"
+og:description: "PHP wrapper для API КиноПоиска с полной документацией"
+og:image: "https://devcraft.club/assets/images/logo.png"
+twitter:title: "NotKinopoiskPHP - PHP wrapper для КиноПоиска"
+twitter:description: "PHP wrapper для API КиноПоиска с полной документацией"
+---
+
 # NotKinopoisk PHP Library - Документация
 
 Полная документация PHP библиотеки для работы с Kinopoisk Unofficial API.
@@ -7,7 +25,7 @@
 ### 🚀 Быстрый старт
 
 - [Основной клиент](./client.md) - Главный класс для работы с API
-- [Примеры использования](./https://github.com/DevCraftClub/NotKinopoiskPHP/tree/main/examples) - Готовые примеры кода
+- [Примеры использования](https://github.com/DevCraftClub/NotKinopoiskPHP/tree/main/examples) - Готовые примеры кода
 - [Карта навигации](./navigation-map.md) - Интерактивная карта всей документации
 
 ### 📦 Основные компоненты
@@ -247,5 +265,5 @@ composer phpcs
 ## 🔗 Полезные ссылки
 
 - [GitHub репозиторий](https://github.com/DevCraftClub/NotKinopoiskPHP/)
-- [Kinopoisk Unofficial API](./https://kinopoiskapiunofficial.tech/)
+- [Kinopoisk Unofficial API](https://kinopoiskapiunofficial.tech/)
 - [Composer](https://getcomposer.org/)

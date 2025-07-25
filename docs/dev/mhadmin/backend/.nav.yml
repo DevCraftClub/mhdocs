@@ -1,0 +1,37 @@
+title: Back-End
+nav:
+  - Главная: index.md
+  - База данных:
+      - BasisModel: classes/BasisModel.md
+      - BasisRepository: classes/BasisRepository.md
+      - MhDB: classes/MhDB.md
+  - Классы:
+      - Admin: classes/Admin.md
+      - CacheControl: classes/CacheControl.md
+      - ComposerAction: classes/ComposerAction.md
+      - DataManager: classes/DataManager.md
+      - LogGenerator: classes/LogGenerator.md
+      - MhAjax: classes/MhAjax.md
+      - MhLog: classes/MhLog.md
+      - MhLogRepository: classes/MhLogRepository.md
+      - MhTranslation: classes/MhTranslation.md
+      - TwigFilter: classes/TwigFilter.md
+  - Ответы на запросы AJAX:
+      - AjaxAbstractResponse: classes/AjaxAbstractResponse.md
+      - ErrorResponseAjax: classes/ErrorResponseAjax.md
+      - SuccessResponseAjax: classes/SuccessResponseAjax.md
+  - Твиг (Twig) дополнения:
+      - AdminUrlExtension: classes/AdminUrlExtension.md
+      - DateTimeFormatter: classes/DateTimeFormatter.md
+      - DeclineExtension: classes/DeclineExtension.md
+      - MobileDetectExtension: classes/MobileDetectExtension.md
+      - TextLimiter: classes/TextLimiter.md
+  - Типы:
+      - AdminLink: classes/AdminLink.md
+      - Author: classes/Author.md
+      - BreadCrumb: classes/BreadCrumb.md
+  - Трейты:
+      - AssetsChecker: classes/AssetsChecker.md
+      - DataLoader: classes/DataLoader.md
+      - DleData: classes/DleData.md
+      - UpdatesChecker: classes/UpdatesChecker.md

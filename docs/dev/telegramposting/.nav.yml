@@ -1,0 +1,7 @@
+title: Telegram Posting (Не поддерживается!)
+nav:
+  - Установка: install.md
+  - Подключение в сторонние разработки: custom_add.md
+  - Теги для оформления шаблонов: template_tags.md
+  - Настройка бота: bot.md
+  - Версии изменений: changelog.md 

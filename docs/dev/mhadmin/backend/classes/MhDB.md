@@ -106,7 +106,7 @@ DatabaseConfig</abbr></a>
 Генерируется с помощью метода `generateManager`.
 
 **Тип:
-** <a href=".https://cycle-orm.dev/docs/database-access/current/en" target="_blank"><abbr title="?\Cycle\Database\DatabaseManager">
+** <a href="https://cycle-orm.dev/docs/database-access/current/en" target="_blank"><abbr title="?\Cycle\Database\DatabaseManager">
 DatabaseManager</abbr></a>
 
 **Подробности:**

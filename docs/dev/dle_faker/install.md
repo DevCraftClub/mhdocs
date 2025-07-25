@@ -1,3 +1,10 @@
+---
+tags:
+    - Faker
+    - PHP
+    - DLE
+    - Генератор
+---
 # DLE Faker
 
 **Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/dle-faker.29/)

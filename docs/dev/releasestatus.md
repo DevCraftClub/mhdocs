@@ -1,3 +1,18 @@
+---
+title: "Release Status - DevCraft Документации"
+description: "Документация по модулю Release Status для DLE. Управление статусами релизов."
+keywords: "Release Status, DLE, релизы, статусы, модуль"
+author: "Maxim Harder"
+og:title: "Release Status - модуль статусов релизов"
+og:description: "Документация по модулю Release Status для DLE"
+og:image: "https://devcraft.club/assets/images/logo.png"
+twitter:title: "Release Status - модуль статусов релизов"
+twitter:description: "Документация по модулю Release Status для DLE"
+tags:
+  - DLE
+  - Плагин
+---
+
 # ReleaseStatus
 
 **Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/releasestatus.6/)
@@ -13,23 +28,23 @@
 ```html
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128839302-1"></script>
 <script>
-        
+
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    
+
         gtag('config', 'UA-128839302-1', {"anonymize_ip":true});
-    
+
         </script>
 </head>
 ```
 
 ```html
-<link href="{THEME}/releasestatus/main.css" type="text/css" rel="stylesheet">
+<link href="{THEME}/releasestatus/main.css" type="text/css" rel="stylesheet" />
 ```
 
-- В этом же файле, или любом другом файле шаблона, прописываем это для вывода блока 
+- В этом же файле, или любом другом файле шаблона, прописываем это для вывода блока
 
 ```html
 {include file="engine/modules/releasestatus.php"}
@@ -37,10 +52,9 @@
 
 - На файл engine/data/releasestatus.php выставить права 666
 
-
 **Теги для release_block.tpl**
 
-- {image}, {image-1}, {image-*} - При условии, что изображения выводятся из короткой или полной новости
+- {image}, {image-1}, {image-\*} - При условии, что изображения выводятся из короткой или полной новости
 - {poster} - При условии, если изображение выводится из доп. поля
 - {title} - Выводит название в зависимости от вывода, настроенного в настройках
 - {type} - Выводит тип релиза, полнометражку или сериал

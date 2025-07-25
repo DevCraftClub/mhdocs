@@ -1,0 +1,29 @@
+title: Разработки
+nav:
+  - Инструкции:
+    - Composer: composer.md
+    - Crowdin: crowdin.md
+    - Инструкция по установке: install_instructions.md
+    - Инструкция по установке PHP intl: php_intl.md
+  - API Wrappers:
+    - KinopoiskUnoffical PHP: notkinopoiskphp/
+  - Бесплатные разработки:
+    - DB Manager: db_manager/
+    - RePost: repost/
+    - DLE Faker: dle_faker/
+    - Telegram Posting: telegramposting/
+    - MH Admin: mhadmin/
+    - MyStatus: mystatus.md
+    - Release Status: releasestatus.md
+    - Schema.Org: schema.md
+    - Пользовательские теги: usertags.md
+    - Webmaster Verification: webmaster-verification.md
+    - XF Lists: xflist.md
+    - XF Select: xfselect.md
+  - Хаки:
+    - Страницы как на КиноПоиске: hook-pages-like-kp.md
+    - Подсчёт символов в короткой новости: hook-shortstory-signs-count.md
+  - Платные разработки:
+    - Шаблон SeasonVar: paid-seasonvar/
+    - Курс валют: paid-currencies_rate.md
+    - Последние новости списком: paid-lastnews.md 

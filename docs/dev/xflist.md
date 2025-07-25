@@ -1,3 +1,9 @@
+---
+tags:
+  - DLE
+  - PHP
+  - Хак
+---
 # XF List Generator
 
 **Ссылка на

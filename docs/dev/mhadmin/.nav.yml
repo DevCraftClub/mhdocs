@@ -1,0 +1,13 @@
+title: MH Admin
+nav:
+  - Установка: install.md
+  - Для пользователей:
+    - Настройка: frontend/manage.md
+  - Для разработчиков:
+    - Генератор модулей: new_module.md
+    - Главный файл в папке inc: backend/inc_main.md
+    - Модуль главной страницы: backend/index.md
+    - Генератор языковых файлов: generate_languages.md
+    - Back-End: backend/
+    - Front-End: frontend/
+  - История изменений: changelog.md 
