@@ -51,8 +51,7 @@ plugins:
   - exclude
   - exclude-search
   - git-revision-date
-  - tags:
-      tags_file: tags.md
+  - tags
   - autorefs:
       resolve_closest: true
   - minify:
