@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Абстрактный класс: ComposerAction - MH Admin"
+description: "Документация по плагину абстрактный класс: composeraction для DLE."
+keywords: "PHP, DLE, Плагин, Админка, абстрактный класс: composeraction, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Абстрактный класс: ComposerAction"
+og:description: "Документация по плагину абстрактный класс: composeraction для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Абстрактный класс: ComposerAction"
+twitter:description: "Документация по плагину абстрактный класс: composeraction для DLE."
+---
+
 # Абстрактный класс: ComposerAction
 
 ---

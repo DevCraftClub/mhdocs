@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Абстрактный класс: CacheControl - MH Admin"
+description: "Документация по плагину абстрактный класс: cachecontrol для DLE."
+keywords: "PHP, DLE, Плагин, Админка, абстрактный класс: cachecontrol, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Абстрактный класс: CacheControl"
+og:description: "Документация по плагину абстрактный класс: cachecontrol для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Абстрактный класс: CacheControl"
+twitter:description: "Документация по плагину абстрактный класс: cachecontrol для DLE."
+---
+
 # Абстрактный класс: CacheControl
 
 ## Краткое содержание:

@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: BreadCrumb - MH Admin"
+description: "Документация по плагину класс: breadcrumb для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: breadcrumb, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: BreadCrumb"
+og:description: "Документация по плагину класс: breadcrumb для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: BreadCrumb"
+twitter:description: "Документация по плагину класс: breadcrumb для DLE."
+---
+
 # Класс: BreadCrumb
 
 ## Краткое содержание:

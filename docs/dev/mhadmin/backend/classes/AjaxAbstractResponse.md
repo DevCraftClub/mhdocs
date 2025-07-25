@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Абстрактный класс: AjaxAbstractResponse - MH Admin"
+description: "Документация по плагину абстрактный класс: ajaxabstractresponse для DLE."
+keywords: "PHP, DLE, Плагин, Админка, абстрактный класс: ajaxabstractresponse, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Абстрактный класс: AjaxAbstractResponse"
+og:description: "Документация по плагину абстрактный класс: ajaxabstractresponse для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Абстрактный класс: AjaxAbstractResponse"
+twitter:description: "Документация по плагину абстрактный класс: ajaxabstractresponse для DLE."
+---
+
 # Абстрактный класс: AjaxAbstractResponse
 
 ## Краткое содержание:

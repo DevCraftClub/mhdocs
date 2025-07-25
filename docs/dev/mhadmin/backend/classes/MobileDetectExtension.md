@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: MobileDetectExtension - MH Admin"
+description: "Документация по плагину класс: mobiledetectextension для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: mobiledetectextension, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: MobileDetectExtension"
+og:description: "Документация по плагину класс: mobiledetectextension для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: MobileDetectExtension"
+twitter:description: "Документация по плагину класс: mobiledetectextension для DLE."
+---
+
 # Класс: MobileDetectExtension
 
 ## Краткое содержание:

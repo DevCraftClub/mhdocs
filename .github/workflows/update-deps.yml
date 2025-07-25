@@ -1,0 +1,76 @@
+name: Update Dependencies
+
+on:
+  schedule:
+    # Запускается каждое воскресенье в 2:00 UTC
+    - cron: "0 2 * * 0"
+  workflow_dispatch: # Позволяет запускать вручную
+
+jobs:
+  update-deps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pip-chill
+
+      - name: Update dependencies
+        run: |
+          echo "Updating dependencies..."
+          pip install --upgrade $(pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1)
+
+      - name: Update requirements.txt
+        run: |
+          echo "Updating requirements.txt..."
+          pip-chill --no-version > requirements.txt.new
+          if ! cmp -s requirements.txt requirements.txt.new; then
+            mv requirements.txt.new requirements.txt
+            echo "Requirements updated"
+          else
+            echo "No updates needed"
+            rm requirements.txt.new
+          fi
+
+      - name: Test build
+        run: |
+          echo "Testing build with updated dependencies..."
+          mkdocs build --strict
+
+      - name: Create Pull Request
+        if: success()
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update dependencies"
+          title: "🤖 Automated dependency update"
+          body: |
+            ## 🔄 Automated Dependency Update
+
+            This PR was automatically created to update project dependencies.
+
+            ### 📋 Changes
+            - Updated Python package dependencies
+            - Tested build with new dependencies
+
+            ### ✅ Checks
+            - [x] Dependencies updated
+            - [x] Build tested successfully
+
+            ### 🚀 Ready to merge
+            This PR is safe to merge as all tests pass.
+          branch: update-dependencies
+          delete-branch: true

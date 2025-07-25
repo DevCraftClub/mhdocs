@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: DataLoader - MH Admin"
+description: "Документация по плагину класс: dataloader для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: dataloader, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: DataLoader"
+og:description: "Документация по плагину класс: dataloader для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: DataLoader"
+twitter:description: "Документация по плагину класс: dataloader для DLE."
+---
+
 # Класс: DataLoader
 
 ## Краткое содержание:

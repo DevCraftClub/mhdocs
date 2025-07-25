@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Платно
+title: "AutomaticRelated - SeasonVar"
+description: "Документация по плагину automaticrelated для DLE."
+keywords: "PHP, DLE, Плагин, Платно, automaticrelated, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "AutomaticRelated"
+og:description: "Документация по плагину automaticrelated для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "AutomaticRelated"
+twitter:description: "Документация по плагину automaticrelated для DLE."
+---
+
 # AutomaticRelated
 
 **Автор**: Gameer

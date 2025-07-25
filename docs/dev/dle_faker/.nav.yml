@@ -1,0 +1,13 @@
+title: DLE Faker
+nav:
+  - Установка: install.md
+  - Настройка: settings.md
+  - Теги для оформления шаблонов:
+    - Общие: tag_for_all.md
+    - Для пользователей: tag_for_users.md
+    - Для новостей: tag_for_news.md
+  - Генератор:
+    - Генерация пользователей: gen_users.md
+    - Генерация новостей: gen_news.md
+  - Функционал парсера данных: parser.md
+  - История изменений: changelog.md 

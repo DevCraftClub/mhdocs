@@ -1,6 +1,22 @@
+---
+title: "Release Status - DevCraft Документации"
+description: "Документация по модулю Release Status для DLE. Управление статусами релизов."
+keywords: "Release Status, DLE, релизы, статусы, модуль"
+author: "Maxim Harder"
+og:title: "Release Status - модуль статусов релизов"
+og:description: "Документация по модулю Release Status для DLE"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Release Status - модуль статусов релизов"
+twitter:description: "Документация по модулю Release Status для DLE"
+tags:
+  - DLE
+  - Плагин
+  - Не поддерживается
+---
+
 # ReleaseStatus
 
-**Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/releasestatus.6/)
+**Ссылка на разработку**: [ Перейти к разработке](https://devcraft.club/downloads/releasestatus.6/)
 
 **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 1.0.0
 
@@ -8,28 +24,13 @@
 
 - Залить файлы из папки uploads в корень сайта (уделите внимание папке Default в папке templates)
 - Запустите файл install.php в корне вашего сайта, а затем удалите
-- В шаблонах откройте файл main.tpl и пропишите до
+- В шаблонах откройте файл main.tpl и добавьте стиль
 
 ```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128839302-1"></script>
-<script>
-        
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    
-        gtag('config', 'UA-128839302-1', {"anonymize_ip":true});
-    
-        </script>
-</head>
+<link href="{THEME}/releasestatus/main.css" type="text/css" rel="stylesheet" />
 ```
 
-```html
-<link href="{THEME}/releasestatus/main.css" type="text/css" rel="stylesheet">
-```
-
-- В этом же файле, или любом другом файле шаблона, прописываем это для вывода блока 
+- В этом же файле, или любом другом файле шаблона, прописываем это для вывода блока
 
 ```html
 {include file="engine/modules/releasestatus.php"}
@@ -37,10 +38,9 @@
 
 - На файл engine/data/releasestatus.php выставить права 666
 
-
 **Теги для release_block.tpl**
 
-- {image}, {image-1}, {image-*} - При условии, что изображения выводятся из короткой или полной новости
+- {image}, {image-1}, {image-\*} - При условии, что изображения выводятся из короткой или полной новости
 - {poster} - При условии, если изображение выводится из доп. поля
 - {title} - Выводит название в зависимости от вывода, настроенного в настройках
 - {type} - Выводит тип релиза, полнометражку или сериал

@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Шаблоны - MH Admin"
+description: "Документация по плагину шаблоны для DLE."
+keywords: "PHP, DLE, Плагин, Админка, шаблоны, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Шаблоны"
+og:description: "Документация по плагину шаблоны для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Шаблоны"
+twitter:description: "Документация по плагину шаблоны для DLE."
+---
+
 # Шаблоны
 
 Все шаблоны расположены по пути `engine/inc/maharder/admin/templates` и `engine/inc/maharder/_templates/ваш_модуль`. Для оформления используется шаблонизатор [Twig](https://twig.symfony.com/doc/3.x/templates.html) с некоторыми дополнениями.

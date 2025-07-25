@@ -1,0 +1,5 @@
+nav:
+  - Главная: index.md
+  - Список тегов: tags.md
+  - site
+  - dev

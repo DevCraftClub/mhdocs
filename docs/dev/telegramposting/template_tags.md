@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Устарело
+title: "Теги для оформления шаблонов - Telegram Posting"
+description: "Документация по плагину теги для оформления шаблонов для DLE."
+keywords: "PHP, DLE, Плагин, Устарело, теги для оформления шаблонов, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Теги для оформления шаблонов"
+og:description: "Документация по плагину теги для оформления шаблонов для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Теги для оформления шаблонов"
+twitter:description: "Документация по плагину теги для оформления шаблонов для DLE."
+---
+
 # Теги для оформления шаблонов
 
 |Теги|Описание|

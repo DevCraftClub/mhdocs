@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Абстрактный класс: LogGenerator - MH Admin"
+description: "Документация по плагину абстрактный класс: loggenerator для DLE."
+keywords: "PHP, DLE, Плагин, Админка, абстрактный класс: loggenerator, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Абстрактный класс: LogGenerator"
+og:description: "Документация по плагину абстрактный класс: loggenerator для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Абстрактный класс: LogGenerator"
+twitter:description: "Документация по плагину абстрактный класс: loggenerator для DLE."
+---
+
 # Абстрактный класс: LogGenerator
 
 ## Краткое содержание:

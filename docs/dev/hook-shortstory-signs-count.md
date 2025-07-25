@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Хак
+title: "Количество символов краткой новости"
+description: "Хак для DLE: количество символов краткой новости."
+keywords: "PHP, DLE, Хак, количество символов краткой новости, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Количество символов краткой новости"
+og:description: "Хак для DLE: количество символов краткой новости."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Количество символов краткой новости"
+twitter:description: "Хак для DLE: количество символов краткой новости."
+---
+
 # Количество символов краткой новости
 
 **Установка**

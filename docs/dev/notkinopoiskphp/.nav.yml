@@ -1,0 +1,12 @@
+title: KinopoiskUnofficialTech PHP Wrapper
+nav:
+  - Главная: index.md
+  - Клиент: client.md
+  - Абстрактные классы: abstract-classes.md
+  - Интерфейсы: interfaces/
+  - Сервисы: services/
+  - Модели: models/
+  - Перечисления (Enums): enums/
+  - Ответы API: responses/
+  - Исключения: exceptions/
+  - Навигационная карта: navigation-map.md 

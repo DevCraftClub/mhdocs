@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Абстрактный класс: MhTranslation - MH Admin"
+description: "Документация по плагину абстрактный класс: mhtranslation для DLE."
+keywords: "PHP, DLE, Плагин, Админка, абстрактный класс: mhtranslation, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Абстрактный класс: MhTranslation"
+og:description: "Документация по плагину абстрактный класс: mhtranslation для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Абстрактный класс: MhTranslation"
+twitter:description: "Документация по плагину абстрактный класс: mhtranslation для DLE."
+---
+
 # Абстрактный класс: MhTranslation
 
 ## Краткое содержание:

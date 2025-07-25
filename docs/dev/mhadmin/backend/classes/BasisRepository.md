@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: BasisRepository - MH Admin"
+description: "Документация по плагину класс: basisrepository для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: basisrepository, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: BasisRepository"
+og:description: "Документация по плагину класс: basisrepository для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: BasisRepository"
+twitter:description: "Документация по плагину класс: basisrepository для DLE."
+---
+
 # Класс: BasisRepository
 
 ## Краткое содержание:

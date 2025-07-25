@@ -1,3 +1,17 @@
+---
+tags:
+  - Общее
+title: "DevCraft Документации - Главная"
+description: "Документация DevCraft - разработки для DLE и других CMS. Исходники всегда доступны на GitHub."
+keywords: "DevCraft, DLE, CMS, документация, разработка"
+author: "Maxim Harder"
+og:title: "DevCraft Документации"
+og:description: "Документация DevCraft - разработки для DLE и других CMS"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "DevCraft Документации"
+twitter:description: "Документация DevCraft - разработки для DLE и других CMS"
+---
+
 # Добро пожаловать
 
 Этот сайт работает на простом HTML, CSS и JS.
@@ -8,6 +22,6 @@
 
 Всегда актуальная информация:
 
-* Telegram: [@MaHarder](https://t.me/MaHarder)
+- Telegram: [@DevCraft Support](https://t.me/devcraftclub_support)
 
 Я всегда отвечаю в телеграме, может дольше обычного, но отвечаю.

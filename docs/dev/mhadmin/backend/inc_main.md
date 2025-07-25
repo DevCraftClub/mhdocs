@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Конфигурация модуля - MH Admin"
+description: "Документация по плагину конфигурация модуля для DLE."
+keywords: "PHP, DLE, Плагин, Админка, конфигурация модуля, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Конфигурация модуля"
+og:description: "Документация по плагину конфигурация модуля для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Конфигурация модуля"
+twitter:description: "Документация по плагину конфигурация модуля для DLE."
+---
+
 # Конфигурация модуля
 
 Самый главный файл настроек в админ панеле находится по пути  `engine/inc/module.php`. Альтернатив, к сожалению, пока что нет. Можно, конечно сделать как при AJAX. Но, пожалуйста не надо.

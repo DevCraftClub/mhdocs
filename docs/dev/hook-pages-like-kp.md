@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Хак
+title: "Отдельные страницы как на кинопоиске"
+description: "Хак для DLE: отдельные страницы как на кинопоиске."
+keywords: "PHP, DLE, Хак, отдельные страницы как на кинопоиске, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Отдельные страницы как на кинопоиске"
+og:description: "Хак для DLE: отдельные страницы как на кинопоиске."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Отдельные страницы как на кинопоиске"
+twitter:description: "Хак для DLE: отдельные страницы как на кинопоиске."
+---
+
 # Отдельные страницы как на кинопоиске
 
 _**Для чего это вообще нужно?**_

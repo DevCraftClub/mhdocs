@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: AdminUrlExtension - MH Admin"
+description: "Документация по плагину класс: adminurlextension для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: adminurlextension, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: AdminUrlExtension"
+og:description: "Документация по плагину класс: adminurlextension для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: AdminUrlExtension"
+twitter:description: "Документация по плагину класс: adminurlextension для DLE."
+---
+
 # Класс: AdminUrlExtension
 
 ## Краткое содержание:

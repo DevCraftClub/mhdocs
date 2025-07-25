@@ -1,7 +1,13 @@
+---
+tags:
+  - DLE
+  - PHP
+  - Плагин
+---
 # Webmaster Verification
 
 **Ссылка на
-разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/webmaster-verification.21/)
+разработку**: [Перейти к разработке](https://devcraft.club/downloads/webmaster-verification.21/)
 
 **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 1.0.0
 

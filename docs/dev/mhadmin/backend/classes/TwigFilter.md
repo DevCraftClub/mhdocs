@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: TwigFilter - MH Admin"
+description: "Документация по плагину класс: twigfilter для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: twigfilter, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: TwigFilter"
+og:description: "Документация по плагину класс: twigfilter для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: TwigFilter"
+twitter:description: "Документация по плагину класс: twigfilter для DLE."
+---
+
 # Класс: TwigFilter
 
 ## Краткое содержание:

@@ -1,7 +1,15 @@
+---
+tags:
+  - DLE
+  - PHP
+  - Хак
+  - Доп. поля
+  - xfields
+---
 # XF Select
 
 **Ссылка на
-разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/xf-select-vyvod-pravilnogo-znachenija.18/)
+разработку**: [Перейти к разработке](https://devcraft.club/downloads/xf-select-vyvod-pravilnogo-znachenija.18/)
 
 **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 1.0.0
 

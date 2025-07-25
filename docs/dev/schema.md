@@ -1,3 +1,22 @@
+---
+title: "Schema.Org - DevCraft Документации"
+description: "Документация по интеграции Schema.Org разметки в проекты DevCraft."
+keywords: "Schema.Org, разметка, SEO, структурированные данные"
+author: "Maxim Harder"
+og:title: "Schema.Org разметка"
+og:description: "Документация по интеграции Schema.Org разметки"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Schema.Org разметка"
+twitter:description: "Документация по интеграции Schema.Org разметки"
+tags:
+  - DLE
+  - PHP
+  - Плагин
+  - Schema.org
+  - SEO
+  - Не поддерживается
+---
+
 # SCHEMA.ORG
 
 **Видеомикроразметка на DLE**
@@ -7,15 +26,15 @@
 Для начала, я советую просмотреть саму структуру построения: ** [Movie - schema.org](http://schema.org/Movie)**. Для себя я выбрал следующие поля:
 
 - **contributor**или **countryOfOrigin**(лучше первое) - Страна
-- **copyrightyear**- Год
-- **genre**- Жанр (если у вас категории являются жанром, то пропускаем)
-- **director**- Режиссёр creator - Сценарист
-- **musicBy**- Композитор
-- **editor**- Монтаж
-- **producer**- Продюсер
-- **provider**- Оператор
-- **translator**- Перевод / озвучание
-- **actor**- Актёры
+- **copyrightyear** - Год
+- **genre** - Жанр (если у вас категории являются жанром, то пропускаем)
+- **director** - Режиссёр creator - Сценарист
+- **musicBy** - Композитор
+- **editor** - Монтаж
+- **producer** - Продюсер
+- **provider** - Оператор
+- **translator** - Перевод / озвучание
+- **actor** - Актёры
 
 !!! warning "Внимание!"
 Нужно (!) создать следующие поля со следующими названиями (одно поле с функцией "Использовать при желании (можно оставить поле пуcтым)" и "Использовать значения полей как перекрестные гиперссылки ")!
@@ -43,11 +62,20 @@ UPDATE `dle_post` SET `xfields`=REPLACE(`xfields`,'СтароеНазвание'
 
 ```html
 <div itemscope itemtype="http://schema.org/Movie">
-<meta itemprop="dateCreated" content="{date=Y-m-d}">
-    <meta itemprop="inLanguage" content="ru">
-    <meta itemprop="isFamilyFriendly" content="[if xfvalue_age>=16]false[/if][if xfvalue_age<=15]True[/if]">
-    [xfgiven_trailer]<link itemprop="trailer" value="[xfvalue_trailer]">[/xfgiven_trailer]
-    [xfgiven_video]<link itemprop="video" value="{print-link}">[/xfgiven_video]
+	<meta itemprop="dateCreated" content="{date=Y-m-d}" />
+	<meta itemprop="inLanguage" content="ru" />
+	<meta
+		itemprop="isFamilyFriendly"
+		content="[if xfvalue_age>=16]false[/if][if xfvalue_age<=15]True[/if]"
+	/>
+	[xfgiven_trailer]<link
+		itemprop="trailer"
+		value="[xfvalue_trailer]"
+	/>[/xfgiven_trailer] [xfgiven_video]<link
+		itemprop="video"
+		value="{print-link}"
+	/>[/xfgiven_video]
+</div>
 ```
 
 а в конец
@@ -59,24 +87,35 @@ UPDATE `dle_post` SET `xfields`=REPLACE(`xfields`,'СтароеНазвание'
 А тут
 
 ```html
-<meta itemprop="isFamilyFriendly" content="[if xfvalue_age>=16]false[/if][if xfvalue_age<=15]True[/if]">
+<meta
+	itemprop="isFamilyFriendly"
+	content="[if xfvalue_age>=16]false[/if][if xfvalue_age<=15]True[/if]"
+/>
 ```
 
 я использовал [это](http://shop.sandev.pro/post/19.html). Если вы не можете себе этого позволить или не хотите обновить движок, то меняем на это
 
 ```html
-<meta itemprop="isFamilyFriendly" content="[catlist=X]false[/catlist][not-catlist=X]True[/not-catlist]">
+<meta
+	itemprop="isFamilyFriendly"
+	content="[catlist=X]false[/catlist][not-catlist=X]True[/not-catlist]"
+/>
 ```
 
 **Х** меняем на ID категории, которая предназначена для "взрослых" (к.п. Жанр "Эротика"). А если и это вас не устраивает, то вот:
 
 ```html
-<meta itemprop="isFamilyFriendly" content="True">
+<meta itemprop="isFamilyFriendly" content="True" />
 ```
 
 ```html
-[xfgiven_trailer]<link itemprop="trailer" value="[xfvalue_trailer]">[/xfgiven_trailer]
-[xfgiven_video]<link itemprop="video" value="{print-link}">[/xfgiven_video]
+[xfgiven_trailer]<link
+	itemprop="trailer"
+	value="[xfvalue_trailer]"
+/>[/xfgiven_trailer] [xfgiven_video]<link
+	itemprop="video"
+	value="{print-link}"
+/>[/xfgiven_video]
 ```
 
 - **trailer**- это название поля, куда вводится ссылка на трейлер. Меняем на своё.
@@ -94,13 +133,13 @@ UPDATE `dle_post` SET `xfields`=REPLACE(`xfields`,'СтароеНазвание'
 Можно и так сделать, в самом начале документа после
 
 ```html
-<div itemscope itemtype="http://schema.org/Movie">
+<div itemscope itemtype="http://schema.org/Movie"></div>
 ```
 
 добавляем
 
 ```html
-<link itemprop="url" href="{full-link}">
+<link itemprop="url" href="{full-link}" />
 ```
 
 Однако, при этом теряется описание ссылки, посему выбирать вам.
@@ -127,13 +166,20 @@ UPDATE `dle_post` SET `xfields`=REPLACE(`xfields`,'СтароеНазвание'
 ID с кинопоиска
 
 ```html
-<noindex><a href="http://www.kinopoisk.ru/level/1/film/[xfvalue_kpid]/" target="_blank" itemprop="sameAs">Открыть на кинопоиске</a></noindex>
+<noindex
+	><a
+		href="http://www.kinopoisk.ru/level/1/film/[xfvalue_kpid]/"
+		target="_blank"
+		itemprop="sameAs"
+		>Открыть на кинопоиске</a
+	></noindex
+>
 ```
 
 Постер
 
 ```html
-<img itemprop="image" src="{image-1}" title="{title}">
+<img itemprop="image" src="{image-1}" title="{title}" />
 ```
 
 Описание
@@ -153,31 +199,46 @@ ID с кинопоиска
 чтобы обработать рейтинг (рейтинг в звёзды!), делаем следующее
 
 ```html
-<div itemprop="aggregateRating"
-        itemscope itemtype="http://schema.org/AggregateRating">
-        <link itemprop="itemReviewed" content="{full-link}">
-                [rating]<div style="float:left;width:100px;">Рейтинг:</div>{rating}<div style="float:left;width:120px;">(голосов: {vote-num})</div>[/rating]
-                 </div>
+<div
+	itemprop="aggregateRating"
+	itemscope
+	itemtype="http://schema.org/AggregateRating"
+>
+	<link itemprop="itemReviewed" content="{full-link}" />
+	[rating]
+	<div style="float:left;width:100px;">Рейтинг:</div>
+	{rating}
+	<div style="float:left;width:120px;">(голосов: {vote-num})</div>
+	[/rating]
+</div>
 ```
 
 сделаем сразу разметку для видеофайла (рекомендуется трейлер). После
 
 ```html
-<div itemscope itemtype="http://schema.org/Movie">
+<div itemscope itemtype="http://schema.org/Movie"></div>
 ```
 
 ```html
 <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
-        <link itemprop="thumbnail" href="{image-1}" />
-        <img itemprop="thumbnailUrl" src="{image-1}" title="{title}" style="display:none;">
-        <meta itemprop="description" content="{full-story}" />
-        <meta itemprop="name" content="{title}" />
-        <meta itemprop="uploadDate" content="{date=Y-m-d}T{date=G:i:s}" />
-        <meta itemprop="datePublished" content="{date=Y-m-d}">
-        <link itemprop="url" href="http://kinospace.org/play/{kp_id}/" />
-        <meta itemprop="isFamilyFriendly" content="[if xfvalue_age>=16]false[/if][if xfvalue_age<=15]True[/if]">
-        <meta itemprop="duration" content="[xfvalue_time]" />
-    </div>
+	<link itemprop="thumbnail" href="{image-1}" />
+	<img
+		itemprop="thumbnailUrl"
+		src="{image-1}"
+		title="{title}"
+		style="display:none;"
+	/>
+	<meta itemprop="description" content="{full-story}" />
+	<meta itemprop="name" content="{title}" />
+	<meta itemprop="uploadDate" content="{date=Y-m-d}T{date=G:i:s}" />
+	<meta itemprop="datePublished" content="{date=Y-m-d}" />
+	<link itemprop="url" href="http://kinospace.org/play/{kp_id}/" />
+	<meta
+		itemprop="isFamilyFriendly"
+		content="[if xfvalue_age>=16]false[/if][if xfvalue_age<=15]True[/if]"
+	/>
+	<meta itemprop="duration" content="[xfvalue_time]" />
+</div>
 ```
 
 поясню:
@@ -193,21 +254,22 @@ ID с кинопоиска
 К тегу бади добавляем начальную структуру, должно выглядеть так
 
 ```html
-<body itemscope itemtype="http://schema.org/WebPage">
+<body itemscope itemtype="http://schema.org/WebPage"></body>
 ```
 
 ## **Комментарии**
 
-Комментарии (ваш-сайт.ру/templates/шаблон/comments.tpl)**
+Комментарии (ваш-сайт.ру/templates/шаблон/comments.tpl)\*\*
 Этот шаг опционален, не столь важен, но всё же рекомендую.
 
 В начало
 
 ```html
 <div itemprop="comment" itemscope itemtype="http://schema.org/Comment">
-    <meta itemprop="dateCreated" content="{date=Y-m-d}">
-    <meta itemprop="author" content="{login}">
-    <span itemprop="contentRating" style="display:none;">{rating}</span>
+	<meta itemprop="dateCreated" content="{date=Y-m-d}" />
+	<meta itemprop="author" content="{login}" />
+	<span itemprop="contentRating" style="display:none;">{rating}</span>
+</div>
 ```
 
 в конец
@@ -226,7 +288,14 @@ ID с кинопоиска
 К аватарке добавляем значение image, должно выглядеть где-то так:
 
 ```html
-<img itemprop="image" src="{foto}" width="100" height="100" class="img-responsive avatar" alt="Аватарка {login}'a">
+<img
+	itemprop="image"
+	src="{foto}"
+	width="100"
+	height="100"
+	class="img-responsive avatar"
+	alt="Аватарка {login}'a"
+/>
 ```
 
 сам комментарий так-же оборачиваем:
@@ -238,24 +307,36 @@ ID с кинопоиска
 если используете рейтинг "нравится" и "не нравится", то оберните его следующим образом (тестировалось на дле 11)
 
 ```html
-<div class="rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-        <link itemprop="itemReviewed" content="{news-link}#com-{comment-id}">
-            <div class="mwrating">
-                <div style="display:none;">
-                    <span itemprop="ratingCount">{rating}</span>
-                    <span itemprop="reviewCount">{rating}</span>
-                    [negative-comment]<meta itemprop="bestRating" content="0">[/negative-comment]
-                    [positive-comment]<span itemprop="bestRating">{rating}</span>[/positive-comment]
-                    [neutral-comment]<span itemprop="bestRating">{rating}</span>[/neutral-comment]
-                    [negative-comment]<span itemprop="worstRating">{rating}</span>[/negative-comment]
-                    [positive-comment]<span itemprop="worstRating">0</span>[/positive-comment]
-                    [neutral-comment]<span itemprop="worstRating">0</span>[/neutral-comment]
-                </div>
-                <div class="wmminus">[rating-minus]-[/rating-minus]</div>
-                <div class="mwrat" itemprop="ratingValue">{rating}</div>
-                <div class="wmplus">[rating-plus]+[/rating-plus]</div>
-            </div>
-    </div>
+<div
+	class="rating"
+	itemprop="aggregateRating"
+	itemscope
+	itemtype="http://schema.org/AggregateRating"
+>
+	<link itemprop="itemReviewed" content="{news-link}#com-{comment-id}" />
+	<div class="mwrating">
+		<div style="display:none;">
+			<span itemprop="ratingCount">{rating}</span>
+			<span itemprop="reviewCount">{rating}</span>
+			[negative-comment]<meta
+				itemprop="bestRating"
+				content="0"
+			/>[/negative-comment] [positive-comment]<span itemprop="bestRating"
+				>{rating}</span
+			>[/positive-comment] [neutral-comment]<span itemprop="bestRating"
+				>{rating}</span
+			>[/neutral-comment] [negative-comment]<span itemprop="worstRating"
+				>{rating}</span
+			>[/negative-comment] [positive-comment]<span itemprop="worstRating"
+				>0</span
+			>[/positive-comment] [neutral-comment]<span itemprop="worstRating">0</span
+			>[/neutral-comment]
+		</div>
+		<div class="wmminus">[rating-minus]-[/rating-minus]</div>
+		<div class="mwrat" itemprop="ratingValue">{rating}</div>
+		<div class="wmplus">[rating-plus]+[/rating-plus]</div>
+	</div>
+</div>
 ```
 
 ## **Хлебные крошки**
@@ -271,14 +352,12 @@ ID с кинопоиска
 в самый низ добавляем (если у вас шаблон на основе бутстрапа 3, то пропускаем шаг)
 
 ```css
-ol[typeof=BreadcrumbList]
-{
-    display:inline-block;
-    list-style:none!important;
+ol[typeof="BreadcrumbList"] {
+	display: inline-block;
+	list-style: none !important;
 }
-ol[typeof=BreadcrumbList] > li
-{
-    display:inline-block;
+ol[typeof="BreadcrumbList"] > li {
+	display: inline-block;
 }
 ```
 
@@ -288,14 +367,14 @@ ol[typeof=BreadcrumbList] > li
 
 ```php
 if ($config['speedbar'] AND !$view_template ) {
-   
+
     $s_navigation = "<span itemscope itemtype=\"http://data-vocabulary.org/Breadcrumb\"><a href=\"{$config['http_home_url']}\" itemprop=\"url\"><span itemprop=\"title\">" . $config['short_title'] . "</span></a></span>";
 
     if( $config['start_site'] == 3 AND $_SERVER['QUERY_STRING'] == "" AND !$_POST['do']) $titl_e = "";
 
     if (intval($category_id)) $s_navigation .= " {$config['speedbar_separator']} " . get_breadcrumbcategories ( intval($category_id), $config['speedbar_separator'] );
     elseif ($do == 'tags') {
-     
+
         if ($config['allow_alt_url']) $s_navigation .= " {$config['speedbar_separator']} <span itemscope itemtype=\"http://data-vocabulary.org/Breadcrumb\"><a href=\"" . $config['http_home_url'] . "tags/\" itemprop=\"url\"><span itemprop=\"title\">" . $lang['tag_cloud'] . "</span></a></span> {$config['speedbar_separator']} " . $tag;
         else $s_navigation .= " {$config['speedbar_separator']} <span itemscope itemtype=\"http://data-vocabulary.org/Breadcrumb\"><a href=\"?do=tags\" itemprop=\"url\"><span itemprop=\"title\">" . $lang['tag_cloud'] . "</span></a></span> {$config['speedbar_separator']} " . $tag;
 
@@ -305,15 +384,15 @@ if ($config['speedbar'] AND !$view_template ) {
     else {
 
         if ( isset($_GET['cstart']) AND intval($_GET['cstart']) > 1 ){
-     
+
             $page_extra = " {$config['speedbar_separator']} ".$lang['news_site']." ".intval($_GET['cstart']);
-     
+
         } else $page_extra = '';
 
         $s_navigation .= $page_extra;
 
     }
-   
+
     $tpl->load_template ( 'speedbar.tpl' );
     $tpl->set ( '{speedbar}', '<span id="dle-speedbar">' . stripslashes ( $s_navigation ) . '</span>' );
     $tpl->compile ( 'speedbar' );
@@ -326,7 +405,7 @@ if ($config['speedbar'] AND !$view_template ) {
 
 ```php
 if ($config['speedbar'] AND !$view_template ) {
-   
+
     $s_navigation = "<li property=\"itemListElement\" typeof=\"ListItem\"><a href=\"{$config['http_home_url']}\" property=\"item\" typeof=\"WebPage\"><span property=\"name\">" . $config['short_title'] . "</span></a><meta property=\"position\" content=\"1\"></li>";
 
     if( $config['start_site'] == 3 AND $_SERVER['QUERY_STRING'] == "" AND !$_POST['do']) $titl_e = "";
@@ -337,7 +416,7 @@ if ($config['speedbar'] AND !$view_template ) {
         $s_navigation .= " {$config['speedbar_separator']} " . $cat_breadcrumb[0];
     }
     elseif ($do == 'tags') {
-     
+
         if ($config['allow_alt_url']) $s_navigation .= " {$config['speedbar_separator']} <li property=\"itemListElement\" typeof=\"ListItem\"><a href=\"" . $config['http_home_url'] . "tags/\" property=\"item\" typeof=\"WebPage\"><span property=\"name\">" . $lang['tag_cloud'] . "</span></a><meta property=\"position\" content=\"2\"></li> {$config['speedbar_separator']} <li property=\"itemListElement\" typeof=\"ListItem\"><span property=\"name\">" . $tag . "</span><meta property=\"position\" content=\"3\"></li>";
         else $s_navigation .= " {$config['speedbar_separator']} <li property=\"itemListElement\" typeof=\"ListItem\"><a href=\"?do=tags\" property=\"item\" typeof=\"WebPage\"><span property=\"name\">" . $lang['tag_cloud'] . "</span></a><meta property=\"position\" content=\"2\"></li> {$config['speedbar_separator']} <li property=\"itemListElement\" typeof=\"ListItem\"><span property=\"name\">" . $tag . "</span><meta property=\"position\" content=\"3\"></li>";
 
@@ -367,13 +446,13 @@ if ($config['speedbar'] AND !$view_template ) {
         if ( isset($_GET['cstart']) AND intval($_GET['cstart']) > 1 ){
             $cat_breadcrumb[1]++;
             $page_extra = " {$config['speedbar_separator']} <li property=\"itemListElement\" typeof=\"ListItem\"><span property=\"name\">".$lang['news_site']." ".intval($_GET['cstart']) . "</span><meta property=\"position\" content=\"{$cat_breadcrumb[1]}\"></li>";
-     
+
         } else $page_extra = '';
 
         $s_navigation .= $page_extra;
 
     }
-   
+
     $tpl->load_template ( 'speedbar.tpl' );
     $tpl->set ( '{speedbar}', '<ol vocab="http://schema.org/" typeof="BreadcrumbList">' . stripslashes ( $s_navigation ) . '</ol>' );
     $tpl->compile ( 'speedbar' );
@@ -386,28 +465,28 @@ if ($config['speedbar'] AND !$view_template ) {
 
 ```php
 function get_breadcrumbcategories($id, $separator="»") {
-   
+
     global $cat_info, $config, $PHP_SELF;
-   
+
     if( ! $id ) return;
-   
+
     $parent_id = $cat_info[$id]['parentid'];
-   
+
     if( $config['allow_alt_url'] ) $list = "<span itemscope itemtype=\"http://data-vocabulary.org/Breadcrumb\"><a href=\"" . $config['http_home_url'] . get_url( $id ) . "/\" itemprop=\"url\"><span itemprop=\"title\">{$cat_info[$id]['name']}</span></a></span>";
     else $list = "<span itemscope itemtype=\"http://data-vocabulary.org/Breadcrumb\"><a href=\"$PHP_SELF?do=cat&category={$cat_info[$id]['alt_name']}\" itemprop=\"url\"><span itemprop=\"title\">{$cat_info[$id]['name']}</span></a></span>";
-   
+
     while ( $parent_id ) {
-     
+
         if( $config['allow_alt_url'] ) $list = "<span itemscope itemtype=\"http://data-vocabulary.org/Breadcrumb\"><a href=\"" . $config['http_home_url'] . get_url( $parent_id ) . "/\" itemprop=\"url\"><span itemprop=\"title\">{$cat_info[$parent_id]['name']}</span></a></span>" . " {$separator} " . $list;
         else $list = "<span itemscope itemtype=\"http://data-vocabulary.org/Breadcrumb\"><a href=\"$PHP_SELF?do=cat&category={$cat_info[$parent_id]['alt_name']}\" itemprop=\"url\"><span itemprop=\"title\">{$cat_info[$parent_id]['name']}</span></a></span>" . " {$separator} " . $list;
-     
+
         $parent_id = $cat_info[$parent_id]['parentid'];
 
-        if($parent_id) {    
+        if($parent_id) {
             if( $cat_info[$parent_id]['parentid'] == $cat_info[$parent_id]['id'] ) break;
-        }  
+        }
     }
-   
+
     return $list;
 }
 ```
@@ -416,11 +495,11 @@ function get_breadcrumbcategories($id, $separator="»") {
 
 ```
 function get_breadcrumbcategories($id, $separator="»") {
-   
+
     global $cat_info, $config, $PHP_SELF, $dle_module;
-   
+
     if( ! $id ) return;
-   
+
     $parent_id = $cat_info[$id]['parentid'];
     $first_id_p = $parent_id;
     $i = 1;
@@ -431,7 +510,7 @@ function get_breadcrumbcategories($id, $separator="»") {
         if($parent_id)
             if( $cat_info[$parent_id]['parentid'] == $cat_info[$parent_id]['id'] ) break;
     }
-   
+
     $i += 1;
     $parent_id = $first_id_p;
     if($parent_id == 0)
@@ -477,9 +556,9 @@ function get_breadcrumbcategories($id, $separator="»") {
                 $list = "<li property=\"itemListElement\" typeof=\"ListItem\"><span property=\"name\">{$cat_info[$parent_id]['name']}</span><meta property=\"position\" content=\"{$i}\"></li>" . " {$separator} " . $list;
         }
         $parent_id = $cat_info[$parent_id]['parentid'];
-        if($parent_id) {    
+        if($parent_id) {
             if( $cat_info[$parent_id]['parentid'] == $cat_info[$parent_id]['id'] ) break;
-        }  
+        }
     }
     return $list . "|" . $id_i;
 }
