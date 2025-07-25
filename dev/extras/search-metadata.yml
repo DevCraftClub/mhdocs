@@ -1,0 +1,623 @@
+# Search Metadata for Enhanced Search
+# This file contains metadata to improve search functionality
+
+# Popular search terms and their synonyms
+search_synonyms:
+  api:
+    - interface
+    - endpoint
+    - rest
+    - webhook
+    - service
+    - интерфейс
+    - апи
+    - эндпоинт
+    - сервис
+    - вебхук
+  install:
+    - setup
+    - installation
+    - configure
+    - deployment
+    - setup guide
+    - установка
+    - установить
+    - настройка
+    - развертывание
+    - инсталляция
+    - конфигурация
+  config:
+    - configuration
+    - settings
+    - options
+    - parameters
+    - preferences
+    - настройки
+    - конфигурация
+    - параметры
+    - опции
+    - предпочтения
+  error:
+    - exception
+    - bug
+    - issue
+    - problem
+    - troubleshooting
+    - debug
+    - ошибка
+    - исключение
+    - баг
+    - проблема
+    - отладка
+    - исправление
+    - решение проблем
+  test:
+    - testing
+    - unit test
+    - integration test
+    - automated test
+    - test suite
+    - тестирование
+    - тест
+    - проверка
+    - автоматический тест
+    - модульный тест
+    - интеграционный тест
+  deploy:
+    - deployment
+    - publish
+    - release
+    - production
+    - staging
+    - развертывание
+    - публикация
+    - релиз
+    - продакшн
+    - продакшен
+    - стейджинг
+  security:
+    - secure
+    - vulnerability
+    - safety
+    - authentication
+    - authorization
+    - безопасность
+    - защита
+    - уязвимость
+    - аутентификация
+    - авторизация
+    - вход
+    - логин
+  performance:
+    - speed
+    - optimization
+    - fast
+    - efficient
+    - caching
+    - производительность
+    - скорость
+    - оптимизация
+    - быстрый
+    - эффективность
+    - кэширование
+    - кеширование
+  database:
+    - db
+    - sql
+    - mysql
+    - postgresql
+    - mongodb
+    - storage
+    - база данных
+    - бд
+    - хранилище
+    - датабаза
+  authentication:
+    - auth
+    - login
+    - user
+    - password
+    - oauth
+    - аутентификация
+    - авторизация
+    - вход
+    - логин
+    - пользователь
+    - пароль
+  authorization:
+    - permissions
+    - access
+    - roles
+    - rights
+    - privileges
+    - права
+    - доступ
+    - роли
+    - привилегии
+    - разрешения
+  logging:
+    - log
+    - debug
+    - trace
+    - monitor
+    - audit
+    - логирование
+    - лог
+    - отладка
+    - трассировка
+    - мониторинг
+    - аудит
+  monitoring:
+    - monitor
+    - metrics
+    - analytics
+    - dashboard
+    - alerting
+    - мониторинг
+    - метрики
+    - аналитика
+    - дашборд
+    - уведомления
+    - алерты
+  backup:
+    - restore
+    - recovery
+    - snapshot
+    - archive
+    - data protection
+    - резервная копия
+    - бэкап
+    - восстановление
+    - снимок
+    - архив
+    - защита данных
+  migration:
+    - upgrade
+    - update
+    - version
+    - migration guide
+    - changelog
+    - миграция
+    - обновление
+    - версия
+    - апгрейд
+    - руководство по миграции
+    - история изменений
+  documentation:
+    - docs
+    - guide
+    - manual
+    - reference
+    - help
+    - документация
+    - документы
+    - руководство
+    - справочник
+    - помощь
+    - мануал
+  tutorial:
+    - guide
+    - example
+    - howto
+    - walkthrough
+    - step by step
+    - туториал
+    - руководство
+    - пример
+    - пошаговая инструкция
+    - как сделать
+    - инструкция
+  faq:
+    - question
+    - answer
+    - help
+    - support
+    - common issues
+    - вопросы
+    - ответы
+    - помощь
+    - поддержка
+    - частые вопросы
+    - часто задаваемые вопросы
+  changelog:
+    - changes
+    - updates
+    - version history
+    - release notes
+    - what's new
+    - изменения
+    - обновления
+    - история версий
+    - заметки о релизе
+    - что нового
+    - чейнджлог
+  license:
+    - licensing
+    - legal
+    - terms
+    - copyright
+    - mit license
+    - лицензия
+    - лицензирование
+    - правовые
+    - условия
+    - авторские права
+  # Дополнительные русские термины
+  php:
+    - пхп
+    - пхп
+    - php
+  mysql:
+    - мускул
+    - mysql
+    - база данных
+  composer:
+    - композер
+    - composer
+    - менеджер пакетов
+  git:
+    - гит
+    - git
+    - система контроля версий
+  docker:
+    - докер
+    - docker
+    - контейнеризация
+  nginx:
+    - энжинкс
+    - nginx
+    - веб сервер
+  apache:
+    - апач
+    - apache
+    - веб сервер
+  linux:
+    - линукс
+    - linux
+    - операционная система
+  windows:
+    - виндовс
+    - windows
+    - операционная система
+  macos:
+    - макос
+    - macos
+    - операционная система
+  javascript:
+    - джаваскрипт
+    - javascript
+    - js
+  python:
+    - питон
+    - python
+    - язык программирования
+  nodejs:
+    - ноде
+    - nodejs
+    - node.js
+  react:
+    - реакт
+    - react
+    - фреймворк
+  vue:
+    - vue
+    - vue.js
+    - фреймворк
+  angular:
+    - ангуляр
+    - angular
+    - фреймворк
+  laravel:
+    - лаravel
+    - laravel
+    - фреймворк
+  symfony:
+    - симфони
+    - symfony
+    - фреймворк
+  wordpress:
+    - вордпресс
+    - wordpress
+    - cms
+  drupal:
+    - друпал
+    - drupal
+    - cms
+  joomla:
+    - джумла
+    - joomla
+    - cms
+
+# Popular search queries
+popular_searches:
+  - installation guide
+  - api documentation
+  - configuration
+  - troubleshooting
+  - examples
+  - changelog
+  - faq
+  - security
+  - performance
+  - deployment
+  - database setup
+  - authentication
+  - error handling
+  - testing
+  - monitoring
+  - backup
+  - migration
+  - documentation
+  - tutorial
+  - license
+  - руководство по установке
+  - документация api
+  - настройка
+  - решение проблем
+  - примеры
+  - история изменений
+  - частые вопросы
+  - безопасность
+  - производительность
+  - развертывание
+  - настройка базы данных
+  - аутентификация
+  - обработка ошибок
+  - тестирование
+  - мониторинг
+  - резервное копирование
+  - миграция
+  - документация
+  - туториал
+  - лицензия
+  # Дополнительные русские популярные запросы
+  - установка php
+  - настройка mysql
+  - composer install
+  - git команды
+  - docker контейнер
+  - nginx конфигурация
+  - apache настройка
+  - linux команды
+  - windows установка
+  - javascript примеры
+  - python скрипт
+  - nodejs сервер
+  - react компонент
+  - vue приложение
+  - angular проект
+  - laravel миграция
+  - symfony бандл
+  - wordpress плагин
+  - drupal модуль
+  - joomla расширение
+
+# Search categories
+search_categories:
+  getting_started:
+    - install
+    - setup
+    - configuration
+    - quick start
+    - first steps
+    - установка
+    - настройка
+    - конфигурация
+    - быстрый старт
+    - первые шаги
+  api_reference:
+    - api
+    - endpoint
+    - method
+    - parameter
+    - response
+    - апи
+    - эндпоинт
+    - метод
+    - параметр
+    - ответ
+  development:
+    - development
+    - coding
+    - programming
+    - sdk
+    - library
+    - разработка
+    - программирование
+    - код
+    - библиотека
+    - пакет разработчика
+  deployment:
+    - deploy
+    - production
+    - hosting
+    - server
+    - cloud
+    - развертывание
+    - продакшн
+    - хостинг
+    - сервер
+    - облако
+  troubleshooting:
+    - error
+    - problem
+    - issue
+    - debug
+    - fix
+    - ошибка
+    - проблема
+    - отладка
+    - исправление
+    - решение
+  security:
+    - security
+    - authentication
+    - authorization
+    - encryption
+    - vulnerability
+    - безопасность
+    - аутентификация
+    - авторизация
+    - шифрование
+    - уязвимость
+  performance:
+    - performance
+    - optimization
+    - speed
+    - caching
+    - efficiency
+    - производительность
+    - оптимизация
+    - скорость
+    - кэширование
+    - эффективность
+  monitoring:
+    - monitoring
+    - logging
+    - metrics
+    - analytics
+    - alerting
+    - мониторинг
+    - логирование
+    - метрики
+    - аналитика
+    - уведомления
+  maintenance:
+    - backup
+    - migration
+    - update
+    - maintenance
+    - administration
+    - резервное копирование
+    - миграция
+    - обновление
+    - обслуживание
+    - администрирование
+
+# Search boost weights
+search_weights:
+  title: 10
+  headings: 5
+  content: 1
+  tags: 3
+  categories: 2
+  code: 2
+  links: 1
+  metadata: 1
+
+# Search filters
+search_filters:
+  - type: category
+    label: "Категория"
+    options:
+      - value: "getting_started"
+        label: "Начало работы"
+      - value: "api_reference"
+        label: "API Справочник"
+      - value: "development"
+        label: "Разработка"
+      - value: "deployment"
+        label: "Деплой"
+      - value: "troubleshooting"
+        label: "Решение проблем"
+      - value: "security"
+        label: "Безопасность"
+      - value: "performance"
+        label: "Производительность"
+      - value: "monitoring"
+        label: "Мониторинг"
+      - value: "maintenance"
+        label: "Обслуживание"
+
+  - type: language
+    label: "Язык"
+    options:
+      - value: "ru"
+        label: "Русский"
+      - value: "en"
+        label: "English"
+      - value: "de"
+        label: "Deutsch"
+
+  - type: difficulty
+    label: "Сложность"
+    options:
+      - value: "beginner"
+        label: "Начинающий"
+      - value: "intermediate"
+        label: "Средний"
+      - value: "advanced"
+        label: "Продвинутый"
+
+# Search suggestions configuration
+search_suggestions:
+  min_length: 2
+  max_suggestions: 10
+  debounce_delay: 300
+  highlight_threshold: 0
+  boost_threshold: 0
+  tokenizer: '[\s\-,:!=\[\]()"/]+'
+  separator: '[\s\-,:!=\[\]()"/]+'
+
+# Search result configuration
+search_results:
+  max_results: 20
+  highlight: "auto"
+  prebuild_index: true
+  indexing: "full"
+  search_rank: |
+    function(tokens, pages) {
+      const weights = {
+        title: 10,
+        headings: 5,
+        content: 1,
+        tags: 3,
+        categories: 2
+      };
+      
+      return pages.map(function(page) {
+        let score = 0;
+        const title = page.title.toLowerCase();
+        const text = page.text.toLowerCase();
+        
+        tokens.forEach(function(token) {
+          const tokenLower = token.toLowerCase();
+          
+          // Поиск в заголовке
+          if (title.includes(tokenLower)) {
+            score += weights.title;
+          }
+          
+          // Поиск в заголовках
+          if (page.headings) {
+            page.headings.forEach(function(heading) {
+              if (heading.toLowerCase().includes(tokenLower)) {
+                score += weights.headings;
+              }
+            });
+          }
+          
+          // Поиск в контенте
+          if (text.includes(tokenLower)) {
+            score += weights.content;
+          }
+          
+          // Поиск в тегах
+          if (page.tags) {
+            page.tags.forEach(function(tag) {
+              if (tag.toLowerCase().includes(tokenLower)) {
+                score += weights.tags;
+              }
+            });
+          }
+        });
+        
+        return { page: page, score: score };
+      }).filter(function(item) {
+        return item.score > 0;
+      }).sort(function(a, b) {
+        return b.score - a.score;
+      }).map(function(item) {
+        return item.page;
+      });
+    }
