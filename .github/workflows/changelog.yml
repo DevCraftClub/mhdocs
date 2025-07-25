@@ -1,4 +1,4 @@
-name: Generate Changelog
+name: Генерация изменений
 
 on:
   push:
@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Клонирование кода
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Generate changelog
+      - name: Генерация изменений
         id: changelog
         uses: actions/github-script@v6
         with:
@@ -27,22 +27,22 @@ jobs:
               head: context.sha
             });
 
-            let changelog = '# 📋 Changelog\n\n';
-            changelog += `## Version ${context.ref.replace('refs/tags/', '')}\n\n`;
-            changelog += `**Release Date:** ${new Date().toISOString().split('T')[0]}\n\n`;
+            let changelog = '# 📋 Журнал изменений\n\n';
+            changelog += `## Версия ${context.ref.replace('refs/tags/', '')}\n\n`;
+            changelog += `**Дата выпуска:** ${new Date().toISOString().split('T')[0]}\n\n`;
 
             const categories = {
-              'feat': '🚀 Features',
-              'fix': '🐛 Bug Fixes',
-              'docs': '📚 Documentation',
-              'style': '💄 Style',
-              'refactor': '♻️ Refactoring',
-              'test': '🧪 Tests',
-              'chore': '🔧 Chores',
+              'feat': '🚀 Функции',
+              'fix': '🐛 Исправления багов',
+              'docs': '📚 Документация',
+              'style': '💄 Стиль',
+              'refactor': '♻️ Рефакторинг',
+              'test': '🧪 Тесты',
+              'chore': '🔧 Обслуживание',
               'ci': '⚙️ CI/CD',
-              'perf': '⚡ Performance',
-              'build': '📦 Build',
-              'revert': '⏪ Reverts'
+              'perf': '⚡ Производительность',
+              'build': '📦 Сборка',
+              'revert': '⏪ Откаты'
             };
 
             const categorizedCommits = {};
@@ -86,36 +86,36 @@ jobs:
             }
 
             // Добавляем статистику
-            changelog += '## 📊 Statistics\n\n';
-            changelog += `- **Total commits:** ${commits.commits.length}\n`;
-            changelog += `- **Files changed:** ${commits.files ? commits.files.length : 'N/A'}\n`;
-            changelog += `- **Additions:** ${commits.stats ? commits.stats.additions : 'N/A'}\n`;
-            changelog += `- **Deletions:** ${commits.stats ? commits.stats.deletions : 'N/A'}\n\n`;
+            changelog += '## 📊 Статистика\n\n';
+            changelog += `- **Всего коммитов:** ${commits.commits.length}\n`;
+            changelog += `- **Изменено файлов:** ${commits.files ? commits.files.length : 'N/A'}\n`;
+            changelog += `- **Добавлено строк:** ${commits.stats ? commits.stats.additions : 'N/A'}\n`;
+            changelog += `- **Удалено строк:** ${commits.stats ? commits.stats.deletions : 'N/A'}\n\n`;
 
             // Добавляем ссылки
-            changelog += '## 🔗 Links\n\n';
-            changelog += `- [Full diff](https://github.com/${context.repo.owner}/${context.repo.repo}/compare/main...${context.ref})\n`;
-            changelog += `- [Documentation](https://devcraftclub.github.io/mhdocs/)\n`;
+            changelog += '## 🔗 Ссылки\n\n';
+            changelog += `- [Полная разница](https://github.com/${context.repo.owner}/${context.repo.repo}/compare/main...${context.ref})\n`;
+            changelog += `- [Документация](https://devcraftclub.github.io/mhdocs/)\n`;
             changelog += `- [Readme DevCraft](https://readme.devcraft.club)\n`;
 
             core.setOutput('changelog', changelog);
-            console.log('Generated changelog:', changelog);
+            console.log('Сгенерирован журнал изменений:', changelog);
 
-      - name: Create changelog file
+      - name: Создание файла изменений
         run: |
           echo "${{ steps.changelog.outputs.changelog }}" > CHANGELOG.md
 
-      - name: Commit changelog
+      - name: Коммит изменений
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add CHANGELOG.md
-          git commit -m "docs: update changelog for ${{ github.ref_name }}" || echo "No changes to commit"
+          git commit -m "docs: обновление журнала изменений для ${{ github.ref_name }}" || echo "Нет изменений для коммита"
           git push
 
-      - name: Upload changelog as artifact
-        uses: actions/upload-artifact@v3
+      - name: Загрузка журнала изменений как артефакт
+        uses: actions/upload-artifact@v4
         with:
-          name: changelog-${{ github.ref_name }}
+          name: журнал-изменений-${{ github.ref_name }}
           path: CHANGELOG.md
           retention-days: 90

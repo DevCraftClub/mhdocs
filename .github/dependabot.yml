@@ -8,15 +8,12 @@ updates:
       day: "sunday"
       time: "02:00"
     open-pull-requests-limit: 5
-    reviewers:
-      - "DevCraftClub"
     assignees:
-      - "DevCraftClub"
+      - "Gokujo"
     commit-message:
       prefix: "chore"
       include: "scope"
     labels:
-      - "dependencies"
       - "python"
     ignore:
       # Игнорируем major версии для критических зависимостей
@@ -33,13 +30,10 @@ updates:
       day: "monday"
       time: "03:00"
     open-pull-requests-limit: 3
-    reviewers:
-      - "DevCraftClub"
     assignees:
-      - "DevCraftClub"
+      - "Gokujo"
     commit-message:
       prefix: "ci"
       include: "scope"
     labels:
-      - "dependencies"
       - "github-actions"
