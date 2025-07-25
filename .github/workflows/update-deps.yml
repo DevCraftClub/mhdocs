@@ -1,4 +1,4 @@
-name: Update Dependencies
+name: Обновление зависимостей
 
 on:
   schedule:
@@ -11,66 +11,66 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Клонирование кода
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python
+      - name: Настройка Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
           cache: "pip"
 
-      - name: Install dependencies
+      - name: Установка зависимостей
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pip-chill
 
-      - name: Update dependencies
+      - name: Обновление зависимостей
         run: |
-          echo "Updating dependencies..."
+          echo "Обновление зависимостей..."
           pip install --upgrade $(pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1)
 
-      - name: Update requirements.txt
+      - name: Обновление requirements.txt
         run: |
-          echo "Updating requirements.txt..."
+          echo "Обновление requirements.txt..."
           pip-chill --no-version > requirements.txt.new
           if ! cmp -s requirements.txt requirements.txt.new; then
             mv requirements.txt.new requirements.txt
-            echo "Requirements updated"
+            echo "Зависимости обновлены"
           else
-            echo "No updates needed"
+            echo "Обновления не требуются"
             rm requirements.txt.new
           fi
 
-      - name: Test build
+      - name: Тестирование сборки
         run: |
-          echo "Testing build with updated dependencies..."
+          echo "Тестирование сборки с обновленными зависимостями..."
           mkdocs build --strict
 
-      - name: Create Pull Request
+      - name: Создание Pull Request
         if: success()
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: update dependencies"
-          title: "🤖 Automated dependency update"
+          title: "🤖 Автоматическое обновление зависимостей"
           body: |
-            ## 🔄 Automated Dependency Update
+            ## 🔄 Автоматическое обновление зависимостей
 
-            This PR was automatically created to update project dependencies.
+            Этот PR был автоматически создан для обновления зависимостей проекта.
 
-            ### 📋 Changes
-            - Updated Python package dependencies
-            - Tested build with new dependencies
+            ### 📋 Изменения
+            - Обновлены зависимости Python пакетов
+            - Протестирована сборка с новыми зависимостями
 
-            ### ✅ Checks
-            - [x] Dependencies updated
-            - [x] Build tested successfully
+            ### ✅ Проверки
+            - [x] Зависимости обновлены
+            - [x] Сборка протестирована успешно
 
-            ### 🚀 Ready to merge
-            This PR is safe to merge as all tests pass.
+            ### 🚀 Готово к слиянию
+            Этот PR безопасен для слияния, так как все тесты пройдены.
           branch: update-dependencies
           delete-branch: true

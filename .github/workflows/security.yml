@@ -1,4 +1,4 @@
-name: Security Check
+name: Проверка безопасности
 
 on:
   push:
@@ -14,50 +14,50 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Клонирование кода
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Настройка Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
           cache: "pip"
 
-      - name: Install dependencies
+      - name: Установка зависимостей
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install bandit safety
 
-      - name: Run Bandit security check
+      - name: Запуск проверки безопасности Bandit
         run: |
-          echo "Running Bandit security check..."
+          echo "Запуск проверки безопасности Bandit..."
           bandit -r . -f json -o bandit-report.json || true
           bandit -r . -f txt -o bandit-report.txt || true
 
           # Показываем результаты
           if [ -f bandit-report.txt ]; then
-            echo "=== Bandit Security Report ==="
+            echo "=== Отчет о безопасности Bandit ==="
             cat bandit-report.txt
           fi
 
-      - name: Check for known vulnerabilities
+      - name: Проверка известных уязвимостей
         run: |
-          echo "Checking for known vulnerabilities..."
+          echo "Проверка известных уязвимостей..."
           safety check --json --output safety-report.json || true
           safety check --output safety-report.txt || true
 
           # Показываем результаты
           if [ -f safety-report.txt ]; then
-            echo "=== Safety Vulnerability Report ==="
+            echo "=== Отчет об уязвимостях Safety ==="
             cat safety-report.txt
           fi
 
-      - name: Upload security reports
+      - name: Загрузка отчетов безопасности
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: security-reports
+          name: отчеты-безопасности
           path: |
             bandit-report.json
             bandit-report.txt
@@ -65,38 +65,38 @@ jobs:
             safety-report.txt
           retention-days: 30
 
-      - name: Comment PR with security findings
+      - name: Комментирование PR с результатами безопасности
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v6
         with:
           script: |
             const fs = require('fs');
 
-            let comment = '## 🔒 Security Check Results\n\n';
+            let comment = '## 🔒 Результаты проверки безопасности\n\n';
 
-            // Bandit results
+            // Результаты Bandit
             if (fs.existsSync('bandit-report.txt')) {
               const banditContent = fs.readFileSync('bandit-report.txt', 'utf8');
               if (banditContent.trim()) {
-                comment += '### 🚨 Bandit Security Issues\n\n';
+                comment += '### 🚨 Проблемы безопасности Bandit\n\n';
                 comment += '```\n' + banditContent + '\n```\n\n';
               } else {
-                comment += '✅ No Bandit security issues found\n\n';
+                comment += '✅ Проблем безопасности Bandit не найдено\n\n';
               }
             }
 
-            // Safety results
+            // Результаты Safety
             if (fs.existsSync('safety-report.txt')) {
               const safetyContent = fs.readFileSync('safety-report.txt', 'utf8');
               if (safetyContent.trim()) {
-                comment += '### ⚠️ Known Vulnerabilities\n\n';
+                comment += '### ⚠️ Известные уязвимости\n\n';
                 comment += '```\n' + safetyContent + '\n```\n\n';
               } else {
-                comment += '✅ No known vulnerabilities found\n\n';
+                comment += '✅ Известных уязвимостей не найдено\n\n';
               }
             }
 
-            comment += '---\n*This report was generated automatically by GitHub Actions*';
+            comment += '---\n*Этот отчет был сгенерирован автоматически GitHub Actions*';
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,

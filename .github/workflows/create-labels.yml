@@ -1,0 +1,76 @@
+name: Создание меток репозитория
+
+on:
+  workflow_dispatch: # Ручной запуск
+  push:
+    branches: [main]
+    paths:
+      - ".github/labels.yml"
+
+jobs:
+  create-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Клонирование кода
+        uses: actions/checkout@v4
+
+      - name: Создание меток
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const labels = [
+              {
+                name: 'python',
+                color: '3776ab',
+                description: 'Изменения связанные с Python'
+              },
+              {
+                name: 'github-actions',
+                color: '2088ff',
+                description: 'Изменения связанные с GitHub Actions'
+              },
+              {
+                name: 'documentation',
+                color: '0075ca',
+                description: 'Обновления документации'
+              },
+              {
+                name: 'enhancement',
+                color: 'a2eeef',
+                description: 'Новые функции или улучшения'
+              },
+              {
+                name: 'bug',
+                color: 'd73a4a',
+                description: 'Что-то не работает'
+              },
+              {
+                name: 'help wanted',
+                color: '008672',
+                description: 'Требуется дополнительное внимание'
+              },
+              {
+                name: 'good first issue',
+                color: '7057ff',
+                description: 'Подходит для новичков'
+              }
+            ];
+
+            for (const label of labels) {
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label.name,
+                  color: label.color,
+                  description: label.description
+                });
+                console.log(`✅ Создана метка: ${label.name}`);
+              } catch (error) {
+                if (error.status === 422) {
+                  console.log(`ℹ️ Метка уже существует: ${label.name}`);
+                } else {
+                  console.log(`❌ Ошибка создания метки ${label.name}:`, error.message);
+                }
+              }
+            }

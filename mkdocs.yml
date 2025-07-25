@@ -80,7 +80,12 @@ plugins:
       loop: true
   - import-statement
   - meta-manager
-  - git-authors
+  - git-authors:
+      show_email_address: false
+      show_contribution: true
+      add_co_authors: true
+      ignore_authors:
+        - m.harder@bsg.de
   - htmlproofer
   - link-marker
   - neoteroi.mkdocsoad:

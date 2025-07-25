@@ -1,0 +1,14 @@
+# Владельцы кода глобально
+* @Gokujo
+
+# Документация
+docs/ @Gokujo
+
+# GitHub workflows
+.github/ @Gokujo
+
+# Конфигурационные файлы
+*.yml @Gokujo
+*.yaml @Gokujo
+requirements.txt @Gokujo
+mkdocs.yml @Gokujo 
