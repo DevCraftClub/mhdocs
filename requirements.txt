@@ -6,11 +6,13 @@ jaraco-collections
 jaraco-functools
 jaraco.collections
 mike
+mkdocs-awesome-pages-plugin
 mkdocs-git-revision-date-localized-plugin
 mkdocs-git-revision-date-plugin
 mkdocs-material
 mkdocs-minify-plugin
 mkdocs-redirects
+mkdocs-section-index
 pip-chill
 regex
 shtab
