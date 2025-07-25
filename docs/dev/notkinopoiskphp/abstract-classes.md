@@ -118,10 +118,3 @@ class MyService extends AbstractService
 - `\NotKinopoisk\Client` - Основной клиент API
 - `\NotKinopoisk\Enums\ApiVersion` - Перечисление версий API
 
-## Информация о пакете
-
-- **Пакет:** NotKinopoisk\Services
-- **API:** https://kinopoiskapiunofficial.tech
-- **Документация API:** https://kinopoiskapiunofficial.tech/documentation/api
-- **Автор:** Maxim Harder <dev@devcraft.club>
-- **Версия:** 1.0.0

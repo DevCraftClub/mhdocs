@@ -813,7 +813,7 @@ foreach (array_slice($genreAverages, 0, 10, true) as $genre => $average) {
 
 ## Связанные классы
 
-- [`Country`](country.md) - Модель страны
-- [`Genre`](genre.md) - Модель жанра
+- [`Country`](./country.md) - Модель страны
+- [`Genre`](./genre.md) - Модель жанра
 - [`ContentType`](../enums/content-type.md) - Enum типов контента
 - [`UserService`](../services/user-service.md) - Сервис для работы с пользователями

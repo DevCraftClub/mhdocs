@@ -545,10 +545,3 @@ switch ($film->type) {
 - `\NotKinopoisk\Enums\ContentType` - Типы контента
 - `\NotKinopoisk\Enums\ProductionStatus` - Статусы производства
 
-## Информация о пакете
-
-- **Пакет:** NotKinopoisk\Models
-- **API:** /api/v2.2/films/{id}
-- **Документация API:** https://kinopoiskapiunofficial.tech/documentation/api/#/films/get_api_v2_2_films__id_
-- **Автор:** Maxim Harder <dev@devcraft.club>
-- **Версия:** 1.0.0

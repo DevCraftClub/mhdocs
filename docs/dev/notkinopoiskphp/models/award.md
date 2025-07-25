@@ -496,4 +496,4 @@ foreach (array_slice($analysis['persons'], 0, 5, true) as $person => $stats) {
 ## Связанные классы
 
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами
-- [`Film`](film.md) - Модель фильма
+- [`Film`](./film.md) - Модель фильма

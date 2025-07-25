@@ -6,7 +6,8 @@ jaraco-collections
 jaraco-functools
 jaraco.collections
 mike
-mkdocs-awesome-pages-plugin
+mkdocs-autorefs
+mkdocs-awesome-nav
 mkdocs-git-revision-date-localized-plugin
 mkdocs-git-revision-date-plugin
 mkdocs-material

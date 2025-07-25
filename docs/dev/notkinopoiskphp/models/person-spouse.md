@@ -718,5 +718,5 @@ if (!empty($analysis['divorceReasons'])) {
 
 ## Связанные классы
 
-- [`Person`](person.md) - Модель персоны
+- [`Person`](./person.md) - Модель персоны
 - [`PersonService`](../services/person-service.md) - Сервис для работы с персонами

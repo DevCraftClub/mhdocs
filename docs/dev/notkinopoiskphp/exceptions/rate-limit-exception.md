@@ -318,6 +318,4 @@ try {
 
 ## Связанные исключения
 
-- [`ApiException`](api-exception.md) - Базовое исключение API
-- [`InvalidApiKeyException`](invalid-api-key-exception.md) - Неверный API ключ
-- [`ResourceNotFoundException`](resource-not-found-exception.md) - Ресурс не найден
+- [`ApiException`](./api-exception.md) - Базовое исключение API

@@ -12,38 +12,39 @@
 
 ### 🖼️ Медиа и контент
 
-- [ImageType](image-type.md) - Типы изображений
-- [VideoSite](video-site.md) - Сайты видео
-- [ContentType](content-type.md) - Типы контента
-- [CollectionType](collection-type.md) - Типы коллекций
+- [ImageType](./image-type.md) - Типы изображений
+- [VideoSite](./video-site.md) - Сайты видео
+- [ContentType](./content-type.md) - Типы контента
+- [CollectionType](./collection-type.md) - Типы коллекций
 
 ### 📝 Отзывы и факты
 
-- [ReviewType](review-type.md) - Типы отзывов
-- [ReviewOrder](review-order.md) - Порядок сортировки отзывов
-- [FactType](fact-type.md) - Типы фактов
+- [ReviewType](./review-type.md) - Типы отзывов
+- [ReviewOrder](./review-order.md) - Порядок сортировки отзывов
+- [FactType](./fact-type.md) - Типы фактов
 
 ### 👥 Персоны и профессии
 
-- [ProfessionKey](profession-key.md) - Ключи профессий
-- [Sex](sex.md) - Пол
-- [RelationType](relation-type.md) - Типы связей
+- [ProfessionKey](./profession-key.md) - Ключи профессий
+- [Sex](./sex.md) - Пол
+- [RelationType](./relation-type.md) - Типы связей
 
 ### 🎬 Фильмы и сериалы
 
-- [FilmOrder](film-order.md) - Порядок сортировки фильмов
-- [DistributionType](distribution-type.md) - Типы дистрибуции
-- [DistributionSubType](distribution-sub-type.md) - Подтипы дистрибуции
+- [FilmOrder](./film-order.md) - Порядок сортировки фильмов
+- [DistributionType](./distribution-type.md) - Типы дистрибуции
+- [DistributionSubType](./distribution-sub-type.md) - Подтипы дистрибуции
+- [ProductionStatus](./production-status.md) - Статусы производства
 
 ### 📊 Статистика и награды
 
-- [BoxOfficeType](box-office-type.md) - Типы кассовых сборов
-- [Month](month.md) - Месяцы
+- [BoxOfficeType](./box-office-type.md) - Типы кассовых сборов
+- [Month](./month.md) - Месяцы
 
 ### 🔧 API и система
 
-- [ApiVersion](api-version.md) - Версии API
-- [AccountType](account-type.md) - Типы аккаунтов
+- [ApiVersion](./api-version.md) - Версии API
+- [AccountType](./account-type.md) - Типы аккаунтов
 
 ## 🔗 Связанные компоненты
 
@@ -321,6 +322,3 @@ foreach ($reviewOrders as $order) {
 - [Исключения](../exceptions/index.md) - Обработка ошибок
 - [Интерфейсы](../interfaces/index.md) - Базовые интерфейсы
 
----
-
-**📚 Навигация:** [Главная](../index.md) → Перечисления

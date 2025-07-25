@@ -1039,6 +1039,6 @@ echo "- Специфичных фильмов: {$analysis['filmTypes']['specific
 
 ## Связанные классы
 
-- [`Person`](person.md) - Модель персоны
+- [`Person`](./person.md) - Модель персоны
 - [`ProfessionKey`](../enums/profession-key.md) - Enum профессий
 - [`PersonService`](../services/person-service.md) - Сервис для работы с персонами

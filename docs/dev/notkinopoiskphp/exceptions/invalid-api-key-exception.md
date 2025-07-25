@@ -221,6 +221,6 @@ if (!$result['success']) {
 
 ## Связанные исключения
 
-- [`ApiException`](api-exception.md) - Базовое исключение API
-- [`RateLimitException`](rate-limit-exception.md) - Превышение лимитов запросов
-- [`ResourceNotFoundException`](resource-not-found-exception.md) - Ресурс не найден
+- [`ApiException`](./api-exception.md) - Базовое исключение API
+- [`RateLimitException`](./rate-limit-exception.md) - Превышение лимитов запросов
+- [`ResourceNotFoundException`](./resource-not-found-exception.md) - Ресурс не найден

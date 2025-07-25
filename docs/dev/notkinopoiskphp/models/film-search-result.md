@@ -772,6 +772,6 @@ foreach ($topGenres as $genre => $count) {
 ## Связанные классы
 
 - [`ContentType`](../enums/content-type.md) - Типы контента
-- [`Country`](country.md) - Модель страны
-- [`Genre`](genre.md) - Модель жанра
+- [`Country`](./country.md) - Модель страны
+- [`Genre`](./genre.md) - Модель жанра
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами

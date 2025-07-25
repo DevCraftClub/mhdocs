@@ -320,4 +320,4 @@ echo "Рецензии со словом 'матрица': " . count($matrixRevi
 
 - [`ReviewType`](../enums/review-type.md) - Типы рецензий
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами
-- [`Film`](film.md) - Модель фильма
+- [`Film`](./film.md) - Модель фильма

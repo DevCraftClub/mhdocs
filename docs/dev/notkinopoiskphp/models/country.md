@@ -430,5 +430,5 @@ foreach (array_slice($analysis['mostDiverse'], 0, 5) as $item) {
 
 ## Связанные классы
 
-- [`Film`](film.md) - Модель фильма
+- [`Film`](./film.md) - Модель фильма
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами

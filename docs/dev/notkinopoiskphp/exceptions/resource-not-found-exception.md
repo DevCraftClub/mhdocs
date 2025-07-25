@@ -466,7 +466,4 @@ foreach (array_slice($analysis['mostCommonErrors'], 0, 5, true) as $message => $
 
 ## Связанные классы
 
-- [`ApiException`](api-exception.md) - Базовое исключение для всех ошибок API
-- [`InvalidApiKeyException`](invalid-api-key-exception.md) - Исключение для неверного API ключа
-- [`RateLimitException`](rate-limit-exception.md) - Исключение для превышения лимита запросов
-- [`KpValidationException`](kp-validation-exception.md) - Исключение для ошибок валидации
+- [`ApiException`](./api-exception.md) - Базовое исключение для всех ошибок API

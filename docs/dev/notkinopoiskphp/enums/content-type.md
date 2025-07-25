@@ -689,5 +689,5 @@ if ($analysis['ratingAnalysis']['lowestRatedType']) {
 
 ## Связанные классы
 
-- [`Film`](film.md) - Модель фильма
+- [`Film`](../models/film.md) - Модель фильма
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами

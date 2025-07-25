@@ -8,15 +8,15 @@
 
 **🔗 Связанные классы:**
 
-- [FilmService](services/film-service.md) - Сервис для работы с фильмами
-- [PersonService](services/person-service.md) - Сервис для работы с персонами
-- [MediaService](services/media-service.md) - Сервис для работы с медиа
-- [UserService](services/user-service.md) - Сервис для работы с пользователями
-- [ApiVersion](enums/api-version.md) - Версии API
-- [ApiException](exceptions/api-exception.md) - Базовое исключение API
-- [InvalidApiKeyException](exceptions/invalid-api-key-exception.md) - Неверный API ключ
-- [RateLimitException](exceptions/rate-limit-exception.md) - Превышение лимита
-- [ResourceNotFoundException](exceptions/resource-not-found-exception.md) - Ресурс не найден
+- [FilmService](./services/film-service.md) - Сервис для работы с фильмами
+- [PersonService](./services/person-service.md) - Сервис для работы с персонами
+- [MediaService](./services/media-service.md) - Сервис для работы с медиа
+- [UserService](./services/user-service.md) - Сервис для работы с пользователями
+- [ApiVersion](./enums/api-version.md) - Версии API
+- [ApiException](./exceptions/api-exception.md) - Базовое исключение API
+- [InvalidApiKeyException](./exceptions/invalid-api-key-exception.md) - Неверный API ключ
+- [RateLimitException](./exceptions/rate-limit-exception.md) - Превышение лимита
+- [ResourceNotFoundException](./exceptions/resource-not-found-exception.md) - Ресурс не найден
 
 ---
 
@@ -235,10 +235,3 @@ try {
 }
 ```
 
-## Информация о пакете
-
-- **Пакет:** NotKinopoisk
-- **API:** https://kinopoiskapiunofficial.tech
-- **Документация API:** https://kinopoiskapiunofficial.tech/documentation/api
-- **Автор:** Maxim Harder <dev@devcraft.club>
-- **Версия:** 1.0.0

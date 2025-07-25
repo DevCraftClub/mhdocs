@@ -397,7 +397,7 @@ foreach (array_slice($analysis['mostCommonErrors'], 0, 5, true) as $message => $
 
 ## Связанные классы
 
-- [`InvalidApiKeyException`](invalid-api-key-exception.md) - Исключение для неверного API ключа
-- [`RateLimitException`](rate-limit-exception.md) - Исключение для превышения лимита запросов
-- [`ResourceNotFoundException`](resource-not-found-exception.md) - Исключение для не найденных ресурсов
-- [`KpValidationException`](kp-validation-exception.md) - Исключение для ошибок валидации
+- [`InvalidApiKeyException`](./invalid-api-key-exception.md) - Исключение для неверного API ключа
+- [`RateLimitException`](./rate-limit-exception.md) - Исключение для превышения лимита запросов
+- [`ResourceNotFoundException`](./resource-not-found-exception.md) - Исключение для не найденных ресурсов
+- [`KpValidationException`](./kp-validation-exception.md) - Исключение для ошибок валидации

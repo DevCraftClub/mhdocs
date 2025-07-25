@@ -457,4 +457,4 @@ foreach ($videos as $index => $video) {
 
 - [`VideoSite`](../enums/video-site.md) - Платформы для видео
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами
-- [`Film`](film.md) - Модель фильма
+- [`Film`](./film.md) - Модель фильма

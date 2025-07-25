@@ -334,7 +334,7 @@ foreach ($stats as $profession => $count) {
 
 ## Связанные классы
 
-- [`Person`](person.md) - Модель персоны
+- [`Person`](./person.md) - Модель персоны
 - [`ProfessionKey`](../enums/profession-key.md) - Ключи профессий
 - [`PersonService`](../services/person-service.md) - Сервис для работы с персонами
 - [`MovieStaffResponse`](../responses/movie-staff-response.md) - Ответ с персоналом фильма

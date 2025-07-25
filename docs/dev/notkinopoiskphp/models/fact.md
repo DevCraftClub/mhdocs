@@ -381,4 +381,4 @@ if (!empty($gallery['interestingFacts'])) {
 
 - [`FactType`](../enums/fact-type.md) - Типы фактов
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами
-- [`Film`](film.md) - Модель фильма
+- [`Film`](./film.md) - Модель фильма

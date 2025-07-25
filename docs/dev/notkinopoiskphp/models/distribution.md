@@ -674,5 +674,5 @@ echo "\nПовторных прокатов: {$analysis['reReleaseAnalysis']['to
 ## Связанные классы
 
 - [`DistributionType`](../enums/distribution-type.md) - Типы проката
-- [`Country`](country.md) - Модель страны
+- [`Country`](./country.md) - Модель страны
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами

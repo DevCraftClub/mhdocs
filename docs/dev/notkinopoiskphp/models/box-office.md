@@ -551,4 +551,4 @@ foreach ($analysis['currencyBreakdown'] as $currency => $data) {
 
 - [`BoxOfficeType`](../enums/box-office-type.md) - Типы кассовых сборов
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами
-- [`Film`](film.md) - Модель фильма
+- [`Film`](./film.md) - Модель фильма

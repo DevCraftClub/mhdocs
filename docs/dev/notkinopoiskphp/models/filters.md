@@ -522,6 +522,6 @@ foreach ($analysis['popularCountries'] as $country) {
 
 ## Связанные классы
 
-- [`Genre`](genre.md) - Модель жанра
-- [`Country`](country.md) - Модель страны
+- [`Genre`](./genre.md) - Модель жанра
+- [`Country`](./country.md) - Модель страны
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами

@@ -12,46 +12,47 @@
 
 ### 🎬 Основные модели фильмов
 
-- [Film](film.md) - Основная модель фильма/сериала
-- [FilmSearchResult](film-search-result.md) - Результат поиска фильмов
-- [FilmCollection](film-collection.md) - Коллекция фильмов
-- [RelatedFilm](related-film.md) - Связанный фильм
-- [Episode](episode.md) - Эпизод сериала
-- [Season](season.md) - Сезон сериала
+- [Film](./film.md) - Основная модель фильма/сериала
+- [FilmSearchResult](./film-search-result.md) - Результат поиска фильмов
+- [FilmCollection](./film-collection.md) - Коллекция фильмов
+- [RelatedFilm](./related-film.md) - Связанный фильм
+- [Episode](./episode.md) - Эпизод сериала
+- [Season](./season.md) - Сезон сериала
 
 ### 👥 Модели персон
 
-- [Person](person.md) - Основная модель персоны
-- [Staff](staff.md) - Съемочная группа
-- [PersonFilm](person-film.md) - Фильм персоны
-- [PersonSpouse](person-spouse.md) - Супруг персоны
+- [Person](./person.md) - Основная модель персоны
+- [Staff](./staff.md) - Съемочная группа
+- [PersonFilm](./person-film.md) - Фильм персоны
+- [PersonSpouse](./person-spouse.md) - Супруг персоны
+- [PersonByNameResult](./person-by-name-result.md) - Результат поиска персоны по имени
 
 ### 📊 Модели контента
 
-- [Review](review.md) - Отзыв
-- [Fact](fact.md) - Факт
-- [Image](image.md) - Изображение
-- [Video](video.md) - Видео
-- [MediaPost](media-post.md) - Медиа пост
+- [Review](./review.md) - Отзыв
+- [Fact](./fact.md) - Факт
+- [Image](./image.md) - Изображение
+- [Video](./video.md) - Видео
+- [MediaPost](./media-post.md) - Медиа пост
 
 ### 🏆 Модели наград и статистики
 
-- [Award](award.md) - Награда
-- [BoxOffice](box-office.md) - Кассовые сборы
-- [UserVote](user-vote.md) - Голос пользователя
-- [ExternalSource](external-source.md) - Внешний источник
+- [Award](./award.md) - Награда
+- [BoxOffice](./box-office.md) - Кассовые сборы
+- [UserVote](./user-vote.md) - Голос пользователя
+- [ExternalSource](./external-source.md) - Внешний источник
 
 ### 🌍 Справочные модели
 
-- [Country](country.md) - Страна
-- [Genre](genre.md) - Жанр
-- [Distribution](distribution.md) - Дистрибуция
+- [Country](./country.md) - Страна
+- [Genre](./genre.md) - Жанр
+- [Distribution](./distribution.md) - Дистрибуция
 
 ### 🔑 Модели API
 
-- [ApiKeyInfo](api-key-info.md) - Информация об API ключе
-- [ApiKeyQouta](api-key-qouta.md) - Квота API ключа
-- [Filters](filters.md) - Фильтры
+- [ApiKeyInfo](./api-key-info.md) - Информация об API ключе
+- [ApiKeyQouta](./api-key-qouta.md) - Квота API ключа
+- [Filters](./filters.md) - Фильтры
 
 ## 🔗 Связанные компоненты
 
@@ -121,6 +122,28 @@ $staffData = [
 ];
 
 $staff = Staff::fromArray($staffData);
+
+// Создание модели информации об API ключе
+$apiKeyData = [
+    'totalQuota' => ['value' => 1000, 'used' => 150],
+    'dailyQuota' => ['value' => 100, 'used' => 25],
+    'accountType' => 'FREE'
+];
+
+$apiKeyInfo = \NotKinopoisk\Models\ApiKeyInfo::fromArray($apiKeyData);
+
+// Создание модели результата поиска персоны
+$personSearchData = [
+    'kinopoiskId' => 66539,
+    'webUrl' => '10096',
+    'nameRu' => 'Винс Гиллиган',
+    'nameEn' => 'Vince Gilligan',
+    'sex' => 'MALE',
+    'posterUrl' => 'https://kinopoiskapiunofficial.tech/images/actor_posters/kp/10096.jpg'
+];
+
+$personResult = \NotKinopoisk\Models\PersonByNameResult::fromArray($personSearchData);
+
 ```
 
 ### Работа с моделями
@@ -144,9 +167,27 @@ if ($staff->isDirector()) {
 
 // Преобразование в массив
 $filmArray = $film->toArray();
+
+// Работа с информацией об API ключе
+echo "Тип аккаунта: {$apiKeyInfo->accountType->getDisplayName()}\n";
+echo "Осталось запросов: {$apiKeyInfo->getRemainingTotalQuota()}\n";
+
+if ($apiKeyInfo->isUnlimited()) {
+    echo "Безлимитный аккаунт!\n";
+}
+
+// Работа с результатом поиска персоны
+echo "Персона: {$personResult->getDisplayName()}\n";
+echo "Полное имя: {$personResult->getFullName()}\n";
+
+if ($personResult->isMale()) {
+    echo "Пол: Мужской\n";
+}
 ```
 
 ## 📊 Статистика моделей
+
+**Всего моделей: 28**
 
 ### Основные модели фильмов (6)
 
@@ -163,6 +204,7 @@ $filmArray = $film->toArray();
 - **Staff** - Съемочная группа
 - **PersonFilm** - Фильмография
 - **PersonSpouse** - Семейные связи
+- **PersonByNameResult** - Результаты поиска персон
 
 ### Модели контента (5)
 
@@ -292,6 +334,69 @@ if ($staff->isDirector()) {
     echo "Роль: Сценарист\n";
 } elseif ($staff->isProducer()) {
     echo "Роль: Продюсер\n";
+}
+```
+
+### Работа с информацией об API ключе
+
+```php
+$apiKeyInfo = ApiKeyInfo::fromArray($apiKeyData);
+
+echo "Тип аккаунта: {$apiKeyInfo->accountType->getDisplayName()}\n";
+echo "Общий лимит: {$apiKeyInfo->totalQuota->value}\n";
+echo "Использовано: {$apiKeyInfo->totalQuota->used}\n";
+echo "Осталось: {$apiKeyInfo->getRemainingTotalQuota()}\n";
+
+// Проверка типа аккаунта
+if ($apiKeyInfo->isUnlimited()) {
+    echo "Безлимитный аккаунт - ограничений нет\n";
+} else {
+    echo "Ограниченный аккаунт\n";
+
+    // Проверка лимитов
+    $remainingTotal = $apiKeyInfo->getRemainingTotalQuota();
+    $remainingDaily = $apiKeyInfo->getRemainingDailyQuota();
+
+    if ($remainingTotal <= 0) {
+        echo "Общий лимит исчерпан!\n";
+    } else {
+        echo "Осталось общих запросов: {$remainingTotal}\n";
+    }
+
+    if ($remainingDaily <= 0) {
+        echo "Дневной лимит исчерпан!\n";
+    } else {
+        echo "Осталось дневных запросов: {$remainingDaily}\n";
+    }
+}
+```
+
+### Работа с результатом поиска персоны
+
+```php
+$personResult = PersonByNameResult::fromArray($personSearchData);
+
+echo "ID: {$personResult->kinopoiskId}\n";
+echo "Имя: {$personResult->getDisplayName()}\n";
+echo "Полное имя: {$personResult->getFullName()}\n";
+echo "Постер: {$personResult->posterUrl}\n";
+
+// Проверка пола
+if ($personResult->isMale()) {
+    echo "Пол: Мужской\n";
+} elseif ($personResult->isFemale()) {
+    echo "Пол: Женский\n";
+} else {
+    echo "Пол: Неизвестен\n";
+}
+
+// Проверка наличия имен
+if ($personResult->nameRu) {
+    echo "Имя на русском: {$personResult->nameRu}\n";
+}
+
+if ($personResult->nameEn) {
+    echo "Имя на английском: {$personResult->nameEn}\n";
 }
 ```
 

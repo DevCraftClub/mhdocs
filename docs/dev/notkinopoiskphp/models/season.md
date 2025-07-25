@@ -504,5 +504,5 @@ foreach ($analysis['seasonDistribution'] as $season => $percentage) {
 
 ## Связанные классы
 
-- [`Episode`](episode.md) - Модель эпизода
+- [`Episode`](./episode.md) - Модель эпизода
 - [`FilmService`](../services/film-service.md) - Сервис для работы с фильмами
