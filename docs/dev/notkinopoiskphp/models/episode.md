@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Episode - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по episode. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, episode, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Episode"
+og:description: "Документация по episode. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Episode"
+twitter:description: "Документация по episode. Часть API wrapper для КиноПоиска."
+---
+
 # Episode
 
 Модель эпизода сериала из Kinopoisk API.

@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Award - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по award. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, award, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Award"
+og:description: "Документация по award. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Award"
+twitter:description: "Документация по award. Часть API wrapper для КиноПоиска."
+---
+
 # Award
 
 Модель награды из Kinopoisk API.

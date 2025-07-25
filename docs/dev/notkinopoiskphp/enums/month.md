@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "Month - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по month. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, month, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Month"
+og:description: "Документация по month. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Month"
+twitter:description: "Документация по month. Часть API wrapper для КиноПоиска."
+---
+
 # Month
 
 Enum месяцев года для API запросов.

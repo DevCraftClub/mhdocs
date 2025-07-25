@@ -13,7 +13,6 @@ mike
 mkdocs-autolinks-plugin
 mkdocs-autorefs
 mkdocs-awesome-nav
-mkdocs-enumerate-headings-plugin
 mkdocs-exclude
 mkdocs-exclude-search
 mkdocs-git-authors-plugin
@@ -30,7 +29,6 @@ mkdocs-meta-manager
 mkdocs-minify-plugin
 mkdocs-redirects
 mkdocs-section-index
-mkdocs-spellcheck
 neoteroi-mkdocs
 pandas
 pip-chill

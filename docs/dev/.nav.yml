@@ -9,7 +9,7 @@ nav:
     - KinopoiskUnoffical PHP: notkinopoiskphp/
   - Бесплатные разработки:
     - DB Manager: db_manager/
-    - RePost: repost/
+    - "Re: Post": repost/
     - DLE Faker: dle_faker/
     - Telegram Posting: telegramposting/
     - MH Admin: mhadmin/

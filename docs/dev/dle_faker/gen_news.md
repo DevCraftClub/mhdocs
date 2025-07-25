@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Генератор
+title: "Генератор новостей - DevCraft Документации"
+description: "Документация по плагину генератор новостей для DLE."
+keywords: "PHP, DLE, Плагин, Генератор, генератор новостей, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Генератор новостей"
+og:description: "Документация по плагину генератор новостей для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Генератор новостей"
+twitter:description: "Документация по плагину генератор новостей для DLE."
+---
+
 # Генератор новостей
 
 Генератор новостей работает по следующему принципу:

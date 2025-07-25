@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "ApiVersion - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по apiversion. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, apiversion, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "ApiVersion"
+og:description: "Документация по apiversion. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "ApiVersion"
+twitter:description: "Документация по apiversion. Часть API wrapper для КиноПоиска."
+---
+
 # ApiVersion
 
 Перечисление версий API Kinopoisk Unofficial.

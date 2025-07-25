@@ -5,13 +5,13 @@ tags:
   - Плагин
   - Kinopoisk
   - Wrapper
-title: "NotKinopoiskPHP - DevCraft Документации"
+title: "NotKinopoiskPHP - KinopoiskUnofficialTech PHP Wrapper"
 description: "PHP wrapper для API КиноПоиска. Полная документация по использованию NotKinopoiskPHP."
 keywords: "NotKinopoiskPHP, КиноПоиск, API, PHP, wrapper, kinopoiskunofficial.tech"
 author: "Maxim Harder"
 og:title: "NotKinopoiskPHP - PHP wrapper для КиноПоиска"
 og:description: "PHP wrapper для API КиноПоиска с полной документацией"
-og:image: "https://devcraft.club/assets/images/logo.png"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 twitter:title: "NotKinopoiskPHP - PHP wrapper для КиноПоиска"
 twitter:description: "PHP wrapper для API КиноПоиска с полной документацией"
 ---

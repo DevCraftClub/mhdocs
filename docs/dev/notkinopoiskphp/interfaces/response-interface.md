@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Интерфейсы
+title: "ResponseInterface - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по responseinterface. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Интерфейсы, responseinterface, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "ResponseInterface"
+og:description: "Документация по responseinterface. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "ResponseInterface"
+twitter:description: "Документация по responseinterface. Часть API wrapper для КиноПоиска."
+---
+
 # ResponseInterface
 
 Интерфейс для объектов ответов Kinopoisk API.

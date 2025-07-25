@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: UpdatesChecker - MH Admin"
+description: "Документация по плагину класс: updateschecker для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: updateschecker, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: UpdatesChecker"
+og:description: "Документация по плагину класс: updateschecker для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: UpdatesChecker"
+twitter:description: "Документация по плагину класс: updateschecker для DLE."
+---
+
 # Класс: UpdatesChecker
 
 ## Краткое содержание:

@@ -5,17 +5,18 @@ keywords: "Release Status, DLE, релизы, статусы, модуль"
 author: "Maxim Harder"
 og:title: "Release Status - модуль статусов релизов"
 og:description: "Документация по модулю Release Status для DLE"
-og:image: "https://devcraft.club/assets/images/logo.png"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 twitter:title: "Release Status - модуль статусов релизов"
 twitter:description: "Документация по модулю Release Status для DLE"
 tags:
   - DLE
   - Плагин
+  - Не поддерживается
 ---
 
 # ReleaseStatus
 
-**Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/releasestatus.6/)
+**Ссылка на разработку**: [ Перейти к разработке](https://devcraft.club/downloads/releasestatus.6/)
 
 **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 1.0.0
 
@@ -23,22 +24,7 @@ tags:
 
 - Залить файлы из папки uploads в корень сайта (уделите внимание папке Default в папке templates)
 - Запустите файл install.php в корне вашего сайта, а затем удалите
-- В шаблонах откройте файл main.tpl и пропишите до
-
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128839302-1"></script>
-<script>
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-
-        gtag('config', 'UA-128839302-1', {"anonymize_ip":true});
-
-        </script>
-</head>
-```
+- В шаблонах откройте файл main.tpl и добавьте стиль
 
 ```html
 <link href="{THEME}/releasestatus/main.css" type="text/css" rel="stylesheet" />

@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "ReviewType - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по reviewtype. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, reviewtype, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "ReviewType"
+og:description: "Документация по reviewtype. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "ReviewType"
+twitter:description: "Документация по reviewtype. Часть API wrapper для КиноПоиска."
+---
+
 # ReviewType
 
 Типы рецензий в Kinopoisk API.

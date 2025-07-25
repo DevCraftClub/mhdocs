@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "DistributionSubType - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по distributionsubtype. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, distributionsubtype, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "DistributionSubType"
+og:description: "Документация по distributionsubtype. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "DistributionSubType"
+twitter:description: "Документация по distributionsubtype. Часть API wrapper для КиноПоиска."
+---
+
 # DistributionSubType
 
 ## Описание

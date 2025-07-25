@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Сервисы
+title: "PersonService - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по personservice. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Сервисы, personservice, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "PersonService"
+og:description: "Документация по personservice. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "PersonService"
+twitter:description: "Документация по personservice. Часть API wrapper для КиноПоиска."
+---
+
 # PersonService
 
 Сервис для работы с персонами в Kinopoisk API.

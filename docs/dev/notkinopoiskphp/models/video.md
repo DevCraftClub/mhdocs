@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Video - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по video. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, video, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Video"
+og:description: "Документация по video. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Video"
+twitter:description: "Документация по video. Часть API wrapper для КиноПоиска."
+---
+
 # Video
 
 Модель видео из Kinopoisk API.

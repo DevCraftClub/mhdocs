@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Исключения
+title: "ResourceNotFoundException - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по resourcenotfoundexception. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Исключения, resourcenotfoundexception, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "ResourceNotFoundException"
+og:description: "Документация по resourcenotfoundexception. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "ResourceNotFoundException"
+twitter:description: "Документация по resourcenotfoundexception. Часть API wrapper для КиноПоиска."
+---
+
 # ResourceNotFoundException
 
 Исключение для ненайденных ресурсов в API.

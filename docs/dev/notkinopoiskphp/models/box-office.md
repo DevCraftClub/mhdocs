@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "BoxOffice - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по boxoffice. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, boxoffice, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "BoxOffice"
+og:description: "Документация по boxoffice. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "BoxOffice"
+twitter:description: "Документация по boxoffice. Часть API wrapper для КиноПоиска."
+---
+
 # BoxOffice
 
 Модель кассовых сборов из Kinopoisk API.

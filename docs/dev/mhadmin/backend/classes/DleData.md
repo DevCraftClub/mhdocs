@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: DleData - MH Admin"
+description: "Документация по плагину класс: dledata для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: dledata, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: DleData"
+og:description: "Документация по плагину класс: dledata для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: DleData"
+twitter:description: "Документация по плагину класс: dledata для DLE."
+---
+
 # Класс: DleData
 
 ## Краткое содержание:

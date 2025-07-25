@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Плагин
+title: "Абстрактные классы - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по абстрактные классы. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Плагин, абстрактные классы, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Абстрактные классы"
+og:description: "Документация по абстрактные классы. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Абстрактные классы"
+twitter:description: "Документация по абстрактные классы. Часть API wrapper для КиноПоиска."
+---
+
 # Абстрактные классы
 
 Абстрактные базовые классы библиотеки NotKinopoisk PHP Wrapper.

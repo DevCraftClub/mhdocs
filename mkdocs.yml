@@ -82,9 +82,6 @@ plugins:
   - import-statement
   - meta-manager
   - git-authors
-  - enumerate-headings:
-      toc_depth: 3
-      increment_across_pages: false
   - htmlproofer
   - link-marker
   - neoteroi.mkdocsoad:

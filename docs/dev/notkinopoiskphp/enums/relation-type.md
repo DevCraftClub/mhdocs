@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "RelationType - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по relationtype. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, relationtype, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "RelationType"
+og:description: "Документация по relationtype. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "RelationType"
+twitter:description: "Документация по relationtype. Часть API wrapper для КиноПоиска."
+---
+
 # RelationType
 
 Типы связи между фильмами в Kinopoisk API.

@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Ответы
+title: "ReviewResponse - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по reviewresponse. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Ответы, reviewresponse, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "ReviewResponse"
+og:description: "Документация по reviewresponse. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "ReviewResponse"
+twitter:description: "Документация по reviewresponse. Часть API wrapper для КиноПоиска."
+---
+
 # ReviewResponse
 
 ## Описание

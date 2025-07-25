@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Интерфейсы
+title: "ModelInterface - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по modelinterface. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Интерфейсы, modelinterface, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "ModelInterface"
+og:description: "Документация по modelinterface. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "ModelInterface"
+twitter:description: "Документация по modelinterface. Часть API wrapper для КиноПоиска."
+---
+
 # ModelInterface
 
 Интерфейс для моделей с возможностью преобразования в/из массива.

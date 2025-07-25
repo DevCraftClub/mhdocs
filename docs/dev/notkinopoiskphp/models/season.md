@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Season - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по season. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, season, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Season"
+og:description: "Документация по season. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Season"
+twitter:description: "Документация по season. Часть API wrapper для КиноПоиска."
+---
+
 # Season
 
 Модель сезона сериала из Kinopoisk API.

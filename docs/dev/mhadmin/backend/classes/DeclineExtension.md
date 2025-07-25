@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: DeclineExtension - MH Admin"
+description: "Документация по плагину класс: declineextension для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: declineextension, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: DeclineExtension"
+og:description: "Документация по плагину класс: declineextension для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: DeclineExtension"
+twitter:description: "Документация по плагину класс: declineextension для DLE."
+---
+
 # Класс: DeclineExtension
 
 ## Краткое содержание:

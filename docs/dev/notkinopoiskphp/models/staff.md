@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Staff - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по staff. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, staff, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Staff"
+og:description: "Документация по staff. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Staff"
+twitter:description: "Документация по staff. Часть API wrapper для КиноПоиска."
+---
+
 # Staff
 
 Модель персонала фильма из Kinopoisk API.

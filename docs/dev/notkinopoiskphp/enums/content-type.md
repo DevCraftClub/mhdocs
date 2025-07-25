@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "ContentType - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по contenttype. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, contenttype, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "ContentType"
+og:description: "Документация по contenttype. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "ContentType"
+twitter:description: "Документация по contenttype. Часть API wrapper для КиноПоиска."
+---
+
 # ContentType
 
 Типы контента в Kinopoisk API.

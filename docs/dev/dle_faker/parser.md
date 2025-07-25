@@ -1,3 +1,21 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Генератор
+  - Парсер
+title: "Парсинг данных с шаблонов - DLE Faker"
+description: "Документация по плагину парсинг данных с шаблонов для DLE."
+keywords: "PHP, DLE, Плагин, Генератор, парсинг данных с шаблонов, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Парсинг данных с шаблонов"
+og:description: "Документация по плагину парсинг данных с шаблонов для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Парсинг данных с шаблонов"
+twitter:description: "Документация по плагину парсинг данных с шаблонов для DLE."
+---
+
 # Парсинг данных с шаблонов
 
 Процесс обработки шаблонов происходит при AJAX запросе. В данном случае за этот процесс отвечает файл: `upload/engine/ajax/maharder/dle_faker/parse_content.php`.

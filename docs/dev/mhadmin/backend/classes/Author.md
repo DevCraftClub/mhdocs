@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: Author - MH Admin"
+description: "Документация по плагину класс: author для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: author, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: Author"
+og:description: "Документация по плагину класс: author для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: Author"
+twitter:description: "Документация по плагину класс: author для DLE."
+---
+
 # Класс: Author
 
 ## Краткое содержание:

@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Сервисы
+title: "MediaService - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по mediaservice. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Сервисы, mediaservice, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "MediaService"
+og:description: "Документация по mediaservice. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "MediaService"
+twitter:description: "Документация по mediaservice. Часть API wrapper для КиноПоиска."
+---
+
 # MediaService
 
 Сервис для работы с медиа контентом в Kinopoisk API.

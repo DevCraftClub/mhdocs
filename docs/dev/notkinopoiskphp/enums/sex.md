@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "Sex - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по sex. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, sex, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Sex"
+og:description: "Документация по sex. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Sex"
+twitter:description: "Документация по sex. Часть API wrapper для КиноПоиска."
+---
+
 # Sex
 
 Пол из Kinopoisk API.

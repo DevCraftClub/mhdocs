@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Ответы
+title: "MovieStaffResponse - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по moviestaffresponse. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Ответы, moviestaffresponse, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "MovieStaffResponse"
+og:description: "Документация по moviestaffresponse. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "MovieStaffResponse"
+twitter:description: "Документация по moviestaffresponse. Часть API wrapper для КиноПоиска."
+---
+
 # MovieStaffResponse
 
 ## Описание

@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "История изменений - MH Admin"
+description: "Документация по плагину история изменений для DLE."
+keywords: "PHP, DLE, Плагин, Админка, история изменений, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "История изменений"
+og:description: "Документация по плагину история изменений для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "История изменений"
+twitter:description: "Документация по плагину история изменений для DLE."
+---
+
 # История изменений
 
 +/- 173.3.3

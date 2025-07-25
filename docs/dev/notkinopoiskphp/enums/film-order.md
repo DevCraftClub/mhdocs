@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "FilmOrder - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по filmorder. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, filmorder, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "FilmOrder"
+og:description: "Документация по filmorder. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "FilmOrder"
+twitter:description: "Документация по filmorder. Часть API wrapper для КиноПоиска."
+---
+
 # FilmOrder
 
 Порядок сортировки фильмов в Kinopoisk API.

@@ -1,5 +1,5 @@
 ---
-title: DLE Re:: Post
+title: "DLE Re: Post"
 tags:
     - PHP
     - DLE

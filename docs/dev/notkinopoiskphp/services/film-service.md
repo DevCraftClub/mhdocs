@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Сервисы
+title: "FilmService - Сервис для работы с фильмами - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по filmservice - сервис для работы с фильмами. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Сервисы, filmservice - сервис для работы с фильмами, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "FilmService - Сервис для работы с фильмами"
+og:description: "Документация по filmservice - сервис для работы с фильмами. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "FilmService - Сервис для работы с фильмами"
+twitter:description: "Документация по filmservice - сервис для работы с фильмами. Часть API wrapper для КиноПоиска."
+---
+
 # FilmService - Сервис для работы с фильмами
 
 Сервис для работы с фильмами в Kinopoisk API.

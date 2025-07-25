@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: MhLogRepository - MH Admin"
+description: "Документация по плагину класс: mhlogrepository для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: mhlogrepository, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: MhLogRepository"
+og:description: "Документация по плагину класс: mhlogrepository для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: MhLogRepository"
+twitter:description: "Документация по плагину класс: mhlogrepository для DLE."
+---
+
 # Класс: MhLogRepository
 
 ## Краткое содержание:

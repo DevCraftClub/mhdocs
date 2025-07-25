@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Плагин
+title: "Карта навигации документации - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по карта навигации документации. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Плагин, карта навигации документации, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Карта навигации документации"
+og:description: "Документация по карта навигации документации. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Карта навигации документации"
+twitter:description: "Документация по карта навигации документации. Часть API wrapper для КиноПоиска."
+---
+
 # Карта навигации документации
 
 Интерактивная карта навигации по всей документации NotKinopoisk PHP Library.

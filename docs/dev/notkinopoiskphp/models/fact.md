@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Fact - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по fact. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, fact, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Fact"
+og:description: "Документация по fact. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Fact"
+twitter:description: "Документация по fact. Часть API wrapper для КиноПоиска."
+---
+
 # Fact
 
 Модель факта из Kinopoisk API.

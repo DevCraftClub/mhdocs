@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Настройка - MH Admin"
+description: "Документация по плагину настройка для DLE."
+keywords: "PHP, DLE, Плагин, Админка, настройка, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Настройка"
+og:description: "Документация по плагину настройка для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Настройка"
+twitter:description: "Документация по плагину настройка для DLE."
+---
+
 # Настройка
 
 Административная панель работает на основе [Fomantic UI](https://fomantic-ui.com)

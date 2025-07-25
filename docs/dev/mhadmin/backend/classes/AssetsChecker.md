@@ -1,4 +1,21 @@
-# Класс: \AssetsChecker
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: AssetsChecker - MH Admin"
+description: "Документация по плагину класс: AssetsChecker для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: AssetsChecker, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: AssetsChecker"
+og:description: "Документация по плагину класс: AssetsChecker для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: AssetsChecker"
+twitter:description: "Документация по плагину класс: AssetsChecker для DLE."
+---
+
+# Класс: AssetsChecker
 
 ## Краткое содержание:
 

@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Genre - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по genre. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, genre, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Genre"
+og:description: "Документация по genre. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Genre"
+twitter:description: "Документация по genre. Часть API wrapper для КиноПоиска."
+---
+
 # Genre
 
 Модель жанра из Kinopoisk API.

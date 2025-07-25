@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Ответы
+title: "DefaultResponse - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по defaultresponse. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Ответы, defaultresponse, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "DefaultResponse"
+og:description: "Документация по defaultresponse. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "DefaultResponse"
+twitter:description: "Документация по defaultresponse. Часть API wrapper для КиноПоиска."
+---
+
 # DefaultResponse
 
 Базовый класс для ответов Kinopoisk API.

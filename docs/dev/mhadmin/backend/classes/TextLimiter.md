@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: TextLimiter - MH Admin"
+description: "Документация по плагину класс: textlimiter для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: textlimiter, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: TextLimiter"
+og:description: "Документация по плагину класс: textlimiter для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: TextLimiter"
+twitter:description: "Документация по плагину класс: textlimiter для DLE."
+---
+
 # Класс: TextLimiter
 
 ## Краткое содержание:

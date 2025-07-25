@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Исключения
+title: "Исключения - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по исключения. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Исключения, исключения, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Исключения"
+og:description: "Документация по исключения. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Исключения"
+twitter:description: "Документация по исключения. Часть API wrapper для КиноПоиска."
+---
+
 # Исключения
 
 Классы исключений для обработки ошибок в Kinopoisk API.

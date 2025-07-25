@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Сервисы
+title: "AbstractService - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по abstractservice. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Сервисы, abstractservice, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "AbstractService"
+og:description: "Документация по abstractservice. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "AbstractService"
+twitter:description: "Документация по abstractservice. Часть API wrapper для КиноПоиска."
+---
+
 # AbstractService
 
 ## Описание

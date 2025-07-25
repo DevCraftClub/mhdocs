@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Исключения
+title: "RateLimitException - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по ratelimitexception. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Исключения, ratelimitexception, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "RateLimitException"
+og:description: "Документация по ratelimitexception. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "RateLimitException"
+twitter:description: "Документация по ratelimitexception. Часть API wrapper для КиноПоиска."
+---
+
 # RateLimitException
 
 Исключение для превышения лимитов запросов к API.

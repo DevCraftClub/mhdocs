@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "DistributionType - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по distributiontype. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, distributiontype, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "DistributionType"
+og:description: "Документация по distributiontype. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "DistributionType"
+twitter:description: "Документация по distributiontype. Часть API wrapper для КиноПоиска."
+---
+
 # DistributionType
 
 Типы проката в Kinopoisk API.

@@ -7,7 +7,7 @@ keywords: "DevCraft, DLE, CMS, документация, разработка"
 author: "Maxim Harder"
 og:title: "DevCraft Документации"
 og:description: "Документация DevCraft - разработки для DLE и других CMS"
-og:image: "https://devcraft.club/assets/images/logo.png"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 twitter:title: "DevCraft Документации"
 twitter:description: "Документация DevCraft - разработки для DLE и других CMS"
 ---

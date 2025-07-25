@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Интерфейсы
+title: "Интерфейсы - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по интерфейсы. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Интерфейсы, интерфейсы, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Интерфейсы"
+og:description: "Документация по интерфейсы. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Интерфейсы"
+twitter:description: "Документация по интерфейсы. Часть API wrapper для КиноПоиска."
+---
+
 # Интерфейсы
 
 Базовые интерфейсы для определения контрактов в Kinopoisk API.

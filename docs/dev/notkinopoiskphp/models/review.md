@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Review - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по review. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, review, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Review"
+og:description: "Документация по review. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Review"
+twitter:description: "Документация по review. Часть API wrapper для КиноПоиска."
+---
+
 # Review
 
 Модель рецензии из Kinopoisk API.

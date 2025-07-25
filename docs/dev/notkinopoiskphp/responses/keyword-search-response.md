@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Ответы
+title: "KeywordSearchResponse - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по keywordsearchresponse. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Ответы, keywordsearchresponse, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "KeywordSearchResponse"
+og:description: "Документация по keywordsearchresponse. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "KeywordSearchResponse"
+twitter:description: "Документация по keywordsearchresponse. Часть API wrapper для КиноПоиска."
+---
+
 # KeywordSearchResponse
 
 Ответ на поиск фильмов по ключевому слову.

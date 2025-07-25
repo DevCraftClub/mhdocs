@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Country - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по country. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, country, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Country"
+og:description: "Документация по country. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Country"
+twitter:description: "Документация по country. Часть API wrapper для КиноПоиска."
+---
+
 # Country
 
 Модель страны из Kinopoisk API.

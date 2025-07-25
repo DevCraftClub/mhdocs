@@ -1,6 +1,23 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Платно
+title: "Цены по курсу валют"
+description: "Документация по плагину цены по курсу валют для DLE."
+keywords: "PHP, DLE, Плагин, Платно, цены по курсу валют, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Цены по курсу валют"
+og:description: "Документация по плагину цены по курсу валют для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Цены по курсу валют"
+twitter:description: "Документация по плагину цены по курсу валют для DLE."
+---
+
 # Цены по курсу валют
 
-**Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/shop/cena-po-kursu-valjut.4/)
+**Ссылка на разработку**: [Перейти к разработке](https://devcraft.club/shop/cena-po-kursu-valjut.4/)
 
 **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 3.1.1
 

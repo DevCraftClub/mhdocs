@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Distribution - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по distribution. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, distribution, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Distribution"
+og:description: "Документация по distribution. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Distribution"
+twitter:description: "Документация по distribution. Часть API wrapper для КиноПоиска."
+---
+
 # Distribution
 
 Модель данных о прокате фильма из Kinopoisk API.

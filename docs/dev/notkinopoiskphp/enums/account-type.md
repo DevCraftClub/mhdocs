@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "AccountType - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по accounttype. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, accounttype, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "AccountType"
+og:description: "Документация по accounttype. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "AccountType"
+twitter:description: "Документация по accounttype. Часть API wrapper для КиноПоиска."
+---
+
 # AccountType
 
 ## Описание

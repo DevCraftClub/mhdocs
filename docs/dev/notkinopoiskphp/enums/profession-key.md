@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "ProfessionKey - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по professionkey. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, professionkey, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "ProfessionKey"
+og:description: "Документация по professionkey. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "ProfessionKey"
+twitter:description: "Документация по professionkey. Часть API wrapper для КиноПоиска."
+---
+
 # ProfessionKey
 
 Enum профессий персоны в фильме.

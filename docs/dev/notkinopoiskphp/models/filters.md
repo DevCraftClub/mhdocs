@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Filters - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по filters. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, filters, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Filters"
+og:description: "Документация по filters. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Filters"
+twitter:description: "Документация по filters. Часть API wrapper для КиноПоиска."
+---
+
 # Filters
 
 Модель фильтров из Kinopoisk API.

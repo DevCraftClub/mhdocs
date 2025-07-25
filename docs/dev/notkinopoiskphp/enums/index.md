@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "Перечисления (Enums) - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по перечисления (enums). Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, перечисления (enums), DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Перечисления (Enums)"
+og:description: "Документация по перечисления (enums). Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Перечисления (Enums)"
+twitter:description: "Документация по перечисления (enums). Часть API wrapper для КиноПоиска."
+---
+
 # Перечисления (Enums)
 
 Перечисления для определения констант и типов в Kinopoisk API.

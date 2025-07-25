@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Класс: MhAjax - MH Admin"
+description: "Документация по плагину класс: mhajax для DLE."
+keywords: "PHP, DLE, Плагин, Админка, класс: mhajax, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Класс: MhAjax"
+og:description: "Документация по плагину класс: mhajax для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Класс: MhAjax"
+twitter:description: "Документация по плагину класс: mhajax для DLE."
+---
+
 # Класс: MhAjax
 
 ## Краткое содержание:

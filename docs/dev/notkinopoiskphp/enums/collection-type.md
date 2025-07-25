@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "CollectionType - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по collectiontype. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, collectiontype, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "CollectionType"
+og:description: "Документация по collectiontype. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "CollectionType"
+twitter:description: "Документация по collectiontype. Часть API wrapper для КиноПоиска."
+---
+
 # CollectionType
 
 Типы коллекций фильмов в Kinopoisk API.

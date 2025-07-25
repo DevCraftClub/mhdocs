@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Генератор
+title: "Теги для всех шаблонов - DLE Faker"
+description: "Документация по плагину теги для всех шаблонов для DLE."
+keywords: "PHP, DLE, Плагин, Генератор, теги для всех шаблонов, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Теги для всех шаблонов"
+og:description: "Документация по плагину теги для всех шаблонов для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Теги для всех шаблонов"
+twitter:description: "Документация по плагину теги для всех шаблонов для DLE."
+---
+
 # Теги для всех шаблонов
 
 Данные теги будут доступны для всех шаблонов, поскольку они универсальны.

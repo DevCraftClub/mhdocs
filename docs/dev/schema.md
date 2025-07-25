@@ -5,7 +5,7 @@ keywords: "Schema.Org, разметка, SEO, структурированные
 author: "Maxim Harder"
 og:title: "Schema.Org разметка"
 og:description: "Документация по интеграции Schema.Org разметки"
-og:image: "https://devcraft.club/assets/images/logo.png"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 twitter:title: "Schema.Org разметка"
 twitter:description: "Документация по интеграции Schema.Org разметки"
 tags:
@@ -14,6 +14,7 @@ tags:
   - Плагин
   - Schema.org
   - SEO
+  - Не поддерживается
 ---
 
 # SCHEMA.ORG
@@ -25,15 +26,15 @@ tags:
 Для начала, я советую просмотреть саму структуру построения: ** [Movie - schema.org](http://schema.org/Movie)**. Для себя я выбрал следующие поля:
 
 - **contributor**или **countryOfOrigin**(лучше первое) - Страна
-- **copyrightyear**- Год
-- **genre**- Жанр (если у вас категории являются жанром, то пропускаем)
-- **director**- Режиссёр creator - Сценарист
-- **musicBy**- Композитор
-- **editor**- Монтаж
-- **producer**- Продюсер
-- **provider**- Оператор
-- **translator**- Перевод / озвучание
-- **actor**- Актёры
+- **copyrightyear** - Год
+- **genre** - Жанр (если у вас категории являются жанром, то пропускаем)
+- **director** - Режиссёр creator - Сценарист
+- **musicBy** - Композитор
+- **editor** - Монтаж
+- **producer** - Продюсер
+- **provider** - Оператор
+- **translator** - Перевод / озвучание
+- **actor** - Актёры
 
 !!! warning "Внимание!"
 Нужно (!) создать следующие поля со следующими названиями (одно поле с функцией "Использовать при желании (можно оставить поле пуcтым)" и "Использовать значения полей как перекрестные гиперссылки ")!

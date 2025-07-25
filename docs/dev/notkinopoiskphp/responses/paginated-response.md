@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Ответы
+title: "PaginatedResponse - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по paginatedresponse. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Ответы, paginatedresponse, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "PaginatedResponse"
+og:description: "Документация по paginatedresponse. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "PaginatedResponse"
+twitter:description: "Документация по paginatedresponse. Часть API wrapper для КиноПоиска."
+---
+
 # PaginatedResponse
 
 Пагинированный ответ API с поддержкой навигации по страницам.

@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Абстрактный класс: BasisModel - MH Admin"
+description: "Документация по плагину абстрактный класс: basismodel для DLE."
+keywords: "PHP, DLE, Плагин, Админка, абстрактный класс: basismodel, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Абстрактный класс: BasisModel"
+og:description: "Документация по плагину абстрактный класс: basismodel для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Абстрактный класс: BasisModel"
+twitter:description: "Документация по плагину абстрактный класс: basismodel для DLE."
+---
+
 # Абстрактный класс: BasisModel
 
 ## Краткое содержание:

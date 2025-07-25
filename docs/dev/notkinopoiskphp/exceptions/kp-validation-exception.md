@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Исключения
+title: "KpValidationException - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по kpvalidationexception. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Исключения, kpvalidationexception, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "KpValidationException"
+og:description: "Документация по kpvalidationexception. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "KpValidationException"
+twitter:description: "Документация по kpvalidationexception. Часть API wrapper для КиноПоиска."
+---
+
 # KpValidationException
 
 ## Описание

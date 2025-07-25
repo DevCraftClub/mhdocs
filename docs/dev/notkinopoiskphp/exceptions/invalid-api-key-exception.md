@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Исключения
+title: "InvalidApiKeyException - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по invalidapikeyexception. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Исключения, invalidapikeyexception, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "InvalidApiKeyException"
+og:description: "Документация по invalidapikeyexception. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "InvalidApiKeyException"
+twitter:description: "Документация по invalidapikeyexception. Часть API wrapper для КиноПоиска."
+---
+
 # InvalidApiKeyException
 
 Исключение для неверного или отсутствующего API ключа.

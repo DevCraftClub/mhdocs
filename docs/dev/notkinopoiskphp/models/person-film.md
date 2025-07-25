@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "PersonFilm - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по personfilm. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, personfilm, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "PersonFilm"
+og:description: "Документация по personfilm. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "PersonFilm"
+twitter:description: "Документация по personfilm. Часть API wrapper для КиноПоиска."
+---
+
 # PersonFilm
 
 Модель фильма персоны из Kinopoisk API.

@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "FilmSearchResult - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по filmsearchresult. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, filmsearchresult, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "FilmSearchResult"
+og:description: "Документация по filmsearchresult. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "FilmSearchResult"
+twitter:description: "Документация по filmsearchresult. Часть API wrapper для КиноПоиска."
+---
+
 # FilmSearchResult
 
 Модель результата поиска фильма из Kinopoisk API.

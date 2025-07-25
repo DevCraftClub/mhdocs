@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Содержание классов для разработки в Back-End - MH Admin"
+description: "Документация по плагину содержание классов для разработки в back-end для DLE."
+keywords: "PHP, DLE, Плагин, Админка, содержание классов для разработки в back-end, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Содержание классов для разработки в Back-End"
+og:description: "Документация по плагину содержание классов для разработки в back-end для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Содержание классов для разработки в Back-End"
+twitter:description: "Документация по плагину содержание классов для разработки в back-end для DLE."
+---
+
 # Содержание классов для разработки в Back-End
 
 ## Трейты

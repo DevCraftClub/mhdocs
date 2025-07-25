@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Абстрактный класс: DataManager - MH Admin"
+description: "Документация по плагину абстрактный класс: datamanager для DLE."
+keywords: "PHP, DLE, Плагин, Админка, абстрактный класс: datamanager, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Абстрактный класс: DataManager"
+og:description: "Документация по плагину абстрактный класс: datamanager для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Абстрактный класс: DataManager"
+twitter:description: "Документация по плагину абстрактный класс: datamanager для DLE."
+---
+
 # Абстрактный класс: DataManager
 
 ## Краткое содержание:

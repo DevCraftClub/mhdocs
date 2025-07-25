@@ -4,6 +4,7 @@ tags:
     - PHP
     - DLE
     - Генератор
+title: Установка - DLE Faker
 ---
 # DLE Faker
 

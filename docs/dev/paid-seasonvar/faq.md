@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Платно
+title: "FAQ - SeasonVar"
+description: "Документация по плагину faq для DLE."
+keywords: "PHP, DLE, Плагин, Платно, faq, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "FAQ"
+og:description: "Документация по плагину faq для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "FAQ"
+twitter:description: "Документация по плагину faq для DLE."
+---
+
 # FAQ
 
 Ответы на часто задаваемые вопросы, которые мне задавали после приобретения

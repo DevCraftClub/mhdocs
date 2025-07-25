@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "UserVote - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по uservote. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, uservote, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "UserVote"
+og:description: "Документация по uservote. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "UserVote"
+twitter:description: "Документация по uservote. Часть API wrapper для КиноПоиска."
+---
+
 # UserVote
 
 Модель пользовательского голоса.

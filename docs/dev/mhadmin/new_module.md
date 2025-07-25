@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Админка
+title: "Генератор модуля - MH Admin"
+description: "Документация по плагину генератор модуля для DLE."
+keywords: "PHP, DLE, Плагин, Админка, генератор модуля, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Генератор модуля"
+og:description: "Документация по плагину генератор модуля для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Генератор модуля"
+twitter:description: "Документация по плагину генератор модуля для DLE."
+---
+
 # Генератор модуля
 
 Данный функционал был разработан для облегчённого добавления структуры разработки административной панели плагина.

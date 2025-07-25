@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "BoxOfficeType - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по boxofficetype. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, boxofficetype, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "BoxOfficeType"
+og:description: "Документация по boxofficetype. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "BoxOfficeType"
+twitter:description: "Документация по boxofficetype. Часть API wrapper для КиноПоиска."
+---
+
 # BoxOfficeType
 
 Типы кассовых сборов в Kinopoisk API.

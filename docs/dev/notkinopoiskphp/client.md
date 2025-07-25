@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Плагин
+title: "Client - Основной клиент - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по client - основной клиент. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Плагин, client - основной клиент, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Client - Основной клиент"
+og:description: "Документация по client - основной клиент. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Client - Основной клиент"
+twitter:description: "Документация по client - основной клиент. Часть API wrapper для КиноПоиска."
+---
+
 # Client - Основной клиент
 
 Основной клиент для работы с Kinopoisk API.

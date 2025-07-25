@@ -3,11 +3,13 @@ tags:
   - DLE
   - PHP
   - Хак
+  - Доп. поля
+  - xfields
 ---
 # XF List Generator
 
 **Ссылка на
-разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/xf-list-generator.19/)
+разработку**: [Перейти к разработке](https://devcraft.club/downloads/xf-list-generator.19/)
 
 **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 1.1.0
 

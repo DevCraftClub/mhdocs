@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "Film - Модель фильма - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по film - модель фильма. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, film - модель фильма, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Film - Модель фильма"
+og:description: "Документация по film - модель фильма. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Film - Модель фильма"
+twitter:description: "Документация по film - модель фильма. Часть API wrapper для КиноПоиска."
+---
+
 # Film - Модель фильма
 
 Модель фильма из Kinopoisk API.

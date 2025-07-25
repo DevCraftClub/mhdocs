@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Сервисы
+title: "UserService - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по userservice. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Сервисы, userservice, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "UserService"
+og:description: "Документация по userservice. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "UserService"
+twitter:description: "Документация по userservice. Часть API wrapper для КиноПоиска."
+---
+
 # UserService
 
 Сервис для работы с пользовательскими данными в Kinopoisk API.

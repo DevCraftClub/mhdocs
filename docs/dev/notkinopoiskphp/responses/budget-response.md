@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Ответы
+title: "BudgetResponse - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по budgetresponse. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Ответы, budgetresponse, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "BudgetResponse"
+og:description: "Документация по budgetresponse. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "BudgetResponse"
+twitter:description: "Документация по budgetresponse. Часть API wrapper для КиноПоиска."
+---
+
 # BudgetResponse
 
 ## Описание

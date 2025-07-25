@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "FilmCollection - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по filmcollection. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, filmcollection, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "FilmCollection"
+og:description: "Документация по filmcollection. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "FilmCollection"
+twitter:description: "Документация по filmcollection. Часть API wrapper для КиноПоиска."
+---
+
 # FilmCollection
 
 Модель элемента коллекции фильмов из Kinopoisk API.

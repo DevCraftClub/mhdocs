@@ -1,3 +1,20 @@
+---
+tags:
+  - PHP
+  - DLE
+  - Плагин
+  - Платно
+title: "Seasonvar - SeasonVar"
+description: "Документация по плагину seasonvar для DLE."
+keywords: "PHP, DLE, Плагин, Платно, seasonvar, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Seasonvar"
+og:description: "Документация по плагину seasonvar для DLE."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Seasonvar"
+twitter:description: "Документация по плагину seasonvar для DLE."
+---
+
 # Seasonvar
 
 Адаптивный шаблон для DLE

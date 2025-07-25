@@ -4,13 +4,13 @@ tags:
   - Инструмент
   - Инструкция
   - composer
-title: "Composer - DevCraft Документации"
+title: "Composer - Инструкция по использованию Composer"
 description: "Инструкция по использованию Composer для управления зависимостями в проектах DevCraft."
 keywords: "Composer, PHP, зависимости, DevCraft"
 author: "Maxim Harder"
 og:title: "Composer - управление зависимостями"
 og:description: "Инструкция по использованию Composer для проектов DevCraft"
-og:image: "https://devcraft.club/assets/images/logo.png"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 twitter:title: "Composer - управление зависимостями"
 twitter:description: "Инструкция по использованию Composer для проектов DevCraft"
 ---

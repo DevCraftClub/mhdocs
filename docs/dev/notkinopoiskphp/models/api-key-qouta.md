@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Модели
+title: "ApiKeyQouta - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по apikeyqouta. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Модели, apikeyqouta, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "ApiKeyQouta"
+og:description: "Документация по apikeyqouta. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "ApiKeyQouta"
+twitter:description: "Документация по apikeyqouta. Часть API wrapper для КиноПоиска."
+---
+
 # ApiKeyQouta
 
 ## Описание

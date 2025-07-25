@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Перечисления
+title: "VideoSite - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по videosite. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Перечисления, videosite, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "VideoSite"
+og:description: "Документация по videosite. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "VideoSite"
+twitter:description: "Документация по videosite. Часть API wrapper для КиноПоиска."
+---
+
 # VideoSite
 
 Типы видео-сайтов в Kinopoisk API.

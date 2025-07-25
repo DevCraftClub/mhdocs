@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Ответы
+title: "Ответы API - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по ответы api. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Ответы, ответы api, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Ответы API"
+og:description: "Документация по ответы api. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Ответы API"
+twitter:description: "Документация по ответы api. Часть API wrapper для КиноПоиска."
+---
+
 # Ответы API
 
 Классы для представления ответов от Kinopoisk API.

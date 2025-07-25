@@ -2,20 +2,20 @@
 tags:
   - DLE
   - Плагин
-title: "MyStatus - DevCraft Документации"
+title: "MyStatus - Статус сериалов"
 description: "Документация по модулю MyStatus для DLE. Отображение статуса пользователей."
 keywords: "MyStatus, DLE, статус, пользователи, модуль"
 author: "Maxim Harder"
 og:title: "MyStatus - модуль статуса пользователей"
 og:description: "Документация по модулю MyStatus для DLE"
-og:image: "https://devcraft.club/assets/images/logo.png"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 twitter:title: "MyStatus - модуль статуса пользователей"
 twitter:description: "Документация по модулю MyStatus для DLE"
 ---
 
 # MyStatus - Статус сериалов
 
-**Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/mystatus.5/)
+**Ссылка на разработку**: [Перейти к разработке](https://devcraft.club/downloads/mystatus.5/)
 
 **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 1.0.2.3
 

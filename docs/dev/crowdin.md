@@ -3,13 +3,13 @@ tags:
   - Инструкция
   - crowdin
   - Локализация
-title: "Crowdin - DevCraft Документации"
+title: "Crowdin - Система локализаций"
 description: "Инструкция по работе с Crowdin для локализации проектов DevCraft."
 keywords: "Crowdin, локализация, переводы, DevCraft"
 author: "Maxim Harder"
 og:title: "Crowdin - локализация проектов"
 og:description: "Инструкция по работе с Crowdin для локализации"
-og:image: "https://devcraft.club/assets/images/logo.png"
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 twitter:title: "Crowdin - локализация проектов"
 twitter:description: "Инструкция по работе с Crowdin для локализации"
 ---

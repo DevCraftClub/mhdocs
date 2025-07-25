@@ -1,3 +1,19 @@
+---
+tags:
+  - PHP
+  - API
+  - Сервисы
+title: "Сервисы - KinopoiskUnofficialTech PHP Wrapper"
+description: "Документация по сервисы. Часть API wrapper для КиноПоиска."
+keywords: "PHP, API, Сервисы, сервисы, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Сервисы"
+og:description: "Документация по сервисы. Часть API wrapper для КиноПоиска."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
+twitter:title: "Сервисы"
+twitter:description: "Документация по сервисы. Часть API wrapper для КиноПоиска."
+---
+
 # Сервисы
 
 Сервисы для работы с различными компонентами Kinopoisk API.
