@@ -14,7 +14,7 @@
 ## 📦 Установка
 
 ```bash
-composer require devcraftclub/kinopoisk-dev
+composer require devcraftclub/kinopoisk-dev-php
 ```
 
 ## 🔧 Быстрый старт
