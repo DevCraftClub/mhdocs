@@ -1,0 +1,15 @@
+title: KinopoiskDev PHP Wrapper
+nav:
+  - Главная: README.md
+  - Основной класс / клиент: Kinopoisk.md
+  - Сравнение с KinopoiskUnofficialTech: notkinopoiskphp-compare.md
+  - Атрибуты: Attributes/
+  - Контракты: Contracts/
+  - Перечисления: Enums/
+  - Исключения: Exceptions/
+  - Фильтры: Filter/
+  - HTTP запросы: Http/
+  - Модели: Models/
+  - Ответы API: Responses/
+  - Сервисы: Services/
+  - Утилиты: Utils/

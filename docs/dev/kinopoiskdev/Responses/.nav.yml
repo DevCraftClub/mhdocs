@@ -1,0 +1,7 @@
+title: Ответы API
+nav:
+  - BaseDocsResponseDto: BaseDocsResponseDto.md
+  - BaseResponseDto: BaseResponseDto.md
+  - ErrorResponseDto: ErrorResponseDto.md
+  - API ответы: Api/
+  - Ошибки: Errors/ 
