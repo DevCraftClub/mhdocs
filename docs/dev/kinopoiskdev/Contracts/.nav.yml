@@ -1,4 +1,5 @@
 title: Контракты
 nav:
-  - CacheInterface: CacheInterface.md
-  - LoggerInterface: LoggerInterface.md 
+  - "*"
+sort:
+  type: alphabetical

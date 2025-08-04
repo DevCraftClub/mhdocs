@@ -4,8 +4,8 @@
 
 **Важно:** Это два совершенно разных API от разных команд разработки!
 
-- **KinopoiskDev** - обертка для официального API [kinopoisk.dev](https://kinopoisk.dev) от команды Open Movie Database
-- **NotKinopoiskPHP** - обертка для неофициального API kinopoiskapiunofficial.tech от независимых разработчиков
+- **KinopoiskDev** - обертка для неофициального API [kinopoisk.dev](https://kinopoisk.dev)
+- **NotKinopoiskPHP** - обертка для неофициального API [kinopoiskapiunofficial.tech](https://kinopoiskapiunofficial.tech)
 
 Эти API **не совместимы** между собой, имеют разную структуру данных и эндпоинты.
 
@@ -17,7 +17,7 @@
 | ----------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
 | **API**           | [kinopoisk.dev](https://kinopoisk.dev)                      | [kinopoiskapiunofficial.tech](https://kinopoiskapiunofficial.tech) |
 | **Статус**        | Активная разработка, современный API                        | Стабильный, но менее активная разработка                           |
-| **Поддержка**     | [Telegram группа](https://t.me/omdb_dev) (7,908 участников) | ❌ Даже на EMail не отвечают                                       |
+| **Поддержка**     | [Telegram группа](https://t.me/omdb_dev) (7,908 участников) | ❌ Даже на Email не отвечают                                       |
 | **Совместимость** | ❌ Не совместим с NotKinopoiskPHP                           | ❌ Не совместим с KinopoiskDev                                     |
 
 ### Архитектура библиотек
@@ -47,10 +47,10 @@
 #### KinopoiskDev
 
 ```php
-use KinopoiskDev\Kinopoisk;
+use KinopoiskDev\Http\MovieRequests;
 use KinopoiskDev\Filter\MovieSearchFilter;
 
-$kinopoisk = new Kinopoisk(apiToken: 'your-token');
+$kinopoisk = new MovieRequests(apiToken: 'your-token');
 
 // Поиск с расширенными фильтрами
 $filter = new MovieSearchFilter();
@@ -159,7 +159,7 @@ $client = new Client('token');
 $movies = $client->searchMovies(['year' => '2023']);
 
 // KinopoiskDev (новый код) - ПОЛНОСТЬЮ ПЕРЕПИСАТЬ!
-$kinopoisk = new Kinopoisk(apiToken: 'new-token-for-kinopoisk-dev');
+$kinopoisk = new MovieRequests(apiToken: 'new-token-for-kinopoisk-dev');
 $filter = new MovieSearchFilter();
 $filter->year(2023);
 $movies = $kinopoisk->searchMovies($filter);
