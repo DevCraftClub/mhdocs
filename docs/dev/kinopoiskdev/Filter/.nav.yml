@@ -1,10 +1,5 @@
 title: Фильтры
 nav:
-  - ImageSearchFilter: ImageSearchFilter.md
-  - KeywordSearchFilter: KeywordSearchFilter.md
-  - MovieSearchFilter: MovieSearchFilter.md
-  - PersonSearchFilter: PersonSearchFilter.md
-  - ReviewSearchFilter: ReviewSearchFilter.md
-  - SeasonSearchFilter: SeasonSearchFilter.md
-  - SortCriteria: SortCriteria.md
-  - StudioSearchFilter: StudioSearchFilter.md 
+  - "*"
+sort:
+  type: alphabetical

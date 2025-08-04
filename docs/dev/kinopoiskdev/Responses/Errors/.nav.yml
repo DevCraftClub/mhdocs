@@ -1,5 +1,5 @@
 title: Ошибки
 nav:
-  - ForbiddenErrorResponseDto: ForbiddenErrorResponseDto.md
-  - NotFoundErrorResponseDto: NotFoundErrorResponseDto.md
-  - UnauthorizedErrorResponseDto: UnauthorizedErrorResponseDto.md 
+  - "*"
+sort:
+  type: alphabetical

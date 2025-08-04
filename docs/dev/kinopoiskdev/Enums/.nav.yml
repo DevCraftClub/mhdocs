@@ -1,16 +1,5 @@
 title: Перечисления
 nav:
-  - FilterField: FilterField.md
-  - FilterOperator: FilterOperator.md
-  - HttpStatusCode: HttpStatusCode.md
-  - ImageType: ImageType.md
-  - ListCategory: ListCategory.md
-  - MovieStatus: MovieStatus.md
-  - MovieType: MovieType.md
-  - PersonProfession: PersonProfession.md
-  - PersonSex: PersonSex.md
-  - RatingMpaa: RatingMpaa.md
-  - ReviewType: ReviewType.md
-  - SortDirection: SortDirection.md
-  - SortField: SortField.md
-  - StudioType: StudioType.md 
+  - "*"
+sort:
+  type: alphabetical

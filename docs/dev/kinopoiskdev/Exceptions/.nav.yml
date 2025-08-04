@@ -1,5 +1,5 @@
 title: Исключения
 nav:
-  - KinopoiskDevException: KinopoiskDevException.md
-  - KinopoiskResponseException: KinopoiskResponseException.md
-  - ValidationException: ValidationException.md 
+  - "*"
+sort:
+  type: alphabetical

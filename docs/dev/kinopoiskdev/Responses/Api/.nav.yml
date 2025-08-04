@@ -1,16 +1,5 @@
 title: API ответы
 nav:
-  - ImageDocsResponseDto: ImageDocsResponseDto.md
-  - KeywordDocsResponseDto: KeywordDocsResponseDto.md
-  - ListDocsResponseDto: ListDocsResponseDto.md
-  - MovieAwardDocsResponseDto: MovieAwardDocsResponseDto.md
-  - MovieDocsResponseDto: MovieDocsResponseDto.md
-  - PersonAwardDocsResponseDto: PersonAwardDocsResponseDto.md
-  - PersonDocsResponseDto: PersonDocsResponseDto.md
-  - PossibleValueDto: PossibleValueDto.md
-  - ReviewDocsResponseDto: ReviewDocsResponseDto.md
-  - SearchMovieResponseDto: SearchMovieResponseDto.md
-  - SearchPersonResponseDto: SearchPersonResponseDto.md
-  - SearchStudioResponseDto: SearchStudioResponseDto.md
-  - SeasonDocsResponseDto: SeasonDocsResponseDto.md
-  - StudioDocsResponseDto: StudioDocsResponseDto.md 
+  - "*"
+sort:
+  type: alphabetical

@@ -1,142 +1,170 @@
-# Содержание
+# KinopoiskDev PHP Wrapper
 
-## Filter/
+Современная PHP библиотека для работы с API [kinopoisk.dev](https://kinopoisk.dev) - неофициальным API КиноПоиска.
 
-* [ReviewSearchFilter](Filter/ReviewSearchFilter.md)
-* [SortCriteria](Filter/SortCriteria.md)
-* [MovieSearchFilter](Filter/MovieSearchFilter.md)
-* [SeasonSearchFilter](Filter/SeasonSearchFilter.md)
-* [StudioSearchFilter](Filter/StudioSearchFilter.md)
-* [ImageSearchFilter](Filter/ImageSearchFilter.md)
-* [KeywordSearchFilter](Filter/KeywordSearchFilter.md)
-* [PersonSearchFilter](Filter/PersonSearchFilter.md)
-## Contracts/
+## 🚀 Особенности
 
-* [CacheInterface](Contracts/CacheInterface.md)
-* [LoggerInterface](Contracts/LoggerInterface.md)
-## Utils/
+- **Современный подход** - использует PHP 8.3+ атрибуты и строгую типизацию
+- **Расширенные фильтры** - гибкая система фильтрации с поддержкой диапазонов
+- **Автоматическая валидация** - декларативная валидация через атрибуты
+- **PSR стандарты** - совместимость с PSR-3 для логирования
+- **Активная поддержка** - [Telegram группа](https://t.me/omdb_dev) с 7,908 участниками
+- **Модульная архитектура** - четкое разделение ответственности
 
-* [DataManager](Utils/DataManager.md)
-* [FilterTrait](Utils/FilterTrait.md)
-* [SortManager](Utils/SortManager.md)
-* [MovieFilter](Utils/MovieFilter.md)
-## Models/
+## 📦 Установка
 
-* [Spouses](Models/Spouses.md)
-* [FactInMovie](Models/FactInMovie.md)
-* [Rating](Models/Rating.md)
-* [WatchabilityItem](Models/WatchabilityItem.md)
-* [ExternalId](Models/ExternalId.md)
-* [CurrencyValue](Models/CurrencyValue.md)
-* [Name](Models/Name.md)
-* [FactInPerson](Models/FactInPerson.md)
-* [NominationAward](Models/NominationAward.md)
-* [YearRange](Models/YearRange.md)
-* [Networks](Models/Networks.md)
-* [Watchability](Models/Watchability.md)
-* [Movie](Models/Movie.md)
-* [MovieInPerson](Models/MovieInPerson.md)
-* [Season](Models/Season.md)
-* [NetworkItem](Models/NetworkItem.md)
-* [PersonPlace](Models/PersonPlace.md)
-* [MeiliPersonEntity](Models/MeiliPersonEntity.md)
-* [Video](Models/Video.md)
-* [DeathPlace](Models/DeathPlace.md)
-* [PersonAward](Models/PersonAward.md)
-* [LinkedMovie](Models/LinkedMovie.md)
-* [ItemName](Models/ItemName.md)
-* [SeasonInfo](Models/SeasonInfo.md)
-* [Logo](Models/Logo.md)
-* [Image](Models/Image.md)
-* [Review](Models/Review.md)
-* [BirthPlace](Models/BirthPlace.md)
-* [Votes](Models/Votes.md)
-* [ReviewInfo](Models/ReviewInfo.md)
-* [PersonInMovie](Models/PersonInMovie.md)
-* [Episode](Models/Episode.md)
-* [Audience](Models/Audience.md)
-* [ApiImage](Models/ApiImage.md)
-* [Premiere](Models/Premiere.md)
-* [Lists](Models/Lists.md)
-* [BaseModel](Models/BaseModel.md)
-* [MovieFromKeyword](Models/MovieFromKeyword.md)
-* [Nomination](Models/Nomination.md)
-* [Fees](Models/Fees.md)
-* [MovieAward](Models/MovieAward.md)
-* [SearchMovie](Models/SearchMovie.md)
-* [Person](Models/Person.md)
-* [AbstractBaseModel](Models/AbstractBaseModel.md)
-* [Studio](Models/Studio.md)
-* [Keyword](Models/Keyword.md)
-* [VideoTypes](Models/VideoTypes.md)
-* [ShortImage](Models/ShortImage.md)
-* [MovieFromStudio](Models/MovieFromStudio.md)
-## Http/
+```bash
+composer require devcraftclub/kinopoisk-dev
+```
 
-* [StudioRequests](Http/StudioRequests.md)
-* [MovieRequests](Http/MovieRequests.md)
-* [ImageRequests](Http/ImageRequests.md)
-* [KeywordRequests](Http/KeywordRequests.md)
-* [PersonRequests](Http/PersonRequests.md)
-* [SeasonRequests](Http/SeasonRequests.md)
-* [ListRequests](Http/ListRequests.md)
-* [ReviewRequests](Http/ReviewRequests.md)
-## Enums/
+## 🔧 Быстрый старт
 
-* [ListCategory](Enums/ListCategory.md)
-* [FilterOperator](Enums/FilterOperator.md)
-* [SortDirection](Enums/SortDirection.md)
-* [ImageType](Enums/ImageType.md)
-* [PersonProfession](Enums/PersonProfession.md)
-* [MovieType](Enums/MovieType.md)
-* [HttpStatusCode](Enums/HttpStatusCode.md)
-* [ReviewType](Enums/ReviewType.md)
-* [RatingMpaa](Enums/RatingMpaa.md)
-* [MovieStatus](Enums/MovieStatus.md)
-* [StudioType](Enums/StudioType.md)
-* [FilterField](Enums/FilterField.md)
-* [SortField](Enums/SortField.md)
-* [PersonSex](Enums/PersonSex.md)
-## 
+```php
+<?php
 
-* [Kinopoisk](Kinopoisk.md)
-## Exceptions/
+use KinopoiskDev\Http\MovieRequests;
+use KinopoiskDev\Filter\MovieSearchFilter;
 
-* [KinopoiskResponseException](Exceptions/KinopoiskResponseException.md)
-* [ValidationException](Exceptions/ValidationException.md)
-* [KinopoiskDevException](Exceptions/KinopoiskDevException.md)
-## Services/
+// Создание клиента
+$request = new MovieRequests(apiToken: 'your-api-token');
 
-* [CacheService](Services/CacheService.md)
-* [ValidationService](Services/ValidationService.md)
-## Responses/
+// Поиск фильмов с расширенными фильтрами
+$filter = new MovieSearchFilter();
+$filter->withYearBetween(2020, 2024)
+       ->withMinRating(7.0, 'kp')
+       ->withAllGenres(['драма', 'комедия'])
+       ->onlyMovies();
 
-* [ErrorResponseDto](Responses/ErrorResponseDto.md)
-* [BaseDocsResponseDto](Responses/BaseDocsResponseDto.md)
-* [BaseResponseDto](Responses/BaseResponseDto.md)
-## Responses/Api/
+$movies = $request->searchMovies($filter);
 
-* [ImageDocsResponseDto](Responses/Api/ImageDocsResponseDto.md)
-* [PersonDocsResponseDto](Responses/Api/PersonDocsResponseDto.md)
-* [MovieAwardDocsResponseDto](Responses/Api/MovieAwardDocsResponseDto.md)
-* [PossibleValueDto](Responses/Api/PossibleValueDto.md)
-* [KeywordDocsResponseDto](Responses/Api/KeywordDocsResponseDto.md)
-* [MovieDocsResponseDto](Responses/Api/MovieDocsResponseDto.md)
-* [SearchMovieResponseDto](Responses/Api/SearchMovieResponseDto.md)
-* [ListDocsResponseDto](Responses/Api/ListDocsResponseDto.md)
-* [SearchPersonResponseDto](Responses/Api/SearchPersonResponseDto.md)
-* [ReviewDocsResponseDto](Responses/Api/ReviewDocsResponseDto.md)
-* [SeasonDocsResponseDto](Responses/Api/SeasonDocsResponseDto.md)
-* [StudioDocsResponseDto](Responses/Api/StudioDocsResponseDto.md)
-* [PersonAwardDocsResponseDto](Responses/Api/PersonAwardDocsResponseDto.md)
-* [SearchStudioResponseDto](Responses/Api/SearchStudioResponseDto.md)
-## Responses/Errors/
+// Получение информации о фильме
+$movie = $request->getMovieById(301);
+echo $movie->name; // "Матрица"
+```
 
-* [NotFoundErrorResponseDto](Responses/Errors/NotFoundErrorResponseDto.md)
-* [UnauthorizedErrorResponseDto](Responses/Errors/UnauthorizedErrorResponseDto.md)
-* [ForbiddenErrorResponseDto](Responses/Errors/ForbiddenErrorResponseDto.md)
-## Attributes/
+## 🏗️ Архитектура
 
-* [ApiField](Attributes/ApiField.md)
-* [Sensitive](Attributes/Sensitive.md)
-* [Validation](Attributes/Validation.md)
+### Основные компоненты
+
+- **Kinopoisk** - главный класс для работы с API
+- **Фильтры** - специализированные классы для разных типов поиска
+- **Модели** - типизированные объекты для данных
+- **Атрибуты** - декларативная валидация и конфигурация
+- **Сервисы** - бизнес-логика и утилиты
+
+### Структура проекта
+
+```
+KinopoiskDev/
+├── Attributes/          # PHP 8.3+ атрибуты
+├── Contracts/           # Интерфейсы (PSR-3, кэширование)
+├── Enums/              # Перечисления
+├── Exceptions/         # Специализированные исключения
+├── Filter/             # Классы фильтров
+├── Http/               # HTTP запросы
+├── Models/             # Модели данных
+├── Responses/          # Ответы API
+├── Services/           # Сервисы
+└── Utils/              # Утилиты
+```
+
+## 🔍 Возможности
+
+### Поиск фильмов
+
+```php
+$filter = new MovieSearchFilter();
+$filter->withYearBetween(2020, 2024)
+       ->withMinRating(7.0, 'kp')
+       ->withAllGenres(['драма', 'комедия'])
+       ->onlyMovies()
+       ->inTop250();
+
+$movies = $kinopoisk->searchMovies($filter);
+```
+
+### Поиск персон
+
+```php
+$filter = new PersonSearchFilter();
+$filter->onlyActors()
+       ->ageRange(30, 50)
+       ->withMinRating(7.0, 'kp');
+
+$persons = $kinopoisk->searchPersons($filter);
+```
+
+### Работа с изображениями
+
+```php
+$filter = new ImageSearchFilter();
+$filter->onlyPosters()
+       ->minResolution(1920, 1080)
+       ->onlyHighRes();
+
+$images = $kinopoisk->getMovieImages(301, $filter);
+```
+
+### Автоматическая валидация
+
+```php
+class Movie {
+    #[Validation(required: true, minLength: 1, maxLength: 255)]
+    public string $title;
+
+    #[Validation(min: 1900, max: 2030)]
+    public int $year;
+
+    #[Sensitive(hideInJson: true)]
+    public string $apiToken;
+}
+```
+
+## 🛡️ Безопасность
+
+- **Атрибут `#[Sensitive]`** - автоматическое скрытие конфиденциальных данных
+- **Валидация входных данных** - защита от некорректных параметров
+- **Типизированные модели** - предотвращение ошибок типов
+
+## 📚 Документация
+
+- **[Основной класс](Kinopoisk.md)** - главный клиент API
+- **[Атрибуты](Attributes/)** - валидация и конфигурация
+- **[Фильтры](Filter/)** - система фильтрации
+- **[Модели](Models/)** - структуры данных
+- **[Исключения](Exceptions/)** - обработка ошибок
+
+## 🔗 Полезные ссылки
+
+- **[kinopoisk.dev](https://kinopoisk.dev)** - официальный сайт API
+- **[Telegram группа](https://t.me/omdb_dev)** - активное сообщество (7,908 участников)
+- **[Сравнение с KinopoiskUnofficialTech](notkinopoiskphp-compare.md)** - различия между библиотеками
+
+## 🤝 Поддержка
+
+- **Telegram**: [@omdb_dev](https://t.me/omdb_dev) - основная группа поддержки
+- **Email**: поддержка через Telegram группу
+- **Документация**: полная документация в этом разделе
+
+## 📄 Лицензия
+
+MIT License - см. файл [LICENSE](LICENSE) для деталей.
+
+## 🆚 Сравнение с альтернативами
+
+| Особенность     | KinopoiskDev                           | KinopoiskUnofficialTech     |
+| --------------- | -------------------------------------- | --------------------------- |
+| **API**         | [kinopoisk.dev](https://kinopoisk.dev) | kinopoiskapiunofficial.tech |
+| **Поддержка**   | ✅ Активная (Telegram)                 | ❌ Отсутствует              |
+| **PHP версия**  | 8.3+                                   | 8.3+                        |
+| **Архитектура** | Модульная                              | Монолитная                  |
+| **Валидация**   | Автоматическая                         | Ручная                      |
+| **Фильтры**     | Расширенные                            | Базовые                     |
+
+## 🚀 Миграция
+
+Если вы используете KinopoiskUnofficialTech, см. [руководство по миграции](notkinopoiskphp-compare.md#миграция).
+
+---
+
+**KinopoiskDev** - современное решение для работы с API КиноПоиска с активной поддержкой и развитием.
