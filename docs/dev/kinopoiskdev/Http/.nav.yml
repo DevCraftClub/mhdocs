@@ -1,0 +1,10 @@
+title: HTTP запросы
+nav:
+  - ImageRequests: ImageRequests.md
+  - KeywordRequests: KeywordRequests.md
+  - ListRequests: ListRequests.md
+  - MovieRequests: MovieRequests.md
+  - PersonRequests: PersonRequests.md
+  - ReviewRequests: ReviewRequests.md
+  - SeasonRequests: SeasonRequests.md
+  - StudioRequests: StudioRequests.md 
