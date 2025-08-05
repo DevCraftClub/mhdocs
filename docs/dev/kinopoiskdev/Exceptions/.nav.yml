@@ -1,5 +1,6 @@
 title: Исключения
 nav:
+  - "index.md"
   - "*"
 sort:
   type: alphabetical

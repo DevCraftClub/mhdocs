@@ -1,5 +1,6 @@
 title: Модели
 nav:
+  - "index.md"
   - "*"
 sort:
   type: alphabetical

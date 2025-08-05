@@ -1,6 +1,6 @@
 title: KinopoiskUnofficialTech PHP Wrapper
 nav:
-  - Главная: index.md
+  - "index.md"
   - Сравнение с KinopoiskDev: ../kinopoiskdev/notkinopoiskphp-compare.md
   - Клиент: client.md
   - Абстрактные классы: abstract-classes.md

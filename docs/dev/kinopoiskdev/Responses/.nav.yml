@@ -1,7 +1,8 @@
 title: Ответы API
 nav:
-  - BaseDocsResponseDto: BaseDocsResponseDto.md
-  - BaseResponseDto: BaseResponseDto.md
-  - ErrorResponseDto: ErrorResponseDto.md
+  - "index.md"
+  - "*"
   - API ответы: Api/
-  - Ошибки: Errors/ 
+  - Ошибки: Errors/
+sort:
+  type: alphabetical

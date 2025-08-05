@@ -1,5 +1,6 @@
 title: Фильтры
 nav:
+  - "index.md"
   - "*"
 sort:
   type: alphabetical

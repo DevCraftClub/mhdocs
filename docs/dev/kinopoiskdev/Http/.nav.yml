@@ -1,5 +1,6 @@
 title: HTTP запросы
 nav:
+  - "index.md"
   - "*"
 sort:
   type: alphabetical

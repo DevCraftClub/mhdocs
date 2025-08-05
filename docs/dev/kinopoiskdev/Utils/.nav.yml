@@ -1,6 +1,6 @@
 title: Утилиты
 nav:
-  - DataManager: DataManager.md
-  - FilterTrait: FilterTrait.md
-  - MovieFilter: MovieFilter.md
-  - SortManager: SortManager.md
+  - "index.md"
+  - "*"
+sort:
+  type: alphabetical
