@@ -2,1062 +2,1110 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://readme.devcraft.club/dev/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/tags/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/composer/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/crowdin/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/hook-pages-like-kp/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/hook-shortstory-signs-count/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/install_instructions/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mystatus/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/paid-currencies_rate/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/paid-lastnews/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/php_intl/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/releasestatus/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/schema/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/usertags/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/webmaster-verification/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/xflist/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/xfselect/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/db_manager/install/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/dle_faker/changelog/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/dle_faker/gen_news/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/dle_faker/gen_users/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/dle_faker/install/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/dle_faker/parser/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/dle_faker/settings/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/dle_faker/tag_for_all/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/dle_faker/tag_for_news/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/dle_faker/tag_for_users/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Kinopoisk/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/notkinopoiskphp-compare/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Attributes/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Attributes/ApiField/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Attributes/Sensitive/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Attributes/Validation/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Contracts/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Contracts/CacheInterface/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Contracts/LoggerInterface/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/FilterField/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/FilterOperator/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/HttpStatusCode/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/ImageType/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/ListCategory/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/MovieStatus/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/MovieType/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/PersonProfession/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/PersonSex/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/RatingMpaa/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/ReviewType/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/SortDirection/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/SortField/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Enums/StudioType/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Exceptions/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Exceptions/KinopoiskDevException/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Exceptions/KinopoiskResponseException/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Exceptions/ValidationException/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Filter/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Filter/ImageSearchFilter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Filter/KeywordSearchFilter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Filter/MovieSearchFilter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Filter/PersonSearchFilter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Filter/ReviewSearchFilter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Filter/SeasonSearchFilter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Filter/SortCriteria/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Filter/StudioSearchFilter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Http/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Http/ImageRequests/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Http/KeywordRequests/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Http/ListRequests/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Http/MovieRequests/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Http/PersonRequests/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Http/ReviewRequests/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Http/SeasonRequests/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Http/StudioRequests/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/AbstractBaseModel/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/ApiImage/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Audience/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/BaseModel/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/BirthPlace/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/CurrencyValue/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/DeathPlace/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Episode/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/ExternalId/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/FactInMovie/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/FactInPerson/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Fees/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Image/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/ItemName/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Keyword/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/LinkedMovie/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Lists/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Logo/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/MeiliPersonEntity/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Movie/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/MovieAward/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/MovieFromKeyword/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/MovieFromStudio/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/MovieInPerson/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Name/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/NetworkItem/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Networks/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Nomination/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/NominationAward/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Person/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/PersonAward/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/PersonInMovie/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/PersonPlace/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Premiere/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Rating/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Review/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/ReviewInfo/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/SearchMovie/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Season/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/SeasonInfo/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/ShortImage/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Spouses/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Studio/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Video/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/VideoTypes/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Votes/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/Watchability/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/WatchabilityItem/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Models/YearRange/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/BaseDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/BaseResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/ErrorResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/ImageDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/KeywordDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/ListDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/MovieAwardDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/MovieDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/PersonAwardDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/PersonDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/PossibleValueDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/ReviewDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/SearchMovieResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/SearchPersonResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/SearchStudioResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/SeasonDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Api/StudioDocsResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Errors/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Errors/ForbiddenErrorResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Errors/NotFoundErrorResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Responses/Errors/UnauthorizedErrorResponseDto/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Services/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Services/CacheService/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Services/ValidationService/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Utils/</loc>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Utils/DataManager/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Utils/FilterTrait/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Utils/MovieFilter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/kinopoiskdev/Utils/SortManager/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/changelog/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/generate_languages/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/install/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/new_module/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/inc_main/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/Admin/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/AdminLink/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/AdminUrlExtension/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/AjaxAbstractResponse/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/AssetsChecker/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/Author/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/BasisModel/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/BasisRepository/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/BreadCrumb/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/CacheControl/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/ComposerAction/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/DataLoader/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/DataManager/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/DateTimeFormatter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/DeclineExtension/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/DleData/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/ErrorResponseAjax/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/LogGenerator/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/MhAjax/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/MhDB/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/MhLog/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/MhLogRepository/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/MhTranslation/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/MobileDetectExtension/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/SuccessResponseAjax/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/TextLimiter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/TwigFilter/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/backend/classes/UpdatesChecker/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/frontend/manage/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/mhadmin/frontend/templates/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/abstract-classes/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/client/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/navigation-map/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/account-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/api-version/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/box-office-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/collection-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/content-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/distribution-sub-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/distribution-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/fact-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/film-order/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/image-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/month/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/production-status/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/profession-key/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/relation-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/review-order/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/review-type/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/sex/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/enums/video-site/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/exceptions/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/exceptions/api-exception/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/exceptions/invalid-api-key-exception/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/exceptions/kp-validation-exception/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/exceptions/rate-limit-exception/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/exceptions/resource-not-found-exception/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/interfaces/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/interfaces/model-interface/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/interfaces/response-interface/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/api-key-info/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/api-key-qouta/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/award/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/box-office/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/country/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/distribution/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/episode/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/external-source/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/fact/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/film-collection/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/film-search-result/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/film/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/filters/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/genre/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/image/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/media-post/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/person-by-name-result/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/person-film/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/person-spouse/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/person/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/premiere/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/related-film/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/review/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/season/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/staff/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/user-vote/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/models/video/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/responses/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/responses/budget-response/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/responses/default-response/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/responses/keyword-search-response/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/responses/movie-staff-response/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/responses/paginated-response/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/responses/review-response/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/responses/sequel-prequel-response/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/responses/simple-response/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/services/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/services/abstract-service/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/services/film-service/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/services/media-service/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/services/person-service/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/notkinopoiskphp/services/user-service/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/paid-seasonvar/faq/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/paid-seasonvar/install/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/paid-seasonvar/related/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/repost/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/telegramposting/bot/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/telegramposting/changelog/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/telegramposting/custom_add/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/telegramposting/install/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/dev/telegramposting/template_tags/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/site/how-to-ask-for-support/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
     <url>
          <loc>https://readme.devcraft.club/dev/site/how-to-buy/</loc>
-         <lastmod>2025-08-04</lastmod>
+         <lastmod>2025-08-05</lastmod>
     </url>
 </urlset>
