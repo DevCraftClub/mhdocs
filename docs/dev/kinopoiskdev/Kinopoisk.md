@@ -5,6 +5,7 @@
 обработки ответов, кэширования и управления ошибками. Использует современные
 PHP 8.3 возможности и архитектурные паттерны.
 Основные возможности:
+
 - Выполнение HTTP запросов к API Kinopoisk.dev
 - Автоматическое кэширование ответов
 - Валидация входных данных
@@ -17,11 +18,11 @@ PHP 8.3 возможности и архитектурные паттерны.
 
 **См. также:**
 
-* `\KinopoiskDev\Http\MovieRequests`: Для работы с фильмами
-* `\KinopoiskDev\Http\PersonRequests`: Для работы с персонами
-* `\KinopoiskDev\Http\StudioRequests`: Для работы со студиями
-* `\KinopoiskDev\Contracts\CacheInterface`: Интерфейс кэширования
-* `\KinopoiskDev\Contracts\LoggerInterface`: Интерфейс логирования
+- `\KinopoiskDev\Http\MovieRequests`: Для работы с фильмами
+- `\KinopoiskDev\Http\PersonRequests`: Для работы с персонами
+- `\KinopoiskDev\Http\StudioRequests`: Для работы со студиями
+- `\KinopoiskDev\Contracts\CacheInterface`: Интерфейс кэширования
+- `\KinopoiskDev\Contracts\LoggerInterface`: Интерфейс логирования
 
 ## `__construct()`
 
@@ -34,26 +35,27 @@ PHP 8.3 возможности и архитектурные паттерны.
 
 **Параметры:**
 
-* `$apiToken` (string|null): Токен авторизации API (если null, берется из $_ENV['KINOPOISK_TOKEN'])
-* `$httpClient` (HttpClient|null): HTTP клиент (если null, создается новый)
-* `$cache` (CacheInterface|null): Сервис кэширования (если null, создается FilesystemAdapter)
-* `$logger` (LoggerInterface|null): Логгер (если null, логирование отключено)
-* `$useCache` (bool): Использовать кэширование (по умолчанию false)
-* `$responseValidator` (ValidationService|null): Валидатор ответов API (если null, валидация отключена)
+- `$apiToken` (string|null): Токен авторизации API (если null, берется из $\_ENV['KINOPOISK_TOKEN'])
+- `$httpClient` (HttpClient|null): HTTP клиент (если null, создается новый)
+- `$cache` (CacheInterface|null): Сервис кэширования (если null, создается FilesystemAdapter)
+- `$logger` (LoggerInterface|null): Логгер (если null, логирование отключено)
+- `$useCache` (bool): Использовать кэширование (по умолчанию false)
+- `$responseValidator` (ValidationService|null): Валидатор ответов API (если null, валидация отключена)
 
 **Исключения:**
 
-* `ValidationException`: При отсутствии токена или неверном формате
-* `KinopoiskDevException`: При ошибке инициализации компонентов
+- `ValidationException`: При отсутствии токена или неверном формате
+- `KinopoiskDevException`: При ошибке инициализации компонентов
 
 **Пример:**
+
 ```php
 // Минимальная инициализация
 $kinopoisk = new Kinopoisk();
 // С кастомными параметрами
 $kinopoisk = new Kinopoisk(
-apiToken: 'ABC1DEF-2GH3IJK-4LM5NOP-6QR7STU',
-useCache: true
+	apiToken: 'ABC1DEF-2GH3IJK-4LM5NOP-6QR7STU',
+	useCache: true
 );
 // С кастомным HTTP клиентом и логгером
 $httpClient = new HttpClient(['timeout' => 60]);
@@ -72,11 +74,11 @@ $kinopoisk = new Kinopoisk('your-api-token', $httpClient, null, $logger);
 
 **Параметры:**
 
-* `$apiToken` (string|null): Токен API для валидации
+- `$apiToken` (string|null): Токен API для валидации
 
 **Исключения:**
 
-* `ValidationException`: При отсутствии токена или неверном формате
+- `ValidationException`: При отсутствии токена или неверном формате
 
 ## `createDefaultHttpClient()`
 
@@ -96,15 +98,15 @@ $kinopoisk = new Kinopoisk('your-api-token', $httpClient, null, $logger);
 
 **Параметры:**
 
-* `$method` (string): HTTP метод
-* `$endpoint` (string): Конечная точка API
-* `$apiVersion` (string|null): Версия API
+- `$method` (string): HTTP метод
+- `$endpoint` (string): Конечная точка API
+- `$apiVersion` (string|null): Версия API
 
 **Возвращает:** `array<string, mixed>` Декодированные данные ответа
 
 **Исключения:**
 
-* `KinopoiskDevException`: При ошибках запроса или валидации
+- `KinopoiskDevException`: При ошибках запроса или валидации
 
 ## `buildFullUrl()`
 
@@ -112,9 +114,9 @@ $kinopoisk = new Kinopoisk('your-api-token', $httpClient, null, $logger);
 
 **Параметры:**
 
-* `$method` (string): HTTP метод
-* `$endpoint` (string): Конечная точка
-* `$version` (string): Версия API
+- `$method` (string): HTTP метод
+- `$endpoint` (string): Конечная точка
+- `$version` (string): Версия API
 
 **Возвращает:** `string` Полный URL
 
@@ -129,25 +131,26 @@ $kinopoisk = new Kinopoisk('your-api-token', $httpClient, null, $logger);
 
 **Параметры:**
 
-* `$method` (string): HTTP метод (GET, POST, PUT, DELETE, PATCH)
-* `$endpoint` (string): Конечная точка API (без версии)
-* `$apiVersion` (string|null): Версия API (если null, используется API_VERSION)
+- `$method` (string): HTTP метод (GET, POST, PUT, DELETE, PATCH)
+- `$endpoint` (string): Конечная точка API (без версии)
+- `$apiVersion` (string|null): Версия API (если null, используется API_VERSION)
 
 **Возвращает:** `ResponseInterface` Ответ от API
 
 **Исключения:**
 
-* `KinopoiskDevException`: При ошибках валидации или HTTP запроса
-* `ValidationException`: При неверных параметрах запроса
+- `KinopoiskDevException`: При ошибках валидации или HTTP запроса
+- `ValidationException`: При неверных параметрах запроса
 
 **Пример:**
+
 ```php
 // Простой GET запрос
 $response = $kinopoisk->makeRequest('GET', 'movie/123');
 // GET запрос с параметрами
 $response = $kinopoisk->makeRequest('GET', 'movie', [
-'page' => 1,
-'limit' => 10
+	'page' => 1,
+	'limit' => 10
 ]);
 // Запрос к другой версии API
 $response = $kinopoisk->makeRequest('GET', 'movie/123', [], 'v1.3');
@@ -162,11 +165,11 @@ $response = $kinopoisk->makeRequest('GET', 'movie/123', [], 'v1.3');
 
 **Параметры:**
 
-* `$method` (string): HTTP метод для валидации
+- `$method` (string): HTTP метод для валидации
 
 **Исключения:**
 
-* `ValidationException`: При неверном или неподдерживаемом методе
+- `ValidationException`: При неверном или неподдерживаемом методе
 
 ## `validateEndpoint()`
 
@@ -178,11 +181,11 @@ $response = $kinopoisk->makeRequest('GET', 'movie/123', [], 'v1.3');
 
 **Параметры:**
 
-* `$endpoint` (string): Конечная точка для валидации
+- `$endpoint` (string): Конечная точка для валидации
 
 **Исключения:**
 
-* `ValidationException`: При неверном формате конечной точки
+- `ValidationException`: При неверном формате конечной точки
 
 ## `generateCacheKey()`
 
@@ -194,9 +197,9 @@ $response = $kinopoisk->makeRequest('GET', 'movie/123', [], 'v1.3');
 
 **Параметры:**
 
-* `$method` (string): HTTP метод
-* `$endpoint` (string): Конечная точка
-* `$version` (string): Версия API
+- `$method` (string): HTTP метод
+- `$endpoint` (string): Конечная точка
+- `$version` (string): Версия API
 
 **Возвращает:** `string` Уникальный ключ кэша
 
@@ -210,15 +213,15 @@ $response = $kinopoisk->makeRequest('GET', 'movie/123', [], 'v1.3');
 
 **Параметры:**
 
-* `$method` (string): HTTP метод
-* `$endpoint` (string): Конечная точка
-* `$version` (string): Версия API
+- `$method` (string): HTTP метод
+- `$endpoint` (string): Конечная точка
+- `$version` (string): Версия API
 
 **Возвращает:** `ResponseInterface` Ответ от сервера
 
 **Исключения:**
 
-* `GuzzleException`: При ошибке выполнения HTTP запроса
+- `GuzzleException`: При ошибке выполнения HTTP запроса
 
 ## `parseResponse()`
 
@@ -231,18 +234,19 @@ $response = $kinopoisk->makeRequest('GET', 'movie/123', [], 'v1.3');
 
 **Параметры:**
 
-* `$response` (ResponseInterface): HTTP ответ от API
-* `$requestUrl` (string|null): Полный URL запроса для валидации (опционально)
+- `$response` (ResponseInterface): HTTP ответ от API
+- `$requestUrl` (string|null): Полный URL запроса для валидации (опционально)
 
 **Возвращает:** `array<string, mixed>` Декодированные данные ответа
 
 **Исключения:**
 
-* `KinopoiskDevException`: При ошибках обработки ответа
-* `KinopoiskResponseException`: При ошибках API (401, 403, 404, 500)
-* `\JsonException`: При ошибках парсинга JSON
+- `KinopoiskDevException`: При ошибках обработки ответа
+- `KinopoiskResponseException`: При ошибках API (401, 403, 404, 500)
+- `\JsonException`: При ошибках парсинга JSON
 
 **Пример:**
+
 ```php
 $response = $kinopoisk->makeRequest('GET', 'movie/123');
 $data = $kinopoisk->parseResponse($response);
@@ -259,12 +263,12 @@ $movie = Movie::fromArray($data);
 
 **Параметры:**
 
-* `$statusCode` (HttpStatusCode|null): Статус код как enum
-* `$rawStatusCode` (int|null): Сырой статус код
+- `$statusCode` (HttpStatusCode|null): Статус код как enum
+- `$rawStatusCode` (int|null): Сырой статус код
 
 **Исключения:**
 
-* `KinopoiskResponseException`: При известных ошибках API
+- `KinopoiskResponseException`: При известных ошибках API
 
 ## `validateResponse()`
 
@@ -272,5 +276,4 @@ $movie = Movie::fromArray($data);
 
 **Параметры:**
 
-* `$requestUrl` (string): URL запроса
-
+- `$requestUrl` (string): URL запроса

@@ -1,6 +1,6 @@
 title: KinopoiskDev PHP Wrapper
 nav:
-  - Главная: README.md
+  - "index.md"
   - Основной класс / клиент: Kinopoisk.md
   - Сравнение с KinopoiskUnofficialTech: notkinopoiskphp-compare.md
   - Атрибуты: Attributes/
