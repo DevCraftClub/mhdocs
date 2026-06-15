@@ -14,8 +14,8 @@ DLE Faker - лагин, что позволяет вам генерироват�
 
 * **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 173.1.1
 
-!!! warning "Минимальная версия MH Admin"
-    **Минимальная версия MH Admin**: [<i class="fa-duotone fa-code-branch"></i> 173.3.3](../mhadmin/install.md)
+!!! warning "Минимальная версия DevCraft Admin"
+    **Минимальная версия DevCraft Admin**: [<i class="fa-duotone fa-code-branch"></i> 200.4.0](../devcraft_admin/install.md)
 
 ## **Установка / Обновление**
 

@@ -13,7 +13,8 @@ nav:
       - "Re: Post": repost/
       - DLE Faker: dle_faker/
       - Telegram Posting: telegramposting/
-      - MH Admin: mhadmin/
+      - DevCraft Admin: devcraft_admin/
+      - MH Admin (Legacy): mhadmin/
       - MyStatus: mystatus.md
       - Release Status: releasestatus.md
       - Schema.Org: schema.md

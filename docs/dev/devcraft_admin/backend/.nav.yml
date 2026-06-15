@@ -1,0 +1,90 @@
+title: Back-End
+nav:
+  - Главная: index.md
+  - Точки входа: entry_points.md
+  - Манифест модуля: manifest.md
+  - База данных:
+      - AbstractEntity: classes/AbstractEntity.md
+      - AbstractRepository: classes/AbstractRepository.md
+      - DatabaseGateway: classes/DatabaseGateway.md
+      - EntityPathResolver: classes/EntityPathResolver.md
+      - LogRecord: classes/LogRecord.md
+      - LogRecordRepository: classes/LogRecordRepository.md
+  - Админка:
+      - AdminContext: classes/AdminContext.md
+      - AdminErrorRenderer: classes/AdminErrorRenderer.md
+      - AdminLinkResolver: classes/AdminLinkResolver.md
+      - DleMenuBuilder: classes/DleMenuBuilder.md
+      - FilterFormService: classes/FilterFormService.md
+      - MenuComposer: classes/MenuComposer.md
+      - PageOrchestrator: classes/PageOrchestrator.md
+      - Router: classes/Router.md
+      - SettingsFormService: classes/SettingsFormService.md
+  - HTTP / AJAX:
+      - AjaxController: classes/AjaxController.md
+      - AjaxRequest: classes/AjaxRequest.md
+      - AjaxRouteRegistry: classes/AjaxRouteRegistry.md
+      - JsonResponse: classes/JsonResponse.md
+      - CheckAssetsHandler: classes/CheckAssetsHandler.md
+      - CheckUpdateHandler: classes/CheckUpdateHandler.md
+      - DeleteLogHandler: classes/DeleteLogHandler.md
+      - LogsTableHandler: classes/LogsTableHandler.md
+      - NewModuleHandler: classes/NewModuleHandler.md
+      - SaveAssetHandler: classes/SaveAssetHandler.md
+      - SettingsHandler: classes/SettingsHandler.md
+      - SyncAssetsHandler: classes/SyncAssetsHandler.md
+  - Поддержка:
+      - AssetsCheckerService: classes/AssetsCheckerService.md
+      - DataLoaderService: classes/DataLoaderService.md
+      - DataManager: classes/DataManager.md
+      - DleDataService: classes/DleDataService.md
+  - I18n / Twig / Form:
+      - Translation: classes/Translation.md
+      - TwigTranslatorBridge: classes/TwigTranslatorBridge.md
+      - EnvironmentFactory: classes/EnvironmentFactory.md
+      - FormFieldBuilder: classes/FormFieldBuilder.md
+      - FormSchemaBuilder: classes/FormSchemaBuilder.md
+      - FormSectionBuilder: classes/FormSectionBuilder.md
+  - Типы:
+      - AdminLink: classes/AdminLink.md
+      - Author: classes/Author.md
+      - BreadCrumb: classes/BreadCrumb.md
+      - Changelog: classes/Changelog.md
+      - ChangelogChange: classes/ChangelogChange.md
+      - FilterSchema: classes/FilterSchema.md
+      - FormField: classes/FormField.md
+      - FormSchema: classes/FormSchema.md
+      - FormSection: classes/FormSection.md
+      - LanguageData: classes/LanguageData.md
+      - ModuleData: classes/ModuleData.md
+  - Модуль Admin:
+      - Application: classes/Application.md
+      - ChangelogPage: classes/ChangelogPage.md
+      - DashboardPage: classes/DashboardPage.md
+      - LogsPage: classes/LogsPage.md
+      - NewModulePage: classes/NewModulePage.md
+      - SettingsPage: classes/SettingsPage.md
+      - ModuleGeneratorService: classes/ModuleGeneratorService.md
+      - ModuleGeneratorInput: classes/ModuleGeneratorInput.md
+  - Ядро:
+      - DevCraftConfig: classes/DevCraftConfig.md
+      - DevCraftException: classes/DevCraftException.md
+      - Paths: classes/Paths.md
+      - PluginContext: classes/PluginContext.md
+      - Registry: classes/Registry.md
+      - CacheControl: classes/CacheControl.md
+      - ContextLogger: classes/ContextLogger.md
+      - LogGenerator: classes/LogGenerator.md
+  - Интерфейсы:
+      - AjaxHandlerInterface: classes/AjaxHandlerInterface.md
+      - FilterableRepositoryInterface: classes/FilterableRepositoryInterface.md
+      - PageInterface: classes/PageInterface.md
+      - ResponseInterface: classes/ResponseInterface.md
+      - SettingsPageInterface: classes/SettingsPageInterface.md
+  - Перечисления:
+      - AdminErrorKind: classes/AdminErrorKind.md
+      - ChangelogChangeType: classes/ChangelogChangeType.md
+      - FormLayout: classes/FormLayout.md
+  - Абстракции:
+      - AbstractPage: classes/AbstractPage.md
+      - AbstractType: classes/AbstractType.md

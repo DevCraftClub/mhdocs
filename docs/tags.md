@@ -1,13 +1,14 @@
 ---
-title: "Ключевые слова - DevCraft Документации"
+id: tags
+title: Ключевые слова
+sidebar_label: Ключевые слова
 description: "Документация по ключевые слова."
-keywords: "Общее, ключевые слова, DevCraft, документация"
+keywords:
+  - Общее
+  - ключевые слова
+  - DevCraft
+  - документация
 author: "Maxim Harder"
-og:title: "Ключевые слова"
-og:description: "Документация по ключевые слова."
-og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
-twitter:title: "Ключевые слова"
-twitter:description: "Документация по ключевым словам."
 ---
 
 # Ключевые слова
