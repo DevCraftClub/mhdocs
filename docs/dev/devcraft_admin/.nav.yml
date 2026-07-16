@@ -5,6 +5,7 @@ nav:
   - Для пользователей:
       - Настройка: frontend/manage.md
   - Для разработчиков:
+      - Начало работы: getting_started.md
       - Генератор модулей: new_module.md
       - Точки входа: backend/entry_points.md
       - Манифест модуля: backend/manifest.md
@@ -12,4 +13,5 @@ nav:
       - Генератор языковых файлов: generate_languages.md
       - Back-End: backend/
       - Front-End: frontend/
+      - ИИ-инструменты: ai_tools.md
   - История изменений: changelog.md

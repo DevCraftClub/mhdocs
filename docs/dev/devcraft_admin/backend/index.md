@@ -132,7 +132,8 @@ Twig-шаблоны: `DEVCRAFT_SRC . '/templates'`.
 | [LogGenerator](./classes/LogGenerator.md) | Генератор логов: файлы, Telegram, БД. |
 | [LogRecord](./classes/LogRecord.md) | Сущность записи журнала DevCraft в таблице `devcraft_logs`. |
 | [LogRecordRepository](./classes/LogRecordRepository.md) | Репозиторий `devcraft_logs`. |
-| [LogsPage](./classes/LogsPage.md) | Страница журнала событий. |
+| [LogMessagePresenter](./classes/LogMessagePresenter.md) | Представление сообщения журнала для readonly-view. |
+| [LogsPage](./classes/LogsPage.md) | Страница журнала событий и детальный просмотр по UUID. |
 | [LogsTableHandler](./classes/LogsTableHandler.md) | AJAX: таблица журнала. |
 | [MenuComposer](./classes/MenuComposer.md) | Объединение меню DLE и manifest. |
 | [ModuleData](./classes/ModuleData.md) | Метаданные зарегистрированного модуля. |
@@ -155,3 +156,17 @@ Twig-шаблоны: `DEVCRAFT_SRC . '/templates'`.
 | [AdminErrorKind](./classes/AdminErrorKind.md) | Классификация ошибок админки. |
 | [ChangelogChangeType](./classes/ChangelogChangeType.md) | Тип записи changelog. |
 | [FormLayout](./classes/FormLayout.md) | Раскладка формы (вкладки и т.д.). |
+
+## Composer Core
+
+| Название | Краткое содержание |
+|----------|-------------------|
+| [composer_packages.md](./composer_packages.md) | Manifest, sync json/lock, пример AJAX-модуля. |
+| [ComposerActionResult](./classes/ComposerActionResult.md) | DTO результата Composer. |
+| [ComposerRuntimeAdapter](./classes/ComposerRuntimeAdapter.md) | CLI Composer из админки. |
+| [ComposerStateReader](./classes/ComposerStateReader.md) | Чтение composer.lock. |
+| [ManifestPackageReader](./classes/ManifestPackageReader.md) | Агрегация composer_required. |
+| [ComposerDbSyncService](./classes/ComposerDbSyncService.md) | Sync с devcraft_composer_data. |
+| [PackagePolicyService](./classes/PackagePolicyService.md) | Политики install/update/remove. |
+| [DefaultPackagePolicyStore](./classes/DefaultPackagePolicyStore.md) | JSON-хранилище политик. |
+| [ComposerData](./classes/ComposerData.md) | ORM-сущность пакета. |

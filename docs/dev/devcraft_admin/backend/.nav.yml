@@ -3,6 +3,7 @@ nav:
   - Главная: index.md
   - Точки входа: entry_points.md
   - Манифест модуля: manifest.md
+  - Composer-пакеты: composer_packages.md
   - База данных:
       - AbstractEntity: classes/AbstractEntity.md
       - AbstractRepository: classes/AbstractRepository.md
@@ -62,6 +63,7 @@ nav:
       - ChangelogPage: classes/ChangelogPage.md
       - DashboardPage: classes/DashboardPage.md
       - LogsPage: classes/LogsPage.md
+      - LogMessagePresenter: classes/LogMessagePresenter.md
       - NewModulePage: classes/NewModulePage.md
       - SettingsPage: classes/SettingsPage.md
       - ModuleGeneratorService: classes/ModuleGeneratorService.md
@@ -75,6 +77,15 @@ nav:
       - CacheControl: classes/CacheControl.md
       - ContextLogger: classes/ContextLogger.md
       - LogGenerator: classes/LogGenerator.md
+  - Composer (Core):
+      - ComposerActionResult: classes/ComposerActionResult.md
+      - ComposerRuntimeAdapter: classes/ComposerRuntimeAdapter.md
+      - ComposerStateReader: classes/ComposerStateReader.md
+      - ManifestPackageReader: classes/ManifestPackageReader.md
+      - ComposerDbSyncService: classes/ComposerDbSyncService.md
+      - PackagePolicyService: classes/PackagePolicyService.md
+      - DefaultPackagePolicyStore: classes/DefaultPackagePolicyStore.md
+      - ComposerData: classes/ComposerData.md
   - Интерфейсы:
       - AjaxHandlerInterface: classes/AjaxHandlerInterface.md
       - FilterableRepositoryInterface: classes/FilterableRepositoryInterface.md

@@ -73,6 +73,32 @@ AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-ho
 
 Подключает `changelog.data.php` — массив изменений для страницы «История изменений».
 
+## Блок `composer_required`
+
+[](){#composer_required}
+
+Обязательные пакеты Composer для модуля. Агрегируются `ManifestPackageReader` из всех модулей реестра.
+
+```php
+'composer_required' => [
+    [
+        'name'         => 'vendor/example-package',
+        'minVersion'   => '^1.0',
+        'hardRequired' => true,
+    ],
+],
+```
+
+| Ключ | Описание |
+|------|----------|
+| `name` | Имя пакета `vendor/package` |
+| `minVersion` | Минимальная версия / constraint |
+| `hardRequired` | `true` — пакет обязателен (Dashboard, колонка «Обязательный»); `false` — рекомендуемый |
+
+При дубликате имени в нескольких модулях модуль-источник — первый в порядке `Registry`; `required=true`, если любой модуль указал `hardRequired: true`.
+
+Подробнее: [Composer-пакеты модулей](composer_packages.md).
+
 ## Регистрация модуля
 
 `Registry` сканирует `devcraft/src/modules/*/manifest.php` и строит меню DLE через `DleMenuBuilder`. Подробнее: [Registry](classes/Registry.md), [PluginContext](classes/PluginContext.md).

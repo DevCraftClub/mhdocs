@@ -12,6 +12,9 @@ keywords:
 author: "Maxim Harder"
 ---
 
+!!! warning "Документация переехала"
+    Актуальная документация: [readme.devcraft.club](https://readme.devcraft.club/)
+
 # Добро пожаловать в DevCraft Документации
 
 Сайт с документациями, который построен на React и системе Docusaurus. Исходники всегда будут доступны на GitHub.

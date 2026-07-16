@@ -15,6 +15,9 @@ twitter:title: "Установка"
 twitter:description: "Установка и обновление плагина DevCraft Admin для DLE 20.0."
 ---
 
+!!! warning "Документация переехала"
+    Актуальная документация: [readme.devcraft.club](https://readme.devcraft.club/)
+
 # Установка DevCraft Admin
 
 **Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/maharder-assets.4/)

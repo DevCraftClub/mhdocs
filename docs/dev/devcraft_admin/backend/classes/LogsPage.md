@@ -5,59 +5,45 @@ tags:
   - Плагин
   - Админка
 title: "Класс: LogsPage - DevCraft Admin"
-description: "Документация по плагину класс: logspage для DLE."
-keywords: "PHP, DLE, Плагин, Админка, класс: logspage, DevCraft, документация"
+description: "Страница журнала событий и readonly-деталь записи."
 author: "Maxim Harder"
-og:title: "Класс: LogsPage"
-og:description: "Документация по плагину класс: logspage для DLE."
-og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
-twitter:title: "Класс: LogsPage"
-twitter:description: "Документация по плагину класс: logspage для DLE."
 ---
 
 # Класс: LogsPage
 
-## Краткое содержание:
+## Краткое содержание
 
-Страница просмотра и фильтрации журнала событий DevCraft.
+Страница просмотра и фильтрации журнала событий DevCraft; детальный просмотр записи по query-параметру `uuid`.
 
----
+**Путь:** `devcraft/src/modules/Admin/Pages/LogsPage.php`
 
-### Свойства
-*Нет публичных свойств.*
+## Маршрутизация
 
----
+| URL | Поведение |
+|-----|-----------|
+| `?mod=devcraft&action=logs` | Список с фильтрами (`listPage`) |
+| `?mod=devcraft&action=logs&uuid={uuid}` | Readonly-деталь (`viewPage`) |
 
-### Методы
-* public [handle()](#method_handle)
-* private [loadFilterSchema()](#method_loadFilterSchema)
+`handle()` dispatch по наличию непустого `uuid` в GET.
 
----
+## viewPage
 
-### Подробности
+- **Шаблон:** `admin/logs_view.twig`
+- **Данные:** `record`, `presentation` (из [LogMessagePresenter](LogMessagePresenter.md)), `back_url`, `page_title`
+- **Ошибки:** неверный/отсутствующий UUID — сообщение и ссылка «Назад» на список с сохранёнными filter/order/sort/page
 
-* Путь: `devcraft/src/modules/Admin/Pages/LogsPage.php`
+## listPage
 
----
+Список с `FilterFormService`, AJAX-таблица через [LogsTableHandler](LogsTableHandler.md). Кнопка «Просмотр» ведёт на `viewPage`.
 
-## Детали
+## Методы
 
-### Методы
+- `handle(): array` — dispatch list/view
+- `listPage(): array` — таблица журнала
+- `viewPage(string $uuid): array` — деталь readonly
+- `buildBackUrl(): string` — список с текущими query-параметрами (без `uuid`)
 
-[](){#method_handle}
-### handle()
+## См. также
 
-Формирует представление и данные страницы журнала с фильтрами и таблицей.
-
-**С версии:** 200.4.0
-
-**Возвращает:** `array{view: string, data: array<string, mixed>}` — Ключ шаблона и данные для Twig.
-
-[](){#method_loadFilterSchema}
-### loadFilterSchema()
-
-Загружает схему фильтра журнала из файла модуля Admin.
-
-**С версии:** 200.4.0
-
-**Возвращает:** `FilterSchema` — Нормализованная схема фильтрации и сортировки.
+- [LogMessagePresenter](LogMessagePresenter.md)
+- [LogRecordRepository](LogRecordRepository.md)
