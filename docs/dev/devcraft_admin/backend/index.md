@@ -128,6 +128,8 @@ Twig-шаблоны: `DEVCRAFT_SRC . '/templates'`.
 | [FormSection](./classes/FormSection.md) | Секция формы. |
 | [FormSectionBuilder](./classes/FormSectionBuilder.md) | Fluent-строитель секции. |
 | [JsonResponse](./classes/JsonResponse.md) | JSON-ответ AJAX. |
+| [FileResponse](./classes/FileResponse.md) | HTTP-ответ со скачиванием файла. |
+| [UploadedFile](./classes/UploadedFile.md) | Обёртка `$_FILES` для multipart-загрузок. |
 | [LanguageData](./classes/LanguageData.md) | Метаданные языка локализации. |
 | [LogGenerator](./classes/LogGenerator.md) | Генератор логов: файлы, Telegram, БД. |
 | [LogRecord](./classes/LogRecord.md) | Сущность записи журнала DevCraft в таблице `devcraft_logs`. |

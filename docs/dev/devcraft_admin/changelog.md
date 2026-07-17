@@ -15,6 +15,15 @@ og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 
 # История изменений
 
+## Upload API (после 200.4.0)
+
+### Добавлено
+
+- `DevCraft.Ajax.postMultipart` — XHR multipart с прогрессом.
+- Twig `core/includes/upload/drop_form.twig` — dropzone для модулей.
+- [`UploadedFile`](backend/classes/UploadedFile.md) — валидация и `moveTo` для `$_FILES`.
+- Документация [`FileResponse`](backend/classes/FileResponse.md) для скачивания из AJAX.
+
 ## 200.4.0
 
 ### Добавлено

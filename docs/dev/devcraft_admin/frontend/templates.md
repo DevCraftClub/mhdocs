@@ -66,6 +66,43 @@ devcraft/src/templates/core/
 {% endblock %}
 ```
 
+## Multipart-загрузка файлов
+
+Общий транспорт панели (не отдельная страница модуля Admin):
+
+| Слой | Артефакт |
+|------|----------|
+| JS | `DevCraft.Ajax.postMultipart(url, formData, onProgress?)` в `devcraft.js` |
+| Twig | `core/includes/upload/drop_form.twig` |
+| PHP | [`UploadedFile`](../backend/classes/UploadedFile.md) |
+
+### Контракт FormData
+
+1. Поле файла — обычно `file` (как в `UploadedFile::fromFilesKey('file')`).
+2. JSON-метаданные модуля — поле `data` (строка JSON), либо отдельные ключи.
+3. `user_hash` добавляется автоматически, если его ещё нет в `FormData`.
+4. `onProgress(loaded, total)` — опциональный колбэк прогресса XHR.
+
+```javascript
+const fd = new FormData();
+fd.append('data', JSON.stringify({ kind: 'image' }));
+fd.append('file', fileInput.files[0]);
+
+DevCraft.Ajax.postMultipart(DevCraft.Ajax.url('upload_static_file'), fd, function (loaded, total) {
+  // прогресс-бар
+}).then(function (response) {
+  DevCraft.Ajax.handleNotice(response);
+});
+```
+
+```php
+$uploaded = \DevCraft\Core\Http\UploadedFile::fromFilesKey('file');
+$uploaded->assertExtension(['jpg', 'png', 'webp']);
+$uploaded->moveTo($targetPath);
+```
+
+Скачивание файла клиенту — [`FileResponse`](../backend/classes/FileResponse.md), не multipart.
+
 ## См. также
 
 - [Генератор модулей](../new_module.md)

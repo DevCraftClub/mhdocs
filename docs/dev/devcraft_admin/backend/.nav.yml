@@ -26,6 +26,8 @@ nav:
       - AjaxRequest: classes/AjaxRequest.md
       - AjaxRouteRegistry: classes/AjaxRouteRegistry.md
       - JsonResponse: classes/JsonResponse.md
+      - FileResponse: classes/FileResponse.md
+      - UploadedFile: classes/UploadedFile.md
       - CheckAssetsHandler: classes/CheckAssetsHandler.md
       - CheckUpdateHandler: classes/CheckUpdateHandler.md
       - DeleteLogHandler: classes/DeleteLogHandler.md

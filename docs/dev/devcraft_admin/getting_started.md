@@ -138,7 +138,8 @@ return [
 ### AJAX
 
 - Реализуйте `AjaxHandlerInterface`
-- Возвращайте `JsonResponse` или `FileResponse` (скачивание файлов, DevCraft ≥ 200.4.0)
+- Возвращайте `JsonResponse` или [`FileResponse`](backend/classes/FileResponse.md) (скачивание файлов, DevCraft ≥ 200.4.0)
+- Загрузка на сервер: [`UploadedFile`](backend/classes/UploadedFile.md) + [`postMultipart`](frontend/templates.md#multipart-загрузка-файлов)
 - **Не создавайте** отдельные `engine/ajax/{mod}.php`
 
 ### install.xml

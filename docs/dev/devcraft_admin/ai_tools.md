@@ -34,11 +34,13 @@ tags:
 - HTML только в Twig (Metro UI), не в PHP
 - AJAX только через devcraft/ajax.php — НЕ создавать engine/ajax/{mod}.php
 - Обработчики реализуют AjaxHandlerInterface, возвращают JsonResponse или FileResponse
+- Загрузка файлов: DevCraft.Ajax.postMultipart + DevCraft\\Core\\Http\\UploadedFile (не invent свой XHR)
 - Настройки: settings.schema.php (FormSchemaBuilder), devcraft/config/{code}.json
 - manifest.php: mod, code, meta, menu, ajax, changelog
 - install.xml: needplugin=DevCraft Admin, без paths.php
+- Файлы DLE / DevCraft Admin напрямую не редактировать — любые такие изменения только через <file>-операции (searchcode/replacecode) в install.xml; по стандартному дизайну они не нужны (Composer autoload, AJAX через devcraft/ajax.php), секция остаётся пустой
 - DevCraft Admin ≥ 200.4.0 обязателен
-- AdminLink::page(action, title, icon, groups, mod) — пятый аргумент mod обязателен для сателлитных модулей
+- AdminLink::page(name, action, pageClass, icon, mod) — пятый аргумент mod обязателен для сателлитных модулей
 - В manifest.php: пункт dashboard/index для AdminLinkResolver; assets.js подключать после devcraft.js (без inline-скриптов до ядра)
 - ajax.controller = 'admin' (не имя модуля); URL: devcraft/ajax.php?mod={mod}&controller=admin&method=...
 
