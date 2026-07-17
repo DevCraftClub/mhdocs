@@ -18,7 +18,7 @@ nav:
       - MyStatus: mystatus.md
       - Release Status: releasestatus.md
       - Schema.Org: schema.md
-      - Пользовательские теги: usertags.md
+      - Пользовательские теги: usertags/
       - Webmaster Verification: webmaster-verification.md
       - XF Lists: xflist.md
       - XF Select: xfselect.md

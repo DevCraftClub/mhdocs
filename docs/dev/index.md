@@ -27,6 +27,7 @@ sidebar_label: Разработки
 - [DB Manager](db_manager/) - Менеджер базы данных
 - [Re: Post](repost/) - Система ответов на комментарии
 - [DLE Faker](dle_faker/) - Генератор тестовых данных для DLE
+- [User Tags / TagsAdd](usertags/) - Предложение тегов к новостям (DevCraft)
 
 ### 💰 Платные разработки
 
@@ -40,7 +41,6 @@ sidebar_label: Разработки
 - [DevCraft Admin](devcraft_admin/) — Админ-оболочка DevCraft для DLE (актуальная документация)
 - [MH Admin](mhadmin/) — Админ-панель для DLE *(устаревшая документация, см. предупреждение на странице установки)*
 - [Webmaster Verification](webmaster-verification.md) - Верификация вебмастера
-- [User Tags](usertags.md) - Теги пользователей
 - [XF List](xflist.md) - Список XF
 - [XF Select](xfselect.md) - Выбор XF
 

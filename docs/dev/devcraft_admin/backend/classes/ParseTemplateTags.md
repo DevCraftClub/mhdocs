@@ -21,7 +21,7 @@ twitter:description: "Парсинг тегов шаблонов новости 
 
 Статический хелпер: подставляет **все теги шаблонов новости DLE** (short/full) в произвольную строку через `dle_template` + логику `show.short` / `show.custom` / `show.full`. URL полной новости — `DLEUrl::BuildUrl('showfull')`.
 
-Модульные плейсхолдеры (`%user%`, `%tags%`, …) передаются в `$extra` и не ломают DLE-теги.
+Модульные плейсхолдеры TagsAdd (`{user}`, `{suggested_tags}`, …) передаются в `$extra` и не ломают DLE-теги.
 
 ---
 
@@ -75,7 +75,7 @@ ParseTemplateTags::apply(
 
 Парсит теги новости (`{title}`, `{full-link}`, `[full-link]…[/full-link]`, категории, даты, автор, теги, xfields, rating, `{short-story}` / `{full-story}`, …), затем подставляет `$extra`.
 
-Автоматически добавляет совместимость TagsAdd: `%title%`, `%link%`, если их нет в `$extra`.
+Автоматически добавляет совместимость: `%title%`, `%link%`, если их нет в `$extra`.
 
 **Пример:**
 
@@ -83,8 +83,11 @@ ParseTemplateTags::apply(
 use DevCraft\Core\Support\ParseTemplateTags;
 
 $body = ParseTemplateTags::apply(
-    '«{title}»: <a href="{full-link}">открыть</a>. От %user%',
+    '«{title}»: <a href="{full-link}">открыть</a>. От {user}: {suggested_tags}',
     $newsRow,
-    ['%user%' => 'Admin', '%tags%' => 'a, b']
+    [
+        '{user}'           => 'Admin',
+        '{suggested_tags}' => 'a, b',
+    ]
 );
 ```
