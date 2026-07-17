@@ -144,6 +144,7 @@ Twig-шаблоны: `DEVCRAFT_SRC . '/templates'`.
 | [NewModuleHandler](./classes/NewModuleHandler.md) | AJAX: генерация модуля. |
 | [NewModulePage](./classes/NewModulePage.md) | Страница генератора модулей. |
 | [PageOrchestrator](./classes/PageOrchestrator.md) | Переменные Twig для настроек и changelog. |
+| [ParseTemplateTags](./classes/ParseTemplateTags.md) | Парсинг тегов шаблонов новости DLE для модулей. |
 | [Paths](./classes/Paths.md) | Пути и URL DevCraft. |
 | [PluginContext](./classes/PluginContext.md) | Контекст модуля после загрузки manifest. |
 | [Registry](./classes/Registry.md) | Реестр модулей DevCraft. |

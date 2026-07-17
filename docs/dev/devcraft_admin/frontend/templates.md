@@ -66,6 +66,15 @@ devcraft/src/templates/core/
 {% endblock %}
 ```
 
+## AJAX (`DevCraft.Ajax.post`)
+
+Layout задаёт `body[data-mod="{{ mod }}"]` и `data-ajax-base`.  
+`DevCraft.Ajax.post(method, data)` вызывает:
+
+`{ajaxBase}?controller=admin&method={method}&mod={data-mod}`
+
+Без `mod` сателлитные методы (`save_suggestion` и т.п.) не находятся в реестре.
+
 ## Multipart-загрузка файлов
 
 Общий транспорт панели (не отдельная страница модуля Admin):

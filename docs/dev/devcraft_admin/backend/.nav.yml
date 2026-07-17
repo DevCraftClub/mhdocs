@@ -41,6 +41,7 @@ nav:
       - DataLoaderService: classes/DataLoaderService.md
       - DataManager: classes/DataManager.md
       - DleDataService: classes/DleDataService.md
+      - ParseTemplateTags: classes/ParseTemplateTags.md
   - I18n / Twig / Form:
       - Translation: classes/Translation.md
       - TwigTranslatorBridge: classes/TwigTranslatorBridge.md

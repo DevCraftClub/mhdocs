@@ -86,6 +86,8 @@ DevCraft\Core\Application::instance()->runAdmin(moduleDir: 'MyModule');
 
 Параметры запроса: `mod`, `controller`, `method`, `user_hash`, `data`.
 
+`DevCraft.Ajax.post(method, data)` сам добавляет `mod` из атрибута `body[data-mod]` layout-а. Для сателлитов без `mod` сервер вернёт `unknown_method` (метод ищется в модуле `devcraft`).
+
 ## 4. settings.schema.php
 
 Схема настроек через `FormSchemaBuilder`:
@@ -160,4 +162,5 @@ XLIFF: `devcraft/locales/{locale}/{code}.xliff` (Crowdin-совместимый 
 - [Манифест модуля](backend/manifest.md)
 - [Точки входа](backend/entry_points.md)
 - [ИИ-инструменты](ai_tools.md)
+- [Конституция PHP](constitution.md)
 

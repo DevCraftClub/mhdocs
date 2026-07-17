@@ -46,7 +46,15 @@ Bootstrap плагина:
 - подключает `devcraft/src/bootstrap/ajax-session.php` для сессии админки;
 - загружает `init.php` и делегирует запрос `AjaxController`.
 
-Типичный URL: `/devcraft/ajax.php?controller=admin&method=settings`.
+Типичный URL ядра: `/devcraft/ajax.php?controller=admin&method=settings`.
+
+Для **сателлитных** модулей параметр **`mod` обязателен**, иначе реестр ищет метод в `devcraft` и отвечает `unknown_method`:
+
+```text
+/devcraft/ajax.php?mod=tags_add&controller=admin&method=save_suggestion
+```
+
+Клиент `DevCraft.Ajax.post(method, data)` подставляет `mod` из `body[data-mod]` (layout админки). Не вызывайте AJAX без `mod` для сателлитов.
 
 ## 4. `devcraft/src/bootstrap/`
 

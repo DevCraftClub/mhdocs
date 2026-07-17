@@ -92,8 +92,39 @@ engine/inc/{mod}.php, install.xml.
 Не создавай engine/ajax/ endpoints.
 ```
 
+## Экономная разработка с ИИ
+
+Меньше токенов и меньше лишнего кода: сначала узкий контекст (граф/память), длинный CLI через **sqz**, код по **ponytail**. Практика workspace `dle200test`.
+
+### Роли инструментов
+
+| Инструмент | Когда | Не делать |
+|------------|-------|-----------|
+| **graphify** | Архитектура, связи: `graphify query` / `path` / `explain`; `graphify-out/` | Читать целиком `GRAPH_REPORT.md`; `graphify update .` после правок **только** `devcraft/` |
+| **code-review-graph** | Callers/callees, communities; старт с `get_minimal_context` / `detail_level=minimal` | Широкий grep вместо 1–2 graph-вызовов |
+| **codebase-memory-mcp** | `search_graph` / `trace_path` / `detect_changes` | Полная переиндексация без изменений |
+| **sqz** | Длинный stdout: `cmd 2>&1 \| sqz compress` | Pipe для REPL/`&&`/`;`; уже короткий вывод |
+| **ponytail** | YAGNI → reuse → stdlib → минимум diff | Абстракции «на будущее»; фикс только у одного caller |
+
+### Политики dle200test
+
+- **graphify update** — только после правок DLE (`engine/`, `templates/Default/` …); чистый `devcraft/` → не обновлять.
+- **sqz:** `git status 2>&1 | sqz compress`. Escape: `sqz expand <ref>`, `SQZ_NO_DEDUP=1`, `--no-cache`.
+- **ponytail в DevCraft:** reuse `JsonResponse`, `AdminLink`, `DleDataService`, Metro tag-input.
+
+### Промпт: экономный цикл агента
+
+```markdown
+Перед исследованием кода:
+1. Если есть graphify-out/ — graphify query / path / explain (не GRAPH_REPORT целиком).
+2. Или code-review-graph / codebase-memory: minimal context → narrow files.
+3. Длинный CLI — через sqz compress (stdin pipe).
+4. Перед кодом — ponytail: YAGNI, reuse DevCraft API, минимальный diff.
+5. graphify update . только после правок DLE engine/templates; не после чистого devcraft/.
+```
+
 ## См. также
 
 - [Начало работы](getting_started.md)
-
+- [Конституция PHP](constitution.md)
 - [Генератор модулей](new_module.md)

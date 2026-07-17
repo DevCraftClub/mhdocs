@@ -41,9 +41,17 @@ og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-home'),
 ```
 
-- **slug** — сегмент URL (`sites=dashboard`);
+- **slug** — сегмент URL (`action=dashboard`);
 - **класс страницы** — реализация `PageInterface`;
 - **иконка** — Metro UI.
+
+Страница без пункта в боковом меню (роутинг сохраняется через `AdminLinkResolver`):
+
+```php
+AdminLink::hidden('edit', EditSuggestionPage::class),
+```
+
+Тип `hidden` не рендерится в `navview`, но `?action=edit` продолжает открывать страницу.
 
 ## Блок `ajax`
 
@@ -59,7 +67,7 @@ AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-ho
 ],
 ```
 
-Имя контроллера передаётся в `devcraft/ajax.php` как `controller=admin`; метод — как `method=settings`. Каждый handler реализует `AjaxHandlerInterface`.
+Имя контроллера передаётся в `devcraft/ajax.php` как `controller=admin`; метод — как `method=settings`. Для сателлитов обязателен `mod={код модуля}`. Каждый handler реализует `AjaxHandlerInterface`.
 
 ## Блок `assets`
 

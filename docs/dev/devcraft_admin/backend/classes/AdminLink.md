@@ -38,6 +38,7 @@ twitter:description: "Документация по плагину класс: a
 ### Методы
 * public [__construct()](#method___construct)
 * public [page()](#method_page)
+* public [hidden()](#method_hidden)
 * public [divider()](#method_divider)
 * public [fromArray()](#method_fromArray)
 * public [toArray()](#method_toArray)
@@ -69,7 +70,7 @@ URL или query-string ссылки.
 [](){#property_type}
 #### $type
 
-Тип элемента (`link`, `dropdown`, `divider`, `data`).
+Тип элемента (`link`, `dropdown`, `divider`, `data`, `hidden`).
 
 
 [](){#property_parent}
@@ -114,7 +115,7 @@ URL или query-string ссылки.
 **Параметры:**
 - `$name` — Отображаемое имя пункта меню.
 - `$link` — URL или query-string ссылки.
-- `$type` — Тип элемента (`link`, `dropdown`, `divider`, `data`).
+- `$type` — Тип элемента (`link`, `dropdown`, `divider`, `data`, `hidden`).
 - `$parent` — Идентификатор родительского элемента.
 - `$extra` — Дополнительные атрибуты или data-значение.
 - `$children` — Вложенные пункты меню.
@@ -136,6 +137,19 @@ URL или query-string ссылки.
 - `$mod` — Код модуля DLE (по умолчанию `devcraft`).
 
 **Возвращает:** `self` — Элемент меню типа `link`.
+
+[](){#method_hidden}
+### hidden()
+
+Регистрирует страницу без пункта в боковом меню (роутинг через `AdminLinkResolver` сохраняется).
+
+**С версии:** 200.4.0
+
+**Параметры:**
+- `$action` — Ключ action страницы.
+- `$pageClass` — Полное имя класса страницы.
+
+**Возвращает:** `self` — Элемент типа `hidden`.
 
 [](){#method_divider}
 ### divider()

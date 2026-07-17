@@ -51,6 +51,9 @@ twitter:description: "Документация по плагину класс: a
 
 **С версии:** 200.4.0
 
+При неизвестном методе ответ с кодом `unknown_method` и текстом вида:
+`Неизвестный AJAX-метод: {method} (mod={mod}, controller={controller})`.
+
 [](){#method_sendInternalError}
 ### sendInternalError()
 
