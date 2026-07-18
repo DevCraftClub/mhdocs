@@ -3,27 +3,40 @@ title: "DLE Re: Post"
 tags:
     - PHP
     - DLE
-    - В разработке
+    - Плагин
+    - DevCraft
 ---
-# DLE Re: Post 
+# DLE Re: Post
 
-Этот плагин основан на [Telegram Posting](../telegramposting/install.md). Он позволяет пересылать сообщения в социальные сети. Переработав старый плагин, можно динамически создавать несколько шаблонов и настраивать их под разные контексты. Во время разработки я подумал, что было бы здорово дополнить этот плагин различными дополнениями (социальными сетями). Теоретически, его можно настроить на отправку на различные сайты, а также в социальные сети.
+Публикация новостей DLE в каналы доставки (соцсети, webhook, API…). Преемник [Telegram Posting](../telegramposting/install.md): несколько шаблонов, несколько API-подключений, pluggable-провайдеры. Эталон — **Telegram**.
 
-#### Версия: <i class="fa-duotone fa-code-branch"></i> 173.1.0
+#### Версия: <i class="fa-duotone fa-code-branch"></i> 200.1.0
 #### Скачать: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/repost.30/)
 
 ## Возможности
 
-- Использование нескольких шаблонов
-- Формировать по различным критериям отправку
-- Подключать несколько различных соц. сетей (телеграм идёт как основа бесплатным дополнением)
+- Несколько шаблонов с условиями (категории, поля, xfields)
+- Несколько подключений API (разные боты / каналы)
+- Провайдеры в `Provider/{Name}/` (Telegram в комплекте)
+- Очередь cron, прокси (в т.ч. случайный), копирование сущностей
+- Автопостинг при add/edit; логи Admin (модуль RePost)
+- DLE-теги через `ParseTemplateTags` + RePost-теги; xfields audio/video
 
-## Установка
+## Документация
 
-Смотри [инструкцию по установке](../install_instructions.md).
+| Раздел | Ссылка |
+|--------|--------|
+| Установка | [install.md](install.md) |
+| Провайдеры | [providers.md](providers.md) |
+| Разработка каналов | [developing_providers.md](developing_providers.md) |
+| Подключения | [connections.md](connections.md) |
+| Шаблоны | [templates.md](templates.md) |
+| Теги | [template_tags.md](template_tags.md) |
+| Cron | [cron.md](cron.md) |
+| API для парсеров | [custom_add.md](custom_add.md) |
+| Changelog | [changelog.md](changelog.md) |
 
-## Социальные сети
+## Каналы
 
-- Telegram
-
-## Структура файлов
+- Telegram (встроенный провайдер)
+- Свой канал: [developing_providers.md](developing_providers.md)

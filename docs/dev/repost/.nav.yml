@@ -1,3 +1,12 @@
 title: "Re: Post - Пересылка новостей"
 nav:
   - Оглавление: index.md
+  - Установка: install.md
+  - Провайдеры: providers.md
+  - Разработка каналов: developing_providers.md
+  - Подключения: connections.md
+  - Шаблоны: templates.md
+  - Теги: template_tags.md
+  - Cron: cron.md
+  - API для парсеров: custom_add.md
+  - Changelog: changelog.md
