@@ -1,105 +1,83 @@
 ---
 tags:
-    - Faker
-    - PHP
-    - DLE
-    - Генератор
-title: Установка - DLE Faker
+  - Faker
+  - PHP
+  - DLE
+  - Генератор
+title: "Установка - DLE Faker"
+description: "Установка DLE Faker 200.1.4 для DLE 20.0 с DevCraft Admin."
+keywords: "PHP, DLE, Faker, генератор, DevCraft, документация"
+author: "Maxim Harder"
+og:title: "Установка DLE Faker"
+og:description: "Установка DLE Faker 200.1.4 для DLE 20.0 с DevCraft Admin."
+og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 ---
+
 # DLE Faker
 
 **Ссылка на разработку**: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/dle-faker.29/)
 
-DLE Faker - лагин, что позволяет вам генерировать случайные данные для DLE. На данный момент поддерживаются следующие компоненты: новости и пользователи.
+**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> **200.1.4**
 
-* **Версия модификации**: <i class="fa-duotone fa-code-branch"></i> 173.1.1
+Сателлитный модуль DevCraft Admin: генерация тестовых пользователей, категорий, новостей по шаблонам с тегами FakerPHP и медиа-библиотекой.
 
-!!! warning "Минимальная версия MH Admin"
-    **Минимальная версия MH Admin**: [<i class="fa-duotone fa-code-branch"></i> 173.3.3](../mhadmin/install.md)
+## Минимальные требования
 
-## **Установка / Обновление**
+| Компонент | Версия |
+| --------- | ------ |
+| DataLife Engine | **20.0** |
+| PHP | **8.3** |
+| DevCraft Admin | **≥ 200.4.0** |
 
-Смотри [инструкцию по установке](../install_instructions.md).
+!!! warning "Порядок установки"
+    Сначала установите и настройте [DevCraft Admin](../devcraft_admin/install.md). Затем устанавливайте DLE Faker.
 
-### **Установка зависимостей** (Опционально)
+## Установка
 
-Если в ходе использования выскочит ошибка связанная с `Faker` или / и `Faker\Factory` - установите зависимости через [композер](../composer.md).
+### 1. Архив плагина
 
-Нужно установить следующую зависимость:
+1. Скачайте `install.zip` релиза.
+2. Загрузите в **Панель управления DLE → Плагины → Установить плагин**.
+3. Убедитесь, что появились:
+   - `engine/inc/dle_faker.php`
+   - `devcraft/src/modules/dle_faker/`
+   - локали `devcraft/locales/*/dle_faker.xliff` (если входят в пакет)
+
+Legacy-пути `engine/inc/maharder/` и `engine/ajax/maharder/dle_faker/` **не используются** и в релизе отсутствуют.
+
+### 2. Composer
+
+В каталоге `devcraft/` установите зависимость (через [Composer UI](../devcraft_admin/) модуля DevCraft или CLI):
 
 ```bash
 composer require fakerphp/faker
+composer dump-autoload
 ```
 
-В теории она должна прописаться через файл `init.php`.
+Пакет объявлен в `manifest.php` как `composer_required` (`hardRequired`).
 
+### 3. Первый запуск
 
-## **Структура**
+1. Откройте `?mod=dle_faker`.
+2. Сохраните [настройки](settings.md) (локаль Faker, пулы пользователей и категорий).
+3. При необходимости загрузите файлы в меню **Файлы** (изображения / файлы / аудио / видео).
+4. Создайте [шаблон](gen_news.md) и сгенерируйте новость.
 
-
-```
-engine/
-  ├── ajax/
-    └── maharder/
-      └── dle_faker/
-        ├── generator_create_post.php
-        ├── generator_create_user.php
-        ├── master.php
-        ├── parse_content.php
-        ├── settings.php
-        ├── templates_change_status.php
-        ├── templates_create.php
-        └── templates_delete.php
-  └── inc/
-    ├── maharder/
-      ├── _locales/
-        ├── de_DE/
-          └── dle_faker.xliff
-        ├── en_US/
-          └── dle_faker.xliff
-        ├── ru_RU/
-          └── dle_faker.xliff
-        ├── uk_UA/
-          └── dle_faker.xliff
-        └── .htaccess
-      ├── _modules/
-        └── dle_faker/
-          ├── assets/
-            ├── .htaccess
-            └── icon.png
-          ├── models/
-            └── FakerTemplate.php
-          ├── module/
-            ├── changelog.php
-            ├── generator.php
-            ├── main.php
-            ├── tags.php
-            └── templates.php
-          ├── pages/
-            ├── generator_all.php
-            ├── generator_news.php
-            ├── generator_users.php
-            ├── templates_all.php
-            └── templates_create.php
-          ├── repositories/
-            └── FakerTemplateRepository.php
-          └── utils/
-            ├── composer.lock
-            ├── faker_lang.php
-            ├── helper_tags.php
-            ├── init.php
-            ├── post_tags.php
-            └── user_tags.php
-      └── _templates/
-        └── dle_faker/
-          ├── generator_all.html
-          ├── generator_posts.html
-          ├── generator_users.html
-          ├── main.html
-          ├── tags.html
-          ├── templates_all.html
-          └── templates_create.html
-    └── dle_faker.php
-install.xml
+## Структура (канон)
 
 ```
+engine/inc/dle_faker.php          # glue → Application::runAdmin('dle_faker')
+devcraft/
+  config/dle_faker.json
+  src/modules/dle_faker/
+    Ajax/ Services/ Pages/ Models/ …
+    Public/dle_faker.js
+    templates/*.twig
+    manifest.php
+```
+
+AJAX только через `devcraft/ajax.php?mod=dle_faker&controller=admin&method=…`.
+
+## Документация модуля
+
+Публичный URL: [https://readme.devcraft.club/dev/dle_faker/install/](https://readme.devcraft.club/dev/dle_faker/install/)

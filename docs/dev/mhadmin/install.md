@@ -5,6 +5,10 @@ tags:
     - Плагин
     - админпанель
 ---
+
+!!! warning "Устаревшая документация"
+    Эта документация относится к **MH Admin (Legacy)**. Актуальная документация для DevCraft Admin находится в разделе [DevCraft Admin](../devcraft_admin/install.md).
+
 # MH Admin
 
 **Ссылка на

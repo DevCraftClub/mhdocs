@@ -1,0 +1,20 @@
+title: DevCraft Admin
+nav:
+  - Установка: install.md
+  - Миграция на 200.х.х: migration.md
+  - Для пользователей:
+      - Настройка: frontend/manage.md
+  - Для разработчиков:
+      - Начало работы: getting_started.md
+      - Создание CRUD-страницы: crud_pages.md
+      - Примеры Form: backend/form_examples.md
+      - Конституция PHP: constitution.md
+      - Генератор модулей: new_module.md
+      - Точки входа: backend/entry_points.md
+      - Манифест модуля: backend/manifest.md
+      - Содержание Back-End: backend/index.md
+      - Генератор языковых файлов: generate_languages.md
+      - Back-End: backend/
+      - Front-End: frontend/
+      - ИИ-инструменты: ai_tools.md
+  - История изменений: changelog.md
