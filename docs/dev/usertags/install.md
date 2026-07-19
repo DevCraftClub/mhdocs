@@ -5,11 +5,11 @@ tags:
   - Плагин
   - Теги
 title: "Установка - TagsAdd (Пользовательские теги)"
-description: "Установка TagsAdd 200.3.0 для DLE 20.0 с DevCraft Admin."
+description: "Установка TagsAdd 200.3.1 для DLE 20.0 с DevCraft Admin."
 keywords: "PHP, DLE, TagsAdd, пользовательские теги, DevCraft, документация"
 author: "Maxim Harder"
 og:title: "Установка TagsAdd"
-og:description: "Установка TagsAdd 200.3.0 для DLE 20.0 с DevCraft Admin."
+og:description: "Установка TagsAdd 200.3.1 для DLE 20.0 с DevCraft Admin."
 og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 ---
 
@@ -19,7 +19,7 @@ og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 
 **Репозиторий**: [<i class="fa-brands fa-github"></i> DevCraftClub/tagsadd](https://github.com/DevCraftClub/tagsadd)
 
-**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> **200.3.0**
+**Версия модификации**: <i class="fa-duotone fa-code-branch"></i> **200.3.1**
 
 Сателлитный модуль [DevCraft Admin](../devcraft_admin/install.md): посетители предлагают теги к новости, модератор одобряет или отклоняет очередь в админке.
 

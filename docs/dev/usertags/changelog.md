@@ -19,6 +19,18 @@ og:image: "https://devcraft.club/data/assets/logo_default/devcraftx2.png"
 
 Репозиторий: [DevCraftClub/tagsadd](https://github.com/DevCraftClub/tagsadd).
 
+## 200.3.1 (2026-07-19)
+
+### Исправлено
+
+- Фатал undefined `__()` на фронте при include `tags_add.php` без DevCraft bootstrap — добавлен fallback
+- XLIFF TagsAdd перенесён из `locales/ru/` в `locales/ru_RU/`
+
+### Изменено
+
+- Рендер button/modal через нативный `$tpl` и шаблоны темы
+- Блок `author` в manifest убран — используется дефолт `ModuleManifest`
+
 ## 200.3.0 (2026-07-17)
 
 Миграция на DevCraft Admin / DLE 20.0. Ветка: [`releases/200.3.0`](https://github.com/DevCraftClub/tagsadd/tree/releases/200.3.0).
@@ -59,7 +71,7 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
 - Исправлены баги относительно 1.x
 
 !!! note "Миграция с 2.0"
-    Пакет 200.x **не** ставится поверх maharder-путей. Удалите старый плагин, установите DevCraft Admin, затем TagsAdd 200.3.0 и заново подключите includes в теме (см. [установку](install.md)).
+    Пакет 200.x **не** ставится поверх maharder-путей. Удалите старый плагин, установите DevCraft Admin, затем TagsAdd 200.3.0 или новее и заново подключите includes в теме (см. [установку](install.md)).
 
 ## 1.2.1
 
