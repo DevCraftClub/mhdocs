@@ -1,16 +1,21 @@
 ---
-title: "DLE Re: Post"
+title: 'DLE Re: Post'
 tags:
-    - PHP
-    - DLE
-    - Плагин
-    - DevCraft
+  - PHP
+  - DLE
+  - Плагин
+  - DevCraft
+  - Соц. сети
+  - Sharing
+  - Telegram
 ---
+
 # DLE Re: Post
 
 Публикация новостей DLE в каналы доставки (соцсети, webhook, API…). Преемник [Telegram Posting](../telegramposting/install.md): несколько шаблонов, несколько API-подключений, pluggable-провайдеры. Эталон — **Telegram**.
 
 #### Версия: <i class="fa-duotone fa-code-branch"></i> 200.1.0
+
 #### Скачать: [<i class="fa-thin fa-paperclip"></i> Перейти к разработке](https://devcraft.club/downloads/repost.30/)
 
 ## Возможности
@@ -25,19 +30,19 @@ tags:
 
 ## Документация
 
-| Раздел | Ссылка |
-|--------|--------|
-| Установка | [install.md](install.md) |
-| Провайдеры | [providers.md](providers.md) |
-| Telegram | [providers/telegram.md](providers/telegram.md) |
-| VK (платное) | [providers/vk.md](providers/vk.md) |
+| Раздел             | Ссылка                                             |
+| ------------------ | -------------------------------------------------- |
+| Установка          | [install.md](install.md)                           |
+| Провайдеры         | [providers.md](providers.md)                       |
+| Telegram           | [providers/telegram.md](providers/telegram.md)     |
+| VK (платное)       | [providers/vk.md](providers/vk.md)                 |
 | Разработка каналов | [developing_providers.md](developing_providers.md) |
-| Подключения | [connections.md](connections.md) |
-| Шаблоны | [templates.md](templates.md) |
-| Теги | [template_tags.md](template_tags.md) |
-| Cron | [cron.md](cron.md) |
-| API для парсеров | [custom_add.md](custom_add.md) |
-| Changelog | [changelog.md](changelog.md) |
+| Подключения        | [connections.md](connections.md)                   |
+| Шаблоны            | [templates.md](templates.md)                       |
+| Теги               | [template_tags.md](template_tags.md)               |
+| Cron               | [cron.md](cron.md)                                 |
+| API для парсеров   | [custom_add.md](custom_add.md)                     |
+| Changelog          | [changelog.md](changelog.md)                       |
 
 ## Каналы
 
