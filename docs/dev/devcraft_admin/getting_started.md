@@ -129,7 +129,7 @@ return [
 
 ## 6. Фильтры (опционально)
 
-Для таблиц с фильтрацией — `filter.schema.php` и `FilterFormService` (см. модуль Admin → логи).
+Для таблиц с фильтрацией — `{Plugin}/Filter/{name}.filter.schema.php` и `FilterFormService` (см. модуль Admin → логи: `Admin/Filter/logs.filter.schema.php`).
 
 ## 7. Страницы, AJAX, install.xml
 
@@ -157,6 +157,8 @@ XLIFF: `devcraft/locales/{locale}/{code}.xliff` (Crowdin-совместимый 
 
 ## См. также
 
+- [Создание CRUD-страницы](crud_pages.md) — сквозной сценарий: Entity → Repository → список с фильтром → форма → Ajax → манифест → Twig
+- [Примеры Form](backend/form_examples.md) — layout stack/tabs/accordion, все типы полей, filter schema
 - [Генератор модулей](new_module.md)
 - [Composer-пакеты модулей](backend/composer_packages.md)
 - [Манифест модуля](backend/manifest.md)

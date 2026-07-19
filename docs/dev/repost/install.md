@@ -48,11 +48,13 @@ composer dump-autoload
 
 Плагин патчит через `<file>` (не правьте DLE вручную в репозитории):
 
-- `engine/inc/addnews.php` → `sendRepost($id, 'addnews')`
-- `engine/inc/editnews.php` → `sendRepost($id, 'editnews')`
-- `engine/modules/addnews.php` → `sendRepost($insert_id, 'addnews')`
+- `engine/inc/addnews.php` → форма RePost + `sendRepost($id, 'addnews', $options)`
+- `engine/inc/editnews.php` → форма RePost + `sendRepost($id, 'editnews', $options)`
+- `engine/modules/addnews.php` → форма в `{admintag}` + `sendRepost($insert_id, 'addnews', $options)`
 - удаление новости → очистка очереди
-- `cron.php` → режим `repost`
+- `engine/modules/cron.php` → `repostRunCron()` в конце авто-cron DLE
+
+Корневой `cron.php` **не** патчится.
 
 ## Структура модуля
 

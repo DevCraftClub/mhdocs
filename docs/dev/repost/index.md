@@ -20,7 +20,8 @@ tags:
 - Провайдеры в `Provider/{Name}/` (Telegram в комплекте)
 - Очередь cron, прокси (в т.ч. случайный), копирование сущностей
 - Автопостинг при add/edit; логи Admin (модуль RePost)
-- DLE-теги через `ParseTemplateTags` + RePost-теги; xfields audio/video
+- DLE-теги через `ParseTemplateTags` + `TemplateTagsInterface` канала; xfields audio/video; подтипы `media_*`
+- Справочник тегов в админке (**Теги шаблонов**)
 
 ## Документация
 
@@ -28,6 +29,8 @@ tags:
 |--------|--------|
 | Установка | [install.md](install.md) |
 | Провайдеры | [providers.md](providers.md) |
+| Telegram | [providers/telegram.md](providers/telegram.md) |
+| VK (платное) | [providers/vk.md](providers/vk.md) |
 | Разработка каналов | [developing_providers.md](developing_providers.md) |
 | Подключения | [connections.md](connections.md) |
 | Шаблоны | [templates.md](templates.md) |
@@ -38,5 +41,6 @@ tags:
 
 ## Каналы
 
-- Telegram (встроенный провайдер)
+- [Telegram](providers/telegram.md) (встроенный)
+- **VKontakte** — платное [RePost Provider: VK](providers/vk.md)
 - Свой канал: [developing_providers.md](developing_providers.md)

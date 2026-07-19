@@ -52,7 +52,7 @@ twitter:description: "Глобальные настройки плагина Dev
 | Telegram (`logs_telegram`) | Отправка логов в канал при заполненных полях ниже. | Переключатель |
 | API ключ бота (`logs_telegram_api`) | Токен от [@BotFather](https://t.me/BotFather). Подробнее: [документация Telegram Posting](../../telegramposting/bot.md). | Текст |
 | Канал (`logs_telegram_channel`) | ID канала Telegram. | Текст |
-| Тип оповещений (`logs_telegram_type`) | Фильтр по уровню: все, ошибки, info, notice, warning, critical, debug. При выборе «Все» остальные уровни игнорируются. | Множественный выбор |
+| Тип сохраняемых логов (`logs_save_types`) | Фильтр типов для file / БД / Telegram: все, ошибки, info, notice, warning, critical, debug. При «Все» остальные игнорируются. При включённом debug сохраняются все типы. | Множественный выбор |
 
 ## Проверка целостности файлов
 

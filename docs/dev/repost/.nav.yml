@@ -3,6 +3,8 @@ nav:
   - Оглавление: index.md
   - Установка: install.md
   - Провайдеры: providers.md
+  - Telegram: providers/telegram.md
+  - VK (платное): providers/vk.md
   - Разработка каналов: developing_providers.md
   - Подключения: connections.md
   - Шаблоны: templates.md

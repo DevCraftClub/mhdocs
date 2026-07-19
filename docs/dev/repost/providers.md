@@ -13,15 +13,18 @@ devcraft/src/modules/RePost/Provider/
 ├── ProviderInterface.php
 ├── AbstractProvider.php
 ├── ProviderRegistry.php
-└── Telegram/
-    ├── init.php
-    ├── settings.schema.php
-    ├── TelegramProvider.php
-    ├── TelegramBotFactory.php
-    └── MediaLimits.php
+├── Telegram/
+└── VK/          # платное дополнение, не в ядре
 ```
 
 `ProviderRegistry` сканирует `init.php` и регистрирует провайдер по ключу `name`.
+
+## Каналы
+
+| Канал | Статус | Документация |
+|-------|--------|--------------|
+| Telegram | в ядре | [providers/telegram.md](providers/telegram.md) |
+| VKontakte | платное | [providers/vk.md](providers/vk.md) |
 
 ## init.php
 
@@ -36,23 +39,15 @@ return [
 
 ## Контракт
 
-Класс реализует `ProviderInterface` (рекомендуется `extends AbstractProvider`):
+Класс реализует `ProviderInterface` через **`extends AbstractProvider`**:
 
-- `settingsSchema()` — поля формы подключения (`FormSchemaBuilder`)
-- `send(PostContext, RenderedMessage, connectionConfig, ?proxy): SendResult`
+- `settingsSchema()` — поля формы подключения
+- `mediaByteLimits()` — обязательные лимиты размера (байты) по типам медиа
+- `send(…)` — до аплоада вызывает `filterMediaByLimits()`
+- `SendResult` через `ok()` / `fail()`
 
-`connectionConfig` — произвольный JSON из схемы провайдера. Это не только «соцсеть»: webhook, БД, внешний API — тот же контракт.
-
-Подробная инструкция: [developing_providers.md](developing_providers.md).
-
-## Telegram
-
-- Зависимости: `luzrain/telegram-bot-api`, `guzzlehttp/guzzle` (в `devcraft/`, vendor в архив плагина не входит).
-- `tg_send_type`: `text` / `media` / `photo` / `audio` / `video` / `document`.
-- `audio` / `video` — отдельный `SendAudio` / `SendVideo` на каждый файл из xfields.
-- `media` — album только photo/video; audio уходит отдельными сообщениями (Telegram не смешивает типы в media group).
-- Лимит Bot API на видео ≈ 50 Mb.
+Локальные файлы сверх лимита отсекаются контрактом AbstractProvider и не роняют всю отправку сырым HTTP 413. Подробности: [developing_providers.md](developing_providers.md).
 
 ## Новый провайдер
 
-См. [developing_providers.md](developing_providers.md).
+См. [developing_providers.md](developing_providers.md). Платные каналы — отдельный ZIP в `Provider/{Code}/` + composer deps.

@@ -10,7 +10,12 @@ tags:
 
 ```php
 include_once (DLEPlugins::Check(ENGINE_DIR . '/modules/devcraft/repost.php'));
-sendRepost($id, 'addnews'); // или 'editnews'
+sendRepost($id, 'addnews', [
+	'defer'         => 'yes',       // yes|no|template
+	'planned'       => null,        // ?DateTimeImmutable
+	'template_mode' => 'auto',      // auto|manual
+	'template_ids'  => [],          // при manual — id активных шаблонов
+]);
 ```
 
 Функция возвращает список `SendResult` (ok / message / raw) по каждому сработавшему шаблону.
@@ -18,6 +23,7 @@ sendRepost($id, 'addnews'); // или 'editnews'
 Дополнительно:
 
 ```php
-repostRunCron();                 // обработать очередь
+repostRunCron();                 // обработать due-очередь (то же, что авто-cron DLE)
 repostDeleteCronForNews($id);    // очистить очередь новости
+repostOptionsFromRequest();      // разобрать POST формы новости
 ```
