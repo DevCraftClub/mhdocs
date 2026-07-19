@@ -42,5 +42,5 @@ tags:
 ## Каналы
 
 - [Telegram](providers/telegram.md) (встроенный)
-- **VKontakte** — платное [RePost Provider: VK](providers/vk.md)
+- **VK.com** — платное [RePost Provider: VK](providers/vk.md)
 - Свой канал: [developing_providers.md](developing_providers.md)

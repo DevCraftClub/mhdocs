@@ -24,7 +24,7 @@ devcraft/src/modules/RePost/Provider/
 | Канал | Статус | Документация |
 |-------|--------|--------------|
 | Telegram | в ядре | [providers/telegram.md](providers/telegram.md) |
-| VKontakte | платное | [providers/vk.md](providers/vk.md) |
+| VK.com | платное | [providers/vk.md](providers/vk.md) |
 
 ## init.php
 

@@ -3,12 +3,12 @@ title: "RePost Provider: VK (платное)"
 tags:
     - PHP
     - DLE
-    - VKontakte
+    - VK.com
     - DevCraft
 ---
 # RePost Provider: VK
 
-**Платное дополнение** к RePost: публикация новостей на стену сообщества ВКонтакте.
+**Платное дополнение** к RePost: публикация новостей на стену сообщества VK.com.
 
 #### Версия: <i class="fa-duotone fa-code-branch"></i> 200.2.0
 #### Совместимость: RePost ≥ **200.1.0**, DLE 20.0
@@ -74,7 +74,7 @@ OAuth в админке RePost нет — ключи вставляются вр
 
 - числовой id (`123456`);
 - `club123456` / `public123456` / `event…`;
-- **короткое имя** из URL (`zero_dub` для `https://vk.ru/zero_dub`).
+- **короткое имя** из URL (`moj_krutoj_pablik` для `https://vk.ru/moj_krutoj_pablik`).
 
 Резолв имени — через [`utils.resolveScreenName`](https://dev.vk.com/ru/method/utils.resolveScreenName) ключом сообщества.
 

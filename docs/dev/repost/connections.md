@@ -36,7 +36,7 @@ tags:
 
 Медиа для `audio`/`video`/`media`/`media_*` берётся из шаблона и xfields (тип поля `audio` / `video`, формат `url|id|size,…`). Фильтр по `tg_send_type` отсекает лишние типы.
 
-## VKontakte (config)
+## VK.com (config)
 
 | Ключ | Описание |
 |------|----------|
