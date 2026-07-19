@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -14,7 +17,7 @@ jobs:
       - name: Клонирование кода
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0 # Получаем полную историю для git-revision-date плагина
+          fetch-depth: 0
 
       - name: Настройка Python
         uses: actions/setup-python@v6
@@ -27,38 +30,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Определение версии
+      - name: Определение версии из manifest.json
         id: version
         run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            # Для PR проверяем название на наличие версии
-            if [[ "${{ github.event.pull_request.title }}" =~ v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
-              # Извлекаем версию из названия PR
-              VERSION=$(echo "${{ github.event.pull_request.title }}" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' | head -1)
-              echo "version=$VERSION" >> $GITHUB_OUTPUT
-            else
-              # Если версия не указана, используем dev
-              echo "version=dev" >> $GITHUB_OUTPUT
-            fi
-          else
-            # Для push в main используем dev
-            echo "version=dev" >> $GITHUB_OUTPUT
+          VERSION=$(jq -r '.version' manifest.json)
+          if [[ -z "$VERSION" || "$VERSION" == "null" ]]; then
+            echo "В manifest.json отсутствует корректное поле version" >&2
+            exit 1
           fi
-          echo "Используется версия: ${{ steps.version.outputs.version }}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Используется версия: $VERSION"
 
       - name: Сборка документации
-        run: |
-          mkdocs build -c
+        run: mkdocs build -c
 
       - name: Деплой с mike
-        if: github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          # Настраиваем git для mike
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Деплоим с mike
-          mike deploy --push --update-aliases "${{ steps.version.outputs.version }}" latest
-
-          # Устанавливаем версию по умолчанию
+          VERSION="${{ steps.version.outputs.version }}"
+          mike deploy --push --update-aliases "$VERSION" latest
           mike set-default --push latest
