@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Создание меток
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const labels = [
