@@ -38,7 +38,7 @@ jobs:
           echo "Диапазон: $BASE_REF..$CURRENT_TAG (версия $VERSION)"
 
       - name: Генерация секции changelog
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require('fs');
