@@ -145,7 +145,7 @@ jobs:
           cp /tmp/changelog-section.md changelog-section.md
 
       - name: Загрузка журнала изменений как артефакт
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: журнал-изменений-${{ github.ref_name }}
           path: |
