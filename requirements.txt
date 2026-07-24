@@ -30,6 +30,7 @@ mkdocs-meta-manager
 mkdocs-minify-plugin
 mkdocs-redirects
 mkdocs-section-index
+mkdocs-swagger-ui-tag
 neoteroi-mkdocs
 pandas
 pip-chill

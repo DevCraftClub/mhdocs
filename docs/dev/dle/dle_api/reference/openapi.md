@@ -16,4 +16,4 @@ author: "Maxim Harder"
 cd upload/api && composer openapi
 ```
 
-[OAD(./openapi.yaml)]
+<swagger-ui src="./openapi.yaml" syntaxHighlightTheme="monokai"/>

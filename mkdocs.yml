@@ -30,7 +30,6 @@ theme:
 #    - navigation.indexes
     - navigation.top
     - toc.follow
-    - toc.integrate
     - search.suggest
     - search.highlight
     - search.share
@@ -46,6 +45,7 @@ theme:
       улучшать нашу документацию.
 
 plugins:
+  - swagger-ui-tag
   - offline
   - search:
       lang:

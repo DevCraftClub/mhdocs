@@ -41,15 +41,26 @@ Nested: доменные `with*Entity` или `attachChildEntity('images', …)`
 
 Bearer принимает **API-ключ** или **access_token**. Подробно: [Авторизация](../guides/auth.md).
 
-`POST /oauth/token` — опционально, если нужен OAuth (`client_credentials` | `password` | `authorization_code` | `refresh_token`; только POST).
+- `POST /oauth/token` — опционально, если нужен OAuth (`client_credentials` | `password` | `authorization_code` | `refresh_token`; только POST).
+- Password grant: `username` = `users.name` или email, `password` = пароль DLE (+ `client_id` / `client_secret`).
 
-Password grant: `username` = `users.name` или email, `password` = пароль DLE (+ `client_id` / `client_secret`).
-
-В OpenAPI server variable `apiBase` — подставьте свой URL до `/api/v2`.
+!!!info Свой домен для теста
+	В OpenAPI server variable `apiBase` — подставьте свой URL до `/api/v2`.
+!!!
 
 ## Поиск и фильтры
 
-Канон: **`GET /table/{name}/`** — SchemaRegistry **или** интроспекция `SHOW COLUMNS` (таблицы без `*Schema.php`). Deny-list: `api_keys`, `api_scope`, `oauth_*` / `api_oauth_*`, `devcraft_*`. Права: `api_scope` (`read`/`write`/`delete`; `is_admin` без ограничений). Фильтры — query-параметры колонок. Virtual FK (RelationMap, без MySQL FK): `csv`/`csv_or_all` → `FIND_IN_SET`, `one` → `=`. Операторы значения: `!` negate, `%` LIKE. Доп. поля: `xf[name]=value` (pad-LIKE по `xfields`).
+- Канон: **`GET /table/{name}/`** — SchemaRegistry **или** интроспекция `SHOW COLUMNS` (таблицы без `*Schema.php`).
+- Deny-list: `api_keys`, `api_scope`, `oauth_*` / `api_oauth_*`, `devcraft_*`.
+- Права: `api_scope` (`read`/`write`/`delete`; `is_admin` без ограничений).
+- Фильтры — query-параметры колонок.
+- Virtual FK (RelationMap, без MySQL FK):
+	- `csv`/`csv_or_all` → `FIND_IN_SET`,
+	- `one` → `=`
+- Операторы значения:
+	- `!` -> negate
+	- `%` -> LIKE
+- Доп. поля: `xf[name]=value` (pad-LIKE по `xfields`).
 
 ```http
 GET /api/v2/table/banners/?category=1&approve=1&limit=20
