@@ -15,7 +15,7 @@ env:
   PYTHON_VERSION: '3.13'
 
 jobs:
-  build:
+  prepare:
     name: Подготовка
     runs-on: ubuntu-latest
     steps:
@@ -58,8 +58,12 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
 
-      - name: Установка системных зависимостей
-        run: |
+  build_apt:
+    runs-on: ubuntu-latest
+    name: Установка зависимостей системы
+    needs: prepare
+    steps:
+      - run: |
           sudo apt-get update
           sudo apt-get install -y \
             libcairo2-dev \
@@ -69,8 +73,12 @@ jobs:
             libpng-dev \
             libz-dev
 
-      - name: Установка Python-зависимостей
-        run: |
+  build_pip:
+    runs-on: ubuntu-latest
+    name: Установка зависимостей Python
+    needs: prepare
+    steps:
+      - run: |
           sudo apt-get update
           sudo apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev -u -y
           python -m pip install --upgrade pip
@@ -79,6 +87,7 @@ jobs:
 
   deploy:
     name: Публикация
+    needs: [build_apt, build_pip]
     runs-on: ubuntu-latest
     steps:
       - name: Деплой с mike
