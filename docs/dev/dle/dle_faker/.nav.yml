@@ -1,0 +1,13 @@
+title: DLE Faker
+nav:
+  - Начало работы: getting_started.md
+  - Установка: install.md
+  - Настройка: settings.md
+  - Гайды:
+      - Общие теги: guides/tag_for_all.md
+      - Теги пользователей: guides/tag_for_users.md
+      - Теги новостей: guides/tag_for_news.md
+      - Генерация пользователей: guides/gen_users.md
+      - Генерация новостей: guides/gen_news.md
+      - Парсер данных: guides/parser.md
+  - История изменений: changelog.md

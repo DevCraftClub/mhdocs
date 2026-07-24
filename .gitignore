@@ -221,3 +221,7 @@ cython_debug/
 .idea/inspectionProfiles/Project_Default.xml
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/codeStyles/codeStyleConfig.xml
+
+.serena/
+graphify-out/
+.cache/

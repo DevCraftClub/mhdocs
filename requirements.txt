@@ -24,6 +24,7 @@ mkdocs-import-statement-plugin
 mkdocs-link-marker
 mkdocs-localsearch
 mkdocs-material
+mkdocs-material[imaging]
 mkdocs-mermaid2-plugin
 mkdocs-meta-manager
 mkdocs-minify-plugin

@@ -1,0 +1,8 @@
+title: Хаки и простые модули
+nav:
+  - Schema.Org: schema.md
+  - Webmaster Verification: webmaster-verification.md
+  - XF Lists: xflist.md
+  - XF Select: xfselect.md
+  - Страницы как на КиноПоиске: hook-pages-like-kp.md
+  - Подсчёт символов в короткой новости: hook-shortstory-signs-count.md
