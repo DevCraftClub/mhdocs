@@ -12,10 +12,11 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  PYTHON_VERSION: "3.13"
+  PYTHON_VERSION: '3.13'
 
 jobs:
-  build-and-deploy:
+  build:
+    name: Подготовка
     runs-on: ubuntu-latest
     steps:
       - name: Клонирование кода
@@ -55,7 +56,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: "pip"
+          cache: 'pip'
 
       - name: Установка системных зависимостей
         run: |
@@ -70,10 +71,16 @@ jobs:
 
       - name: Установка Python-зависимостей
         run: |
+          sudo apt-get update
+          sudo apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev -u -y
           python -m pip install --upgrade pip
           pip install --force-reinstall --no-cache-dir -r requirements.txt
           pip install pillow cairosvg
 
+  deploy:
+    name: Публикация
+    runs-on: ubuntu-latest
+    steps:
       - name: Деплой с mike
         if: github.ref == 'refs/heads/main'
         run: |
