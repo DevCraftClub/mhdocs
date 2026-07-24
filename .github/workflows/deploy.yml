@@ -22,11 +22,25 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+      - name: Определение версии из manifest.json
+        id: version
+        run: |
+          VERSION=$(jq -r '.version' manifest.json)
+          if [[ -z "$VERSION" || "$VERSION" == "null" ]]; then
+            echo "В manifest.json отсутствует корректное поле version" >&2
+            
+            VERSION="dev"
+          fi
+          echo "version=$VERSION" >> "$GITHUB_ENV"
+          echo "Используется версия: $VERSION"
+
+      - run: |
+          RAND_HASH=$(openssl rand -hex 4)
+          echo "cache_id=$(date --utc '+%V')_$RAND_HASH" >> $GITHUB_ENV
 
       - uses: actions/cache@v4
         with:
-          key: mkdocs-material-${{ env.cache_id }}
+          key: mkdocs-material-${{ env.cache_id }}-${{ env.version }}
           path: ~/.cache
           restore-keys: |
             mkdocs-material-
@@ -37,31 +51,13 @@ jobs:
           python-version: "3.13"
           cache: "pip"
 
-      - name: Подготовка к сборке
-        run: |
-          sudo apt-get update
-          sudo apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev -u -y
-          sudo apt-get install pngquant -u -y
-
       - name: Установка зависимостей
         run: |
+          apt update
+          apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev -u -y
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install --force-reinstall --no-cache-dir -r requirements.txt
           pip install pillow cairosvg
-
-      - name: Определение версии из manifest.json
-        id: version
-        run: |
-          VERSION=$(jq -r '.version' manifest.json)
-          if [[ -z "$VERSION" || "$VERSION" == "null" ]]; then
-            echo "В manifest.json отсутствует корректное поле version" >&2
-            exit 1
-          fi
-          echo "version=$VERSION" >> "$GITHUB_ENV"
-          echo "Используется версия: $VERSION"
-
-      - name: Сборка документации
-        run: mkdocs build -c
 
       - name: Деплой с mike
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
