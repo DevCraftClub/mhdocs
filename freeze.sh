@@ -1,1 +1,1 @@
-pip-chill --no-version > requirements.txt
+pip-chill --no-version > requirements.no-version.txt
