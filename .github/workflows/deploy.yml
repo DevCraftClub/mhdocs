@@ -41,9 +41,7 @@ jobs:
           echo "Используется версия: $VERSION"
 
       - name: Генерация ключа кеша
-        run: |
-          RAND_HASH=$(openssl rand -hex 4)
-          echo "cache_id=$(date --utc '+%V')_${RAND_HASH}" >> "$GITHUB_ENV"
+        run: echo "cache_id=$(date --utc '+%V')" >> "$GITHUB_ENV"
 
       - name: Кеш MkDocs Material
         uses: actions/cache@v4
@@ -80,5 +78,5 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           set -euo pipefail
-          mike deploy --push --update-aliases "${{ env.version }}" latest
-          mike set-default --push latest
+          mike deploy --push --update-aliases "${{ env.version }}" latest --allow-empty
+          mike set-default --push latest --allow-empty
