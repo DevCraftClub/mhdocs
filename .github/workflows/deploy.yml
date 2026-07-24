@@ -53,8 +53,8 @@ jobs:
 
       - name: Установка зависимостей
         run: |
-          apt update
-          apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev -u -y
+          sudo apt-get update
+          sudo apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev -u -y
           python -m pip install --upgrade pip
           pip install --force-reinstall --no-cache-dir -r requirements.txt
           pip install pillow cairosvg
