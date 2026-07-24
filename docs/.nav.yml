@@ -2,4 +2,6 @@ nav:
   - Главная: index.md
   - Список тегов: tags.md
   - site
+  - instructions
   - dev
+  - deprecated

@@ -1,31 +1,23 @@
 title: Разработки
 nav:
-  - Инструкции:
-      - Composer: composer.md
-      - Crowdin: crowdin.md
-      - Инструкция по установке: install_instructions.md
-      - Инструкция по установке PHP intl: php_intl.md
   - API Wrappers:
-      - KinopoiskUnoffical PHP: notkinopoiskphp/
-      - KinopoiskDev PHP: kinopoiskdev/
+      - KinopoiskUnoffical PHP: api_wrappers/notkinopoiskphp/
+      - KinopoiskDev PHP: api_wrappers/kinopoiskdev/
   - Бесплатные разработки:
-      - DB Manager: db_manager/
-      - "Re: Post": repost/
-      - DLE Faker: dle_faker/
-      - Telegram Posting: telegramposting/
-      - DevCraft Admin: devcraft_admin/
-      - MH Admin (Legacy): mhadmin/
-      - MyStatus: mystatus.md
-      - Release Status: releasestatus.md
-      - Schema.Org: schema.md
-      - Пользовательские теги: usertags/
-      - Webmaster Verification: webmaster-verification.md
-      - XF Lists: xflist.md
-      - XF Select: xfselect.md
-  - Хаки:
-      - Страницы как на КиноПоиске: hook-pages-like-kp.md
-      - Подсчёт символов в короткой новости: hook-shortstory-signs-count.md
+      - DB Manager: dle/db_manager/
+      - "Re: Post": dle/repost/
+      - DLE Faker: dle/dle_faker/
+      - DLE API: dle/dle_api/
+      - DevCraft Admin: dle/devcraft_admin/
+      - Пользовательские теги: dle/usertags/
+      - MyStatus: dle/mystatus.md
+      - Release Status: dle/releasestatus.md
+  - Хаки и простые модули:
+      - Schema.Org: dle/simple/schema.md
+      - Webmaster Verification: dle/simple/webmaster-verification.md
+      - XF Lists: dle/simple/xflist.md
+      - XF Select: dle/simple/xfselect.md
+      - Страницы как на КиноПоиске: dle/simple/hook-pages-like-kp.md
+      - Подсчёт символов в короткой новости: dle/simple/hook-shortstory-signs-count.md
   - Платные разработки:
-      - Шаблон SeasonVar: paid-seasonvar/
-      - Курс валют: paid-currencies_rate.md
-      - Последние новости списком: paid-lastnews.md
+      - Курс валют: dle/paid-currencies_rate.md

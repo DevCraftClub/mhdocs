@@ -1,0 +1,10 @@
+title: DLE API
+nav:
+  - Начало работы: getting_started.md
+  - Установка: install.md
+  - Гайды:
+      - Авторизация: guides/auth.md
+  - Справочник:
+      - API v2: reference/api_v2.md
+      - OpenAPI: reference/openapi.md
+  - Changelog: changelog.md

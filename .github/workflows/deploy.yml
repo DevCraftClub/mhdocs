@@ -2,9 +2,7 @@ name: Деплой документации
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches: [main, master]
 
 permissions:
   contents: write
@@ -19,16 +17,37 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Настройка Git
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: ~/.cache
+          restore-keys: |
+            mkdocs-material-
+
       - name: Настройка Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: "pip"
 
+      - name: Подготовка к сборке
+        run: |
+          apt update
+          apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev -u -y
+          apt-get install pngquant -u -y
+
       - name: Установка зависимостей
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pillow cairosvg
 
       - name: Определение версии из manifest.json
         id: version
@@ -38,7 +57,7 @@ jobs:
             echo "В manifest.json отсутствует корректное поле version" >&2
             exit 1
           fi
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_ENV"
           echo "Используется версия: $VERSION"
 
       - name: Сборка документации
@@ -47,9 +66,7 @@ jobs:
       - name: Деплой с mike
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          VERSION="${{ steps.version.outputs.version }}"
+          VERSION="${{ env.version }}"
           mike deploy --push --update-aliases "$VERSION" latest
           mike set-default --push latest
+          mkdocs gh-deploy --force
