@@ -39,9 +39,9 @@ jobs:
 
       - name: Подготовка к сборке
         run: |
-          apt update
-          apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev -u -y
-          apt-get install pngquant -u -y
+          sudo apt-get update
+          sudo apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev -u -y
+          sudo apt-get install pngquant -u -y
 
       - name: Установка зависимостей
         run: |
