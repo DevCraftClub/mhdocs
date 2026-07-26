@@ -5,7 +5,7 @@ babel==2.18.0
 backports.tarfile==1.2.0
 backrefs==7.0
 beautifulsoup4==4.15.0
-bracex==2.6
+bracex==3.0.1
 brotli==1.2.0
 cairocffi==1.7.1
 CairoSVG==2.9.0
