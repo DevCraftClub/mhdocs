@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Клонирование кода
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -45,7 +45,7 @@ jobs:
         run: echo "cache_id=$(date --utc '+%V')" >> "$GITHUB_ENV"
 
       - name: Кеш MkDocs Material
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: ~/.cache
