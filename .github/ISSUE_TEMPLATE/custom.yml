@@ -1,0 +1,45 @@
+name: Прочее по документации
+description: Если запрос не подходит под ошибку или улучшение контента
+title: "[Docs]: "
+labels:
+  - documentation
+assignees:
+  - Gokujo
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо за обращение. Это репозиторий **документации** (не баг плагина).
+        Публичный GitHub — статика + шаблоны;
+  - type: checkboxes
+    id: read-rules
+    attributes:
+      label: Пользовательское соглашение
+      description: Перед срочными просьбами — [прочтите соглашение](https://devcraft.club/pages/licence-agreement/).
+      options:
+        - label: Я прочитал(а) соглашение и согласен(на) с ним
+          required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: URL или путь (если есть)
+      placeholder: /instructions/... или https://readme.devcraft.club/...
+    validations:
+      required: false
+  - type: textarea
+    id: what-do-you-need
+    attributes:
+      label: Суть запроса
+      description: Опишите вопрос или проблему по шагам, если возможно.
+      placeholder: Нужно уточнить …
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Скриншоты / файлы
+      description: По желанию.
+      value: |
+        ![описание](ссылка.png)
+    validations:
+      required: false

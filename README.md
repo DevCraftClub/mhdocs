@@ -1,11 +1,9 @@
-# Документации
+# Сайт документаций DevCraft.club [![status-badge](https://woodp.hrdr.dev/api/badges/2/status.svg?events=push%2Ctag%2Crelease%2Cpull_request%2Cpull_request_closed%2Cpull_request_metadata%2Cdeployment%2Ccron%2Cmanual)](https://woodp.hrdr.dev/repos/2)
 
-## Исходники документаций разработок
+Статическая сборка документации DevCraft на **Fumadocs + React Router**. Исходники MDX, приложение и CI — в частном репозитории; отображение на гитхабе — опубликованный сайт и шаблоны `.github` (Issue/PR).
 
-В последние месяцы на сайте были небольшие неполадки и для их решения приходилось отключать сайт. А с отключением сайта отключался и доступ к документациям. И поэтому я решил перенести их на отдельный движок или платформу.
+- **Ссылка на документации**: https://readme.devcraft.club/
+- **Ссылка на документации (GH Pages)**: https://devcraftclub.github.io/mhdocs
+- **Ссылка на сайт**: https://devcraft.club/
 
-Вся документация была написана при помощи MkDocs и всегда доступна по двум адресам: [Readme DevCraft](https://readme.devcraft.club) и [GitHub Pages](https://devcraftclub.github.io/mhdocs/).
-
-## Редактирование исходников
-
-Если вы собираетесь редактировать страницу документации, то создайте форк (fork) и оформьте пуш риквест (push request). После проверки - буду решать, принимать или нет. Хотя, кому это надо?
+**Последнее обновление**: 2026-07-30 08:42 UTC

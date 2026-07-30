@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+    - name: Документация (продакшен)
+      url: https://readme.devcraft.club/
+      about: Опубликованный сайт документации DevCraft.
+    - name: Как создать запрос в поддержку
+      url: https://readme.devcraft.club/site/how-to-ask-for-support
+      about: Инструкция по обращению в техподдержку DevCraft.
+    - name: Пользовательское соглашение
+      url: https://devcraft.club/pages/licence-agreement/
+      about: Лицензионное соглашение перед запросами.

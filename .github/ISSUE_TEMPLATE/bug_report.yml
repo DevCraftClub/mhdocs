@@ -1,0 +1,60 @@
+name: Ошибка в документации
+description: Сообщить об ошибке на сайте документации (контент, ссылки, вёрстка)
+title: "[BUG]: "
+labels:
+    - bug
+    - documentation
+assignees:
+    - Gokujo
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Спасибо за отчёт. Это репозиторий **документации** (не баг плагина DLE).
+    - type: checkboxes
+      id: read-rules
+      attributes:
+          label: Пользовательское соглашение
+          description: Перед срочными просьбами — [прочтите соглашение](https://devcraft.club/pages/licence-agreement/).
+          options:
+              - label: Я прочитал(а) соглашение и согласен(на) с ним
+                required: true
+    - type: input
+      id: page-url
+      attributes:
+          label: URL или путь страницы
+          description: Например `/dev/dle/dle_api/200.1.0/install` или полный URL на readme.devcraft.club
+          placeholder: /dev/dle/...
+      validations:
+          required: true
+    - type: textarea
+      id: what-happened
+      attributes:
+          label: В чём проблема?
+          description: Что видите и как воспроизвести (по шагам, если возможно).
+          placeholder: На странице … сломана ссылка / неверный текст / сайдбар…
+      validations:
+          required: true
+    - type: textarea
+      id: what-should-happen
+      attributes:
+          label: Что ожидали?
+          description: Каким должен быть корректный результат.
+      validations:
+          required: false
+    - type: input
+      id: browser
+      attributes:
+          label: Браузер / устройство
+          description: Например Firefox 128, Chrome на Android.
+      validations:
+          required: false
+    - type: textarea
+      id: screenshots
+      attributes:
+          label: Скриншоты
+          description: По желанию приложите скриншоты.
+          value: |
+              ![описание](ссылка.png)
+      validations:
+          required: false
