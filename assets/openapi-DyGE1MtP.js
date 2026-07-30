@@ -1,0 +1,15 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`OpenAPI`,description:`Интерактивная спецификация OpenAPI для /api/v2.`},i=new Date(1785400635e3),a=`
+
+Спецификация генерируется из PHP attributes ([swagger-php](https://github.com/zircote/swagger-php)) в репозитории dle\\_api: \`apidata/openapi.yaml\`.
+
+\`\`\`bash
+cd upload/api && composer openapi
+\`\`\`
+
+Сырой файл: [openapi.yaml](./openapi.yaml)
+
+Интерактивный playground рендерится ниже через Fumadocs OpenAPI (\`app/lib/openapi.ts\`).
+`,o={contents:[{heading:void 0,content:"Спецификация генерируется из PHP attributes (swagger-php) в репозитории dle\\_api: `apidata/openapi.yaml`."},{heading:void 0,content:`Сырой файл: openapi.yaml`},{heading:void 0,content:"Интерактивный playground рендерится ниже через Fumadocs OpenAPI (`app/lib/openapi.ts`)."}],headings:[]},s=[];function c(e){let t={a:`a`,code:`code`,p:`p`,pre:`pre`,span:`span`,...e.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(t.p,{children:[`Спецификация генерируется из PHP attributes (`,(0,n.jsx)(t.a,{href:`https://github.com/zircote/swagger-php`,children:`swagger-php`}),`) в репозитории dle_api: `,(0,n.jsx)(t.code,{children:`apidata/openapi.yaml`}),`.`]}),`
+`,(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(t.pre,{className:`shiki shiki-themes github-light github-dark`,style:{"--shiki-light":`#24292e`,"--shiki-dark":`#e1e4e8`,"--shiki-light-bg":`#fff`,"--shiki-dark-bg":`#24292e`},tabIndex:`0`,icon:`<svg viewBox="0 0 24 24"><path d="m 4,4 a 1,1 0 0 0 -0.7070312,0.2929687 1,1 0 0 0 0,1.4140625 L 8.5859375,11 3.2929688,16.292969 a 1,1 0 0 0 0,1.414062 1,1 0 0 0 1.4140624,0 l 5.9999998,-6 a 1.0001,1.0001 0 0 0 0,-1.414062 L 4.7070312,4.2929687 A 1,1 0 0 0 4,4 Z m 8,14 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 8 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z" fill="currentColor" /></svg>`,children:(0,n.jsx)(t.code,{children:(0,n.jsxs)(t.span,{className:`line`,children:[(0,n.jsx)(t.span,{style:{"--shiki-light":`#005CC5`,"--shiki-dark":`#79B8FF`},children:`cd`}),(0,n.jsx)(t.span,{style:{"--shiki-light":`#032F62`,"--shiki-dark":`#9ECBFF`},children:` upload/api`}),(0,n.jsx)(t.span,{style:{"--shiki-light":`#24292E`,"--shiki-dark":`#E1E4E8`},children:` && `}),(0,n.jsx)(t.span,{style:{"--shiki-light":`#6F42C1`,"--shiki-dark":`#B392F0`},children:`composer`}),(0,n.jsx)(t.span,{style:{"--shiki-light":`#032F62`,"--shiki-dark":`#9ECBFF`},children:` openapi`})]})})})}),`
+`,(0,n.jsxs)(t.p,{children:[`Сырой файл: `,(0,n.jsx)(t.a,{href:`./openapi.yaml`,children:`openapi.yaml`})]}),`
+`,(0,n.jsxs)(t.p,{children:[`Интерактивный playground рендерится ниже через Fumadocs OpenAPI (`,(0,n.jsx)(t.code,{children:`app/lib/openapi.ts`}),`).`]})]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};

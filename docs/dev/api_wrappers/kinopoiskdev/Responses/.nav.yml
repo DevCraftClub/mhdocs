@@ -1,8 +1,0 @@
-title: Ответы API
-nav:
-  - "index.md"
-  - "*"
-  - API ответы: Api/
-  - Ошибки: Errors/
-sort:
-  type: alphabetical

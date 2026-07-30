@@ -1,0 +1,71 @@
+name: Улучшение документации
+description: Предложить новую страницу, раздел или правку контента
+title: "[FEAT]: "
+labels:
+    - enhancement
+    - documentation
+    - feature-request
+assignees:
+    - Gokujo
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Спасибо за предложение. Это репозиторий **документации**.
+              Исходники MDX — не доступны для обзора; публичный GitHub — статический сайт.
+    - type: checkboxes
+      id: read-rules
+      attributes:
+          label: Пользовательское соглашение
+          description: Перед срочными просьбами — [прочтите соглашение](https://devcraft.club/pages/licence-agreement/).
+          options:
+              - label: Я прочитал(а) соглашение и согласен(на) с ним
+                required: true
+    - type: dropdown
+      id: section
+      attributes:
+          label: Раздел документации
+          options:
+              - site (пользование сайтом)
+              - instructions (инструкции)
+              - dev/dle (плагины DLE)
+              - dev/api_wrappers (API wrappers)
+              - deprecated (устаревшие страницы)
+              - другое / не уверен
+      validations:
+          required: true
+    - type: textarea
+      id: what-do-you-need
+      attributes:
+          label: Что добавить или улучшить?
+          description: Опишите желаемый результат. Чем конкретнее — тем лучше.
+          placeholder: Нужна страница про … в разделе …
+      validations:
+          required: true
+    - type: textarea
+      id: why
+      attributes:
+          label: Зачем это нужно?
+          description: Какую задачу читателя это решает.
+      validations:
+          required: false
+    - type: textarea
+      id: outline
+      attributes:
+          label: Набросок структуры (опционально)
+          description: Заголовки, ссылки на связанные страницы.
+          placeholder: |
+              ## Установка
+              ## Настройка
+              …
+      validations:
+          required: false
+    - type: textarea
+      id: screenshots
+      attributes:
+          label: Скриншоты / макеты
+          description: По желанию.
+          value: |
+              ![описание](ссылка.png)
+      validations:
+          required: false
