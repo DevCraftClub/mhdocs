@@ -1,0 +1,6 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`Настройка бота`,description:`Перенесено в инструкции.`},i=new Date(1785404498e3),a=`
+
+<Callout type="info" title="Страница перенесена">
+  Актуальная инструкция: [Настройка Telegram-бота](/instructions/telegram_bot).
+</Callout>
+`,o={contents:[{heading:void 0,content:`Актуальная инструкция: Настройка Telegram-бота.`}],headings:[]},s=[];function c(e){let t={a:`a`,p:`p`,...e.components},{Callout:r}=t;return r||u(`Callout`,!0),(0,n.jsx)(r,{type:`info`,title:`Страница перенесена`,children:(0,n.jsxs)(t.p,{children:[`Актуальная инструкция: `,(0,n.jsx)(t.a,{href:`/instructions/telegram_bot`,children:`Настройка Telegram-бота`}),`.`]})})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}function u(e,t){throw Error(`Expected `+(t?`component`:`object`)+" `"+e+"` to be defined: you likely forgot to import, pass, or provide it.")}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};
