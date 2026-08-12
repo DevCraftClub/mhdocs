@@ -68660,6 +68660,314 @@ my_var.api_key = "YOUR API KEY"
 | `UploadFile`  | `Upload.py`      | Загрузка на TurboBit |
 
 
+# Changelog WebShare Proxy (/dev/api_wrappers/webshare-proxy/1.0.0/changelog)
+
+
+
+История изменений публикуется в корневом `CHANGELOG.md` репозитория.
+
+## Unreleased [#unreleased]
+
+### Added [#added]
+
+* Forgejo → GitHub publish pipeline
+* Packagist notify workflows
+* Library-oriented issue templates
+
+
+# Начало работы (/dev/api_wrappers/webshare-proxy/1.0.0/getting_started)
+
+
+
+PHP-библиотека для [WebShare Proxy API](https://apidocs.webshare.io): типизированные запросы, фильтры, итерация страниц, кэш GET-ответов и повтор при `429` / `5xx`.
+
+## Возможности [#возможности]
+
+* PHP &#x2A;*8.3+**, строгая типизация
+* Фасад `App` или явная работа через `Client` / Request-классы
+* `QueryBuilder` с операторами `EQUAL`, `IN`, `GT`, `LT`, `CONTAINS`
+* `PageIterator` / `iterate()` с лимитом страниц
+* Кэш успешных GET и инвалидация по тегам
+* `X-Subuser` через `masqueradeAs()`
+
+## Быстрый пример [#быстрый-пример]
+
+```php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use Devcraft\Webshare\Classes\App;
+use Devcraft\Webshare\Enums\FilterOperator;
+
+App::init();
+$proxies = App::Requests('Proxy');
+$proxies->query()
+    ->withFilter('mode', 'direct')
+    ->withPageSize(25)
+    ->withFilter('country_code', ['US', 'DE'], FilterOperator::IN);
+
+foreach ($proxies->iterate() as $proxy) {
+    echo $proxy->getConnectionString(backbone: true), "\n";
+}
+```
+
+## Что читать дальше [#что-читать-дальше]
+
+* [Установка](install)
+* [English guide](guides/english)
+* `CHANGELOG.md` в репозитории
+
+
+# English guide (/dev/api_wrappers/webshare-proxy/1.0.0/guides/english)
+
+
+
+## WebShare Proxy PHP Wrapper [#webshare-proxy-php-wrapper]
+
+PHP client for the [WebShare Proxy API](https://apidocs.webshare.io): typed requests, filters, page iteration, GET response caching, and retries on `429` / `5xx`.
+
+### Install [#install]
+
+```bash
+composer require devcraftclub/webshare-io-api-wrapper
+```
+
+### Configure [#configure]
+
+```ini
+API_KEY=your_webshare_api_key
+API_URL=https://proxy.webshare.io/api/
+API_VERSION=v2
+CACHE_ENABLED=1
+CACHE_LIFETIME=3600
+CACHE_DIRECTORY=./cache
+ITERATE_MAX_PAGES=100
+DEBUG=0
+```
+
+### With `App` [#with-app]
+
+```php
+use Devcraft\Webshare\Classes\App;
+use Devcraft\Webshare\Enums\FilterOperator;
+
+App::init();
+$proxies = App::Requests('Proxy');
+$proxies->query()
+    ->withFilter('mode', 'direct')
+    ->withPageSize(25)
+    ->withFilter('country_code', ['US', 'DE'], FilterOperator::IN);
+```
+
+### Common flows [#common-flows]
+
+* `App::Requests('Profile')->retrieve()`
+* `App::Requests('IpAuthorization')->whatsMyIp()`
+* `App::Requests('SubUser')->masqueradeAs(7)`
+* `App::Requests('DownloadToken')->get('proxy_list')`
+
+
+# Установка WebShare Proxy (/dev/api_wrappers/webshare-proxy/1.0.0/install)
+
+
+
+## Требования [#требования]
+
+* PHP >= 8.3
+* Composer
+* API-ключ WebShare
+
+## Composer [#composer]
+
+```bash
+composer require devcraftclub/webshare-io-api-wrapper
+```
+
+## Конфигурация [#конфигурация]
+
+Минимум:
+
+```bash
+export API_KEY="your_webshare_api_key"
+```
+
+Или через `.env`:
+
+```ini
+API_KEY=your_webshare_api_key
+API_URL=https://proxy.webshare.io/api/
+API_VERSION=v2
+CACHE_ENABLED=1
+CACHE_LIFETIME=3600
+CACHE_DIRECTORY=./cache
+ITERATE_MAX_PAGES=100
+DEBUG=0
+```
+
+## Через `App` [#через-app]
+
+```php
+use Devcraft\Webshare\Classes\App;
+
+App::init();
+// или App::init('your_webshare_api_key');
+```
+
+`App::Client()` возвращает общий HTTP-клиент, а `App::Requests('Profile'|'Notification'|…)` автоматически находит Request-классы.
+
+
+# Changelog Dev Tools (/dev/dev-tools/1.0.0/changelog)
+
+
+
+История изменений публикуется в корневом `CHANGELOG.md` репозитория.
+
+## Unreleased [#unreleased]
+
+### Added [#added]
+
+* Forgejo → GitHub publish pipeline
+* Packagist notify workflows
+* Library-oriented issue templates
+
+
+# Начало работы (/dev/dev-tools/1.0.0/getting_started)
+
+
+
+Пакет `devcraftclub/dev-tools`. Namespaces: `Devcraft\…`.
+
+## Что внутри [#что-внутри]
+
+1. **Fluent mutation** — `#[With]` / `#[WithItem]`, `AbstractWith`, runtime-методы `with*`.
+2. **DTO mapping** — `AbstractReflection`, гидратация из массива, валидация атрибутами, `toArray()` / `toJson()`.
+
+## Быстрый пример `AbstractWith` [#быстрый-пример-abstractwith]
+
+```php
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+use Devcraft\Attributes\WithItem;
+
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+
+    #[With, WithItem('string')]
+    private array $tags = [];
+}
+```
+
+## Быстрый пример `AbstractReflection` [#быстрый-пример-abstractreflection]
+
+```php
+use Devcraft\Abstracts\AbstractReflection;
+use Devcraft\Attributes\ArrayOf;
+
+final class Address extends AbstractReflection
+{
+    public string $city;
+}
+
+final class Profile extends AbstractReflection
+{
+    #[ArrayOf(Address::class)]
+    public array $locations = [];
+}
+```
+
+## Что читать дальше [#что-читать-дальше]
+
+* [Установка](install)
+* [English guide](guides/english)
+* `CHANGELOG.md` в репозитории
+
+
+# English guide (/dev/dev-tools/1.0.0/guides/english)
+
+
+
+## DevCraft Dev Tools [#devcraft-dev-tools]
+
+`devcraftclub/dev-tools` is a PHP 8.3 library with two main capabilities:
+
+1. `AbstractWith` + `#[With]` / `#[WithItem]` for fluent builders
+2. `AbstractReflection` + validation attributes for DTO mapping
+
+### Install [#install]
+
+```bash
+composer require devcraftclub/dev-tools
+```
+
+### Fluent builder [#fluent-builder]
+
+```php
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+}
+```
+
+### DTO mapping [#dto-mapping]
+
+```php
+use Devcraft\Abstracts\AbstractReflection;
+
+final class Address extends AbstractReflection
+{
+    public string $city;
+}
+```
+
+Run tests from the package root with `composer test`.
+
+
+# Установка Dev Tools (/dev/dev-tools/1.0.0/install)
+
+
+
+## Требования [#требования]
+
+* PHP 8.3+
+* Composer
+
+## Установка из Packagist [#установка-из-packagist]
+
+```bash
+composer require devcraftclub/dev-tools
+```
+
+## Локальная разработка через path repository [#локальная-разработка-через-path-repository]
+
+```json
+{
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../DevTool",
+      "options": { "symlink": true }
+    }
+  ],
+  "require": {
+    "devcraftclub/dev-tools": "@dev"
+  }
+}
+```
+
+Затем:
+
+```bash
+composer update devcraftclub/dev-tools
+```
+
+
 # Начало работы (/dev/dle/db_manager/200.1.3/getting_started)
 
 
@@ -80201,39 +80509,43 @@ $uploaded->moveTo($targetPath);
 * [EnvironmentFactory](../back-end/classes/EnvironmentFactory)
 
 
-# Changelog (/dev/dle/dle_api/200.1.0/changelog)
+# Журнал изменений (/dev/dle/dle_api/200.1.0/changelog)
 
 
-
-## Unreleased [#unreleased]
-
-### Added [#added]
-
-* HTTP `/table/{name}`: интроспекция таблиц вне SchemaRegistry + `TableScopeGuard` (read/write/delete)
-* SDK facades: `DcApi::news()` / `user()` / `comment()` / `conversation()` / `plugin()` / `file()` / `staticPage()` / `schema()`
-* Fluent CRUD на `AbstractTableSchema` (`with` / `create` / `save` / `delete` / `filter` / `fromArray`)
-* GET-кэш `TableQuery` через CacheControl (`dle_api_query`, TTL)
 
 ## 200.1.0 — 2026-07-21 [#20010--2026-07-21]
 
-### Added [#added-1]
+### Добавлено [#добавлено]
 
 * API v2 (`/api/v2`) на CycleORM из DevCraft Admin
 * OAuth2 AS: authorize / token / revoke; доступ к ресурсам только через Bearer
+* `credential_type` api\_key|auth|oauth\_client; ресурсы только AuthToken; GET `/me` и `/oauth/userinfo`
+* OAuth AS discovery, authorize по сессии DLE, копируемые endpoint URL
+* Уровни доступа, синхронизация с группами, заявки на ключ, профиль (public AJAX)
+* `DEMO_MODE` / `DLEAPI_SECURE` из `.env`; email-шаблоны через `install.xml`
 * Fluent: `prepareNewPost` / `prepareNewUser` / `preparePlugin` / `prepareNewUsergroup`
 * Каталог Schema таблиц DLE в `api/includes/Schemas/`
 * OpenAPI (swagger-php) + OAD в документации
 * Загрузка файлов `POST /upload/`
 * Фильтр постов по одной категории при нескольких (issue #12)
 * Админ-модуль DleApi для DevCraft Admin ≥ 200.4.0 (только конфигурация)
+* HTTP `/table/{name}`: интроспекция таблиц вне SchemaRegistry + `TableScopeGuard`
+* SDK facades: `DcApi::news()` / `user()` / `comment()` / `conversation()` / `plugin()` / `file()` / `staticPage()` / `schema()`
+* Fluent CRUD на `AbstractTableSchema` (`with` / `create` / `save` / `delete` / `filter` / `fromArray`)
+* GET-кэш `TableQuery` через CacheControl (`dle_api_query`, TTL)
+* Админка: multi получатели уведомлений, WYSIWYG для PM-тел; padding `panel-title` через `.caption`
+* Документация: настройки, уровни, sync, шаблоны, безопасность; полная справка OAuth-клиентов
 
-### Changed [#changed]
+### Изменено [#изменено]
 
 * Совместимость с DLE 20.0 (xfields.json, dual category, conversations)
+* Таблицы `api_keys` / `api_scope` / OAuth создаются Cycle-миграциями DevCraft
+* Scopes: колонка `edit`; `own_only`/`cheater` на уровне; trailing slash на всех маршрутах v2
 
-### Removed [#removed]
+### Удалено [#удалено]
 
-* API v1 (Slim + Illuminate Capsule, `X-Api-Key`) полностью удалён
+* API v1 (Slim + Illuminate Capsule, `X-Api-Key`) полностью удалён; миграция: [v1 → v2](guides/migrate-v1-v2)
+* Приём сырого API-ключа как Bearer на ресурсах `/table`
 
 
 # Начало работы (/dev/dle/dle_api/200.1.0/getting_started)
@@ -80245,7 +80557,7 @@ $uploaded->moveTo($targetPath);
 Неофициальное REST API для DLE: конфигурация ключей и OAuth2-клиентов в DevCraft Admin, runtime — `/api/v2`.
 
 <Callout type="info" title="Документация">
-  Установка и настройка: [Установка](install).\
+  Установка и настройка: [Установка](install) (в т.ч. [профиль на сайте](install#профиль-на-сайте)).\
   В будущем интерактивная API-дока будет на **api.readme.devcraft.club**.
 </Callout>
 
@@ -80253,9 +80565,84 @@ $uploaded->moveTo($targetPath);
 
 * [Установка](install)
 * [Авторизация](guides/auth)
-* [API v2](reference/api_v2)
+* [OAuth-клиенты](guides/oauth-client) / [OAuth-сервер](guides/oauth-server)
+* [Настройки](guides/settings) · [Уровни](guides/access-levels) · [Синхронизация](guides/access-sync)
+* [Шаблоны](guides/templates) · [Безопасность](guides/security)
+* [Миграция v1 → v2](guides/migrate-v1-v2)
+* [HTTP /api/v2](reference/http)
+* [SDK (`DcApi`)](reference/sdk)
 * [OpenAPI](reference/openapi)
 * [Changelog](changelog)
+
+
+# Уровни доступа (/dev/dle/dle_api/200.1.0/guides/access-levels)
+
+
+
+DevCraft → **DLE API** → **Уровни доступа**. Уровень задаёт политику ключа: флаги + таблица scopes. Ключ ссылается на уровень (или legacy-scopes на самом ключе).
+
+## Список и форма [#список-и-форма]
+
+Поля уровня:
+
+| Поле                            | Смысл                                                          |
+| ------------------------------- | -------------------------------------------------------------- |
+| Название / сортировка           | Отображение в админке                                          |
+| Активен                         | Неактивный уровень не назначайте новым ключам                  |
+| Премодерация заявок             | Заявки на ключ с этим уровнем ждут approve                     |
+| Только свои записи (`own_only`) | CRUD ограничен записями владельца ключа                        |
+| Полный доступ (`cheater`)       | Обход ограничений scopes / own\_only (только админским ключам) |
+| Маски IP / паролей / ПДн        | Доп. маскирование поверх глобального `secure`                  |
+
+## Scopes [#scopes]
+
+Таблица **Scopes уровня**: для каждой известной таблицы DLE — флаги **чтение / запись / правка / удаление** (`read` / `write` / `edit` / `delete`).
+
+`cheater` игнорирует матрицу. Без `cheater` Bearer получает только отмеченные операции.
+
+Сначала выберите уровень в списке (редактирование), затем правьте scopes.
+
+## Связь с ключом и OAuth [#связь-с-ключом-и-oauth]
+
+1. Создайте уровень + scopes.
+2. Создайте API-ключ с этим уровнем.
+3. Привяжите [OAuth-клиент](oauth-client) к ключу — токен наследует scopes ключа.
+
+Уровень по умолчанию и привязка групп DLE: [Настройки](settings), [Синхронизация](access-sync).
+
+## См. также [#см-также]
+
+* [Безопасность](security)
+* [Авторизация](auth)
+
+
+# Синхронизация с группами (/dev/dle/dle_api/200.1.0/guides/access-sync)
+
+
+
+DevCraft → **DLE API** → **Синхронизация с группами**.
+
+Каждой группе пользователей DLE можно назначить [уровень доступа](access-levels). При самогенерации / заявке на ключ из профиля резолвер берёт уровень группы; если привязки нет — [уровень по умолчанию](settings).
+
+## Как настроить [#как-настроить]
+
+1. Создайте уровни и scopes.
+2. На странице синхронизации для каждой группы выберите уровень (или «—»).
+3. Сохраните.
+
+Гостевая / служебные группы без API обычно оставляют без уровня.
+
+## Когда срабатывает [#когда-срабатывает]
+
+* Пользователь запрашивает ключ в профиле (`profile_allow_generate` / заявка) — см. [Профиль на сайте](../install#профиль-на-сайте).
+* Админ создаёт ключ без явного уровня — может подставиться default / группа.
+
+Прямое назначение `access_level_id` на ключе в админке **Ключи** имеет приоритет над картой групп для уже созданного ключа.
+
+## См. также [#см-также]
+
+* [Уровни доступа](access-levels)
+* [Настройки](settings)
 
 
 # Авторизация (/dev/dle/dle_api/200.1.0/guides/auth)
@@ -80274,45 +80661,23 @@ Authorization: Bearer <AuthToken>
 
 Trailing slash опционален: `/me` и `/me/` одинаковы.
 
-***
+Пошаговое создание клиента: [OAuth-клиент](oauth-client). Сценарии AS и **curl в табах** по каждому `credential_type`: [OAuth-сервер](oauth-server).
 
-## Выдача токена: `credential_type` [#выдача-токена-credential_type]
-
-```bash
-curl -sS -X POST 'https://ВАШ_САЙТ/api/v2/oauth/token' \
-  -H 'Content-Type: application/json' \
-  -d '{"credential_type":"api_key","api_key":"…"}'
-```
+## `credential_type` (кратко) [#credential_type-кратко]
 
 | credential\_type | Поля                         | Резолв                                            |
 | ---------------- | ---------------------------- | ------------------------------------------------- |
 | `api_key`        | `api_key`                    | активный ключ                                     |
-| `auth`           | `username`, `password`       | DLE verify → ключ юзера → гость → `access_denied` |
+| `auth`           | `username`, `password`       | DLE verify → ключ юзера → гость / `access_denied` |
 | `oauth_client`   | `client_id`, `client_secret` | client\_credentials → ключ клиента                |
 
-Рядом поддерживаются `grant_type`: `authorization_code`, `refresh_token`, `client_credentials`, `password`.
-
-***
+Рядом — классический `grant_type`: `authorization_code`, `refresh_token`, `client_credentials`, `password`.
 
 ## Identity: `/me` и `/oauth/userinfo` [#identity-me-и-oauthuserinfo]
 
 `GET /api/v2/me` и `GET /api/v2/oauth/userinfo` с Bearer отдают субъект токена: `sub`/`user_id`, `name`, `email`, `user_group`, `api_key_id`, `access_level`.
 
-Secure-маски ПДн применяются к CRUD `/table`, **не** к identity `/me`/`userinfo`. Пароли, hash, сырой ключ и `client_secret` никогда не отдаются.
-
-***
-
-## OAuth Authorization Server [#oauth-authorization-server]
-
-Discovery (без Bearer):
-
-`GET /api/v2/.well-known/oauth-authorization-server`
-
-Поля: `issuer`, `authorization_endpoint`, `token_endpoint`, `revocation_endpoint`, `userinfo_endpoint`, grants/PKCE/`credential_types_supported`.
-
-`/oauth/authorize` — сессия DLE (редирект на логин, если гость) → code + redirect на зарегистрированный `redirect_uri` (+ PKCE). В админке OAuth — копируемые URL.
-
-***
+Secure-маски ПДн применяются к CRUD `/table`, **не** к identity. Пароли, hash, сырой ключ и `client_secret` не отдаются.
 
 ## DEMO\_MODE / DLEAPI\_SECURE [#demo_mode--dleapi_secure]
 
@@ -80323,24 +80688,407 @@ DEMO_MODE=false
 DLEAPI_SECURE=false
 ```
 
-При `DEMO_MODE=true`: secure принудительно; успешная проверка credentials **не** выдаёт токен:
-
-```json
-{
-  "demo_mode": true,
-  "authorized": true,
-  "access_token": null,
-  "message": "Авторизация пройдена, но сброшена в демо-режиме"
-}
-```
-
-`/oauth/authorize` в демо — redirect с `error=demo_mode` без code.
-
-***
+При `DEMO_MODE=true`: secure принудительно; успешная проверка credentials **не** выдаёт токен (`access_token: null`). `/oauth/authorize` — redirect с `error=demo_mode`.
 
 ## Уровни доступа [#уровни-доступа]
 
-Ключ → `access_level_id`. Уровень: scopes read/write/edit/delete, `own_only`, `cheater`, премодерация, маски. Default — `default_access_level_id` в настройках. Map группа↔уровень — страница «Синхронизация с группами».
+Ключ → `access_level_id`. Уровень: scopes read/write/edit/delete, `own_only`, `cheater`, премодерация, маски. Default — `default_access_level_id` в настройках. Map группа↔уровень — «Синхронизация с группами».
+
+
+# Миграция API v1 → v2 (/dev/dle/dle_api/200.1.0/guides/migrate-v1-v2)
+
+
+
+С **200.1.0*&#x2A; HTTP-поверхность — только &#x2A;*`/api/v2`**. API v1 (Slim + Illuminate Capsule, заголовок `X-Api-Key`) **удалён**. Ниже — отличия и чеклист переноса клиента.
+
+## Отличия [#отличия]
+
+|                   | API v1 (удалён)                                                 | API v2                                                 |
+| ----------------- | --------------------------------------------------------------- | ------------------------------------------------------ |
+| Базовый путь      | `/api/v1`                                                       | `/api/v2`                                              |
+| Стек              | Slim + Illuminate Capsule                                       | Slim + Cycle ORM (DevCraft)                            |
+| Auth              | заголовок `X-Api-Key` (сырой ключ)                              | только `Authorization: Bearer <access_token>`          |
+| Токен             | —                                                               | `POST /oauth/token` (`credential_type` / `grant_type`) |
+| CRUD              | отдельные REST-ресурсы                                          | универсальный `/table/{name}/` + sugar (`/post/`, …)   |
+| Админка           | старая                                                          | DevCraft Admin ≥ 200.4.0 (ключи, OAuth, уровни)        |
+| In-process PHP    | штатный SDK / хелперы самого DLE (отдельного `DLE_API` не было) | `DcApi` после bootstrap плагина                        |
+| Спека / коллекция | коллекция **Postman**                                           | swagger-php + [OpenAPI](../reference/openapi) в docs   |
+
+## Шаги миграции клиента [#шаги-миграции-клиента]
+
+1. **Base URL** → `/api/v2`. Apache/nginx могут отдавать **308** с `/api` и `/api/v1` на `/api/v2` — это смена префикса, **не** совместимость старых путей v1 один-в-один.
+2. Убрать `X-Api-Key`. Получить `access_token` (`credential_type=api_key` или OAuth-клиент) и слать `Authorization: Bearer …` на ресурсы. См. [OAuth-сервер](oauth-server).
+3. Переписать эндпоинты: бывшие `users/auth`, `users/register` и т.п. → выдача токена + `/table/…` / sugar `/user/` / `/me`.
+4. Фильтры: query-параметры колонок и `xf[…]`. Legacy headers — только как BC на `/post/`.
+5. In-process: вместо прямых вызовов SDK DLE — [`DcApi`](../reference/sdk) (`api/sdk/bootstrap.php`).
+6. Проверить scopes / access level ключа в админке DevCraft.
+
+## См. также [#см-также]
+
+* [HTTP /api/v2](../reference/http)
+* [SDK](../reference/sdk)
+* [OAuth-клиенты](oauth-client)
+* [Changelog](../changelog)
+
+
+# OAuth-клиенты (/dev/dle/dle_api/200.1.0/guides/oauth-client)
+
+
+
+OAuth-клиент в DevCraft → **DLE API** → **OAuth-клиенты** — запись внешнего (или M2M) приложения. Права Bearer-токена = **scopes API-ключа**, к которому клиент привязан. Сайт с DLE API при этом — [Authorization Server](oauth-server).
+
+## Эндпоинты AS [#эндпоинты-as]
+
+Над списком клиентов — панель копируемых URL (база `/api/v2`):
+
+| Ключ      | Путь                                      |
+| --------- | ----------------------------------------- |
+| discovery | `/.well-known/oauth-authorization-server` |
+| authorize | `/oauth/authorize`                        |
+| token     | `/oauth/token`                            |
+| revoke    | `/oauth/revoke`                           |
+| userinfo  | `/oauth/userinfo`                         |
+
+Их же можно взять из discovery JSON. Подробные сценарии и curl: [OAuth-сервер](oauth-server).
+
+## Список клиентов [#список-клиентов]
+
+Колонки: `#`, имя, `client_id`, превью API-ключа, активен, действия (изменить / удалить).
+
+Неактивный клиент не получает новые токены.
+
+## Создание [#создание]
+
+1. Сначала создайте **API-ключ** с нужным access level (страница **Ключи**).
+2. На **OAuth-клиенты** заполните форму **Создать клиент**.
+
+| Поле         | Обязательно   | Описание                                                                                                       |
+| ------------ | ------------- | -------------------------------------------------------------------------------------------------------------- |
+| Название     | нет           | Только для списка в админке; пусто → подставится `client_id`                                                   |
+| API-ключ     | **да**        | Определяет таблицы и права (read/write/edit/delete) Bearer-токена                                              |
+| Redirect URI | для code-flow | http(s) URL; **точное** совпадение с `redirect_uri` на authorize и обмене кода; для M2M / password можно пусто |
+| Grant types  | **да** (≥1)   | `client_credentials`, `password`, `authorization_code`, `refresh_token`                                        |
+
+`client_id` и `client_secret` генерирует сервер. Секрет показывают **один раз** в баннере над таблицей — сохраните сразу. Повторно — только «Пересоздать client\_secret».
+
+**PKCE** в форме нет: `code_challenge` / `code_verifier` передаются на `/oauth/authorize` и `/oauth/token`.
+
+## Редактирование [#редактирование]
+
+* `client_id` **не меняется**.
+* Можно менять название, API-ключ, Redirect URI, grants, флаг **Активен**.
+* Секрет — только кнопка **Пересоздать client\_secret** (новый покажется один раз; старый сразу недействителен). Обновите секрет во всех приложениях.
+
+## Когда какой grant [#когда-какой-grant]
+
+| Grant                                           | Назначение                                                                        |
+| ----------------------------------------------- | --------------------------------------------------------------------------------- |
+| `authorization_code` (+ обычно `refresh_token`) | Логин пользователя через сессию DLE, SPA / внешнее приложение; нужен Redirect URI |
+| `client_credentials`                            | M2M без пользователя                                                              |
+| `password`                                      | Логин/пароль DLE в теле token — только доверенным клиентам                        |
+| `refresh_token`                                 | Обновление access\_token после code-flow                                          |
+
+Минимальный набор grants на клиента; `password` не включайте без нужды. Для code-flow Redirect URI обязателен и должен совпадать байт-в-байт с запросом.
+
+## Связь с token API [#связь-с-token-api]
+
+| Админка / classic                                 | Упрощённый `credential_type`                   |
+| ------------------------------------------------- | ---------------------------------------------- |
+| `grant_type=client_credentials`                   | `oauth_client` (`client_id` + `client_secret`) |
+| `authorization_code`, `refresh_token`, `password` | только через `grant_type`                      |
+| —                                                 | `api_key`, `auth` (без OAuth-клиента)          |
+
+Примеры curl — в [oauth-server](oauth-server) и [auth](auth).
+
+## Типичные ошибки [#типичные-ошибки]
+
+| Симптом                           | Что проверить                                                    |
+| --------------------------------- | ---------------------------------------------------------------- |
+| Нельзя создать клиента            | Выбран API-ключ; ≥1 grant                                        |
+| Ошибка на authorize               | `redirect_uri` = URI клиента; grant `authorization_code` включён |
+| `invalid_grant` / grant denied    | Grant отмечен у клиента                                          |
+| Потерян секрет                    | «Пересоздать client\_secret»                                     |
+| Нет токена при верных credentials | `DEMO_MODE` в `.env` — credentials ок, `access_token: null`      |
+| 401 на `/table`                   | Нужен Bearer от token, не сырой API-ключ                         |
+
+## См. также [#см-также]
+
+* [OAuth-сервер](oauth-server)
+* [Авторизация](auth)
+* [Безопасность](security)
+* [HTTP](../reference/http)
+
+
+# OAuth Authorization Server (/dev/dle/dle_api/200.1.0/guides/oauth-server)
+
+
+
+Сайт с DLE API — **OAuth 2.0 Authorization Server** для `/api/v2`. Клиент создаёте в админке: [OAuth-клиенты](oauth-client).
+
+## Discovery и URL [#discovery-и-url]
+
+Без Bearer:
+
+```http
+GET /api/v2/.well-known/oauth-authorization-server
+```
+
+В ответе: `issuer`, `authorization_endpoint`, `token_endpoint`, `revocation_endpoint`, `userinfo_endpoint`, поддерживаемые grants / PKCE / `credential_types_supported`.
+
+Те же URL копируются с панели **OAuth-клиенты** в админке.
+
+| Метод    | Путь               | Bearer                     |
+| -------- | ------------------ | -------------------------- |
+| GET/POST | `/oauth/authorize` | сессия DLE (гость → логин) |
+| POST     | `/oauth/token`     | нет                        |
+| POST     | `/oauth/revoke`    | нет (`token` в теле)       |
+| GET      | `/oauth/userinfo`  | да                         |
+| GET      | `/me`              | да                         |
+
+## Authorization Code (+ PKCE) [#authorization-code--pkce]
+
+1. Приложение открывает\
+   `GET /api/v2/oauth/authorize?client_id=…&redirect_uri=…&state=…&scope=…&code_challenge=…&code_challenge_method=S256`
+2. Нет сессии DLE → редирект на логин сайта, затем возврат.
+3. Залогинен → **302** на `redirect_uri?code=…&state=…` (код живёт ограниченное время). На этапе authorize `redirect_uri` **обязан** совпадать с URI клиента; иначе JSON-ошибка без code. У клиента должен быть grant `authorization_code`.
+4. `POST /oauth/token` с `grant_type=authorization_code`, `client_id`, `client_secret`, `code`, `redirect_uri`, опционально `code_verifier`.
+5. Ресурсы: `Authorization: Bearer <access_token>`.
+
+## Выдача токена: `credential_type` [#выдача-токена-credential_type]
+
+Упрощённый режим: в теле `POST /oauth/token&#x60; поле &#x2A;*`credential_type`** вместо классического `grant_type`. Если задан `credential_type`, берётся эта ветка.
+
+<Tabs groupId="credential_type" items="['api_key', 'auth', 'oauth_client']">
+  <Tab value="api_key">
+    Ключ из админки → токен с scopes этого ключа. Удобно для скриптов и интеграций без OAuth-клиента.
+
+    ```bash
+    curl -sS -X POST 'https://ВАШ_САЙТ/api/v2/oauth/token' \
+      -H 'Content-Type: application/json' \
+      -d '{"credential_type":"api_key","api_key":"…"}'
+    ```
+  </Tab>
+
+  <Tab value="auth">
+    Логин/пароль пользователя DLE (`users.name` или email). Резолв: ключ пользователя → иначе гость / `access_denied`. Близко к `grant_type=password` без обязательного client.
+
+    ```bash
+    curl -sS -X POST 'https://ВАШ_САЙТ/api/v2/oauth/token' \
+      -H 'Content-Type: application/json' \
+      -d '{"credential_type":"auth","username":"admin","password":"…"}'
+    ```
+  </Tab>
+
+  <Tab value="oauth_client">
+    M2M: `client_id` + `client_secret` → токен с scopes ключа, привязанного к клиенту. Эквивалент `grant_type=client_credentials`.
+
+    ```bash
+    curl -sS -X POST 'https://ВАШ_САЙТ/api/v2/oauth/token' \
+      -H 'Content-Type: application/json' \
+      -d '{"credential_type":"oauth_client","client_id":"…","client_secret":"…"}'
+    ```
+  </Tab>
+</Tabs>
+
+### Эквиваленты `grant_type` [#эквиваленты-grant_type]
+
+| credential\_type | Близкий grant\_type                       |
+| ---------------- | ----------------------------------------- |
+| `oauth_client`   | `client_credentials`                      |
+| `auth`           | `password` (часто без жёсткого client)    |
+| `api_key`        | нет прямого аналога в классическом OAuth2 |
+
+Также: `authorization_code`, `refresh_token` — только через `grant_type`.
+
+## Revoke [#revoke]
+
+```bash
+curl -sS -X POST 'https://ВАШ_САЙТ/api/v2/oauth/revoke' \
+  -H 'Content-Type: application/json' \
+  -d '{"token":"…"}'
+```
+
+## DEMO\_MODE [#demo_mode]
+
+В `ROOT_DIR/.env`: `DEMO_MODE=true` — успешная проверка credentials **не** выдаёт токен; authorize уходит с `error=demo_mode`. Подробнее: [Авторизация](auth).
+
+## Чеклист для внешнего приложения [#чеклист-для-внешнего-приложения]
+
+1. Access level + API-ключ; OAuth-клиент с нужными grants и Redirect URI.
+2. Discovery / скопированные endpoint URL.
+3. Code-flow или M2M (`oauth_client` / `client_credentials`).
+4. Секрет хранить только на сервере приложения.
+5. API только с Bearer access\_token.
+
+## См. также [#см-также]
+
+* [OAuth-клиенты](oauth-client)
+* [HTTP](../reference/http)
+* [OpenAPI](../reference/openapi)
+
+
+# Безопасность (/dev/dle/dle_api/200.1.0/guides/security)
+
+
+
+## Уже в API [#уже-в-api]
+
+* Ресурсы `/api/v2` (кроме health/discovery) — только **Bearer** AuthToken; сырой API-ключ на `/table` не принимается.
+* Права — [уровни](access-levels) / scopes; `own_only`, `cheater`.
+* Маскирование полей: настройка `secure` + `DLEAPI_SECURE` / `DEMO_MODE` в `.env` ([настройки](settings)).
+* `DEMO_MODE` — credentials могут проходить, токен не выдаётся; authorize → `error=demo_mode`.
+* Authorize: сверка `redirect_uri` и разрешённого grant у [OAuth-клиента](oauth-client).
+* `client_secret` показывают один раз (или после regenerate).
+
+## Рекомендации для прода [#рекомендации-для-прода]
+
+1. **Только HTTPS** — иначе утекают Bearer и `client_secret`.
+2. Не включать &#x2A;*`password` / `auth`**, если не нужны; для M2M — `client_credentials` / `oauth_client`.
+3. **Минимальные scopes** на уровне ключа; `cheater` только админским ключам.
+4. **Короткий `token_ttl`**; `refresh_token` — только где нужен code-flow.
+5. Сильный HMAC-секрет, ротация ключей, не в git; на проде `DLEAPI_SECURE=true`.
+6. **Redirect URI** — точный https URL приложения; пустой URI только для M2M без code-flow.
+7. **`profile_allow_generate`** по умолчанию выкл.; лучше заявки + approve.
+8. Инфра: rate limit / firewall на `/api/v2`, бэкап таблиц `api_*`.
+9. **Не логировать** Authorization, сырые ключи, секреты.
+
+Rate-limit и CORS в самом PHP API не реализованы — настраивайте на reverse proxy / CDN.
+
+## См. также [#см-также]
+
+* [Настройки](settings)
+* [OAuth-клиенты](oauth-client)
+* [Авторизация](auth)
+
+
+# Настройки (/dev/dle/dle_api/200.1.0/guides/settings)
+
+
+
+DevCraft → **DLE API** → **Настройки** (`dleapi.json`). Часть флагов перекрывается из корневого `.env`.
+
+## Безопасность [#безопасность]
+
+| Параметр                        | Описание                                            |
+| ------------------------------- | --------------------------------------------------- |
+| Алгоритм HMAC                   | `sha256` / `sha512` / `sha1` — генерация API-ключей |
+| Секрет                          | Строка HMAC; пусто → автогенерация при сохранении   |
+| Длина ключа                     | Длина генерируемого API-ключа                       |
+| Маскировать чувствительные поля | Скрывать пароли, IP, хеши в CRUD-ответах            |
+
+Из `.env`: `DEMO_MODE=true` — secure принудительно, токены не выдаются; `DLEAPI_SECURE=true` — маскирование на проде.
+
+## OAuth2 [#oauth2]
+
+| Параметр               | Описание                                       |
+| ---------------------- | ---------------------------------------------- |
+| TTL access token (сек) | Время жизни `access_token` (по умолчанию 3600) |
+
+## Уровни доступа [#уровни-доступа]
+
+| Параметр             | Описание                                                                               |
+| -------------------- | -------------------------------------------------------------------------------------- |
+| Уровень по умолчанию | При самогенерации ключа и если группа DLE не привязана на [синхронизации](access-sync) |
+
+## Профиль пользователя [#профиль-пользователя]
+
+| Параметр                    | Описание                                                     |
+| --------------------------- | ------------------------------------------------------------ |
+| Показывать блок API-ключа   | Показ блока в профиле (ключ из таблицы `api_keys`)           |
+| Разрешить генерировать ключ | Если выкл. — кнопку не показывают; ключ выдаёт администратор |
+
+Подключение: `userinfo.tpl` + `main.tpl` (`focus=js`) — [Установка → Профиль на сайте](../install#профиль-на-сайте).
+
+## Уведомления о заявках / решении [#уведомления-о-заявках--решении]
+
+* Email и/или ЛС при новой заявке и при одобрении/отказе.
+* **Группы DLE** и **пользователи** — multi-select получателей заявки.
+* Темы и тела PM (`pm_*_subject` / `pm_*_body`); тела — WYSIWYG, если в DLE включён PM-редактор.
+* В описаниях полей PM перечислены плейсхолдеры `{%…%}`. Полная таблица: [Шаблоны](templates).
+
+Email-шаблоны движка: [Шаблоны](templates).
+
+## См. также [#см-также]
+
+* [Уровни доступа](access-levels)
+* [Безопасность](security)
+* [OAuth-клиенты](oauth-client)
+
+
+# Шаблоны (/dev/dle/dle_api/200.1.0/guides/templates)
+
+
+
+Модуль шлёт уведомления о заявках на API-ключ и о решении (одобрение / отказ). Подстановка — простой `str_replace` тегов вида `{%имя%}`.
+
+Источник переменных: `KeyNotifyDelivery` + вызовы из `ProfileKeyService` / `DecideKeyRequestHandler`.
+
+## Email (таблица `_email`) [#email-таблица-_email]
+
+При установке плагина создаются шаблоны:
+
+| `name`                | Назначение                                     |
+| --------------------- | ---------------------------------------------- |
+| `dleapi_key_request`  | Новая заявка (получатели — админы из настроек) |
+| `dleapi_key_decision` | Одобрение / отказ (получатель — заявитель)     |
+
+Редактирование: **DLE → Настройки → Шаблоны e-mail** (поля добавлены патчем `engine/inc/email.php` из `install.xml`).
+
+Тема письма берётся из `{%subject%}` (если тега нет — «DLE API»). При отправке дополнительно подставляется `{%site_url%}` (домашний URL сайта без хвостового `/`).
+
+Шаблоны по умолчанию — **HTML** (`use_html=1`): карточка с синим заголовком. Редактировать можно в админке e-mail. При апгрейде плагина шаблоны в БД обновляются из `install.xml`.
+
+## PM (настройки модуля) [#pm-настройки-модуля]
+
+Темы и тела ЛС: [Настройки](settings) → вкладки уведомлений.
+
+* заявка: `pm_request_subject` / `pm_request_body`
+* одобрение: `pm_approve_*`
+* отказ: `pm_deny_*`
+
+Те же плейсхолдеры, что и в email (кроме `{%username%}` / `{%site_url%}` — только в письме).
+
+## Плейсхолдеры [#плейсхолдеры]
+
+### Заявка (`dleapi_key_request` / PM заявки) [#заявка-dleapi_key_request--pm-заявки]
+
+Только уведомления **администраторам**. В шаблоны решения для пользователя `{%request_url%}` не передаётся.
+
+| Тег               | Значение                                                                    |
+| ----------------- | --------------------------------------------------------------------------- |
+| `{%user_id%}`     | ID пользователя-заявителя                                                   |
+| `{%level%}`       | Название уровня доступа заявки                                              |
+| `{%request_id%}`  | ID заявки                                                                   |
+| `{%request_url%}` | Ссылка в админку: `…/admin.php?mod=dleapi&action=key_requests#request-{id}` |
+| `{%subject%}`     | Тема (напр. «Заявка на API-ключ»)                                           |
+| `{%username%}`    | Имя получателя письма (только email)                                        |
+| `{%site_url%}`    | URL сайта (только email)                                                    |
+
+### Решение (`dleapi_key_decision` / PM одобрения и отказа) [#решение-dleapi_key_decision--pm-одобрения-и-отказа]
+
+| Тег            | Значение                                                |
+| -------------- | ------------------------------------------------------- |
+| `{%user_id%}`  | ID пользователя                                         |
+| `{%api_key%}`  | Выданный ключ при одобрении; при отказе — пустая строка |
+| `{%subject%}`  | «API-ключ одобрен» / «API-ключ отклонён»                |
+| `{%username%}` | Имя получателя письма (только email)                    |
+| `{%site_url%}` | URL сайта (только email)                                |
+
+Фрагмент тела HTML-письма заявки:
+
+```html
+{%username%},<br><br>
+Это письмо отправлено с сайта <a href="{%site_url%}">{%site_url%}</a>.<br><br>
+Поступила новая заявка на API-ключ.<br>
+Пользователь (ID): {%user_id%}<br>
+Уровень доступа: {%level%}<br>
+Номер заявки: #{%request_id%}<br><br>
+<a href="{%request_url%}">{%request_url%}</a>
+```
+
+## См. также [#см-также]
+
+* [Настройки](settings)
 
 
 # Установка (/dev/dle/dle_api/200.1.0/install)
@@ -80371,65 +81119,115 @@ DLEAPI_SECURE=false
    * локаль `devcraft/locales/ru_RU/dleapi.xliff`
 4. В каталоге `api/` выполните `composer install`.
 5. Откройте модуль **DLE API** в админке DevCraft: при первом обращении к ORM Cycle создаст таблицы `{prefix}_api_keys`, `{prefix}_api_scope`, `{prefix}_api_oauth_*` (миграции в `devcraft/src/database/migrations/`). DDL в `install.xml` плагина для этих таблиц не используется.
-6. Создайте API-ключ и OAuth-клиент.
+6. (Опционально) Блок «API-ключ» в профиле — см. [ниже](#профиль-на-сайте).
+7. Создайте API-ключ и [OAuth-клиент](guides/oauth-client). Дальше — [авторизация](guides/auth) и [HTTP](reference/http).
 
+## Профиль на сайте [#профиль-на-сайте]
 
-# API v2 (/dev/dle/dle_api/200.1.0/reference/api_v2)
+Кнопка «Запросить / сгенерировать ключ» **не появляется из коробки**: плагин кладёт `engine/modules/devcraft/dleapi_profile.php`. Нужны **два** include в шаблоне скина.
 
+1. В DevCraft → **DLE API** → [Настройки](guides/settings#профиль-пользователя) включите **Разрешить пользователям генерировать ключ** (и при необходимости **Показывать блок API-ключа**).
+2. Задайте [уровень по умолчанию](guides/settings#уровни-доступа) или [привязку групп](guides/access-sync) — без уровня запрос вернёт ошибку.
+3. В шаблоне профиля (`templates/<Skin>/userinfo.tpl&#x60;) внутри &#x2A;*`[own-profile]`** добавьте HTML-блок:
 
-
-Базовый путь: `/api/v2`. Запись — **Cycle** (`dle_api_db()`). Админка DevCraft только конфигурирует ключи/OAuth.
-
-## Fluent / SDK facades [#fluent--sdk-facades]
-
-```php
-require_once DLEPlugins::Check(ROOT_DIR . '/api/sdk/bootstrap.php');
-
-DcApi::news()
-    ->withTitle('…')
-    ->withCategory([1, 2])          // sync post.category + post_extras_cats
-    ->withExtras('allow_rate', 1)
-    ->withPass('password', '…')
-    ->withXfield('foo', 'bar')
-    ->create();
-
-DcApi::user()->withName('admin')->withEmail('a@b.c')->create();
-DcApi::comment()->withPostId(1)->withText('…')->create();
-DcApi::staticPage()->withName('about')->withTemplate('…')->create();
-DcApi::file();                      // files
-DcApi::file('images');
-DcApi::schema('banners')->with('approve', 1)->create();
-DcApi::query('post')->where('category', '1')->fetchAll(); // GET кэш CacheControl
-DcApi::xfield('bio', 'О себе')->asText()->create();
-DcApi::modifyXfield('post');
+```html
+[own-profile]
+{include file="engine/modules/devcraft/dleapi_profile.php"}
+[/own-profile]
 ```
 
-Nested: доменные `with*Entity` или `attachChildEntity('images', …)`. Глобальные `prepare($table)` / `query($table)` — только TableBuilder (HTTP hydrate), не SDK-фасады.
+Не используйте `[not-logged]`: у администратора этот блок открыт и на **чужих** профилях (доступ к редактированию).
 
-## OAuth / токен [#oauth--токен]
+Пример места: вкладка просмотра профиля, после `{info}` / «О себе».
 
-Bearer принимает **API-ключ** или **access\_token**. Подробно: [Авторизация](../guides/auth).
+4. В &#x2A;*`templates/<Skin>/main.tpl`** перед `</body>` подключите публичный JS (`dc_public.js` + UI профиля). Чтобы скрипт грузился только на странице профиля, оберните include в `[available=userinfo]`:
 
-* `POST /oauth/token` — опционально, если нужен OAuth (`client_credentials` | `password` | `authorization_code` | `refresh_token`; только POST).
-* Password grant: `username` = `users.name` или email, `password` = пароль DLE (+ `client_id` / `client_secret`).
+```html
+[available=userinfo]
+{include file="engine/modules/devcraft/dleapi_profile.php?focus=js"}
+[/available]
+```
 
-<Callout type="info" title="Свой домен для теста">
-  В OpenAPI server variable `apiBase` — подставьте свой URL до `/api/v2`.
+Без этого шага в блоке будет «DevCraftPublic недоступен».
+
+5. Очистите кеш шаблонов DLE и откройте **свой** профиль на сайте.
+
+Ключ хранится только в таблице `{prefix}_api_keys` (без доп. полей профиля).
+
+Поведение кнопки:
+
+* у уровня **без** премодерации — ключ создаётся сразу;
+* с **премодерацией** — создаётся заявка (админка → **Заявки на ключ**), пользователю уйдёт уведомление после решения.
+
+<Callout type="warn" title="Чужой профиль">
+  Блок относится только к **текущей сессии** и показывается лишь на **своей** странице (`[own-profile]` + проверка `$row['user_id']` в PHP). На чужом профиле, даже у админа, ключ не выводится.
 </Callout>
 
-## Поиск и фильтры [#поиск-и-фильтры]
+## Редирект `/api` → `/api/v2` [#редирект-api--apiv2]
 
-* Канон: &#x2A;*`GET /table/{name}/`** — SchemaRegistry **или** интроспекция `SHOW COLUMNS` (таблицы без `*Schema.php`).
+**Apache:** правила уже в `api/.htaccess` — `/api` и `/api/v1` → `/api/v2` (308), запросы `/api/v2/` уходят в `v2/index.php`.
+
+**nginx** (фрагмент `server`):
+
+```nginx
+location = /api {
+    return 308 /api/v2/;
+}
+location /api/v1 {
+    rewrite ^/api/v1/?(.*)$ /api/v2/$1 permanent;
+}
+location /api/v2/ {
+    try_files $uri /api/v2/index.php?$query_string;
+}
+```
+
+
+# HTTP /api/v2 (/dev/dle/dle_api/200.1.0/reference/http)
+
+
+
+Базовый путь: &#x2A;*`/api/v2`**. Persistence — **Cycle ORM** из DevCraft (`dle_api_db()`). Админка модуля только настраивает ключи, OAuth и уровни доступа — сами HTTP-запросы идут на `/api/v2`.
+
+На ресурсах нужен заголовок `Authorization: Bearer <access_token>` (сырой API-ключ **не** принимается). Как получить токен: [Авторизация](../guides/auth) и [OAuth-сервер](../guides/oauth-server).
+
+Исключения без Bearer: `GET /health`, `GET /.well-known/oauth-authorization-server`.
+
+Trailing slash опционален: `/me` и `/me/` одинаковы.
+
+<Callout type="info" title="Свой домен">
+  В OpenAPI server variable `apiBase` подставьте URL сайта до `/api/v2`.
+</Callout>
+
+## Эндпоинты (обзор) [#эндпоинты-обзор]
+
+| Метод                     | Путь                                | Описание                     |
+| ------------------------- | ----------------------------------- | ---------------------------- |
+| GET                       | `/table/{name}/`                    | Список + фильтры             |
+| GET                       | `/table/{name}/{id}/`               | Одна запись                  |
+| POST                      | `/table/{name}/`                    | Create                       |
+| PUT                       | `/table/{name}/{id}/`               | Update                       |
+| DELETE                    | `/table/{name}/{id}/`               | Delete                       |
+| GET/POST                  | `/post/` …                          | Новости (sugar + BC-фильтры) |
+| POST                      | `/user/`, `/usergroup/`, `/plugin/` | Sugar create                 |
+| POST                      | `/upload/`                          | multipart-загрузка           |
+| GET                       | `/conversations/`                   | Переписки                    |
+| GET                       | `/health/`                          | Healthcheck                  |
+| GET                       | `/me/`, `/oauth/userinfo/`          | Субъект токена               |
+| POST                      | `/oauth/token/`, `/oauth/revoke/`   | Токен / revoke               |
+| GET/POST                  | `/oauth/authorize/`                 | Authorization Code           |
+| GET/POST/PUT/PATCH/DELETE | `/xfields/{scope}/…`                | Каталог доп. полей           |
+
+Полная схема: [OpenAPI](openapi).
+
+## `GET /table/{name}/` — список и фильтры [#get-tablename--список-и-фильтры]
+
+* Таблица из **SchemaRegistry** или через интроспекцию `SHOW COLUMNS` (если нет `*Schema.php`).
 * Deny-list: `api_keys`, `api_scope`, `oauth_*` / `api_oauth_*`, `devcraft_*`.
-* Права: `api_scope` (`read`/`write`/`delete`; `is_admin` без ограничений).
-* Фильтры — query-параметры колонок.
-* Virtual FK (RelationMap, без MySQL FK):
-  * `csv`/`csv_or_all` → `FIND_IN_SET`,
-  * `one` → `=`
-* Операторы значения:
-  * `!` -> negate
-  * `%` -> LIKE
-* Доп. поля: `xf[name]=value` (pad-LIKE по `xfields`).
+* Права — scopes ключа (`read` / `write` / `delete`; `is_admin` без ограничений).
+* Фильтры — query-параметры имён колонок.
+* Virtual FK (RelationMap, без MySQL FK): `csv` / `csv_or_all` → `FIND_IN_SET`, `one` → `=`.
+* Операторы в значении: `!` — negate, `%` — LIKE.
+* Доп. поля поста: `xf[name]=value` (pad-LIKE по `xfields`).
 
 ```http
 GET /api/v2/table/banners/?category=1&approve=1&limit=20
@@ -80437,37 +81235,54 @@ GET /api/v2/table/banners/?grouplevel=2
 GET /api/v2/table/post/?category=1&xf[linked_data]=сдасдл
 ```
 
-In-process: `DcApi::query('banners')->where('category', '1')->fetchAll()` или `dle_api_query('banners')`.
+`GET /post/` — sugar над `TableQuery('post')` плюс часть legacy header-фильтров (BC). Для `post.category` дополнительно `OR EXISTS post_extras_cats`.
 
-`GET /post/` — sugar над `TableQuery('post')` + legacy header-фильтры (BC). Для `post.category` дополнительно `OR EXISTS post_extras_cats` (issue #12).
+## Доп. поля (`/xfields`) [#доп-поля-xfields]
 
-## Доп. поля (xfields) [#доп-поля-xfields]
+Каталог: `GET/POST/PUT/PATCH/DELETE /xfields/{scope}/…` (`scope` = `post` | `user`) с typed validation (`details.fields` при 422).
 
-Каталог: `GET/POST/PUT/PATCH/DELETE /xfields/{scope}/…` с typed validation (`details.fields` при 422).
-
-Сериализация значений в `post.xfields`:
+Сериализация значений в строку `post.xfields`:
 
 ```http
 POST /api/v2/xfields/post/encode
+Content-Type: application/json
+
 { "fields": { "linked_data": "…", "note": "a|b" } }
 ```
 
-→ `{ "raw": "linked_data|…||note|a&#124;b", "parsed": {…} }`.
+Ответ: `{ "raw": "…", "parsed": {…} }`.
 
-SDK: `DcApi::xfield('bio', 'О себе')->asText()->create()`, `->forPost($value)`.
+## Upload [#upload]
 
-## Эндпоинты [#эндпоинты]
+`POST /upload/` — multipart через штатный пайплайн DLE. Нужен Bearer с правом записи.
 
-| Метод    | Путь                                | Описание                 |
-| -------- | ----------------------------------- | ------------------------ |
-| GET      | `/table/{name}/`                    | Список + фильтры         |
-| POST     | `/table/{name}/`                    | Универсальный create     |
-| GET/POST | `/post/` …                          | Новости (+ sugar create) |
-| POST     | `/user/`, `/usergroup/`, `/plugin/` | Sugar                    |
-| POST     | `/upload/`                          | multipart                |
-| GET      | `/conversations/`, `/health/`       | Служебные                |
+## Ошибки (`ApiError`) [#ошибки-apierror]
 
-Полная спецификация: [OpenAPI](openapi).
+Большинство 4xx/5xx отдают JSON схемы **ApiError**:
+
+| Поле      | Тип          | Описание                                |
+| --------- | ------------ | --------------------------------------- |
+| `error`   | string       | Код (`unauthorized`, `validation`, …)   |
+| `message` | string       | Человекочитаемое сообщение              |
+| `details` | object\|null | Доп. данные (например `fields` при 422) |
+
+Пример:
+
+```json
+{
+  "error": "unauthorized",
+  "message": "Требуется Authorization: Bearer <AuthToken>"
+}
+```
+
+Схема в [OpenAPI](openapi) → `components.schemas.ApiError`.
+
+## См. также [#см-также]
+
+* [SDK (`DcApi`)](sdk) — in-process PHP, не HTTP-клиент
+* [Миграция v1 → v2](../guides/migrate-v1-v2)
+* [OAuth-клиенты](../guides/oauth-client)
+* [Безопасность](../guides/security)
 
 
 # OpenAPI (/dev/dle/dle_api/200.1.0/reference/openapi)
@@ -80483,6 +81298,67 @@ cd upload/api && composer openapi
 Сырой файл: [openapi.yaml](./openapi.yaml)
 
 Интерактивный playground рендерится ниже через Fumadocs OpenAPI (`app/lib/openapi.ts`).
+
+
+# SDK (DcApi) (/dev/dle/dle_api/200.1.0/reference/sdk)
+
+
+
+**`DcApi`** — глобальная точка входа **in-process** SDK (код на том же PHP, что и сайт). Это не HTTP-клиент к `/api/v2`: вызовы идут через Fluent/Schema и Cycle, без Bearer.
+
+После установки плагина bootstrap обычно уже подключён. Вручную:
+
+```php
+require_once DLEPlugins::Check(ROOT_DIR . '/api/sdk/bootstrap.php');
+```
+
+## Фасады [#фасады]
+
+| Метод                                     | Назначение                                                |
+| ----------------------------------------- | --------------------------------------------------------- |
+| `DcApi::news()`                           | Новость (`post`) + nested extras/pass/cats                |
+| `DcApi::user()`                           | Пользователь                                              |
+| `DcApi::comment()`                        | Комментарий                                               |
+| `DcApi::conversation()`                   | Переписка                                                 |
+| `DcApi::plugin()`                         | Плагин                                                    |
+| `DcApi::file()` / `DcApi::file('images')` | Файлы / изображения                                       |
+| `DcApi::staticPage()`                     | Статическая страница                                      |
+| `DcApi::schema('banners')`                | Универсальный builder по имени таблицы SchemaRegistry     |
+| `DcApi::query('post')`                    | SELECT/фильтры (`TableQuery`, кэш GET через CacheControl) |
+| `DcApi::xfield('bio', '…')`               | Fluent одного доп. поля каталога                          |
+| `DcApi::modifyXfield('post')`             | Презентер каталога доп. полей (`post` \| `user`)          |
+
+## Примеры [#примеры]
+
+```php
+DcApi::news()
+    ->withTitle('Заголовок')
+    ->withCategory([1, 2])   // sync post.category + post_extras_cats
+    ->withExtras('allow_rate', 1)
+    ->withPass('password', '…')
+    ->withXfield('foo', 'bar')
+    ->create();
+
+DcApi::user()->withName('admin')->withEmail('a@b.c')->create();
+DcApi::comment()->withPostId(1)->withText('…')->create();
+DcApi::staticPage()->withName('about')->withTemplate('…')->create();
+
+DcApi::schema('banners')->with('approve', 1)->create();
+DcApi::query('post')->where('category', '1')->fetchAll();
+
+DcApi::xfield('bio', 'О себе')->asText()->create();
+DcApi::modifyXfield('post');
+```
+
+Nested-сущности: доменные `with*Entity` или `attachChildEntity('images', …)`.
+
+Низкоуровневый Fluent для HTTP-hydrate (`prepare` / `query` из `api/src/Fluent/`) — не путать с фасадами `DcApi`.
+
+## См. также [#см-также]
+
+* [HTTP /api/v2](http)
+* [OpenAPI](openapi)
+* [Миграция v1 → v2](../guides/migrate-v1-v2)
 
 
 # История изменений (/dev/dle/dle_faker/200.1.4/changelog)
