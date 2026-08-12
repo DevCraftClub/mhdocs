@@ -254,10 +254,40 @@
     - [TurboBitApi](/dev/api_wrappers/turbobit): Unofficial Python API wrapper for turbobit.net.
   - DevCraft Dev Tools
     - [Начало работы](/dev/dev-tools/1.0.0/getting_started): Установка DevCraft Dev Tools, выбор базового класса, fluent builder и DTO.
-    - [Установка Dev Tools](/dev/dev-tools/1.0.0/install)
+    - [Установка Dev Tools](/dev/dev-tools/1.0.0/install): Требования и установка devcraftclub/dev-tools через Packagist или path repository.
     - Guides
-      - [English guide](/dev/dev-tools/1.0.0/guides/english)
-    - [Changelog Dev Tools](/dev/dev-tools/1.0.0/changelog)
+      - [Атрибуты With](/dev/dev-tools/1.0.0/guides/with_attributes): Fluent-сеттеры через #[With], #[WithItem], AbstractWith и WithHandler.
+      - [Reflection mapper](/dev/dev-tools/1.0.0/guides/reflection_mapper): Гидратация и сериализация DTO через AbstractReflection и ReflectionMapper.
+      - [Валидация](/dev/dev-tools/1.0.0/guides/validation): Filter, Range, Regex, ArrayOf, PropertyValidator и ValidationException.
+    - Справочник
+      - [Справочник](/dev/dev-tools/1.0.0/reference): Классы, атрибуты и интерфейсы DevCraft Dev Tools.
+      - Abstracts
+        - [AbstractWith](/dev/dev-tools/1.0.0/reference/abstracts/AbstractWith): Базовый класс fluent-билдеров с маршрутизацией __call в WithHandler.
+        - [AbstractReflection](/dev/dev-tools/1.0.0/reference/abstracts/AbstractReflection): Базовый класс DTO: fromArray, toArray, toJson через ReflectionMapper.
+      - Attributes
+        - [With](/dev/dev-tools/1.0.0/reference/attributes/With): Маркерный атрибут: виртуальный withPropertyName($value) заменяет значение свойства.
+        - [WithItem](/dev/dev-tools/1.0.0/reference/attributes/WithItem): Атрибут append/map: withPropertyItem(...) для элементов массива.
+        - [Filter](/dev/dev-tools/1.0.0/reference/attributes/Filter): ValidationRule на базе filter_var.
+        - [Range](/dev/dev-tools/1.0.0/reference/attributes/Range): ValidationRule: числовые границы min/max для int|float.
+        - [Regex](/dev/dev-tools/1.0.0/reference/attributes/Regex): ValidationRule: совпадение строки с регулярным выражением.
+        - [ArrayOf](/dev/dev-tools/1.0.0/reference/attributes/ArrayOf): ValidationRule и hint конверсии: list элементов заданного типа.
+      - Runtime
+        - [WithHandler](/dev/dev-tools/1.0.0/reference/runtime/WithHandler): Runtime: метаданные #[With]/#[WithItem], handles() и call().
+      - Mapper
+        - [ReflectionMapper](/dev/dev-tools/1.0.0/reference/mapper/ReflectionMapper): Гидратация и сериализация public-свойств DTO с валидацией.
+      - Validation
+        - [PropertyValidator](/dev/dev-tools/1.0.0/reference/validation/PropertyValidator): Запуск ValidationRule-атрибутов на свойстве или объекте без гидратации.
+      - Interfaces
+        - [ReflectionInterface](/dev/dev-tools/1.0.0/reference/interfaces/ReflectionInterface): Контракт DTO: fromArray, toArray, toJson.
+        - [ValidationRule](/dev/dev-tools/1.0.0/reference/interfaces/ValidationRule): Контракт атрибутов валидации: validate() → null или сообщение.
+      - Exceptions
+        - [ValidationException](/dev/dev-tools/1.0.0/reference/exceptions/ValidationException): Исключение гидратации: карта ошибок по dotted property paths.
+    - English
+      - [Getting started](/dev/dev-tools/1.0.0/en/getting_started): Install DevCraft Dev Tools, choose a base class, and build a fluent builder or response DTO.
+      - [With attributes](/dev/dev-tools/1.0.0/en/with_attributes): Fluent setters with #[With], #[WithItem], AbstractWith, and WithHandler.
+      - [Reflection mapper](/dev/dev-tools/1.0.0/en/reflection_mapper): DTO hydration and serialization with AbstractReflection and ReflectionMapper.
+      - [Validation](/dev/dev-tools/1.0.0/en/validation): Filter, Range, Regex, ArrayOf, PropertyValidator, and ValidationException.
+    - [Changelog Dev Tools](/dev/dev-tools/1.0.0/changelog): История изменений DevCraft Dev Tools.
   - Datalife Engine (DLE)
     - [Обзор](/dev/dle): Плагины и модули DevCraft для DataLife Engine 20.0.
     - DevCraft Admin
