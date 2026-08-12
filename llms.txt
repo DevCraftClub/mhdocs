@@ -243,12 +243,21 @@
         - [FilterTrait](/dev/api_wrappers/kinopoiskdev/Utils/FilterTrait)
         - [MovieFilter](/dev/api_wrappers/kinopoiskdev/Utils/MovieFilter)
         - [SortManager](/dev/api_wrappers/kinopoiskdev/Utils/SortManager)
-    - NotKinoPoiskAPI
-      - [NotKinoPoiskAPI](/dev/api_wrappers/notkinopoiskapi): Неофициальная Python-библиотека для Kinopoisk API Unofficial.
-    - StreamTape
-      - [StreamTape](/dev/api_wrappers/streamtape): Unofficial Python API wrapper for streamtape.com.
-    - TurboBitApi
-      - [TurboBitApi](/dev/api_wrappers/turbobit): Unofficial Python API wrapper for turbobit.net.
+    - WebShare Proxy PHP Wrapper
+      - [Начало работы](/dev/api_wrappers/webshare-proxy/1.0.0/getting_started): WebShare Proxy PHP Wrapper: обзор, конфигурация и первые запросы.
+      - [Установка WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/install)
+      - Guides
+        - [English guide](/dev/api_wrappers/webshare-proxy/1.0.0/guides/english)
+      - [Changelog WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/changelog)
+    - [NotKinoPoiskAPI](/dev/api_wrappers/notkinopoiskapi): Неофициальная Python-библиотека для Kinopoisk API Unofficial.
+    - [StreamTape](/dev/api_wrappers/streamtape): Unofficial Python API wrapper for streamtape.com.
+    - [TurboBitApi](/dev/api_wrappers/turbobit): Unofficial Python API wrapper for turbobit.net.
+  - DevCraft Dev Tools
+    - [Начало работы](/dev/dev-tools/1.0.0/getting_started): Установка DevCraft Dev Tools, выбор базового класса, fluent builder и DTO.
+    - [Установка Dev Tools](/dev/dev-tools/1.0.0/install)
+    - Guides
+      - [English guide](/dev/dev-tools/1.0.0/guides/english)
+    - [Changelog Dev Tools](/dev/dev-tools/1.0.0/changelog)
   - Datalife Engine (DLE)
     - [Обзор](/dev/dle): Плагины и модули DevCraft для DataLife Engine 20.0.
     - DevCraft Admin
@@ -362,11 +371,20 @@
       - [Начало работы](/dev/dle/dle_api/200.1.0/getting_started): Неофициальное REST API для DataLife Engine 20.0 (/api/v2).
       - [Установка](/dev/dle/dle_api/200.1.0/install): Установка DLE API 200.1.0 для DLE 20.0 с DevCraft Admin.
       - Гайды
-        - [Авторизация](/dev/dle/dle_api/200.1.0/guides/auth): AuthToken-only на ресурсах; credential_type; /me; DEMO_MODE.
+        - [Авторизация](/dev/dle/dle_api/200.1.0/guides/auth): Bearer AuthToken; credential_type; /me; DEMO_MODE; уровни доступа.
+        - [OAuth-клиенты](/dev/dle/dle_api/200.1.0/guides/oauth-client): Админка DLE API: эндпоинты AS, создание и редактирование OAuth-клиентов, grants, секрет.
+        - [OAuth Authorization Server](/dev/dle/dle_api/200.1.0/guides/oauth-server): Discovery, authorize/token/revoke, credential_type с примерами curl в табах.
+        - [Настройки](/dev/dle/dle_api/200.1.0/guides/settings): Параметры модуля DLE API в DevCraft: безопасность, OAuth TTL, профиль, уведомления.
+        - [Уровни доступа](/dev/dle/dle_api/200.1.0/guides/access-levels): Access levels DLE API: own_only, cheater, маски, scopes read/write/edit/delete.
+        - [Синхронизация с группами](/dev/dle/dle_api/200.1.0/guides/access-sync): Привязка групп пользователей DLE к уровням доступа DLE API.
+        - [Шаблоны](/dev/dle/dle_api/200.1.0/guides/templates): Email- и PM-шаблоны уведомлений DLE API: плейсхолдеры {%…%}.
+        - [Безопасность](/dev/dle/dle_api/200.1.0/guides/security): Встроенные меры DLE API и операционный чеклист для продакшена.
+        - [Миграция API v1 → v2](/dev/dle/dle_api/200.1.0/guides/migrate-v1-v2): Чем v2 отличается от удалённого v1 и как перевести клиента.
       - Справочник
-        - [API v2](/dev/dle/dle_api/200.1.0/reference/api_v2): Обзор /api/v2: универсальный Fluent, RelationMap, Cycle.
+        - [HTTP /api/v2](/dev/dle/dle_api/200.1.0/reference/http): REST-эндпоинты DLE API: Bearer, /table, фильтры, xfields, upload.
+        - [SDK (DcApi)](/dev/dle/dle_api/200.1.0/reference/sdk): In-process SDK DcApi: фасады Schema, query, xfields.
         - [OpenAPI](/dev/dle/dle_api/200.1.0/reference/openapi): Интерактивная спецификация OpenAPI для /api/v2.
-      - [Changelog](/dev/dle/dle_api/200.1.0/changelog): Журнал изменений DLE API.
+      - [Журнал изменений](/dev/dle/dle_api/200.1.0/changelog): Журнал изменений DLE API.
     - DLE Faker
       - [Начало работы](/dev/dle/dle_faker/200.1.4/getting_started): Обзор DLE Faker 200.1.4: требования и структура модуля.
       - [Установка](/dev/dle/dle_faker/200.1.4/install): Установка DLE Faker 200.1.4 для DLE 20.0 с DevCraft Admin.
