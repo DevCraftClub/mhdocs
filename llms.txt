@@ -245,10 +245,77 @@
         - [SortManager](/dev/api_wrappers/kinopoiskdev/Utils/SortManager)
     - WebShare Proxy PHP Wrapper
       - [Начало работы](/dev/api_wrappers/webshare-proxy/1.0.0/getting_started): WebShare Proxy PHP Wrapper: обзор, конфигурация и первые запросы.
-      - [Установка WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/install)
+      - [Установка WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/install): Требования, Composer и конфигурация API_KEY / .env.
       - Guides
-        - [English guide](/dev/api_wrappers/webshare-proxy/1.0.0/guides/english)
-      - [Changelog WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/changelog)
+        - [Прокси](/dev/api_wrappers/webshare-proxy/1.0.0/guides/proxies): Proxy list, iterate, download, refresh, замены и connection strings.
+        - [Auth и токены](/dev/api_wrappers/webshare-proxy/1.0.0/guides/auth_and_tokens): Profile, IpAuthorization, ApiKey, DownloadToken, Notification.
+        - [SubUser](/dev/api_wrappers/webshare-proxy/1.0.0/guides/subusers): CRUD SubUser, refresh proxy list и masqueradeAs (X-Subuser).
+        - [Stats и config](/dev/api_wrappers/webshare-proxy/1.0.0/guides/stats_and_config): ProxyStats, ProxyConfig, кэш GET и обработка ошибок.
+      - Справочник
+        - [Справочник](/dev/api_wrappers/webshare-proxy/1.0.0/reference): Классы, Requests, Entities, Responses, Enums и Exceptions WebShare Proxy wrapper.
+        - Abstracts
+          - [AbstractBasicClass](/dev/api_wrappers/webshare-proxy/1.0.0/reference/abstracts/AbstractBasicClass): Базовый класс сущностей / shared helpers.
+          - [AbstractRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/abstracts/AbstractRequest): Базовый Request: endpoint, QueryBuilder, request().
+        - Classes
+          - [App](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/App): Фасад библиотеки: init, Client, Cache, Requests discovery.
+          - [Client](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/Client): HTTP-клиент Guzzle с кэшем GET, ретраями 429/5xx и X-Subuser.
+          - [QueryBuilder](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/QueryBuilder): Fluent-конструктор query string: фильтры, order, search, pagination.
+          - [PageIterator](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/PageIterator): Генератор страниц пагинации до next=null или max pages.
+          - [CacheManager](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/CacheManager): Обёртка над TagAwareCache для GET-ответов.
+        - Requests
+          - [ProxyRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyRequest): Список прокси, iterate, download, refresh.
+          - [ProfileRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProfileRequest): Профиль аккаунта и preferences.
+          - [NotificationRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/NotificationRequest): Уведомления: list/retrieve/dismiss/restore.
+          - [ProxyReplacementRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyReplacementRequest): Замена прокси (v3): list/retrieve/create.
+          - [ReplacedProxyRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ReplacedProxyRequest): Заменённые прокси: list/download.
+          - [ProxyConfigRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyConfigRequest): Конфиг плана (v3): retrieve/update/status/stats.
+          - [IpAuthorizationRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/IpAuthorizationRequest): IP allowlist + whatsMyIp.
+          - [ProxyStatsRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyStatsRequest): Статистика и activity log.
+          - [DownloadTokenRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/DownloadTokenRequest): DownloadToken: get/reset по scope.
+          - [ApiKeyRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ApiKeyRequest): CRUD API keys.
+          - [SubUserRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/SubUserRequest): CRUD SubUser + refresh + masqueradeAs.
+        - Entities
+          - [ApiKey](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ApiKey): API key сущности.
+          - [DownloadToken](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/DownloadToken): Time-limited download key.
+          - [IpAuthorization](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/IpAuthorization): Allowlisted source IP.
+          - [Notification](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/Notification): Уведомление.
+          - [Profile](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/Profile): Профиль аккаунта WebShare.
+          - [ProfilePreference](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProfilePreference): Preferences профиля.
+          - [Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/Proxy): Один прокси из списка; getConnectionString (backbone/direct).
+          - [ProxyActivity](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyActivity): Запись activity log.
+          - [ProxyConfig](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyConfig): Plan-level proxy configuration.
+          - [ProxyListStats](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyListStats): Агрегированная статистика списка.
+          - [ProxyReplacement](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyReplacement): Операция замены прокси.
+          - [ProxyStat](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyStat): Агрегат статистики.
+          - [ProxyStatErrorReason](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyStatErrorReason): Причина ошибки в статистике.
+          - [ProxyStatus](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyStatus): Статус прокси-конфига.
+          - [ReplacedProxy](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ReplacedProxy): Заменённый прокси.
+          - [RequestBody](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/RequestBody): Тело запроса / helper entity.
+          - [SubUser](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/SubUser): Дочерний аккаунт (SubUser).
+        - Responses
+          - [ApiKeyList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ApiKeyList): Paginated ApiKeyList.
+          - [IpAuthorizationList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/IpAuthorizationList): Paginated IpAuthorizationList.
+          - [NotificationList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/NotificationList): Paginated NotificationList.
+          - [PaginatedResponse](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/PaginatedResponse): Базовый paginated response (count, next, previous, results).
+          - [ProxyActivityList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ProxyActivityList): Paginated ProxyActivityList.
+          - [ProxyList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ProxyList): Paginated ProxyList.
+          - [ProxyReplacementList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ProxyReplacementList): Paginated ProxyReplacementList.
+          - [ReplacedProxyList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ReplacedProxyList): Paginated ReplacedProxyList.
+          - [SubUserList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/SubUserList): Paginated SubUserList.
+        - Enums
+          - [ContentType](/dev/api_wrappers/webshare-proxy/1.0.0/reference/enums/ContentType): Content-Type enum.
+          - [FilterOperator](/dev/api_wrappers/webshare-proxy/1.0.0/reference/enums/FilterOperator): Операторы фильтрации query.
+          - [RequestMethod](/dev/api_wrappers/webshare-proxy/1.0.0/reference/enums/RequestMethod): HTTP methods enum.
+        - Exceptions
+          - [ApiException](/dev/api_wrappers/webshare-proxy/1.0.0/reference/exceptions/ApiException): Ошибка API; validation errors map.
+          - [RateLimitException](/dev/api_wrappers/webshare-proxy/1.0.0/reference/exceptions/RateLimitException): Rate limit / retry-after.
+      - English
+        - [Getting started](/dev/api_wrappers/webshare-proxy/1.0.0/en/getting_started): Install and use the WebShare Proxy PHP wrapper.
+        - [Proxies](/dev/api_wrappers/webshare-proxy/1.0.0/en/proxies): Proxy list, iterate, download, refresh, replacements, connection strings.
+        - [Auth and tokens](/dev/api_wrappers/webshare-proxy/1.0.0/en/auth_and_tokens): Profile, IpAuthorization, ApiKey, DownloadToken, Notification.
+        - [SubUsers](/dev/api_wrappers/webshare-proxy/1.0.0/en/subusers): SubUser CRUD, refresh proxy list, and masqueradeAs (X-Subuser).
+        - [Stats and config](/dev/api_wrappers/webshare-proxy/1.0.0/en/stats_and_config): ProxyStats, ProxyConfig, GET caching, and error handling.
+      - [Changelog WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/changelog): История изменений WebShare Proxy PHP Wrapper.
     - [NotKinoPoiskAPI](/dev/api_wrappers/notkinopoiskapi): Неофициальная Python-библиотека для Kinopoisk API Unofficial.
     - [StreamTape](/dev/api_wrappers/streamtape): Unofficial Python API wrapper for streamtape.com.
     - [TurboBitApi](/dev/api_wrappers/turbobit): Unofficial Python API wrapper for turbobit.net.
