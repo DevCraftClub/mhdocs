@@ -244,282 +244,331 @@
         - [MovieFilter](/dev/api_wrappers/kinopoiskdev/Utils/MovieFilter)
         - [SortManager](/dev/api_wrappers/kinopoiskdev/Utils/SortManager)
     - WebShare Proxy PHP Wrapper
-      - [Начало работы](/dev/api_wrappers/webshare-proxy/1.0.0/getting_started): WebShare Proxy PHP Wrapper: обзор, конфигурация и первые запросы.
-      - [Установка WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/install): Требования, Composer и конфигурация API_KEY / .env.
-      - Guides
-        - [Прокси](/dev/api_wrappers/webshare-proxy/1.0.0/guides/proxies): Proxy list, iterate, download, refresh, замены и connection strings.
-        - [Auth и токены](/dev/api_wrappers/webshare-proxy/1.0.0/guides/auth_and_tokens): Profile, IpAuthorization, ApiKey, DownloadToken, Notification.
-        - [SubUser](/dev/api_wrappers/webshare-proxy/1.0.0/guides/subusers): CRUD SubUser, refresh proxy list и masqueradeAs (X-Subuser).
-        - [Stats и config](/dev/api_wrappers/webshare-proxy/1.0.0/guides/stats_and_config): ProxyStats, ProxyConfig, кэш GET и обработка ошибок.
-      - Справочник
-        - [Справочник](/dev/api_wrappers/webshare-proxy/1.0.0/reference): Классы, Requests, Entities, Responses, Enums и Exceptions WebShare Proxy wrapper.
-        - Abstracts
-          - [AbstractBasicClass](/dev/api_wrappers/webshare-proxy/1.0.0/reference/abstracts/AbstractBasicClass): Базовый класс сущностей / shared helpers.
-          - [AbstractRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/abstracts/AbstractRequest): Базовый Request: endpoint, QueryBuilder, request().
-        - Classes
-          - [App](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/App): Фасад библиотеки: init, Client, Cache, Requests discovery.
-          - [Client](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/Client): HTTP-клиент Guzzle с кэшем GET, ретраями 429/5xx и X-Subuser.
-          - [QueryBuilder](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/QueryBuilder): Fluent-конструктор query string: фильтры, order, search, pagination.
-          - [PageIterator](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/PageIterator): Генератор страниц пагинации до next=null или max pages.
-          - [CacheManager](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/CacheManager): Обёртка над TagAwareCache для GET-ответов.
-        - Requests
-          - [ProxyRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyRequest): Список прокси, iterate, download, refresh.
-          - [ProfileRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProfileRequest): Профиль аккаунта и preferences.
-          - [NotificationRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/NotificationRequest): Уведомления: list/retrieve/dismiss/restore.
-          - [ProxyReplacementRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyReplacementRequest): Замена прокси (v3): list/retrieve/create.
-          - [ReplacedProxyRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ReplacedProxyRequest): Заменённые прокси: list/download.
-          - [ProxyConfigRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyConfigRequest): Конфиг плана (v3): retrieve/update/status/stats.
-          - [IpAuthorizationRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/IpAuthorizationRequest): IP allowlist + whatsMyIp.
-          - [ProxyStatsRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyStatsRequest): Статистика и activity log.
-          - [DownloadTokenRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/DownloadTokenRequest): DownloadToken: get/reset по scope.
-          - [ApiKeyRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ApiKeyRequest): CRUD API keys.
-          - [SubUserRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/SubUserRequest): CRUD SubUser + refresh + masqueradeAs.
-        - Entities
-          - [ApiKey](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ApiKey): API key сущности.
-          - [DownloadToken](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/DownloadToken): Time-limited download key.
-          - [IpAuthorization](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/IpAuthorization): Allowlisted source IP.
-          - [Notification](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/Notification): Уведомление.
-          - [Profile](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/Profile): Профиль аккаунта WebShare.
-          - [ProfilePreference](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProfilePreference): Preferences профиля.
-          - [Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/Proxy): Один прокси из списка; getConnectionString (backbone/direct).
-          - [ProxyActivity](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyActivity): Запись activity log.
-          - [ProxyConfig](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyConfig): Plan-level proxy configuration.
-          - [ProxyListStats](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyListStats): Агрегированная статистика списка.
-          - [ProxyReplacement](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyReplacement): Операция замены прокси.
-          - [ProxyStat](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyStat): Агрегат статистики.
-          - [ProxyStatErrorReason](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyStatErrorReason): Причина ошибки в статистике.
-          - [ProxyStatus](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyStatus): Статус прокси-конфига.
-          - [ReplacedProxy](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ReplacedProxy): Заменённый прокси.
-          - [RequestBody](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/RequestBody): Тело запроса / helper entity.
-          - [SubUser](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/SubUser): Дочерний аккаунт (SubUser).
-        - Responses
-          - [ApiKeyList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ApiKeyList): Paginated ApiKeyList.
-          - [IpAuthorizationList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/IpAuthorizationList): Paginated IpAuthorizationList.
-          - [NotificationList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/NotificationList): Paginated NotificationList.
-          - [PaginatedResponse](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/PaginatedResponse): Базовый paginated response (count, next, previous, results).
-          - [ProxyActivityList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ProxyActivityList): Paginated ProxyActivityList.
-          - [ProxyList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ProxyList): Paginated ProxyList.
-          - [ProxyReplacementList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ProxyReplacementList): Paginated ProxyReplacementList.
-          - [ReplacedProxyList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ReplacedProxyList): Paginated ReplacedProxyList.
-          - [SubUserList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/SubUserList): Paginated SubUserList.
-        - Enums
-          - [ContentType](/dev/api_wrappers/webshare-proxy/1.0.0/reference/enums/ContentType): Content-Type enum.
-          - [FilterOperator](/dev/api_wrappers/webshare-proxy/1.0.0/reference/enums/FilterOperator): Операторы фильтрации query.
-          - [RequestMethod](/dev/api_wrappers/webshare-proxy/1.0.0/reference/enums/RequestMethod): HTTP methods enum.
-        - Exceptions
-          - [ApiException](/dev/api_wrappers/webshare-proxy/1.0.0/reference/exceptions/ApiException): Ошибка API; validation errors map.
-          - [RateLimitException](/dev/api_wrappers/webshare-proxy/1.0.0/reference/exceptions/RateLimitException): Rate limit / retry-after.
-      - English
-        - [Getting started](/dev/api_wrappers/webshare-proxy/1.0.0/en/getting_started): Install and use the WebShare Proxy PHP wrapper.
-        - [Proxies](/dev/api_wrappers/webshare-proxy/1.0.0/en/proxies): Proxy list, iterate, download, refresh, replacements, connection strings.
-        - [Auth and tokens](/dev/api_wrappers/webshare-proxy/1.0.0/en/auth_and_tokens): Profile, IpAuthorization, ApiKey, DownloadToken, Notification.
-        - [SubUsers](/dev/api_wrappers/webshare-proxy/1.0.0/en/subusers): SubUser CRUD, refresh proxy list, and masqueradeAs (X-Subuser).
-        - [Stats and config](/dev/api_wrappers/webshare-proxy/1.0.0/en/stats_and_config): ProxyStats, ProxyConfig, GET caching, and error handling.
-      - [Changelog WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/changelog): История изменений WebShare Proxy PHP Wrapper.
+      - 1.0.0
+        - [Начало работы](/dev/api_wrappers/webshare-proxy/1.0.0/getting_started): WebShare Proxy PHP Wrapper: обзор, конфигурация и первые запросы.
+        - [Установка WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/install): Требования, Composer и конфигурация API_KEY / .env.
+        - Guides
+          - [Прокси](/dev/api_wrappers/webshare-proxy/1.0.0/guides/proxies): Proxy list, iterate, download, refresh, замены и connection strings.
+          - [Auth и токены](/dev/api_wrappers/webshare-proxy/1.0.0/guides/auth_and_tokens): Profile, IpAuthorization, ApiKey, DownloadToken, Notification.
+          - [SubUser](/dev/api_wrappers/webshare-proxy/1.0.0/guides/subusers): CRUD SubUser, refresh proxy list и masqueradeAs (X-Subuser).
+          - [Stats и config](/dev/api_wrappers/webshare-proxy/1.0.0/guides/stats_and_config): ProxyStats, ProxyConfig, кэш GET и обработка ошибок.
+        - Справочник
+          - [Справочник](/dev/api_wrappers/webshare-proxy/1.0.0/reference): Классы, Requests, Entities, Responses, Enums и Exceptions WebShare Proxy wrapper.
+          - Abstracts
+            - [AbstractBasicClass](/dev/api_wrappers/webshare-proxy/1.0.0/reference/abstracts/AbstractBasicClass): Базовый класс сущностей / shared helpers. Наследует Helper от Lombok PHP.
+            - [AbstractRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/abstracts/AbstractRequest): Базовый Request: endpoint, QueryBuilder, request() к Client.
+          - Classes
+            - [App](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/App): Фасад библиотеки: init, Client, Cache, Requests discovery.
+            - [Client](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/Client): HTTP-клиент Guzzle с кэшем GET, ретраями 429/5xx и X-Subuser.
+            - [QueryBuilder](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/QueryBuilder): Построитель query: page, filters, order, search, required fields.
+            - [PageIterator](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/PageIterator): Генератор обхода пагинированных списков до next == null.
+            - [CacheManager](/dev/api_wrappers/webshare-proxy/1.0.0/reference/classes/CacheManager): Обёртка над TagAware cache: get/set/remember/forget/invalidateTags.
+          - Requests
+            - [ProxyRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyRequest): Список прокси, iterate, download, refresh.
+            - [ProfileRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProfileRequest): ProfileRequest
+            - [NotificationRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/NotificationRequest): NotificationRequest
+            - [ProxyReplacementRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyReplacementRequest): ProxyReplacementRequest
+            - [ReplacedProxyRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ReplacedProxyRequest): ReplacedProxyRequest
+            - [ProxyConfigRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyConfigRequest): ProxyConfigRequest
+            - [IpAuthorizationRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/IpAuthorizationRequest): IpAuthorizationRequest
+            - [ProxyStatsRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ProxyStatsRequest): ProxyStatsRequest
+            - [DownloadTokenRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/DownloadTokenRequest): DownloadTokenRequest
+            - [ApiKeyRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/ApiKeyRequest): ApiKeyRequest
+            - [SubUserRequest](/dev/api_wrappers/webshare-proxy/1.0.0/reference/requests/SubUserRequest): SubUserRequest
+          - Entities
+            - [ApiKey](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ApiKey): ApiKey
+            - [DownloadToken](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/DownloadToken): DownloadToken
+            - [IpAuthorization](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/IpAuthorization): IpAuthorization
+            - [Notification](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/Notification): Notification
+            - [Profile](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/Profile): Profile
+            - [ProfilePreference](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProfilePreference): ProfilePreference
+            - [Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/Proxy): Один прокси из списка; getConnectionString (backbone/direct).
+            - [ProxyActivity](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyActivity): ProxyActivity
+            - [ProxyConfig](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyConfig): ProxyConfig
+            - [ProxyListStats](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyListStats): ProxyListStats
+            - [ProxyReplacement](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyReplacement): ProxyReplacement
+            - [ProxyStat](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyStat): ProxyStat
+            - [ProxyStatErrorReason](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyStatErrorReason): ProxyStatErrorReason
+            - [ProxyStatus](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ProxyStatus): ProxyStatus
+            - [ReplacedProxy](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/ReplacedProxy): ReplacedProxy
+            - [RequestBody](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/RequestBody): Тело запроса: JSON, form, multipart, raw body, headers.
+            - [SubUser](/dev/api_wrappers/webshare-proxy/1.0.0/reference/entities/SubUser): SubUser
+          - Responses
+            - [ApiKeyList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ApiKeyList): ApiKeyList
+            - [IpAuthorizationList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/IpAuthorizationList): IpAuthorizationList
+            - [NotificationList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/NotificationList): NotificationList
+            - [PaginatedResponse](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/PaginatedResponse): Базовый пагинированный ответ (count, next, previous, results).
+            - [ProxyActivityList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ProxyActivityList): ProxyActivityList
+            - [ProxyList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ProxyList): ProxyList
+            - [ProxyReplacementList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ProxyReplacementList): ProxyReplacementList
+            - [ReplacedProxyList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/ReplacedProxyList): ReplacedProxyList
+            - [SubUserList](/dev/api_wrappers/webshare-proxy/1.0.0/reference/responses/SubUserList): SubUserList
+          - Enums
+            - [ContentType](/dev/api_wrappers/webshare-proxy/1.0.0/reference/enums/ContentType): MIME-типы тел запросов.
+            - [FilterOperator](/dev/api_wrappers/webshare-proxy/1.0.0/reference/enums/FilterOperator): Операторы фильтрации WebShare API.
+            - [RequestMethod](/dev/api_wrappers/webshare-proxy/1.0.0/reference/enums/RequestMethod): HTTP-методы запросов.
+          - Exceptions
+            - [ApiException](/dev/api_wrappers/webshare-proxy/1.0.0/reference/exceptions/ApiException): Исключение API (4xx/5xx) с опциональными validation errors.
+            - [RateLimitException](/dev/api_wrappers/webshare-proxy/1.0.0/reference/exceptions/RateLimitException): Исключение при исчерпании ретраев после HTTP 429.
+        - English
+          - [Getting started](/dev/api_wrappers/webshare-proxy/1.0.0/en/getting_started): Install and use the WebShare Proxy PHP wrapper.
+          - [Proxies](/dev/api_wrappers/webshare-proxy/1.0.0/en/proxies): Proxy list, iterate, download, refresh, replacements, connection strings.
+          - [Auth and tokens](/dev/api_wrappers/webshare-proxy/1.0.0/en/auth_and_tokens): Profile, IpAuthorization, ApiKey, DownloadToken, Notification.
+          - [SubUsers](/dev/api_wrappers/webshare-proxy/1.0.0/en/subusers): SubUser CRUD, refresh proxy list, and masqueradeAs (X-Subuser).
+          - [Stats and config](/dev/api_wrappers/webshare-proxy/1.0.0/en/stats_and_config): ProxyStats, ProxyConfig, GET caching, and error handling.
+        - [Changelog WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/changelog): История изменений WebShare Proxy PHP Wrapper.
     - [NotKinoPoiskAPI](/dev/api_wrappers/notkinopoiskapi): Неофициальная Python-библиотека для Kinopoisk API Unofficial.
     - [StreamTape](/dev/api_wrappers/streamtape): Unofficial Python API wrapper for streamtape.com.
     - [TurboBitApi](/dev/api_wrappers/turbobit): Unofficial Python API wrapper for turbobit.net.
   - DevCraft Dev Tools
-    - [Начало работы](/dev/dev-tools/1.0.0/getting_started): Установка DevCraft Dev Tools, выбор базового класса, fluent builder и DTO.
-    - [Установка Dev Tools](/dev/dev-tools/1.0.0/install): Требования и установка devcraftclub/dev-tools через Packagist или path repository.
-    - Guides
-      - [Атрибуты With](/dev/dev-tools/1.0.0/guides/with_attributes): Fluent-сеттеры через #[With], #[WithItem], AbstractWith и WithHandler.
-      - [Reflection mapper](/dev/dev-tools/1.0.0/guides/reflection_mapper): Гидратация и сериализация DTO через AbstractReflection и ReflectionMapper.
-      - [Валидация](/dev/dev-tools/1.0.0/guides/validation): Filter, Range, Regex, ArrayOf, PropertyValidator и ValidationException.
-    - Справочник
-      - [Справочник](/dev/dev-tools/1.0.0/reference): Классы, атрибуты и интерфейсы DevCraft Dev Tools.
-      - Abstracts
-        - [AbstractWith](/dev/dev-tools/1.0.0/reference/abstracts/AbstractWith): Базовый класс fluent-билдеров с маршрутизацией __call в WithHandler.
-        - [AbstractReflection](/dev/dev-tools/1.0.0/reference/abstracts/AbstractReflection): Базовый класс DTO: fromArray, toArray, toJson через ReflectionMapper.
-      - Attributes
-        - [With](/dev/dev-tools/1.0.0/reference/attributes/With): Маркерный атрибут: виртуальный withPropertyName($value) заменяет значение свойства.
-        - [WithItem](/dev/dev-tools/1.0.0/reference/attributes/WithItem): Атрибут append/map: withPropertyItem(...) для элементов массива.
-        - [Filter](/dev/dev-tools/1.0.0/reference/attributes/Filter): ValidationRule на базе filter_var.
-        - [Range](/dev/dev-tools/1.0.0/reference/attributes/Range): ValidationRule: числовые границы min/max для int|float.
-        - [Regex](/dev/dev-tools/1.0.0/reference/attributes/Regex): ValidationRule: совпадение строки с регулярным выражением.
-        - [ArrayOf](/dev/dev-tools/1.0.0/reference/attributes/ArrayOf): ValidationRule и hint конверсии: list элементов заданного типа.
-      - Runtime
-        - [WithHandler](/dev/dev-tools/1.0.0/reference/runtime/WithHandler): Runtime: метаданные #[With]/#[WithItem], handles() и call().
-      - Mapper
-        - [ReflectionMapper](/dev/dev-tools/1.0.0/reference/mapper/ReflectionMapper): Гидратация и сериализация public-свойств DTO с валидацией.
-      - Validation
-        - [PropertyValidator](/dev/dev-tools/1.0.0/reference/validation/PropertyValidator): Запуск ValidationRule-атрибутов на свойстве или объекте без гидратации.
-      - Interfaces
-        - [ReflectionInterface](/dev/dev-tools/1.0.0/reference/interfaces/ReflectionInterface): Контракт DTO: fromArray, toArray, toJson.
-        - [ValidationRule](/dev/dev-tools/1.0.0/reference/interfaces/ValidationRule): Контракт атрибутов валидации: validate() → null или сообщение.
-      - Exceptions
-        - [ValidationException](/dev/dev-tools/1.0.0/reference/exceptions/ValidationException): Исключение гидратации: карта ошибок по dotted property paths.
-    - English
-      - [Getting started](/dev/dev-tools/1.0.0/en/getting_started): Install DevCraft Dev Tools, choose a base class, and build a fluent builder or response DTO.
-      - [With attributes](/dev/dev-tools/1.0.0/en/with_attributes): Fluent setters with #[With], #[WithItem], AbstractWith, and WithHandler.
-      - [Reflection mapper](/dev/dev-tools/1.0.0/en/reflection_mapper): DTO hydration and serialization with AbstractReflection and ReflectionMapper.
-      - [Validation](/dev/dev-tools/1.0.0/en/validation): Filter, Range, Regex, ArrayOf, PropertyValidator, and ValidationException.
-    - [Changelog Dev Tools](/dev/dev-tools/1.0.0/changelog): История изменений DevCraft Dev Tools.
+    - 1.0.1
+      - [Начало работы](/dev/dev-tools/1.0.1/getting_started): Обзор DevCraft Dev Tools, архитектура, требования и первые шаги
+      - [Установка](/dev/dev-tools/1.0.1/install): Способы установки, системные требования и конфигурация DevCraft Dev Tools
+      - Руководства
+        - [Атрибуты With](/dev/dev-tools/1.0.1/guides/with_attributes): Fluent-сеттеры через #[With], #[WithItem], AbstractWith и WithHandler.
+        - [Getter и Setter](/dev/dev-tools/1.0.1/guides/accessors): Accessors #[Getter] и #[Setter] через lombok-php на AbstractWith.
+        - [Reflection mapper](/dev/dev-tools/1.0.1/guides/reflection_mapper): Гидратация и сериализация DTO через AbstractReflection и ReflectionMapper.
+        - [Валидация](/dev/dev-tools/1.0.1/guides/validation): Filter, Range, Regex, ArrayOf, PropertyValidator и ValidationException.
+      - Справочник
+        - [Справочник](/dev/dev-tools/1.0.1/reference): Классы, атрибуты и интерфейсы DevCraft Dev Tools.
+        - Абстрактные классы
+          - [AbstractWith](/dev/dev-tools/1.0.1/reference/abstracts/AbstractWith): Базовый класс fluent-билдеров: WithHandler, затем Lombok\Helper.
+          - [AbstractReflection](/dev/dev-tools/1.0.1/reference/abstracts/AbstractReflection): Базовый класс DTO: fromArray, toArray, toJson через ReflectionMapper.
+        - Атрибуты
+          - [With](/dev/dev-tools/1.0.1/reference/attributes/With): Маркерный атрибут: виртуальный withPropertyName($value) заменяет значение свойства.
+          - [WithItem](/dev/dev-tools/1.0.1/reference/attributes/WithItem): Атрибут append/map: withPropertyItem(...) для элементов массива.
+          - [Filter](/dev/dev-tools/1.0.1/reference/attributes/Filter): ValidationRule на базе filter_var.
+          - [Range](/dev/dev-tools/1.0.1/reference/attributes/Range): ValidationRule: числовые границы min/max для int|float.
+          - [Regex](/dev/dev-tools/1.0.1/reference/attributes/Regex): ValidationRule: совпадение строки с регулярным выражением.
+          - [ArrayOf](/dev/dev-tools/1.0.1/reference/attributes/ArrayOf): ValidationRule и hint конверсии: list элементов заданного типа.
+        - Runtime
+          - [WithHandler](/dev/dev-tools/1.0.1/reference/runtime/WithHandler): Runtime: метаданные #[With]/#[WithItem], handles() и call().
+        - Маппер
+          - [ReflectionMapper](/dev/dev-tools/1.0.1/reference/mapper/ReflectionMapper): Гидратация и сериализация public-свойств DTO с валидацией.
+        - Валидация
+          - [PropertyValidator](/dev/dev-tools/1.0.1/reference/validation/PropertyValidator): Запуск ValidationRule-атрибутов на свойстве или объекте без гидратации.
+        - Интерфейсы
+          - [ReflectionInterface](/dev/dev-tools/1.0.1/reference/interfaces/ReflectionInterface): Контракт DTO: fromArray, toArray, toJson.
+          - [ValidationRule](/dev/dev-tools/1.0.1/reference/interfaces/ValidationRule): Контракт атрибутов валидации: validate() → null или сообщение.
+        - Исключения
+          - [ValidationException](/dev/dev-tools/1.0.1/reference/exceptions/ValidationException): Исключение гидратации: карта ошибок по dotted property paths.
+      - English
+        - [Getting started](/dev/dev-tools/1.0.1/en/getting_started): Overview of DevCraft Dev Tools, architecture, requirements, and first steps.
+        - [Installation](/dev/dev-tools/1.0.1/en/install): Install and configure DevCraft Dev Tools via Composer or a path repository.
+        - Guides
+          - [With attributes](/dev/dev-tools/1.0.1/en/guides/with_attributes): Fluent setters with #[With], #[WithItem], AbstractWith, and WithHandler.
+          - [Getters and setters](/dev/dev-tools/1.0.1/en/guides/accessors): #[Getter] and #[Setter] accessors from lombok-php on AbstractWith.
+          - [Reflection mapper](/dev/dev-tools/1.0.1/en/guides/reflection_mapper): DTO hydration and serialization with AbstractReflection and ReflectionMapper.
+          - [Validation](/dev/dev-tools/1.0.1/en/guides/validation): Filter, Range, Regex, ArrayOf, PropertyValidator, and ValidationException.
+        - [Changelog](/dev/dev-tools/1.0.1/en/changelog): Release history for DevCraft Dev Tools.
+      - [История изменений](/dev/dev-tools/1.0.1/changelog): История изменений DevCraft Dev Tools.
+    - 1.0.0
+      - [Начало работы](/dev/dev-tools/1.0.0/getting_started): Установка DevCraft Dev Tools, выбор базового класса, fluent builder и DTO.
+      - [Установка Dev Tools](/dev/dev-tools/1.0.0/install): Требования и установка devcraftclub/dev-tools через Packagist или path repository.
+      - Guides
+        - [Атрибуты With](/dev/dev-tools/1.0.0/guides/with_attributes): Fluent-сеттеры через #[With], #[WithItem], AbstractWith и WithHandler.
+        - [Reflection mapper](/dev/dev-tools/1.0.0/guides/reflection_mapper): Гидратация и сериализация DTO через AbstractReflection и ReflectionMapper.
+        - [Валидация](/dev/dev-tools/1.0.0/guides/validation): Filter, Range, Regex, ArrayOf, PropertyValidator и ValidationException.
+      - Справочник
+        - [Справочник](/dev/dev-tools/1.0.0/reference): Классы, атрибуты и интерфейсы DevCraft Dev Tools.
+        - Abstracts
+          - [AbstractWith](/dev/dev-tools/1.0.0/reference/abstracts/AbstractWith): Базовый класс fluent-билдеров с маршрутизацией __call в WithHandler.
+          - [AbstractReflection](/dev/dev-tools/1.0.0/reference/abstracts/AbstractReflection): Базовый класс DTO: fromArray, toArray, toJson через ReflectionMapper.
+        - Attributes
+          - [With](/dev/dev-tools/1.0.0/reference/attributes/With): Маркерный атрибут: виртуальный withPropertyName($value) заменяет значение свойства.
+          - [WithItem](/dev/dev-tools/1.0.0/reference/attributes/WithItem): Атрибут append/map: withPropertyItem(...) для элементов массива.
+          - [Filter](/dev/dev-tools/1.0.0/reference/attributes/Filter): ValidationRule на базе filter_var.
+          - [Range](/dev/dev-tools/1.0.0/reference/attributes/Range): ValidationRule: числовые границы min/max для int|float.
+          - [Regex](/dev/dev-tools/1.0.0/reference/attributes/Regex): ValidationRule: совпадение строки с регулярным выражением.
+          - [ArrayOf](/dev/dev-tools/1.0.0/reference/attributes/ArrayOf): ValidationRule и hint конверсии: list элементов заданного типа.
+        - Runtime
+          - [WithHandler](/dev/dev-tools/1.0.0/reference/runtime/WithHandler): Runtime: метаданные #[With]/#[WithItem], handles() и call().
+        - Mapper
+          - [ReflectionMapper](/dev/dev-tools/1.0.0/reference/mapper/ReflectionMapper): Гидратация и сериализация public-свойств DTO с валидацией.
+        - Validation
+          - [PropertyValidator](/dev/dev-tools/1.0.0/reference/validation/PropertyValidator): Запуск ValidationRule-атрибутов на свойстве или объекте без гидратации.
+        - Interfaces
+          - [ReflectionInterface](/dev/dev-tools/1.0.0/reference/interfaces/ReflectionInterface): Контракт DTO: fromArray, toArray, toJson.
+          - [ValidationRule](/dev/dev-tools/1.0.0/reference/interfaces/ValidationRule): Контракт атрибутов валидации: validate() → null или сообщение.
+        - Exceptions
+          - [ValidationException](/dev/dev-tools/1.0.0/reference/exceptions/ValidationException): Исключение гидратации: карта ошибок по dotted property paths.
+      - English
+        - [Getting started](/dev/dev-tools/1.0.0/en/getting_started): Install DevCraft Dev Tools, choose a base class, and build a fluent builder or response DTO.
+        - [With attributes](/dev/dev-tools/1.0.0/en/with_attributes): Fluent setters with #[With], #[WithItem], AbstractWith, and WithHandler.
+        - [Reflection mapper](/dev/dev-tools/1.0.0/en/reflection_mapper): DTO hydration and serialization with AbstractReflection and ReflectionMapper.
+        - [Validation](/dev/dev-tools/1.0.0/en/validation): Filter, Range, Regex, ArrayOf, PropertyValidator, and ValidationException.
+      - [Changelog Dev Tools](/dev/dev-tools/1.0.0/changelog): История изменений DevCraft Dev Tools.
   - Datalife Engine (DLE)
     - [Обзор](/dev/dle): Плагины и модули DevCraft для DataLife Engine 20.0.
     - DevCraft Admin
-      - [Начало работы](/dev/dle/devcraft_admin/200.4.0/getting_started): Создание и структура модулей DevCraft Admin для DLE 20.0.
-      - [Установка](/dev/dle/devcraft_admin/200.4.0/install): Установка и обновление плагина DevCraft Admin для DLE 20.0.
-      - [Миграция на DevCraft Admin](/dev/dle/devcraft_admin/200.4.0/migration): Перенос с MH Admin (Legacy) на DevCraft Admin для DLE 20.0.
-      - Гайды
-        - [ИИ-инструменты](/dev/dle/devcraft_admin/200.4.0/guides/ai_tools): Промпты и инструменты для ИИ-агентов при разработке модулей DevCraft.
-        - [Создание CRUD-страницы](/dev/dle/devcraft_admin/200.4.0/guides/crud_pages): Сквозной сценарий CRUD-страницы DevCraft: Entity, Repository, список с фильтром, форма создания/редактирования, Ajax, манифест, Twig.
-        - [Примеры Form](/dev/dle/devcraft_admin/200.4.0/guides/form_examples): Практические примеры декларативных форм DevCraft: layout, типы полей, filter schema.
-        - [Генератор языковых файлов](/dev/dle/devcraft_admin/200.4.0/guides/generate_languages): Локализация модулей DevCraft: XLIFF и Translation.
-        - [Настройка](/dev/dle/devcraft_admin/200.4.0/guides/manage): Глобальные настройки плагина DevCraft Admin.
-        - [Генератор модулей](/dev/dle/devcraft_admin/200.4.0/guides/new_module): Создание нового модуля DevCraft через админ-панель.
-      - Справочник
-        - Back-End
-          - [Содержание классов для разработки в Back-End](/dev/dle/devcraft_admin/200.4.0/reference/back-end): Обзор API DevCraft Admin: константы, функции и классы.
-          - [Точки входа](/dev/dle/devcraft_admin/200.4.0/reference/back-end/entry_points): Точки входа DevCraft Admin: DLE, bootstrap, AJAX.
-          - [Манифест модуля](/dev/dle/devcraft_admin/200.4.0/reference/back-end/manifest): Структура manifest.php модуля DevCraft Admin.
-          - [Composer-пакеты модулей](/dev/dle/devcraft_admin/200.4.0/reference/back-end/composer_packages): Manifest composer_required, синхронизация json/lock и использование Core-API.
-          - Classes
-            - [Класс: AbstractEntity](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractEntity): Документация по плагину класс: abstractentity для DLE.
-            - [Класс: AbstractPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractPage): Документация по плагину класс: abstractpage для DLE.
-            - [Класс: AbstractRepository](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractRepository): Документация по плагину класс: abstractrepository для DLE.
-            - [Класс: AbstractType](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractType): Документация по плагину класс: abstracttype для DLE.
-            - [Класс: AdminContext](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminContext): Документация по плагину класс: admincontext для DLE.
-            - [Перечисление: AdminErrorKind](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminErrorKind): Документация по плагину перечисление: adminerrorkind для DLE.
-            - [Класс: AdminErrorRenderer](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminErrorRenderer): Документация по плагину класс: adminerrorrenderer для DLE.
-            - [Класс: AdminLink](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminLink): Документация по плагину класс: adminlink для DLE.
-            - [Класс: AdminLinkResolver](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminLinkResolver): Документация по плагину класс: adminlinkresolver для DLE.
-            - [Класс: AjaxController](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AjaxController): Документация по плагину класс: ajaxcontroller для DLE.
-            - [Интерфейс: AjaxHandlerInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AjaxHandlerInterface): Документация по плагину интерфейс: ajaxhandlerinterface для DLE.
-            - [Класс: AjaxRequest](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AjaxRequest): Документация по плагину класс: ajaxrequest для DLE.
-            - [Класс: AjaxRouteRegistry](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AjaxRouteRegistry): Документация по плагину класс: ajaxrouteregistry для DLE.
-            - [Класс: Application](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Application): Документация по плагину класс: application для DLE.
-            - [Класс: AssetsCheckerService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AssetsCheckerService): Документация по плагину класс: assetscheckerservice для DLE.
-            - [Класс: Author](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Author): Документация по плагину класс: author для DLE.
-            - [Класс: BreadCrumb](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/BreadCrumb): Документация по плагину класс: breadcrumb для DLE.
-            - [Класс: CacheControl](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/CacheControl): Документация по плагину класс: cachecontrol для DLE.
-            - [Класс: Changelog](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Changelog): Документация по плагину класс: changelog для DLE.
-            - [Класс: ChangelogChange](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ChangelogChange): Документация по плагину класс: changelogchange для DLE.
-            - [Перечисление: ChangelogChangeType](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ChangelogChangeType): Документация по плагину перечисление: changelogchangetype для DLE.
-            - [Класс: ChangelogPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ChangelogPage): Документация по плагину класс: changelogpage для DLE.
-            - [Класс: CheckAssetsHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/CheckAssetsHandler): Документация по плагину класс: checkassetshandler для DLE.
-            - [Класс: CheckUpdateHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/CheckUpdateHandler): Документация по плагину класс: checkupdatehandler для DLE.
-            - [Класс: ComposerActionResult](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerActionResult): DTO результата действия Composer.
-            - [Класс: ComposerData](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerData): ORM-сущность пакета Composer (таблица devcraft_composer_data).
-            - [Класс: ComposerDbSyncService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerDbSyncService): Синхронизация composer.json, lock и manifest с таблицей devcraft_composer_data.
-            - [Класс: ComposerRuntimeAdapter](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerRuntimeAdapter): Выполнение команд Composer CLI из веб-контекста.
-            - [Класс: ComposerStateReader](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerStateReader): Чтение установленных пакетов из composer.lock.
-            - [Класс: ContextLogger](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ContextLogger): Документация по плагину класс: contextlogger для DLE.
-            - [Класс: DashboardPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DashboardPage): Документация по плагину класс: dashboardpage для DLE.
-            - [Класс: DatabaseGateway](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DatabaseGateway): Документация по плагину класс: databasegateway для DLE.
-            - [Класс: DataLoaderService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DataLoaderService): Документация по плагину класс: dataloaderservice для DLE.
-            - [Класс: DataManager](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DataManager): Документация по плагину класс: datamanager для DLE.
-            - [Класс: DefaultPackagePolicyStore](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DefaultPackagePolicyStore): Хранение политик пакетов в devcraft/config/composer_admin.json.
-            - [Класс: DeleteLogHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DeleteLogHandler): Документация по плагину класс: deleteloghandler для DLE.
-            - [Класс: DevCraftConfig](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DevCraftConfig): Документация по плагину класс: devcraftconfig для DLE.
-            - [Класс: DevCraftException](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DevCraftException): Документация по плагину класс: devcraftexception для DLE.
-            - [Класс: DleDataService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DleDataService): Документация по плагину класс: dledataservice для DLE.
-            - [Класс: DleMenuBuilder](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DleMenuBuilder): Документация по плагину класс: dlemenubuilder для DLE.
-            - [Класс: EntityPathResolver](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/EntityPathResolver): Документация по плагину класс: entitypathresolver для DLE.
-            - [Класс: EnvironmentFactory](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/EnvironmentFactory): Документация по плагину класс: environmentfactory для DLE.
-            - [Класс: FileResponse](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FileResponse): HTTP-ответ со скачиванием файла из AJAX-handler DevCraft.
-            - [Интерфейс: FilterableRepositoryInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FilterableRepositoryInterface): Документация по плагину интерфейс: filterablerepositoryinterface для DLE.
-            - [Класс: FilterFormService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FilterFormService): Документация по плагину класс: filterformservice для DLE.
-            - [Класс: FilterSchema](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FilterSchema): Документация по плагину класс: filterschema для DLE.
-            - [Класс: FormField](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormField): Документация по плагину класс: formfield для DLE.
-            - [Класс: FormFieldBuilder](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormFieldBuilder): Документация по плагину класс: formfieldbuilder для DLE.
-            - [Перечисление: FormLayout](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormLayout): Документация по плагину перечисление: formlayout для DLE.
-            - [Класс: FormSchema](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormSchema): Документация по плагину класс: formschema для DLE.
-            - [Класс: FormSchemaBuilder](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormSchemaBuilder): Документация по плагину класс: formschemabuilder для DLE.
-            - [Класс: FormSection](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormSection): Документация по плагину класс: formsection для DLE.
-            - [Класс: FormSectionBuilder](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormSectionBuilder): Документация по плагину класс: formsectionbuilder для DLE.
-            - [Класс: JsonResponse](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/JsonResponse): Документация по плагину класс: jsonresponse для DLE.
-            - [Класс: LanguageData](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LanguageData): Документация по плагину класс: languagedata для DLE.
-            - [Класс: LogGenerator](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogGenerator): Документация по плагину класс: loggenerator для DLE.
-            - [Класс: LogMessagePresenter](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogMessagePresenter): Представление сообщения журнала для readonly-страницы.
-            - [Класс: LogRecord](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogRecord): Документация по плагину класс: logrecord для DLE.
-            - [Класс: LogRecordRepository](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogRecordRepository): Документация по плагину класс: logrecordrepository для DLE.
-            - [Класс: LogsPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogsPage): Страница журнала событий и readonly-деталь записи.
-            - [Класс: LogsTableHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogsTableHandler): Документация по плагину класс: logstablehandler для DLE.
-            - [Класс: ManifestPackageReader](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ManifestPackageReader): Агрегация composer_required из всех модулей реестра.
-            - [Класс: MenuComposer](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/MenuComposer): Документация по плагину класс: menucomposer для DLE.
-            - [Класс: ModuleData](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ModuleData): Документация по плагину класс: moduledata для DLE.
-            - [Класс: ModuleGeneratorInput](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ModuleGeneratorInput): Документация по плагину класс: modulegeneratorinput для DLE.
-            - [Класс: ModuleGeneratorService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ModuleGeneratorService): Документация по плагину класс: modulegeneratorservice для DLE.
-            - [Класс: NewModuleHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/NewModuleHandler): Документация по плагину класс: newmodulehandler для DLE.
-            - [Класс: NewModulePage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/NewModulePage): Документация по плагину класс: newmodulepage для DLE.
-            - [Класс: PackagePolicyService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/PackagePolicyService): Проверка default-политик перед install/update/remove.
-            - [Интерфейс: PageInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/PageInterface): Документация по плагину интерфейс: pageinterface для DLE.
-            - [Класс: PageOrchestrator](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/PageOrchestrator): Документация по плагину класс: pageorchestrator для DLE.
-            - [Класс: ParseTemplateTags](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ParseTemplateTags): Парсинг тегов шаблонов новости DLE для модулей DevCraft.
-            - [Класс: Paths](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Paths): Документация по плагину класс: paths для DLE.
-            - [Класс: PluginContext](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/PluginContext): Документация по плагину класс: plugincontext для DLE.
-            - [Класс: Registry](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Registry): Документация по плагину класс: registry для DLE.
-            - [Интерфейс: ResponseInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ResponseInterface): Документация по плагину интерфейс: responseinterface для DLE.
-            - [Класс: Router](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Router): Документация по плагину класс: router для DLE.
-            - [Класс: SaveAssetHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SaveAssetHandler): Документация по плагину класс: saveassethandler для DLE.
-            - [Класс: SettingsFormService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SettingsFormService): Документация по плагину класс: settingsformservice для DLE.
-            - [Класс: SettingsHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SettingsHandler): Документация по плагину класс: settingshandler для DLE.
-            - [Класс: SettingsPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SettingsPage): Документация по плагину класс: settingspage для DLE.
-            - [Интерфейс: SettingsPageInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SettingsPageInterface): Документация по плагину интерфейс: settingspageinterface для DLE.
-            - [Класс: SyncAssetsHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SyncAssetsHandler): Документация по плагину класс: syncassetshandler для DLE.
-            - [Класс: Translation](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Translation): Документация по плагину класс: translation для DLE.
-            - [Класс: TwigTranslatorBridge](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/TwigTranslatorBridge): Документация по плагину класс: twigtranslatorbridge для DLE.
-            - [Класс: UploadedFile](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/UploadedFile): Обёртка над $_FILES для multipart-загрузок в админке DevCraft.
-        - Front-End
-          - [Шаблоны](/dev/dle/devcraft_admin/200.4.0/reference/front-end/templates): Структура Twig-шаблонов DevCraft Admin.
-      - [История изменений](/dev/dle/devcraft_admin/200.4.0/changelog): Журнал изменений DevCraft Admin.
+      - 200.4.0
+        - [Начало работы](/dev/dle/devcraft_admin/200.4.0/getting_started): Создание и структура модулей DevCraft Admin для DLE 20.0.
+        - [Установка](/dev/dle/devcraft_admin/200.4.0/install): Установка и обновление плагина DevCraft Admin для DLE 20.0.
+        - [Миграция на DevCraft Admin](/dev/dle/devcraft_admin/200.4.0/migration): Перенос с MH Admin (Legacy) на DevCraft Admin для DLE 20.0.
+        - Гайды
+          - [ИИ-инструменты](/dev/dle/devcraft_admin/200.4.0/guides/ai_tools): Промпты и инструменты для ИИ-агентов при разработке модулей DevCraft.
+          - [Создание CRUD-страницы](/dev/dle/devcraft_admin/200.4.0/guides/crud_pages): Сквозной сценарий CRUD-страницы DevCraft: Entity, Repository, список с фильтром, форма создания/редактирования, Ajax, манифест, Twig.
+          - [Примеры Form](/dev/dle/devcraft_admin/200.4.0/guides/form_examples): Практические примеры декларативных форм DevCraft: layout, типы полей, filter schema.
+          - [Генератор языковых файлов](/dev/dle/devcraft_admin/200.4.0/guides/generate_languages): Локализация модулей DevCraft: XLIFF и Translation.
+          - [Настройка](/dev/dle/devcraft_admin/200.4.0/guides/manage): Глобальные настройки плагина DevCraft Admin.
+          - [Генератор модулей](/dev/dle/devcraft_admin/200.4.0/guides/new_module): Создание нового модуля DevCraft через админ-панель.
+        - Справочник
+          - Back-End
+            - [Содержание классов для разработки в Back-End](/dev/dle/devcraft_admin/200.4.0/reference/back-end): Обзор API DevCraft Admin: константы, функции и классы.
+            - [Точки входа](/dev/dle/devcraft_admin/200.4.0/reference/back-end/entry_points): Точки входа DevCraft Admin: DLE, bootstrap, AJAX.
+            - [Манифест модуля](/dev/dle/devcraft_admin/200.4.0/reference/back-end/manifest): Структура manifest.php модуля DevCraft Admin.
+            - [Composer-пакеты модулей](/dev/dle/devcraft_admin/200.4.0/reference/back-end/composer_packages): Manifest composer_required, синхронизация json/lock и использование Core-API.
+            - Classes
+              - [Класс: AbstractEntity](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractEntity): Документация по плагину класс: abstractentity для DLE.
+              - [Класс: AbstractPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractPage): Документация по плагину класс: abstractpage для DLE.
+              - [Класс: AbstractRepository](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractRepository): Документация по плагину класс: abstractrepository для DLE.
+              - [Класс: AbstractType](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractType): Документация по плагину класс: abstracttype для DLE.
+              - [Класс: AdminContext](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminContext): Документация по плагину класс: admincontext для DLE.
+              - [Перечисление: AdminErrorKind](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminErrorKind): Документация по плагину перечисление: adminerrorkind для DLE.
+              - [Класс: AdminErrorRenderer](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminErrorRenderer): Документация по плагину класс: adminerrorrenderer для DLE.
+              - [Класс: AdminLink](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminLink): Документация по плагину класс: adminlink для DLE.
+              - [Класс: AdminLinkResolver](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AdminLinkResolver): Документация по плагину класс: adminlinkresolver для DLE.
+              - [Класс: AjaxController](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AjaxController): Документация по плагину класс: ajaxcontroller для DLE.
+              - [Интерфейс: AjaxHandlerInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AjaxHandlerInterface): Документация по плагину интерфейс: ajaxhandlerinterface для DLE.
+              - [Класс: AjaxRequest](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AjaxRequest): Документация по плагину класс: ajaxrequest для DLE.
+              - [Класс: AjaxRouteRegistry](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AjaxRouteRegistry): Документация по плагину класс: ajaxrouteregistry для DLE.
+              - [Класс: Application](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Application): Документация по плагину класс: application для DLE.
+              - [Класс: AssetsCheckerService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AssetsCheckerService): Документация по плагину класс: assetscheckerservice для DLE.
+              - [Класс: Author](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Author): Документация по плагину класс: author для DLE.
+              - [Класс: BreadCrumb](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/BreadCrumb): Документация по плагину класс: breadcrumb для DLE.
+              - [Класс: CacheControl](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/CacheControl): Документация по плагину класс: cachecontrol для DLE.
+              - [Класс: Changelog](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Changelog): Документация по плагину класс: changelog для DLE.
+              - [Класс: ChangelogChange](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ChangelogChange): Документация по плагину класс: changelogchange для DLE.
+              - [Перечисление: ChangelogChangeType](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ChangelogChangeType): Документация по плагину перечисление: changelogchangetype для DLE.
+              - [Класс: ChangelogPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ChangelogPage): Документация по плагину класс: changelogpage для DLE.
+              - [Класс: CheckAssetsHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/CheckAssetsHandler): Документация по плагину класс: checkassetshandler для DLE.
+              - [Класс: CheckUpdateHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/CheckUpdateHandler): Документация по плагину класс: checkupdatehandler для DLE.
+              - [Класс: ComposerActionResult](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerActionResult): DTO результата действия Composer.
+              - [Класс: ComposerData](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerData): ORM-сущность пакета Composer (таблица devcraft_composer_data).
+              - [Класс: ComposerDbSyncService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerDbSyncService): Синхронизация composer.json, lock и manifest с таблицей devcraft_composer_data.
+              - [Класс: ComposerRuntimeAdapter](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerRuntimeAdapter): Выполнение команд Composer CLI из веб-контекста.
+              - [Класс: ComposerStateReader](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ComposerStateReader): Чтение установленных пакетов из composer.lock.
+              - [Класс: ContextLogger](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ContextLogger): Документация по плагину класс: contextlogger для DLE.
+              - [Класс: DashboardPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DashboardPage): Документация по плагину класс: dashboardpage для DLE.
+              - [Класс: DatabaseGateway](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DatabaseGateway): Документация по плагину класс: databasegateway для DLE.
+              - [Класс: DataLoaderService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DataLoaderService): Документация по плагину класс: dataloaderservice для DLE.
+              - [Класс: DataManager](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DataManager): Документация по плагину класс: datamanager для DLE.
+              - [Класс: DefaultPackagePolicyStore](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DefaultPackagePolicyStore): Хранение политик пакетов в devcraft/config/composer_admin.json.
+              - [Класс: DeleteLogHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DeleteLogHandler): Документация по плагину класс: deleteloghandler для DLE.
+              - [Класс: DevCraftConfig](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DevCraftConfig): Документация по плагину класс: devcraftconfig для DLE.
+              - [Класс: DevCraftException](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DevCraftException): Документация по плагину класс: devcraftexception для DLE.
+              - [Класс: DleDataService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DleDataService): Документация по плагину класс: dledataservice для DLE.
+              - [Класс: DleMenuBuilder](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DleMenuBuilder): Документация по плагину класс: dlemenubuilder для DLE.
+              - [Класс: EntityPathResolver](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/EntityPathResolver): Документация по плагину класс: entitypathresolver для DLE.
+              - [Класс: EnvironmentFactory](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/EnvironmentFactory): Документация по плагину класс: environmentfactory для DLE.
+              - [Класс: FileResponse](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FileResponse): HTTP-ответ со скачиванием файла из AJAX-handler DevCraft.
+              - [Интерфейс: FilterableRepositoryInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FilterableRepositoryInterface): Документация по плагину интерфейс: filterablerepositoryinterface для DLE.
+              - [Класс: FilterFormService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FilterFormService): Документация по плагину класс: filterformservice для DLE.
+              - [Класс: FilterSchema](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FilterSchema): Документация по плагину класс: filterschema для DLE.
+              - [Класс: FormField](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormField): Документация по плагину класс: formfield для DLE.
+              - [Класс: FormFieldBuilder](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormFieldBuilder): Документация по плагину класс: formfieldbuilder для DLE.
+              - [Перечисление: FormLayout](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormLayout): Документация по плагину перечисление: formlayout для DLE.
+              - [Класс: FormSchema](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormSchema): Документация по плагину класс: formschema для DLE.
+              - [Класс: FormSchemaBuilder](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormSchemaBuilder): Документация по плагину класс: formschemabuilder для DLE.
+              - [Класс: FormSection](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormSection): Документация по плагину класс: formsection для DLE.
+              - [Класс: FormSectionBuilder](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/FormSectionBuilder): Документация по плагину класс: formsectionbuilder для DLE.
+              - [Класс: JsonResponse](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/JsonResponse): Документация по плагину класс: jsonresponse для DLE.
+              - [Класс: LanguageData](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LanguageData): Документация по плагину класс: languagedata для DLE.
+              - [Класс: LogGenerator](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogGenerator): Документация по плагину класс: loggenerator для DLE.
+              - [Класс: LogMessagePresenter](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogMessagePresenter): Представление сообщения журнала для readonly-страницы.
+              - [Класс: LogRecord](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogRecord): Документация по плагину класс: logrecord для DLE.
+              - [Класс: LogRecordRepository](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogRecordRepository): Документация по плагину класс: logrecordrepository для DLE.
+              - [Класс: LogsPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogsPage): Страница журнала событий и readonly-деталь записи.
+              - [Класс: LogsTableHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/LogsTableHandler): Документация по плагину класс: logstablehandler для DLE.
+              - [Класс: ManifestPackageReader](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ManifestPackageReader): Агрегация composer_required из всех модулей реестра.
+              - [Класс: MenuComposer](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/MenuComposer): Документация по плагину класс: menucomposer для DLE.
+              - [Класс: ModuleData](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ModuleData): Документация по плагину класс: moduledata для DLE.
+              - [Класс: ModuleGeneratorInput](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ModuleGeneratorInput): Документация по плагину класс: modulegeneratorinput для DLE.
+              - [Класс: ModuleGeneratorService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ModuleGeneratorService): Документация по плагину класс: modulegeneratorservice для DLE.
+              - [Класс: NewModuleHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/NewModuleHandler): Документация по плагину класс: newmodulehandler для DLE.
+              - [Класс: NewModulePage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/NewModulePage): Документация по плагину класс: newmodulepage для DLE.
+              - [Класс: PackagePolicyService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/PackagePolicyService): Проверка default-политик перед install/update/remove.
+              - [Интерфейс: PageInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/PageInterface): Документация по плагину интерфейс: pageinterface для DLE.
+              - [Класс: PageOrchestrator](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/PageOrchestrator): Документация по плагину класс: pageorchestrator для DLE.
+              - [Класс: ParseTemplateTags](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ParseTemplateTags): Парсинг тегов шаблонов новости DLE для модулей DevCraft.
+              - [Класс: Paths](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Paths): Документация по плагину класс: paths для DLE.
+              - [Класс: PluginContext](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/PluginContext): Документация по плагину класс: plugincontext для DLE.
+              - [Класс: Registry](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Registry): Документация по плагину класс: registry для DLE.
+              - [Интерфейс: ResponseInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ResponseInterface): Документация по плагину интерфейс: responseinterface для DLE.
+              - [Класс: Router](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Router): Документация по плагину класс: router для DLE.
+              - [Класс: SaveAssetHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SaveAssetHandler): Документация по плагину класс: saveassethandler для DLE.
+              - [Класс: SettingsFormService](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SettingsFormService): Документация по плагину класс: settingsformservice для DLE.
+              - [Класс: SettingsHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SettingsHandler): Документация по плагину класс: settingshandler для DLE.
+              - [Класс: SettingsPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SettingsPage): Документация по плагину класс: settingspage для DLE.
+              - [Интерфейс: SettingsPageInterface](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SettingsPageInterface): Документация по плагину интерфейс: settingspageinterface для DLE.
+              - [Класс: SyncAssetsHandler](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SyncAssetsHandler): Документация по плагину класс: syncassetshandler для DLE.
+              - [Класс: Translation](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Translation): Документация по плагину класс: translation для DLE.
+              - [Класс: TwigTranslatorBridge](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/TwigTranslatorBridge): Документация по плагину класс: twigtranslatorbridge для DLE.
+              - [Класс: UploadedFile](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/UploadedFile): Обёртка над $_FILES для multipart-загрузок в админке DevCraft.
+          - Front-End
+            - [Шаблоны](/dev/dle/devcraft_admin/200.4.0/reference/front-end/templates): Структура Twig-шаблонов DevCraft Admin.
+        - [История изменений](/dev/dle/devcraft_admin/200.4.0/changelog): Журнал изменений DevCraft Admin.
     - DLE API
-      - [Начало работы](/dev/dle/dle_api/200.1.0/getting_started): Неофициальное REST API для DataLife Engine 20.0 (/api/v2).
-      - [Установка](/dev/dle/dle_api/200.1.0/install): Установка DLE API 200.1.0 для DLE 20.0 с DevCraft Admin.
-      - Гайды
-        - [Авторизация](/dev/dle/dle_api/200.1.0/guides/auth): Bearer AuthToken; credential_type; /me; DEMO_MODE; уровни доступа.
-        - [OAuth-клиенты](/dev/dle/dle_api/200.1.0/guides/oauth-client): Админка DLE API: эндпоинты AS, создание и редактирование OAuth-клиентов, grants, секрет.
-        - [OAuth Authorization Server](/dev/dle/dle_api/200.1.0/guides/oauth-server): Discovery, authorize/token/revoke, credential_type с примерами curl в табах.
-        - [Настройки](/dev/dle/dle_api/200.1.0/guides/settings): Параметры модуля DLE API в DevCraft: безопасность, OAuth TTL, профиль, уведомления.
-        - [Уровни доступа](/dev/dle/dle_api/200.1.0/guides/access-levels): Access levels DLE API: own_only, cheater, маски, scopes read/write/edit/delete.
-        - [Синхронизация с группами](/dev/dle/dle_api/200.1.0/guides/access-sync): Привязка групп пользователей DLE к уровням доступа DLE API.
-        - [Шаблоны](/dev/dle/dle_api/200.1.0/guides/templates): Email- и PM-шаблоны уведомлений DLE API: плейсхолдеры {%…%}.
-        - [Безопасность](/dev/dle/dle_api/200.1.0/guides/security): Встроенные меры DLE API и операционный чеклист для продакшена.
-        - [Миграция API v1 → v2](/dev/dle/dle_api/200.1.0/guides/migrate-v1-v2): Чем v2 отличается от удалённого v1 и как перевести клиента.
-      - Справочник
-        - [HTTP /api/v2](/dev/dle/dle_api/200.1.0/reference/http): REST-эндпоинты DLE API: Bearer, /table, фильтры, xfields, upload.
-        - [SDK (DcApi)](/dev/dle/dle_api/200.1.0/reference/sdk): In-process SDK DcApi: фасады Schema, query, xfields.
-        - [OpenAPI](/dev/dle/dle_api/200.1.0/reference/openapi): Интерактивная спецификация OpenAPI для /api/v2.
-      - [Журнал изменений](/dev/dle/dle_api/200.1.0/changelog): Журнал изменений DLE API.
+      - 200.1.0
+        - [Начало работы](/dev/dle/dle_api/200.1.0/getting_started): Неофициальное REST API для DataLife Engine 20.0 (/api/v2).
+        - [Установка](/dev/dle/dle_api/200.1.0/install): Установка DLE API 200.1.0 для DLE 20.0 с DevCraft Admin.
+        - Гайды
+          - [Авторизация](/dev/dle/dle_api/200.1.0/guides/auth): Bearer AuthToken; credential_type; /me; DEMO_MODE; уровни доступа.
+          - [OAuth-клиенты](/dev/dle/dle_api/200.1.0/guides/oauth-client): Админка DLE API: эндпоинты AS, создание и редактирование OAuth-клиентов, grants, секрет.
+          - [OAuth Authorization Server](/dev/dle/dle_api/200.1.0/guides/oauth-server): Discovery, authorize/token/revoke, credential_type с примерами curl в табах.
+          - [Настройки](/dev/dle/dle_api/200.1.0/guides/settings): Параметры модуля DLE API в DevCraft: безопасность, OAuth TTL, профиль, уведомления.
+          - [Уровни доступа](/dev/dle/dle_api/200.1.0/guides/access-levels): Access levels DLE API: own_only, cheater, маски, scopes read/write/edit/delete.
+          - [Синхронизация с группами](/dev/dle/dle_api/200.1.0/guides/access-sync): Привязка групп пользователей DLE к уровням доступа DLE API.
+          - [Шаблоны](/dev/dle/dle_api/200.1.0/guides/templates): Email- и PM-шаблоны уведомлений DLE API: плейсхолдеры {%…%}.
+          - [Безопасность](/dev/dle/dle_api/200.1.0/guides/security): Встроенные меры DLE API и операционный чеклист для продакшена.
+          - [Миграция API v1 → v2](/dev/dle/dle_api/200.1.0/guides/migrate-v1-v2): Чем v2 отличается от удалённого v1 и как перевести клиента.
+        - Справочник
+          - [HTTP /api/v2](/dev/dle/dle_api/200.1.0/reference/http): REST-эндпоинты DLE API: Bearer, /table, фильтры, xfields, upload.
+          - [SDK (DcApi)](/dev/dle/dle_api/200.1.0/reference/sdk): In-process SDK DcApi: фасады Schema, query, xfields.
+          - [OpenAPI](/dev/dle/dle_api/200.1.0/reference/openapi): Интерактивная спецификация OpenAPI для /api/v2.
+        - [Журнал изменений](/dev/dle/dle_api/200.1.0/changelog): Журнал изменений DLE API.
     - DLE Faker
-      - [Начало работы](/dev/dle/dle_faker/200.1.4/getting_started): Обзор DLE Faker 200.1.4: требования и структура модуля.
-      - [Установка](/dev/dle/dle_faker/200.1.4/install): Установка DLE Faker 200.1.4 для DLE 20.0 с DevCraft Admin.
-      - [Настройки](/dev/dle/dle_faker/200.1.4/settings): Настройки модуля DLE Faker в DevCraft Admin.
-      - Гайды
-        - [Генератор новостей](/dev/dle/dle_faker/200.1.4/guides/gen_news): Генерация новостей по шаблонам DLE Faker.
-        - [Генератор пользователей](/dev/dle/dle_faker/200.1.4/guides/gen_users): Генерация пользователей DLE Faker.
-        - [Парсер шаблонов](/dev/dle/dle_faker/200.1.4/guides/parser): Как DLE Faker разбирает теги шаблонов вида {{ … }}.
-        - [Теги для всех шаблонов](/dev/dle/dle_faker/200.1.4/guides/tag_for_all): Документация по плагину теги для всех шаблонов для DLE.
-        - [Теги для шаблонов новостей](/dev/dle/dle_faker/200.1.4/guides/tag_for_news): Документация по плагину теги для шаблонов новостей для DLE.
-        - [Теги для шаблона пользователей](/dev/dle/dle_faker/200.1.4/guides/tag_for_users): Документация по плагину теги для шаблона пользователей для DLE.
-      - [История изменений](/dev/dle/dle_faker/200.1.4/changelog): Changelog DLE Faker.
+      - 200.1.4
+        - [Начало работы](/dev/dle/dle_faker/200.1.4/getting_started): Обзор DLE Faker 200.1.4: требования и структура модуля.
+        - [Установка](/dev/dle/dle_faker/200.1.4/install): Установка DLE Faker 200.1.4 для DLE 20.0 с DevCraft Admin.
+        - [Настройки](/dev/dle/dle_faker/200.1.4/settings): Настройки модуля DLE Faker в DevCraft Admin.
+        - Гайды
+          - [Генератор новостей](/dev/dle/dle_faker/200.1.4/guides/gen_news): Генерация новостей по шаблонам DLE Faker.
+          - [Генератор пользователей](/dev/dle/dle_faker/200.1.4/guides/gen_users): Генерация пользователей DLE Faker.
+          - [Парсер шаблонов](/dev/dle/dle_faker/200.1.4/guides/parser): Как DLE Faker разбирает теги шаблонов вида {{ … }}.
+          - [Теги для всех шаблонов](/dev/dle/dle_faker/200.1.4/guides/tag_for_all): Документация по плагину теги для всех шаблонов для DLE.
+          - [Теги для шаблонов новостей](/dev/dle/dle_faker/200.1.4/guides/tag_for_news): Документация по плагину теги для шаблонов новостей для DLE.
+          - [Теги для шаблона пользователей](/dev/dle/dle_faker/200.1.4/guides/tag_for_users): Документация по плагину теги для шаблона пользователей для DLE.
+        - [История изменений](/dev/dle/dle_faker/200.1.4/changelog): Changelog DLE Faker.
     - DB Manager
-      - [Начало работы](/dev/dle/db_manager/200.1.3/getting_started): Обзор DB Manager 200.1.3: экспорт и импорт таблиц MySQL для DLE.
-      - [Установка](/dev/dle/db_manager/200.1.3/install): Установка DB Manager 200.1.3 для DLE 20.0 с DevCraft Admin.
-      - [Миграция](/dev/dle/db_manager/200.1.3/migration): Перенос DB Manager с MHAdmin на DevCraft Admin 200.1.3.
+      - 200.1.3
+        - [Начало работы](/dev/dle/db_manager/200.1.3/getting_started): Обзор DB Manager 200.1.3: экспорт и импорт таблиц MySQL для DLE.
+        - [Установка](/dev/dle/db_manager/200.1.3/install): Установка DB Manager 200.1.3 для DLE 20.0 с DevCraft Admin.
+        - [Миграция](/dev/dle/db_manager/200.1.3/migration): Перенос DB Manager с MHAdmin на DevCraft Admin 200.1.3.
     - TagsAdd
-      - [Начало работы](/dev/dle/usertags/200.3.1/getting_started): Обзор TagsAdd 200.3.1: требования и структура модуля.
-      - [Установка - TagsAdd (Пользовательские теги)](/dev/dle/usertags/200.3.1/install): Установка TagsAdd 200.3.1 для DLE 20.0 с DevCraft Admin.
-      - [Настройки](/dev/dle/usertags/200.3.1/settings): Настройки TagsAdd: уведомления, вставка тегов, шаблоны PM.
-      - Гайды
-        - [Подключение в теме](/dev/dle/usertags/200.3.1/guides/theme): Include TagsAdd в fullstory.tpl и теги шаблонов button/modal.
-      - [История изменений](/dev/dle/usertags/200.3.1/changelog): Changelog TagsAdd (Пользовательские теги) с привязкой к коммитам GitHub.
+      - 200.3.1
+        - [Начало работы](/dev/dle/usertags/200.3.1/getting_started): Обзор TagsAdd 200.3.1: требования и структура модуля.
+        - [Установка - TagsAdd (Пользовательские теги)](/dev/dle/usertags/200.3.1/install): Установка TagsAdd 200.3.1 для DLE 20.0 с DevCraft Admin.
+        - [Настройки](/dev/dle/usertags/200.3.1/settings): Настройки TagsAdd: уведомления, вставка тегов, шаблоны PM.
+        - Гайды
+          - [Подключение в теме](/dev/dle/usertags/200.3.1/guides/theme): Include TagsAdd в fullstory.tpl и теги шаблонов button/modal.
+        - [История изменений](/dev/dle/usertags/200.3.1/changelog): Changelog TagsAdd (Пользовательские теги) с привязкой к коммитам GitHub.
     - Re: Post - Пересылка новостей
-      - [Начало работы](/dev/dle/repost/200.1.0/getting_started)
-      - [Установка RePost](/dev/dle/repost/200.1.0/install)
-      - Providers
-        - [Telegram (RePost)](/dev/dle/repost/200.1.0/providers/telegram)
-        - [RePost Provider: VK (платное)](/dev/dle/repost/200.1.0/providers/vk)
-      - Гайды
-        - [Подключения RePost](/dev/dle/repost/200.1.0/guides/connections)
-        - [Cron RePost](/dev/dle/repost/200.1.0/guides/cron)
-        - [API RePost для парсеров](/dev/dle/repost/200.1.0/guides/custom_add)
-        - [Шаблоны RePost](/dev/dle/repost/200.1.0/guides/templates)
-      - Справочник
-        - [Разработка каналов доставки RePost](/dev/dle/repost/200.1.0/reference/developing_providers)
-        - [Теги шаблонов RePost](/dev/dle/repost/200.1.0/reference/template_tags)
-      - [Changelog RePost](/dev/dle/repost/200.1.0/changelog)
+      - 200.1.0
+        - [Начало работы](/dev/dle/repost/200.1.0/getting_started)
+        - [Установка RePost](/dev/dle/repost/200.1.0/install)
+        - Providers
+          - [Telegram (RePost)](/dev/dle/repost/200.1.0/providers/telegram)
+          - [RePost Provider: VK (платное)](/dev/dle/repost/200.1.0/providers/vk)
+        - Гайды
+          - [Подключения RePost](/dev/dle/repost/200.1.0/guides/connections)
+          - [Cron RePost](/dev/dle/repost/200.1.0/guides/cron)
+          - [API RePost для парсеров](/dev/dle/repost/200.1.0/guides/custom_add)
+          - [Шаблоны RePost](/dev/dle/repost/200.1.0/guides/templates)
+        - Справочник
+          - [Разработка каналов доставки RePost](/dev/dle/repost/200.1.0/reference/developing_providers)
+          - [Теги шаблонов RePost](/dev/dle/repost/200.1.0/reference/template_tags)
+        - [Changelog RePost](/dev/dle/repost/200.1.0/changelog)
     - Хаки и простые модули
       - [Schema.Org - Документация DevCraft](/dev/dle/simple/schema): Документация по интеграции Schema.Org разметки в проекты DevCraft.
       - [Webmaster Verification](/dev/dle/simple/webmaster-verification)
