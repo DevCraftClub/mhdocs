@@ -1,0 +1,58 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`Начало работы`,description:`XenForo add-on: вход на форум через аккаунт DLE (DLE API OAuth2, Connected Account)`,version:`1.0.0`},i=new Date(1787142659e3),a=`
+
+Connected account provider для XenForo 2.3: пользователи входят или привязывают аккаунт через **DLE API** (\`authorization_code\`), без штатного провайдера «XenForo → другой XF».
+
+#### Скачать: [DLE API Connection Provider на DevCraft Club](https://devcraft.club/downloads/dle-api-connection-provider.38/) [#скачать-dle-api-connection-provider-на-devcraft-club]
+
+## Назначение [#назначение]
+
+| Компонент   | Роль                                                            |
+| ----------- | --------------------------------------------------------------- |
+| XenForo     | Relying party (\`connected_account.php\`)                         |
+| DLE API     | Authorization Server (\`/api/v2/oauth/*\`, identity \`/api/v2/me\`) |
+| Этот add-on | Provider \`dleapi\`: Service + ProviderData под пути и JSON DLE   |
+
+<Callout type="warn" title="Не путать с OAuth2 clients XenForo">
+  Регистрация клиента в **Setup → OAuth2 clients** на форуме — для вызова **API XenForo**, не для входа через DLE. Это направление описано в [гайде DLE API: XenForo](../../dle/dle_api/200.1.0/guides/xenforo) (раздел «DLE → XenForo»).
+</Callout>
+
+## Требования [#требования]
+
+| Компонент        | Версия                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------ |
+| XenForo          | **≥ 2.3.0**                                                                                      |
+| DLE + DLE API    | **200.1.0** ([DevCraft Admin](../../dle/devcraft_admin/200.4.0/getting_started), модуль DLE API) |
+| OAuth-клиент DLE | grants \`authorization_code\`, \`refresh_token\`                                                     |
+
+## Документация [#документация]
+
+| Раздел                  | Ссылка                                                                  |
+| ----------------------- | ----------------------------------------------------------------------- |
+| Установка               | [install](install)                                                      |
+| Настройка DLE + XenForo | [configuration](guides/configuration)                                   |
+| OAuth-клиенты DLE       | [DLE API: OAuth-клиенты](../../dle/dle_api/200.1.0/guides/oauth-client) |
+| Оба направления OAuth   | [DLE API: XenForo](../../dle/dle_api/200.1.0/guides/xenforo)            |
+| Changelog               | [changelog](changelog)                                                  |
+
+## Быстрый старт [#быстрый-старт]
+
+1. Установите add-on ([install](install)).
+2. В DevCraft создайте OAuth-клиент с Redirect URI \`{board}/connected_account.php\`.
+3. ACP XenForo → **Setup → Connected accounts → DLE API** — укажите URL DLE, client\\_id и secret.
+4. **Test provider** — должен вернуть \`name\` и \`email\` из \`GET /api/v2/me\`.
+`,o={contents:[{heading:void 0,content:"Connected account provider для XenForo 2.3: пользователи входят или привязывают аккаунт через **DLE API** (`authorization_code`), без штатного провайдера «XenForo → другой XF»."},{heading:`назначение`,content:`Компонент`},{heading:`назначение`,content:`Роль`},{heading:`назначение`,content:`XenForo`},{heading:`назначение`,content:"Relying party (`connected_account.php`)"},{heading:`назначение`,content:`DLE API`},{heading:`назначение`,content:"Authorization Server (`/api/v2/oauth/*`, identity `/api/v2/me`)"},{heading:`назначение`,content:`Этот add-on`},{heading:`назначение`,content:"Provider `dleapi`: Service + ProviderData под пути и JSON DLE"},{heading:`назначение`,content:`Регистрация клиента в **Setup → OAuth2 clients** на форуме — для вызова **API XenForo**, не для входа через DLE. Это направление описано в гайде DLE API: XenForo (раздел «DLE → XenForo»).`},{heading:`требования`,content:`Компонент`},{heading:`требования`,content:`Версия`},{heading:`требования`,content:`XenForo`},{heading:`требования`,content:`**≥ 2.3.0**`},{heading:`требования`,content:`DLE + DLE API`},{heading:`требования`,content:`**200.1.0** (DevCraft Admin, модуль DLE API)`},{heading:`требования`,content:`OAuth-клиент DLE`},{heading:`требования`,content:"grants `authorization_code`, `refresh_token`"},{heading:`документация`,content:`Раздел`},{heading:`документация`,content:`Ссылка`},{heading:`документация`,content:`Установка`},{heading:`документация`,content:`install`},{heading:`документация`,content:`Настройка DLE + XenForo`},{heading:`документация`,content:`configuration`},{heading:`документация`,content:`OAuth-клиенты DLE`},{heading:`документация`,content:`DLE API: OAuth-клиенты`},{heading:`документация`,content:`Оба направления OAuth`},{heading:`документация`,content:`DLE API: XenForo`},{heading:`документация`,content:`Changelog`},{heading:`документация`,content:`changelog`},{heading:`быстрый-старт`,content:`Установите add-on (install).`},{heading:`быстрый-старт`,content:"В DevCraft создайте OAuth-клиент с Redirect URI `{board}/connected_account.php`."},{heading:`быстрый-старт`,content:`ACP XenForo → **Setup → Connected accounts → DLE API** — укажите URL DLE, client\\_id и secret.`},{heading:`быстрый-старт`,content:"**Test provider** — должен вернуть `name` и `email` из `GET /api/v2/me`."}],headings:[{id:`скачать-dle-api-connection-provider-на-devcraft-club`,content:`Скачать: DLE API Connection Provider на DevCraft Club`},{id:`назначение`,content:`Назначение`},{id:`требования`,content:`Требования`},{id:`документация`,content:`Документация`},{id:`быстрый-старт`,content:`Быстрый старт`}]},s=[{depth:4,url:`#скачать-dle-api-connection-provider-на-devcraft-club`,title:(0,n.jsxs)(n.Fragment,{children:[`Скачать: `,(0,n.jsx)(`a`,{href:`https://devcraft.club/downloads/dle-api-connection-provider.38/`,children:`DLE API Connection Provider на DevCraft Club`})]})},{depth:2,url:`#назначение`,title:(0,n.jsx)(n.Fragment,{children:`Назначение`})},{depth:2,url:`#требования`,title:(0,n.jsx)(n.Fragment,{children:`Требования`})},{depth:2,url:`#документация`,title:(0,n.jsx)(n.Fragment,{children:`Документация`})},{depth:2,url:`#быстрый-старт`,title:(0,n.jsx)(n.Fragment,{children:`Быстрый старт`})}];function c(e){let t={a:`a`,code:`code`,h2:`h2`,h4:`h4`,li:`li`,ol:`ol`,p:`p`,strong:`strong`,table:`table`,tbody:`tbody`,td:`td`,th:`th`,thead:`thead`,tr:`tr`,...e.components},{Callout:r}=t;return r||u(`Callout`,!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(t.p,{children:[`Connected account provider для XenForo 2.3: пользователи входят или привязывают аккаунт через `,(0,n.jsx)(t.strong,{children:`DLE API`}),` (`,(0,n.jsx)(t.code,{children:`authorization_code`}),`), без штатного провайдера «XenForo → другой XF».`]}),`
+`,(0,n.jsxs)(t.h4,{id:`скачать-dle-api-connection-provider-на-devcraft-club`,children:[`Скачать: `,(0,n.jsx)(t.a,{href:`https://devcraft.club/downloads/dle-api-connection-provider.38/`,children:`DLE API Connection Provider на DevCraft Club`})]}),`
+`,(0,n.jsx)(t.h2,{id:`назначение`,children:`Назначение`}),`
+`,(0,n.jsxs)(t.table,{children:[(0,n.jsx)(t.thead,{children:(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.th,{children:`Компонент`}),(0,n.jsx)(t.th,{children:`Роль`})]})}),(0,n.jsxs)(t.tbody,{children:[(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`XenForo`}),(0,n.jsxs)(t.td,{children:[`Relying party (`,(0,n.jsx)(t.code,{children:`connected_account.php`}),`)`]})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`DLE API`}),(0,n.jsxs)(t.td,{children:[`Authorization Server (`,(0,n.jsx)(t.code,{children:`/api/v2/oauth/*`}),`, identity `,(0,n.jsx)(t.code,{children:`/api/v2/me`}),`)`]})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Этот add-on`}),(0,n.jsxs)(t.td,{children:[`Provider `,(0,n.jsx)(t.code,{children:`dleapi`}),`: Service + ProviderData под пути и JSON DLE`]})]})]})]}),`
+`,(0,n.jsx)(r,{type:`warn`,title:`Не путать с OAuth2 clients XenForo`,children:(0,n.jsxs)(t.p,{children:[`Регистрация клиента в `,(0,n.jsx)(t.strong,{children:`Setup → OAuth2 clients`}),` на форуме — для вызова `,(0,n.jsx)(t.strong,{children:`API XenForo`}),`, не для входа через DLE. Это направление описано в `,(0,n.jsx)(t.a,{href:`../../dle/dle_api/200.1.0/guides/xenforo`,children:`гайде DLE API: XenForo`}),` (раздел «DLE → XenForo»).`]})}),`
+`,(0,n.jsx)(t.h2,{id:`требования`,children:`Требования`}),`
+`,(0,n.jsxs)(t.table,{children:[(0,n.jsx)(t.thead,{children:(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.th,{children:`Компонент`}),(0,n.jsx)(t.th,{children:`Версия`})]})}),(0,n.jsxs)(t.tbody,{children:[(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`XenForo`}),(0,n.jsx)(t.td,{children:(0,n.jsx)(t.strong,{children:`≥ 2.3.0`})})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`DLE + DLE API`}),(0,n.jsxs)(t.td,{children:[(0,n.jsx)(t.strong,{children:`200.1.0`}),` (`,(0,n.jsx)(t.a,{href:`../../dle/devcraft_admin/200.4.0/getting_started`,children:`DevCraft Admin`}),`, модуль DLE API)`]})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`OAuth-клиент DLE`}),(0,n.jsxs)(t.td,{children:[`grants `,(0,n.jsx)(t.code,{children:`authorization_code`}),`, `,(0,n.jsx)(t.code,{children:`refresh_token`})]})]})]})]}),`
+`,(0,n.jsx)(t.h2,{id:`документация`,children:`Документация`}),`
+`,(0,n.jsxs)(t.table,{children:[(0,n.jsx)(t.thead,{children:(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.th,{children:`Раздел`}),(0,n.jsx)(t.th,{children:`Ссылка`})]})}),(0,n.jsxs)(t.tbody,{children:[(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Установка`}),(0,n.jsx)(t.td,{children:(0,n.jsx)(t.a,{href:`install`,children:`install`})})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Настройка DLE + XenForo`}),(0,n.jsx)(t.td,{children:(0,n.jsx)(t.a,{href:`guides/configuration`,children:`configuration`})})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`OAuth-клиенты DLE`}),(0,n.jsx)(t.td,{children:(0,n.jsx)(t.a,{href:`../../dle/dle_api/200.1.0/guides/oauth-client`,children:`DLE API: OAuth-клиенты`})})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Оба направления OAuth`}),(0,n.jsx)(t.td,{children:(0,n.jsx)(t.a,{href:`../../dle/dle_api/200.1.0/guides/xenforo`,children:`DLE API: XenForo`})})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Changelog`}),(0,n.jsx)(t.td,{children:(0,n.jsx)(t.a,{href:`changelog`,children:`changelog`})})]})]})]}),`
+`,(0,n.jsx)(t.h2,{id:`быстрый-старт`,children:`Быстрый старт`}),`
+`,(0,n.jsxs)(t.ol,{children:[`
+`,(0,n.jsxs)(t.li,{children:[`Установите add-on (`,(0,n.jsx)(t.a,{href:`install`,children:`install`}),`).`]}),`
+`,(0,n.jsxs)(t.li,{children:[`В DevCraft создайте OAuth-клиент с Redirect URI `,(0,n.jsx)(t.code,{children:`{board}/connected_account.php`}),`.`]}),`
+`,(0,n.jsxs)(t.li,{children:[`ACP XenForo → `,(0,n.jsx)(t.strong,{children:`Setup → Connected accounts → DLE API`}),` — укажите URL DLE, client_id и secret.`]}),`
+`,(0,n.jsxs)(t.li,{children:[(0,n.jsx)(t.strong,{children:`Test provider`}),` — должен вернуть `,(0,n.jsx)(t.code,{children:`name`}),` и `,(0,n.jsx)(t.code,{children:`email`}),` из `,(0,n.jsx)(t.code,{children:`GET /api/v2/me`}),`.`]}),`
+`]})]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}function u(e,t){throw Error(`Expected `+(t?`component`:`object`)+" `"+e+"` to be defined: you likely forgot to import, pass, or provide it.")}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};
