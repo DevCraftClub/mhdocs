@@ -88919,6 +88919,87 @@ DevCraft → **DLE API** → **Настройки** (`dleapi.json`). Часть 
 
 
 
+## Шаблон профиля (DLE `.tpl`) [#шаблон-профиля-dle-tpl]
+
+Блок управления API-ключом на странице профиля пользователя. Исходный код: `engine/modules/devcraft/dleapi_profile.php`, шаблон: `templates/{skin}/devcraft/dleapi/profile.tpl`.
+
+### Подключение [#подключение]
+
+```html
+{include file="engine/modules/devcraft/dleapi_profile.php"}
+```
+
+### Параметр `focus` [#параметр-focus]
+
+Необязательный, по умолчанию `html`.
+
+| Значение              | Что рендерит                                                        |
+| --------------------- | ------------------------------------------------------------------- |
+| `html` (по умолчанию) | Блок с формой ключа (`profile.tpl`) + встроенный CSS                |
+| `css`                 | `<link>` на `profile.css` (для вынесения стилей в `<head>`)         |
+| `js`                  | `<meta dc-ajax-base>` + `<script>` dc\_public.js + inline JS-модуль |
+
+Пример с явным разделением CSS и JS:
+
+```html
+<!-- в <head> -->
+{include file="engine/modules/devcraft/dleapi_profile.php?focus=css"}
+
+<!-- в <body> там, где нужен блок -->
+{include file="engine/modules/devcraft/dleapi_profile.php"}
+
+<!-- перед </body> -->
+{include file="engine/modules/devcraft/dleapi_profile.php?focus=js"}
+```
+
+### Теги `profile.tpl` [#теги-profiletpl]
+
+| Тег                | Значение                                                                                                           |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `{user-hash}`      | Хэш авторизации DLE (`dle_login_hash`)                                                                             |
+| `{profile-id}`     | ID пользователя профиля                                                                                            |
+| `{viewer-id}`      | ID текущего зрителя                                                                                                |
+| `{admin-mode}`     | `1` если зритель-администратор смотрит чужой профиль, иначе `0`                                                    |
+| `{title}`          | Заголовок блока («API-ключ»)                                                                                       |
+| `{new-label}`      | Метка кнопки «Новый»                                                                                               |
+| `{loading-label}`  | Статус загрузки («Загрузка…»)                                                                                      |
+| `{key-label}`      | Метка поля «Ключ»                                                                                                  |
+| `{copy-label}`     | Метка кнопки «Копировать»                                                                                          |
+| `{from-label}`     | Метка даты создания («Когда»)                                                                                      |
+| `{until-label}`    | Метка срока истечения («Истекает»)                                                                                 |
+| `{level-label}`    | Метка уровня доступа («Уровень»)                                                                                   |
+| `{request-label}`  | Метка кнопки запроса ключа («Запросить ключ»)                                                                      |
+| `{approve-label}`  | Метка кнопки одобрения (только admin-mode)                                                                         |
+| `{deny-label}`     | Метка кнопки отказа (только admin-mode)                                                                            |
+| `{request-hidden}` | Атрибут ` hidden` или пустая строка — управляет видимостью кнопки запроса через настройку `profile_allow_generate` |
+
+### Файловая структура [#файловая-структура]
+
+```
+templates/
+  {skin}/
+    devcraft/
+      dleapi/
+        profile.tpl      ← HTML-блок (переопределяется скином)
+        profile.css      ← стили блока
+        dleapi_profile.js ← JS-модуль (inline в <script>)
+```
+
+Если в текущем скине папка отсутствует — автоматически берётся `Default`.
+
+### Условия показа [#условия-показа]
+
+Блок **не** рендерится, если:
+
+* пользователь не авторизован
+* `profile_id` не определён (не страница профиля)
+* зритель не является владельцем профиля и не администратор
+* оба флага `profile_allow_generate` и `profile_show_field` выключены (и зритель не администратор)
+
+***
+
+## Уведомления [#уведомления]
+
 Модуль шлёт уведомления о заявках на API-ключ и о решении (одобрение / отказ). Подстановка — простой `str_replace` тегов вида <code>{'{'}%имя%{'}'}</code>.
 
 Источник переменных: `KeyNotifyDelivery` + вызовы из `ProfileKeyService` / `DecideKeyRequestHandler`.

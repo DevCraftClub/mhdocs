@@ -522,7 +522,7 @@
           - [Настройки](/dev/dle/dle_api/200.1.0/guides/settings): Параметры модуля DLE API в DevCraft: безопасность, OAuth TTL, профиль, уведомления и встроенный редактор email-шаблонов.
           - [Уровни доступа](/dev/dle/dle_api/200.1.0/guides/access-levels): Access levels DLE API: own_only, cheater, маски, scopes read/write/edit/delete.
           - [Синхронизация с группами](/dev/dle/dle_api/200.1.0/guides/access-sync): Привязка групп пользователей DLE к уровням доступа DLE API.
-          - [Шаблоны](/dev/dle/dle_api/200.1.0/guides/templates): Email- и PM-шаблоны уведомлений DLE API: встроенный редактор, плейсхолдеры и дефолтные шаблоны.
+          - [Шаблоны](/dev/dle/dle_api/200.1.0/guides/templates): Шаблоны DLE API: публичный блок профиля (profile.tpl), email- и PM-уведомления, плейсхолдеры и дефолтные тексты.
           - [Безопасность](/dev/dle/dle_api/200.1.0/guides/security): Встроенные меры DLE API и операционный чеклист для продакшена.
           - [Миграция API v1 → v2](/dev/dle/dle_api/200.1.0/guides/migrate-v1-v2): Чем v2 отличается от удалённого v1 и как перевести клиента.
         - Справочник
