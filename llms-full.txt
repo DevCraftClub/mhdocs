@@ -73919,8 +73919,20 @@ Fluent API                              DTO Mapping
     Packagist and path repository
   </Card>
 
-  <Card title="Guides" href="/dev/dev-tools/1.0.1/en/guides/with_attributes">
-    Step-by-step usage
+  <Card title="With attributes" href="/dev/dev-tools/1.0.1/en/guides/with_attributes">
+    Fluent builders and WithHandler
+  </Card>
+
+  <Card title="Getters and setters" href="/dev/dev-tools/1.0.1/en/guides/accessors">
+    lombok-php accessors on AbstractWith
+  </Card>
+
+  <Card title="Reflection mapper" href="/dev/dev-tools/1.0.1/en/guides/reflection_mapper">
+    DTO hydration and serialization
+  </Card>
+
+  <Card title="Validation" href="/dev/dev-tools/1.0.1/en/guides/validation">
+    Filter, Range, Regex, ArrayOf
   </Card>
 
   <Card title="API reference" href="/dev/dev-tools/1.0.1/reference">
@@ -74006,16 +74018,26 @@ $proxy->toArray();         // nested arrays
 echo $proxy->toJson();     // pretty-printed JSON
 ```
 
+## Choosing a base class [#choosing-a-base-class]
+
+| Need                                                 | Extend               | Property style                                   |
+| ---------------------------------------------------- | -------------------- | ------------------------------------------------ |
+| Fluent `with*` / query objects, plus `get*` / `set*` | `AbstractWith`       | Private (or protected), non-static, non-readonly |
+| API response / request DTO                           | `AbstractReflection` | Public, typed, hydratable                        |
+
+Do not combine them through inheritance. If you need both shapes, use composition or two separate classes.
+
 ## Requirements [#requirements]
 
 * PHP 8.3 or newer
-* Composer
-* Transitive runtime: `marcin-orlowski/lombok-php` `^1.2`
+* [Composer](/instructions/composer)
+* Transitive runtime: [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` (installed with the package)
 
 ## Next steps [#next-steps]
 
 * [Installation](./install)
 * [With attributes](./guides/with_attributes)
+* [Getters and setters](./guides/accessors)
 * [API reference](../reference)
 
 
@@ -74110,6 +74132,11 @@ For a `readonly` **class**, lombok requires `\Lombok\HelperReadonly`, not `Helpe
 * A name collision with a real method: on a property, an exception; on the class, the original method stays and no accessor is added.
 
 See also: [AbstractWith](../../reference/abstracts/AbstractWith), [With attributes](with_attributes).
+
+## Related [#related]
+
+* [API reference](../../reference)
+* [Changelog](../changelog)
 
 
 # Reflection mapper (/dev/dev-tools/1.0.1/en/guides/reflection_mapper)
@@ -74304,6 +74331,14 @@ $mapper->hydrate($profile, $payload);
 
 An optional second constructor argument accepts a custom `PropertyValidator`.
 
+## Related [#related]
+
+* [AbstractReflection](../../reference/abstracts/AbstractReflection)
+* [ReflectionMapper](../../reference/mapper/ReflectionMapper)
+* [ArrayOf](../../reference/attributes/ArrayOf)
+* [Validation](validation)
+* [Changelog](../changelog)
+
 
 # Validation (/dev/dev-tools/1.0.1/en/guides/validation)
 
@@ -74343,7 +74378,7 @@ public int $quantity;
 
 `FILTER_VALIDATE_BOOLEAN` automatically adds `FILTER_NULL_ON_FAILURE` so invalid booleans are rejected instead of coerced to `false`.
 
-Failure message: `must pass filter {id}`.
+Failure message: `must pass filter <id>`.
 
 ### `Range` [#range]
 
@@ -74435,6 +74470,14 @@ try {
 ```
 
 `getErrors()` returns `array<string, list<string>>` keyed by dotted property paths.
+
+## Related [#related]
+
+* [ValidationRule](../../reference/interfaces/ValidationRule)
+* [PropertyValidator](../../reference/validation/PropertyValidator)
+* [ValidationException](../../reference/exceptions/ValidationException)
+* [API reference](../../reference)
+* [Changelog](../changelog)
 
 
 # With attributes (/dev/dev-tools/1.0.1/en/guides/with_attributes)
@@ -74644,6 +74687,15 @@ Invalid item/map arguments are checked before mutation, so failed calls do not p
 
 Attributes on private and protected properties declared in parent classes are discovered and work on child instances. Writers are bound to the declaring class so private parent properties remain writable through the virtual methods.
 
+## Related [#related]
+
+* [AbstractWith](../../reference/abstracts/AbstractWith)
+* [With](../../reference/attributes/With)
+* [WithItem](../../reference/attributes/WithItem)
+* [WithHandler](../../reference/runtime/WithHandler)
+* [Getters and setters](accessors)
+* [Changelog](../changelog)
+
 
 # Installation (/dev/dev-tools/1.0.1/en/install)
 
@@ -74755,19 +74807,35 @@ Fluent API                              DTO Mapping
 
 <Cards>
   <Card title="Установка" href="/dev/dev-tools/1.0.1/install">
-    Инструкции по установке и настройке
+    Packagist и path repository
   </Card>
 
-  <Card title="Руководства" href="/dev/dev-tools/1.0.1/guides/with_attributes">
-    Пошаговые сценарии использования
+  <Card title="Атрибуты With" href="/dev/dev-tools/1.0.1/guides/with_attributes">
+    Fluent-билдеры и WithHandler
   </Card>
 
-  <Card title="Справочник API" href="/dev/dev-tools/1.0.1/reference">
-    Полное описание классов, методов и типов
+  <Card title="Getter и Setter" href="/dev/dev-tools/1.0.1/guides/accessors">
+    Accessors lombok-php на AbstractWith
   </Card>
 
-  <Card title="Changelog" href="/dev/dev-tools/1.0.1/changelog">
-    История изменений
+  <Card title="Reflection mapper" href="/dev/dev-tools/1.0.1/guides/reflection_mapper">
+    Гидратация и сериализация DTO
+  </Card>
+
+  <Card title="Валидация" href="/dev/dev-tools/1.0.1/guides/validation">
+    Filter, Range, Regex, ArrayOf
+  </Card>
+
+  <Card title="Справочник" href="/dev/dev-tools/1.0.1/reference">
+    Все классы и атрибуты пакета
+  </Card>
+
+  <Card title="История изменений" href="/dev/dev-tools/1.0.1/changelog">
+    Changelog пакета
+  </Card>
+
+  <Card title="English" href="/dev/dev-tools/1.0.1/en/getting_started">
+    Full English documentation
   </Card>
 </Cards>
 
@@ -74857,13 +74925,14 @@ echo $proxy->toJson();     // pretty-printed JSON
 ## Требования [#требования]
 
 * PHP 8.3 или новее
-* Composer
-* Транзитивная зависимость: `marcin-orlowski/lombok-php` `^1.2`
+* [Composer](/instructions/composer)
+* Транзитивная зависимость: [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` (ставится вместе с пакетом)
 
 ## Следующие шаги [#следующие-шаги]
 
 * [Установка](./install)
 * [Атрибуты With](./guides/with_attributes)
+* [Getter и Setter](./guides/accessors)
 * [Справочник API](./reference)
 * [English](./en/getting_started)
 
@@ -75232,7 +75301,7 @@ public int $quantity;
 
 Для `FILTER_VALIDATE_BOOLEAN` автоматически добавляется `FILTER_NULL_ON_FAILURE`, чтобы невалидные boolean отклонялись, а не coercились в `false`.
 
-Сообщение при ошибке: `must pass filter {id}`.
+Сообщение при ошибке: `must pass filter <id>`.
 
 См. [Filter](../reference/attributes/Filter).
 
@@ -75584,9 +75653,9 @@ $query->withTagsItem('c');    // append
 
 ## Системные требования [#системные-требования]
 
-* PHP 8.3 or newer
+* PHP 8.3 или новее
 * [Composer](/instructions/composer)
-* Transitive runtime: [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` (installed with the package)
+* Транзитивная зависимость: [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` (ставится вместе с пакетом)
 
 ## Способы установки [#способы-установки]
 
@@ -75884,7 +75953,7 @@ $query->getLabels(); // ['status' => 'ready']
 
 ### `validate(mixed $value): ?string` [#validatemixed-value-string]
 
-**Описание:** `null` проходит. Не list → `must be a list of {type}`. Элемент не соответствует типу → то же сообщение.
+**Описание:** `null` проходит. Не list → `must be a list of <type>`. Элемент не соответствует типу → то же сообщение.
 
 **Параметры:**
 
@@ -75934,7 +76003,7 @@ public array $locations = [];
 
 ### `validate(mixed $value): ?string` [#validatemixed-value-string]
 
-**Описание:** `null` вход всегда проходит. Для `FILTER_VALIDATE_BOOLEAN` добавляется `FILTER_NULL_ON_FAILURE`. При ошибке: `must pass filter {id}`.
+**Описание:** `null` вход всегда проходит. Для `FILTER_VALIDATE_BOOLEAN` добавляется `FILTER_NULL_ON_FAILURE`. При ошибке: `must pass filter <id>`.
 
 **Параметры:**
 
@@ -76031,7 +76100,7 @@ public int $port;
 
 ### `validate(mixed $value): ?string` [#validatemixed-value-string]
 
-**Описание:** `null` проходит. Не string → `must be a string`. Нет совпадения → `must match {pattern}`.
+**Описание:** `null` проходит. Не string → `must be a string`. Нет совпадения → `must match <pattern>`.
 
 **Параметры:**
 
@@ -76051,7 +76120,7 @@ public string $id;
 
 
 
-**Описание:** Маркерный PHP-атрибут для свойства. `WithHandler` генерирует метод `with{Property}($value)`, который заменяет значение свойства целиком и возвращает `$this`.
+**Описание:** Маркерный PHP-атрибут для свойства. `WithHandler` генерирует метод `withPropertyName($value)` (StudlyCase имени свойства), который заменяет значение свойства целиком и возвращает `$this`.
 
 **Namespace:** `Devcraft\Attributes`
 
@@ -76157,7 +76226,7 @@ private array $labels = [];
 | --------- | ----------------------------- | ------------------------------------------- |
 | `$errors` | `array<string, list<string>>` | Ключ — dotted path (`port`, `address.city`) |
 
-Сообщение исключения: `Validation failed for: {keys}`.
+Сообщение исключения: `Validation failed for: <keys>`.
 
 ### `getErrors(): array` [#geterrors-array]
 
@@ -76657,6 +76726,7 @@ cp engine/inc/maharder/_config/db_manager.json devcraft/config/db_manager.json
 * Twig `core/includes/upload/drop_form.twig` — dropzone для модулей.
 * [`UploadedFile`](reference/back-end/classes/UploadedFile) — валидация и `moveTo` для `$_FILES`.
 * Документация [`FileResponse`](reference/back-end/classes/FileResponse) для скачивания из AJAX.
+* [`FormFieldBuilder::editor()`](reference/back-end/classes/FormFieldBuilder) — TinyMCE; [`FormFieldBuilder::codeViewer()`](reference/back-end/classes/FormFieldBuilder) — ACE. Универсальные includes `tinymce_editor_scripts.twig` / `code_editor_scripts.twig` (ACE не реинициализируется на каждый клик по вкладке).
 
 ## 200.4.0 [#20040]
 
@@ -76708,8 +76778,11 @@ cp engine/inc/maharder/_config/db_manager.json devcraft/config/db_manager.json
 
 * DLE **20.0**, PHP **8.3**
 * Установленный DevCraft Admin **≥ 200.4.0**
+* Для shared DTO / fluent-абстракций — пакет [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/install)
 * PSR-4 autoload: `DevCraft\Modules\{Name}\` → `devcraft/src/modules/{Name}/`
 * После добавления файлов: `composer dump-autoload` в `devcraft/`
+
+`DevCraft Admin` отвечает за DLE-интеграцию, страницы и Composer UI, а общие reflection/fluent-примитивы постепенно выносятся в [`Dev Tools`](/dev/dev-tools/1.0.1/getting_started). Краткая карта границ описана в [Shared-пакеты и абстракции](reference/back-end/shared_packages).
 
 ## 2. Создание модуля [#2-создание-модуля]
 
@@ -76786,7 +76859,7 @@ return FormSchemaBuilder::create('my_module')  // code = имя JSON-файла
 ```
 
 * Файл конфигурации: `devcraft/config/{code}.json`
-* Страница: класс `SettingsPage` + шаблон `settings.twig` с `{% include 'core/includes/form/settings_page.twig' %}`
+* Страница: класс `SettingsPage` + шаблон `settings.twig` с <code>{'{'}% include 'core/includes/form/settings\_page.twig' %{'}'}</code>
 * Сохранение: `SettingsHandler` или кастомный обработчик с `SettingsFormService`
 * `supplementFormData()` — дополнительные данные для Twig
 
@@ -76845,6 +76918,7 @@ XLIFF: `devcraft/locales/{locale}/{code}.xliff` (Crowdin-совместимый 
 * [Примеры Form](guides/form_examples) — layout stack/tabs/accordion, все типы полей, filter schema
 * [Генератор модулей](guides/new_module)
 * [Composer-пакеты модулей](reference/back-end/composer_packages)
+* [Shared-пакеты и абстракции](reference/back-end/shared_packages)
 * [Манифест модуля](reference/back-end/manifest)
 * [Точки входа](reference/back-end/entry_points)
 * [ИИ-инструменты](guides/ai_tools)
@@ -76998,19 +77072,10 @@ class Note extends AbstractEntity {
     #[Column(type: 'text')]
     public string $body = '';
 
-    public function getColumnVal(string $name): mixed {
-        return match ($name) {
-            'id'    => $this->id(),
-            'title' => $this->title,
-            'body'  => $this->body,
-            default => NULL,
-        };
-    }
-
 }
 ```
 
-`AbstractEntity` уже даёт `$id`, `createdAt`/`updatedAt`/`creator`/`lastEditor` с автозаполнением через `beforeSave()` — свои модели не должны дублировать эти поля/геттеры (см. [AbstractEntity](../reference/back-end/classes/AbstractEntity)).
+`AbstractEntity` уже даёт `$id`, `createdAt`/`updatedAt`/`creator`/`lastEditor` с автозаполнением через `beforeSave()` и `getColumnVal()` по reflection — свои модели не должны дублировать эти поля/геттеры (см. [AbstractEntity](../reference/back-end/classes/AbstractEntity)).
 
 ## 2. Repository → `AbstractRepository` [#2-repository--abstractrepository]
 
@@ -77394,11 +77459,15 @@ return FormSchemaBuilder::create('my_module')
             ->default(true)
         ->textarea('notice', __('Текст уведомления'))
             ->description(__('Отображается на главной странице модуля'))
+        ->editor('pm_body', __('Текст ЛС'))
+        ->codeViewer('email_body', __('Тело письма HTML'))
         ->hidden('mod', 'my_module')
     ->build();
 ```
 
 * `text`/`number`/`textarea` — простые поля ввода; `number` обычно комбинируют с `->filter(FILTER_VALIDATE_INT)` для приведения типов при сохранении.
+* `editor` — TinyMCE WYSIWYG (`ajaxwysiwygeditor` + `dc-{toTranslit(id)}-editor`). На странице: `{% include 'core/includes/ui/templateIncludes/tinymce_editor_scripts.twig' %}` при `pm_wysiwyg` / `pm_editor_script`.
+* `codeViewer` — ACE для исходника HTML (класс `html_editor`, не WYSIWYG). На странице: `{% include 'core/includes/ui/templateIncludes/code_editor_scripts.twig' %}`. Include не создаёт второй ACE на уже инициализированный textarea.
 * `select` — одиночный выбор из `options()`; `multi` — множественный выбор (в фильтрах рендерится как чекбокс-список с несколькими значениями в URL).
 * `checkbox` — булево значение, `->default(bool)`.
 * `hidden` — служебное поле без видимого label (например, `mod` для форм, где нужно явно передать контекст).
@@ -77662,6 +77731,14 @@ composer install --no-dev
 
 Без каталога `vendor/` плагин выведет предупреждение в админке DLE и не загрузится.
 
+Если core-слой или модуль опирается на shared DTO / fluent-абстракции, после базовой установки проверьте наличие `devcraftclub/dev-tools` в `devcraft/composer.json`. Этот пакет содержит `AbstractReflection`, `AbstractWith`, атрибуты `#[With]` / `#[WithItem]` и related runtime-компоненты.
+
+```bash
+composer show devcraftclub/dev-tools
+```
+
+Граница между тем, что остаётся частью админ-оболочки, и тем, что выносится в shared package, описана в [Shared-пакеты и абстракции](reference/back-end/shared_packages).
+
 ### 3. Ручная загрузка (альтернатива) [#3-ручная-загрузка-альтернатива]
 
 Скопируйте содержимое `upload/` в корень сайта (сохраняя структуру `engine/` и `devcraft/`), затем установите плагин через менеджер плагинов.
@@ -77708,12 +77785,14 @@ engine/inc/
 1. Создайте резервную копию каталога `devcraft/` и настроек в БД.
 2. Установите новый архив плагина через менеджер DLE.
 3. Выполните `composer install` в `devcraft/`, если изменился `composer.lock`.
-4. Проверьте [историю изменений](changelog).
+4. Если в changelog упомянут перенос общих DTO/utility-слоёв, проверьте `composer.json` и `composer_required` модулей на новые shared-зависимости.
+5. Проверьте [историю изменений](changelog).
 
 ## См. также [#см-также]
 
 * [Настройка](guides/manage)
 * [Точки входа для разработчиков](reference/back-end/entry_points)
+* [Shared-пакеты и абстракции](reference/back-end/shared_packages)
 * [Composer](../../../../instructions/composer)
 
 
@@ -77738,6 +77817,8 @@ DevCraft Admin устанавливается как **новый плагин**
 | Fomantic UI               | Metro UI                                                     |
 | `MH_*` константы          | `DEVCRAFT_*` (см. [Paths](reference/back-end/classes/Paths)) |
 | `engine/ajax/maharder/`   | `devcraft/ajax.php`                                          |
+
+Дополнительно меняется модель повторного использования кода: общие DTO, reflection/fluent-абстракции и runtime-хелперы больше не обязаны жить внутри самой админ-оболочки. Для этого постепенно используется внешний пакет [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/getting_started). См. [Shared-пакеты и абстракции](reference/back-end/shared_packages).
 
 ## Ручные шаги [#ручные-шаги]
 
@@ -77774,6 +77855,8 @@ DevCraft Admin устанавливается как **новый плагин**
 
 Каждый legacy-модуль под `engine/inc/maharder/_modules/` требует **переписывания** под структуру `devcraft/src/modules/{Name}/` (manifest, Pages, Ajax). Используйте [генератор модулей](guides/new_module) как стартовую точку.
 
+Если при переносе вы находите старые универсальные helper/DTO-классы, сначала проверьте, не должен ли этот слой переехать в `devcraftclub/dev-tools`, а не остаться внутри конкретного admin-модуля.
+
 ### 7. Отключение Legacy (опционально) [#7-отключение-legacy-опционально]
 
 После проверки DevCraft Admin можно удалить пункт меню `maharder` в DLE и архивировать `engine/inc/maharder/`. Рекомендуется оставить Legacy-документацию для ссылок на старые API.
@@ -77788,6 +77871,7 @@ DevCraft Admin устанавливается как **новый плагин**
 
 * [Точки входа](reference/back-end/entry_points)
 * [Манифест модуля](reference/back-end/manifest)
+* [Shared-пакеты и абстракции](reference/back-end/shared_packages)
 * [История изменений](changelog)
 
 
@@ -77812,6 +77896,7 @@ DevCraft Admin устанавливается как **новый плагин**
 * public [beforeSave()](#method_beforeSave)
 * public [createdAt()](#method_createdAt)
 * public [creator()](#method_creator)
+* public [getColumnVal()](#method_getColumnVal)
 * public [id()](#method_id)
 * public [lastEditor()](#method_lastEditor)
 * public [setCreator()](#method_setCreator)
@@ -77858,6 +77943,20 @@ DevCraft Admin устанавливается как **новый плагин**
 **С версии:** 200.4.0
 
 **Возвращает:** `int|null` — ID пользователя DLE или `null`.
+
+<span id="method_getColumnVal" />
+
+### getColumnVal() [#getcolumnval]
+
+Возвращает значение колонки по имени свойства или колонки через `ReflectionProperty`. Ищет `$name`, camelCase и snake\_case. `DateTimeInterface` приводится к `Y-m-d H:i:s`, `bool` — к `0`/`1`. Неизвестное имя даёт `null`. Модели-наследники метод не переопределяют.
+
+**С версии:** 200.4.0
+
+**Параметры:**
+
+* `$name` — Имя колонки или свойства.
+
+**Возвращает:** `mixed` — Значение колонки или `null`.
 
 <span id="method_id" />
 
@@ -83029,6 +83128,8 @@ Fluent-строитель одного поля формы в цепочке For
 * public [multi()](#method_multi)
 * public [checkbox()](#method_checkbox)
 * public [textarea()](#method_textarea)
+* public [editor()](#method_editor)
+* public [codeViewer()](#method_codeViewer)
 * public [hidden()](#method_hidden)
 * public [section()](#method_section)
 * public [build()](#method_build)
@@ -83251,6 +83352,50 @@ Fluent-строитель одного поля формы в цепочке For
 * `$label` — Подпись.
 
 **Возвращает:** `self` — Новый строитель textarea-поля.
+
+<span id="method_editor" />
+
+### editor() [#editor]
+
+Начинает описание WYSIWYG-поля (TinyMCE). Класс `ajaxwysiwygeditor` — селектор include `tinymce_editor_scripts.twig`. Второй класс: `dc-{toTranslit($id)}-editor`. Не передавать `class` в последующем `metro()` — ключ перезапишется целиком.
+
+На странице нужен include:
+
+```twig
+{% if pm_wysiwyg and pm_editor_script %}
+    {% include 'core/includes/ui/templateIncludes/tinymce_editor_scripts.twig' %}
+{% endif %}
+```
+
+**С версии:** 200.4.0
+
+**Параметры:**
+
+* `$id` — Идентификатор поля.
+* `$label` — Подпись.
+
+**Возвращает:** `self` — Новый строитель textarea-поля с TinyMCE.
+
+<span id="method_codeViewer" />
+
+### codeViewer() [#codeviewer]
+
+Начинает описание поля исходника HTML (ACE, не WYSIWYG). Класс `html_editor` — селектор include `code_editor_scripts.twig`. ACE нельзя вызывать повторно на уже инициализированный textarea: include пропускает поля с соседним `.code_editor_area` и делает `resize()`.
+
+На странице нужен include:
+
+```twig
+{% include 'core/includes/ui/templateIncludes/code_editor_scripts.twig' %}
+```
+
+**С версии:** 200.4.0
+
+**Параметры:**
+
+* `$id` — Идентификатор поля.
+* `$label` — Подпись.
+
+**Возвращает:** `self` — Новый строитель textarea-поля с ACE.
 
 <span id="method_hidden" />
 
@@ -87450,6 +87595,8 @@ return JsonResponse::ok(['id' => $id]);
 
 DevCraft предоставляет общие сервисы в `DevCraft\Core\Composer` для установки пакетов, синхронизации с БД и проверки политик. Admin-UI использует те же классы, что и пользовательские модули.
 
+Отдельно от этого `DevCraft Admin` может потреблять внешние shared-пакеты. На текущем этапе базовые DTO/fluent-абстракции выносятся в [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/getting_started); границы ответственности описаны в [Shared-пакеты и абстракции](shared_packages).
+
 ## Manifest: `composer_required` [#manifest-composer_required]
 
 В `manifest.php` модуля:
@@ -87457,7 +87604,7 @@ DevCraft предоставляет общие сервисы в `DevCraft\Core\
 ```php
 'composer_required' => [
     [
-        'name'         => 'vendor/example-package',
+        'name'         => 'devcraftclub/dev-tools',
         'minVersion'   => '^1.0',
         'hardRequired' => true,
     ],
@@ -87475,6 +87622,8 @@ DevCraft предоставляет общие сервисы в `DevCraft\Core\
    * union из `devcraft/composer.json` `require` (без `php`/`ext-*`) и manifest-only пакетов;
    * `installed` / `version` из `composer.lock` через `ComposerStateReader`.
 2. После успешного AJAX-действия — `applySuccessfulAction()` с повторным чтением lock.
+
+Если пакет подключён только в `composer.json`, sync всё равно увидит его как установленный runtime-пакет. `composer_required` нужен дополнительно, когда зависимость должна считаться частью контрактной структуры модуля и отображаться в UI как required/recommended.
 
 Ручной sync: **DevCraft Admin → Composer → Синхронизировать с composer.lock**.
 
@@ -87527,6 +87676,7 @@ final class ExampleInstallHandler implements AjaxHandlerInterface
 
 * `ComposerActionHandler` — эталон AJAX-обработчика в Admin (класс в коде модуля)
 * [Registry](classes/Registry) — порядок модулей для атрибуции
+* [Shared-пакеты и абстракции](shared_packages)
 
 
 # Точки входа (/dev/dle/devcraft_admin/200.4.0/reference/back-end/entry_points)
@@ -87816,6 +87966,8 @@ Twig-шаблоны: `DEVCRAFT_SRC . '/templates'`.
 
 Файл возвращает ассоциативный массив с ключами `mod`, `code`, `meta`, `menu`, `ajax`, `changelog`, `assets`.
 
+Если модуль зависит от внешнего shared-пакета, например [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/getting_started), это должно отражаться в `composer_required`, а сами shared-абстракции не стоит документировать как внутреннюю часть `DevCraft Admin`. См. [Shared-пакеты и абстракции](shared_packages).
+
 ## Блок `meta` [#блок-meta]
 
 Метаданные модуля для UI и ссылок:
@@ -87887,7 +88039,7 @@ AdminLink::hidden('edit', EditSuggestionPage::class),
 ```php
 'composer_required' => [
     [
-        'name'         => 'vendor/example-package',
+        'name'         => 'devcraftclub/dev-tools',
         'minVersion'   => '^1.0',
         'hardRequired' => true,
     ],
@@ -87912,6 +88064,71 @@ AdminLink::hidden('edit', EditSuggestionPage::class),
 
 * [Генератор модулей](../../guides/new_module)
 * [Точки входа](entry_points)
+* [Shared-пакеты и абстракции](shared_packages)
+
+
+# Shared-пакеты и абстракции (/dev/dle/devcraft_admin/200.4.0/reference/back-end/shared_packages)
+
+
+
+`DevCraft Admin` больше не рассматривается как единственный источник базовых DTO и fluent/runtime-абстракций. Общие примитивы постепенно выносятся в отдельные Composer-пакеты, а сама админ-оболочка остаётся потребителем этих пакетов.
+
+## Что живёт в `DevCraft Admin` [#что-живёт-в-devcraft-admin]
+
+В самом `DevCraft Admin` остаются DLE- и UI-специфичные части:
+
+* `manifest.php`, `Registry`, `DleMenuBuilder`, `AdminLinkResolver`
+* страницы, AJAX-обработчики, Twig-шаблоны, Metro UI
+* Composer UI и sync-сервисы (`ComposerRuntimeAdapter`, `ComposerDbSyncService`, `ManifestPackageReader`)
+
+## Что вынесено в `devcraftclub/dev-tools` [#что-вынесено-в-devcraftclubdev-tools]
+
+Пакет [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/getting_started) содержит переиспользуемые строительные блоки, не привязанные к DLE-админке:
+
+* [`AbstractReflection`](/dev/dev-tools/1.0.1/reference/abstracts/AbstractReflection) для hydratable DTO с public typed properties
+* [`AbstractWith`](/dev/dev-tools/1.0.1/reference/abstracts/AbstractWith) для fluent-объектов с `#[With]` / `#[WithItem]`
+* runtime-компоненты вроде [`WithHandler`](/dev/dev-tools/1.0.1/reference/runtime/WithHandler)
+* атрибуты валидации и маппинга
+
+## Compatibility-layer в текущем коде [#compatibility-layer-в-текущем-коде]
+
+В переходный период `DevCraft\Core\Abstracts\AbstractType` остаётся локальной точкой совместимости поверх `AbstractReflection`.
+
+Это означает:
+
+* существующие типы `DevCraft\Types\*` можно переводить поэтапно
+* простые DTO сначала избавляются от ручного `toArray()`
+* более сложные агрегаты вроде `ModuleManifest` и составных схем продолжают жить в Admin, пока их сериализация и карта полей не будут стабилизированы
+
+Текущий практический этап уже перевёл `AbstractType` на этот compatibility-layer и начал снимать ручную сериализацию с безопасных DTO и схем, не меняя их внешний контракт создания через `fromArray()`.
+
+## Как объявлять зависимость [#как-объявлять-зависимость]
+
+Если модуль или core-слой действительно опирается на классы `dev-tools`, зависимость должна быть видна в двух местах:
+
+1. в корневом `devcraft/composer.json`
+2. в `composer_required` соответствующего `manifest.php`, если пакет должен отображаться в Composer UI как обязательный или рекомендуемый
+
+```php
+'composer_required' => [
+    ['name' => 'devcraftclub/dev-tools', 'minVersion' => '^1.0', 'hardRequired' => true],
+]
+```
+
+## Практическое правило [#практическое-правило]
+
+Если класс описывает:
+
+* DLE-роутинг, админ-страницы, Twig/Metro, AJAX-контракт, работу с registry или manifest-семантикой, он остаётся в `DevCraft Admin`
+* универсальный DTO, reflection-based hydration или fluent mutation без DLE-зависимостей, сначала смотрите на `Dev Tools`
+
+## См. также [#см-также]
+
+* [Composer-пакеты модулей](composer_packages)
+* [Манифест модуля](manifest)
+* [Dev Tools: Начало работы](/dev/dev-tools/1.0.1/getting_started)
+* [Dev Tools: Reflection mapper](/dev/dev-tools/1.0.1/guides/reflection_mapper)
+* [Dev Tools: Атрибуты With](/dev/dev-tools/1.0.1/guides/with_attributes)
 
 
 # Шаблоны (/dev/dle/devcraft_admin/200.4.0/reference/front-end/templates)
@@ -88047,17 +88264,22 @@ $uploaded->moveTo($targetPath);
 * GET-кэш `TableQuery` через CacheControl (`dle_api_query`, TTL)
 * Админка: multi получатели уведомлений, WYSIWYG для PM-тел; padding `panel-title` через `.caption`
 * Документация: настройки, уровни, sync, шаблоны, безопасность; полная справка OAuth-клиентов
+* Гайды: [проверка OAuth-клиента в Postman](guides/postman); [XenForo](guides/xenforo) — ACP OAuth2 clients (XF как AS) и add-on [DLE API Connection Provider](../../xenforo/dle_api_connection_provider/1.0.0/getting_started) (XF как клиент DLE)
 
 ### Изменено [#изменено]
 
 * Совместимость с DLE 20.0 (xfields.json, dual category, conversations)
 * Таблицы `api_keys` / `api_scope` / OAuth создаются Cycle-миграциями DevCraft
 * Scopes: колонка `edit`; `own_only`/`cheater` на уровне; trailing slash на всех маршрутах v2
+* Страница настроек: короткие descriptions, дефолтные PM-тексты, кликабельные плейсхолдеры и встроенный редактор email-шаблонов `dleapi_key_request` / `dleapi_key_decision`
+* Публичный блок профиля: состояния `idle` / `pending` / `approved` / `denied` и отдельный moderation-mode для администратора
+* DevCraft Admin: глобальный Code Typing Loader для сохранения настроек и стандартных AJAX-запросов
 
 ### Удалено [#удалено]
 
 * API v1 (Slim + Illuminate Capsule, `X-Api-Key`) полностью удалён; миграция: [v1 → v2](guides/migrate-v1-v2)
 * Приём сырого API-ключа как Bearer на ресурсах `/table`
+* Пустые исторические версии из changelog модуля (`180.0.39`, `173.0.38`, `173.0.37`, `173.0.36`, `160.0.35`, `160.0.34`, `160.0.33`, `0.3.2`, `0.3.1`, `0.2.2`)
 
 
 # Начало работы (/dev/dle/dle_api/200.1.0/getting_started)
@@ -88077,7 +88299,7 @@ $uploaded->moveTo($targetPath);
 
 * [Установка](install)
 * [Авторизация](guides/auth)
-* [OAuth-клиенты](guides/oauth-client) / [OAuth-сервер](guides/oauth-server)
+* [OAuth-клиенты](guides/oauth-client) / [OAuth-сервер](guides/oauth-server) · [Postman](guides/postman) · [XenForo](guides/xenforo)
 * [Настройки](guides/settings) · [Уровни](guides/access-levels) · [Синхронизация](guides/access-sync)
 * [Шаблоны](guides/templates) · [Безопасность](guides/security)
 * [Миграция v1 → v2](guides/migrate-v1-v2)
@@ -88169,7 +88391,7 @@ Authorization: Bearer <AuthToken>
 
 `<AuthToken>` — `access_token` из `POST /oauth/token`. &#x2A;*Сырой API-ключ на `/table/…` и прочих ресурсах не принимается.**
 
-Исключения без Bearer: `GET /health`, `GET /.well-known/oauth-authorization-server`.
+Исключения без AuthToken: `GET /health`, `GET /.well-known/oauth-authorization-server`.
 
 Trailing slash опционален: `/me` и `/me/` одинаковы.
 
@@ -88190,6 +88412,19 @@ Trailing slash опционален: `/me` и `/me/` одинаковы.
 `GET /api/v2/me` и `GET /api/v2/oauth/userinfo` с Bearer отдают субъект токена: `sub`/`user_id`, `name`, `email`, `user_group`, `api_key_id`, `access_level`.
 
 Secure-маски ПДн применяются к CRUD `/table`, **не** к identity. Пароли, hash, сырой ключ и `client_secret` не отдаются.
+
+## Проверка сырого API-ключа: `GET /key/check` [#проверка-сырого-api-ключа-get-keycheck]
+
+Единственный ресурс, кроме выдачи токена, где принимается **сырой** ключ из DevCraft (не `access_token`):
+
+```http
+GET /api/v2/key/check
+Authorization: Bearer <apiKey>
+```
+
+Ответ: `apiKey` (ключ, `validFrom`, `validTo`, `accessLevel`), `scopes` (read/write/edit/delete по таблицам уровня доступа) и `me` — тот же identity-payload, что у `/me`.
+
+`validTo: null` — бессрочный ключ. Для CRUD после проверки получите AuthToken через `POST /oauth/token` с `credential_type=api_key`.
 
 ## DEMO\_MODE / DLEAPI\_SECURE [#demo_mode--dleapi_secure]
 
@@ -88285,6 +88520,8 @@ OAuth-клиент в DevCraft → **DLE API** → **OAuth-клиенты** — 
 
 **PKCE** в форме нет: `code_challenge` / `code_verifier` передаются на `/oauth/authorize` и `/oauth/token`.
 
+Проверка клиента: [Postman](postman). XenForo (оба направления): [XenForo](xenforo).
+
 ## Редактирование [#редактирование]
 
 * `client_id` **не меняется**.
@@ -88326,6 +88563,8 @@ OAuth-клиент в DevCraft → **DLE API** → **OAuth-клиенты** — 
 ## См. также [#см-также]
 
 * [OAuth-сервер](oauth-server)
+* [Проверка в Postman](postman)
+* [XenForo и DLE API](xenforo)
 * [Авторизация](auth)
 * [Безопасность](security)
 * [HTTP](../reference/http)
@@ -88435,8 +88674,128 @@ curl -sS -X POST 'https://ВАШ_САЙТ/api/v2/oauth/revoke' \
 ## См. также [#см-также]
 
 * [OAuth-клиенты](oauth-client)
+* [Проверка в Postman](postman)
+* [XenForo и DLE API](xenforo)
 * [HTTP](../reference/http)
 * [OpenAPI](../reference/openapi)
+
+
+# Проверка в Postman (/dev/dle/dle_api/200.1.0/guides/postman)
+
+
+
+Клиент создаёте в DevCraft → **DLE API** → [OAuth-клиенты](oauth-client). Этот гайд — проверка того же клиента через вкладку **Authorization** Postman (классический `grant_type`), не через `credential_type` из [oauth-server](oauth-server).
+
+Для XenForo как relying party используйте тот же клиент и тот же Redirect URI: [XenForo](xenforo).
+
+<Callout type="info" title="XenForo API — не DLE">
+  Проверка **API XenForo** (раздел «DLE → XenForo» в [гайде](xenforo)) идёт на `{board}/oauth2/authorize` и `{board}/api/oauth2/token` (локально `http://localhost:8789/...`), identity — `GET /api/me`. Это не `/api/v2` и не клиент из DevCraft. Таблица URL — в том же гайде.
+</Callout>
+
+## Предварительно [#предварительно]
+
+* OAuth-клиент создан, `client_secret` сохранён.
+* `DEMO_MODE=false` в `ROOT_DIR/.env` — иначе `access_token: null` или authorize с `error=demo_mode` ([авторизация](auth)).
+* URL эндпоинтов — с панели AS в админке или `GET /api/v2/.well-known/oauth-authorization-server`.
+
+Переменные коллекции Postman:
+
+| Переменная     | Значение                                |
+| -------------- | --------------------------------------- |
+| `baseUrl`      | `https://ВАШ_САЙТ/api/v2`               |
+| `clientId`     | `client_id` из админки                  |
+| `clientSecret` | `client_secret` (один раз при создании) |
+
+## Client Credentials [#client-credentials]
+
+Короткий тест, что `client_id` / секрет и grant живы. У клиента в админке должен быть grant `client_credentials`. Redirect URI не нужен.
+
+<Steps>
+  <Step>
+    ### Настройте OAuth 2.0 [#настройте-oauth-20]
+
+    Запрос (например `GET {{baseUrl}}/me`) → вкладка **Authorization** → Type **OAuth 2.0** → **Get New Access Token**.
+
+    | Поле Postman          | Значение                                                                         |
+    | --------------------- | -------------------------------------------------------------------------------- |
+    | Grant Type            | Client Credentials                                                               |
+    | Access Token URL      | `{{baseUrl}}/oauth/token`                                                        |
+    | Client ID             | `{{clientId}}`                                                                   |
+    | Client Secret         | `{{clientSecret}}`                                                               |
+    | Client Authentication | Send client credentials in body **или** Basic Auth header (оба есть в discovery) |
+  </Step>
+
+  <Step>
+    ### Получите токен и вызовите /me [#получите-токен-и-вызовите-me]
+
+    **Get New Access Token** → ожидайте `access_token`, `token_type`, `expires_in`. **Use Token**, затем отправьте `GET {{baseUrl}}/me`.
+
+    Ответ identity: `sub` / `user_id`, `name`, `email`, `user_group`, `api_key_id`, `access_level`.
+  </Step>
+</Steps>
+
+Помощник Postman шлёт `grant_type=client_credentials`, не `credential_type=oauth_client`. Для M2M в Postman используйте этот grant.
+
+## Authorization Code + PKCE [#authorization-code--pkce]
+
+Для клиента с grants `authorization_code` и обычно `refresh_token`.
+
+<Callout type="warn" title="Redirect URI = Callback URL">
+  Значение в админке DLE и Callback URL в Postman должны совпадать **байт-в-байт**. Типичный callback Postman: `https://oauth.pstmn.io/v1/callback` (или Browser Callback из диалога Get Token). Несовпадение → JSON-ошибка на authorize без `code`.
+
+  Если клиент пойдёт в XenForo, поставьте Callback = `https://XF_BOARD/connected_account.php` и тот же URI в админке — см. [XenForo](xenforo).
+</Callout>
+
+<Steps>
+  <Step>
+    ### Поля Get New Access Token [#поля-get-new-access-token]
+
+    | Поле Postman          | Значение                                     |
+    | --------------------- | -------------------------------------------- |
+    | Grant Type            | Authorization Code (With PKCE)               |
+    | Callback URL          | тот же, что Redirect URI клиента             |
+    | Auth URL              | `{{baseUrl}}/oauth/authorize`                |
+    | Access Token URL      | `{{baseUrl}}/oauth/token`                    |
+    | Client ID / Secret    | из админки                                   |
+    | Code Challenge Method | SHA-256 (`S256`; AS также принимает `plain`) |
+  </Step>
+
+  <Step>
+    ### Логин DLE в окне Postman [#логин-dle-в-окне-postman]
+
+    Нет сессии DLE → **302** на `/index.php?do=login`, затем возврат на authorize и **302** на callback с `code` и `state`. В окне Postman нужно **войти на сайт**.
+  </Step>
+
+  <Step>
+    ### Use Token → GET /me [#use-token--get-me]
+
+    Как в Client Credentials: **Use Token**, затем `GET {{baseUrl}}/me` с Bearer.
+  </Step>
+</Steps>
+
+## Чего не использовать в OAuth helper [#чего-не-использовать-в-oauth-helper]
+
+* **`credential_type`** — упрощённый JSON-режим из [oauth-server](oauth-server). Помощник Postman шлёт `grant_type`.
+* **Implicit** — у AS его нет (`response_types_supported`: `code`).
+* **Password** — только для доверенных клиентов; проще `credential_type=auth` в [oauth-server](oauth-server).
+
+## Типичные ошибки [#типичные-ошибки]
+
+| Симптом                                  | Что проверить                                               |
+| ---------------------------------------- | ----------------------------------------------------------- |
+| JSON-ошибка на authorize, нет `code`     | Callback = Redirect URI клиента; grant `authorization_code` |
+| `unauthorized_client` / grant denied     | Grant отмечен у клиента                                     |
+| `access_token: null` / `error=demo_mode` | `DEMO_MODE=false`                                           |
+| Окно authorize сразу на логин DLE        | Войдите в этом окне, не в отдельной вкладке без cookies     |
+| 401 на `/table`                          | Bearer access\_token, не сырой API-ключ                     |
+| Clipboard / копирование URL из админки   | Кнопки «Копировать» на странице OAuth-клиентов              |
+
+## См. также [#см-также]
+
+* [OAuth-клиенты](oauth-client)
+* [OAuth-сервер](oauth-server)
+* [XenForo и DLE API](xenforo)
+* [Авторизация](auth)
 
 
 # Безопасность (/dev/dle/dle_api/200.1.0/guides/security)
@@ -88445,7 +88804,7 @@ curl -sS -X POST 'https://ВАШ_САЙТ/api/v2/oauth/revoke' \
 
 ## Уже в API [#уже-в-api]
 
-* Ресурсы `/api/v2` (кроме health/discovery) — только **Bearer** AuthToken; сырой API-ключ на `/table` не принимается.
+* Ресурсы `/api/v2` (кроме health/discovery) — только **Bearer** AuthToken; сырой API-ключ на `/table&#x60; и прочих CRUD не принимается. Исключение: &#x2A;*`GET /key/check`** — диагностика ключа и scopes без обмена на токен.
 * Права — [уровни](access-levels) / scopes; `own_only`, `cheater`.
 * Маскирование полей: настройка `secure` + `DLEAPI_SECURE` / `DEMO_MODE` в `.env` ([настройки](settings)).
 * `DEMO_MODE` — credentials могут проходить, токен не выдаётся; authorize → `error=demo_mode`.
@@ -88516,9 +88875,38 @@ DevCraft → **DLE API** → **Настройки** (`dleapi.json`). Часть 
 * Email и/или ЛС при новой заявке и при одобрении/отказе.
 * **Группы DLE** и **пользователи** — multi-select получателей заявки.
 * Темы и тела PM (`pm_*_subject` / `pm_*_body`); тела — WYSIWYG, если в DLE включён PM-редактор.
-* В описаниях полей PM перечислены плейсхолдеры `{%…%}`. Полная таблица: [Шаблоны](templates).
+* В полях с темами и текстами теперь показываются кликабельные теги плейсхолдеров. Клик вставляет тег в `input`, `textarea` или прямо в TinyMCE-редактор.
+* Для PM по умолчанию заполняются готовые тексты заявки, одобрения и отказа, поэтому после установки не нужно начинать с пустых тел сообщений.
 
-Email-шаблоны движка: [Шаблоны](templates).
+## Email-шаблоны [#email-шаблоны]
+
+В модуль добавлен встроенный редактор email-шаблонов:
+
+* `email_request_subject` и `email_request_body` для `dleapi_key_request`
+* `email_approve_subject`, `email_deny_subject` и `email_decision_body` для `dleapi_key_decision`
+
+Сохранение выполняется из той же страницы настроек. Тела писем синхронизируются с таблицей `PREFIX_email`, а темы хранятся в `dleapi.json` и подставляются в `{%subject%}` во время отправки.
+
+Подробности по плейсхолдерам и дефолтным HTML-телам: [Шаблоны](templates).
+
+## Публичный профиль [#публичный-профиль]
+
+Блок профиля теперь показывает больше одного состояния:
+
+* `idle` — ключа ещё нет
+* `pending` — заявка отправлена и ожидает решения
+* `approved` — ключ активен, видны дата выдачи, бессрочный `valid_to` и уровень доступа
+* `denied` — заявка отклонена
+
+Если профиль открывает администратор на чужой странице, включается отдельный публичный moderation-mode с кнопками одобрения и отказа прямо в профильном блоке.
+
+## Loader [#loader]
+
+Все стандартные сохранения настроек и AJAX-действия DevCraft Admin теперь показывают глобальный Code Typing Loader. Он включается для:
+
+* сохранения `settings`
+* `DevCraft.Ajax.post()`
+* `DevCraft.Ajax.postMultipart()`
 
 ## См. также [#см-также]
 
@@ -88531,7 +88919,7 @@ Email-шаблоны движка: [Шаблоны](templates).
 
 
 
-Модуль шлёт уведомления о заявках на API-ключ и о решении (одобрение / отказ). Подстановка — простой `str_replace` тегов вида `{%имя%}`.
+Модуль шлёт уведомления о заявках на API-ключ и о решении (одобрение / отказ). Подстановка — простой `str_replace` тегов вида <code>{'{'}%имя%{'}'}</code>.
 
 Источник переменных: `KeyNotifyDelivery` + вызовы из `ProfileKeyService` / `DecideKeyRequestHandler`.
 
@@ -88544,11 +88932,15 @@ Email-шаблоны движка: [Шаблоны](templates).
 | `dleapi_key_request`  | Новая заявка (получатели — админы из настроек) |
 | `dleapi_key_decision` | Одобрение / отказ (получатель — заявитель)     |
 
-Редактирование: **DLE → Настройки → Шаблоны e-mail** (поля добавлены патчем `engine/inc/email.php` из `install.xml`).
+Редактирование теперь вынесено прямо в **DevCraft → DLE API → Настройки**. При сохранении модуль:
 
-Тема письма берётся из `{%subject%}` (если тега нет — «DLE API»). При отправке дополнительно подставляется `{%site_url%}` (домашний URL сайта без хвостового `/`).
+* обновляет темы писем в `dleapi.json`
+* синхронизирует тела `dleapi_key_request` и `dleapi_key_decision` в таблицу `PREFIX_email`
+* автоматически создаёт шаблоны по умолчанию, если записей ещё нет
 
-Шаблоны по умолчанию — **HTML** (`use_html=1`): карточка с синим заголовком. Редактировать можно в админке e-mail. При апгрейде плагина шаблоны в БД обновляются из `install.xml`.
+Тема письма берётся из поля настроек и передаётся в <code>{'{'}%subject%{'}'}</code>. При отправке дополнительно подставляется <code>{'{'}%site\_url%{'}'}</code> (домашний URL сайта без хвостового `/`).
+
+Шаблоны по умолчанию — **HTML** (`use_html=1`). Они показываются и редактируются в настройках модуля, а не в отдельной админке e-mail.
 
 ## PM (настройки модуля) [#pm-настройки-модуля]
 
@@ -88558,33 +88950,58 @@ Email-шаблоны движка: [Шаблоны](templates).
 * одобрение: `pm_approve_*`
 * отказ: `pm_deny_*`
 
-Те же плейсхолдеры, что и в email (кроме `{%username%}` / `{%site_url%}` — только в письме).
+Те же плейсхолдеры, что и в email (кроме <code>{'{'}%username%{'}'}</code> / <code>{'{'}%site\_url%{'}'}</code> — только в письме). Рядом с каждым полем модуль рендерит кликабельный список тегов, который вставляет значение в текущую позицию курсора или в TinyMCE.
 
 ## Плейсхолдеры [#плейсхолдеры]
 
 ### Заявка (`dleapi_key_request` / PM заявки) [#заявка-dleapi_key_request--pm-заявки]
 
-Только уведомления **администраторам**. В шаблоны решения для пользователя `{%request_url%}` не передаётся.
+Только уведомления **администраторам**. В шаблоны решения для пользователя <code>{'{'}%request\_url%{'}'}</code> не передаётся.
 
-| Тег               | Значение                                                                    |
-| ----------------- | --------------------------------------------------------------------------- |
-| `{%user_id%}`     | ID пользователя-заявителя                                                   |
-| `{%level%}`       | Название уровня доступа заявки                                              |
-| `{%request_id%}`  | ID заявки                                                                   |
-| `{%request_url%}` | Ссылка в админку: `…/admin.php?mod=dleapi&action=key_requests#request-{id}` |
-| `{%subject%}`     | Тема (напр. «Заявка на API-ключ»)                                           |
-| `{%username%}`    | Имя получателя письма (только email)                                        |
-| `{%site_url%}`    | URL сайта (только email)                                                    |
+| Тег                                   | Значение                                                                    |
+| ------------------------------------- | --------------------------------------------------------------------------- |
+| <code>{'{'}%user\_id%{'}'}</code>     | ID пользователя-заявителя                                                   |
+| <code>{'{'}%level%{'}'}</code>        | Название уровня доступа заявки                                              |
+| <code>{'{'}%request\_id%{'}'}</code>  | ID заявки                                                                   |
+| <code>{'{'}%request\_url%{'}'}</code> | Ссылка в админку: `…/admin.php?mod=dleapi&action=key_requests#request-<id>` |
+| <code>{'{'}%subject%{'}'}</code>      | Тема (напр. «Заявка на API-ключ»)                                           |
+| <code>{'{'}%username%{'}'}</code>     | Имя получателя письма (только email)                                        |
+| <code>{'{'}%site\_url%{'}'}</code>    | URL сайта (только email)                                                    |
 
 ### Решение (`dleapi_key_decision` / PM одобрения и отказа) [#решение-dleapi_key_decision--pm-одобрения-и-отказа]
 
-| Тег            | Значение                                                |
-| -------------- | ------------------------------------------------------- |
-| `{%user_id%}`  | ID пользователя                                         |
-| `{%api_key%}`  | Выданный ключ при одобрении; при отказе — пустая строка |
-| `{%subject%}`  | «API-ключ одобрен» / «API-ключ отклонён»                |
-| `{%username%}` | Имя получателя письма (только email)                    |
-| `{%site_url%}` | URL сайта (только email)                                |
+| Тег                                | Значение                                                |
+| ---------------------------------- | ------------------------------------------------------- |
+| <code>{'{'}%user\_id%{'}'}</code>  | ID пользователя                                         |
+| <code>{'{'}%api\_key%{'}'}</code>  | Выданный ключ при одобрении; при отказе — пустая строка |
+| <code>{'{'}%subject%{'}'}</code>   | «API-ключ одобрен» / «API-ключ отклонён»                |
+| <code>{'{'}%username%{'}'}</code>  | Имя получателя письма (только email)                    |
+| <code>{'{'}%site\_url%{'}'}</code> | URL сайта (только email)                                |
+
+## Дефолтные тексты [#дефолтные-тексты]
+
+### PM: заявка [#pm-заявка]
+
+```text
+Поступила новая заявка на API-ключ.
+Пользователь: {%user_id%}
+Уровень доступа: {%level%}
+Номер заявки: {%request_id%}
+Открыть заявку: {%request_url%}
+```
+
+### PM: одобрение [#pm-одобрение]
+
+```text
+Ваш API-ключ одобрен.
+Ключ: {%api_key%}
+```
+
+### PM: отказ [#pm-отказ]
+
+```text
+Ваша заявка на API-ключ отклонена.
+```
 
 Фрагмент тела HTML-письма заявки:
 
@@ -88601,6 +89018,144 @@ Email-шаблоны движка: [Шаблоны](templates).
 ## См. также [#см-также]
 
 * [Настройки](settings)
+
+
+# XenForo и DLE API (/dev/dle/dle_api/200.1.0/guides/xenforo)
+
+
+
+Два разных направления. Примеры URL: XenForo `http://localhost:8789`, DLE `http://dle200.test`.
+
+<Callout type="warn" title="Не путать ACP и URL">
+  | Направление       | Кто AS  | Где клиент                                                                   | Authorize / token                                          |
+  | ----------------- | ------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------- |
+  | **DLE → XenForo** | XenForo | [ACP XF: OAuth2 clients](http://localhost:8789/admin.php?oauth2/clients/add) | `{XF}/oauth2/authorize`, `{XF}/api/oauth2/token`           |
+  | **XenForo → DLE** | DLE API | DevCraft → [OAuth-клиенты](oauth-client)                                     | `{DLE}/api/v2/oauth/authorize`, `{DLE}/api/v2/oauth/token` |
+
+  [Документация XenForo API](https://docs.xenforo.com/api) — когда **вызываете форум** (`XF-OAuth2`, заголовок `XF-Api-Key`). Штатный Connected account «XenForo» бьёт в пути **другого XF**, не в `/api/v2`. &#x2A;*Board URL = сайт DLE туда ставить нельзя.**
+</Callout>
+
+Клиент **DLE** (DevCraft) проверяйте в [Postman](postman). Форма ниже — другой клиент, на стороне XenForo.
+
+## DLE → XenForo (XF — Authorization Server) [#dle--xenforo-xf--authorization-server]
+
+Приложение (второй форум, свой бэкенд) получает токены **у XenForo** и ходит в [XF API](https://docs.xenforo.com/api). Это **не** логин на DLE и **не** OAuth-клиент из DevCraft.
+
+ACP: **Setup → OAuth2 clients → Add** — [admin.php?oauth2/clients/add](http://localhost:8789/admin.php?oauth2/clients/add).
+
+<Steps>
+  <Step>
+    ### Поля формы [#поля-формы]
+
+    | Поле ACP                 | Что ставить                                                                                                                                                                                                                           |
+    | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | Title / Description      | имя приложения                                                                                                                                                                                                                        |
+    | Client type              | **Confidential** (есть secret) или Public                                                                                                                                                                                             |
+    | Redirect URIs            | callback **этого** приложения, байт-в-байт; только `http` / `https`. Для SSO XF→XF: `{board второго XF}/connected_account.php`. Не `https://oauth.pstmn.io/v1/callback` — тот URL из [гайда Postman](postman) относится к клиенту DLE |
+    | Homepage URL / Image URL | по желанию                                                                                                                                                                                                                            |
+    | Allowed scopes           | минимум `user:read` (штатный XF Connected Account запрашивает его); не выдавать лишнее                                                                                                                                                |
+    | Active                   | включить                                                                                                                                                                                                                              |
+
+    На той же странице XF **показывает свои** endpoint — копируйте их в приложение, которое вызывает XF, **не** в админку DLE:
+
+    | На форме               | Локальный пример                          |
+    | ---------------------- | ----------------------------------------- |
+    | Authorization endpoint | `http://localhost:8789/oauth2/authorize`  |
+    | Token endpoint         | `http://localhost:8789/api/oauth2/token`  |
+    | Token revocation       | `http://localhost:8789/api/oauth2/revoke` |
+  </Step>
+
+  <Step>
+    ### Secret и проверка [#secret-и-проверка]
+
+    Сохраните Client ID и secret (**View secret** / **Regenerate secret**). Identity: `GET http://localhost:8789/api/me` с Bearer от **этого** клиента. Auth/Token URL — с формы выше (`/oauth2/authorize`, `/api/oauth2/token`), не `/api/v2`.
+
+    Тело XF:
+
+    ```json
+    { "me": { "user_id": 1, "username": "…", "email": "…" } }
+    ```
+
+    Не путать с DLE `GET /api/v2/me` (`user_id` / `sub` на верхнем уровне, поле `name`).
+  </Step>
+</Steps>
+
+SSO XF→XF: на **втором** форуме Setup → Connected accounts → **XenForo**, Board URL = первый XF (без `/` и без `index.php`), Client ID/secret с `oauth2/clients/add` первого форума.
+
+## XenForo → DLE (кастомный Connected Account) [#xenforo--dle-кастомный-connected-account]
+
+Логин/регистрация на форуме через аккаунт DLE. Штатного провайдера «произвольный OAuth2 → DLE» нет: `XenForoService` клеит `/oauth2/authorize` и `/api/oauth2/token`, `XenForoProviderData` читает `$data['me']['user_id']`.
+
+### Сторона DLE [#сторона-dle]
+
+<Steps>
+  <Step>
+    ### Ключ и клиент [#ключ-и-клиент]
+
+    API-ключ с [уровнем доступа](access-levels&#x29;. OAuth-клиент: grants &#x2A;*`authorization_code`*&#x2A; и &#x2A;*`refresh_token`**.
+
+    Redirect URI **точно** Board URL XenForo + `/connected_account.php`, как у [Google](https://docs.xenforo.com/manual/configuration/connected-accounts/google):
+
+    `http://localhost:8789/connected_account.php`
+  </Step>
+
+  <Step>
+    ### Секрет [#секрет]
+
+    Сохраните `client_id` / `client_secret`. Прогоните code-flow в [Postman](postman) с Callback = этот же URI.
+  </Step>
+</Steps>
+
+### Add-on XenForo [#add-on-xenforo]
+
+Готовый Connected Account provider: &#x2A;*[DLE API Connection Provider](../../../xenforo/dle_api_connection_provider/1.0.0/getting_started)** ([скачать](https://devcraft.club/downloads/dle-api-connection-provider.38/)).
+
+Add-on ID `DevCraftClub/DleApiConnectionProvider`, провайдер `dleapi`. После установки: **Setup → Connected accounts → DLE API** — `dle_base_url`, `client_id`, `client_secret` → **Test provider**.
+
+Подробная настройка: [configuration](../../../xenforo/dle_api_connection_provider/1.0.0/guides/configuration).
+
+### League GenericProvider (скрипт, не кнопка логина XF) [#league-genericprovider-скрипт-не-кнопка-логина-xf]
+
+Для проверки code-flow вне Connected accounts. Кнопка «Войти через DLE» на форуме так не появится.
+
+```php
+$provider = new \League\OAuth2\Client\Provider\GenericProvider([
+    'clientId'                => '…',
+    'clientSecret'            => '…',
+    'redirectUri'             => 'http://localhost:8789/connected_account.php',
+    'urlAuthorize'            => 'http://dle200.test/api/v2/oauth/authorize',
+    'urlAccessToken'          => 'http://dle200.test/api/v2/oauth/token',
+    'urlResourceOwnerDetails' => 'http://dle200.test/api/v2/me',
+]);
+```
+
+## Postman: какой URL [#postman-какой-url]
+
+| Цель                                        | Auth URL                                    | Token URL                                | Identity         |
+| ------------------------------------------- | ------------------------------------------- | ---------------------------------------- | ---------------- |
+| Токен DLE (клиент из DevCraft)              | `http://dle200.test/api/v2/oauth/authorize` | `http://dle200.test/api/v2/oauth/token`  | `GET /api/v2/me` |
+| Токен XenForo (клиент с oauth2/clients/add) | `http://localhost:8789/oauth2/authorize`    | `http://localhost:8789/api/oauth2/token` | `GET /api/me`    |
+
+Первая строка — [гайд Postman](postman) (клиент DevCraft). Вторая — отдельный клиент в ACP XenForo; помощник Postman для неё не из гайда DLE.
+
+## Типичные ошибки [#типичные-ошибки]
+
+| Симптом                                  | Что проверить                                                                                        |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| JSON-ошибка на authorize DLE, нет `code` | Redirect URI = `http://localhost:8789/connected_account.php` байт-в-байт; grant `authorization_code` |
+| 404 на token                             | Не подставлять XF `/api/oauth2/token` в клиента DLE и наоборот                                       |
+| Штатный CA «XenForo» к DLE               | Пути и JSON `/me` чужие — нужен кастомный Service                                                    |
+| `error=demo_mode`                        | `DEMO_MODE=false` на DLE                                                                             |
+| Authorize сразу на логин DLE             | Сессия DLE в том же браузере, что и redirect                                                         |
+| XF `GET /api/me` 401                     | Bearer от **XF** token, не DLE; scope `user:read`                                                    |
+
+## См. также [#см-также]
+
+* [DLE API Connection Provider](../../../xenforo/dle_api_connection_provider/1.0.0/getting_started)
+* [Проверка в Postman](postman)
+* [OAuth-клиенты](oauth-client)
+* [OAuth-сервер](oauth-server)
+* [Авторизация](auth)
 
 
 # Установка (/dev/dle/dle_api/200.1.0/install)
@@ -88631,24 +89186,20 @@ Email-шаблоны движка: [Шаблоны](templates).
    * локаль `devcraft/locales/ru_RU/dleapi.xliff`
 4. В каталоге `api/` выполните `composer install`.
 5. Откройте модуль **DLE API** в админке DevCraft: при первом обращении к ORM Cycle создаст таблицы `{prefix}_api_keys`, `{prefix}_api_scope`, `{prefix}_api_oauth_*` (миграции в `devcraft/src/database/migrations/`). DDL в `install.xml` плагина для этих таблиц не используется.
-6. (Опционально) Блок «API-ключ» в профиле — см. [ниже](#профиль-на-сайте).
+6. (Опционально) Блок «API-ключ» в профиле — см. [ниже](#профиль-на-сайте). Разметка и стили: `templates/<Skin>/devcraft/dleapi/` (fallback — `Default`).
 7. Создайте API-ключ и [OAuth-клиент](guides/oauth-client). Дальше — [авторизация](guides/auth) и [HTTP](reference/http).
 
 ## Профиль на сайте [#профиль-на-сайте]
 
-Кнопка «Запросить / сгенерировать ключ» **не появляется из коробки**: плагин кладёт `engine/modules/devcraft/dleapi_profile.php`. Нужны **два** include в шаблоне скина.
+Кнопка «Запросить / сгенерировать ключ» **не появляется из коробки**: плагин кладёт `engine/modules/devcraft/dleapi_profile.php` (PHP) и шаблоны `templates/Default/devcraft/dleapi/` (`.tpl` / `.css` / `.js`, рендер через штатный `dle_template`). Нужны **два** include в шаблоне скина. Чтобы переопределить вид — скопируйте `templates/Default/devcraft/dleapi/` в свою тему.
 
 1. В DevCraft → **DLE API** → [Настройки](guides/settings#профиль-пользователя) включите **Разрешить пользователям генерировать ключ** (и при необходимости **Показывать блок API-ключа**).
 2. Задайте [уровень по умолчанию](guides/settings#уровни-доступа) или [привязку групп](guides/access-sync) — без уровня запрос вернёт ошибку.
-3. В шаблоне профиля (`templates/<Skin>/userinfo.tpl&#x60;) внутри &#x2A;*`[own-profile]`** добавьте HTML-блок:
+3. В шаблоне профиля (`templates/<Skin>/userinfo.tpl`) добавьте HTML-блок **без** `[own-profile]`. PHP сам решает, кому показывать виджет (владелец или администратор). `[own-profile]` скрывает блок на чужих страницах даже для админа.
 
 ```html
-[own-profile]
 {include file="engine/modules/devcraft/dleapi_profile.php"}
-[/own-profile]
 ```
-
-Не используйте `[not-logged]`: у администратора этот блок открыт и на **чужих** профилях (доступ к редактированию).
 
 Пример места: вкладка просмотра профиля, после `{info}` / «О себе».
 
@@ -88671,8 +89222,8 @@ Email-шаблоны движка: [Шаблоны](templates).
 * у уровня **без** премодерации — ключ создаётся сразу;
 * с **премодерацией** — создаётся заявка (админка → **Заявки на ключ**), пользователю уйдёт уведомление после решения.
 
-<Callout type="warn" title="Чужой профиль">
-  Блок относится только к **текущей сессии** и показывается лишь на **своей** странице (`[own-profile]` + проверка `$row['user_id']` в PHP). На чужом профиле, даже у админа, ключ не выводится.
+<Callout type="info" title="Чужой профиль">
+  Гость и обычный пользователь чужой ключ не видят (`$row['user_id']` в PHP). Администратор на чужой странице видит блок и может одобрить заявку.
 </Callout>
 
 ## Редирект `/api` → `/api/v2` [#редирект-api--apiv2]
@@ -88702,7 +89253,7 @@ location /api/v2/ {
 
 На ресурсах нужен заголовок `Authorization: Bearer <access_token>` (сырой API-ключ **не** принимается). Как получить токен: [Авторизация](../guides/auth) и [OAuth-сервер](../guides/oauth-server).
 
-Исключения без Bearer: `GET /health`, `GET /.well-known/oauth-authorization-server`.
+Исключения без AuthToken: `GET /health`, `GET /.well-known/oauth-authorization-server`. Для проверки **сырого** API-ключа — `GET /key/check` с `Authorization: Bearer <apiKey>` (не access\_token).
 
 Trailing slash опционален: `/me` и `/me/` одинаковы.
 
@@ -88712,22 +89263,23 @@ Trailing slash опционален: `/me` и `/me/` одинаковы.
 
 ## Эндпоинты (обзор) [#эндпоинты-обзор]
 
-| Метод                     | Путь                                | Описание                     |
-| ------------------------- | ----------------------------------- | ---------------------------- |
-| GET                       | `/table/{name}/`                    | Список + фильтры             |
-| GET                       | `/table/{name}/{id}/`               | Одна запись                  |
-| POST                      | `/table/{name}/`                    | Create                       |
-| PUT                       | `/table/{name}/{id}/`               | Update                       |
-| DELETE                    | `/table/{name}/{id}/`               | Delete                       |
-| GET/POST                  | `/post/` …                          | Новости (sugar + BC-фильтры) |
-| POST                      | `/user/`, `/usergroup/`, `/plugin/` | Sugar create                 |
-| POST                      | `/upload/`                          | multipart-загрузка           |
-| GET                       | `/conversations/`                   | Переписки                    |
-| GET                       | `/health/`                          | Healthcheck                  |
-| GET                       | `/me/`, `/oauth/userinfo/`          | Субъект токена               |
-| POST                      | `/oauth/token/`, `/oauth/revoke/`   | Токен / revoke               |
-| GET/POST                  | `/oauth/authorize/`                 | Authorization Code           |
-| GET/POST/PUT/PATCH/DELETE | `/xfields/{scope}/…`                | Каталог доп. полей           |
+| Метод                     | Путь                                | Описание                                                    |
+| ------------------------- | ----------------------------------- | ----------------------------------------------------------- |
+| GET                       | `/table/{name}/`                    | Список + фильтры                                            |
+| GET                       | `/table/{name}/{id}/`               | Одна запись                                                 |
+| POST                      | `/table/{name}/`                    | Create                                                      |
+| PUT                       | `/table/{name}/{id}/`               | Update                                                      |
+| DELETE                    | `/table/{name}/{id}/`               | Delete                                                      |
+| GET/POST                  | `/post/` …                          | Новости (sugar + BC-фильтры)                                |
+| POST                      | `/user/`, `/usergroup/`, `/plugin/` | Sugar create                                                |
+| POST                      | `/upload/`                          | multipart-загрузка                                          |
+| GET                       | `/conversations/`                   | Переписки                                                   |
+| GET                       | `/health/`                          | Healthcheck                                                 |
+| GET                       | `/key/check/`                       | Проверка сырого API-ключа (Bearer `<apiKey>`, не AuthToken) |
+| GET                       | `/me/`, `/oauth/userinfo/`          | Субъект токена                                              |
+| POST                      | `/oauth/token/`, `/oauth/revoke/`   | Токен / revoke                                              |
+| GET/POST                  | `/oauth/authorize/`                 | Authorization Code                                          |
+| GET/POST/PUT/PATCH/DELETE | `/xfields/{scope}/…`                | Каталог доп. полей                                          |
 
 Полная схема: [OpenAPI](openapi).
 
@@ -92210,6 +92762,161 @@ none|Не присылать уведомления
 ***
 
 Исходники на [GitHub](https://github.com/DevCraftClub).
+
+
+# Журнал изменений (/dev/xenforo/dle_api_connection_provider/1.0.0/changelog)
+
+
+
+## 1.0.0 — 2026-08-19 [#100--2026-08-19]
+
+### Добавлено [#добавлено]
+
+* Connected account provider `dleapi` для XenForo 2.3
+* OAuth2 к DLE API: `/api/v2/oauth/authorize`, `/api/v2/oauth/token`, identity `/api/v2/me`
+* ACP: настройка display title, DLE base URL, client\_id, client\_secret
+* Test provider и public-шаблон связанного аккаунта
+* Add-on ID: `DevCraftClub/DleApiConnectionProvider`
+
+
+# Начало работы (/dev/xenforo/dle_api_connection_provider/1.0.0/getting_started)
+
+
+
+Connected account provider для XenForo 2.3: пользователи входят или привязывают аккаунт через **DLE API** (`authorization_code`), без штатного провайдера «XenForo → другой XF».
+
+#### Скачать: [DLE API Connection Provider на DevCraft Club](https://devcraft.club/downloads/dle-api-connection-provider.38/) [#скачать-dle-api-connection-provider-на-devcraft-club]
+
+## Назначение [#назначение]
+
+| Компонент   | Роль                                                            |
+| ----------- | --------------------------------------------------------------- |
+| XenForo     | Relying party (`connected_account.php`)                         |
+| DLE API     | Authorization Server (`/api/v2/oauth/*`, identity `/api/v2/me`) |
+| Этот add-on | Provider `dleapi`: Service + ProviderData под пути и JSON DLE   |
+
+<Callout type="warn" title="Не путать с OAuth2 clients XenForo">
+  Регистрация клиента в **Setup → OAuth2 clients** на форуме — для вызова **API XenForo**, не для входа через DLE. Это направление описано в [гайде DLE API: XenForo](../../dle/dle_api/200.1.0/guides/xenforo) (раздел «DLE → XenForo»).
+</Callout>
+
+## Требования [#требования]
+
+| Компонент        | Версия                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------ |
+| XenForo          | **≥ 2.3.0**                                                                                      |
+| DLE + DLE API    | **200.1.0** ([DevCraft Admin](../../dle/devcraft_admin/200.4.0/getting_started), модуль DLE API) |
+| OAuth-клиент DLE | grants `authorization_code`, `refresh_token`                                                     |
+
+## Документация [#документация]
+
+| Раздел                  | Ссылка                                                                  |
+| ----------------------- | ----------------------------------------------------------------------- |
+| Установка               | [install](install)                                                      |
+| Настройка DLE + XenForo | [configuration](guides/configuration)                                   |
+| OAuth-клиенты DLE       | [DLE API: OAuth-клиенты](../../dle/dle_api/200.1.0/guides/oauth-client) |
+| Оба направления OAuth   | [DLE API: XenForo](../../dle/dle_api/200.1.0/guides/xenforo)            |
+| Changelog               | [changelog](changelog)                                                  |
+
+## Быстрый старт [#быстрый-старт]
+
+1. Установите add-on ([install](install)).
+2. В DevCraft создайте OAuth-клиент с Redirect URI `{board}/connected_account.php`.
+3. ACP XenForo → **Setup → Connected accounts → DLE API** — укажите URL DLE, client\_id и secret.
+4. **Test provider** — должен вернуть `name` и `email` из `GET /api/v2/me`.
+
+
+# Настройка (/dev/xenforo/dle_api_connection_provider/1.0.0/guides/configuration)
+
+
+
+Примеры URL: XenForo `http://localhost:8789`, DLE `http://dle200.test`.
+
+## 1. OAuth-клиент на DLE [#1-oauth-клиент-на-dle]
+
+DevCraft Admin → **DLE API** → [OAuth-клиенты](../../dle/dle_api/200.1.0/guides/oauth-client).
+
+| Поле         | Значение                                                                                                          |
+| ------------ | ----------------------------------------------------------------------------------------------------------------- |
+| Grants       | `authorization_code`, `refresh_token`                                                                             |
+| Redirect URI | `{Board URL XenForo}/connected_account.php` — байт-в-байт, например `http://localhost:8789/connected_account.php` |
+| API-ключ     | с нужным [уровнем доступа](../../dle/dle_api/200.1.0/guides/access-levels)                                        |
+
+Сохраните `client_id` и `client_secret` (секрет показывают один раз).
+
+<Callout type="info" title="Postman">
+  Проверка клиента DLE — [гайд Postman](../../dle/dle_api/200.1.0/guides/postman). Callback = тот же `connected_account.php`, не `oauth.pstmn.io` (это только для клиента DLE без форума).
+</Callout>
+
+## 2. Connected account в XenForo [#2-connected-account-в-xenforo]
+
+ACP → **Setup → Connected accounts** → **DLE API** (`dleapi`).
+
+| Поле ACP           | Пример                                                           |
+| ------------------ | ---------------------------------------------------------------- |
+| Display title      | «Мой сайт DLE» (кнопка входа)                                    |
+| DLE base URL       | `http://dle200.test` — без `/` в конце, без `/api/v2` и путей XF |
+| Client ID / secret | из DevCraft                                                      |
+
+**Test provider** — откроется OAuth к DLE; после входа должны отобразиться имя и email из `/api/v2/me`.
+
+## 3. Регистрация и вход [#3-регистрация-и-вход]
+
+В **Setup → Options → User registration** включите connected accounts, если нужна регистрация через DLE. Кнопка «Continue with …» использует `display_title`.
+
+## Типичные ошибки [#типичные-ошибки]
+
+| Симптом                              | Что проверить                                                                       |
+| ------------------------------------ | ----------------------------------------------------------------------------------- |
+| JSON-ошибка на authorize, нет `code` | Redirect URI в DLE = `{board}/connected_account.php` байт-в-байт                    |
+| `error=demo_mode`                    | `DEMO_MODE=false` в `.env` DLE                                                      |
+| Authorize сразу на логин DLE         | Войдите на DLE в том же браузере                                                    |
+| Test provider: 404 на token          | В DLE base URL не должно быть `/oauth2` или `/api/oauth2` — только корень сайта DLE |
+| Штатный CA «XenForo» вместо add-on   | Board URL другого XF ≠ URL DLE; нужен провайдер **DLE API** из add-on               |
+
+## См. также [#см-также]
+
+* [Начало работы](../getting_started)
+* [DLE API: XenForo (оба направления)](../../dle/dle_api/200.1.0/guides/xenforo)
+* [OAuth-сервер DLE](../../dle/dle_api/200.1.0/guides/oauth-server)
+
+
+# Установка (/dev/xenforo/dle_api_connection_provider/1.0.0/install)
+
+
+
+## Требования [#требования]
+
+* XenForo &#x2A;*2.3.0+**
+* На сайте DLE уже настроен [DLE API 200.1.0](../../dle/dle_api/200.1.0/install) и OAuth-клиент ([OAuth-клиенты](../../dle/dle_api/200.1.0/guides/oauth-client))
+
+## Установка из архива [#установка-из-архива]
+
+1. Скачайте add-on: [devcraft.club/downloads/dle-api-connection-provider.38](https://devcraft.club/downloads/dle-api-connection-provider.38/).
+2. Распакуйте содержимое `upload/` в корень XenForo (каталог с `src/`, `admin.php`).
+3. ACP → **Add-ons** → **Install add-on** → выберите **DLE API Connection Provider** (`DevCraftClub/DleApiConnectionProvider`).
+4. После установки провайдер **DLE API** (`dleapi`) появится в **Setup → Connected accounts**.
+
+## Установка из исходников (разработка) [#установка-из-исходников-разработка]
+
+Add-on ID: `DevCraftClub/DleApiConnectionProvider`
+
+```
+src/addons/DevCraftClub/DleApiConnectionProvider/
+```
+
+Из корня XenForo:
+
+```bash
+php cmd.php xf-addon:install DevCraftClub/DleApiConnectionProvider
+```
+
+## Следующий шаг [#следующий-шаг]
+
+[Настройка OAuth-клиента DLE и полей провайдера](guides/configuration).
+
+## Удаление [#удаление]
+
+ACP → **Add-ons** → Uninstall **DLE API Connection Provider**. Удаляются запись провайдера `dleapi` и связи пользователей с этим провайдером.
 
 
 # DevCraft Документации (/)

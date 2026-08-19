@@ -418,6 +418,7 @@
             - [Точки входа](/dev/dle/devcraft_admin/200.4.0/reference/back-end/entry_points): Точки входа DevCraft Admin: DLE, bootstrap, AJAX.
             - [Манифест модуля](/dev/dle/devcraft_admin/200.4.0/reference/back-end/manifest): Структура manifest.php модуля DevCraft Admin.
             - [Composer-пакеты модулей](/dev/dle/devcraft_admin/200.4.0/reference/back-end/composer_packages): Manifest composer_required, синхронизация json/lock и использование Core-API.
+            - [Shared-пакеты и абстракции](/dev/dle/devcraft_admin/200.4.0/reference/back-end/shared_packages): Граница между DevCraft Admin и внешними shared-пакетами, включая devcraftclub/dev-tools.
             - Classes
               - [Класс: AbstractEntity](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractEntity): Документация по плагину класс: abstractentity для DLE.
               - [Класс: AbstractPage](/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractPage): Документация по плагину класс: abstractpage для DLE.
@@ -516,10 +517,12 @@
           - [Авторизация](/dev/dle/dle_api/200.1.0/guides/auth): Bearer AuthToken; credential_type; /me; DEMO_MODE; уровни доступа.
           - [OAuth-клиенты](/dev/dle/dle_api/200.1.0/guides/oauth-client): Админка DLE API: эндпоинты AS, создание и редактирование OAuth-клиентов, grants, секрет.
           - [OAuth Authorization Server](/dev/dle/dle_api/200.1.0/guides/oauth-server): Discovery, authorize/token/revoke, credential_type с примерами curl в табах.
-          - [Настройки](/dev/dle/dle_api/200.1.0/guides/settings): Параметры модуля DLE API в DevCraft: безопасность, OAuth TTL, профиль, уведомления.
+          - [Проверка в Postman](/dev/dle/dle_api/200.1.0/guides/postman): Проверка OAuth-клиента DLE API через встроенный OAuth 2.0 в Postman: client_credentials, authorization_code + PKCE, GET /me
+          - [XenForo и DLE API](/dev/dle/dle_api/200.1.0/guides/xenforo): OAuth2 в обе стороны: XenForo как AS (ACP oauth2/clients/add) и XenForo как клиент DLE (Connected Account / GenericProvider)
+          - [Настройки](/dev/dle/dle_api/200.1.0/guides/settings): Параметры модуля DLE API в DevCraft: безопасность, OAuth TTL, профиль, уведомления и встроенный редактор email-шаблонов.
           - [Уровни доступа](/dev/dle/dle_api/200.1.0/guides/access-levels): Access levels DLE API: own_only, cheater, маски, scopes read/write/edit/delete.
           - [Синхронизация с группами](/dev/dle/dle_api/200.1.0/guides/access-sync): Привязка групп пользователей DLE к уровням доступа DLE API.
-          - [Шаблоны](/dev/dle/dle_api/200.1.0/guides/templates): Email- и PM-шаблоны уведомлений DLE API: плейсхолдеры {%…%}.
+          - [Шаблоны](/dev/dle/dle_api/200.1.0/guides/templates): Email- и PM-шаблоны уведомлений DLE API: встроенный редактор, плейсхолдеры и дефолтные шаблоны.
           - [Безопасность](/dev/dle/dle_api/200.1.0/guides/security): Встроенные меры DLE API и операционный чеклист для продакшена.
           - [Миграция API v1 → v2](/dev/dle/dle_api/200.1.0/guides/migrate-v1-v2): Чем v2 отличается от удалённого v1 и как перевести клиента.
         - Справочник
@@ -579,6 +582,14 @@
     - [MyStatus - Статус сериалов](/dev/dle/mystatus): Документация по модулю MyStatus для DLE. Отображение статуса пользователей.
     - [Release Status - Документация DevCraft](/dev/dle/releasestatus): Документация по модулю Release Status для DLE. Управление статусами релизов.
     - [Цены по курсу валют](/dev/dle/paid-currencies_rate): Документация по плагину цены по курсу валют для DLE.
+  - XenForo
+    - DLE API Connection Provider
+      - 1.0.0
+        - [Начало работы](/dev/xenforo/dle_api_connection_provider/1.0.0/getting_started): XenForo add-on: вход на форум через аккаунт DLE (DLE API OAuth2, Connected Account)
+        - [Установка](/dev/xenforo/dle_api_connection_provider/1.0.0/install): Установка DLE API Connection Provider для XenForo 2.3
+        - Руководства
+          - [Настройка](/dev/xenforo/dle_api_connection_provider/1.0.0/guides/configuration): OAuth-клиент DLE и Connected account DLE API в ACP XenForo
+        - [Журнал изменений](/dev/xenforo/dle_api_connection_provider/1.0.0/changelog): История версий DLE API Connection Provider для XenForo
 - Устаревшее
   - MH Admin (Legacy)
     - [Главная](/deprecated/mhadmin/install)
