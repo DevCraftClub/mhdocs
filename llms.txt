@@ -512,22 +512,31 @@
     - DLE API
       - 200.1.0
         - [Начало работы](/dev/dle/dle_api/200.1.0/getting_started): Неофициальное REST API для DataLife Engine 20.0 (/api/v2).
-        - [Установка](/dev/dle/dle_api/200.1.0/install): Установка DLE API 200.1.0 для DLE 20.0 с DevCraft Admin.
+        - [Установка](/dev/dle/dle_api/200.1.0/install): Особые шаги DLE API после общей установки плагина DevCraft.
         - Гайды
-          - [Авторизация](/dev/dle/dle_api/200.1.0/guides/auth): Bearer AuthToken; credential_type; /me; DEMO_MODE; уровни доступа.
-          - [OAuth-клиенты](/dev/dle/dle_api/200.1.0/guides/oauth-client): Админка DLE API: эндпоинты AS, создание и редактирование OAuth-клиентов, grants, секрет.
-          - [OAuth Authorization Server](/dev/dle/dle_api/200.1.0/guides/oauth-server): Discovery, authorize/token/revoke, credential_type с примерами curl в табах.
-          - [Проверка в Postman](/dev/dle/dle_api/200.1.0/guides/postman): Проверка OAuth-клиента DLE API через встроенный OAuth 2.0 в Postman: client_credentials, authorization_code + PKCE, GET /me
-          - [XenForo и DLE API](/dev/dle/dle_api/200.1.0/guides/xenforo): OAuth2 в обе стороны: XenForo как AS (ACP oauth2/clients/add) и XenForo как клиент DLE (Connected Account / GenericProvider)
-          - [Настройки](/dev/dle/dle_api/200.1.0/guides/settings): Параметры модуля DLE API в DevCraft: безопасность, OAuth TTL, профиль, уведомления и встроенный редактор email-шаблонов.
-          - [Уровни доступа](/dev/dle/dle_api/200.1.0/guides/access-levels): Access levels DLE API: own_only, cheater, маски, scopes read/write/edit/delete.
-          - [Синхронизация с группами](/dev/dle/dle_api/200.1.0/guides/access-sync): Привязка групп пользователей DLE к уровням доступа DLE API.
-          - [Шаблоны](/dev/dle/dle_api/200.1.0/guides/templates): Шаблоны DLE API: публичный блок профиля (profile.tpl), email- и PM-уведомления, плейсхолдеры и дефолтные тексты.
-          - [Безопасность](/dev/dle/dle_api/200.1.0/guides/security): Встроенные меры DLE API и операционный чеклист для продакшена.
+          - [Авторизация](/dev/dle/dle_api/200.1.0/guides/auth): Как получить пропуск (Bearer) и ходить в /api/v2: AuthToken, /me, /key/check.
+          - [OAuth-клиенты](/dev/dle/dle_api/200.1.0/guides/oauth-client): Как завести приложение в админке DLE API: ключ, grants, redirect, секрет.
+          - [OAuth Authorization Server](/dev/dle/dle_api/200.1.0/guides/oauth-server): Как сайт DLE выдаёт токены: discovery, authorize, credential_type и curl.
+          - [Проверка в Postman](/dev/dle/dle_api/200.1.0/guides/postman): Проверка OAuth-клиента DLE API в Postman: client_credentials, authorization_code + PKCE, GET /me.
+          - [Как работать с эндпоинтами](/dev/dle/dle_api/200.1.0/guides/endpoints): База /api/v2: пропуск Bearer, sugar vs /table/, ответы и типичные ошибки.
+          - [Инструкция .env](/dev/dle/dle_api/200.1.0/guides/env): Переменные ROOT/.env для DLE API: DEMO_MODE, DLEAPI_SECURE и настройки для локальных тестов.
+          - [Создание новости](/dev/dle/dle_api/200.1.0/guides/posts-create): Как создать новость через POST /post/ и править её через /table/post/.
+          - [Поиск новостей](/dev/dle/dle_api/200.1.0/guides/posts-search): Как получить список новостей с фильтрами: GET /post/ и GET /table/post/.
+          - [Доп. поля и новости](/dev/dle/dle_api/200.1.0/guides/xfields-news): Каталог xfields, encode в строку DLE, запись в новость и фильтр xf[].
+          - [Создание пользователя](/dev/dle/dle_api/200.1.0/guides/users-create): Как создать пользователя DLE через POST /user/ или /table/users/.
+          - [Поиск пользователей](/dev/dle/dle_api/200.1.0/guides/users-search): Как найти пользователей через GET /table/users/ с фильтрами.
+          - [Создание плагина](/dev/dle/dle_api/200.1.0/guides/plugins-create): Как зарегистрировать плагин DLE через POST /plugin/ с файлами правок.
+          - [SDK (практика)](/dev/dle/dle_api/200.1.0/guides/sdk): Как пользоваться DcApi на том же PHP, что и сайт: новости, пользователи, плагины, query.
+          - [XenForo и DLE API](/dev/dle/dle_api/200.1.0/guides/xenforo): Два направления OAuth: логин на форуме через DLE и токены XenForo для XF API.
+          - [Настройки](/dev/dle/dle_api/200.1.0/guides/settings): Что крутить в DevCraft → DLE API → Настройки: ключи, TTL, профиль, уведомления.
+          - [Уровни доступа](/dev/dle/dle_api/200.1.0/guides/access-levels): Уровень = набор разрешений для API-ключа: read/write/edit/delete, own_only, cheater.
+          - [Синхронизация с группами](/dev/dle/dle_api/200.1.0/guides/access-sync): Как привязать группу пользователей DLE к уровню доступа API.
+          - [Шаблоны](/dev/dle/dle_api/200.1.0/guides/templates): Блок API-ключа в профиле (.tpl) и тексты писем/ЛС о заявках на ключ.
+          - [Безопасность](/dev/dle/dle_api/200.1.0/guides/security): Что API уже защищает сам и что проверить перед продакшеном.
           - [Миграция API v1 → v2](/dev/dle/dle_api/200.1.0/guides/migrate-v1-v2): Чем v2 отличается от удалённого v1 и как перевести клиента.
         - Справочник
           - [HTTP /api/v2](/dev/dle/dle_api/200.1.0/reference/http): REST-эндпоинты DLE API: Bearer, /table, фильтры, xfields, upload.
-          - [SDK (DcApi)](/dev/dle/dle_api/200.1.0/reference/sdk): In-process SDK DcApi: фасады Schema, query, xfields.
+          - [SDK (DcApi)](/dev/dle/dle_api/200.1.0/reference/sdk): Шпаргалка in-process SDK DcApi: фасады Schema, query, xfields.
           - [OpenAPI](/dev/dle/dle_api/200.1.0/reference/openapi): Интерактивная спецификация OpenAPI для /api/v2.
         - [Журнал изменений](/dev/dle/dle_api/200.1.0/changelog): Журнал изменений DLE API.
     - DLE Faker
