@@ -91485,6 +91485,687 @@ $tpl->set( '{НАЗВАНИЕ}', $ОПРЕДЕЛИТЕЛЬНОЕ_НАЗВАНИ�
 Для этого достаточно установить архив из папки 13.х, залить файлы и папки engine и templates из папки 12.х в корень сайта и проследовать установке начиная с пункта шаблонов.
 
 
+# История изменений (/dev/dle/notifications/200.1.0/changelog)
+
+
+
+Дублируется во вкладке **История изменений** в админке модуля.
+
+Репозиторий: [DLE-Notifications](https://github.com/DevCraftClub/DLE-Notifications).
+
+## 200.1.0 (2026-08-24) [#20010-2026-08-24]
+
+Первый релиз под DLE 20 и DevCraft Admin.
+
+* доставка: сайт, email, ЛС;
+* подписки: новость, категория, автор, тег, xfield, все новые материалы;
+* badge с числом непрочитанных и polling;
+* тексты в `.tpl` темы, плейсхолдеры вроде {'{title}'} и {'{full-link}'};
+* HMAC-ссылка «Отписаться» в письме;
+* права по группам;
+* упоминания `@ник` в комментариях.
+
+
+# Начало работы (/dev/dle/notifications/200.1.0/getting_started)
+
+
+
+**DLE Уведомления** рассылает сообщения по событиям сайта: правка новости, новый комментарий, упоминание `@ник`, модерация и т.д.
+
+Каналы доставки:
+
+* сайт — badge (колокольчик) и стена;
+* email;
+* личные сообщения DLE.
+
+Пользователь подписывается на новость, категорию, автора, тег, доп. поле или на все новые публикации и получает только релевантные события.
+
+Зависимость: [DevCraft Admin](../../devcraft_admin/getting_started) 200.4.0+.
+
+## Возможности [#возможности]
+
+* кнопка подписки у новости, категории и других сущностей;
+* стена уведомлений и счётчик непрочитанных с polling;
+* тексты писем, ЛС и записей inbox в `.tpl` темы;
+* права по группам DLE.
+
+## Разделы [#разделы]
+
+<Cards>
+  <Card title="Установка" href="/dev/dle/notifications/200.1.0/install">
+    ZIP, autoload, таблицы, копирование шаблонов
+  </Card>
+
+  <Card title="Вставка в шаблоны" href="/dev/dle/notifications/200.1.0/guides/subscribe_wall">
+    include: подписка, стена, badge
+  </Card>
+
+  <Card title="Типы подписок" href="/dev/dle/notifications/200.1.0/guides/subscription_types">
+    news, cat, user, tag, xfield, all
+  </Card>
+
+  <Card title="Шаблоны и теги" href="/dev/dle/notifications/200.1.0/guides/scenario_templates">
+    scenarios, wrappers, subscribe, inbox
+  </Card>
+</Cards>
+
+## Минимальное подключение [#минимальное-подключение]
+
+Полная новость (`fullstory.tpl`):
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&type=news&id={news-id}"}
+```
+
+Шапка: badge и JS (клики, «прочитать всё», polling):
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+```
+
+Стена (профиль или отдельная страница):
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+```
+
+## Требования [#требования]
+
+* DLE 20+
+* PHP 8.3+
+* DevCraft Admin 200.4.0+
+
+## Дальше [#дальше]
+
+* [Установка](./install)
+* [Шаблоны и теги](./guides/scenario_templates)
+* [Права групп](./guides/permissions)
+
+
+# Inbox: стена и badge (/dev/dle/notifications/200.1.0/guides/inbox_api)
+
+
+
+Inbox доступен только авторизованным пользователям:
+
+* **стена** — полный список;
+* **badge** — счётчик и короткий список по клику.
+
+## Разметка [#разметка]
+
+Badge + JS:
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+```
+
+Стена:
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+```
+
+## Действия [#действия]
+
+* клик по badge — непрочитанные;
+* клик по записи — mark as read;
+* «Прочитать все»;
+* удаление, если в шаблоне есть кнопка (AJAX на сервер).
+
+## Polling [#polling]
+
+Настройка &#x2A;*«Интервал polling badge»**: период в секундах. `0` — только после действий пользователя.
+
+## Удаление [#удаление]
+
+По умолчанию hard delete. &#x2A;*«Мягкое удаление inbox»** (`soft_delete`) помечает запись (`deleted`), не стирает строку. Имеет смысл для аудита; обычному сайту достаточно hard delete.
+
+## Лимит стены [#лимит-стены]
+
+**«Лимит записей на стене»** — сколько последних записей отдать за запрос.
+
+Оформление: `badge.tpl`, `wall.tpl`, `item.tpl` — [шаблоны и теги](./scenario_templates).
+
+## См. также [#см-также]
+
+* [Вставка в шаблоны](./subscribe_wall)
+* [Права групп](./permissions)
+
+
+# Права групп (/dev/dle/notifications/200.1.0/guides/permissions)
+
+
+
+Админка → **DLE Уведомления → Права групп**. Набор флагов свой у каждой группы.
+
+| Флаг                                                                    | Эффект                                  |
+| ----------------------------------------------------------------------- | --------------------------------------- |
+| Группа администраторов?                                                 | полный доступ                           |
+| Разрешить использование уведомлений                                     | inbox / получение уведомлений модуля    |
+| Просматривать стену уведомлений                                         | `focus=wall`                            |
+| Получать ЛС при уведомлении                                             | канал PM                                |
+| Получать email при уведомлении                                          | канал почты                             |
+| Разрешить отписку от ЛС                                                 | пользователь может выключить PM в prefs |
+| Разрешить отписку от email                                              | то же для почты / профиля DLE           |
+| Подписываться на новости / категории / авторов / теги / доп. поля / все | соответствующие кнопки                  |
+| Упоминать пользователей в комментариях                                  | `@ник` шлёт уведомление                 |
+| Менять настройки пользователя                                           | модерация prefs чужих аккаунтов         |
+
+<Callout type="info">
+  Пока у группы нет своей записи прав: обычные пользовательские флаги считаются включёнными, админские и модераторские — выключенными.
+</Callout>
+
+Без «Разрешить отписку от email/ЛС» пользователь не снимет канал в prefs: письма или ЛС продолжат уходить, если канал включён в настройках модуля.
+
+## См. также [#см-также]
+
+* [Настройки пользователя](./user_prefs)
+* [Типы подписок](./subscription_types)
+
+
+# Шаблоны и теги (/dev/dle/notifications/200.1.0/guides/scenario_templates)
+
+
+
+Тексты **не** редактируются в формах админки. Источник — файлы скина:
+
+`templates/ВАША_ТЕМА/devcraft/notifications/`
+
+Отсутствующий файл берётся из `Default`. В настройках модуля задаются только пути к каталогам.
+
+Плейсхолдеры подставляет `ParseTemplateTags`, не локальный `str_replace`.
+
+## Дерево [#дерево]
+
+```text
+devcraft/notifications/
+├── scenarios/     тело события
+├── wrappers/      обёртка email / ЛС
+├── subscribe/     кнопки на сайте
+├── item.tpl       строка inbox
+├── wall.tpl       стена
+├── badge.tpl      колокольчик
+└── notifications.js
+```
+
+## Сценарии (`scenarios/`) [#сценарии-scenarios]
+
+| Файл                     | Когда                                                        |
+| ------------------------ | ------------------------------------------------------------ |
+| `news_update.tpl`        | подписчики `news`: новость изменена                          |
+| `news_published.tpl`     | подписчики cat / user / tag / xfield / all: новая публикация |
+| `moderation_approve.tpl` | автору: материал одобрен                                     |
+| `moderation_reject.tpl`  | автору: снят с публикации                                    |
+| `comment_reply.tpl`      | ответ на комментарий                                         |
+| `comment_on_news.tpl`    | комментарий к вашей новости                                  |
+| `mention.tpl`            | упоминание `@ник`                                            |
+
+### Теги сценариев и обёрток [#теги-сценариев-и-обёрток]
+
+Пишутся в `scenarios/*.tpl` и `wrappers/*.tpl`.
+
+| Тег                   | Значение                                   |
+| --------------------- | ------------------------------------------ |
+| {'{title}'}           | заголовок новости                          |
+| {'{full-link}'}       | URL полной новости                         |
+| {'{user}'}            | автор новости (в mention — упомянутый ник) |
+| {'{sender}'}          | инициатор события                          |
+| {'{message}'}         | уже собранный текст сценария (в wrapper)   |
+| {'{unsubscribe-url}'} | HMAC-ссылка отписки для email/ЛС           |
+
+Если в событии есть строка новости, дополнительно доступны штатные теги DLE (`shortstory` / `fullstory`): {'{category}'}, {'{date}'}, {'{views}'}, `[xfvalue_…]` и т.д.
+
+### Пример сценария [#пример-сценария]
+
+`scenarios/news_update.tpl`:
+
+```text
+Новость «{title}» была обновлена
+{full-link}
+```
+
+### Пример письма [#пример-письма]
+
+`wrappers/email_body.tpl`:
+
+```html
+{message}<br><br>
+<a href="{full-link}">Читать</a><br><br>
+<a href="{unsubscribe-url}">Отписаться</a>
+```
+
+Сначала рендерится сценарий → попадает в {'{message}'} → обёртка `email_body.tpl` или `pm_body.tpl`.
+
+Тема письма и тема ЛС — строки настроек `email_subject` / `pm_subject`; там те же плейсхолдеры.
+
+<Callout type="warn">
+  Пустой или отсутствующий сценарий/обёртка (ни в скине, ни в Default) — канал не отправляется.
+</Callout>
+
+## Кнопки (`subscribe/`) [#кнопки-subscribe]
+
+| Файл         | Тип      |
+| ------------ | -------- |
+| `news.tpl`   | `news`   |
+| `cat.tpl`    | `cat`    |
+| `user.tpl`   | `user`   |
+| `tag.tpl`    | `tag`    |
+| `xfield.tpl` | `xfield` |
+| `all.tpl`    | `all`    |
+
+| Тег                     | Значение                   |
+| ----------------------- | -------------------------- |
+| {'{subscribe-label}'}   | подпись кнопки             |
+| {'{subscribed}'}        | `1` / `0`                  |
+| {'{subscription-id}'}   | id объекта                 |
+| {'{subscription-type}'} | `news`, `cat`, …           |
+| {'{news-id}'}           | id новости (для type=news) |
+| {'{count}'}             | число подписчиков          |
+| {'{user-hash}'}         | хеш сессии DLE             |
+
+```html
+<button type="button"
+	class="dc-notify-subscribe"
+	data-type="news"
+	data-id="{subscription-id}"
+	data-subscribed="{subscribed}">
+	{subscribe-label}
+</button>
+<span>{count}</span>
+```
+
+Класс `dc-notify-subscribe` обязателен для JS.
+
+## Inbox [#inbox]
+
+### `item.tpl` [#itemtpl]
+
+| Тег                | Значение                                 |
+| ------------------ | ---------------------------------------- |
+| {'{id}'}           | id уведомления                           |
+| {'{message}'}      | текст                                    |
+| {'{date}'}         | дата                                     |
+| {'{level}'}        | `info`, `success`, …                     |
+| {'{unread}'}       | `1` / `0`                                |
+| {'{unread-class}'} | `is-unread` / `is-read`                  |
+| {'{verb}'}         | код действия (`updated`, `commented`, …) |
+
+### `wall.tpl` [#walltpl]
+
+| Тег                  | Значение        |
+| -------------------- | --------------- |
+| {'{items}'}          | HTML списка     |
+| {'{mark-all-label}'} | «Прочитать все» |
+| {'{empty-label}'}    | пустой список   |
+
+### `badge.tpl` [#badgetpl]
+
+| Тег                  | Значение        |
+| -------------------- | --------------- |
+| {'{unread-count}'}   | непрочитанные   |
+| {'{items}'}          | короткий список |
+| {'{mark-all-label}'} | «Прочитать все» |
+
+## См. также [#см-также]
+
+* [Сценарии событий](./scenarios)
+* [Вставка в шаблоны](./subscribe_wall)
+* [Типы подписок](./subscription_types)
+
+
+# Сценарии событий (/dev/dle/notifications/200.1.0/guides/scenarios)
+
+
+
+Цепочка: событие → получатели (подписки + правила) → `scenarios/*.tpl` → при email/ЛС обёртка `wrappers/`.
+
+Плейсхолдеры: [шаблоны и теги](./scenario_templates).
+
+## Соответствие [#соответствие]
+
+| Событие               | Файл                     | Получатели                      |
+| --------------------- | ------------------------ | ------------------------------- |
+| Правка новости        | `news_update.tpl`        | подписчики `news`               |
+| Новая публикация      | `news_published.tpl`     | cat / user / tag / xfield / all |
+| Одобрение модерации   | `moderation_approve.tpl` | автор                           |
+| Снятие с публикации   | `moderation_reject.tpl`  | автор                           |
+| Ответ на комментарий  | `comment_reply.tpl`      | автор родительского комментария |
+| Комментарий к новости | `comment_on_news.tpl`    | автор новости                   |
+| `@ник`                | `mention.tpl`            | упомянутый пользователь         |
+
+## Глобальные выключатели [#глобальные-выключатели]
+
+В настройках модуля можно отключить группы:
+
+* публикация;
+* обновление новости;
+* ответы на комментарии;
+* упоминания;
+* модерация (одобрение / отклонение).
+
+Выключенный флаг — сценарий не уходит, даже если `.tpl` на месте.
+
+## Сообщение без сценария [#сообщение-без-сценария]
+
+Хак или другой модуль может вызвать `notifySend` с готовым текстом: `scenarios/` не читаются.
+
+## См. также [#см-также]
+
+* [Шаблоны и теги](./scenario_templates)
+* [Настройки пользователя](./user_prefs)
+
+
+# Вставка в шаблоны темы (/dev/dle/notifications/200.1.0/guides/subscribe_wall)
+
+
+
+Точка входа на фронте — `notifications_site.php` через обычный DLE-include. Разметка берётся из:
+
+`templates/ВАША_ТЕМА/devcraft/notifications/`
+
+Нет файла в активном скине — используется `Default`.
+
+## Подписка на новость [#подписка-на-новость]
+
+В `fullstory.tpl`:
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&type=news&id={news-id}"}
+```
+
+Рендерится кнопка «Подписаться» / «Отписаться» из `subscribe/news.tpl`.
+
+## Другие типы [#другие-типы]
+
+| Сущность  | Query                                                   |
+| --------- | ------------------------------------------------------- |
+| Категория | `...?focus=subscribe&type=cat&id={'{category-id}'}`     |
+| Автор     | `...?focus=subscribe&type=user&id=42` (`id` — user\_id) |
+| Тег       | `...?focus=subscribe&type=tag&id=php`                   |
+| Все новые | `...?focus=subscribe&type=all`                          |
+
+Семантика типов: [типы подписок](./subscription_types).
+
+## Стена [#стена]
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+```
+
+## Badge [#badge]
+
+В шапке:
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+```
+
+`focus=js&#x60; один раз на странице: подписки, отметка прочитанным, polling. Интервал — &#x2A;*«Интервал polling badge»** в настройках модуля (секунды; `0` — без автообновления).
+
+## Кто видит блоки [#кто-видит-блоки]
+
+| Блок     | Право группы                                      |
+| -------- | ------------------------------------------------- |
+| Подписка | «Разрешить подписываться…» на соответствующий тип |
+| Стена    | «Разрешить просматривать стену»                   |
+| Badge    | «Разрешить использование уведомлений»             |
+
+Гостям блоки не выводятся.
+
+## Файлы оформления [#файлы-оформления]
+
+```text
+templates/ВАША_ТЕМА/devcraft/notifications/
+  subscribe/          кнопки по типам
+  wall.tpl            стена
+  item.tpl            одна запись
+  badge.tpl           колокольчик
+  notifications.js    клиентская логика
+```
+
+Плейсхолдеры: [шаблоны и теги](./scenario_templates).
+
+## См. также [#см-также]
+
+* [Типы подписок](./subscription_types)
+* [Права групп](./permissions)
+* [Установка](../install)
+
+
+# Типы подписок (/dev/dle/notifications/200.1.0/guides/subscription_types)
+
+
+
+Подписка — пара `subscription_type` + `subscription_id` (всегда строка). Совпадение с событием ищет matcher; дальше работают права, prefs и каналы.
+
+## Когда срабатывает [#когда-срабатывает]
+
+| Тип      | Объект                                | Событие                             |
+| -------- | ------------------------------------- | ----------------------------------- |
+| `news`   | ID новости                            | **правка** этой новости             |
+| `cat`    | ID категории                          | **новая** публикация в разделе      |
+| `user`   | ID автора                             | **новая** публикация этого автора   |
+| `tag`    | slug/текст тега                       | **новая** новость с тегом           |
+| `xfield` | `поле/значение`, например `year/2019` | **новая** новость с таким значением |
+| `all`    | пустой / не используется              | **любая новая** новость             |
+
+<Callout type="info">
+  `news` — только edit. `cat` / `user` / `tag` / `xfield` / `all` — только add. Так задумано: иначе подписчик категории получал бы и каждую правку чужих статей.
+</Callout>
+
+## Включение в админке [#включение-в-админке]
+
+Настройки модуля:
+
+* флаги типов подписок;
+* «Уведомлять при публикации» — add;
+* «Уведомлять об обновлении новости» — edit.
+
+В **Правах групп** тип можно запретить отдельно.
+
+## Примеры include [#примеры-include]
+
+Категория:
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&type=cat&id={category-id}"}
+```
+
+Все новости:
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&type=all"}
+```
+
+Число подписчиков в кнопке — {'{count}'} в `subscribe/*.tpl`.
+
+## Каналы одной подписки [#каналы-одной-подписки]
+
+У записи независимо: сайт, email, ЛС. Выбираются при подписке и хранятся у пользователя.
+
+## См. также [#см-также]
+
+* [Вставка в шаблоны](./subscribe_wall)
+* [Сценарии событий](./scenarios)
+* [Шаблоны и теги](./scenario_templates)
+
+
+# Настройки пользователя (/dev/dle/notifications/200.1.0/guides/user_prefs)
+
+
+
+Даже при включённом модуле канал может отфильтроваться prefs пользователя. Проверки идут сверху вниз; первый отказ останавливает этот канал.
+
+1. **Права группы** — функция разрешена.
+2. **Мастер-выключатель** (опциональный xfield) — не отключены уведомления целиком.
+3. **Сценарный xfield** — не отключён класс событий (новости, упоминания, …).
+4. **Email и профиль DLE:**
+   * «Подписка на ответы в комментариях» → сценарий ответа;
+   * «Подписка на комментарии к новостям» → комментарий к своей статье.
+5. **Глобальные каналы модуля** — email / ЛС включены в настройках.
+
+Inbox на сайте и ЛС **не** зависят от `news_subscribe` / `comments_reply_subscribe`: эти флаги DLE относятся только к почте.
+
+## Xfields в настройках модуля [#xfields-в-настройках-модуля]
+
+| Настройка                     | Роль              |
+| ----------------------------- | ----------------- |
+| Xfield: включить уведомления  | общий выключатель |
+| Xfield: email при уведомлении | отдельно почта    |
+| Xfield: обновление/публикация | сценарии новостей |
+| Xfield: модерация             | approve / reject  |
+| Xfield: упоминания            | `@ник`            |
+
+Поле не выбрано в настройках — не участвует. Пустое значение у пользователя — «разрешено». `0` / `off` / `no` — отказ.
+
+## См. также [#см-также]
+
+* [Права групп](./permissions)
+* [Сценарии событий](./scenarios)
+* [Шаблоны и теги](./scenario_templates)
+
+
+# Установка (/dev/dle/notifications/200.1.0/install)
+
+
+
+<Callout type="warn" title="DevCraft Admin">
+  Сначала установите [DevCraft Admin](../../devcraft_admin/install). Без него модуль не поднимается.
+</Callout>
+
+## Требования [#требования]
+
+* DLE 20+
+* PHP 8.3+
+* DevCraft Admin 200.4.0+
+
+## Порядок [#порядок]
+
+1. Скачайте ZIP или соберите его в репозитории: `./create_install_archive.sh`.
+2. В админке DLE: **Плагины → Установить плагин**.
+3. В каталоге `devcraft/` выполните:
+
+```bash
+composer dump-autoload
+```
+
+4. Откройте **DLE Уведомления**. При первом заходе создаются таблицы.
+5. Если активная тема не `Default`, скопируйте\
+   `templates/Default/devcraft/notifications/`\
+   в `templates/ИмяТемы/devcraft/notifications/`.\
+   Fallback на `Default` срабатывает только если файла нет в текущем скине.
+6. В **Настройках** включите типы подписок и каналы (сайт / email / ЛС).
+
+После установки `notify*` доступны глобально (bootstrap в `engine/init.php` / admin init). В своём хаке достаточно `function_exists('notifySend')` — отдельный include не нужен.
+
+На сайте блоки не появляются сами: нужны include в шаблонах темы — [вставка в тему](./guides/subscribe_wall). Тексты уведомлений — `.tpl` в той же папке, см. [шаблоны и теги](./guides/scenario_templates).
+
+## Если блока нет [#если-блока-нет]
+
+* пользователь не авторизован;
+* у группы нет права на подписку / стену / inbox ([права групп](./guides/permissions));
+* тип подписки выключен в настройках модуля.
+
+## См. также [#см-также]
+
+* [Начало работы](./getting_started)
+* [Права групп](./guides/permissions)
+* [История изменений](./changelog)
+
+
+# Notify (/dev/dle/notifications/200.1.0/reference/Notify)
+
+
+
+Публичный фасад для хаков. Админка и шаблоны — [гайды](../guides/subscribe_wall).
+
+**С версии:** 200.1.0
+
+Плагин при установке подключает `engine/modules/devcraft/notifications.php` после bootstrap DevCraft. В обычном запросе DLE функции уже доступны — достаточно `function_exists`.
+
+## Функции [#функции]
+
+```php
+notifySend(int $recipientId, ?string $message = null, …): void
+notifyOnNewsSaved(int $newsId, string $event): void
+notifyOnCommentAdded(int $commentId, int $newsId, int $parentId, string $text, int $authorId): void
+notifyFormatMentionsHtml(string $text): string
+```
+
+| Функция                    | Назначение                            |
+| -------------------------- | ------------------------------------- |
+| `notifySend`               | произвольное уведомление получателю   |
+| `notifyOnNewsSaved`        | `add` / `edit` / `approve` / `reject` |
+| `notifyOnCommentAdded`     | ответ, mention, автор новости         |
+| `notifyFormatMentionsHtml` | `@ник` → ссылка в HTML комментария    |
+
+## Класс `Notify` [#класс-notify]
+
+Namespace: `DevCraft\Modules\Notifications\Services`
+
+Те же операции: `Notify::send`, `::onNewsSaved`, `::onCommentAdded`, `::formatMentionsHtml`, `::subscriptions()`.
+
+### `notifySend` / `Notify::send` [#notifysend--notifysend]
+
+| Параметр         | Назначение                                              |
+| ---------------- | ------------------------------------------------------- |
+| `$recipientId`   | получатель                                              |
+| `$message`       | готовый текст; `null`, если рендерится сценарий         |
+| `$contentType`   | связанная сущность (`news`, `comment`, …)               |
+| `$contentTypeId` | её id                                                   |
+| `$senderId`      | инициатор                                               |
+| `$level`         | `info`, `success`, …                                    |
+| `$channels`      | пусто = настройки модуля; иначе `site` / `email` / `pm` |
+| `$scenario`      | имя файла в `scenarios/` без `.tpl`                     |
+| `$extraVars`     | доп. плейсхолдеры, ключи вида {'{title}'}               |
+| `$newsRow`       | строка новости для тегов DLE                            |
+
+```php
+if (function_exists('notifySend')) {
+	notifySend(
+		$authorId,
+		null,
+		'news',
+		$newsId,
+		$senderId,
+		'success',
+		[],
+		'moderation_approve',
+		['{title}' => $title, '{full-link}' => $link],
+		$newsRow
+	);
+}
+```
+
+## См. также [#см-также]
+
+* [Шаблоны и теги](../guides/scenario_templates)
+* [Сценарии событий](../guides/scenarios)
+
+
+# Справочник API (/dev/dle/notifications/200.1.0/reference)
+
+
+
+Раздел для разработчиков. Настройка сайта — в [гайдах](../guides/subscribe_wall).
+
+После установки плагина `notify*` уже в глобальной области (bootstrap в `engine/init.php` и admin init). Отдельный `include` не нужен.
+
+```php
+if (function_exists('notifySend')) {
+	notifySend($userId, 'Текст уведомления');
+}
+notifyOnNewsSaved($newsId, 'add'); // add | edit | approve | reject
+notifyOnCommentAdded($commentId, $newsId, $parentId, $text, $authorId);
+$html = notifyFormatMentionsHtml($commentHtml);
+```
+
+Сигнатуры: [Notify](./Notify).
+
+
 # Цены по курсу валют (/dev/dle/paid-currencies_rate)
 
 
