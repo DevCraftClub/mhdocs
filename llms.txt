@@ -581,6 +581,22 @@
           - [Разработка каналов доставки RePost](/dev/dle/repost/200.1.0/reference/developing_providers)
           - [Теги шаблонов RePost](/dev/dle/repost/200.1.0/reference/template_tags)
         - [Changelog RePost](/dev/dle/repost/200.1.0/changelog)
+    - DLE Уведомления
+      - 200.1.0
+        - [Начало работы](/dev/dle/notifications/200.1.0/getting_started): Обзор модуля: каналы, подписки, шаблоны темы и быстрое подключение
+        - [Установка](/dev/dle/notifications/200.1.0/install): Установка плагина, autoload, схема БД и шаблоны темы
+        - Гайды
+          - [Вставка в шаблоны темы](/dev/dle/notifications/200.1.0/guides/subscribe_wall): include для кнопки подписки, стены и badge
+          - [Типы подписок](/dev/dle/notifications/200.1.0/guides/subscription_types): news, cat, user, tag, xfield, all: объект подписки и момент срабатывания
+          - [Шаблоны и теги](/dev/dle/notifications/200.1.0/guides/scenario_templates): Файлы .tpl темы, сценарии, обёртки, кнопка подписки и inbox
+          - [Сценарии событий](/dev/dle/notifications/200.1.0/guides/scenarios): Какое событие какой .tpl сценария вызывает и кому уходит
+          - [Inbox: стена и badge](/dev/dle/notifications/200.1.0/guides/inbox_api): Список уведомлений, непрочитанные, polling и удаление
+          - [Права групп](/dev/dle/notifications/200.1.0/guides/permissions): Флаги прав модуля по группам DLE
+          - [Настройки пользователя](/dev/dle/notifications/200.1.0/guides/user_prefs): Цепочка прав, xfields профиля и галочки DLE для каналов
+        - Для хаков
+          - [Справочник API](/dev/dle/notifications/200.1.0/reference): Функции notify* для хаков и сторонних модулей
+          - [Notify](/dev/dle/notifications/200.1.0/reference/Notify): notifySend, onNewsSaved, onCommentAdded и класс Notify
+        - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: inbox, типизированные подписки, шаблоны темы
     - Хаки и простые модули
       - [Schema.Org - Документация DevCraft](/dev/dle/simple/schema): Документация по интеграции Schema.Org разметки в проекты DevCraft.
       - [Webmaster Verification](/dev/dle/simple/webmaster-verification)
