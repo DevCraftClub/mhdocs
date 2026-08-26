@@ -76718,218 +76718,330 @@ cp engine/inc/maharder/_config/db_manager.json devcraft/config/db_manager.json
 
 
 
-## Upload API (после 200.4.0) [#upload-api-после-20040]
+## 200.4.0 (документация и API типов) [#20040-документация-и-api-типов]
 
 ### Добавлено [#добавлено]
 
-* `DevCraft.Ajax.postMultipart` — XHR multipart с прогрессом.
-* Twig `core/includes/upload/drop_form.twig` — dropzone для модулей.
-* [`UploadedFile`](reference/back-end/classes/UploadedFile) — валидация и `moveTo` для `$_FILES`.
-* Документация [`FileResponse`](reference/back-end/classes/FileResponse) для скачивания из AJAX.
-* [`FormFieldBuilder::editor()`](reference/back-end/classes/FormFieldBuilder) — TinyMCE; [`FormFieldBuilder::codeViewer()`](reference/back-end/classes/FormFieldBuilder) — ACE. Универсальные includes `tinymce_editor_scripts.twig` / `code_editor_scripts.twig` (ACE не реинициализируется на каждый клик по вкладке).
+* **Fluent Types** — `ModuleManifestBuilder`, `ChangelogBuilder`, `ModuleAjaxConfigBuilder` (в т. г. `publicMethod` для публичного AJAX). Dual accept: `manifest.php` / `settings.schema.php` / changelog принимают массив **или** готовый DTO. Гайд: [Fluent Types](guides/fluent_types).
+* Документация [версионирования](reference/back-end/versioning) плагинов (major = DLE без точки).
+* [QueryBuilder](reference/back-end/classes/QueryBuilder) + [DataLoader](guides/data_loader); enum [SortDirection](reference/back-end/classes/SortDirection).
+* `QueryBuilder` / `DataLoaderService`: **insert** / **update** / **delete** через Cycle; `values` + `Fragment` для инкрементов; reload после записи; DELETE только с `conditions`.
 
-## 200.4.0 [#20040]
+### Breaking [#breaking]
+
+* [`DataLoaderService`](reference/back-end/classes/DataLoaderService) и [`DleDataService`](reference/back-end/classes/DleDataService) — только **static** API (`::loadData`, `::users`, …). Удалены `Application::dataLoader()` / `dleData()`.
+* QueryBuilder: `selects`/`where&#x60; → &#x2A;*`columns`/`conditions`*&#x2A;; write-payload — отдельно &#x2A;*`values`**.
+
+## Upload API (после 200.4.0) [#upload-api-после-20040]
 
 ### Добавлено [#добавлено-1]
 
-* Плагин DevCraft — преемник MHAdmin: отдельный раздел в админке DLE (?mod=devcraft).
-* Поддержка DataLife Engine 20.0.
-* Новый внешний вид на базе Metro UI вместо прежнего Semantic UI / Fomantic UI: формы, переключатели, календари и таблицы.
-* Страница логов: таблица подгружается без полной перезагрузки страницы; удобные фильтры с метками.
-* Понятные уведомления при сохранении настроек, удалении записей и проверке ресурсов.
-* Обновление скриптов и стилей с сервера разработчика (assets.devcraft.club).
-* Генератор модулей для создания новых плагинов в структуре DevCraft.
-* Мультиязычность: русский, английский, немецкий, украинский — интерфейс и элементы Metro UI.
+* `DevCraft.Ajax.postMultipart` — multipart с прогрессом.
+* Twig `core/includes/upload/drop_form.twig`.
+* [`UploadedFile`](reference/back-end/classes/UploadedFile), [`FileResponse`](reference/back-end/classes/FileResponse).
+* [`FormFieldBuilder::editor()`](reference/back-end/classes/FormFieldBuilder), [`FormFieldBuilder::codeViewer()`](reference/back-end/classes/FormFieldBuilder).
+
+## 200.4.0 [#20040]
+
+### Добавлено [#добавлено-2]
+
+* DevCraft Admin — преемник MHAdmin (`?mod=devcraft`), DLE 20.0.
+* Metro UI вместо Semantic / Fomantic.
+* Логи с AJAX-таблицей и фильтрами.
+* Обновление assets с assets.devcraft.club.
+* Генератор модулей.
+* Локали: ru, en, de, uk.
 
 ### Изменено [#изменено]
 
-* Интерфейс переведён с Semantic UI (Fomantic UI) на Metro UI — другой внешний вид кнопок, форм и таблиц.
-* Убраны тяжёлые UI-зависимости (Fomantic, jquery-confirm, bootstrap-suggest и др.) — вместо них единая библиотека Metro UI.
-* Файлы плагина находятся в каталоге devcraft/ на сайте, а не в engine/inc/maharder/.
-* Настройки по-прежнему в одном месте (кеш, язык, логирование, Telegram), оформлены вкладками; можно сохранить только корректные поля.
-* Меню «Страницы DLE» — быстрый переход в стандартную админку DLE из боковой панели DevCraft.
-* История изменений: те же release notes, новый формат с группами «Добавлено», «Изменено» и т.д.
+* Каталог плагина: `devcraft/` вместо `engine/inc/maharder/`.
+* Меню «Страницы DLE», changelog с группами added/changed/fixed.
 
 ### Удалено [#удалено]
 
-* Название MHAdmin / maharder и вход ?mod=maharder — заменены на DevCraft.
-* Прежний внешний вид Semantic / Fomantic UI (сегменты, старые выпадающие списки и всплывающие подсказки).
-* Font Awesome Pro в комплекте плагина — иконки через Metro UI.
-* Старая структура каталогов maharder (\_modules, \_templates); параллельная установка с MHAdmin не предусмотрена.
+* MHAdmin / `?mod=maharder`, Fomantic, Font Awesome Pro в комплекте.
 
 ### Исправлено [#исправлено]
 
-* Фильтры на странице логов (в том числе по дате) работают стабильнее.
+* Фильтры на странице логов.
 
 ## Предыдущие версии [#предыдущие-версии]
 
-Смотри последнюю версию [MH Admin](../../../../deprecated/mhadmin/changelog)
+[MH Admin (Legacy)](../../../../deprecated/mhadmin/changelog)
 
 
 # Начало работы (/dev/dle/devcraft_admin/200.4.0/getting_started)
 
 
 
-Руководство для разработчиков плагинов на базе **DevCraft Admin**.
+**DevCraft Admin** — админ-оболочка для ваших плагинов на **DLE 20.0**. Один раздел в панели DLE, общие настройки, меню, AJAX и Twig — без копипасты каркаса в каждом ZIP.
 
-Для быстрого каркаса можно использовать [генератор модулей](guides/new_module); ниже — ручная сборка и обязательные артефакты.
+Зачем это вам: пишете бизнес-логику модуля, а вход в админку, формы настроек и маршруты уже готовы.
 
-## 1. Предварительные требования [#1-предварительные-требования]
+## Что умеет [#что-умеет]
 
-* DLE **20.0**, PHP **8.3**
-* Установленный DevCraft Admin **≥ 200.4.0**
-* Для shared DTO / fluent-абстракций — пакет [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/install)
-* PSR-4 autoload: `DevCraft\Modules\{Name}\` → `devcraft/src/modules/{Name}/`
-* После добавления файлов: `composer dump-autoload` в `devcraft/`
+* отдельный пункт **DevCraft** в админке DLE (`?mod=devcraft` и сателлиты);
+* модули в `devcraft/src/modules/{Name}/` с `manifest.php`, страницами и AJAX;
+* настройки через `settings.schema.php` → JSON в `devcraft/config/`;
+* Fluent Types: `manifest` / changelog / schema как объект **или** массив ([гайд](guides/fluent_types));
+* DataLoader / QueryBuilder: SELECT из таблиц DLE без `super_query` ([гайд](guides/data_loader));
+* общий AJAX через `devcraft/ajax.php` (admin и public);
+* Composer UI, логи, генератор модулей, локали XLIFF;
+* shared DTO из [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/getting_started).
 
-`DevCraft Admin` отвечает за DLE-интеграцию, страницы и Composer UI, а общие reflection/fluent-примитивы постепенно выносятся в [`Dev Tools`](/dev/dev-tools/1.0.1/getting_started). Краткая карта границ описана в [Shared-пакеты и абстракции](reference/back-end/shared_packages).
+## Для кого [#для-кого]
 
-## 2. Создание модуля [#2-создание-модуля]
+Авторы плагинов DLE, которым нужна одна оболочка под несколько модулей и линейка версий `200.*` под DLE 20.
 
-### Вариант A: генератор [#вариант-a-генератор]
+## Требования [#требования]
 
-**DevCraft Admin → Генератор модулей** — создаёт каркас под `devcraft/src/modules/{Name}/`.
+| Что            | Минимум                                                                               |
+| -------------- | ------------------------------------------------------------------------------------- |
+| CMS            | DataLife Engine **20.0**                                                              |
+| PHP            | **8.3+**                                                                              |
+| Версия плагина | **200.4.0+** ([почему major = 200](reference/back-end/versioning))                    |
+| Composer       | зависимости в `devcraft/`                                                             |
+| PHP-расширения | `simplexml`, `libxml`, `intl`, `fileinfo`, `pdo_mysql`, `curl`, `mbstring`, `openssl` |
 
-### Вариант B: вручную [#вариант-b-вручную]
+Память PHP — лучше от 128M. Полный чеклист установки: [Установка](./install).
 
-```text
-devcraft/src/modules/MyModule/
-├── manifest.php
-├── settings.schema.php      # если есть настройки
-├── changelog.data.php
-├── Pages/
-├── Ajax/
-├── Services/                  # по необходимости
-├── templates/
-│   └── *.twig
-└── Public/
-    ├── .htaccess
-    └── icon.png
-```
+## Структура файлов [#структура-файлов]
 
-Точка входа DLE (отдельный плагин или общий архив):
+Корень сайта DLE после установки DevCraft (обзор; каркас своего модуля — [создать модуль](guides/create_module)). В скобках — назначение; у `modules/Admin` — полный список.
 
-```php
-require_once DLEPlugins::Check(ROOT_DIR . '/devcraft/init.php');
-DevCraft\Core\Application::instance()->runAdmin(moduleDir: 'MyModule');
-```
+<Files>
+  <Folder name="DLE ROOT">
+    <Folder name="devcraft">
+      <Folder name="src">
+        <Folder name="bootstrap (функции, ajax-session)" />
 
-Файл: `engine/inc/{mod}.php`.
+        <Folder name="classes (ядро: Application, Http, Form, Types…)" />
 
-## 3. manifest.php [#3-manifestphp]
+        <Folder name="database (миграции Cycle)" />
 
-Обязательные блоки:
+        <Folder name="modules">
+          <Folder name="Admin">
+            <File name="manifest.php" />
 
-| Ключ        | Назначение                                                                                   |
-| ----------- | -------------------------------------------------------------------------------------------- |
-| `mod`       | Код в URL DLE (`?mod=...`)                                                                   |
-| `code`      | Код конфигурации JSON (`devcraft/config/{code}.json`)                                        |
-| `meta`      | `name`, `version`, `description`, `icon`, ссылки                                             |
-| `menu`      | Пункты меню через `AdminLink::page()`; для сателлитов — **5-й аргумент*&#x2A; &#x2A;*`mod`** |
-| `ajax`      | `controller` + `methods` → классы обработчиков (`controller` обычно `admin`)                 |
-| `changelog` | `require changelog.data.php`                                                                 |
-| `assets`    | JS/CSS модуля (опционально)                                                                  |
+            <File name="settings.schema.php" />
 
-Пример AJAX (все запросы идут на `devcraft/ajax.php`):
+            <File name="changelog.data.php" />
 
-```php
-'ajax' => [
-    'controller' => 'admin',
-    'methods'    => [
-        'settings' => SettingsHandler::class,
-    ],
-],
-```
+            <Folder name="Ajax">
+              <File name="CheckAssetsHandler.php" />
 
-Параметры запроса: `mod`, `controller`, `method`, `user_hash`, `data`.
+              <File name="CheckUpdateHandler.php" />
 
-`DevCraft.Ajax.post(method, data)` сам добавляет `mod` из атрибута `body[data-mod]` layout-а. Для сателлитов без `mod` сервер вернёт `unknown_method` (метод ищется в модуле `devcraft`).
+              <File name="ComposerActionHandler.php" />
 
-## 4. settings.schema.php [#4-settingsschemaphp]
+              <File name="ComposerPolicyHandler.php" />
 
-Схема настроек через `FormSchemaBuilder`:
+              <File name="ComposerSyncHandler.php" />
 
-```php
-return FormSchemaBuilder::create('my_module')  // code = имя JSON-файла
-    ->layout(FormLayout::TABS)
-    ->section(__('Основные'))
-        ->text('export_path', __('Путь'))
-            ->default('devcraft/backup')
-    ->build();
-```
+              <File name="ComposerTableHandler.php" />
 
-* Файл конфигурации: `devcraft/config/{code}.json`
-* Страница: класс `SettingsPage` + шаблон `settings.twig` с <code>{'{'}% include 'core/includes/form/settings\_page.twig' %{'}'}</code>
-* Сохранение: `SettingsHandler` или кастомный обработчик с `SettingsFormService`
-* `supplementFormData()` — дополнительные данные для Twig
+              <File name="DeleteLogHandler.php" />
 
-Кастомный `SettingsHandler` — для логики после сохранения (создание каталогов, `.htaccess`, внешние API).
+              <File name="DumpAutoloadHandler.php" />
 
-## 5. changelog.data.php [#5-changelogdataphp]
+              <File name="LogsTableHandler.php" />
 
-Массив версий для страницы «История изменений»:
+              <File name="NewModuleHandler.php" />
 
-```php
-return [
-    [
-        'version' => '200.1.0',
-        'date'    => '2026-01-01',
-        'changes' => [
-            'added'   => [__('Новая возможность')],
-            'changed' => [],
-            'fixed'   => [],
-            'removed' => [],
-        ],
-    ],
-];
-```
+              <File name="SaveAssetHandler.php" />
 
-## 6. Фильтры (опционально) [#6-фильтры-опционально]
+              <File name="SettingsHandler.php" />
 
-Для таблиц с фильтрацией — `{Plugin}/Filter/{name}.filter.schema.php` и `FilterFormService` (см. модуль Admin → логи: `Admin/Filter/logs.filter.schema.php`).
+              <File name="SyncAssetsHandler.php" />
+            </Folder>
 
-## 7. Страницы, AJAX, install.xml [#7-страницы-ajax-installxml]
+            <Folder name="Pages">
+              <File name="ChangelogPage.php" />
 
-### Pages [#pages]
+              <File name="ComposerPage.php" />
 
-Наследуйте `AbstractPage`, метод `handle()` возвращает `['view' => 'my_module/page.twig', 'data' => [...]]`.
+              <File name="DashboardPage.php" />
 
-### AJAX [#ajax]
+              <File name="LogsPage.php" />
 
-* Реализуйте `AjaxHandlerInterface`
-* Возвращайте `JsonResponse` или [`FileResponse`](reference/back-end/classes/FileResponse) (скачивание файлов, DevCraft ≥ 200.4.0)
-* Загрузка на сервер: [`UploadedFile`](reference/back-end/classes/UploadedFile) + [`postMultipart`](reference/front-end/templates#multipart-загрузка-файлов)
-* **Не создавайте** отдельные `engine/ajax/{mod}.php`
+              <File name="NewModulePage.php" />
 
-### install.xml [#installxml]
+              <File name="SettingsPage.php" />
+            </Folder>
 
-* `version`, `dleversion` 20.0
-* `needplugin`: имя плагина-зависимости (`DevCraft Admin`)
-* Без патча `paths.php` — autoload через Composer
-* `<notice>`: `composer dump-autoload`, требования к DevCraft
+            <Folder name="Services">
+              <File name="BootstrapSetupService.php" />
 
-### Локализация [#локализация]
+              <File name="DashboardPackageMetricService.php" />
 
-XLIFF: `devcraft/locales/{locale}/{code}.xliff` (Crowdin-совместимый путь).
+              <File name="DefaultPackageSeedService.php" />
 
-## См. также [#см-также]
+              <File name="LogMessagePresenter.php" />
 
-* [Создание CRUD-страницы](guides/crud_pages) — сквозной сценарий: Entity → Repository → список с фильтром → форма → Ajax → манифест → Twig
-* [Примеры Form](guides/form_examples) — layout stack/tabs/accordion, все типы полей, filter schema
-* [Генератор модулей](guides/new_module)
-* [Composer-пакеты модулей](reference/back-end/composer_packages)
-* [Shared-пакеты и абстракции](reference/back-end/shared_packages)
-* [Манифест модуля](reference/back-end/manifest)
-* [Точки входа](reference/back-end/entry_points)
-* [ИИ-инструменты](guides/ai_tools)
-* [Конституция PHP](../../../../instructions/constitution)
+              <File name="ModuleGeneratorInput.php" />
+
+              <File name="ModuleGeneratorService.php" />
+            </Folder>
+
+            <Folder name="Models">
+              <File name="LogRecord.php" />
+            </Folder>
+
+            <Folder name="Repositories">
+              <File name="LogRecordRepository.php" />
+            </Folder>
+
+            <Folder name="Filter">
+              <File name="composer.filter.schema.php" />
+
+              <File name="logs.filter.schema.php" />
+            </Folder>
+
+            <Folder name="templates">
+              <File name="composer.twig" />
+
+              <File name="logs.twig" />
+
+              <File name="logs_view.twig" />
+
+              <File name="modules.twig" />
+
+              <File name="new_module.twig" />
+            </Folder>
+
+            <Folder name="Public">
+              <File name="admin.js" />
+
+              <File name="icon.png" />
+
+              <File name=".htaccess" />
+            </Folder>
+          </Folder>
+
+          <Folder name="{Name} (сателлит: Notifications, RePost…)" />
+        </Folder>
+
+        <Folder name="templates (Twig ядра: layout, формы, UI)" />
+      </Folder>
+
+      <Folder name="config (*.json настроек модулей)" />
+
+      <Folder name="locales (XLIFF / переводы)" />
+
+      <Folder name="cache" />
+
+      <Folder name="logs" />
+
+      <Folder name="database (seeds)" />
+
+      <Folder name="assetschecker" />
+
+      <Folder name="backup" />
+
+      <Folder name="vendor (Composer)" />
+
+      <File name="init.php (bootstrap админки)" />
+
+      <File name="ajax.php (единая точка AJAX)" />
+
+      <File name="bootstrap.php" />
+
+      <File name="bootstrap.ajax.php" />
+
+      <File name="composer.json" />
+
+      <File name="composer.lock" />
+    </Folder>
+
+    <Folder name="engine">
+      <Folder name="inc">
+        <File name="devcraft.php (glue → runAdmin(Admin))" />
+
+        <File name="{mod}.php (glue сателлита)" />
+      </Folder>
+
+      <Folder name="modules">
+        <Folder name="devcraft (публичные PHP-includes)" />
+      </Folder>
+    </Folder>
+
+    <Folder name="templates">
+      <Folder name="{skin}">
+        <Folder name="devcraft ({module}/*.tpl сайта)" />
+      </Folder>
+    </Folder>
+
+    <Folder name="language (языки DLE)" />
+
+    <File name="index.php" />
+  </Folder>
+</Files>
+
+* `devcraft/` — ядро, модули, Composer, конфиги.
+* `engine/inc/{mod}.php` — glue DLE → `Application::runAdmin()`.
+* `templates/{skin}/devcraft/` — публичные `.tpl` сайта (админский Twig — в `devcraft/src/`).
+
+## Разделы документации [#разделы-документации]
+
+<Cards>
+  <Card title="Установка" href="/dev/dle/devcraft_admin/200.4.0/install">
+    ZIP, Composer, первый запуск
+  </Card>
+
+  <Card title="Создать модуль" href="/dev/dle/devcraft_admin/200.4.0/guides/create_module">
+    Каркас, manifest, страницы, AJAX, install.xml
+  </Card>
+
+  <Card title="Генератор" href="/dev/dle/devcraft_admin/200.4.0/guides/new_module">
+    Модуль из админки за минуту
+  </Card>
+
+  <Card title="Fluent Types" href="/dev/dle/devcraft_admin/200.4.0/guides/fluent_types">
+    Билдеры и dual accept
+  </Card>
+
+  <Card title="Версионирование" href="/dev/dle/devcraft_admin/200.4.0/reference/back-end/versioning">
+    Почему 173 / 200 / 261
+  </Card>
+
+  <Card title="Справочник API" href="/dev/dle/devcraft_admin/200.4.0/reference">
+    Классы, манифест, точки входа
+  </Card>
+</Cards>
+
+## Архитектура в двух словах [#архитектура-в-двух-словах]
+
+<Mermaid
+  chart="sequenceDiagram
+    participant DLE as DLE Admin
+    participant Inc as engine/inc/devcraft.php
+    participant Init as devcraft/init.php
+    participant App as Application
+    participant Router as Router
+
+    DLE->>Inc: mod=devcraft
+    Inc->>Init: require
+    Init->>App: runAdmin(Admin)
+    App->>Router: dispatch page"
+/>
+
+AJAX: `devcraft/ajax.php` → handlers модуля. Сателлиты (Notifications, RePost, …) — отдельные `mod`, тот же каркас. Подробнее: [точки входа](reference/back-end/entry_points).
+
+## Дальше [#дальше]
+
+1. [Установить](./install) плагин на сайт.
+2. [Создать модуль](guides/create_module) или открыть [генератор](guides/new_module).
+3. При миграции с MH Admin — [миграция](./migration).
+4. Правила кода — [конституция PHP](../../../../instructions/constitution).
 
 
 # ИИ-инструменты (/dev/dle/devcraft_admin/200.4.0/guides/ai_tools)
 
 
 
-Готовые промпты для Cursor, Claude и других агентов. Спецификация модуля — в [Начало работы](../getting_started). Правила PHP — в [Конституции](../../../../../instructions/constitution).
+**Зачем:** не переписывать правила DevCraft в каждом чате — скопировать промпт и подставить имя модуля.
+
+Промпты для Cursor / Claude. Контекст модуля: [Создание модуля](create_module), [Fluent Types](fluent_types). PHP-правила: [Конституция](../../../../../instructions/constitution).
 
 ## Промпт: создание / перенос / обновление плагина под DevCraft [#промпт-создание--перенос--обновление-плагина-под-devcraft]
 
@@ -77037,17 +77149,160 @@ XLIFF: `devcraft/locales/{locale}/{code}.xliff` (Crowdin-совместимый 
 
 ## См. также [#см-также]
 
+* [Создание модуля](create_module)
 * [Начало работы](../getting_started)
 * [Конституция PHP](../../../../../instructions/constitution)
 * [Graphify](../../../../../instructions/graphify) · [Code Review Graph](../../../../../instructions/code-review-graph) · [Codebase Memory](../../../../../instructions/codebase-memory-mcp) · [sqz](../../../../../instructions/sqz) · [Ponytail](../../../../../instructions/ponytail)
 * [Генератор модулей](new_module)
 
 
+# Создание модуля (/dev/dle/devcraft_admin/200.4.0/guides/create_module)
+
+
+
+**Зачем:** собрать свой плагин так, чтобы он появился в меню DLE и жил на общем каркасе DevCraft.
+
+Быстрый путь — [генератор модулей](./new_module). Ниже — что именно лежит в файлах и как подключить модуль вручную.
+
+## Что нужно заранее [#что-нужно-заранее]
+
+* DLE **20.0**, PHP **8.3*&#x2A;, DevCraft Admin **≥ 200.4.0**
+* PSR-4: `DevCraft\Modules\{Name}\` → `devcraft/src/modules/{Name}/`
+* После новых классов: `composer dump-autoload` в `devcraft/`
+
+Shared DTO (`AbstractType`, reflection) — [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/install). Границы: [Shared-пакеты](../reference/back-end/shared_packages).
+
+## Структура каталога [#структура-каталога]
+
+```text
+devcraft/src/modules/MyModule/
+├── MyModuleIdentity.php     # MODULE / CODE
+├── manifest.php
+├── settings.schema.php      # если есть настройки
+├── changelog.data.php
+├── Pages/
+├── Ajax/
+├── templates/*.twig
+└── Public/                  # js/css/иконки по необходимости
+```
+
+`mod` и `code` — только через Identity: [Module Identity](./module_identity).
+
+## Точка входа DLE [#точка-входа-dle]
+
+Файл `engine/inc/{mod}.php`:
+
+```php
+require_once DLEPlugins::Check(ROOT_DIR . '/devcraft/init.php');
+DevCraft\Core\Application::instance()->runAdmin(moduleDir: 'MyModule');
+```
+
+`{mod}` должен совпадать с `mod` в манифесте.
+
+## manifest.php [#manifestphp]
+
+Можно вернуть **fluent-объект** или **массив** — оба варианта ок ([Fluent Types](./fluent_types)):
+
+```php
+return ModuleManifestBuilder::create()
+	->mod('my_module')
+	->code('my_module')
+	->name('Мой модуль')
+	->version('200.1.0')
+	->menu([
+		AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-home', 'my_module'),
+	])
+	->ajax(
+		ModuleAjaxConfigBuilder::create('admin')
+			->method('settings', SettingsHandler::class)
+	)
+	->changelog(require DLEPlugins::Check(__DIR__ . '/changelog.data.php'))
+	->build(__DIR__);
+```
+
+| Поле        | Зачем                                                                    |
+| ----------- | ------------------------------------------------------------------------ |
+| `mod`       | `?mod=` в URL DLE — берите `MyModuleIdentity::mod()`                     |
+| `code`      | JSON настроек `devcraft/config/{code}.json` — `MyModuleIdentity::code()` |
+| `meta`      | имя, версия, иконка, ссылки                                              |
+| `menu`      | пункты админки; у сателлитов 5-й аргумент `AdminLink::page` = `mod`      |
+| `ajax`      | admin `methods` и опционально `public`                                   |
+| `changelog` | страница «История изменений»                                             |
+| `assets`    | JS/CSS из `Public/`                                                      |
+
+Не хардкодьте строки `mod`/`code` — см. [Module Identity](./module_identity).
+
+Версия `200.x.y`: major **200** = DLE 20 ([версионирование](../reference/back-end/versioning)). Полная схема: [Манифест](../reference/back-end/manifest).
+
+AJAX только через `devcraft/ajax.php`, не `engine/ajax/…`. `DevCraft.Ajax.post()` подставляет `mod` из layout.
+
+## settings.schema.php [#settingsschemaphp]
+
+```php
+return FormSchemaBuilder::create(MyModuleIdentity::code())
+	->layout(FormLayout::TABS)
+	->section(__('Основные'))
+		->text('export_path', __('Путь'))
+			->default('devcraft/backup')
+	->build();
+```
+
+Конфиг пишется в `devcraft/config/{code}.json`. Рендер — `settings_page.twig`. Сохранение — `SettingsHandler` / `SettingsFormService`. Примеры полей: [Form examples](./form_examples).
+
+## changelog.data.php [#changelogdataphp]
+
+```php
+return [
+	ChangelogBuilder::create('200.1.0')
+		->date('2026-01-01')
+		->added([__('Новая возможность')])
+		->build(),
+];
+```
+
+Либо legacy-массив с ключами `version`, `date`, `changes` — dual accept тот же.
+
+## Фильтры (опционально) [#фильтры-опционально]
+
+`Filter/{name}.filter.schema.php` + `FilterFormService` — образец: логи в модуле Admin.
+
+## Страницы и AJAX [#страницы-и-ajax]
+
+* **Pages:** наследник `AbstractPage`, `handle()` → `['view' => '….twig', 'data' => …]`
+* **AJAX:** `AjaxHandlerInterface`, ответ `JsonResponse` или [`FileResponse`](../reference/back-end/classes/FileResponse)
+* **Файлы:** [`UploadedFile`](../reference/back-end/classes/UploadedFile), multipart на фронте — [шаблоны](../reference/front-end/templates)
+
+CRUD-паттерн: [CRUD-страница](./crud_pages).
+
+## install.xml [#installxml]
+
+* `dleversion` **20.0**, `needplugin`: DevCraft Admin
+* в `<notice>` напомнить про `composer dump-autoload`
+
+Локали модуля: `devcraft/locales/{locale}/{code}.xliff` ([генерация языков](./generate_languages)).
+
+## Чеклист после создания [#чеклист-после-создания]
+
+1. `composer dump-autoload` в `devcraft/`
+2. Открыть `?mod=your_mod` в админке
+3. Проверить пункт меню и одну AJAX-кнопку
+4. При отдельном ZIP — `install.xml` и каталог `upload/`
+
+## См. также [#см-также]
+
+* [Генератор](./new_module)
+* [Fluent Types](./fluent_types)
+* [Установка DevCraft](../install)
+* [Конституция PHP](../../../../../instructions/constitution)
+
+
 # Создание CRUD-страницы (/dev/dle/devcraft_admin/200.4.0/guides/crud_pages)
 
 
 
-Сквозной сценарий CRUD (список + создание/редактирование + удаление) на примере сущности `Note` в гипотетическом модуле `MyModule`. Живой рабочий пример с тем же набором слоёв — страница «Шаблоны» модуля `dle_faker` ([TemplatesPage.php](../reference/back-end/classes/PageInterface), `Ajax/CreateTemplateHandler.php`, `Ajax/DeleteTemplateHandler.php`).
+**Зачем:** полный путь от Entity до кнопки «Сохранить» — без догадок, в каком порядке подключать слои.
+
+Сквозной CRUD на примере `Note` в модуле `MyModule`. Живой аналог — «Шаблоны» в `dle_faker`.
 
 ## 1. Entity → `AbstractEntity` [#1-entity--abstractentity]
 
@@ -77363,7 +77618,8 @@ final class DeleteNoteHandler implements AjaxHandlerInterface {
 
 ## См. также [#см-также]
 
-* [Начало работы с модулями](../getting_started)
+* [Создание модуля](./create_module)
+* [Начало работы](../getting_started)
 * [Примеры Form](form_examples)
 * [AbstractEntity](../reference/back-end/classes/AbstractEntity), [AbstractRepository](../reference/back-end/classes/AbstractRepository)
 * [FilterSchema](../reference/back-end/classes/FilterSchema), [FilterFormService](../reference/back-end/classes/FilterFormService)
@@ -77371,11 +77627,295 @@ final class DeleteNoteHandler implements AjaxHandlerInterface {
 * [Манифест модуля](../reference/back-end/manifest)
 
 
+# DataLoader и QueryBuilder (/dev/dle/devcraft_admin/200.4.0/guides/data_loader)
+
+
+
+**Зачем:** не писать `$db->super_query` / сырой SQL для простых SELECT / INSERT / UPDATE / DELETE. `DataLoaderService` — static-фасад с кешем на чтение; `QueryBuilder` собирает аргументы через [`#[With]` / `#[WithItem]`](/dev/dev-tools/1.0.1/guides/with_attributes).
+
+## Dual accept (SELECT) [#dual-accept-select]
+
+`DataLoaderService::loadData()` / `::loadOne()` принимают **массив*&#x2A; или &#x2A;*`QueryBuilder`**:
+
+```php
+use DevCraft\Builders\QueryBuilder;
+use DevCraft\Core\Enums\SortDirection;
+use DevCraft\Core\Support\DataLoaderService;
+use DevCraft\Core\Support\DleDataService;
+
+DataLoaderService::loadData([
+	'table'      => 'users',
+	'columns'    => ['user_id', 'name'],
+	'conditions' => ['user_id' => 1],
+	'order'      => ['name' => 'ASC'],
+	'limit'      => 1,
+]);
+
+QueryBuilder::create('users')
+	->withColumns(['user_id', 'name'])
+	->withConditionsItem('user_id', 1)
+	->withOrderItem('name', SortDirection::Asc)
+	->withLimit(1)
+	->first();
+
+// высокоуровнево
+$user = DleDataService::user(id: 1);
+```
+
+## Ключи args (SELECT) [#ключи-args-select]
+
+| Ключ               | Смысл                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------- |
+| `table`            | Таблица **без** PREFIX/USERPREFIX                                                        |
+| `columns`          | Список колонок (опционально)                                                             |
+| `conditions`       | `поле => значение` или `['op' => '=', 'value' => …]`                                     |
+| `order`            | `поле => ASC\|DESC` (или [`SortDirection`](../reference/back-end/classes/SortDirection)) |
+| `limit` / `offset` | int                                                                                      |
+
+## INSERT / UPDATE / DELETE [#insert--update--delete]
+
+Пишутся через `QueryBuilder` → `DataLoaderService::insert` / `::update` / `::delete`.
+
+* **`insert()`** — payload в `withValues()`; после записи reload по `primaryKey` (default `id`) → созданная строка.
+* **`update()`** — `withValues()` + `withConditions…`; после UPDATE возвращаются все строки по conditions.
+* **`delete()`** — только `withConditions…`; без conditions не выполняется; возвращает `bool`.
+* Инкременты SQL: `new Fragment('pm_all+1')` в values.
+
+```php
+use Cycle\Database\Injection\Fragment;
+use DevCraft\Builders\QueryBuilder;
+
+QueryBuilder::create('pm')
+	->withValues(['subj' => $subject, 'text' => $body, 'user' => $userId, 'folder' => 'inbox'])
+	->insert();
+
+QueryBuilder::create('users')
+	->withValues([
+		'pm_all'    => new Fragment('pm_all+1'),
+		'pm_unread' => new Fragment('pm_unread+1'),
+	])
+	->withConditionsItem('user_id', $userId)
+	->update();
+
+QueryBuilder::create('tags')
+	->withConditionsItem('news_id', $newsId)
+	->delete();
+```
+
+## Когда не нужен super\_query [#когда-не-нужен-super_query]
+
+Для одной таблицы с conditions/order/limit — `QueryBuilder` + `DataLoaderService::…`. Готовые обёртки: [`DleDataService::user()`](../reference/back-end/classes/DleDataService), `users()`, группы, категории.
+
+## См. также [#см-также]
+
+* [QueryBuilder](../reference/back-end/classes/QueryBuilder)
+* [DataLoaderService](../reference/back-end/classes/DataLoaderService)
+* [Fluent Types](./fluent_types)
+* [With attributes (dev-tools)](/dev/dev-tools/1.0.1/guides/with_attributes)
+
+
+# Fluent Types (/dev/dle/devcraft_admin/200.4.0/guides/fluent_types)
+
+
+
+**Зачем:** меньше вложенных массивов, автодополнение в IDE и типобезопасность. Старые `manifest.php` с массивами **продолжают работать** — миграция необязательна.
+
+DevCraft принимает **и массив, и готовый объект** (dual accept). Внутри всё равно приводится к DTO через `::fromArray()` / `::fromLoaded()`.
+
+## Dual accept — что это [#dual-accept--что-это]
+
+| Файл                  | Можно вернуть                                            | Кто загружает                                           |
+| --------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
+| `manifest.php`        | `array` **или** `ModuleManifest`                         | `Registry` → `ModuleManifest::fromLoaded()`             |
+| `settings.schema.php` | `array` **или** `FormSchema`                             | `PluginContext` → `FormSchema::fromArray()` при массиве |
+| `changelog.data.php`  | массив записей: `array`, `Changelog`, `ChangelogBuilder` | `Changelog::listFromManifest()`                         |
+
+**Почему это удобно:** генератор и legacy-модули отдают массив; новые модули — fluent-билдер с `->build()`. Один загрузчик, два стиля.
+
+## Базовый слой: AbstractType::fromArray [#базовый-слой-abstracttypefromarray]
+
+Все DTO (`FormSchema`, `Changelog`, `ModuleAjaxConfig` …) наследуют `DevCraft\Core\Abstracts\AbstractType` → `Devcraft\Abstracts\AbstractReflection` из [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/getting_started).
+
+Массив в объект — одна строка:
+
+```php
+$schema = FormSchema::fromArray(require 'settings.schema.php');
+$ajax   = ModuleAjaxConfig::fromArray($manifest['ajax']);
+$entry  = Changelog::fromArray(['version' => '200.4.0', 'changes' => ['added' => ['…']]]);
+```
+
+Fluent-билдеры собирают те же DTO, что и `fromArray`, без дублирования логики.
+
+Каталог билдеров: `devcraft/src/classes/Builders/` (`DevCraft\Builders`). Загрузка таблиц DLE — отдельно: [DataLoader и QueryBuilder](./data_loader).
+
+## ModuleManifestBuilder [#modulemanifestbuilder]
+
+Возвращает готовый `ModuleManifest`. Типичный паттерн:
+
+```php
+return ModuleManifestBuilder::create()
+    ->mod('my_module')
+    ->code('my_module')
+    ->name('Мой модуль')
+    ->version('200.1.0')
+    ->description(__('Кратко, зачем модуль'))
+    ->icon('mif-cube')
+    ->menu([
+        AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-home'),
+    ])
+    ->ajax(/* см. ModuleAjaxConfigBuilder ниже */)
+    ->changelog(require __DIR__ . '/changelog.data.php')
+    ->build(__DIR__);
+```
+
+* `->build(__DIR__)` — финальный шаг; без него объект не собран.
+* `->toManifestArray()` — если нужен legacy-массив (тесты, экспорт).
+
+## ModuleAjaxConfigBuilder [#moduleajaxconfigbuilder]
+
+Admin-методы (`controller=admin`) и **публичные** (`controller=public`):
+
+```php
+->ajax(
+    ModuleAjaxConfigBuilder::create('admin')
+        ->methods([
+            'settings' => SettingsHandler::class,
+        ])
+        ->publicMethod('list', ListHandler::class, false)
+        ->publicMethod('guest_ping', GuestHandler::class, true)  // allow_guest
+)
+```
+
+| Метод                                        | Назначение                                                     |
+| -------------------------------------------- | -------------------------------------------------------------- |
+| `method($name, $handler)`                    | один admin-метод                                               |
+| `methods([...])`                             | карта admin-методов                                            |
+| `publicMethod($name, $handler, $allowGuest)` | публичный AJAX без авторизации DLE (если `$allowGuest = true`) |
+
+Эквивалент массива:
+
+```php
+'ajax' => [
+    'controller' => 'admin',
+    'methods'    => ['settings' => SettingsHandler::class],
+    'public'     => [
+        'list' => ['handler' => ListHandler::class, 'allow_guest' => false],
+    ],
+],
+```
+
+## ChangelogBuilder [#changelogbuilder]
+
+Одна версия в changelog — builder или массив:
+
+```php
+return [
+    ChangelogBuilder::create('200.4.0')
+        ->date('2026-08-25')
+        ->added([__('Fluent Types для manifest и changelog')])
+        ->fixed([__('…')])
+        ->build(),
+    // legacy-массив тоже ок:
+    ['version' => '200.4.0', 'date' => '2026-07-01', 'changes' => ['added' => [__('…')]]],
+];
+```
+
+Группы: `added`, `changed`, `fixed`, `removed`, `security`, `deprecated`.
+
+## Живые примеры [#живые-примеры]
+
+### DevCraft Admin — только admin-AJAX [#devcraft-admin--только-admin-ajax]
+
+```php
+return ModuleManifestBuilder::create()
+    ->mod('devcraft')
+    ->code('devcraft')
+    ->name('DevCraft Admin')
+    ->version('200.4.1')
+    ->menu([/* AdminLink::page … */])
+    ->ajax(
+        ModuleAjaxConfigBuilder::create('admin')
+            ->methods([
+                'settings'   => SettingsHandler::class,
+                'logs_table' => LogsTableHandler::class,
+            ])
+    )
+    ->changelog(require DLEPlugins::Check(__DIR__ . '/changelog.data.php'))
+    ->build(__DIR__);
+```
+
+Источник: `devcraft/src/modules/Admin/manifest.php`.
+
+### DLE Уведомления — admin + public API [#dle-уведомления--admin--public-api]
+
+```php
+return ModuleManifestBuilder::create()
+    ->mod('notifications')
+    ->code('dle_notifications')
+    ->name('DLE Уведомления')
+    ->menu([
+        AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-home', 'notifications'),
+    ])
+    ->ajax(
+        ModuleAjaxConfigBuilder::create('admin')
+            ->methods([
+                'settings'    => SettingsHandler::class,
+                'permissions' => PermissionsHandler::class,
+            ])
+            ->publicMethod('subscribe', SubscribeHandler::class, false)
+            ->publicMethod('list', ListHandler::class, false)
+            ->publicMethod('unsubscribe_token', UnsubscribeTokenHandler::class, true)
+    )
+    ->changelog(require DLEPlugins::Check(__DIR__ . '/changelog.data.php'))
+    ->build(__DIR__);
+```
+
+Источник: `devcraft/src/modules/Notifications/manifest.php`. Публичные методы — для inbox на фронте сайта (`devcraft/ajax.php?controller=public&mod=notifications`).
+
+## FormSchema — тот же dual accept [#formschema--тот-же-dual-accept]
+
+`settings.schema.php` может вернуть builder или массив:
+
+```php
+// Fluent (рекомендуется)
+return FormSchemaBuilder::create('my_module')
+    ->layout(FormLayout::TABS)
+    ->section(__('Основные'))
+        ->text('export_path', __('Путь'))
+    ->build();
+
+// Legacy-массив — PluginContext вызовет FormSchema::fromArray()
+return [
+    'codename' => 'my_module',
+    'layout'   => 'tabs',
+    'sections' => [/* … */],
+];
+```
+
+## Что выбрать [#что-выбрать]
+
+| Ситуация                           | Стиль                                             |
+| ---------------------------------- | ------------------------------------------------- |
+| Новый модуль, много AJAX/changelog | Fluent + builders                                 |
+| Старый модуль, генератор           | Массив — менять не обязательно                    |
+| Смешанный changelog                | `ChangelogBuilder` + legacy-массивы в одном файле |
+
+## См. также [#см-также]
+
+* [Module Identity](./module_identity) — `mod` / `code` без хардкода
+* [Версионирование плагинов](../reference/back-end/versioning) — почему `200.4.0`, а не `2.4.0`
+* [Манифест модуля](../reference/back-end/manifest)
+* [Примеры Form](form_examples)
+* [Shared-пакеты](../reference/back-end/shared_packages)
+
+
 # Примеры Form (/dev/dle/devcraft_admin/200.4.0/guides/form_examples)
 
 
 
-Практические сценарии для API Form (`FormSchemaBuilder`, `FormSectionBuilder`, `FormFieldBuilder`; код: `devcraft/src/classes/Form/`). Справочник по классам: [FormSchemaBuilder](../reference/back-end/classes/FormSchemaBuilder), [FormSectionBuilder](../reference/back-end/classes/FormSectionBuilder), [FormFieldBuilder](../reference/back-end/classes/FormFieldBuilder).
+**Зачем:** описываете поля один раз в PHP — DevCraft рисует Metro UI и сохраняет JSON в `devcraft/config/`.
+
+Copy-paste примеры для `FormSchemaBuilder` / `FormSectionBuilder` / `FormFieldBuilder` (`devcraft/src/classes/Form/`). Справочник: [FormSchemaBuilder](../reference/back-end/classes/FormSchemaBuilder), [FormSectionBuilder](../reference/back-end/classes/FormSectionBuilder), [FormFieldBuilder](../reference/back-end/classes/FormFieldBuilder). Общий паттерн dual accept (массив или объект) — в [Fluent Types](fluent_types).
 
 ## Два разных контракта [#два-разных-контракта]
 
@@ -77558,9 +78098,9 @@ $order         = FilterFormService::normalizeOrder((string) ($query['order'] ?? 
 
 
 
-Переводимые строки в коде оборачиваются в `__()` / `translate()` (см. `devcraft/src/bootstrap/functions.php`). Файлы локалей хранятся вне `src/` — по умолчанию в `devcraft/locales/{locale}/` (настраивается полем **Путь до языков** на странице [Настройка](manage)).
+**Зачем:** строки в коде на русском, интерфейс — на языке админки; без правки PHP при добавлении локали.
 
-Блок путей в глобальных настройках DevCraft Admin задаёт каталог локалей. Для graphify здесь важнее явно связать страницу с настройкой `locales_path`, чем с отдельным изображением.
+Оборачивайте текст в `__()` / `translate()`. Файлы: `devcraft/locales/{locale}/` (путь — [Настройка](manage)).
 
 ## Класс Translation [#класс-translation]
 
@@ -77602,9 +78142,9 @@ devcraft/locales/ru_RU/my_module.xliff
 
 
 
-Административная панель DevCraft Admin построена на [Metro UI](https://github.com/olton/metroui). Глобальные настройки задаются на странице **Настройки** и описаны в `devcraft/src/modules/Admin/settings.schema.php`.
+**Зачем:** один раз настроить язык, тему и пути — все модули автора подхватят одни и те же лимиты списков и кеш.
 
-Страница **Настройки** содержит вкладки общих параметров, логирования и путей.
+Глобальные настройки: **DevCraft Admin → Настройки**. Схема: `devcraft/src/modules/Admin/settings.schema.php`.
 
 ## Общие [#общие]
 
@@ -77644,15 +78184,95 @@ devcraft/locales/ru_RU/my_module.xliff
 Раз в сутки выполняется автоматическая проверка ассетов модуля. При расхождениях в шапке админки отображается индикатор; подробности — в диалоге синхронизации (см. класс `AssetsCheckerService` в [справочнике API](../reference/back-end/classes/AssetsCheckerService)).
 
 
+# Module Identity (/dev/dle/devcraft_admin/200.4.0/guides/module_identity)
+
+
+
+**Зачем:** строки `mod` / `code` повторяются в manifest, `AdminLink`, `getConfig`, schema. Один класс identity — один источник правды.
+
+## Два идентификатора [#два-идентификатора]
+
+| Поле   | Назначение                                     | Пример Admin | Пример Notifications |
+| ------ | ---------------------------------------------- | ------------ | -------------------- |
+| `mod`  | DLE URL `?mod=…`, меню, registry               | `devcraft`   | `notifications`      |
+| `code` | JSON `devcraft/config/{code}.json`, FormSchema | `devcraft`   | `dle_notifications`  |
+
+Часто они совпадают. У Notifications — **нет**: `mod ≠ code`.
+
+## Контракт [#контракт]
+
+```php
+namespace DevCraft\Core\Interfaces;
+
+interface ModuleIdentity {
+	public static function mod(): string;
+	public static function code(): string;
+}
+```
+
+База (наследник объявляет `MODULE` / `CODE`):
+
+```php
+abstract class AbstractModuleIdentity implements ModuleIdentity {
+	public static function mod(): string { return static::MODULE; }
+	public static function code(): string { return static::CODE; }
+}
+```
+
+## Класс модуля [#класс-модуля]
+
+Файл: `devcraft/src/modules/{Dir}/{Dir}Identity.php` (для `dle_faker` — `DleFakerIdentity`).
+
+```php
+namespace DevCraft\Modules\Notifications;
+
+use DevCraft\Core\Abstracts\AbstractModuleIdentity;
+
+final class NotificationsIdentity extends AbstractModuleIdentity {
+	public const string MODULE = 'notifications';
+	public const string CODE = 'dle_notifications';
+}
+```
+
+## Использование [#использование]
+
+```php
+use DevCraft\Modules\Notifications\NotificationsIdentity;
+
+return ModuleManifestBuilder::create()
+	->mod(NotificationsIdentity::mod())
+	->code(NotificationsIdentity::code())
+	->menu([
+		AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-home', NotificationsIdentity::mod()),
+	])
+	->build(__DIR__);
+```
+
+```php
+DataManager::getConfig(NotificationsIdentity::code());
+FormSchemaBuilder::create(NotificationsIdentity::code());
+```
+
+`AdminLink::page()` без 5-го аргумента берёт `AdminIdentity::mod()` (ядро DevCraft).
+
+## Генератор [#генератор]
+
+[Генератор модулей](./new_module) создаёт `{Dir}Identity.php` и подставляет `::mod()` / `::code()` в manifest, schema и SettingsHandler.
+
+## См. также [#см-также]
+
+* [Создание модуля](./create_module)
+* [Fluent Types](./fluent_types)
+* [Манифест](../reference/back-end/manifest)
+
+
 # Генератор модулей (/dev/dle/devcraft_admin/200.4.0/guides/new_module)
 
 
 
-Функционал упрощает создание каркаса нового модуля DevCraft: страницы, AJAX, manifest, шаблоны и локализация.
+**Зачем:** не копировать каталоги руками — за минуту получить `manifest.php`, Pages, Ajax и Twig.
 
-Откройте в админке **DevCraft Admin → Генератор модулей** (`NewModulePage`).
-
-Форма генератора содержит имя модуля, code и базовые опции каркаса. Для graphify здесь важнее связь страницы с `NewModulePage` и `ModuleGeneratorService`, чем отдельный скриншот интерфейса.
+**DevCraft Admin → Генератор модулей** (`NewModulePage`). `NewModuleHandler` + `ModuleGeneratorService` создают `devcraft/src/modules/{Name}/`.
 
 ## Форма [#форма]
 
@@ -77693,6 +78313,7 @@ devcraft/src/modules/{Name}/
 
 ## См. также [#см-также]
 
+* [Создание модуля вручную](./create_module) — структура файлов, install.xml, AJAX
 * [Манифест модуля](../reference/back-end/manifest)
 * [Класс ModuleGeneratorService](../reference/back-end/classes/ModuleGeneratorService)
 
@@ -77701,26 +78322,28 @@ devcraft/src/modules/{Name}/
 
 
 
-**Ссылка на разработку**: [Перейти к разработке](https://devcraft.club/downloads/maharder-assets.4/)
+**Ссылка:** [скачать DevCraft Admin](https://devcraft.club/downloads/maharder-assets.4/)
 
-## Минимальные требования [#минимальные-требования]
+Ставите на **DLE 20.0*&#x2A; — нужна линейка плагина &#x2A;*`200.*`** ([версионирование](reference/back-end/versioning)).
+
+## Требования [#требования]
 
 * **Версия PHP**: 8.3
 * **Расширения PHP**: `simplexml`, `libxml`, `intl`, `fileinfo`, `pdo_mysql`, `curl`, `mbstring`, `openssl`
 * **Рекомендуемые настройки**: выделенная память PHP не менее 128M
 * **CMS**: DataLife Engine 20.0
 
-## Установка / обновление [#установка--обновление]
+## Установка [#установка]
 
-### 1. Установка через менеджер плагинов DLE [#1-установка-через-менеджер-плагинов-dle]
+### 1. Менеджер плагинов DLE [#1-менеджер-плагинов-dle]
 
-1. Скачайте архив плагина DevCraft Admin (формат `upload/` с `install.xml` в корне).
-2. Загрузите архив в **Панель управления → Плагины → Установить плагин**.
-3. Убедитесь, что на сайте появились файлы:
-   * `engine/inc/devcraft.php` — точка входа админ-модуля DLE
-   * каталог `devcraft/` в корне сайта
+1. Загрузите архив (`upload/` + `install.xml`).
+2. **Панель → Плагины → Установить**.
+3. Проверьте на диске:
+   * `engine/inc/devcraft.php`
+   * каталог `devcraft/`
 
-### 2. Зависимости Composer [#2-зависимости-composer]
+### 2. Composer [#2-composer]
 
 В каталоге `devcraft/` на сервере выполните:
 
@@ -77731,148 +78354,127 @@ composer install --no-dev
 
 Без каталога `vendor/` плагин выведет предупреждение в админке DLE и не загрузится.
 
-Если core-слой или модуль опирается на shared DTO / fluent-абстракции, после базовой установки проверьте наличие `devcraftclub/dev-tools` в `devcraft/composer.json`. Этот пакет содержит `AbstractReflection`, `AbstractWith`, атрибуты `#[With]` / `#[WithItem]` и related runtime-компоненты.
+Если модуль тянет shared DTO — в `devcraft/composer.json` должен быть `devcraftclub/dev-tools`:
 
 ```bash
 composer show devcraftclub/dev-tools
 ```
 
-Граница между тем, что остаётся частью админ-оболочки, и тем, что выносится в shared package, описана в [Shared-пакеты и абстракции](reference/back-end/shared_packages).
+### 3. Вручную [#3-вручную]
 
-### 3. Ручная загрузка (альтернатива) [#3-ручная-загрузка-альтернатива]
+Скопируйте `upload/` в корень сайта, затем активируйте плагин в DLE.
 
-Скопируйте содержимое `upload/` в корень сайта (сохраняя структуру `engine/` и `devcraft/`), затем установите плагин через менеджер плагинов.
+## Как грузится админка [#как-грузится-админка]
 
-## Цепочка загрузки [#цепочка-загрузки]
+1. `engine/inc/devcraft.php` — вход DLE
+2. `devcraft/init.php` — autoload, bootstrap
+3. `Application::runAdmin()` — страницы модуля Admin
 
-После установки запросы в админку проходят через:
+AJAX: [точки входа](reference/back-end/entry_points).
 
-1. `engine/inc/devcraft.php` — тонкая обёртка DLE (проверка `DATALIFEENGINE`, `LOGGED_IN`)
-2. `devcraft/init.php` — автозагрузка Composer, регистрация путей, bootstrap ядра
-3. `DevCraft\Core\Application::runAdmin()` — маршрутизация страниц модуля Admin
-
-AJAX-запросы обрабатываются через `devcraft/ajax.php` (см. [Точки входа](reference/back-end/entry_points)).
-
-## Структура каталогов [#структура-каталогов]
+## Структура `devcraft/` [#структура-devcraft]
 
 ```
 devcraft/
-├── init.php              # Bootstrap плагина
-├── ajax.php              # AJAX-точка входа
-├── composer.json
-├── vendor/               # После composer install
-├── src/
-│   ├── bootstrap/        # functions.php, ajax-session.php
-│   ├── classes/          # Ядро DevCraft
-│   ├── modules/Admin/    # Модуль админки
-│   └── templates/        # Twig-шаблоны
-├── config/
-├── locales/
-├── cache/
-└── logs/
-engine/inc/
-└── devcraft.php          # Регистрация в DLE Admin
+├── init.php, ajax.php
+├── composer.json, vendor/
+├── src/classes/, src/modules/Admin/
+├── config/, locales/, cache/, logs/
+engine/inc/devcraft.php
 ```
 
 ## Первый запуск [#первый-запуск]
 
-1. Откройте в админке DLE модуль **DevCraft Admin**.
-2. Перейдите в **Настройки** и задайте язык (`ru_RU`), тему (светлая/тёмная), пути к кешу и локалям.
-3. При необходимости включите логирование и Telegram-уведомления (см. [Настройка](guides/manage)).
+1. Откройте **DevCraft Admin** в админке DLE.
+2. **Настройки** — язык, тема, пути ([подробнее](guides/manage)).
+3. При необходимости — логи и Telegram.
 
 ## Обновление [#обновление]
 
-1. Создайте резервную копию каталога `devcraft/` и настроек в БД.
-2. Установите новый архив плагина через менеджер DLE.
-3. Выполните `composer install` в `devcraft/`, если изменился `composer.lock`.
-4. Если в changelog упомянут перенос общих DTO/utility-слоёв, проверьте `composer.json` и `composer_required` модулей на новые shared-зависимости.
-5. Проверьте [историю изменений](changelog).
+1. Бэкап `devcraft/` и настроек.
+2. Новый архив через менеджер DLE.
+3. `composer install`, если менялся lock.
+4. Проверьте [changelog](changelog) и `composer_required` модулей.
 
 ## См. также [#см-также]
 
-* [Настройка](guides/manage)
-* [Точки входа для разработчиков](reference/back-end/entry_points)
-* [Shared-пакеты и абстракции](reference/back-end/shared_packages)
-* [Composer](../../../../instructions/composer)
+* [Начало работы](getting_started) — обзор плагина
+* [Создание модуля](guides/create_module) — первый сателлит
+* [Fluent Types](guides/fluent_types)
+* [Миграция с MH Admin](migration)
+* [Shared-пакеты](reference/back-end/shared_packages)
 
 
 # Миграция на DevCraft Admin (/dev/dle/devcraft_admin/200.4.0/migration)
 
 
 
-DevCraft Admin устанавливается как **новый плагин** DLE 20.0. Автоматическая миграция базы данных, локалей и сторонних модулей **не выполняется** — lifecycle создаёт только пункт меню `devcraft`.
+**Суть:** DevCraft — **новый** плагин для DLE 20.0 (`200.*`). Автоматически базу и legacy-модули не перенесёт.
 
-<Callout type="warn" title="Полная автоматическая миграция невозможна">
-  Из-за смены архитектуры (Metro UI, Cycle ORM, новые пути) старые плагины MH Admin **не совместимы** до их отдельного обновления под DevCraft.
+<Callout type="warn" title="Автомиграции нет">
+  MH Admin (`173.*`, DLE 17.3) и DevCraft (`200.*`) — разные ветки. Старые модули нужно переписать под `devcraft/src/modules/`.
 </Callout>
 
-Актуальная документация: [Установка](install). Legacy: [MH Admin (Legacy)](../../../../deprecated/mhadmin/install).
+Актуально: [Установка](install). Legacy: [MH Admin](../../../../deprecated/mhadmin/install).
 
-## Что меняется [#что-меняется]
+## Что меняется одной таблицей [#что-меняется-одной-таблицей]
 
-| Legacy (MH Admin)         | DevCraft Admin                                               |
-| ------------------------- | ------------------------------------------------------------ |
-| `engine/inc/maharder.php` | `engine/inc/devcraft.php`                                    |
-| `engine/inc/maharder/`    | `devcraft/` в корне сайта                                    |
-| Fomantic UI               | Metro UI                                                     |
-| `MH_*` константы          | `DEVCRAFT_*` (см. [Paths](reference/back-end/classes/Paths)) |
-| `engine/ajax/maharder/`   | `devcraft/ajax.php`                                          |
+| Было (MH Admin)           | Стало (DevCraft)                                                  |
+| ------------------------- | ----------------------------------------------------------------- |
+| `engine/inc/maharder.php` | `engine/inc/devcraft.php`                                         |
+| `engine/inc/maharder/`    | `devcraft/` в корне                                               |
+| Fomantic UI               | Metro UI                                                          |
+| `MH_*`                    | `DEVCRAFT_*` ([Paths](reference/back-end/classes/Paths))          |
+| `engine/ajax/maharder/`   | `devcraft/ajax.php`                                               |
+| Версия `173.x`            | Версия `200.x` ([версионирование](reference/back-end/versioning)) |
 
-Дополнительно меняется модель повторного использования кода: общие DTO, reflection/fluent-абстракции и runtime-хелперы больше не обязаны жить внутри самой админ-оболочки. Для этого постепенно используется внешний пакет [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/getting_started). См. [Shared-пакеты и абстракции](reference/back-end/shared_packages).
+Shared-код (DTO, reflection) уезжает в [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/getting_started) — см. [Shared-пакеты](reference/back-end/shared_packages).
 
-## Ручные шаги [#ручные-шаги]
+## Шаги вручную [#шаги-вручную]
 
-### 1. Резервная копия [#1-резервная-копия]
+### 1. Бэкап [#1-бэкап]
 
-Сохраните каталоги `engine/inc/maharder/`, `devcraft/` (если уже есть) и дамп БД.
+`engine/inc/maharder/`, `devcraft/` (если есть), дамп БД.
 
-### 2. Установка DevCraft Admin [#2-установка-devcraft-admin]
+### 2. Установка DevCraft [#2-установка-devcraft]
 
-Следуйте [инструкции по установке](install): архив плагина через менеджер DLE, затем `composer install` в `devcraft/`.
+[install](install) → `composer install` в `devcraft/`.
 
-### 3. Перенос конфигурации JSON [#3-перенос-конфигурации-json]
+### 3. JSON-конфиги [#3-json-конфиги]
 
-Файлы из `engine/inc/maharder/_config/` скопируйте в `devcraft/config/`.
+`engine/inc/maharder/_config/` → `devcraft/config/`. Ключи в основном те же; `DevCraftConfig` мигрирует устаревшие.
 
-Имена ключей в основном совпадают (`list_count`, `language`, `theme`, `logs` и т.д.). При первом запуске `DevCraftConfig` применяет миграцию устаревших ключей.
+### 4. Локали [#4-локали]
 
-### 4. Локализация [#4-локализация]
-
-Скопируйте XLIFF из `engine/inc/maharder/_locales/` в `devcraft/locales/` (структура `{locale}/{module}.xliff`).
-
-Путь к локалям можно проверить в [Настройка](guides/manage) → **Путь до файлов языков**.
+`_locales/` → `devcraft/locales/{locale}/{module}.xliff`.
 
 ### 5. Логи и кеш [#5-логи-и-кеш]
 
-| Legacy                      | DevCraft                          |
-| --------------------------- | --------------------------------- |
-| `engine/inc/maharder/logs/` | `devcraft/logs/`                  |
-| кеш MH                      | `devcraft/cache/` (настраивается) |
+| Legacy             | DevCraft          |
+| ------------------ | ----------------- |
+| `…/maharder/logs/` | `devcraft/logs/`  |
+| кеш MH             | `devcraft/cache/` |
 
-Таблица логов в БД: `devcraft_logs` (см. [LogRecord](reference/back-end/classes/LogRecord)). Старые записи `{prefix}_maharder_*` **не импортируются** автоматически.
+БД: `devcraft_logs`. Старые `{prefix}_maharder_*` **не импортируются**.
 
-### 6. Сторонние модули автора [#6-сторонние-модули-автора]
+### 6. Сторонние модули [#6-сторонние-модули]
 
-Каждый legacy-модуль под `engine/inc/maharder/_modules/` требует **переписывания** под структуру `devcraft/src/modules/{Name}/` (manifest, Pages, Ajax). Используйте [генератор модулей](guides/new_module) как стартовую точку.
+Каждый `_modules/*` → `devcraft/src/modules/{Name}/` с [manifest](reference/back-end/manifest). Старт: [генератор](guides/new_module). Новый стиль manifest — [Fluent Types](guides/fluent_types) (массив по-прежнему ок).
 
-Если при переносе вы находите старые универсальные helper/DTO-классы, сначала проверьте, не должен ли этот слой переехать в `devcraftclub/dev-tools`, а не остаться внутри конкретного admin-модуля.
+### 7. Отключить Legacy [#7-отключить-legacy]
 
-### 7. Отключение Legacy (опционально) [#7-отключение-legacy-опционально]
+После проверки — убрать пункт `maharder`, архивировать `engine/inc/maharder/`.
 
-После проверки DevCraft Admin можно удалить пункт меню `maharder` в DLE и архивировать `engine/inc/maharder/`. Рекомендуется оставить Legacy-документацию для ссылок на старые API.
+## Позже (план) [#позже-план]
 
-## Планируется в будущих релизах [#планируется-в-будущих-релизах]
-
-* Импорт таблиц `{prefix}_maharder_*` → `{prefix}_devcraft_*`
-* Мастер деактивации legacy-меню
-* Проверка целостности путей при обновлении
+* Импорт `{prefix}_maharder_*` → `{prefix}_devcraft_*`
+* Мастер отключения legacy-меню
 
 ## См. также [#см-также]
 
+* [Fluent Types](guides/fluent_types)
 * [Точки входа](reference/back-end/entry_points)
-* [Манифест модуля](reference/back-end/manifest)
-* [Shared-пакеты и абстракции](reference/back-end/shared_packages)
-* [История изменений](changelog)
+* [Changelog](changelog)
 
 
 # Класс: AbstractEntity (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/AbstractEntity)
@@ -79345,8 +79947,6 @@ DTO входящего AJAX-запроса DevCraft.
 * private $[registry](#property_registry)
 * private $[twig](#property_twig)
 * private $[database](#property_database)
-* private $[dataLoader](#property_dataLoader)
-* private $[dleData](#property_dleData)
 * private $[assetsChecker](#property_assetsChecker)
 
 ***
@@ -79360,8 +79960,6 @@ DTO входящего AJAX-запроса DevCraft.
 * public [twig()](#method_twig)
 * public [database()](#method_database)
 * public [runAdmin()](#method_runAdmin)
-* public [dataLoader()](#method_dataLoader)
-* public [dleData()](#method_dleData)
 * public [assetsChecker()](#method_assetsChecker)
 * public [public\_asset\_url()](#method_public_asset_url)
 * public [modulePublicAssetUrl()](#method_modulePublicAssetUrl)
@@ -79401,18 +79999,6 @@ DTO входящего AJAX-запроса DevCraft.
 #### $database [#database]
 
 Шлюз доступа к базе данных через Cycle ORM.
-
-<span id="property_dataLoader" />
-
-#### $dataLoader [#dataloader]
-
-Сервис загрузки данных из таблиц DLE с кешированием.
-
-<span id="property_dleData" />
-
-#### $dleData [#dledata]
-
-Сервис агрегированных данных DLE (пользователи, категории и т.д.).
 
 <span id="property_assetsChecker" />
 
@@ -79489,28 +80075,9 @@ DTO входящего AJAX-запроса DevCraft.
 **Параметры:**
 
 * `$moduleDir` — Имя каталога модуля относительно DEVCRAFT\_MODULES.
-*
 * `$mod` — Переопределение идентификатора модуля в URL (необязательно).
 
-<span id="method_dataLoader" />
-
-### dataLoader() [#dataloader-1]
-
-Возвращает сервис загрузки данных с учётом таймера кеша из настроек.
-
-**С версии:** 200.4.0
-
-**Возвращает:** `DataLoaderService` — Сервис выборки данных DLE.
-
-<span id="method_dleData" />
-
-### dleData() [#dledata-1]
-
-Возвращает сервис агрегированных данных DLE с кешированием.
-
-**С версии:** 200.4.0
-
-**Возвращает:** `DleDataService` — Сервис высокоуровневых данных DLE.
+> Загрузка строк DLE — static [`DataLoaderService`](./DataLoaderService) / [`DleDataService`](./DleDataService) (методы `dataLoader()` / `dleData()` удалены).
 
 <span id="method_assetsChecker" />
 
@@ -80187,6 +80754,27 @@ URL ссылки или `null` для текущей страницы.
 Возвращает локализованную метку для неопубликованных версий.
 
 
+# ChangelogBuilder (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ChangelogBuilder)
+
+
+
+**Зачем:** писать `changelog.data.php` без вложенных `'changes' => ['added' => [...]]`.
+
+**Namespace:** `DevCraft\Builders`
+
+```php
+return [
+	ChangelogBuilder::create('200.4.0')
+		->date('2026-08-25')
+		->added([__('Fluent Types и dual accept')])
+		->fixed([__('ajax.public в ModuleAjaxConfig')])
+		->build(),
+];
+```
+
+Группы: `added`, `changed`, `fixed`, `removed`, `security`, `deprecated` или общий `changes($key, $texts)`.
+
+
 # Класс: ChangelogChange (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ChangelogChange)
 
 
@@ -80816,191 +81404,80 @@ AJAX-обработчик проверки обновлений плагина �
 
 
 
-## Краткое содержание: [#краткое-содержание]
+## Краткое содержание [#краткое-содержание]
 
-Загружает строки из таблиц DLE через Cycle SelectQuery с кешированием.
+Загружает и изменяет строки таблиц DLE через Cycle Database. **Static API** — БД из `Application::instance()->database()`.
 
-***
+**Путь:** `devcraft/src/classes/Support/DataLoaderService.php`
 
-### Свойства [#свойства]
+**См. также:** [QueryBuilder](./QueryBuilder), [DleDataService](./DleDataService), [гайд DataLoader](../../../guides/data_loader)
 
-*Нет публичных свойств.*
+## Методы [#методы]
 
-***
-
-### Методы [#методы]
-
-* public [\_\_construct()](#method___construct)
-* public [loadData()](#method_loadData)
-* public [clearCache()](#method_clearCache)
-* private [normalizeArgs()](#method_normalizeArgs)
-* private [executeQuery()](#method_executeQuery)
-* private [applyWhere()](#method_applyWhere)
-* private [applyOrder()](#method_applyOrder)
-* private [normalizeSortDirection()](#method_normalizeSortDirection)
-* private [resolveDatabaseForTable()](#method_resolveDatabaseForTable)
-* private [resolvePrefix()](#method_resolvePrefix)
-* private [readCache()](#method_readCache)
-* private [writeCache()](#method_writeCache)
-
-***
-
-### Подробности [#подробности]
-
-* Путь: `devcraft/src/classes/Support/DataLoaderService.php`
-
-***
-
-## Детали [#детали]
-
-### Методы [#методы-1]
-
-<span id="method___construct" />
-
-### \_\_construct() [#__construct]
-
-Создаёт сервис загрузки данных.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$db` — Шлюз базы данных.
-* `$cacheTimer` — Время жизни кеша в секундах.
+* public static [loadData()](#method_loadData)
+* public static [loadOne()](#method_loadOne)
+* public static [insert()](#method_insert)
+* public static [update()](#method_update)
+* public static [delete()](#method_delete)
+* public static [clearCache()](#method_clearCache)
 
 <span id="method_loadData" />
 
 ### loadData() [#loaddata]
 
-Загружает данные таблицы DLE с кешированием (legacy load\_data).
+`DataLoaderService::loadData(array|QueryBuilder $args): array`
 
-**С версии:** 173.3.0
+Загружает данные таблицы DLE с кешированием. Dual accept: массив или [QueryBuilder](./QueryBuilder).
 
-**Возвращает:** `array<int, array<string, mixed>>` — Строки результата или пустой массив при ошибке.
+**С версии:** 173.3.0 (static с 200.4.0)
+
+<span id="method_loadOne" />
+
+### loadOne() [#loadone]
+
+`DataLoaderService::loadOne(array|QueryBuilder $args): array`
+
+Первая строка или `[]`.
+
+**С версии:** 200.4.0
+
+<span id="method_insert" />
+
+### insert() [#insert]
+
+`DataLoaderService::insert(QueryBuilder $query): array`
+
+INSERT по `values`, затем reload по `primaryKey` (по умолчанию `id`) и lastInsertId. Возвращает созданную строку или `[]`.
+
+**С версии:** 200.4.0
+
+<span id="method_update" />
+
+### update() [#update]
+
+`DataLoaderService::update(QueryBuilder $query): array`
+
+UPDATE по `values` + `conditions`, затем SELECT всех совпавших строк. В `values` допускаются `Fragment` (например `pm_all+1`).
+
+**С версии:** 200.4.0
+
+<span id="method_delete" />
+
+### delete() [#delete]
+
+`DataLoaderService::delete(QueryBuilder $query): bool`
+
+DELETE по `conditions`. Без conditions не выполняется (защита от полной очистки таблицы). `true` при успехе, `false` при ошибке или пустых conditions.
+
+**С версии:** 200.4.0
 
 <span id="method_clearCache" />
 
 ### clearCache() [#clearcache]
 
+`DataLoaderService::clearCache(?string $key = null): void`
+
 Очищает кеш загрузчика целиком или по ключу.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$key` — Ключ записи кеша или null для полной очистки типа.
-
-<span id="method_normalizeArgs" />
-
-### normalizeArgs() [#normalizeargs]
-
-Сортирует ключи аргументов для стабильного ключа кеша.
-
-**С версии:** 173.3.0
-
-**Возвращает:** `array<string,` — mixed> Аргументы с ksort по ключам.
-
-<span id="method_executeQuery" />
-
-### executeQuery() [#executequery]
-
-Выполняет SELECT к таблице DLE через Cycle SelectQuery.
-
-**С версии:** 173.3.0
-
-**Возвращает:** `array<int, array<string, mixed>>` — Строки результата fetchAll().
-
-<span id="method_applyWhere" />
-
-### applyWhere() [#applywhere]
-
-Применяет условия where к SelectQuery.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$select` — Объект запроса.
-
-<span id="method_applyOrder" />
-
-### applyOrder() [#applyorder]
-
-Применяет сортировку orderBy к SelectQuery.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$select` — Объект запроса.
-
-<span id="method_normalizeSortDirection" />
-
-### normalizeSortDirection() [#normalizesortdirection]
-
-Нормализует направление сортировки в константу SelectQuery.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$direction` — Строка ASC/DESC.
-
-**Возвращает:** `string` — SelectQuery::SORT\_ASC или SelectQuery::SORT\_DESC.
-
-<span id="method_resolveDatabaseForTable" />
-
-### resolveDatabaseForTable() [#resolvedatabasefortable]
-
-Возвращает Cycle Database с корректным префиксом таблицы.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$table` — Имя таблицы без префикса.
-
-**Возвращает:** `DatabaseInterface` — Подключение с нужным prefix.
-
-<span id="method_resolvePrefix" />
-
-### resolvePrefix() [#resolveprefix]
-
-Определяет PREFIX или USERPREFIX для таблицы DLE.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$table` — Имя таблицы.
-
-**Возвращает:** `string` — Префикс без завершающего подчёркивания.
-
-<span id="method_readCache" />
-
-### readCache() [#readcache]
-
-Читает закешированные строки, если TTL не истёк.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$cacheKey` — Ключ записи кеша.
-
-**Возвращает:** `array<int, array<string, mixed>>` — |null Строки или null при промахе/истечении.
-
-<span id="method_writeCache" />
-
-### writeCache() [#writecache]
-
-Записывает строки результата в кеш.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$cacheKey` — Ключ записи.
 
 
 # Класс: DataManager (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DataManager)
@@ -81942,229 +82419,79 @@ AJAX-обработчик удаления записи журнала по UUID
 
 
 
-## Краткое содержание: [#краткое-содержание]
+## Краткое содержание [#краткое-содержание]
 
-Агрегирует справочные данные DLE: пользователи, группы, категории, xfields.
+Агрегирует справочные данные DLE поверх [DataLoaderService](./DataLoaderService). **Static API** — без `Application::dleData()`.
 
-***
+**Путь:** `devcraft/src/classes/Support/DleDataService.php`
 
-### Свойства [#свойства]
+**См. также:** [DataLoaderService](./DataLoaderService), [QueryBuilder](./QueryBuilder)
 
-*Нет публичных свойств.*
+## Методы [#методы]
 
-***
-
-### Методы [#методы]
-
-* public [\_\_construct()](#method___construct)
-* public [users()](#method_users)
-* public [user()](#method_user)
-* public [groups()](#method_groups)
-* public [groupsFull()](#method_groupsFull)
-* public [categories()](#method_categories)
-* public [categoriesFull()](#method_categoriesFull)
-* public [postXfields()](#method_postXfields)
-* public [userXfields()](#method_userXfields)
-* public [parseObjectXfields()](#method_parseObjectXfields)
-* private [loadXfieldsFromJson()](#method_loadXfieldsFromJson)
-* private [readJsonFields()](#method_readJsonFields)
-* private [parseXfieldsString()](#method_parseXfieldsString)
-* private [readJsonCache()](#method_readJsonCache)
-* private [writeJsonCache()](#method_writeJsonCache)
-
-***
-
-### Подробности [#подробности]
-
-* Путь: `devcraft/src/classes/Support/DleDataService.php`
-
-***
-
-## Детали [#детали]
-
-### Методы [#методы-1]
-
-<span id="method___construct" />
-
-### \_\_construct() [#__construct]
-
-Инициализирует зависимости: `$loader`, `$cacheTimer`.
-
-**С версии:** 200.4.0
-
-**Параметры:**
-
-* `$loader` — Сервис загрузки таблиц DLE.
-* `$cacheTimer` — TTL кеша xfields в секундах.
+* public static [users()](#method_users)
+* public static [user()](#method_user)
+* public static [groups()](#method_groups)
+* public static [groupsFull()](#method_groupsFull)
+* public static [categories()](#method_categories)
+* public static [categoriesFull()](#method_categoriesFull)
+* public static [postXfields()](#method_postXfields)
+* public static [userXfields()](#method_userXfields)
+* public static [parseObjectXfields()](#method_parseObjectXfields)
 
 <span id="method_users" />
 
 ### users() [#users]
 
-Возвращает список пользователей DLE с основными полями.
-
-**С версии:** 173.3.0
-
-**Возвращает:** `array<int, array<string, mixed>>` — Строки users.
+`DleDataService::users(): array` — строки users с основными полями.
 
 <span id="method_user" />
 
 ### user() [#user]
 
-Возвращает одного пользователя по id или имени.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$id` — ID пользователя или null.
-* `$uname` — Имя пользователя или null.
-
-**Возвращает:** `array<string, mixed>|array{}` — Первая строка или пустой массив.
+`DleDataService::user(?int $id = null, ?string $uname = null): array` — один пользователь через QueryBuilder + `loadOne`.
 
 <span id="method_groups" />
 
 ### groups() [#groups]
 
-Возвращает карту id => group\_name для групп пользователей.
-
-**С версии:** 173.3.0
-
-**Возвращает:** `array<int|string,` — string> Ассоциативный список групп.
+`DleDataService::groups(): array` — карта id => group\_name.
 
 <span id="method_groupsFull" />
 
 ### groupsFull() [#groupsfull]
 
-Возвращает полные строки таблицы usergroups.
-
-**С версии:** 173.3.0
-
-**Возвращает:** `array<int, array<string, mixed>>` — Все колонки групп.
+`DleDataService::groupsFull(): array` — полные строки usergroups.
 
 <span id="method_categories" />
 
 ### categories() [#categories]
 
-Возвращает карту id => name для категорий DLE.
-
-**С версии:** 173.3.0
-
-**Возвращает:** `array<int|string,` — string> Ассоциативный список категорий.
+`DleDataService::categories(): array` — карта id => name.
 
 <span id="method_categoriesFull" />
 
 ### categoriesFull() [#categoriesfull]
 
-Возвращает полные строки таблицы category.
-
-**С версии:** 173.3.0
-
-**Возвращает:** `array<int, array<string, mixed>>` — Все колонки категорий.
+`DleDataService::categoriesFull(): array` — полные строки category.
 
 <span id="method_postXfields" />
 
 ### postXfields() [#postxfields]
 
-Загружает описание доп. полей публикаций из xfields.json.
-
-**С версии:** 173.3.0
-
-**Возвращает:** `array<string, array<string, mixed>>` — Поля по имени.
+`DleDataService::postXfields(): array` — доп. поля публикаций из xfields.json.
 
 <span id="method_userXfields" />
 
 ### userXfields() [#userxfields]
 
-Загружает описание доп. полей пользователей из userxfields.json.
-
-**С версии:** 173.3.0
-
-**Возвращает:** `array<string, array<string, mixed>>` — Поля по имени.
+`DleDataService::userXfields(): array` — доп. поля пользователей из userxfields.json.
 
 <span id="method_parseObjectXfields" />
 
 ### parseObjectXfields() [#parseobjectxfields]
 
-Разбирает строку xfields записи post или user в ассоциативный массив.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$id` — ID записи или пользователя.
-* `$type` — Тип объекта: post или user.
-
-**Возвращает:** `array<string,` — string|null> Имя поля => значение.
-
-<span id="method_loadXfieldsFromJson" />
-
-### loadXfieldsFromJson() [#loadxfieldsfromjson]
-
-Загружает xfields из JSON с кешированием.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$cacheName` — Ключ кеша.
-* `$fileName` — Имя файла в ENGINE\_DIR/data/.
-
-**Возвращает:** `array<string, array<string, mixed>>` — Поля xfields.
-
-<span id="method_readJsonFields" />
-
-### readJsonFields() [#readjsonfields]
-
-Читает и декодирует JSON-файл xfields из каталога data DLE.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$fileName` — Имя файла (xfields.json или userxfields.json).
-
-**Возвращает:** `array<string, array<string, mixed>>` — Секция fields или пустой массив.
-
-<span id="method_parseXfieldsString" />
-
-### parseXfieldsString() [#parsexfieldsstring]
-
-Парсит сериализованную строку xfields DLE формата «name|value||…».
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$raw` — Сырыая строка xfields.
-
-**Возвращает:** `array<string,` — string|null> Имя => значение.
-
-<span id="method_readJsonCache" />
-
-### readJsonCache() [#readjsoncache]
-
-Читает закешированные xfields, если TTL не истёк.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$cacheName` — Ключ кеша.
-
-**Возвращает:** `array<string, array<string, mixed>>` — |null Поля или null.
-
-<span id="method_writeJsonCache" />
-
-### writeJsonCache() [#writejsoncache]
-
-Записывает xfields в кеш DevCraft.
-
-**С версии:** 173.3.0
-
-**Параметры:**
-
-* `$cacheName` — Ключ кеша.
+`DleDataService::parseObjectXfields(int $id, string $type = 'post'): array` — разбор строки xfields записи.
 
 
 # Класс: DleMenuBuilder (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/DleMenuBuilder)
@@ -85149,6 +85476,33 @@ AJAX-обработчик загрузки строк таблицы журна�
 **Возвращает:** `AdminLink[]` — Список корневых пунктов меню.
 
 
+# ModuleAjaxConfigBuilder (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ModuleAjaxConfigBuilder)
+
+
+
+**Зачем:** зарегистрировать AJAX-хендлеры без ручного массива `ajax.public`.
+
+**Namespace:** `DevCraft\Builders`
+
+**См. также:** [ModuleManifestBuilder](./ModuleManifestBuilder), [Fluent Types](../../../guides/fluent_types)
+
+```php
+ModuleAjaxConfigBuilder::create('admin')
+	->method('settings', SettingsHandler::class)
+	->publicMethod('list', ListHandler::class, false)
+	->publicMethod('unsubscribe_token', UnsubscribeTokenHandler::class, true)
+	->build();
+```
+
+| Метод                                        | Зачем               |
+| -------------------------------------------- | ------------------- |
+| `controller($id)`                            | Обычно `admin`      |
+| `method($name, $handler)`                    | Admin AJAX          |
+| `methods([...])`                             | Пачка admin-методов |
+| `publicMethod($name, $handler, $allowGuest)` | `controller=public` |
+| `build()`                                    | `ModuleAjaxConfig`  |
+
+
 # Класс: ModuleData (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ModuleData)
 
 
@@ -85563,6 +85917,44 @@ DTO входных данных формы генератора DevCraft-мод�
 * `$file` — Имя stub-файла в каталоге `scaffold/module`.
 
 **Возвращает:** `string` — Нормализованный абсолютный путь к шаблону.
+
+
+# ModuleManifestBuilder (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/ModuleManifestBuilder)
+
+
+
+**Зачем:** собрать манифест модуля без вложенных массивов. Возвращаешь объект из `manifest.php` — Registry сам подхватит.
+
+**Namespace:** `DevCraft\Builders`
+
+**См. также:** [Fluent Types](../../../guides/fluent_types), [Манифест](../manifest)
+
+## Быстрый старт [#быстрый-старт]
+
+```php
+return ModuleManifestBuilder::create()
+	->mod('my_mod')
+	->code('my_mod')
+	->name('My Module')
+	->version('200.1.0')
+	->menu([AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-home', 'my_mod')])
+	->ajax(ModuleAjaxConfigBuilder::create('admin')->method('settings', SettingsHandler::class))
+	->changelog(require DLEPlugins::Check(__DIR__ . '/changelog.data.php'))
+	->build(__DIR__);
+```
+
+## Главные методы [#главные-методы]
+
+| Метод                                   | Зачем                                   |
+| --------------------------------------- | --------------------------------------- |
+| `create()`                              | Старт цепочки                           |
+| `mod` / `code` / `name` / `version` / … | Метаданные                              |
+| `menu([...])`                           | Пункты `AdminLink`                      |
+| `ajax(...)`                             | `ModuleAjaxConfig`, builder или Closure |
+| `assets(...)`                           | JS/CSS                                  |
+| `changelog(...)`                        | `Changelog[]` или сырые массивы         |
+| `composerRequired([...])`               | Shared-пакеты                           |
+| `build($modulePath)`                    | Готовый `ModuleManifest`                |
 
 
 # Класс: NewModuleHandler (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/NewModuleHandler)
@@ -86286,6 +86678,87 @@ $body = ParseTemplateTags::apply(
 **С версии:** 200.4.0
 
 
+# QueryBuilder (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/QueryBuilder)
+
+
+
+**Зачем:** собрать `table` / `columns` / `conditions` / `values` / `order` / `limit` / `offset` без сырого массива.
+
+**Namespace:** `DevCraft\Builders`
+
+**Путь:** `devcraft/src/classes/Builders/QueryBuilder.php`
+
+**См. также:** [DataLoader](../../../guides/data_loader), [DataLoaderService](./DataLoaderService), [SortDirection](./SortDirection), [With attributes](/dev/dev-tools/1.0.1/guides/with_attributes)
+
+## Свойства (`#[With]` / `#[WithItem]`) [#свойства-with--withitem]
+
+| Свойство             | Атрибуты                                                        | Методы                                 |
+| -------------------- | --------------------------------------------------------------- | -------------------------------------- |
+| `$table`             | `#[With]`                                                       | `withTable`                            |
+| `$columns`           | `#[With, WithItem('string')]`                                   | `withColumns`, `withColumnsItem`       |
+| `$conditions`        | `#[With, WithItem('string', 'mixed')]`                          | `withConditions`, `withConditionsItem` |
+| `$values`            | `#[With, WithItem('string', 'mixed')]`                          | `withValues`, `withValuesItem`         |
+| `$primaryKey`        | `#[With]` (по умолчанию `id`)                                   | `withPrimaryKey`                       |
+| `$order`             | `#[With, WithItem('string', [SortDirection::class, 'string'])]` | `withOrder`, `withOrderItem`           |
+| `$limit` / `$offset` | `#[With]`                                                       | `withLimit`, `withOffset`              |
+
+## Ручные методы [#ручные-методы]
+
+| Метод                   | Зачем                                                      |           |
+| ----------------------- | ---------------------------------------------------------- | --------- |
+| `create(string $table)` | Старт цепочки                                              |           |
+| `build()`               | Массив для `loadData` (order → \`'ASC'                     | 'DESC'\`) |
+| `load()`                | Все строки через `DataLoaderService::loadData`             |           |
+| `first()`               | Первая строка или `[]`                                     |           |
+| `insert()`              | INSERT по `values` → созданная строка (`[]` при ошибке)    |           |
+| `update()`              | UPDATE по `conditions` → все совпавшие строки              |           |
+| `delete()`              | DELETE по `conditions` → `bool` (без conditions — `false`) |           |
+
+## Пример SELECT [#пример-select]
+
+```php
+use DevCraft\Builders\QueryBuilder;
+use DevCraft\Core\Enums\SortDirection;
+
+$user = QueryBuilder::create('users')
+	->withColumnsItem('user_id')
+	->withColumnsItem('name')
+	->withConditionsItem('user_id', $userId)
+	->withOrderItem('name', SortDirection::Asc)
+	->withLimit(1)
+	->first();
+```
+
+## Пример INSERT / UPDATE / DELETE [#пример-insert--update--delete]
+
+```php
+use Cycle\Database\Injection\Fragment;
+use DevCraft\Builders\QueryBuilder;
+
+$row = QueryBuilder::create('pm')
+	->withValues([
+		'subj' => 'Тема',
+		'text' => 'Текст',
+		'user' => $userId,
+		'folder' => 'inbox',
+	])
+	->insert();
+
+QueryBuilder::create('users')
+	->withValues([
+		'pm_all'    => new Fragment('pm_all+1'),
+		'pm_unread' => new Fragment('pm_unread+1'),
+	])
+	->withConditionsItem('user_id', $userId)
+	->update();
+
+$ok = QueryBuilder::create('tags')
+	->withConditionsItem('news_id', $newsId)
+	->withConditionsItem('tag', $tag)
+	->delete();
+```
+
+
 # Класс: Registry (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/Registry)
 
 
@@ -86863,6 +87336,39 @@ AJAX-обработчик частичного сохранения настро
 **С версии:** 200.4.0
 
 **Возвращает:** `array<string, array<string, string>>` — Карта секций и полей с дополнительными значениями.
+
+
+# SortDirection (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SortDirection)
+
+
+
+**Зачем:** типизировать направление сортировки. У Cycle ORM только строки `SelectQuery::SORT_ASC` / `SORT_DESC`.
+
+**Namespace:** `DevCraft\Core\Enums`
+
+**Путь:** `devcraft/src/classes/Enums/SortDirection.php`
+
+**См. также:** [QueryBuilder](./QueryBuilder), [DataLoaderService](./DataLoaderService)
+
+## Значения [#значения]
+
+| Case   | Value    |
+| ------ | -------- |
+| `Asc`  | `'ASC'`  |
+| `Desc` | `'DESC'` |
+
+## Методы [#методы]
+
+| Метод                | Зачем                                                  |
+| -------------------- | ------------------------------------------------------ |
+| `fromString(string)` | `asc`/`DESC` → case (иначе `InvalidArgumentException`) |
+| `toCycle()`          | Константа Cycle для `orderBy`                          |
+
+```php
+use DevCraft\Core\Enums\SortDirection;
+
+$select->orderBy('name', SortDirection::Asc->toCycle());
+```
 
 
 # Класс: SyncAssetsHandler (/dev/dle/devcraft_admin/200.4.0/reference/back-end/classes/SyncAssetsHandler)
@@ -87733,8 +88239,8 @@ Bootstrap плагина:
 
 ## Поток запроса (админ-страница) [#поток-запроса-админ-страница]
 
-```mermaid
-sequenceDiagram
+<Mermaid
+  chart="sequenceDiagram
     participant DLE as DLE Admin
     participant Inc as engine/inc/devcraft.php
     participant Init as devcraft/init.php
@@ -87744,13 +88250,13 @@ sequenceDiagram
     DLE->>Inc: mod=devcraft
     Inc->>Init: require
     Init->>App: runAdmin(Admin)
-    App->>Router: dispatch page
-```
+    App->>Router: dispatch page"
+/>
 
 ## Поток запроса (AJAX) [#поток-запроса-ajax]
 
-```mermaid
-sequenceDiagram
+<Mermaid
+  chart="sequenceDiagram
     participant Browser
     participant Ajax as devcraft/ajax.php
     participant Session as ajax-session.php
@@ -87758,8 +88264,8 @@ sequenceDiagram
 
     Browser->>Ajax: POST controller/method
     Ajax->>Session: admin session
-    Ajax->>Ctrl: handle JSON
-```
+    Ajax->>Ctrl: handle JSON"
+/>
 
 ## См. также [#см-также]
 
@@ -87962,65 +88468,123 @@ Twig-шаблоны: `DEVCRAFT_SRC . '/templates'`.
 
 
 
-Каждый модуль DevCraft описывается файлом `manifest.php` в каталоге `devcraft/src/modules/{Name}/`. Для админ-оболочки используется `devcraft/src/modules/Admin/manifest.php`.
+**Зачем:** без `manifest.php` DevCraft не знает ваш модуль — не будет меню, AJAX и страницы changelog.
 
-Файл возвращает ассоциативный массив с ключами `mod`, `code`, `meta`, `menu`, `ajax`, `changelog`, `assets`.
+Файл лежит в `devcraft/src/modules/{Name}/manifest.php`. Эталон — `devcraft/src/modules/Admin/manifest.php`.
 
-Если модуль зависит от внешнего shared-пакета, например [`devcraftclub/dev-tools`](/dev/dev-tools/1.0.1/getting_started), это должно отражаться в `composer_required`, а сами shared-абстракции не стоит документировать как внутреннюю часть `DevCraft Admin`. См. [Shared-пакеты и абстракции](shared_packages).
+## Два способа вернуть данные [#два-способа-вернуть-данные]
+
+| Стиль      | Что возвращает `return`                                           | Когда удобно                |
+| ---------- | ----------------------------------------------------------------- | --------------------------- |
+| **Legacy** | PHP-массив с ключами `mod`, `meta`, …                             | Старые модули, генератор    |
+| **Fluent** | `ModuleManifest` через `ModuleManifestBuilder::…->build(__DIR__)` | Новые модули, IDE-подсказки |
+
+Оба варианта загружает `Registry` через `ModuleManifest::fromLoaded()` — массив **или** готовый объект. Подробнее: [Fluent Types](../../guides/fluent_types).
+
+### Fluent (краткий пример) [#fluent-краткий-пример]
+
+```php
+use DevCraft\Types\AdminLink;
+use DevCraft\Builders\ModuleManifestBuilder;
+use DevCraft\Builders\ModuleAjaxConfigBuilder;
+
+return ModuleManifestBuilder::create()
+    ->mod('my_module')
+    ->code('my_module')
+    ->name('Мой модуль')
+    ->version('200.1.0')
+    ->description(__('Описание для админки'))
+    ->icon('mif-cube')
+    ->menu([
+        AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-home'),
+    ])
+    ->ajax(
+        ModuleAjaxConfigBuilder::create('admin')
+            ->method('settings', SettingsHandler::class)
+            ->publicMethod('ping', PublicPingHandler::class, true)
+    )
+    ->changelog(require DLEPlugins::Check(__DIR__ . '/changelog.data.php'))
+    ->build(__DIR__);
+```
+
+### Legacy-массив (тот же смысл) [#legacy-массив-тот-же-смысл]
+
+```php
+return [
+    'mod'  => 'my_module',
+    'code' => 'my_module',
+    'meta' => [
+        'name'        => 'Мой модуль',
+        'version'     => '200.1.0',
+        'description' => __('…'),
+        'icon'        => 'mif-cube',
+    ],
+    'menu' => [/* AdminLink::page … */],
+    'ajax' => [
+        'controller' => 'admin',
+        'methods'    => ['settings' => SettingsHandler::class],
+    ],
+    'changelog' => require DLEPlugins::Check(__DIR__ . '/changelog.data.php'),
+];
+```
+
+Зависимость от shared-пакета — в `composer_required`. См. [Shared-пакеты и абстракции](shared_packages).
 
 ## Блок `meta` [#блок-meta]
 
-Метаданные модуля для UI и ссылок:
+Метаданные для UI и ссылок:
 
-| Ключ          | Описание                            |
-| ------------- | ----------------------------------- |
-| `name`        | Отображаемое имя («DevCraft Admin») |
-| `version`     | Версия SemVer плагина               |
-| `description` | Краткое описание                    |
-| `icon`        | Иконка Metro UI (`mif-*`)           |
-| `docsLink`    | URL публичной документации          |
-| `siteLink`    | Страница загрузки на devcraft.club  |
-| `author`      | Имя, контакты, донаты               |
+| Ключ          | Описание                                                    |
+| ------------- | ----------------------------------------------------------- |
+| `name`        | Имя в меню («DevCraft Admin»)                               |
+| `version`     | SemVer; major = ветка DLE ([версионирование](./versioning)) |
+| `description` | Краткое описание                                            |
+| `icon`        | Metro UI (`mif-*`)                                          |
+| `docsLink`    | URL документации                                            |
+| `siteLink`    | Страница на devcraft.club                                   |
+| `author`      | Имя, контакты, донаты                                       |
 
 ## Блок `menu` [#блок-menu]
 
-Массив пунктов меню, создаваемых через `AdminLink::page()`:
+Пункты бокового меню через `AdminLink::page()`:
 
 ```php
 AdminLink::page(__('Главная'), 'dashboard', DashboardPage::class, 'mif-home'),
 ```
 
 * **slug** — сегмент URL (`action=dashboard`);
-* **класс страницы** — реализация `PageInterface`;
-* **иконка** — Metro UI.
+* **класс страницы** — `PageInterface`;
+* **5-й аргумент `mod`** — для сателлитов (не `devcraft`).
 
-Страница без пункта в боковом меню (роутинг сохраняется через `AdminLinkResolver`):
+Страница без пункта в меню (роут есть, пункта нет):
 
 ```php
-AdminLink::hidden('edit', EditSuggestionPage::class),
+AdminLink::hidden('edit', EditPage::class),
 ```
-
-Тип `hidden` не рендерится в `navview`, но `?action=edit` продолжает открывать страницу.
 
 ## Блок `ajax` [#блок-ajax]
 
-Регистрация AJAX-обработчиков:
+Admin-обработчики и публичный API:
 
 ```php
 'ajax' => [
     'controller' => 'admin',
     'methods'    => [
         'settings' => SettingsHandler::class,
-        // ...
+    ],
+    'public' => [
+        'list' => ['handler' => ListHandler::class, 'allow_guest' => false],
     ],
 ],
 ```
 
-Имя контроллера передаётся в `devcraft/ajax.php` как `controller=admin`; метод — как `method=settings`. Для сателлитов обязателен `mod={код модуля}`. Каждый handler реализует `AjaxHandlerInterface`.
+Запросы идут на `devcraft/ajax.php`: `mod`, `controller`, `method`, `user_hash`. Сателлитам нужен `mod={код}`. Handler — `AjaxHandlerInterface`.
+
+Fluent-эквивалент: `ModuleAjaxConfigBuilder` + `publicMethod()` — см. [Fluent Types](../../guides/fluent_types).
 
 ## Блок `assets` [#блок-assets]
 
-Подключаемые JS/CSS относительно каталога модуля, например:
+JS/CSS относительно каталога модуля:
 
 ```php
 'assets' => ['js' => ['admin.js']],
@@ -88028,13 +88592,13 @@ AdminLink::hidden('edit', EditSuggestionPage::class),
 
 ## Блок `changelog` [#блок-changelog]
 
-Подключает `changelog.data.php` — массив изменений для страницы «История изменений».
+Массив версий или `require changelog.data.php`. Элементы — массив, `Changelog` или `ChangelogBuilder::…->build()`.
 
 ## Блок `composer_required` [#блок-composer_required]
 
 <span id="composer_required" />
 
-Обязательные пакеты Composer для модуля. Агрегируются `ManifestPackageReader` из всех модулей реестра.
+Обязательные пакеты Composer для модуля:
 
 ```php
 'composer_required' => [
@@ -88046,25 +88610,24 @@ AdminLink::hidden('edit', EditSuggestionPage::class),
 ],
 ```
 
-| Ключ           | Описание                                                                               |
-| -------------- | -------------------------------------------------------------------------------------- |
-| `name`         | Имя пакета `vendor/package`                                                            |
-| `minVersion`   | Минимальная версия / constraint                                                        |
-| `hardRequired` | `true` — пакет обязателен (Dashboard, колонка «Обязательный»); `false` — рекомендуемый |
-
-При дубликате имени в нескольких модулях модуль-источник — первый в порядке `Registry`; `required=true`, если любой модуль указал `hardRequired: true`.
+| Ключ           | Описание                                     |
+| -------------- | -------------------------------------------- |
+| `name`         | `vendor/package`                             |
+| `minVersion`   | Constraint                                   |
+| `hardRequired` | `true` — обязателен; `false` — рекомендуемый |
 
 Подробнее: [Composer-пакеты модулей](composer_packages).
 
-## Регистрация модуля [#регистрация-модуля]
+## Регистрация [#регистрация]
 
-`Registry` сканирует `devcraft/src/modules/*/manifest.php` и строит меню DLE через `DleMenuBuilder`. Подробнее: [Registry](classes/Registry), [PluginContext](classes/PluginContext).
+`Registry` сканирует `devcraft/src/modules/*/manifest.php` и строит меню DLE. См. [Registry](classes/Registry), [PluginContext](classes/PluginContext).
 
 ## См. также [#см-также]
 
+* [Fluent Types](../../guides/fluent_types)
+* [Версионирование](./versioning)
 * [Генератор модулей](../../guides/new_module)
 * [Точки входа](entry_points)
-* [Shared-пакеты и абстракции](shared_packages)
 
 
 # Shared-пакеты и абстракции (/dev/dle/devcraft_admin/200.4.0/reference/back-end/shared_packages)
@@ -88129,6 +88692,71 @@ AdminLink::hidden('edit', EditSuggestionPage::class),
 * [Dev Tools: Начало работы](/dev/dev-tools/1.0.1/getting_started)
 * [Dev Tools: Reflection mapper](/dev/dev-tools/1.0.1/guides/reflection_mapper)
 * [Dev Tools: Атрибуты With](/dev/dev-tools/1.0.1/guides/with_attributes)
+
+
+# Версионирование плагинов (/dev/dle/devcraft_admin/200.4.0/reference/back-end/versioning)
+
+
+
+**Зачем знать:*&#x2A; при установке на DLE 20.0 нужен плагин &#x2A;*`200.x`**, а не `2.x`. Иначе — несовместимые пути, API и install.xml.
+
+## Главное правило [#главное-правило]
+
+**Мажорная версия плагина = версия DLE без точки.**
+
+| DLE на сайте | Мажор плагина | Пример полной версии |
+| ------------ | ------------- | -------------------- |
+| DLE 16.0     | **160**       | `160.3.1`            |
+| DLE 17.3     | **173**       | `173.2.0`            |
+| DLE 18.0     | **180**       | `180.1.4`            |
+| DLE 20.0     | **200**       | `200.4.0`            |
+| DLE 26.1     | **261**       | `261.0.0`            |
+
+Формула: убрать точку из номера DLE → это **major** в SemVer плагина.
+
+```
+DLE 20.0  →  20 + 0  →  200
+DLE 17.3  →  17 + 3  →  173
+DLE 26.1  →  26 + 1  →  261
+```
+
+## Minor и patch — обычный SemVer [#minor-и-patch--обычный-semver]
+
+Внутри ветки DLE minor/patch работают как привычно:
+
+| Часть     | Что означает                         | Пример                      |
+| --------- | ------------------------------------ | --------------------------- |
+| **Major** | Ветка DLE                            | `200` = только для DLE 20.x |
+| **Minor** | Новые фичи, совместимые с той же DLE | `200.4.0` → `200.5.0`       |
+| **Patch** | Исправления без новых фич            | `200.4.0` → `200.4.1`       |
+
+**Почему так:** один репозиторий кода живёт в нескольких ветках под разные DLE. Major сразу говорит «этот архив — для какой DLE», без чтения `install.xml`.
+
+## Где это видно [#где-это-видно]
+
+* `meta.version` в [manifest.php](./manifest)
+* Архив на devcraft.club и `needplugin` / `dleversion` в install.xml
+* Changelog модуля: `200.4.0`, не `2.4.0`
+
+DevCraft Admin для DLE 20.0 — линейка &#x2A;*`200.*`*&#x2A;. MH Admin Legacy — &#x2A;*`173.*`** (DLE 17.3).
+
+## Практика для разработчика [#практика-для-разработчика]
+
+1. **Новый модуль под DLE 20.0** — стартуйте с `200.1.0` (или `200.0.1` для первого релиза).
+2. **Фича без ломающих изменений** — поднимайте minor: `200.1.0` → `200.2.0`.
+3. **Только багфикс** — patch: `200.2.0` → `200.2.1`.
+4. **Порт на другую DLE** — новая major-ветка (`173.x` → `200.x`), это отдельная линия, не «апгрейд patch».
+
+<Callout type="info" title="Не путать с версией DevCraft Admin">
+  `200.4.0` — версия **ядра админки**. Ваш сателлит может быть `200.1.0`: та же major (DLE 20), свой minor/patch.
+</Callout>
+
+## См. также [#см-также]
+
+* [Манифест модуля](./manifest)
+* [Fluent Types](../../guides/fluent_types)
+* [Установка](../../install)
+* [Миграция с MH Admin](../../migration)
 
 
 # Шаблоны (/dev/dle/devcraft_admin/200.4.0/reference/front-end/templates)
@@ -91493,111 +92121,700 @@ $tpl->set( '{НАЗВАНИЕ}', $ОПРЕДЕЛИТЕЛЬНОЕ_НАЗВАНИ�
 
 Репозиторий: [DLE-Notifications](https://github.com/DevCraftClub/DLE-Notifications).
 
-## 200.1.0 (2026-08-24) [#20010-2026-08-24]
+## 200.1.0 (2026-08-26) [#20010-2026-08-26]
 
 Первый релиз под DLE 20 и DevCraft Admin.
 
-* доставка: сайт, email, ЛС;
-* подписки: новость, категория, автор, тег, xfield, все новые материалы;
-* badge с числом непрочитанных и polling;
+* доставка: сайт, почта, ЛС;
+* подписки: новость, категория, автор, тег, доп. поле, все новые материалы;
+* колокольчик с числом непрочитанных и автообновлением;
 * тексты в `.tpl` темы, плейсхолдеры вроде {'{title}'} и {'{full-link}'};
-* HMAC-ссылка «Отписаться» в письме;
+* подписанная ссылка «Отписаться» в письме;
 * права по группам;
-* упоминания `@ник` в комментариях.
+* упоминания `@ник` в комментариях;
+* сценарии рейтинга новости/комментария, удаления комментария, подписки на пользователя;
+* гайд [Include в шаблонах](./guides/template_includes) (cat / tag / xfield / user).
 
 
 # Начало работы (/dev/dle/notifications/200.1.0/getting_started)
 
 
 
-**DLE Уведомления** рассылает сообщения по событиям сайта: правка новости, новый комментарий, упоминание `@ник`, модерация и т.д.
+## Введение [#введение]
+
+**DLE Уведомления** — дополнительный модуль [DevCraft Admin](../../devcraft_admin/getting_started) для DataLife Engine 20. Модуль рассылает сообщения по событиям сайта: правка новости, новый комментарий, упоминание `@ник`, рейтинг, удаление комментария, подписка на автора, модерация и другие сценарии.
 
 Каналы доставки:
 
-* сайт — badge (колокольчик) и стена;
-* email;
+* сайт — колокольчик и стена (лента);
+* почта;
 * личные сообщения DLE.
 
-Пользователь подписывается на новость, категорию, автора, тег, доп. поле или на все новые публикации и получает только релевантные события.
+Пользователь подписывается на новость, категорию, автора, тег, доп. поле или на все новые публикации и получает только подходящие события. Тексты писем, ЛС и записей ленты задаются файлами `.tpl` в теме сайта.
 
-Зависимость: [DevCraft Admin](../../devcraft_admin/getting_started) 200.4.0+.
+Исходники: [DevCraftClub/DLE-Notifications](https://github.com/DevCraftClub/DLE-Notifications).
 
-## Возможности [#возможности]
+## Основные возможности [#основные-возможности]
 
-* кнопка подписки у новости, категории и других сущностей;
-* стена уведомлений и счётчик непрочитанных с polling;
-* тексты писем, ЛС и записей inbox в `.tpl` темы;
-* права по группам DLE.
+* кнопка подписки у новости, категории и других объектов;
+* стена уведомлений и счётчик непрочитанных с автообновлением;
+* отдельная страница `/notifications/` (`do=notifications`);
+* шаблоны сценариев, писем и ленты в теме сайта (если файла нет — берётся `Default`);
+* права по группам DLE и настройки пользователя (почта / ЛС);
+* функции `notify*` для своего кода и запросы ленты без перезагрузки страницы (`list`, `unread_count`, `mark_read` и др.);
+* свои события из дополнения DLE или другого модуля.
 
-## Разделы [#разделы]
+## Требования [#требования]
 
-<Cards>
-  <Card title="Установка" href="/dev/dle/notifications/200.1.0/install">
-    ZIP, autoload, таблицы, копирование шаблонов
-  </Card>
+* DataLife Engine &#x2A;*20.0+**
+* PHP &#x2A;*8.3+**
+* [DevCraft Admin](../../devcraft_admin/getting_started) &#x2A;*200.4.0+**
 
-  <Card title="Вставка в шаблоны" href="/dev/dle/notifications/200.1.0/guides/subscribe_wall">
-    include: подписка, стена, badge
-  </Card>
+Полный перечень шагов: [Установка](./install).
 
-  <Card title="Типы подписок" href="/dev/dle/notifications/200.1.0/guides/subscription_types">
-    news, cat, user, tag, xfield, all
-  </Card>
+## Быстрый старт [#быстрый-старт]
 
-  <Card title="Шаблоны и теги" href="/dev/dle/notifications/200.1.0/guides/scenario_templates">
-    scenarios, wrappers, subscribe, inbox
-  </Card>
-</Cards>
+### 1. Установка [#1-установка]
 
-## Минимальное подключение [#минимальное-подключение]
+[Инструкция по установке](./install) — архив, автозагрузка классов, таблицы в базе, копирование шаблонов темы.
+
+### 2. Первое использование [#2-первое-использование]
+
+В шапке темы (`main.tpl`):
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
+```
 
 Полная новость (`fullstory.tpl`):
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&type=news&id={news-id}"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=news&id={news-id}"}
 ```
 
-Шапка: badge и JS (клики, «прочитать всё», polling):
+В меню — колокольчик; перед `</body>` — скрипты:
 
 ```
 {include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+…
 {include file="engine/modules/devcraft/notifications_site.php?focus=js"}
 ```
 
-Стена (профиль или отдельная страница):
+Стена в профиле или на [странице уведомлений](./guides/notifications_page):
 
 ```
 {include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
 ```
 
-## Требования [#требования]
+Отправка из PHP (после установки функции `notify*` доступны на всём сайте):
 
-* DLE 20+
-* PHP 8.3+
-* DevCraft Admin 200.4.0+
+```php
+if (function_exists('notifySend')) {
+	notifySend($userId, 'Текст уведомления');
+}
+```
 
-## Дальше [#дальше]
+### 3. Дополнительная настройка [#3-дополнительная-настройка]
+
+В панели DevCraft → **DLE Уведомления**: типы подписок, автообновление колокольчика, режим удаления записей ленты, путь к шаблонам. Права групп — отдельная страница модуля. Подробнее: [права](./guides/permissions), [настройки пользователя](./guides/user_prefs).
+
+## Структура проекта [#структура-проекта]
+
+Корень сайта DLE после установки плагина:
+
+<Files>
+  <Folder name="Корень DLE">
+    <Folder name="devcraft">
+      <Folder name="locales">
+        <Folder name="ru_RU">
+          <File name="dle_notifications.xliff" />
+        </Folder>
+      </Folder>
+
+      <Folder name="config">
+        <File name="notifications.json" />
+      </Folder>
+
+      <Folder name="src">
+        <Folder name="modules">
+          <Folder name="Notifications (модуль панели DevCraft)">
+            <File name="manifest.php" />
+
+            <File name="settings.schema.php" />
+
+            <File name="permissions.defs.php" />
+
+            <File name="changelog.data.php" />
+
+            <File name="NotificationsIdentity.php" />
+
+            <Folder name="Ajax">
+              <File name="SettingsHandler.php" />
+
+              <File name="PermissionsHandler.php" />
+
+              <Folder name="Public">
+                <File name="ListHandler.php" />
+
+                <File name="UnreadCountHandler.php" />
+
+                <File name="MarkReadHandler.php" />
+
+                <File name="DeleteHandler.php" />
+
+                <File name="SubscribeHandler.php" />
+
+                <File name="UnsubscribeHandler.php" />
+
+                <File name="UnsubscribeTokenHandler.php" />
+              </Folder>
+            </Folder>
+
+            <Folder name="Pages">
+              <File name="ChangelogPage.php" />
+
+              <File name="DashboardPage.php" />
+
+              <File name="SettingsPage.php" />
+
+              <File name="PermissionsPage.php" />
+            </Folder>
+
+            <Folder name="Services">
+              <File name="Notify.php" />
+
+              <File name="NotificationService.php" />
+
+              <File name="DeliveryService.php" />
+
+              <File name="SubscriptionService.php" />
+
+              <File name="TemplateRenderService.php" />
+
+              <File name="…" />
+            </Folder>
+
+            <Folder name="Models">
+              <File name="Notification.php" />
+
+              <File name="Subscription.php" />
+
+              <File name="GroupPermission.php" />
+            </Folder>
+
+            <Folder name="Repositories">
+              <File name="NotificationRepository.php" />
+
+              <File name="SubscriptionRepository.php" />
+
+              <File name="GroupPermissionRepository.php" />
+            </Folder>
+
+            <Folder name="Enums">
+              <File name="SubscriptionType.php" />
+            </Folder>
+
+            <Folder name="templates">
+              <File name="dashboard.twig" />
+
+              <File name="settings.twig" />
+
+              <File name="permissions.twig" />
+            </Folder>
+
+            <Folder name="Public">
+              <File name="timeago.full.min.js" />
+
+              <File name=".htaccess" />
+            </Folder>
+          </Folder>
+        </Folder>
+      </Folder>
+    </Folder>
+
+    <Folder name="engine">
+      <Folder name="inc">
+        <File name="notifications.php" />
+      </Folder>
+
+      <Folder name="modules">
+        <Folder name="devcraft">
+          <File name="notifications.php" />
+
+          <File name="notifications_site.php" />
+
+          <File name="notifications_page.php" />
+        </Folder>
+      </Folder>
+    </Folder>
+
+    <Folder name="templates">
+      <Folder name="{тема}">
+        <Folder name="devcraft">
+          <Folder name="notifications">
+            <File name="badge.tpl" />
+
+            <File name="wall.tpl" />
+
+            <File name="item.tpl" />
+
+            <File name="item_actions.tpl" />
+
+            <File name="subscribe.tpl" />
+
+            <File name="notifications.css" />
+
+            <File name="notifications.js" />
+
+            <File name="page.tpl" />
+
+            <Folder name="scenarios" />
+
+            <Folder name="wrappers" />
+
+            <Folder name="subscribe" />
+          </Folder>
+        </Folder>
+      </Folder>
+    </Folder>
+  </Folder>
+</Files>
+
+* `engine/inc/notifications.php` — точка входа в админку DLE: открывает модуль в DevCraft.
+* `notifications_site.php` — подключение на сайте через `{include}` (`focus=css|js|badge|wall|subscribe`).
+* `notifications_page.php` + `notifications.tpl` — страница `do=notifications`.
+* `templates/{тема}/devcraft/notifications/` — разметка и стили/скрипты публичного сайта (не шаблоны админки).
+
+## Концепции [#концепции]
+
+### Каналы и лента [#каналы-и-лента]
+
+Уведомление создаётся в ленте сайта и при необходимости дублируется в почту и ЛС. Колокольчик (`focus=badge`) показывает счётчик; стена (`focus=wall`) — список с действиями «прочитать» / «открыть».
+
+### Подписки [#подписки]
+
+Тип (`news`, `cat`, `user`, `tag`, `xfield`, `all`) задаёт, на что подписан пользователь. Кнопка на странице — `focus=subscribe` с `type` и `id`. Подробнее: [типы подписок](./guides/subscription_types).
+
+### Сценарии и шаблоны [#сценарии-и-шаблоны]
+
+Текст события берётся из `scenarios/*.tpl` темы; письма и ЛС — из `wrappers/`. Теги вроде `{title}`, `{full-link}`, `{unsubscribe-url}` описаны в [шаблонах сценариев](./guides/scenario_templates).
+
+### Параметр `focus` во вставке [#параметр-focus-во-вставке]
+
+| `focus`                        | Куда         | Что                                       |
+| ------------------------------ | ------------ | ----------------------------------------- |
+| `css`                          | шапка        | стили и служебные meta для автообновления |
+| `js`                           | низ страницы | скрипты                                   |
+| `badge` / `wall` / `subscribe` | разметка     | колокольчик, стена, кнопка подписки       |
+
+Полная вставка: [Вставка в шаблоны](./guides/subscribe_wall). Подробные сниппеты cat / tag / xfield / user: [Include в шаблонах темы](./guides/template_includes).
+
+## Разделы документации [#разделы-документации]
+
+<Cards>
+  <Card title="Установка" href="/dev/dle/notifications/200.1.0/install">
+    Архив, автозагрузка, таблицы, копирование шаблонов
+  </Card>
+
+  <Card title="Вставка в шаблоны" href="/dev/dle/notifications/200.1.0/guides/subscribe_wall">
+    Подписка, стена, колокольчик, стили и скрипты
+  </Card>
+
+  <Card title="Include в шаблонах" href="/dev/dle/notifications/200.1.0/guides/template_includes">
+    Места в теме и сниппеты news/cat/tag/xfield/user/all
+  </Card>
+
+  <Card title="Страница уведомлений" href="/dev/dle/notifications/200.1.0/guides/notifications_page">
+    do=notifications и ЧПУ /notifications/
+  </Card>
+
+  <Card title="Типы подписок" href="/dev/dle/notifications/200.1.0/guides/subscription_types">
+    Новость, категория, автор, тег, доп. поле, все
+  </Card>
+
+  <Card title="Шаблоны и теги" href="/dev/dle/notifications/200.1.0/guides/scenario_templates">
+    Сценарии, письма, подписка, лента
+  </Card>
+
+  <Card title="Своё событие" href="/dev/dle/notifications/200.1.0/guides/custom_event">
+    notifySend и сценарий из дополнения или модуля
+  </Card>
+</Cards>
+
+## Рекомендуемая последовательность обучения [#рекомендуемая-последовательность-обучения]
+
+1. **Новичок?** Начните с [установки](./install).
+2. **Подключить тему?** Смотрите [вставку в шаблоны](./guides/subscribe_wall), [include](./guides/template_includes) и [страницу уведомлений](./guides/notifications_page).
+3. **Свои тексты событий?** [Шаблоны сценариев](./guides/scenario_templates) и [сценарии](./guides/scenarios).
+4. **Свой код?** [Своё событие](./guides/custom_event), [запросы ленты](./guides/inbox_api), [справочник Notify](./reference/Notify).
+5. **Обновления?** [История изменений](./changelog).
+
+## Получение помощи [#получение-помощи]
+
+* [Справочник](./reference)
+* [Исходники на GitHub](https://github.com/DevCraftClub/DLE-Notifications)
+* [Сообщить об ошибке](https://github.com/DevCraftClub/DLE-Notifications/issues)
+
+## Следующие шаги [#следующие-шаги]
 
 * [Установка](./install)
-* [Шаблоны и теги](./guides/scenario_templates)
-* [Права групп](./guides/permissions)
+* [Вставка в шаблоны](./guides/subscribe_wall)
+* [Страница уведомлений](./guides/notifications_page)
+* [Справочник](./reference)
 
 
-# Inbox: стена и badge (/dev/dle/notifications/200.1.0/guides/inbox_api)
+# Кастомное событие (/dev/dle/notifications/200.1.0/guides/custom_event)
 
 
 
-Inbox доступен только авторизованным пользователям:
+Штатные сценарии (новость, комментарий, упоминание) закрывают типовые кейсы. Свой триггер — через публичный API `notifySend` / `Notify::send`.
+
+Предварительно: [шаблоны и теги](./scenario_templates), [справочник Notify](../reference/Notify).
+
+## Два способа [#два-способа]
+
+1. **Готовый текст** — без файла в `scenarios/`.
+2. **Свой сценарий** — `.tpl` в теме + имя в параметре `$scenario`.
+
+## Вариант 1: текст без сценария [#вариант-1-текст-без-сценария]
+
+```php
+if (function_exists('notifySend')) {
+	notifySend(
+		$recipientId,
+		'Вам назначена новая задача №' . $taskId,
+		'task',           // contentType — тип сущности в ленте
+		$taskId,          // contentTypeId
+		$senderId,        // кто инициировал
+		'info',           // level: info|success|warning|…
+		[],               // channels: [] = настройки модуля
+		null,             // scenario не нужен
+	);
+}
+```
+
+Тело берётся из `$message`. Каналы «сайт» / почта / ЛС — по настройкам модуля и настройкам получателя.
+
+## Вариант 2: свой `.tpl` сценарий [#вариант-2-свой-tpl-сценарий]
+
+<Steps>
+  <Step>
+    ### Шаг 1: файл сценария [#шаг-1-файл-сценария]
+
+    В скине (или `Default`):
+
+    `templates/ВАША_ТЕМА/devcraft/notifications/scenarios/order_paid.tpl`
+
+    ```text
+    Заказ #{order_id} оплачен
+    Сумма: {amount}
+    {full-link}
+    ```
+
+    Имя файла **без** `.tpl` = значение `$scenario`.
+  </Step>
+
+  <Step>
+    ### Шаг 2: вызов из кода [#шаг-2-вызов-из-кода]
+
+    Хак DLE, cron-обработчик или другой модуль DevCraft — после bootstrap:
+
+    ```php
+    if (function_exists('notifySend')) {
+    	notifySend(
+    		$buyerId,
+    		null,                    // текст из сценария
+    		'order',
+    		$orderId,
+    		0,                       // системное событие без отправителя
+    		'success',
+    		[],
+    		'order_paid',            // → scenarios/order_paid.tpl
+    		[
+    			'{order_id}'  => (string) $orderId,
+    			'{amount}'    => $amountFormatted,
+    			'{full-link}' => $orderUrl,
+    			'{title}'     => 'Заказ #' . $orderId,
+    			'{sender}'    => 'Система',
+    		],
+    		[],                      // newsRow: опционально строка новости для тегов DLE
+    	);
+    }
+    ```
+
+    `$message = null` — тело только из `.tpl`. Если шаблон пуст или не найден, а `$message` тоже пуст — уведомление не уйдёт.
+  </Step>
+
+  <Step>
+    ### Шаг 3: каналы (по желанию) [#шаг-3-каналы-по-желанию]
+
+    Пустой `$channels` — берутся флаги модуля `send_email` / `send_pm` и site по умолчанию.
+
+    Принудительно только сайт:
+
+    ```php
+    notifySend($uid, 'Текст', 'custom', 0, 0, 'info', ['site' => true, 'email' => false, 'pm' => false]);
+    ```
+  </Step>
+</Steps>
+
+## Параметры, которые важны для кастома [#параметры-которые-важны-для-кастома]
+
+| Параметр                          | Зачем                                            |
+| --------------------------------- | ------------------------------------------------ |
+| `$recipientId`                    | кому                                             |
+| `$message`                        | готовый текст **или** `null`, если есть сценарий |
+| `$scenario`                       | имя файла в `scenarios/` без расширения          |
+| `$extraVars`                      | плейсхолдеры `{'{…}'}` для `.tpl`                |
+| `$contentType` / `$contentTypeId` | связь в ленте (фильтры, клик)                    |
+| `$newsRow`                        | если нужны штатные теги новости DLE в шаблоне    |
+| `$channels`                       | сузить сайт / почту / ЛС                         |
+
+Через класс: `DevCraft\Modules\Notifications\Services\Notify::send(…)`.
+
+## Куда вешать вызов [#куда-вешать-вызов]
+
+Типичные точки:
+
+* PHP-хак после сохранения сущности (`addnews`, свой AJAX, оплата);
+* сервис другого модуля DevCraft после бизнес-действия;
+* cron / очередь — тот же `notifySend`, если DevCraft уже загружен.
+
+Проверка: `function_exists('notifySend')` (функции подключает плагин через `engine/modules/devcraft/notifications.php`).
+
+## Настройки и права (базово) [#настройки-и-права-базово]
+
+Без доработок модуля:
+
+* Получатель должен иметь `notifications_allow_view_notifications`.
+* Email / ЛС — `notifications_receive_mail` / `notifications_receive_message` + каналы в настройках.
+* Кастомный `$scenario` **не** привязан к штатным доп. полям (`news_update`, `mention`, …).
+* `$recipientId === $senderId` — отправка молча пропускается.
+
+Чтобы событие можно было **выключать в админке**, ограничивать **по группам** и давать пользователю **свой выключатель** — см. ниже.
+
+<span id="advanced" />
+
+## Продвинутое подключение [#продвинутое-подключение]
+
+Пример: событие `order_paid`. Цель — как у штатных сценариев: глобальный флаг, право группы, опциональное доп. поле профиля.
+
+Цепочка при отправке:
+
+```text
+выключатель в настройках модуля
+  → право группы (получатель / отправитель)
+    → доп. поле пользователя (если привязан)
+      → notifySend / Notify::send
+```
+
+Файлы модуля: `devcraft/src/modules/Notifications/`.
+
+### 1. Настройка модуля (глобальный выключатель) [#1-настройка-модуля-глобальный-выключатель]
+
+В `settings.schema.php` добавьте checkbox рядом с остальными `notify_*`:
+
+```php
+->checkbox('notify_order_paid', __('Уведомлять об оплате заказа'))
+	->description(__('Сценарий order_paid из хака / модуля заказов.'))
+	->default(true)
+```
+
+Конфиг читается так же, как у штатных событий:
+
+```php
+use DevCraft\Core\Support\DataManager;
+use DevCraft\Modules\Notifications\NotificationsIdentity;
+
+$cfg = DataManager::getConfig(NotificationsIdentity::code());
+
+if (empty($cfg['notify_order_paid'])) {
+	return; // событие выключено в админке
+}
+```
+
+После изменения схемы откройте **DLE Уведомления → Настройки** и сохраните форму (значение попадёт в `devcraft/config/…`).
+
+### 2. Право группы [#2-право-группы]
+
+Права хранятся JSON-картой (`dc_notification_permissions.settings`) — **миграция БД не нужна**. Достаточно описания в `permissions.defs.php`:
+
+```php
+[
+	'id'          => 'notifications_receive_order_paid',
+	'title'       => __('Получать уведомления об оплате заказа?'),
+	'description' => __('Сценарий order_paid.'),
+	'level'       => 'user', // user | mod | admin
+],
+```
+
+Страница **Права групп** подхватит флаг сама (`PermissionService::defs()`).
+
+В коде отправки:
+
+```php
+use DevCraft\Modules\Notifications\Services\PermissionService;
+
+$perms = new PermissionService();
+
+if (!$perms->allows($recipientId, 'notifications_receive_order_paid')) {
+	return;
+}
+
+// опционально: кто может инициировать
+if ($senderId > 0 && !$perms->allows($senderId, 'notifications_allow_view_notifications')) {
+	return;
+}
+```
+
+<Callout type="info">
+  Пока у группы **нет** сохранённой строки прав, базовые `user`-флаги считаются включёнными, `admin` / `mod` — выключенными. После первого сохранения матрицы в админке действуют явные галочки — включите новый флаг нужным группам.
+</Callout>
+
+См. также [Права групп](./permissions).
+
+### 3. Доп. поле пользователя (отписка от сценария) [#3-доп-поле-пользователя-отписка-от-сценария]
+
+Штатные сценарии мапятся в [`UserPrefsService`](./user_prefs). Для кастома — три правки.
+
+**a)** select в `settings.schema.php` (секция «Настройки пользователя»):
+
+```php
+->select('xf_notify_order_paid', __('Доп. поле: оплата заказа'))
+	->description(__('Пусто = не ограничивать. 0/off/no у пользователя — отказ.'))
+	->options([])
+	->default('')
+```
+
+**b)** список опций в `Pages/SettingsPage.php` → `supplementFormData()`:
+
+```php
+return [
+	// …существующие ключи…
+	'xf_notify_order_paid' => $options,
+];
+```
+
+**c)** ветка в `UserPrefsService::wants()`:
+
+```php
+$scenarioXf = match ($scenario) {
+	'news_update', 'news_published' => 'xf_notify_news_update',
+	'moderation_approve', 'moderation_reject' => 'xf_notify_moderation',
+	'mention'     => 'xf_notify_mention',
+	'order_paid'  => 'xf_notify_order_paid',
+	default       => null,
+};
+```
+
+Имя сценария в `match` должно совпадать с `$scenario` в `notifySend`. В настройках модуля выберите доп. поле профиля; логика значений — как в [Настройки пользователя](./user_prefs).
+
+`notifySend` уже вызывает `UserPrefsService::wants($scenarioKey, …)` для каналов — отдельная проверка настроек в хаке не нужен, если сценарий заведён в `match`.
+
+### 4. Сборка вызова [#4-сборка-вызова]
+
+Файл сценария: `templates/…/devcraft/notifications/scenarios/order_paid.tpl`.
+
+```php
+use DevCraft\Core\Support\DataManager;
+use DevCraft\Modules\Notifications\NotificationsIdentity;
+use DevCraft\Modules\Notifications\Services\PermissionService;
+
+function notifyOrderPaid(int $buyerId, int $orderId, string $amount, string $url, int $senderId = 0): void
+{
+	if (!function_exists('notifySend') || $buyerId <= 0) {
+		return;
+	}
+
+	$cfg = DataManager::getConfig(NotificationsIdentity::code());
+	if (empty($cfg['notify_order_paid'])) {
+		return;
+	}
+
+	$perms = new PermissionService();
+	if (!$perms->allows($buyerId, 'notifications_receive_order_paid')) {
+		return;
+	}
+
+	notifySend(
+		$buyerId,
+		null,
+		'order',
+		$orderId,
+		$senderId,
+		'success',
+		[],
+		'order_paid',
+		[
+			'{order_id}'  => (string) $orderId,
+			'{amount}'    => $amount,
+			'{full-link}' => $url,
+			'{title}'     => 'Заказ #' . $orderId,
+			'{sender}'    => 'Система',
+		],
+	);
+}
+```
+
+Права ленты / почты / ЛС (`notifications_allow_view_notifications`, `notifications_receive_mail`, …) и каналы модуля по-прежнему проверяет `NotificationService::send`.
+
+### 5. Свой модуль DevCraft (без патча Notifications) [#5-свой-модуль-devcraft-без-патча-notifications]
+
+Если событие живёт в **вашем** модуле:
+
+| Что                    | Где                                                                                      |
+| ---------------------- | ---------------------------------------------------------------------------------------- |
+| Выключатель            | `settings.schema.php` **вашего** модуля + `DataManager::getConfig(YourIdentity::code())` |
+| Права                  | свои defs **или** проверка существующих флагов Notifications через `PermissionService`   |
+| Текст / tpl            | `notifySend` + сценарий в скине Notifications (шаблоны общие)                            |
+| Доп. поле пользователя | либо патч `UserPrefsService` как выше, либо своя проверка доп. поля до `notifySend`      |
+
+Патч Notifications нужен только если хотите единый UX: флаг в «Правах групп» уведомлений и выбор доп. поля на их странице настроек.
+
+### Чеклист продвинутого подключения [#чеклист-продвинутого-подключения]
+
+1. `scenarios/{имя}.tpl`
+2. Checkbox `notify_*` в `settings.schema.php` + проверка `empty($cfg[…])`
+3. Флаг в `permissions.defs.php` + `PermissionService::allows`
+4. (Опционально) `xf_notify_*` + `SettingsPage::supplementFormData` + ветка в `UserPrefsService`
+5. Включить флаг группам в админке; выбрать доп. поле; сохранить настройки
+6. Вызов `notifySend` с тем же `$scenario`
+
+## Минимальный чеклист [#минимальный-чеклист]
+
+1. Файл `scenarios/{имя}.tpl` (или готовый `$message`).
+2. `notifySend(...)` с `$scenario = '{имя}'` и нужными `extraVars`.
+3. Проверка на сайте: колокольчик / стена; при необходимости email и ЛС в настройках модуля.
+
+## См. также [#см-также]
+
+* [Сценарии событий](./scenarios) — штатная таблица событий
+* [Шаблоны и теги](./scenario_templates)
+* [Права групп](./permissions)
+* [Настройки пользователя](./user_prefs)
+* [Notify](../reference/Notify)
+
+
+# Лента на сайте: стена и колокольчик (/dev/dle/notifications/200.1.0/guides/inbox_api)
+
+
+
+Лента на сайте доступна только авторизованным пользователям:
 
 * **стена** — полный список;
-* **badge** — счётчик и короткий список по клику.
+* **колокольчик** — счётчик и короткий список по клику.
+
+Отдельный URL: [Страница уведомлений](./notifications_page).
 
 ## Разметка [#разметка]
 
-Badge + JS:
+В шапке — стили и meta; в меню — колокольчик; внизу — скрипты:
 
 ```
+{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
+…
 {include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+…
 {include file="engine/modules/devcraft/notifications_site.php?focus=js"}
 ```
 
@@ -91609,28 +92826,89 @@ Badge + JS:
 
 ## Действия [#действия]
 
-* клик по badge — непрочитанные;
-* клик по записи — mark as read;
+* клик по колокольчику — непрочитанные;
+* клик по записи — отметить прочитанным;
 * «Прочитать все»;
-* удаление, если в шаблоне есть кнопка (AJAX на сервер).
+* удаление, если в шаблоне есть кнопка (запрос на сервер).
 
-## Polling [#polling]
+## Автообновление [#автообновление]
 
-Настройка &#x2A;*«Интервал polling badge»**: период в секундах. `0` — только после действий пользователя.
+Настройка &#x2A;*«Интервал автообновления колокольчика»**: период в секундах. `0` — только после действий пользователя. Период и база AJAX попадают в meta из `focus=css`.
 
 ## Удаление [#удаление]
 
-По умолчанию hard delete. &#x2A;*«Мягкое удаление inbox»** (`soft_delete`) помечает запись (`deleted`), не стирает строку. Имеет смысл для аудита; обычному сайту достаточно hard delete.
+По умолчанию полное удаление. &#x2A;*«Мягкое удаление записей ленты»** (`soft_delete`) помечает запись (`deleted`), не стирает строку. Имеет смысл для аудита; обычному сайту достаточно полного удаления.
 
 ## Лимит стены [#лимит-стены]
 
 **«Лимит записей на стене»** — сколько последних записей отдать за запрос.
 
-Оформление: `badge.tpl`, `wall.tpl`, `item.tpl` — [шаблоны и теги](./scenario_templates).
+Оформление: `badge.tpl`, `wall.tpl`, `item.tpl`, `item_actions.tpl` — [шаблоны и теги](./scenario_templates).
+
+Ответ метода `list` содержит поле `html` — готовая разметка элементов через `item.tpl` (клиент не собирает HTML сам).
+
+## См. также [#см-также]
+
+* [Страница уведомлений](./notifications_page)
+* [Вставка в шаблоны](./subscribe_wall)
+* [Права групп](./permissions)
+
+
+# Страница уведомлений (/dev/dle/notifications/200.1.0/guides/notifications_page)
+
+
+
+Отдельный URL со стеной уведомлений пользователя — не виджет в шапке и не include в профиле.
+
+## Адреса [#адреса]
+
+| Вид   | Адрес                                     |
+| ----- | ----------------------------------------- |
+| Query | `/index.php?do=notifications`             |
+| ЧПУ   | `/notifications/` (если включены ЧПУ DLE) |
+
+Маршрут ставит плагин (`engine/engine.php` + правило в `urls.class.php`). Ссылка в коде: `notifyPageUrl()`; в шаблонах — тег `{notifications-url}` (из include модуля).
+
+## Кто может открыть [#кто-может-открыть]
+
+* нужна авторизация;
+* право «Разрешить просматривать стену уведомлений» **или** «Разрешить использование уведомлений»;
+* иначе 403 и сообщение об ошибке.
+
+Гостю страница недоступна.
+
+## Как устроено [#как-устроено]
+
+1. `do=notifications` → `engine/modules/devcraft/notifications_page.php`
+2. Шаблон темы `templates/{тема}/devcraft/notifications/page.tpl`
+3. Внутри — include стены: `notifications_site.php?focus=wall`
+
+Типичный `page.tpl`:
+
+```
+<article class="box story">
+	<div class="box_in">
+		{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+	</div>
+</article>
+```
+
+Оформление записей — `devcraft/notifications/wall.tpl`, `item.tpl`, `item_actions.tpl`.
+
+## Отличие от include стены [#отличие-от-include-стены]
+
+|                       | Страница `do=`                  | `focus=wall` в профиле   |
+| --------------------- | ------------------------------- | ------------------------ |
+| URL                   | свой (`/notifications/`)        | страница профиля / любая |
+| Заголовок / canonical | задаёт `notifications_page.php` | у родителя               |
+| Разметка              | обёртка `notifications.tpl`     | только блок стены        |
+
+Логика списка и прав одна и та же.
 
 ## См. также [#см-также]
 
 * [Вставка в шаблоны](./subscribe_wall)
+* [Лента на сайте](./inbox_api)
 * [Права групп](./permissions)
 
 
@@ -91640,27 +92918,30 @@ Badge + JS:
 
 Админка → **DLE Уведомления → Права групп**. Набор флагов свой у каждой группы.
 
-| Флаг                                                                    | Эффект                                  |
-| ----------------------------------------------------------------------- | --------------------------------------- |
-| Группа администраторов?                                                 | полный доступ                           |
-| Разрешить использование уведомлений                                     | inbox / получение уведомлений модуля    |
-| Просматривать стену уведомлений                                         | `focus=wall`                            |
-| Получать ЛС при уведомлении                                             | канал PM                                |
-| Получать email при уведомлении                                          | канал почты                             |
-| Разрешить отписку от ЛС                                                 | пользователь может выключить PM в prefs |
-| Разрешить отписку от email                                              | то же для почты / профиля DLE           |
-| Подписываться на новости / категории / авторов / теги / доп. поля / все | соответствующие кнопки                  |
-| Упоминать пользователей в комментариях                                  | `@ник` шлёт уведомление                 |
-| Менять настройки пользователя                                           | модерация prefs чужих аккаунтов         |
+| Флаг                                                                    | Эффект                                        |
+| ----------------------------------------------------------------------- | --------------------------------------------- |
+| Группа администраторов?                                                 | полный доступ                                 |
+| Разрешить использование уведомлений                                     | лента на сайте / получение уведомлений модуля |
+| Просматривать стену уведомлений                                         | `focus=wall` и страница `/notifications/`     |
+| Получать ЛС при уведомлении                                             | канал личных сообщений                        |
+| Получать email при уведомлении                                          | канал почты                                   |
+| Разрешить отписку от ЛС                                                 | пользователь может выключить ЛС в настройках  |
+| Разрешить отписку от email                                              | то же для почты / профиля DLE                 |
+| Подписываться на новости / категории / авторов / теги / доп. поля / все | соответствующие кнопки                        |
+| Упоминать пользователей в комментариях                                  | `@ник` шлёт уведомление                       |
+| Менять настройки пользователя                                           | модерация настроек чужих аккаунтов            |
 
 <Callout type="info">
   Пока у группы нет своей записи прав: обычные пользовательские флаги считаются включёнными, админские и модераторские — выключенными.
 </Callout>
 
-Без «Разрешить отписку от email/ЛС» пользователь не снимет канал в prefs: письма или ЛС продолжат уходить, если канал включён в настройках модуля.
+Без «Разрешить отписку от почты/ЛС» пользователь не снимет канал в настройках: письма или ЛС продолжат уходить, если канал включён в настройках модуля.
+
+Новый флаг для кастомного события — в `permissions.defs.php`, без миграции БД. Пошагово: [Кастомное событие](./custom_event#advanced).
 
 ## См. также [#см-также]
 
+* [Кастомное событие](./custom_event)
 * [Настройки пользователя](./user_prefs)
 * [Типы подписок](./subscription_types)
 
@@ -91681,13 +92962,17 @@ Badge + JS:
 
 ```text
 devcraft/notifications/
-├── scenarios/     тело события
-├── wrappers/      обёртка email / ЛС
-├── subscribe/     кнопки на сайте
-├── item.tpl       строка inbox
-├── wall.tpl       стена
-├── badge.tpl      колокольчик
-└── notifications.js
+├── scenarios/       тело события
+├── wrappers/        обёртка письма / ЛС
+├── subscribe/       кнопки на сайте
+├── item.tpl         строка ленты
+├── item_actions.tpl кнопка «Открыть»
+├── item_side_mark_read.tpl  «Прочесть» на стене (непрочитанные)
+├── item_side_dismiss.tpl    «Закрыть» в колокольчике
+├── wall.tpl         стена
+├── badge.tpl        колокольчик
+├── assets/          css / js
+└── …
 ```
 
 ## Сценарии (`scenarios/`) [#сценарии-scenarios]
@@ -91713,7 +92998,7 @@ devcraft/notifications/
 | {'{user}'}            | автор новости (в mention — упомянутый ник) |
 | {'{sender}'}          | инициатор события                          |
 | {'{message}'}         | уже собранный текст сценария (в wrapper)   |
-| {'{unsubscribe-url}'} | HMAC-ссылка отписки для email/ЛС           |
+| {'{unsubscribe-url}'} | подписанная ссылка отписки для письма/ЛС   |
 
 Если в событии есть строка новости, дополнительно доступны штатные теги DLE (`shortstory` / `fullstory`): {'{category}'}, {'{date}'}, {'{views}'}, `[xfvalue_…]` и т.д.
 
@@ -91778,19 +93063,40 @@ devcraft/notifications/
 
 Класс `dc-notify-subscribe` обязателен для JS.
 
-## Inbox [#inbox]
+## Лента на сайте [#лента-на-сайте]
 
 ### `item.tpl` [#itemtpl]
 
-| Тег                | Значение                                 |
-| ------------------ | ---------------------------------------- |
-| {'{id}'}           | id уведомления                           |
-| {'{message}'}      | текст                                    |
-| {'{date}'}         | дата                                     |
-| {'{level}'}        | `info`, `success`, …                     |
-| {'{unread}'}       | `1` / `0`                                |
-| {'{unread-class}'} | `is-unread` / `is-read`                  |
-| {'{verb}'}         | код действия (`updated`, `commented`, …) |
+| Тег                | Значение                                                                                        |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| {'{id}'}           | id уведомления                                                                                  |
+| {'{message}'}      | текст                                                                                           |
+| {'{date}'}         | дата                                                                                            |
+| {'{level}'}        | `info`, `success`, …                                                                            |
+| {'{unread}'}       | `1` / `0`                                                                                       |
+| {'{unread-class}'} | `is-unread` / `is-read`                                                                         |
+| {'{verb}'}         | код действия (`updated`, `commented`, …)                                                        |
+| {'{actions}'}      | HTML кнопки «Открыть» (из `item_actions.tpl`)                                                   |
+| {'{side-action}'}  | на стене — «Прочесть» (непрочитанные); в колокольчике — «Закрыть»; прочитанные на стене — пусто |
+
+### `item_actions.tpl` [#item_actionstpl]
+
+| Тег              | Значение         |
+| ---------------- | ---------------- |
+| {'{object-url}'} | ссылка на объект |
+| {'{open-label}'} | «Открыть»        |
+
+### `item_side_mark_read.tpl` [#item_side_mark_readtpl]
+
+| Тег                   | Значение   |
+| --------------------- | ---------- |
+| {'{mark-read-label}'} | «Прочесть» |
+
+### `item_side_dismiss.tpl` [#item_side_dismisstpl]
+
+| Тег                 | Значение  |
+| ------------------- | --------- |
+| {'{dismiss-label}'} | «Закрыть» |
 
 ### `wall.tpl` [#walltpl]
 
@@ -91810,6 +93116,7 @@ devcraft/notifications/
 
 ## См. также [#см-также]
 
+* [Страница уведомлений](./notifications_page)
 * [Сценарии событий](./scenarios)
 * [Вставка в шаблоны](./subscribe_wall)
 * [Типы подписок](./subscription_types)
@@ -91825,15 +93132,37 @@ devcraft/notifications/
 
 ## Соответствие [#соответствие]
 
-| Событие               | Файл                     | Получатели                      |
-| --------------------- | ------------------------ | ------------------------------- |
-| Правка новости        | `news_update.tpl`        | подписчики `news`               |
-| Новая публикация      | `news_published.tpl`     | cat / user / tag / xfield / all |
-| Одобрение модерации   | `moderation_approve.tpl` | автор                           |
-| Снятие с публикации   | `moderation_reject.tpl`  | автор                           |
-| Ответ на комментарий  | `comment_reply.tpl`      | автор родительского комментария |
-| Комментарий к новости | `comment_on_news.tpl`    | автор новости                   |
-| `@ник`                | `mention.tpl`            | упомянутый пользователь         |
+| Событие                  | Файл                     | Получатели                      |
+| ------------------------ | ------------------------ | ------------------------------- |
+| Правка новости           | `news_update.tpl`        | подписчики `news`               |
+| Новая публикация         | `news_published.tpl`     | cat / user / tag / xfield / all |
+| Одобрение модерации      | `moderation_approve.tpl` | автор                           |
+| Снятие с публикации      | `moderation_reject.tpl`  | автор                           |
+| Ответ на комментарий     | `comment_reply.tpl`      | автор родительского комментария |
+| Комментарий к новости    | `comment_on_news.tpl`    | автор новости                   |
+| `@ник`                   | `mention.tpl`            | упомянутый пользователь         |
+| Рейтинг новости          | `news_rating.tpl`        | автор новости                   |
+| Рейтинг комментария      | `comment_rating.tpl`     | автор комментария               |
+| Удаление комментария     | `comment_deleted.tpl`    | автор комментария               |
+| Подписка на пользователя | `user_subscribed.tpl`    | цель подписки (автор профиля)   |
+
+### Ответ на комментарий (`comment_reply`) [#ответ-на-комментарий-comment_reply]
+
+Пользователь **A** пишет комментарий. Пользователь **B** отвечает (родитель = комментарий A). **A** получает уведомление со ссылкой на ответ (object = комментарий B, target = новость). Себе (если A отвечает сам себе) — не уходит. Отдельный тип события не нужен: это тот же сценарий `comment_reply`.
+
+### Рейтинг [#рейтинг]
+
+* Новость: любой голос за чужую новость → автору; за свою — нет.
+* Комментарий: любой голос за чужой комментарий → автору комментария.
+* В шаблоне доступен `{rating}` (значение голоса со знаком, например `+1` / `-1`).
+
+### Удаление комментария [#удаление-комментария]
+
+Уведомление автору удалённого комментария, если удаляет другой пользователь. При древовидных комментариях — **одно** уведомление на явно удалённый корневой id (дети удаляются рекурсивно без отдельного notify). Массовое удаление через `deletecommentsbynewsid` / `deletecommentsbyuserid` — без шторма.
+
+### Подписка на пользователя [#подписка-на-пользователя]
+
+Только при **новой** подписке `type=user` (не cat/tag/news/xfield/all, не unsubscribe, не повторный toggle). Ссылка в ленте — профиль подписчика. Кнопка в теме: [Include в шаблонах](./template_includes).
 
 ## Глобальные выключатели [#глобальные-выключатели]
 
@@ -91843,18 +93172,23 @@ devcraft/notifications/
 * обновление новости;
 * ответы на комментарии;
 * упоминания;
-* модерация (одобрение / отклонение).
+* модерация (одобрение / отклонение);
+* рейтинг новости / комментария;
+* удаление комментария;
+* подписка на пользователя.
 
 Выключенный флаг — сценарий не уходит, даже если `.tpl` на месте.
 
-## Сообщение без сценария [#сообщение-без-сценария]
+## Своё событие [#своё-событие]
 
-Хак или другой модуль может вызвать `notifySend` с готовым текстом: `scenarios/` не читаются.
+Хак или другой модуль: готовый текст или свой `.tpl` — пошагово в [Кастомное событие](./custom_event).
 
 ## См. также [#см-также]
 
+* [Кастомное событие](./custom_event)
 * [Шаблоны и теги](./scenario_templates)
 * [Настройки пользователя](./user_prefs)
+* [Справочник Notify](../reference/Notify)
 
 
 # Вставка в шаблоны темы (/dev/dle/notifications/200.1.0/guides/subscribe_wall)
@@ -91867,26 +93201,51 @@ devcraft/notifications/
 
 Нет файла в активном скине — используется `Default`.
 
+Полное руководство по местам вставки и сниппетам cat / tag / xfield / user: [Include в шаблонах темы](./template_includes).
+
+## Параметр focus [#параметр-focus]
+
+| focus       | Куда в теме             | Что отдаёт                             |
+| ----------- | ----------------------- | -------------------------------------- |
+| `css`       | шапка (`<head>`)        | стили + meta для AJAX и автообновления |
+| `js`        | низ страницы            | скрипты                                |
+| `badge`     | меню / шапка            | колокольчик                            |
+| `wall`      | профиль / контент       | стена списка                           |
+| `subscribe` | новость / категория / … | кнопка подписки                        |
+
+Пример шапки и подвала:
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
+…
+{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+…
+{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+```
+
+`focus=css` доступен и гостям (нужны стили/meta). Виджеты подписки, стены и колокольчика — только авторизованным.
+
 ## Подписка на новость [#подписка-на-новость]
 
 В `fullstory.tpl`:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&type=news&id={news-id}"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=news&id={news-id}"}
 ```
 
 Рендерится кнопка «Подписаться» / «Отписаться» из `subscribe/news.tpl`.
 
 ## Другие типы [#другие-типы]
 
-| Сущность  | Query                                                   |
-| --------- | ------------------------------------------------------- |
-| Категория | `...?focus=subscribe&type=cat&id={'{category-id}'}`     |
-| Автор     | `...?focus=subscribe&type=user&id=42` (`id` — user\_id) |
-| Тег       | `...?focus=subscribe&type=tag&id=php`                   |
-| Все новые | `...?focus=subscribe&type=all`                          |
+| Сущность  | Query                                                                                                     |
+| --------- | --------------------------------------------------------------------------------------------------------- |
+| Категория | `...?focus=subscribe&stype=cat&id={category-id}` (в `main.tpl`: `[available=cat]`)                        |
+| Тег       | `...?focus=subscribe&stype=tag&id={cloudstag}` (в `main.tpl`: `[available=tags]`)                         |
+| Доп. поле | `...?focus=subscribe&stype=xfield` на xfsearch (`[available=xfsearch]`; id из URL) или `id=поле/значение` |
+| Автор     | `...?focus=subscribe&stype=user&id={user-id}`                                                             |
+| Все новые | `...?focus=subscribe&stype=all`                                                                           |
 
-Семантика типов: [типы подписок](./subscription_types).
+Полные сниппеты и примеры URL: [Include в шаблонах темы](./template_includes). Семантика типов: [типы подписок](./subscription_types).
 
 ## Стена [#стена]
 
@@ -91894,26 +93253,27 @@ devcraft/notifications/
 {include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
 ```
 
-## Badge [#badge]
+Отдельный URL списка: [Страница уведомлений](./notifications_page) (`do=notifications`).
 
-В шапке:
+## Колокольчик [#колокольчик]
+
+В меню / шапке:
 
 ```
 {include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
-{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
 ```
 
-`focus=js&#x60; один раз на странице: подписки, отметка прочитанным, polling. Интервал — &#x2A;*«Интервал polling badge»** в настройках модуля (секунды; `0` — без автообновления).
+Скрипты один раз внизу страницы (`focus=js&#x60;): подписки, «прочитать все», автообновление. Интервал — &#x2A;*«Интервал автообновления колокольчика»** в настройках модуля (секунды; `0` — без автообновления). Meta с базой AJAX и периодом выводит `focus=css`.
 
 ## Кто видит блоки [#кто-видит-блоки]
 
-| Блок     | Право группы                                      |
-| -------- | ------------------------------------------------- |
-| Подписка | «Разрешить подписываться…» на соответствующий тип |
-| Стена    | «Разрешить просматривать стену»                   |
-| Badge    | «Разрешить использование уведомлений»             |
+| Блок        | Право группы                                      |
+| ----------- | ------------------------------------------------- |
+| Подписка    | «Разрешить подписываться…» на соответствующий тип |
+| Стена       | «Разрешить просматривать стену»                   |
+| Колокольчик | «Разрешить использование уведомлений»             |
 
-Гостям блоки не выводятся.
+Гостям виджеты не выводятся (`css` / `js` — да).
 
 ## Файлы оформления [#файлы-оформления]
 
@@ -91922,7 +93282,9 @@ templates/ВАША_ТЕМА/devcraft/notifications/
   subscribe/          кнопки по типам
   wall.tpl            стена
   item.tpl            одна запись
+  item_actions.tpl    кнопка «Открыть»
   badge.tpl           колокольчик
+  notifications.css   стили
   notifications.js    клиентская логика
 ```
 
@@ -91930,6 +93292,8 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 ## См. также [#см-также]
 
+* [Include в шаблонах темы](./template_includes)
+* [Страница уведомлений](./notifications_page)
 * [Типы подписок](./subscription_types)
 * [Права групп](./permissions)
 * [Установка](../install)
@@ -91939,7 +93303,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 
 
-Подписка — пара `subscription_type` + `subscription_id` (всегда строка). Совпадение с событием ищет matcher; дальше работают права, prefs и каналы.
+Подписка — пара `subscription_type` + `subscription_id` (всегда строка). Совпадение с событием ищет matcher; дальше работают права, настройки пользователя и каналы.
 
 ## Когда срабатывает [#когда-срабатывает]
 
@@ -91968,19 +93332,37 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 ## Примеры include [#примеры-include]
 
-Категория:
+Категория (`main.tpl`, только страница раздела):
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&type=cat&id={category-id}"}
+[available=cat]
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=cat&id={category-id}"}
+[/available]
+```
+
+Тег (`main.tpl`, только страница тега; `{cloudstag}` — тег из URL):
+
+```
+[available=tags]
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=tag&id={cloudstag}"}
+[/available]
+```
+
+Доп. поле / xfsearch (`main.tpl`; `id` собирается модулем из URL, формат `поле/значение`):
+
+```
+[available=xfsearch]
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield"}
+[/available]
 ```
 
 Все новости:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&type=all"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=all"}
 ```
 
-Число подписчиков в кнопке — {'{count}'} в `subscribe/*.tpl`.
+Число подписчиков в кнопке — {'{count}'} в `subscribe/*.tpl`. Полный гайд: [Include в шаблонах](./template_includes).
 
 ## Каналы одной подписки [#каналы-одной-подписки]
 
@@ -91993,37 +93375,188 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 * [Шаблоны и теги](./scenario_templates)
 
 
+# Include в шаблонах темы (/dev/dle/notifications/200.1.0/guides/template_includes)
+
+
+
+Точка входа: `engine/modules/devcraft/notifications_site.php` через обычный DLE `{include}`. Разметка — из `templates/ВАША_ТЕМА/devcraft/notifications/` (нет файла — берётся `Default`).
+
+Краткий обзор виджетов: [Вставка в шаблоны](./subscribe_wall). Семантика типов: [типы подписок](./subscription_types).
+
+## Базовые focus [#базовые-focus]
+
+| focus   | Куда в теме                    | Что                                    |
+| ------- | ------------------------------ | -------------------------------------- |
+| `css`   | шапка (`<head>`)               | стили + meta для AJAX и автообновления |
+| `js`    | низ страницы (перед `</body>`) | скрипты                                |
+| `badge` | меню / шапка                   | колокольчик                            |
+| `wall`  | профиль / контент              | стена списка                           |
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
+…
+{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+…
+{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+```
+
+`focus=css` доступен гостям. `badge` / `wall` / `subscribe` — только авторизованным (и при соответствующих правах группы).
+
+## Файл темы → include [#файл-темы--include]
+
+| Файл темы                           | Типичный include                          |
+| ----------------------------------- | ----------------------------------------- |
+| `main.tpl` (шапка)                  | `focus=css`, `focus=badge`                |
+| `main.tpl` (подвал)                 | `focus=js`                                |
+| `main.tpl` (`[available=cat]`)      | `type=cat&id={category-id}`               |
+| `main.tpl` (`[available=tags]`)     | `type=tag&id={cloudstag}`                 |
+| `main.tpl` (`[available=xfsearch]`) | `type=xfield` (id из URL автоматически)   |
+| `fullstory.tpl`                     | `focus=subscribe&stype=news&id={news-id}` |
+| `userinfo.tpl`                      | `type=user` + при желании `focus=wall`    |
+| отдельная страница «все новости»    | `type=all`                                |
+
+В теме Default нет отдельного `category.tpl` — кнопки категории, тега и xfsearch удобнее ставить в `main.tpl` внутри `[available=…]`.
+
+## Сниппеты подписки [#сниппеты-подписки]
+
+<Callout type="warning">
+  Параметр типа — &#x2A;*`stype`**, не `type`. В ядре DLE `load_file()` уже занимает `$type` расширением `.php`, поэтому `type=xfield` из include не
+  доходит до модуля.
+</Callout>
+
+### Новость [#новость]
+
+В `fullstory.tpl`:
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=news&id={news-id}"}
+```
+
+### Категория [#категория]
+
+В `main.tpl` (или шаблоне раздела). Id — тег DLE `{category-id}`:
+
+```
+[available=cat]
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=cat&id={category-id}"}
+[/available]
+```
+
+Пример: на `https://сайт/news/` подписчик получит уведомления о **новых** материалах в категории `news`.
+
+### Тег [#тег]
+
+На странице тега DLE выставляет `{cloudstag}` (текущий тег из URL). В `main.tpl`:
+
+```
+[available=tags]
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=tag&id={cloudstag}"}
+[/available]
+```
+
+Пример: `https://сайт/tags/информация/` → подписка на тег `информация`. В matcher `id` приводится к нижнему регистру.
+
+Можно и литерал: `type=tag&id=информация` — тогда кнопка не зависит от `{cloudstag}`, но подходит только для одной фиксированной страницы.
+
+### Доп. поле (xfield / xfsearch) [#доп-поле-xfield--xfsearch]
+
+Формат `id`: `имя_поля/значение`, например `year/2019`.
+
+На странице поиска по доп. полю (`/xfsearch/{поле}/{значение}/`) у DLE нет готового тега вроде `{cloudstag}`. Модуль сам собирает `id` из URL (`$_GET['xf']`), если в include **не** передан `id`:
+
+```
+[available=xfsearch]
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield"}
+[/available]
+```
+
+Пример: `https://сайт/xfsearch/year/2019/` → подписка на `year/2019`.
+
+Явный литерал (любая страница):
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield&id=year/2019"}
+```
+
+Срабатывает при **новой** публикации с таким значением поля. Нужны флаг `subscriptions_xfield` и право `notifications_allow_subscribe_xfield`. Подробнее: [типы подписок](./subscription_types).
+
+### Автор (профиль пользователя) [#автор-профиль-пользователя]
+
+В `userinfo.tpl` — `id` это **user\_id** автора профиля (не логин):
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=user&id={user-id}"}
+```
+
+Подписчик получает уведомления о **новых** публикациях этого автора. Сам автор профиля при **новой** подписке на него получает сценарий `user_subscribed` (если включено в настройках модуля), со ссылкой на профиль подписчика. Повторная подписка / отписка / подписка на себя — без лишнего уведомления.
+
+### Все новые материалы [#все-новые-материалы]
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=all"}
+```
+
+## Права и флаги [#права-и-флаги]
+
+Чтобы кнопка реально работала:
+
+1. В настройках модуля включён флаг типа: `subscriptions_news`, `subscriptions_cat`, `subscriptions_user`, `subscriptions_tag`, `subscriptions_xfield`, `subscriptions_all`.
+2. В **Правах групп** разрешена подписка на этот тип.
+3. Для событий публикации / правки — глобальные «Уведомлять при публикации» / «Уведомлять об обновлении новости».
+
+Без права или при выключенном типе AJAX вернёт ошибку, а на странице кнопка может не отображаться.
+
+## Стена в профиле [#стена-в-профиле]
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+```
+
+Отдельный URL: [Страница уведомлений](./notifications_page) (`do=notifications`).
+
+## См. также [#см-также]
+
+* [Вставка в шаблоны](./subscribe_wall)
+* [Типы подписок](./subscription_types)
+* [Сценарии событий](./scenarios)
+* [Права групп](./permissions)
+* [Справочник: notifications\_site.php](../reference/notifications_site)
+
+
 # Настройки пользователя (/dev/dle/notifications/200.1.0/guides/user_prefs)
 
 
 
-Даже при включённом модуле канал может отфильтроваться prefs пользователя. Проверки идут сверху вниз; первый отказ останавливает этот канал.
+Даже при включённом модуле канал может отфильтроваться настройками пользователя. Проверки идут сверху вниз; первый отказ останавливает этот канал.
 
 1. **Права группы** — функция разрешена.
-2. **Мастер-выключатель** (опциональный xfield) — не отключены уведомления целиком.
-3. **Сценарный xfield** — не отключён класс событий (новости, упоминания, …).
-4. **Email и профиль DLE:**
+2. **Мастер-выключатель** (опциональное доп. поле) — не отключены уведомления целиком.
+3. **Сценарное доп. поле** — не отключён класс событий (новости, упоминания, …).
+4. **Почта и профиль DLE:**
    * «Подписка на ответы в комментариях» → сценарий ответа;
    * «Подписка на комментарии к новостям» → комментарий к своей статье.
-5. **Глобальные каналы модуля** — email / ЛС включены в настройках.
+5. **Глобальные каналы модуля** — почта / ЛС включены в настройках.
 
-Inbox на сайте и ЛС **не** зависят от `news_subscribe` / `comments_reply_subscribe`: эти флаги DLE относятся только к почте.
+Лента на сайте и ЛС **не** зависят от `news_subscribe` / `comments_reply_subscribe`: эти флаги DLE относятся только к почте.
 
-## Xfields в настройках модуля [#xfields-в-настройках-модуля]
+## Доп. поля в настройках модуля [#доп-поля-в-настройках-модуля]
 
-| Настройка                     | Роль              |
-| ----------------------------- | ----------------- |
-| Xfield: включить уведомления  | общий выключатель |
-| Xfield: email при уведомлении | отдельно почта    |
-| Xfield: обновление/публикация | сценарии новостей |
-| Xfield: модерация             | approve / reject  |
-| Xfield: упоминания            | `@ник`            |
+| Настройка                        | Роль                   |
+| -------------------------------- | ---------------------- |
+| Доп. поле: включить уведомления  | общий выключатель      |
+| Доп. поле: почта при уведомлении | отдельно почта         |
+| Доп. поле: обновление/публикация | сценарии новостей      |
+| Доп. поле: модерация             | одобрение / отклонение |
+| Доп. поле: упоминания            | `@ник`                 |
 
 Поле не выбрано в настройках — не участвует. Пустое значение у пользователя — «разрешено». `0` / `off` / `no` — отказ.
+
+Свой сценарий + своё доп. поле: [Кастомное событие — продвинутое](./custom_event#advanced).
 
 ## См. также [#см-также]
 
 * [Права групп](./permissions)
+* [Кастомное событие](./custom_event)
 * [Сценарии событий](./scenarios)
 * [Шаблоны и теги](./scenario_templates)
 
@@ -92055,23 +93588,28 @@ composer dump-autoload
 4. Откройте **DLE Уведомления**. При первом заходе создаются таблицы.
 5. Если активная тема не `Default`, скопируйте\
    `templates/Default/devcraft/notifications/`\
-   в `templates/ИмяТемы/devcraft/notifications/`.\
+   в `templates/ИмяТемы/devcraft/notifications/`\
+   и при необходимости `templates/Default/notifications.tpl` (страница `do=notifications`).\
    Fallback на `Default` срабатывает только если файла нет в текущем скине.
-6. В **Настройках** включите типы подписок и каналы (сайт / email / ЛС).
+6. В **Настройках** включите типы подписок и каналы (сайт / почта / ЛС).
+7. В шапке темы добавьте `focus=css`, внизу — `focus=js` — см. [вставка в тему](./guides/subscribe_wall).
 
 После установки `notify*` доступны глобально (bootstrap в `engine/init.php` / admin init). В своём хаке достаточно `function_exists('notifySend')` — отдельный include не нужен.
 
-На сайте блоки не появляются сами: нужны include в шаблонах темы — [вставка в тему](./guides/subscribe_wall). Тексты уведомлений — `.tpl` в той же папке, см. [шаблоны и теги](./guides/scenario_templates).
+Плагин регистрирует маршрут [страницы уведомлений](./guides/notifications_page): `/index.php?do=notifications` и ЧПУ `/notifications/`.
+
+На сайте блоки не появляются сами: нужны include в шаблонах темы. Тексты уведомлений — `.tpl` в той же папке, см. [шаблоны и теги](./guides/scenario_templates).
 
 ## Если блока нет [#если-блока-нет]
 
 * пользователь не авторизован;
-* у группы нет права на подписку / стену / inbox ([права групп](./guides/permissions));
+* у группы нет права на подписку / стену / ленту ([права групп](./guides/permissions));
 * тип подписки выключен в настройках модуля.
 
 ## См. также [#см-также]
 
 * [Начало работы](./getting_started)
+* [Страница уведомлений](./guides/notifications_page)
 * [Права групп](./guides/permissions)
 * [История изменений](./changelog)
 
@@ -92080,11 +93618,11 @@ composer dump-autoload
 
 
 
-Публичный фасад для хаков. Админка и шаблоны — [гайды](../guides/subscribe_wall).
+Публичный фасад для хаков. Админка и шаблоны — [руководства](../guides/subscribe_wall).
 
 **С версии:** 200.1.0
 
-Плагин при установке подключает `engine/modules/devcraft/notifications.php` после bootstrap DevCraft. В обычном запросе DLE функции уже доступны — достаточно `function_exists`.
+Плагин при установке подключает `engine/modules/devcraft/notifications.php` после bootstrap DevCraft. В обычном запросе DLE функции уже доступны — достаточно `function_exists`. В AJAX без `init.php` хуки вызывают `notifyEnsureReady()`.
 
 ## Функции [#функции]
 
@@ -92092,21 +93630,29 @@ composer dump-autoload
 notifySend(int $recipientId, ?string $message = null, …): void
 notifyOnNewsSaved(int $newsId, string $event): void
 notifyOnCommentAdded(int $commentId, int $newsId, int $parentId, string $text, int $authorId): void
+notifyOnNewsRated(int $newsId, int $voterId, int $goRate): void
+notifyOnCommentRated(int $commentId, int $voterId, int $goRate): void
+notifyOnCommentDeleted(int $commentId, int $newsId, int $authorId, int $actorId): void
+notifyOnUserSubscribed(int $targetUserId, int $subscriberId): void
 notifyFormatMentionsHtml(string $text): string
 ```
 
-| Функция                    | Назначение                            |
-| -------------------------- | ------------------------------------- |
-| `notifySend`               | произвольное уведомление получателю   |
-| `notifyOnNewsSaved`        | `add` / `edit` / `approve` / `reject` |
-| `notifyOnCommentAdded`     | ответ, mention, автор новости         |
-| `notifyFormatMentionsHtml` | `@ник` → ссылка в HTML комментария    |
+| Функция                    | Назначение                                 |
+| -------------------------- | ------------------------------------------ |
+| `notifySend`               | произвольное уведомление получателю        |
+| `notifyOnNewsSaved`        | `add` / `edit` / `approve` / `reject`      |
+| `notifyOnCommentAdded`     | ответ, mention, автор новости              |
+| `notifyOnNewsRated`        | рейтинг новости → автор                    |
+| `notifyOnCommentRated`     | рейтинг комментария → автор комментария    |
+| `notifyOnCommentDeleted`   | удаление комментария → автор (корневой id) |
+| `notifyOnUserSubscribed`   | новая подписка `type=user` → цель          |
+| `notifyFormatMentionsHtml` | `@ник` → ссылка в HTML комментария         |
 
 ## Класс `Notify` [#класс-notify]
 
 Namespace: `DevCraft\Modules\Notifications\Services`
 
-Те же операции: `Notify::send`, `::onNewsSaved`, `::onCommentAdded`, `::formatMentionsHtml`, `::subscriptions()`.
+Те же операции: `Notify::send`, `::onNewsSaved`, `::onCommentAdded`, `::onNewsRated`, `::onCommentRated`, `::onCommentDeleted`, `::onUserSubscribed`, `::formatMentionsHtml`, `::subscriptions()`.
 
 ### `notifySend` / `Notify::send` [#notifysend--notifysend]
 
@@ -92114,7 +93660,7 @@ Namespace: `DevCraft\Modules\Notifications\Services`
 | ---------------- | ------------------------------------------------------- |
 | `$recipientId`   | получатель                                              |
 | `$message`       | готовый текст; `null`, если рендерится сценарий         |
-| `$contentType`   | связанная сущность (`news`, `comment`, …)               |
+| `$contentType`   | связанная сущность (`news`, `comment`, `user`, …)       |
 | `$contentTypeId` | её id                                                   |
 | `$senderId`      | инициатор                                               |
 | `$level`         | `info`, `success`, …                                    |
@@ -92140,10 +93686,14 @@ if (function_exists('notifySend')) {
 }
 ```
 
+Хуки рейтинга и удаления комментария ставятся плагином (`rating.php`, `ratingcomments.php`, `deletecomments`). Подписка на пользователя вызывается из `SubscriptionService::subscribe` без отдельного DLE-хака.
+
 ## См. также [#см-также]
 
-* [Шаблоны и теги](../guides/scenario_templates)
 * [Сценарии событий](../guides/scenarios)
+* [Кастомное событие](../guides/custom_event)
+* [Шаблоны и теги](../guides/scenario_templates)
+* [notifications\_site.php](./notifications_site)
 
 
 # Справочник API (/dev/dle/notifications/200.1.0/reference)
@@ -92151,6 +93701,9 @@ if (function_exists('notifySend')) {
 
 
 Раздел для разработчиков. Настройка сайта — в [гайдах](../guides/subscribe_wall).
+
+* PHP API: [Notify](./Notify) (`notifySend`, хуки событий).
+* Include на сайте: [notifications\_site.php](./notifications_site) — параметры `focus`, `type`, `id`.
 
 После установки плагина `notify*` уже в глобальной области (bootstrap в `engine/init.php` и admin init). Отдельный `include` не нужен.
 
@@ -92163,7 +93716,125 @@ notifyOnCommentAdded($commentId, $newsId, $parentId, $text, $authorId);
 $html = notifyFormatMentionsHtml($commentHtml);
 ```
 
-Сигнатуры: [Notify](./Notify).
+Сигнатуры: [Notify](./Notify). Разметка `{include}`: [notifications\_site.php](./notifications_site).
+
+
+# notifications_site.php (/dev/dle/notifications/200.1.0/reference/notifications_site)
+
+
+
+**Описание:** публичная точка входа модуля на сайте. Подключается через DLE `{include}`; разметка берётся из `templates/{skin}/devcraft/notifications/` (fallback — `Default`).
+
+**Файл:** `engine/modules/devcraft/notifications_site.php`
+
+**С версии:** 200.1.0
+
+**См. также:**
+
+* [Include в шаблонах темы](../guides/template_includes)
+* [Вставка в шаблоны](../guides/subscribe_wall)
+* [Типы подписок](../guides/subscription_types)
+
+## Синтаксис [#синтаксис]
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=…&stype=…&id=…"}
+```
+
+Параметры передаются в query-строке include (стандартный механизм DLE: становятся локальными переменными модуля).
+
+<Callout type="warning">
+  Используйте &#x2A;*`stype`**, не `type`. В `dle_template::load_file()` переменная `$type` уже занята расширением файла (`php`), а `extract(...,
+  	EXTR_SKIP)` отбрасывает `type=` из query — подписка всегда сваливалась бы в `news`.
+</Callout>
+
+## Параметры [#параметры]
+
+| Параметр  | Тип         | По умолчанию | Описание                                        |
+| --------- | ----------- | ------------ | ----------------------------------------------- |
+| `focus`   | string      | `subscribe`  | Режим вывода: что именно рендерить              |
+| `stype`   | string      | `news`       | Тип подписки; имеет смысл при `focus=subscribe` |
+| `id`      | string      | `''`         | Идентификатор объекта подписки (см. тип)        |
+| `newsid`  | string\|int | —            | Алиас `id` (если `id` не задан)                 |
+| `news_id` | string\|int | —            | Алиас `id` (если `id` и `newsid` не заданы)     |
+
+Неизвестный `stype` → трактуется как `news`. Значение `id` нормализуется по типу (`SubscriptionType::normalizeId`).
+
+## `focus` [#focus]
+
+| Значение    | Гости | Авторизованные | Что выводит                                                                           |
+| ----------- | ----- | -------------- | ------------------------------------------------------------------------------------- |
+| `css`       | да    | да             | `<link>` на `assets/notifications.css` + meta `dc-ajax-base`, `dc-notify-live-period` |
+| `js`        | да    | да             | `dc_public.js`, timeago, `assets/notifications.js` (однократно за запрос)             |
+| `badge`     | нет   | да\*           | `badge.tpl` — колокольчик и список непрочитанных                                      |
+| `wall`      | нет   | да\*           | `wall.tpl` — стена уведомлений                                                        |
+| `subscribe` | нет   | да\*           | `subscribe/{stype}.tpl` — кнопка подписки / отписки                                   |
+
+\* Плюс права группы и (для `subscribe`) флаг типа в настройках модуля. Без права или при выключенном типе модуль молча ничего не выводит.
+
+Для гостей любые `focus`, кроме `css` и `js`, завершаются сразу (`return`).
+
+## `stype` (только `focus=subscribe`) [#stype-только-focussubscribe]
+
+| `stype`  | Формат `id`                                      | Пример                                  |
+| -------- | ------------------------------------------------ | --------------------------------------- |
+| `news`   | ID новости (int > 0)                             | `id={news-id}`                          |
+| `cat`    | ID категории                                     | `id={category-id}`                      |
+| `user`   | `user_id` автора                                 | `id={user-id}`                          |
+| `tag`    | slug/текст тега (`{cloudstag}` на странице тега) | `id={cloudstag}`                        |
+| `xfield` | `поле/значение`                                  | `id=year/2019` или без `id` на xfsearch |
+| `all`    | не используется (пустая строка)                  | без `id`                                |
+
+Для `stype=news` при `id ≤ 0` кнопка не выводится. Для `stype=xfield` без `id` на странице `do=xfsearch` модуль собирает `id` из URL (например `/xfsearch/year/2019/` → `year/2019`). Семантика срабатывания (add vs edit): [типы подписок](../guides/subscription_types).
+
+Рекомендуемая обёртка в `main.tpl`: `[available=cat]` / `[available=tags]` / `[available=xfsearch]`.
+
+## Примеры [#примеры]
+
+```
+{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+
+{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=news&id={news-id}"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=cat&id={category-id}"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=user&id={user-id}"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=tag&id={cloudstag}"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield&id=linked_data/dasdasd"}
+{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=all"}
+```
+
+На страницах раздела, тега и xfsearch удобнее обернуть include в `[available=cat]` / `[available=tags]` / `[available=xfsearch]` (см. [гайд](../guides/template_includes)).
+
+## Теги шаблона [#теги-шаблона]
+
+Модуль выставляет плейсхолдеры перед `load_template` / `compile`:
+
+| Тег                     | Когда        | Значение                                   |
+| ----------------------- | ------------ | ------------------------------------------ |
+| `{news-id}`             | всегда       | числовой `id` (для news)                   |
+| `{subscription-id}`     | всегда       | нормализованный id подписки                |
+| `{subscription-type}`   | всегда       | `news` / `cat` / …                         |
+| `{user-hash}`           | всегда       | `$dle_login_hash` для AJAX                 |
+| `{subscribe-label}`     | subscribe    | «Подписаться» / «Отписаться»               |
+| `{subscribed}`          | subscribe    | `1` или `0`                                |
+| `{count}`               | subscribe    | число подписчиков                          |
+| `{items}`               | wall / badge | HTML списка записей                        |
+| `{unread-count}`        | wall / badge | число непрочитанных                        |
+| `{notifications-title}` | wall / badge | заголовок                                  |
+| `{mark-all-label}`      | wall / badge | «Прочитать все»                            |
+| `{empty-label}`         | wall / badge | «Нет уведомлений»                          |
+| `{empty-hidden}`        | wall / badge | пусто или ` hidden`                        |
+| `{wall-limit}`          | всегда       | лимит из настроек                          |
+| `{live-refresh-period}` | всегда       | интервал автообновления (сек; `0` — выкл.) |
+| `{notifications-url}`   | всегда       | URL страницы уведомлений                   |
+| `{view-all-label}`      | всегда       | «Все уведомления»                          |
+| `{theme-path}`          | всегда       | URL каталога активной темы                 |
+
+Шаблоны: `subscribe/{type}.tpl`, `wall.tpl`, `badge.tpl`, `item.tpl` и др. — см. [шаблоны и теги](../guides/scenario_templates).
 
 
 # Цены по курсу валют (/dev/dle/paid-currencies_rate)
@@ -92933,11 +94604,11 @@ devcraft/src/modules/RePost/Provider/Telegram/
 
 **Платное дополнение** к RePost: публикация новостей на стену сообщества VK.com.
 
-#### Версия: <i class="fa-duotone fa-code-branch" /> 200.1.0 [#версия--20010]
+#### Версия: <i class="fa-duotone fa-code-branch" /> 200.1.1 [#версия--20011]
 
 #### Совместимость: RePost ≥ **200.1.0**, DLE 20.0 [#совместимость-repost--20010-dle-200]
 
-#### Скачать: [<i class="fa-thin fa-paperclip" /> Купить / скачать](https://devcraft.club/) \<!-- placeholder: страница продажи --> [#скачать--купить--скачать----placeholder-страница-продажи---]
+#### Скачать: [<i class="fa-thin fa-paperclip" /> Купить / скачать](https://devcraft.club/downloads/re-post-provider-vk.37/) [#скачать--купить--скачать]
 
 Проверено с RePost **200.1.0**.
 
@@ -93170,15 +94841,15 @@ return [
 Провайдер RePost — **канал доставки**: Telegram, VK, webhook, своя БД, внешний API и т.п.\
 Контракт: `ProviderInterface` → рекомендуется `extends AbstractProvider` → `send(…): SendResult`.
 
-```mermaid
-flowchart TB
+<Mermaid
+  chart="flowchart TB
   Dispatch[DispatchService] --> Registry[ProviderRegistry]
   Registry --> P[ProviderInterface]
   P --> Abstract[AbstractProvider]
   Abstract --> TG[TelegramProvider]
   Abstract --> Custom[Webhook / DB / API / ...]
-  P --> DTO["PostContext + RenderedMessage → SendResult"]
-```
+  P --> DTO[&#x22;PostContext + RenderedMessage → SendResult&#x22;]"
+/>
 
 ## Структура каталога [#структура-каталога]
 

@@ -1,0 +1,41 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`Права групп`,description:`Флаги прав модуля по группам DLE`,version:`200.1.0`},i=new Date(1787750944e3),a=`
+
+Админка → **DLE Уведомления → Права групп**. Набор флагов свой у каждой группы.
+
+| Флаг                                                                    | Эффект                                        |
+| ----------------------------------------------------------------------- | --------------------------------------------- |
+| Группа администраторов?                                                 | полный доступ                                 |
+| Разрешить использование уведомлений                                     | лента на сайте / получение уведомлений модуля |
+| Просматривать стену уведомлений                                         | \`focus=wall\` и страница \`/notifications/\`     |
+| Получать ЛС при уведомлении                                             | канал личных сообщений                        |
+| Получать email при уведомлении                                          | канал почты                                   |
+| Разрешить отписку от ЛС                                                 | пользователь может выключить ЛС в настройках  |
+| Разрешить отписку от email                                              | то же для почты / профиля DLE                 |
+| Подписываться на новости / категории / авторов / теги / доп. поля / все | соответствующие кнопки                        |
+| Упоминать пользователей в комментариях                                  | \`@ник\` шлёт уведомление                       |
+| Менять настройки пользователя                                           | модерация настроек чужих аккаунтов            |
+
+<Callout type="info">
+  Пока у группы нет своей записи прав: обычные пользовательские флаги считаются включёнными, админские и модераторские — выключенными.
+</Callout>
+
+Без «Разрешить отписку от почты/ЛС» пользователь не снимет канал в настройках: письма или ЛС продолжат уходить, если канал включён в настройках модуля.
+
+Новый флаг для кастомного события — в \`permissions.defs.php\`, без миграции БД. Пошагово: [Кастомное событие](./custom_event#advanced).
+
+## См. также [#см-также]
+
+* [Кастомное событие](./custom_event)
+* [Настройки пользователя](./user_prefs)
+* [Типы подписок](./subscription_types)
+`,o={contents:[{heading:void 0,content:`Админка → **DLE Уведомления → Права групп**. Набор флагов свой у каждой группы.`},{heading:void 0,content:`Флаг`},{heading:void 0,content:`Эффект`},{heading:void 0,content:`Группа администраторов?`},{heading:void 0,content:`полный доступ`},{heading:void 0,content:`Разрешить использование уведомлений`},{heading:void 0,content:`лента на сайте / получение уведомлений модуля`},{heading:void 0,content:`Просматривать стену уведомлений`},{heading:void 0,content:"`focus=wall` и страница `/notifications/`"},{heading:void 0,content:`Получать ЛС при уведомлении`},{heading:void 0,content:`канал личных сообщений`},{heading:void 0,content:`Получать email при уведомлении`},{heading:void 0,content:`канал почты`},{heading:void 0,content:`Разрешить отписку от ЛС`},{heading:void 0,content:`пользователь может выключить ЛС в настройках`},{heading:void 0,content:`Разрешить отписку от email`},{heading:void 0,content:`то же для почты / профиля DLE`},{heading:void 0,content:`Подписываться на новости / категории / авторов / теги / доп. поля / все`},{heading:void 0,content:`соответствующие кнопки`},{heading:void 0,content:`Упоминать пользователей в комментариях`},{heading:void 0,content:"`@ник` шлёт уведомление"},{heading:void 0,content:`Менять настройки пользователя`},{heading:void 0,content:`модерация настроек чужих аккаунтов`},{heading:void 0,content:`Пока у группы нет своей записи прав: обычные пользовательские флаги считаются включёнными, админские и модераторские — выключенными.`},{heading:void 0,content:`Без «Разрешить отписку от почты/ЛС» пользователь не снимет канал в настройках: письма или ЛС продолжат уходить, если канал включён в настройках модуля.`},{heading:void 0,content:"Новый флаг для кастомного события — в `permissions.defs.php`, без миграции БД. Пошагово: Кастомное событие."},{heading:`см-также`,content:`Кастомное событие`},{heading:`см-также`,content:`Настройки пользователя`},{heading:`см-также`,content:`Типы подписок`}],headings:[{id:`см-также`,content:`См. также`}]},s=[{depth:2,url:`#см-также`,title:(0,n.jsx)(n.Fragment,{children:`См. также`})}];function c(e){let t={a:`a`,code:`code`,h2:`h2`,li:`li`,p:`p`,strong:`strong`,table:`table`,tbody:`tbody`,td:`td`,th:`th`,thead:`thead`,tr:`tr`,ul:`ul`,...e.components},{Callout:r}=t;return r||u(`Callout`,!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(t.p,{children:[`Админка → `,(0,n.jsx)(t.strong,{children:`DLE Уведомления → Права групп`}),`. Набор флагов свой у каждой группы.`]}),`
+`,(0,n.jsxs)(t.table,{children:[(0,n.jsx)(t.thead,{children:(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.th,{children:`Флаг`}),(0,n.jsx)(t.th,{children:`Эффект`})]})}),(0,n.jsxs)(t.tbody,{children:[(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Группа администраторов?`}),(0,n.jsx)(t.td,{children:`полный доступ`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Разрешить использование уведомлений`}),(0,n.jsx)(t.td,{children:`лента на сайте / получение уведомлений модуля`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Просматривать стену уведомлений`}),(0,n.jsxs)(t.td,{children:[(0,n.jsx)(t.code,{children:`focus=wall`}),` и страница `,(0,n.jsx)(t.code,{children:`/notifications/`})]})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Получать ЛС при уведомлении`}),(0,n.jsx)(t.td,{children:`канал личных сообщений`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Получать email при уведомлении`}),(0,n.jsx)(t.td,{children:`канал почты`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Разрешить отписку от ЛС`}),(0,n.jsx)(t.td,{children:`пользователь может выключить ЛС в настройках`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Разрешить отписку от email`}),(0,n.jsx)(t.td,{children:`то же для почты / профиля DLE`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Подписываться на новости / категории / авторов / теги / доп. поля / все`}),(0,n.jsx)(t.td,{children:`соответствующие кнопки`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Упоминать пользователей в комментариях`}),(0,n.jsxs)(t.td,{children:[(0,n.jsx)(t.code,{children:`@ник`}),` шлёт уведомление`]})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Менять настройки пользователя`}),(0,n.jsx)(t.td,{children:`модерация настроек чужих аккаунтов`})]})]})]}),`
+`,(0,n.jsx)(r,{type:`info`,children:(0,n.jsx)(t.p,{children:`Пока у группы нет своей записи прав: обычные пользовательские флаги считаются включёнными, админские и модераторские — выключенными.`})}),`
+`,(0,n.jsx)(t.p,{children:`Без «Разрешить отписку от почты/ЛС» пользователь не снимет канал в настройках: письма или ЛС продолжат уходить, если канал включён в настройках модуля.`}),`
+`,(0,n.jsxs)(t.p,{children:[`Новый флаг для кастомного события — в `,(0,n.jsx)(t.code,{children:`permissions.defs.php`}),`, без миграции БД. Пошагово: `,(0,n.jsx)(t.a,{href:`./custom_event#advanced`,children:`Кастомное событие`}),`.`]}),`
+`,(0,n.jsx)(t.h2,{id:`см-также`,children:`См. также`}),`
+`,(0,n.jsxs)(t.ul,{children:[`
+`,(0,n.jsx)(t.li,{children:(0,n.jsx)(t.a,{href:`./custom_event`,children:`Кастомное событие`})}),`
+`,(0,n.jsx)(t.li,{children:(0,n.jsx)(t.a,{href:`./user_prefs`,children:`Настройки пользователя`})}),`
+`,(0,n.jsx)(t.li,{children:(0,n.jsx)(t.a,{href:`./subscription_types`,children:`Типы подписок`})}),`
+`]})]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}function u(e,t){throw Error(`Expected `+(t?`component`:`object`)+" `"+e+"` to be defined: you likely forgot to import, pass, or provide it.")}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};
