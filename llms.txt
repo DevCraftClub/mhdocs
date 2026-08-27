@@ -609,7 +609,7 @@
         - Справочник
           - [Справочник API](/dev/dle/notifications/200.1.0/reference): Функции notify* для хаков и сторонних модулей
           - [Notify](/dev/dle/notifications/200.1.0/reference/Notify): notifySend, onNewsSaved, onCommentAdded, рейтинг/удаление/подписка и класс Notify
-          - [notifications_site.php](/dev/dle/notifications/200.1.0/reference/notifications_site): Параметры include: focus, stype, id и теги шаблона
+          - [Site/web.php](/dev/dle/notifications/200.1.0/reference/web): Параметры include: focus, stype, id и теги шаблона
         - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типизированные подписки, шаблоны темы
     - Хаки и простые модули
       - [Schema.Org - Документация DevCraft](/dev/dle/simple/schema): Документация по интеграции Schema.Org разметки в проекты DevCraft.
