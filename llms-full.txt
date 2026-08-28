@@ -92133,7 +92133,8 @@ $tpl->set( '{НАЗВАНИЕ}', $ОПРЕДЕЛИТЕЛЬНОЕ_НАЗВАНИ�
 * права по группам;
 * упоминания `@ник` в комментариях;
 * сценарии рейтинга новости/комментария, удаления комментария, подписки на пользователя;
-* гайд [Include в шаблонах](./guides/template_includes) (cat / tag / xfield / user).
+* гайд [Include в шаблонах](./guides/template_includes) (cat / tag / xfield / user);
+* публичные entrypoint перенесены в `devcraft/src/modules/Notifications/Site/` (`web.php`, `page.php`, `include.php`); параметр подписки в include — `stype` (не `type`).
 
 
 # Начало работы (/dev/dle/notifications/200.1.0/getting_started)
@@ -92183,27 +92184,27 @@ $tpl->set( '{НАЗВАНИЕ}', $ОПРЕДЕЛИТЕЛЬНОЕ_НАЗВАНИ�
 В шапке темы (`main.tpl`):
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=css"}
 ```
 
 Полная новость (`fullstory.tpl`):
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=news&id={news-id}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=news&id={news-id}"}
 ```
 
 В меню — колокольчик; перед `</body>` — скрипты:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=badge"}
 …
-{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=js"}
 ```
 
 Стена в профиле или на [странице уведомлений](./guides/notifications_page):
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=wall"}
 ```
 
 Отправка из PHP (после установки функции `notify*` доступны на всём сайте):
@@ -92322,6 +92323,14 @@ if (function_exists('notifySend')) {
               <File name="permissions.twig" />
             </Folder>
 
+            <Folder name="Site">
+              <File name="web.php" />
+
+              <File name="page.php" />
+
+              <File name="include.php" />
+            </Folder>
+
             <Folder name="Public">
               <File name="timeago.full.min.js" />
 
@@ -92335,16 +92344,6 @@ if (function_exists('notifySend')) {
     <Folder name="engine">
       <Folder name="inc">
         <File name="notifications.php" />
-      </Folder>
-
-      <Folder name="modules">
-        <Folder name="devcraft">
-          <File name="notifications.php" />
-
-          <File name="notifications_site.php" />
-
-          <File name="notifications_page.php" />
-        </Folder>
       </Folder>
     </Folder>
 
@@ -92362,11 +92361,13 @@ if (function_exists('notifySend')) {
 
             <File name="subscribe.tpl" />
 
-            <File name="notifications.css" />
-
-            <File name="notifications.js" />
-
             <File name="page.tpl" />
+
+            <Folder name="assets">
+              <File name="notifications.css" />
+
+              <File name="notifications.js" />
+            </Folder>
 
             <Folder name="scenarios" />
 
@@ -92381,8 +92382,9 @@ if (function_exists('notifySend')) {
 </Files>
 
 * `engine/inc/notifications.php` — точка входа в админку DLE: открывает модуль в DevCraft.
-* `notifications_site.php` — подключение на сайте через `{include}` (`focus=css|js|badge|wall|subscribe`).
-* `notifications_page.php` + `notifications.tpl` — страница `do=notifications`.
+* `Site/web.php` — подключение на сайте через `{include}` (`focus=css|js|badge|wall|subscribe`).
+* `Site/page.php` + `page.tpl` — страница `do=notifications`.
+* `Site/include.php` — procedural API `notify*` (подключает плагин после bootstrap).
 * `templates/{тема}/devcraft/notifications/` — разметка и стили/скрипты публичного сайта (не шаблоны админки).
 
 ## Концепции [#концепции]
@@ -92393,7 +92395,7 @@ if (function_exists('notifySend')) {
 
 ### Подписки [#подписки]
 
-Тип (`news`, `cat`, `user`, `tag`, `xfield`, `all`) задаёт, на что подписан пользователь. Кнопка на странице — `focus=subscribe` с `type` и `id`. Подробнее: [типы подписок](./guides/subscription_types).
+Тип (`news`, `cat`, `user`, `tag`, `xfield`, `all`) задаёт, на что подписан пользователь. Кнопка на странице — `focus=subscribe` с `stype` и `id`. Подробнее: [типы подписок](./guides/subscription_types).
 
 ### Сценарии и шаблоны [#сценарии-и-шаблоны]
 
@@ -92580,7 +92582,7 @@ if (function_exists('notifySend')) {
 * сервис другого модуля DevCraft после бизнес-действия;
 * cron / очередь — тот же `notifySend`, если DevCraft уже загружен.
 
-Проверка: `function_exists('notifySend')` (функции подключает плагин через `engine/modules/devcraft/notifications.php`).
+Проверка: `function_exists('notifySend')` (функции подключает плагин через `devcraft/src/modules/Notifications/Site/include.php`).
 
 ## Настройки и права (базово) [#настройки-и-права-базово]
 
@@ -92811,17 +92813,17 @@ function notifyOrderPaid(int $buyerId, int $orderId, string $amount, string $url
 В шапке — стили и meta; в меню — колокольчик; внизу — скрипты:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=css"}
 …
-{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=badge"}
 …
-{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=js"}
 ```
 
 Стена:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=wall"}
 ```
 
 ## Действия [#действия]
@@ -92879,16 +92881,16 @@ function notifyOrderPaid(int $buyerId, int $orderId, string $amount, string $url
 
 ## Как устроено [#как-устроено]
 
-1. `do=notifications` → `engine/modules/devcraft/notifications_page.php`
+1. `do=notifications` → `devcraft/src/modules/Notifications/Site/page.php`
 2. Шаблон темы `templates/{тема}/devcraft/notifications/page.tpl`
-3. Внутри — include стены: `notifications_site.php?focus=wall`
+3. Внутри — include стены: `Site/web.php?focus=wall`
 
 Типичный `page.tpl`:
 
 ```
 <article class="box story">
 	<div class="box_in">
-		{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+		{include file="devcraft/src/modules/Notifications/Site/web.php?focus=wall"}
 	</div>
 </article>
 ```
@@ -92897,11 +92899,11 @@ function notifyOrderPaid(int $buyerId, int $orderId, string $amount, string $url
 
 ## Отличие от include стены [#отличие-от-include-стены]
 
-|                       | Страница `do=`                  | `focus=wall` в профиле   |
-| --------------------- | ------------------------------- | ------------------------ |
-| URL                   | свой (`/notifications/`)        | страница профиля / любая |
-| Заголовок / canonical | задаёт `notifications_page.php` | у родителя               |
-| Разметка              | обёртка `notifications.tpl`     | только блок стены        |
+|                       | Страница `do=`           | `focus=wall` в профиле   |
+| --------------------- | ------------------------ | ------------------------ |
+| URL                   | свой (`/notifications/`) | страница профиля / любая |
+| Заголовок / canonical | задаёт `Site/page.php`   | у родителя               |
+| Разметка              | обёртка `page.tpl`       | только блок стены        |
 
 Логика списка и прав одна и та же.
 
@@ -93195,7 +93197,7 @@ devcraft/notifications/
 
 
 
-Точка входа на фронте — `notifications_site.php` через обычный DLE-include. Разметка берётся из:
+Точка входа на фронте — `devcraft/src/modules/Notifications/Site/web.php` через обычный DLE-include. Разметка берётся из:
 
 `templates/ВАША_ТЕМА/devcraft/notifications/`
 
@@ -93216,11 +93218,11 @@ devcraft/notifications/
 Пример шапки и подвала:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=css"}
 …
-{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=badge"}
 …
-{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=js"}
 ```
 
 `focus=css` доступен и гостям (нужны стили/meta). Виджеты подписки, стены и колокольчика — только авторизованным.
@@ -93230,7 +93232,7 @@ devcraft/notifications/
 В `fullstory.tpl`:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=news&id={news-id}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=news&id={news-id}"}
 ```
 
 Рендерится кнопка «Подписаться» / «Отписаться» из `subscribe/news.tpl`.
@@ -93250,7 +93252,7 @@ devcraft/notifications/
 ## Стена [#стена]
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=wall"}
 ```
 
 Отдельный URL списка: [Страница уведомлений](./notifications_page) (`do=notifications`).
@@ -93260,7 +93262,7 @@ devcraft/notifications/
 В меню / шапке:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=badge"}
 ```
 
 Скрипты один раз внизу страницы (`focus=js&#x60;): подписки, «прочитать все», автообновление. Интервал — &#x2A;*«Интервал автообновления колокольчика»** в настройках модуля (секунды; `0` — без автообновления). Meta с базой AJAX и периодом выводит `focus=css`.
@@ -93336,7 +93338,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 ```
 [available=cat]
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=cat&id={category-id}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=cat&id={category-id}"}
 [/available]
 ```
 
@@ -93344,7 +93346,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 ```
 [available=tags]
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=tag&id={cloudstag}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=tag&id={cloudstag}"}
 [/available]
 ```
 
@@ -93352,14 +93354,14 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 ```
 [available=xfsearch]
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=xfield"}
 [/available]
 ```
 
 Все новости:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=all"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=all"}
 ```
 
 Число подписчиков в кнопке — {'{count}'} в `subscribe/*.tpl`. Полный гайд: [Include в шаблонах](./template_includes).
@@ -93379,7 +93381,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 
 
-Точка входа: `engine/modules/devcraft/notifications_site.php` через обычный DLE `{include}`. Разметка — из `templates/ВАША_ТЕМА/devcraft/notifications/` (нет файла — берётся `Default`).
+Точка входа: `devcraft/src/modules/Notifications/Site/web.php` через обычный DLE `{include}`. Разметка — из `templates/ВАША_ТЕМА/devcraft/notifications/` (нет файла — берётся `Default`).
 
 Краткий обзор виджетов: [Вставка в шаблоны](./subscribe_wall). Семантика типов: [типы подписок](./subscription_types).
 
@@ -93393,11 +93395,11 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 | `wall`  | профиль / контент              | стена списка                           |
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=css"}
 …
-{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=badge"}
 …
-{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=js"}
 ```
 
 `focus=css` доступен гостям. `badge` / `wall` / `subscribe` — только авторизованным (и при соответствующих правах группы).
@@ -93429,7 +93431,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 В `fullstory.tpl`:
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=news&id={news-id}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=news&id={news-id}"}
 ```
 
 ### Категория [#категория]
@@ -93438,7 +93440,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 ```
 [available=cat]
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=cat&id={category-id}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=cat&id={category-id}"}
 [/available]
 ```
 
@@ -93450,7 +93452,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 ```
 [available=tags]
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=tag&id={cloudstag}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=tag&id={cloudstag}"}
 [/available]
 ```
 
@@ -93466,7 +93468,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 ```
 [available=xfsearch]
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=xfield"}
 [/available]
 ```
 
@@ -93475,7 +93477,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 Явный литерал (любая страница):
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield&id=year/2019"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=xfield&id=year/2019"}
 ```
 
 Срабатывает при **новой** публикации с таким значением поля. Нужны флаг `subscriptions_xfield` и право `notifications_allow_subscribe_xfield`. Подробнее: [типы подписок](./subscription_types).
@@ -93485,7 +93487,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 В `userinfo.tpl` — `id` это **user\_id** автора профиля (не логин):
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=user&id={user-id}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=user&id={user-id}"}
 ```
 
 Подписчик получает уведомления о **новых** публикациях этого автора. Сам автор профиля при **новой** подписке на него получает сценарий `user_subscribed` (если включено в настройках модуля), со ссылкой на профиль подписчика. Повторная подписка / отписка / подписка на себя — без лишнего уведомления.
@@ -93493,7 +93495,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 ### Все новые материалы [#все-новые-материалы]
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=all"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=all"}
 ```
 
 ## Права и флаги [#права-и-флаги]
@@ -93509,7 +93511,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 ## Стена в профиле [#стена-в-профиле]
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=wall"}
 ```
 
 Отдельный URL: [Страница уведомлений](./notifications_page) (`do=notifications`).
@@ -93520,7 +93522,7 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 * [Типы подписок](./subscription_types)
 * [Сценарии событий](./scenarios)
 * [Права групп](./permissions)
-* [Справочник: notifications\_site.php](../reference/notifications_site)
+* [Справочник: Site/web.php](../reference/web)
 
 
 # Настройки пользователя (/dev/dle/notifications/200.1.0/guides/user_prefs)
@@ -93589,7 +93591,7 @@ composer dump-autoload
 5. Если активная тема не `Default`, скопируйте\
    `templates/Default/devcraft/notifications/`\
    в `templates/ИмяТемы/devcraft/notifications/`\
-   и при необходимости `templates/Default/notifications.tpl` (страница `do=notifications`).\
+   и при необходимости `templates/{тема}/devcraft/notifications/page.tpl` (страница `do=notifications`).\
    Fallback на `Default` срабатывает только если файла нет в текущем скине.
 6. В **Настройках** включите типы подписок и каналы (сайт / почта / ЛС).
 7. В шапке темы добавьте `focus=css`, внизу — `focus=js` — см. [вставка в тему](./guides/subscribe_wall).
@@ -93622,7 +93624,7 @@ composer dump-autoload
 
 **С версии:** 200.1.0
 
-Плагин при установке подключает `engine/modules/devcraft/notifications.php` после bootstrap DevCraft. В обычном запросе DLE функции уже доступны — достаточно `function_exists`. В AJAX без `init.php` хуки вызывают `notifyEnsureReady()`.
+Плагин при установке подключает `devcraft/src/modules/Notifications/Site/include.php` после bootstrap DevCraft. В обычном запросе DLE функции уже доступны — достаточно `function_exists`. В AJAX без `init.php` хуки вызывают `notifyEnsureReady()`.
 
 ## Функции [#функции]
 
@@ -93693,7 +93695,7 @@ if (function_exists('notifySend')) {
 * [Сценарии событий](../guides/scenarios)
 * [Кастомное событие](../guides/custom_event)
 * [Шаблоны и теги](../guides/scenario_templates)
-* [notifications\_site.php](./notifications_site)
+* [Site/web.php](./web)
 
 
 # Справочник API (/dev/dle/notifications/200.1.0/reference)
@@ -93703,7 +93705,7 @@ if (function_exists('notifySend')) {
 Раздел для разработчиков. Настройка сайта — в [гайдах](../guides/subscribe_wall).
 
 * PHP API: [Notify](./Notify) (`notifySend`, хуки событий).
-* Include на сайте: [notifications\_site.php](./notifications_site) — параметры `focus`, `type`, `id`.
+* Include на сайте: [Site/web.php](./web) — параметры `focus`, `stype`, `id`.
 
 После установки плагина `notify*` уже в глобальной области (bootstrap в `engine/init.php` и admin init). Отдельный `include` не нужен.
 
@@ -93716,16 +93718,18 @@ notifyOnCommentAdded($commentId, $newsId, $parentId, $text, $authorId);
 $html = notifyFormatMentionsHtml($commentHtml);
 ```
 
-Сигнатуры: [Notify](./Notify). Разметка `{include}`: [notifications\_site.php](./notifications_site).
+Сигнатуры: [Notify](./Notify). Разметка `{include}`: [Site/web.php](./web).
 
 
-# notifications_site.php (/dev/dle/notifications/200.1.0/reference/notifications_site)
+# Site/web.php (/dev/dle/notifications/200.1.0/reference/web)
 
 
 
 **Описание:** публичная точка входа модуля на сайте. Подключается через DLE `{include}`; разметка берётся из `templates/{skin}/devcraft/notifications/` (fallback — `Default`).
 
-**Файл:** `engine/modules/devcraft/notifications_site.php`
+**Файл:** `devcraft/src/modules/Notifications/Site/web.php`
+
+**Было:** `engine/modules/devcraft/notifications_site.php` (перенесено в `Site/`).
 
 **С версии:** 200.1.0
 
@@ -93738,7 +93742,7 @@ $html = notifyFormatMentionsHtml($commentHtml);
 ## Синтаксис [#синтаксис]
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=…&stype=…&id=…"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=…&stype=…&id=…"}
 ```
 
 Параметры передаются в query-строке include (стандартный механизм DLE: становятся локальными переменными модуля).
@@ -93792,19 +93796,19 @@ $html = notifyFormatMentionsHtml($commentHtml);
 ## Примеры [#примеры]
 
 ```
-{include file="engine/modules/devcraft/notifications_site.php?focus=css"}
-{include file="engine/modules/devcraft/notifications_site.php?focus=badge"}
-{include file="engine/modules/devcraft/notifications_site.php?focus=js"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=css"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=badge"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=js"}
 
-{include file="engine/modules/devcraft/notifications_site.php?focus=wall"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=wall"}
 
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=news&id={news-id}"}
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=cat&id={category-id}"}
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=user&id={user-id}"}
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=tag&id={cloudstag}"}
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield"}
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=xfield&id=linked_data/dasdasd"}
-{include file="engine/modules/devcraft/notifications_site.php?focus=subscribe&stype=all"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=news&id={news-id}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=cat&id={category-id}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=user&id={user-id}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=tag&id={cloudstag}"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=xfield"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=xfield&id=linked_data/dasdasd"}
+{include file="devcraft/src/modules/Notifications/Site/web.php?focus=subscribe&stype=all"}
 ```
 
 На страницах раздела, тега и xfsearch удобнее обернуть include в `[available=cat]` / `[available=tags]` / `[available=xfsearch]` (см. [гайд](../guides/template_includes)).
