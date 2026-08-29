@@ -321,6 +321,53 @@
     - [StreamTape](/dev/api_wrappers/streamtape): Unofficial Python API wrapper for streamtape.com.
     - [TurboBitApi](/dev/api_wrappers/turbobit): Unofficial Python API wrapper for turbobit.net.
   - DevCraft Dev Tools
+    - 1.1.0
+      - [Начало работы](/dev/dev-tools/1.1.0/getting_started): Обзор DevCraft Dev Tools, архитектура, требования и первые шаги
+      - [Установка](/dev/dev-tools/1.1.0/install): Способы установки, системные требования и конфигурация DevCraft Dev Tools
+      - Руководства
+        - [Файловый PSR-6 кэш](/dev/dev-tools/1.1.0/guides/file_cache): FileCachePool: ключи с namespace, TTL, clearNamespace, формат на диске.
+        - [Атрибуты With](/dev/dev-tools/1.1.0/guides/with_attributes): Fluent-сеттеры через #[With], #[WithItem], AbstractWith и WithHandler.
+        - [Getter и Setter](/dev/dev-tools/1.1.0/guides/accessors): Accessors #[Getter] и #[Setter] через lombok-php на AbstractWith.
+        - [Reflection mapper](/dev/dev-tools/1.1.0/guides/reflection_mapper): Гидратация и сериализация DTO через AbstractReflection и ReflectionMapper.
+        - [Валидация](/dev/dev-tools/1.1.0/guides/validation): Filter, Range, Regex, ArrayOf, PropertyValidator и ValidationException.
+      - Справочник
+        - [Справочник](/dev/dev-tools/1.1.0/reference): Классы, атрибуты и интерфейсы DevCraft Dev Tools.
+        - Кэш
+          - [FileCachePool](/dev/dev-tools/1.1.0/reference/cache/FileCachePool): Файловый PSR-6 CacheItemPoolInterface с clearNamespace и ключами-namespace.
+          - [CacheItem](/dev/dev-tools/1.1.0/reference/cache/CacheItem): PSR-6 CacheItemInterface для FileCachePool.
+        - Абстрактные классы
+          - [AbstractWith](/dev/dev-tools/1.1.0/reference/abstracts/AbstractWith): Базовый класс fluent-билдеров: WithHandler, затем Lombok\Helper.
+          - [AbstractReflection](/dev/dev-tools/1.1.0/reference/abstracts/AbstractReflection): Базовый класс DTO: fromArray, toArray, toJson через ReflectionMapper.
+        - Атрибуты
+          - [With](/dev/dev-tools/1.1.0/reference/attributes/With): Маркерный атрибут: виртуальный withPropertyName($value) заменяет значение свойства.
+          - [WithItem](/dev/dev-tools/1.1.0/reference/attributes/WithItem): Атрибут append/map: withPropertyItem(...) для элементов массива.
+          - [Filter](/dev/dev-tools/1.1.0/reference/attributes/Filter): ValidationRule на базе filter_var.
+          - [Range](/dev/dev-tools/1.1.0/reference/attributes/Range): ValidationRule: числовые границы min/max для int|float.
+          - [Regex](/dev/dev-tools/1.1.0/reference/attributes/Regex): ValidationRule: совпадение строки с регулярным выражением.
+          - [ArrayOf](/dev/dev-tools/1.1.0/reference/attributes/ArrayOf): ValidationRule и hint конверсии: list элементов заданного типа.
+        - Runtime
+          - [WithHandler](/dev/dev-tools/1.1.0/reference/runtime/WithHandler): Runtime: метаданные #[With]/#[WithItem], handles() и call().
+        - Маппер
+          - [ReflectionMapper](/dev/dev-tools/1.1.0/reference/mapper/ReflectionMapper): Гидратация и сериализация public-свойств DTO с валидацией.
+        - Валидация
+          - [PropertyValidator](/dev/dev-tools/1.1.0/reference/validation/PropertyValidator): Запуск ValidationRule-атрибутов на свойстве или объекте без гидратации.
+        - Интерфейсы
+          - [ReflectionInterface](/dev/dev-tools/1.1.0/reference/interfaces/ReflectionInterface): Контракт DTO: fromArray, toArray, toJson.
+          - [ValidationRule](/dev/dev-tools/1.1.0/reference/interfaces/ValidationRule): Контракт атрибутов валидации: validate() → null или сообщение.
+        - Исключения
+          - [ValidationException](/dev/dev-tools/1.1.0/reference/exceptions/ValidationException): Исключение гидратации: карта ошибок по dotted property paths.
+          - [InvalidArgument](/dev/dev-tools/1.1.0/reference/exceptions/InvalidArgument): PSR-6 InvalidArgumentException для невалидного ключа кэша.
+      - English
+        - [Getting started](/dev/dev-tools/1.1.0/en/getting_started): Overview of DevCraft Dev Tools, architecture, requirements, and first steps.
+        - [Installation](/dev/dev-tools/1.1.0/en/install): Install and configure DevCraft Dev Tools via Composer or a path repository.
+        - Guides
+          - [PSR-6 file cache](/dev/dev-tools/1.1.0/en/guides/file_cache): FileCachePool: namespaced keys, TTL, clearNamespace, on-disk format.
+          - [With attributes](/dev/dev-tools/1.1.0/en/guides/with_attributes): Fluent setters with #[With], #[WithItem], AbstractWith, and WithHandler.
+          - [Getters and setters](/dev/dev-tools/1.1.0/en/guides/accessors): #[Getter] and #[Setter] accessors from lombok-php on AbstractWith.
+          - [Reflection mapper](/dev/dev-tools/1.1.0/en/guides/reflection_mapper): DTO hydration and serialization with AbstractReflection and ReflectionMapper.
+          - [Validation](/dev/dev-tools/1.1.0/en/guides/validation): Filter, Range, Regex, ArrayOf, PropertyValidator, and ValidationException.
+        - [Changelog](/dev/dev-tools/1.1.0/en/changelog): Release history for DevCraft Dev Tools.
+      - [История изменений](/dev/dev-tools/1.1.0/changelog): История изменений DevCraft Dev Tools.
     - 1.0.1
       - [Начало работы](/dev/dev-tools/1.0.1/getting_started): Обзор DevCraft Dev Tools, архитектура, требования и первые шаги
       - [Установка](/dev/dev-tools/1.0.1/install): Способы установки, системные требования и конфигурация DevCraft Dev Tools

@@ -76549,6 +76549,3173 @@ $errors = $validator->validateValue(
 ```
 
 
+# История изменений (/dev/dev-tools/1.1.0/changelog)
+
+
+
+Формат: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Версионирование: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+Исходник в репозитории пакета: `CHANGELOG.md`.
+
+## 1.1.0 [#110]
+
+### Added [#added]
+
+* PSR-6 файловый кэш: `Devcraft\Cache\FileCachePool`, `CacheItem`, `InvalidArgument`
+* Расширение `FileCachePool::clearNamespace()` для очистки по префиксу (`Translation/…`)
+* Зависимость `psr/cache` `^3.0`
+
+## 1.0.1 [#101]
+
+### Added [#added-1]
+
+* `AbstractWith` наследует `\Lombok\Helper` и после `WithHandler` передаёт `__call` в lombok-php
+* Зависимость `marcin-orlowski/lombok-php` `^1.2` для `#[Getter]` / `#[Setter]`
+
+## 1.0.0 [#100]
+
+### Added [#added-2]
+
+* Initial release
+
+
+# Changelog (/dev/dev-tools/1.1.0/en/changelog)
+
+
+
+Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+Source in the package repository: `CHANGELOG.md`.
+
+## 1.1.0 [#110]
+
+### Added [#added]
+
+* PSR-6 file cache: `Devcraft\Cache\FileCachePool`, `CacheItem`, `InvalidArgument`
+* `FileCachePool::clearNamespace()` extension for prefix clears (`Translation/…`)
+* Dependency on `psr/cache` `^3.0`
+
+## 1.0.1 [#101]
+
+### Added [#added-1]
+
+* `AbstractWith` extends `\Lombok\Helper` and, after `WithHandler`, forwards `__call` to lombok-php
+* Dependency `marcin-orlowski/lombok-php` `^1.2` for `#[Getter]` / `#[Setter]`
+
+## 1.0.0 [#100]
+
+### Added [#added-2]
+
+* Initial release
+
+
+# Getting started (/dev/dev-tools/1.1.0/en/getting_started)
+
+
+
+Package `devcraftclub/dev-tools` is a PHP 8.3 library with three complementary capabilities:
+
+1. **Fluent mutation and accessors** — `#[With]` / `#[WithItem]`, `#[Getter]` / `#[Setter]` (lombok-php), `AbstractWith`.
+2. **DTO mapping** — `AbstractReflection`, array hydration, attribute validation, `toArray()` / `toJson()`.
+3. **PSR-6 file cache** — `FileCachePool`, `CacheItem`, `clearNamespace()` (since 1.1.0).
+
+The fluent/DTO base classes use different property models and are **not** meant to be combined through inheritance.
+
+## Architecture [#architecture]
+
+```text
+Fluent API                              DTO Mapping                         PSR-6 Cache
+───────────                             ───────────                         ───────────
+#[With] / #[WithItem]                   public typed properties             FileCachePool
+#[Getter] / #[Setter] (lombok-php)               │                                  │
+        │                                        ▼                                  ▼
+        ▼                                 AbstractReflection                 {baseDir}/{key}.cache
+ AbstractWith ──__call──► WithHandler            │                          JSON envelope {e,f,v}
+        │            (with* first)               ▼
+        └──parent──► Lombok\Helper        ReflectionMapper
+                     (get* / set* / is*)         │
+                                                 ▼
+                                          PropertyValidator
+                                                 │
+                            Filter / Range / Regex / ArrayOf
+```
+
+## Documentation sections [#documentation-sections]
+
+<Cards>
+  <Card title="Installation" href="/dev/dev-tools/1.1.0/en/install">
+    Packagist and path repository
+  </Card>
+
+  <Card title="PSR-6 file cache" href="/dev/dev-tools/1.1.0/en/guides/file_cache">
+    FileCachePool, namespaced keys, clearNamespace
+  </Card>
+
+  <Card title="With attributes" href="/dev/dev-tools/1.1.0/en/guides/with_attributes">
+    Fluent builders and WithHandler
+  </Card>
+
+  <Card title="Getters and setters" href="/dev/dev-tools/1.1.0/en/guides/accessors">
+    lombok-php accessors on AbstractWith
+  </Card>
+
+  <Card title="Reflection mapper" href="/dev/dev-tools/1.1.0/en/guides/reflection_mapper">
+    DTO hydration and serialization
+  </Card>
+
+  <Card title="Validation" href="/dev/dev-tools/1.1.0/en/guides/validation">
+    Filter, Range, Regex, ArrayOf
+  </Card>
+
+  <Card title="API reference" href="/dev/dev-tools/1.1.0/reference">
+    Classes, methods, and types
+  </Card>
+
+  <Card title="Changelog" href="/dev/dev-tools/1.1.0/en/changelog">
+    Release history
+  </Card>
+</Cards>
+
+## Quick start [#quick-start]
+
+### PSR-6 cache [#psr-6-cache]
+
+```php
+use Devcraft\Cache\FileCachePool;
+
+$pool = new FileCachePool('/path/to/cache', defaultTtlSeconds: 3600);
+
+$item = $pool->getItem('Translation/dict');
+$item->set(['hello' => 'world']);
+$pool->save($item);
+
+$hit = $pool->getItem('Translation/dict');
+if ($hit->isHit()) {
+    $value = $hit->get();
+}
+
+$pool->clearNamespace('Translation'); // DevTools extension (not in PSR-6)
+```
+
+### Fluent With [#fluent-with]
+
+```php
+use Lombok\Getter;
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+use Devcraft\Attributes\WithItem;
+
+#[Getter]
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+
+    #[With, WithItem('string')]
+    private array $tags = [];
+
+    #[WithItem('string', ['string', 'null'])]
+    private array $labels = [];
+}
+
+$query = (new Query())
+    ->withPage(1)
+    ->withTagsItem('proxy')
+    ->withLabelsItem('status', 'ready');
+
+$query->getPage();  // 1
+$query->getTags();  // ['proxy']
+$query->getLabels(); // ['status' => 'ready']
+```
+
+DTO mapping:
+
+```php
+use Devcraft\Abstracts\AbstractReflection;
+use Devcraft\Attributes\ArrayOf;
+use Devcraft\Attributes\Range;
+use Devcraft\Attributes\Regex;
+
+final class Address extends AbstractReflection
+{
+    public string $city;
+}
+
+final class Proxy extends AbstractReflection
+{
+    #[Regex('/^[0-9a-f-]{36}$/i')]
+    public string $id;
+
+    #[Range(min: 1, max: 65535)]
+    public int $port;
+
+    public Address $address;
+
+    #[ArrayOf(Address::class)]
+    public array $locations = [];
+}
+
+$proxy = Proxy::fromArray([
+    'id' => '550e8400-e29b-41d4-a716-446655440000',
+    'port' => '8080',
+    'address' => ['city' => 'Berlin'],
+    'locations' => [
+        ['city' => 'Berlin'],
+        ['city' => 'Paris'],
+    ],
+]);
+
+$proxy->port;              // int 8080 (string coerced)
+$proxy->address->city;     // 'Berlin'
+$proxy->toArray();         // nested arrays
+echo $proxy->toJson();     // pretty-printed JSON
+```
+
+## Choosing a base class [#choosing-a-base-class]
+
+| Need                                                 | Extend                           | Property style                                   |
+| ---------------------------------------------------- | -------------------------------- | ------------------------------------------------ |
+| Fluent `with*` / query objects, plus `get*` / `set*` | `AbstractWith`                   | Private (or protected), non-static, non-readonly |
+| API response / request DTO                           | `AbstractReflection`             | Public, typed, hydratable                        |
+| Filesystem PSR-6 cache                               | — (composition: `FileCachePool`) | —                                                |
+
+Do not combine `AbstractWith` and `AbstractReflection` through inheritance. If you need both shapes, use composition or two separate classes.
+
+## Requirements [#requirements]
+
+* PHP 8.3 or newer
+* [Composer](/instructions/composer)
+* Runtime: [`psr/cache`](https://packagist.org/packages/psr/cache) `^3.0` (PSR-6)
+* Runtime: [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` (installed with the package)
+
+## Next steps [#next-steps]
+
+* [Installation](./install)
+* [PSR-6 file cache](./guides/file_cache)
+* [With attributes](./guides/with_attributes)
+* [Getters and setters](./guides/accessors)
+* [API reference](../reference)
+
+
+# Getters and setters (/dev/dev-tools/1.1.0/en/guides/accessors)
+
+
+
+`AbstractWith` extends `\Lombok\Helper`. `#[Getter]` and `#[Setter]` come from [`marcin-orlowski/lombok-php`](https://github.com/MarcinOrlowski/lombok-php), not from Dev Tools. This guide covers the integration only.
+
+Full attribute contract: [lombok-php attributes](https://github.com/MarcinOrlowski/lombok-php/blob/master/docs/attributes/README.md).
+
+## Quick start [#quick-start]
+
+```php
+use Lombok\Getter;
+use Lombok\Setter;
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+
+#[Getter]
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+
+    #[Setter]
+    private bool $visible = false;
+}
+
+$query = (new Query())->withPage(2);
+$query->getPage();     // 2
+$query->setVisible(true);
+$query->isVisible();   // true
+```
+
+`withPage()` goes to [WithHandler](../../reference/runtime/WithHandler). `getPage()` / `setVisible()` / `isVisible()` go to Lombok.
+
+## Class vs property [#class-vs-property]
+
+Put the attributes on the class or on a property.
+
+* On the **class**: accessors for every eligible property. `public` and `static` are skipped silently. `#[Setter]` also skips `readonly` properties.
+* On a **property**: that property only. `public` / `static` / `readonly` (for Setter) throw.
+
+If a property already has `#[Getter]` or `#[Setter]`, the class-level scope is **not** applied to that property. Use that to narrow accessors:
+
+```php
+use Lombok\Getter;
+use Lombok\Setter;
+
+#[Setter, Getter]
+final class Entity extends AbstractWith
+{
+    #[Getter]
+    private int $id = 0;
+
+    private ?string $name = null;
+}
+```
+
+`$name` gets `getName()` and `setName()`. `$id` gets `getId()` only.
+
+`#[With]` / `#[WithItem]` are not Lombok accessor attributes. Class-level `#[Getter]` coexists with `#[With]` on the same property.
+
+## Naming [#naming]
+
+Names are StudlyCase of the property: `$starting_after` → `getStartingAfter()` / `setStartingAfter()`.
+
+When the property's only type is `bool`, the getter is `isVisible()`, not `getVisible()`. A union that includes `bool` uses plain `get`.
+
+`set*` returns `$this` for chaining.
+
+## Constructor [#constructor]
+
+Helper calls `Lombok::construct($this)` from `__construct()`. If a subclass declares its own constructor:
+
+```php
+public function __construct()
+{
+    parent::__construct();
+}
+```
+
+Without `parent::__construct()`, `with*` still works immediately. Getters and setters attach on the first Lombok `__call` (or not at all until you call `get*` / `set*`).
+
+For a `readonly` **class**, lombok requires `\Lombok\HelperReadonly`, not `Helper`. `AbstractWith` extends the regular Helper, so readonly classes are out of scope. Readonly **properties** are skipped by class-level Setter.
+
+## Limitations [#limitations]
+
+* Magic methods cannot satisfy interface methods.
+* IDEs will not see `get*` / `set*` unless you add `@method` PHPDoc.
+* A name collision with a real method: on a property, an exception; on the class, the original method stays and no accessor is added.
+
+See also: [AbstractWith](../../reference/abstracts/AbstractWith), [With attributes](with_attributes).
+
+## Related [#related]
+
+* [API reference](../../reference)
+* [Changelog](../changelog)
+
+
+# PSR-6 file cache (/dev/dev-tools/1.1.0/en/guides/file_cache)
+
+
+
+## Introduction [#introduction]
+
+From **1.1.0** the package ships a filesystem PSR-6 pool: `Devcraft\Cache\FileCachePool`. It implements `Psr\Cache\CacheItemPoolInterface` without Symfony Cache — files plus `psr/cache` only.
+
+## Prerequisites [#prerequisites]
+
+* [Getting started](../getting_started)
+* [Installation](../install)
+
+## Walkthrough [#walkthrough]
+
+<Steps>
+  <Step>
+    ### Create a pool [#create-a-pool]
+
+    The second argument is the default TTL. `null` or `0` means no expiry until the item sets its own.
+
+    ```php
+    use Devcraft\Cache\FileCachePool;
+
+    $pool = new FileCachePool(sys_get_temp_dir() . '/devtools-cache', defaultTtlSeconds: 3600);
+    ```
+  </Step>
+
+  <Step>
+    ### Write and read [#write-and-read]
+
+    Keys may contain `/` — stored as a subdirectory (`Translation/dict` → `…/Translation/dict.cache`).
+
+    ```php
+    $item = $pool->getItem('Translation/dict');
+    $item->set(['hello' => 'world']);
+    $pool->save($item);
+
+    $hit = $pool->getItem('Translation/dict');
+    $value = $hit->isHit() ? $hit->get() : null;
+    ```
+  </Step>
+
+  <Step>
+    ### Clear a namespace [#clear-a-namespace]
+
+    `clearNamespace()` is a DevTools extension (not PSR-6): deletes every key under `{prefix}/`.
+
+    ```php
+    $pool->clearNamespace('Translation');
+    ```
+  </Step>
+</Steps>
+
+## Full example [#full-example]
+
+```php
+use Devcraft\Cache\FileCachePool;
+
+$pool = new FileCachePool('/path/to/cache', defaultTtlSeconds: 3600);
+
+$item = $pool->getItem('Translation/dict');
+$item->set(['hello' => 'world']);
+$pool->save($item);
+
+$hit = $pool->getItem('Translation/dict');
+if ($hit->isHit()) {
+    $value = $hit->get();
+}
+
+$pool->clearNamespace('Translation'); // DevTools extension (not in PSR-6)
+```
+
+## Keys and storage [#keys-and-storage]
+
+| Rule      | Details                                                     |
+| --------- | ----------------------------------------------------------- |
+| Allowed   | letters, digits, `/` as namespace separator                 |
+| Forbidden | `{}()\@:` and `..`                                          |
+| File path | `{baseDir}/{key}.cache`                                     |
+| Envelope  | JSON `{ "e": expiryUnix\|null, "f": "j"\|"s", "v": value }` |
+
+Format `j` is a JSON value; `s` is `serialize` + base64 for non-JSON data.
+
+## DevCraft Admin [#devcraft-admin]
+
+In DevCraft Admin, `CacheControl` is a thin facade: `setCache($type, $name, $data)` → key `{type}/{name}` → `FileCachePool`. Prefer `CacheControl::pool()` for new code.
+
+## Related [#related]
+
+* [FileCachePool](../../reference/cache/FileCachePool)
+* [CacheItem](../../reference/cache/CacheItem)
+* [InvalidArgument](../../reference/exceptions/InvalidArgument)
+* [API reference](../../reference)
+* [Changelog](../changelog)
+
+
+# Reflection mapper (/dev/dev-tools/1.1.0/en/guides/reflection_mapper)
+
+
+
+`AbstractReflection` is the base class for DTOs with public typed properties. It exposes `fromArray()`, `toArray()`, and `toJson()`. Hydration and serialization are implemented by `ReflectionMapper`.
+
+## Quick start [#quick-start]
+
+```php
+use Devcraft\Abstracts\AbstractReflection;
+use Devcraft\Attributes\ArrayOf;
+use Devcraft\Attributes\Range;
+
+final class Address extends AbstractReflection
+{
+    public string $city;
+}
+
+final class Profile extends AbstractReflection
+{
+    public string $name;
+
+    public Address $address;
+
+    #[ArrayOf(Address::class)]
+    public array $locations = [];
+
+    #[Range(min: 0)]
+    public int $score = 0;
+}
+
+$profile = Profile::fromArray([
+    'name' => 'Ada',
+    'address' => ['city' => 'Berlin'],
+    'locations' => [
+        ['city' => 'Berlin'],
+        ['city' => 'Paris'],
+    ],
+    'score' => '10',
+]);
+
+$profile->toArray();
+$profile->toJson();
+```
+
+Canonical Proxy / Address sample:
+
+```php
+use Devcraft\Abstracts\AbstractReflection;
+use Devcraft\Attributes\ArrayOf;
+use Devcraft\Attributes\Range;
+use Devcraft\Attributes\Regex;
+
+final class Address extends AbstractReflection
+{
+    public string $city;
+}
+
+final class Proxy extends AbstractReflection
+{
+    #[Regex('/^[0-9a-f-]{36}$/i')]
+    public string $id;
+
+    #[Range(min: 1, max: 65535)]
+    public int $port;
+
+    public Address $address;
+
+    #[ArrayOf(Address::class)]
+    public array $locations = [];
+}
+
+$proxy = Proxy::fromArray([
+    'id' => '550e8400-e29b-41d4-a716-446655440000',
+    'port' => '8080',
+    'address' => ['city' => 'Berlin'],
+    'locations' => [
+        ['city' => 'Berlin'],
+        ['city' => 'Paris'],
+    ],
+]);
+
+$proxy->port;              // int 8080 (string coerced)
+$proxy->address->city;     // 'Berlin'
+$proxy->toArray();         // nested arrays
+echo $proxy->toJson();     // pretty-printed JSON
+```
+
+## AbstractReflection API [#abstractreflection-api]
+
+| Method                                            | Description                                                                               |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `static fromArray(array $data): static`           | Create an instance and hydrate public properties                                          |
+| `toArray(): array`                                | Export initialized public properties (nested DTOs recursively)                            |
+| `toJson(): string`                                | Pretty-printed JSON with Unicode and slashes unescaped; throws `JsonException` on failure |
+| `static setLogger(LoggerInterface $logger): void` | Override the logger used for validation failures                                          |
+| `static resetLogger(): void`                      | Clear the custom logger (tests / teardown)                                                |
+
+Only **public, non-static** properties participate in mapping. Private/protected fields are ignored by the mapper.
+
+## Hydration rules [#hydration-rules]
+
+`ReflectionMapper::hydrate($target, $data)` walks public properties:
+
+1. Missing keys or explicit `null` trigger the null fallback.
+2. Values are converted according to the property type.
+3. `#[ArrayOf]` post-processes list properties.
+4. Validation attributes run on the converted value.
+5. Failures are logged and collected; after the pass, a non-empty error map raises `ValidationException`.
+
+### Scalar conversion [#scalar-conversion]
+
+| Declared type     | Accepted input                                                  |
+| ----------------- | --------------------------------------------------------------- |
+| `string`          | string only                                                     |
+| `int`             | int, or numeric string via `FILTER_VALIDATE_INT`                |
+| `float`           | float, int, or numeric string via `FILTER_VALIDATE_FLOAT`       |
+| `bool`            | bool, `0`/`1`, or boolean strings via `FILTER_VALIDATE_BOOLEAN` |
+| `array`           | array                                                           |
+| `object`          | object                                                          |
+| `mixed` / untyped | anything                                                        |
+
+Union and intersection property types are not supported and fail conversion.
+
+### Nested DTOs [#nested-dtos]
+
+If the property type is a subclass of `AbstractReflection` and the input is an array, the mapper instantiates the nested class and hydrates it with a dotted path prefix (`address.city`, `locations.0.city`).
+
+If the input is already an instance of the declared type (or interface), it is accepted as-is.
+
+### Null fallback [#null-fallback]
+
+When a key is missing or the value is `null`:
+
+* properties with a default value keep their default
+* nullable properties without a usable value become `null`
+* required non-nullable properties without a default record `is required`
+
+When conversion or validation fails for a **nullable** property, the mapper sets the property to `null` instead of adding that path to the thrown error map (the failure is still logged).
+
+## `#[ArrayOf]` [#arrayof]
+
+`ArrayOf` is both a conversion hint for the mapper and a `ValidationRule`.
+
+During conversion, the property value must be a **list** (`array_is_list`). Each element is converted to the declared type (builtin or nested `AbstractReflection`).
+
+```php
+#[ArrayOf('int')]
+public array $ids = [];
+
+#[ArrayOf(Address::class)]
+public array $locations = [];
+```
+
+Associative arrays fail with `must be a list`. Element failures appear as `ids.1`, `locations.0.city`, and so on.
+
+## Serialization [#serialization]
+
+`toArray()` includes only initialized public properties. Nested `AbstractReflection` instances are expanded recursively. Plain arrays are walked element by element.
+
+`toJson()` encodes `toArray()` with:
+
+* `JSON_THROW_ON_ERROR`
+* `JSON_UNESCAPED_UNICODE`
+* `JSON_PRETTY_PRINT`
+* `JSON_UNESCAPED_SLASHES`
+* `JSON_INVALID_UTF8_SUBSTITUTE`
+
+## Logging [#logging]
+
+By default `AbstractReflection` uses an `Analog\Logger`. Call `setLogger()` to capture validation failures in tests or application logging:
+
+```php
+AbstractReflection::setLogger($psrLogger);
+```
+
+Each failure is logged at error level with context keys `class`, `property` (dotted path), `expected`, and `actual_type`.
+
+## Direct mapper use [#direct-mapper-use]
+
+You can hydrate an existing object without `fromArray()`:
+
+```php
+use Devcraft\Mapper\ReflectionMapper;
+use Psr\Log\NullLogger;
+
+$mapper = new ReflectionMapper(new NullLogger());
+$mapper->hydrate($profile, $payload);
+```
+
+An optional second constructor argument accepts a custom `PropertyValidator`.
+
+## Related [#related]
+
+* [AbstractReflection](../../reference/abstracts/AbstractReflection)
+* [ReflectionMapper](../../reference/mapper/ReflectionMapper)
+* [ArrayOf](../../reference/attributes/ArrayOf)
+* [Validation](validation)
+* [Changelog](../changelog)
+
+
+# Validation (/dev/dev-tools/1.1.0/en/guides/validation)
+
+
+
+Validation rules are PHP attributes that implement `Devcraft\Interfaces\ValidationRule`. They return `null` when valid, or a short message when invalid. `null` input always passes (requiredness is handled by the mapper's null fallback).
+
+## ValidationRule contract [#validationrule-contract]
+
+```php
+interface ValidationRule
+{
+    /** Returns null when valid, otherwise a value-free error message. */
+    public function validate(mixed $value): ?string;
+}
+```
+
+Messages describe expectation only (`must be numeric`), not the actual value. Paths and actual types are attached by `ReflectionMapper` / `ValidationException`.
+
+## Attributes [#attributes]
+
+All validation attributes target properties and are repeatable.
+
+### `Filter` [#filter]
+
+Wraps PHP's `filter_var`:
+
+```php
+use Devcraft\Attributes\Filter;
+
+#[Filter(FILTER_VALIDATE_EMAIL)]
+public string $email;
+
+#[Filter(FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]])]
+public int $quantity;
+```
+
+`FILTER_VALIDATE_BOOLEAN` automatically adds `FILTER_NULL_ON_FAILURE` so invalid booleans are rejected instead of coerced to `false`.
+
+Failure message: `must pass filter <id>`.
+
+### `Range` [#range]
+
+Numeric bounds for `int` or `float` values:
+
+```php
+use Devcraft\Attributes\Range;
+
+#[Range(min: 1, max: 65535)]
+public int $port;
+
+#[Range(min: 0.0)]
+public float $ratio;
+```
+
+Either bound may be omitted. Non-numeric values fail with `must be numeric`.
+
+### `Regex` [#regex]
+
+String pattern match:
+
+```php
+use Devcraft\Attributes\Regex;
+
+#[Regex('/^[0-9a-f-]{36}$/i')]
+public string $id;
+```
+
+The constructor validates the pattern with `preg_match` and throws `InvalidArgumentException` if the expression is invalid. Non-string values fail with `must be a string`.
+
+### `ArrayOf` [#arrayof]
+
+Ensures the value is a list whose elements match a type name:
+
+```php
+use Devcraft\Attributes\ArrayOf;
+
+#[ArrayOf('string')]
+public array $tags;
+
+#[ArrayOf(Address::class)]
+public array $locations;
+```
+
+Supported builtins: `mixed`, `string`, `int`/`integer`, `float`/`double`, `bool`/`boolean`, `array`, `object`. Other names are treated as class/interface checks via `instanceof`.
+
+In `ReflectionMapper`, `ArrayOf` also drives nested conversion before validation runs.
+
+## PropertyValidator [#propertyvalidator]
+
+`Devcraft\Validation\PropertyValidator` runs attribute rules without hydration:
+
+```php
+use Devcraft\Validation\PropertyValidator;
+use ReflectionProperty;
+
+$validator = new PropertyValidator();
+$errors = $validator->validateValue(
+    new ReflectionProperty(Profile::class, 'port'),
+    0,
+);
+// ['must be greater than or equal to 1']
+
+$objectErrors = $validator->validateObject($profile);
+// ['port' => [...], ...]
+```
+
+`validateObject()` inspects only public, non-static, initialized properties. Non-`ValidationRule` attributes are ignored. Multiple rules on one property contribute multiple messages.
+
+## ValidationException [#validationexception]
+
+Thrown by `ReflectionMapper` when one or more required property paths fail:
+
+```php
+use Devcraft\Exceptions\ValidationException;
+
+try {
+    Profile::fromArray($payload);
+} catch (ValidationException $exception) {
+    $exception->getMessage();
+    // "Validation failed for: port, address.city"
+
+    $exception->getErrors();
+    // [
+    //   'port' => ['must be greater than or equal to 1'],
+    //   'address.city' => ['must be string'],
+    // ]
+}
+```
+
+`getErrors()` returns `array<string, list<string>>` keyed by dotted property paths.
+
+## Related [#related]
+
+* [ValidationRule](../../reference/interfaces/ValidationRule)
+* [PropertyValidator](../../reference/validation/PropertyValidator)
+* [ValidationException](../../reference/exceptions/ValidationException)
+* [API reference](../../reference)
+* [Changelog](../changelog)
+
+
+# With attributes (/dev/dev-tools/1.1.0/en/guides/with_attributes)
+
+
+
+Use `#[With]` and `#[WithItem]` to generate fluent setters for private (or protected) properties. Extend `AbstractWith`: `__call` sends `with*` to `WithHandler` first, then to `\Lombok\Helper` (`get*` / `set*` / `is*`).
+
+## Quick start [#quick-start]
+
+```php
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+use Devcraft\Attributes\WithItem;
+
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+
+    #[With]
+    private ?string $starting_after = null;
+
+    #[With, WithItem('string')]
+    private array $tags = [];
+
+    #[WithItem(['int', 'string'], ['string', 'null'])]
+    private array $labels = [];
+}
+
+$query = (new Query())
+    ->withPage(2)
+    ->withStartingAfter('cursor')
+    ->withTags(['a'])
+    ->withTagsItem('b')
+    ->withLabelsItem('status', 'ready');
+```
+
+Canonical builder sample (with `#[Getter]`):
+
+```php
+use Lombok\Getter;
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+use Devcraft\Attributes\WithItem;
+
+#[Getter]
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+
+    #[With, WithItem('string')]
+    private array $tags = [];
+
+    #[WithItem('string', ['string', 'null'])]
+    private array $labels = [];
+}
+
+$query = (new Query())
+    ->withPage(1)
+    ->withTagsItem('proxy')
+    ->withLabelsItem('status', 'ready');
+
+$query->getPage();  // 1
+$query->getTags();  // ['proxy']
+$query->getLabels(); // ['status' => 'ready']
+```
+
+See also: [Getters and setters](accessors).
+
+## AbstractWith [#abstractwith]
+
+`Devcraft\Abstracts\AbstractWith` extends `\Lombok\Helper`. It is the recommended base class:
+
+```php
+public function __call(string $methodName, array $arguments): mixed
+{
+    if (WithHandler::handles($this, $methodName)) {
+        return WithHandler::call($this, $methodName, $arguments);
+    }
+
+    return parent::__call($methodName, $arguments);
+}
+```
+
+`with*` is handled by `WithHandler`. Everything else goes to Lombok. An unknown method raises `BadMethodCallException` from Helper.
+
+If a subclass defines `__construct()`, call `parent::__construct()` so getters and setters attach immediately. `with*` methods do not depend on that call.
+
+You can call `WithHandler` yourself in a custom `__call`, but then you must forward the rest to Lombok.
+
+## Property constraints [#property-constraints]
+
+Attributes are only valid on properties that are:
+
+* non-public (private or protected)
+* non-static
+* non-readonly
+
+`#[WithItem]` additionally requires a non-nullable `array` property.
+
+Invalid configurations throw `LogicException` when metadata is first built (on the first `handles()` / `call()` for that class).
+
+## Method naming [#method-naming]
+
+Property names are converted to StudlyCase:
+
+| Property          | `#[With]` method            | `#[WithItem]` method           |
+| ----------------- | --------------------------- | ------------------------------ |
+| `$page`           | `withPage($value)`          | —                              |
+| `$starting_after` | `withStartingAfter($value)` | —                              |
+| `$tags`           | `withTags($array)`          | `withTagsItem($item)`          |
+| `$labels`         | —                           | `withLabelsItem($key, $value)` |
+
+Lookup is case-insensitive (`WITHPAGE` works). Method names must remain unique across the inheritance chain; collisions (including case-only collisions such as `$name` / `$NAME`) throw `LogicException`.
+
+## `#[With]` — replace the whole value [#with--replace-the-whole-value]
+
+```php
+#[With]
+private ?int $page = null;
+
+$query->withPage(3);    // sets $page = 3
+$query->withPage(null); // allowed when the property is nullable
+```
+
+* Expects exactly one argument.
+* Uses PHP's normal property type check (no string→int coercion for typed properties).
+* Returns `$this`.
+
+## `#[WithItem]` — append or map [#withitem--append-or-map]
+
+### Append (one type descriptor) [#append-one-type-descriptor]
+
+```php
+#[WithItem('string')]
+private array $tags = [];
+
+$query->withTagsItem('proxy'); // $tags[] = 'proxy'
+```
+
+### Map (two type descriptors) [#map-two-type-descriptors]
+
+```php
+#[WithItem('string', ['string', 'null'])]
+private array $labels = [];
+
+$query->withLabelsItem('status', 'ready');
+$query->withLabelsItem('status', null); // replace
+```
+
+Map keys may only be typed as `int` and/or `string`.
+
+### Combined with `#[With]` [#combined-with-with]
+
+```php
+#[With, WithItem('string')]
+private array $tags = [];
+
+$query->withTags(['a', 'b']); // replace entire array
+$query->withTagsItem('c');    // append
+```
+
+## Type descriptors [#type-descriptors]
+
+Descriptors are strings or lists of strings (unions):
+
+```php
+#[WithItem('string')]
+#[WithItem(['int', 'string'])]
+#[WithItem(ItemContract::class)]
+#[WithItem(['int', 'string'], ['string', 'null'])]
+```
+
+Supported builtins: `string`, `int`, `float`, `bool`, `true`, `false`, `null`, `array`, `object`, `iterable`, `callable`, `mixed`.
+
+Also supported: class, interface, and enum names that exist at runtime.
+
+Notes:
+
+* `mixed` cannot be combined with other types in the same union.
+* `float` does not accept integers (no numeric coercion).
+* `void` / `never` are rejected.
+* Unknown class names throw `LogicException` at metadata build time.
+
+## Runtime vs configuration errors [#runtime-vs-configuration-errors]
+
+| Situation                                                  | Exception                |
+| ---------------------------------------------------------- | ------------------------ |
+| Public / static / readonly property                        | `LogicException`         |
+| Nullable or non-array `WithItem` target                    | `LogicException`         |
+| Bad descriptor count / empty union / invalid map key types | `LogicException`         |
+| Repeated attribute / virtual method collision              | `LogicException`         |
+| Uninitialized array on append/map                          | `LogicException`         |
+| Wrong argument count                                       | `ArgumentCountError`     |
+| Value fails descriptor check                               | `TypeError`              |
+| Unknown virtual method via `WithHandler::call`             | `BadMethodCallException` |
+
+Invalid item/map arguments are checked before mutation, so failed calls do not partially update the array.
+
+## Metadata caching [#metadata-caching]
+
+`WithHandler` builds and caches operation metadata per runtime class on first use. Subsequent calls reuse the same writers and property reflections. The cache stores closures bound to the declaring class, not to fixture instances.
+
+## Inheritance [#inheritance]
+
+Attributes on private and protected properties declared in parent classes are discovered and work on child instances. Writers are bound to the declaring class so private parent properties remain writable through the virtual methods.
+
+## Related [#related]
+
+* [AbstractWith](../../reference/abstracts/AbstractWith)
+* [With](../../reference/attributes/With)
+* [WithItem](../../reference/attributes/WithItem)
+* [WithHandler](../../reference/runtime/WithHandler)
+* [Getters and setters](accessors)
+* [Changelog](../changelog)
+
+
+# Installation (/dev/dev-tools/1.1.0/en/install)
+
+
+
+## System requirements [#system-requirements]
+
+* PHP 8.3 or newer
+* [Composer](/instructions/composer)
+* Runtime: [`psr/cache`](https://packagist.org/packages/psr/cache) `^3.0` (PSR-6)
+* Runtime: [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` (installed with the package)
+
+## Installation methods [#installation-methods]
+
+<Tabs groupId="packageManager" items="['Composer', 'Source']">
+  <Tab value="Composer">
+    ```bash
+    composer require devcraftclub/dev-tools:^1.1
+    ```
+
+    Composer also installs [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` and [`psr/cache`](https://packagist.org/packages/psr/cache) `^3.0`. lombok-php is required by `AbstractWith` (`\Lombok\Helper`); `psr/cache` by `FileCachePool`.
+  </Tab>
+
+  <Tab value="Source">
+    <Callout type="info" title="Root consumer only">
+      Path repositories belong in the consuming project's root `composer.json`. Composer does not inherit them transitively.
+    </Callout>
+
+    ```json
+    {
+      "repositories": [
+        {
+          "type": "path",
+          "url": "../DevTool",
+          "options": { "symlink": true }
+        }
+      ],
+      "require": {
+        "devcraftclub/dev-tools": "@dev"
+      }
+    }
+    ```
+
+    Then:
+
+    ```bash
+    composer update devcraftclub/dev-tools
+    ```
+
+    Set `url` to the relative or absolute path of the package on disk. For local work use `^1.1` or `@dev`. Later you can switch the path repository to a VCS/Packagist source.
+  </Tab>
+</Tabs>
+
+## Configuration [#configuration]
+
+No extra config file is required. After Composer resolves the package, autoload `Devcraft\\` namespaces from `vendor`.
+
+## Verify the install [#verify-the-install]
+
+```bash
+composer show devcraftclub/dev-tools
+```
+
+Expected: version `1.1.0` (or a compatible `^1.1`) and PHP `>=8.3`.
+
+## Troubleshooting [#troubleshooting]
+
+<Accordions type="single">
+  <Accordion title="Package not found / path repository ignored">
+    Path repositories must be declared in the **root** consumer `composer.json`. Nested packages cannot inherit them.
+  </Accordion>
+
+  <Accordion title="PHP version too old">
+    The package requires PHP 8.3 or newer. Check `php -v` and the platform config in Composer.
+  </Accordion>
+
+  <Accordion title="FileCachePool class missing">
+    Confirm version `>=1.1.0` and that `psr/cache` appears in `composer show`.
+  </Accordion>
+</Accordions>
+
+
+# Начало работы (/dev/dev-tools/1.1.0/getting_started)
+
+
+
+Пакет `devcraftclub/dev-tools` — библиотека PHP 8.3 с тремя взаимодополняющими возможностями:
+
+1. **Fluent mutation и accessors** — `#[With]` / `#[WithItem]`, `#[Getter]` / `#[Setter]` (lombok-php), `AbstractWith`.
+2. **DTO mapping** — `AbstractReflection`, гидратация из массива, валидация атрибутами, `toArray()` / `toJson()`.
+3. **PSR-6 файловый кэш** — `FileCachePool`, `CacheItem`, `clearNamespace()` (с 1.1.0).
+
+Базовые классы fluent/DTO рассчитаны на разные модели свойств и **не** предназначены для объединения через наследование.
+
+## Архитектура [#архитектура]
+
+```text
+Fluent API                              DTO Mapping                         PSR-6 Cache
+───────────                             ───────────                         ───────────
+#[With] / #[WithItem]                   public typed properties             FileCachePool
+#[Getter] / #[Setter] (lombok-php)               │                                  │
+        │                                        ▼                                  ▼
+        ▼                                 AbstractReflection                 {baseDir}/{key}.cache
+ AbstractWith ──__call──► WithHandler            │                          JSON envelope {e,f,v}
+        │            (with* first)               ▼
+        └──parent──► Lombok\Helper        ReflectionMapper
+                     (get* / set* / is*)         │
+                                                 ▼
+                                          PropertyValidator
+                                                 │
+                            Filter / Range / Regex / ArrayOf
+```
+
+## Разделы документации [#разделы-документации]
+
+<Cards>
+  <Card title="Установка" href="/dev/dev-tools/1.1.0/install">
+    Packagist и path repository
+  </Card>
+
+  <Card title="Файловый PSR-6 кэш" href="/dev/dev-tools/1.1.0/guides/file_cache">
+    FileCachePool, ключи-namespace, clearNamespace
+  </Card>
+
+  <Card title="Атрибуты With" href="/dev/dev-tools/1.1.0/guides/with_attributes">
+    Fluent-билдеры и WithHandler
+  </Card>
+
+  <Card title="Getter и Setter" href="/dev/dev-tools/1.1.0/guides/accessors">
+    Accessors lombok-php на AbstractWith
+  </Card>
+
+  <Card title="Reflection mapper" href="/dev/dev-tools/1.1.0/guides/reflection_mapper">
+    Гидратация и сериализация DTO
+  </Card>
+
+  <Card title="Валидация" href="/dev/dev-tools/1.1.0/guides/validation">
+    Filter, Range, Regex, ArrayOf
+  </Card>
+
+  <Card title="Справочник" href="/dev/dev-tools/1.1.0/reference">
+    Все классы и атрибуты пакета
+  </Card>
+
+  <Card title="История изменений" href="/dev/dev-tools/1.1.0/changelog">
+    Changelog пакета
+  </Card>
+
+  <Card title="English" href="/dev/dev-tools/1.1.0/en/getting_started">
+    Full English documentation
+  </Card>
+</Cards>
+
+## Быстрый старт [#быстрый-старт]
+
+### PSR-6 кэш [#psr-6-кэш]
+
+```php
+use Devcraft\Cache\FileCachePool;
+
+$pool = new FileCachePool('/path/to/cache', defaultTtlSeconds: 3600);
+
+$item = $pool->getItem('Translation/dict');
+$item->set(['hello' => 'world']);
+$pool->save($item);
+
+$hit = $pool->getItem('Translation/dict');
+if ($hit->isHit()) {
+    $value = $hit->get();
+}
+
+$pool->clearNamespace('Translation'); // DevTools extension (not in PSR-6)
+```
+
+### Fluent With [#fluent-with]
+
+```php
+use Lombok\Getter;
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+use Devcraft\Attributes\WithItem;
+
+#[Getter]
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+
+    #[With, WithItem('string')]
+    private array $tags = [];
+
+    #[WithItem('string', ['string', 'null'])]
+    private array $labels = [];
+}
+
+$query = (new Query())
+    ->withPage(1)
+    ->withTagsItem('proxy')
+    ->withLabelsItem('status', 'ready');
+
+$query->getPage();  // 1
+$query->getTags();  // ['proxy']
+$query->getLabels(); // ['status' => 'ready']
+```
+
+DTO mapping:
+
+```php
+use Devcraft\Abstracts\AbstractReflection;
+use Devcraft\Attributes\ArrayOf;
+use Devcraft\Attributes\Range;
+use Devcraft\Attributes\Regex;
+
+final class Address extends AbstractReflection
+{
+    public string $city;
+}
+
+final class Proxy extends AbstractReflection
+{
+    #[Regex('/^[0-9a-f-]{36}$/i')]
+    public string $id;
+
+    #[Range(min: 1, max: 65535)]
+    public int $port;
+
+    public Address $address;
+
+    #[ArrayOf(Address::class)]
+    public array $locations = [];
+}
+
+$proxy = Proxy::fromArray([
+    'id' => '550e8400-e29b-41d4-a716-446655440000',
+    'port' => '8080',
+    'address' => ['city' => 'Berlin'],
+    'locations' => [
+        ['city' => 'Berlin'],
+        ['city' => 'Paris'],
+    ],
+]);
+
+$proxy->port;              // int 8080 (string coerced)
+$proxy->address->city;     // 'Berlin'
+$proxy->toArray();         // nested arrays
+echo $proxy->toJson();     // pretty-printed JSON
+```
+
+## Выбор базового класса [#выбор-базового-класса]
+
+| Нужно                                                | Наследовать                      | Стиль свойств                                     |
+| ---------------------------------------------------- | -------------------------------- | ------------------------------------------------- |
+| Fluent `with*` / query objects, плюс `get*` / `set*` | `AbstractWith`                   | Private (или protected), non-static, non-readonly |
+| API response / request DTO                           | `AbstractReflection`             | Public, typed, hydratable                         |
+| Файловый PSR-6 кэш                                   | — (composition: `FileCachePool`) | —                                                 |
+
+Не комбинируйте `AbstractWith` и `AbstractReflection` через inheritance. Если нужны оба формы — composition или два отдельных класса.
+
+## Требования [#требования]
+
+* PHP 8.3 или новее
+* [Composer](/instructions/composer)
+* Runtime: [`psr/cache`](https://packagist.org/packages/psr/cache) `^3.0` (PSR-6)
+* Runtime: [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` (ставится вместе с пакетом)
+
+## Следующие шаги [#следующие-шаги]
+
+* [Установка](./install)
+* [Файловый PSR-6 кэш](./guides/file_cache)
+* [Атрибуты With](./guides/with_attributes)
+* [Getter и Setter](./guides/accessors)
+* [Справочник API](./reference)
+* [English](./en/getting_started)
+
+
+# Getter и Setter (/dev/dev-tools/1.1.0/guides/accessors)
+
+
+
+## Введение [#введение]
+
+`AbstractWith` наследует `\Lombok\Helper`. Атрибуты `#[Getter]` и `#[Setter]` принадлежат пакету [`marcin-orlowski/lombok-php`](https://github.com/MarcinOrlowski/lombok-php), не Dev Tools. Этот гайд описывает только интеграцию.
+
+Полный контракт атрибутов: [lombok-php attributes](https://github.com/MarcinOrlowski/lombok-php/blob/master/docs/attributes/README.md).
+
+## Предварительные требования [#предварительные-требования]
+
+* [Начало работы](../getting_started)
+* [Установка](../install)
+* [Атрибуты With](with_attributes)
+
+## Пошаговое руководство [#пошаговое-руководство]
+
+```php
+use Lombok\Getter;
+use Lombok\Setter;
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+
+#[Getter]
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+
+    #[Setter]
+    private bool $visible = false;
+}
+
+$query = (new Query())->withPage(2);
+$query->getPage();     // 2
+$query->setVisible(true);
+$query->isVisible();   // true
+```
+
+`withPage()` идёт в [WithHandler](../reference/runtime/WithHandler). `getPage()` / `setVisible()` / `isVisible()` — в Lombok.
+
+## Класс vs свойство [#класс-vs-свойство]
+
+Атрибуты ставятся на класс или на свойство.
+
+* На **классе**: accessors для всех подходящих свойств. `public` и `static` молча пропускаются. `#[Setter]` также пропускает `readonly`.
+* На **свойстве**: только это свойство. `public` / `static` / `readonly` (для Setter) бросают исключение.
+
+Если на свойстве уже есть `#[Getter]` или `#[Setter]`, классовый scope на это свойство **не** накладывается. Так можно сузить набор accessors:
+
+```php
+use Lombok\Getter;
+use Lombok\Setter;
+
+#[Setter, Getter]
+final class Entity extends AbstractWith
+{
+    #[Getter]
+    private int $id = 0;
+
+    private ?string $name = null;
+}
+```
+
+`$name` получит `getName()` и `setName()`. `$id` — только `getId()`.
+
+`#[With]` / `#[WithItem]` не считаются accessor-атрибутами Lombok. Классовый `#[Getter]` спокойно соседствует с `#[With]` на том же свойстве.
+
+## Именование [#именование]
+
+Имена — StudlyCase от свойства: `$starting_after` → `getStartingAfter()` / `setStartingAfter()`.
+
+Если единственный тип свойства — `bool`, геттер называется `isVisible()`, не `getVisible()`. Union с `bool` использует обычный `get`.
+
+`set*` возвращает `$this` (цепочка).
+
+## Конструктор [#конструктор]
+
+Helper вызывает `Lombok::construct($this)` в `__construct()`. Если наследник объявляет свой конструктор:
+
+```php
+public function __construct()
+{
+    parent::__construct();
+}
+```
+
+Без `parent::__construct()` методы `with*` работают сразу. Getter/Setter подключатся при первом lombok-`__call` (или не подключатся, пока вы не вызовете `get*`/`set*`).
+
+Для `readonly` **класса** lombok требует `\Lombok\HelperReadonly`, не `Helper`. `AbstractWith` наследует обычный Helper — readonly-классы через него не проводятся. Readonly **свойства** Setter на уровне класса пропускает.
+
+## Ограничения [#ограничения]
+
+* Магические методы не реализуют методы интерфейса.
+* IDE не видит `get*` / `set*` без `@method` в PHPDoc.
+* Коллизия с реальным методом: на свойстве — исключение; на классе — исходный метод остаётся, accessor не создаётся.
+
+См. также: [AbstractWith](../reference/abstracts/AbstractWith), [атрибуты With](with_attributes).
+
+## Связанные разделы [#связанные-разделы]
+
+* [Справочник API](../reference)
+* [История изменений](../changelog)
+
+
+# Файловый PSR-6 кэш (/dev/dev-tools/1.1.0/guides/file_cache)
+
+
+
+## Введение [#введение]
+
+С версии **1.1.0** пакет включает файловый PSR-6 pool: `Devcraft\Cache\FileCachePool`. Он реализует `Psr\Cache\CacheItemPoolInterface` без Symfony Cache — только файлы и `psr/cache`.
+
+## Предварительные требования [#предварительные-требования]
+
+* [Начало работы](../getting_started)
+* [Установка](../install)
+
+## Пошаговое руководство [#пошаговое-руководство]
+
+<Steps>
+  <Step>
+    ### Создать pool [#создать-pool]
+
+    Второй аргумент — TTL по умолчанию. `null` или `0` — без истечения, пока item не задал свой expiry.
+
+    ```php
+    use Devcraft\Cache\FileCachePool;
+
+    $pool = new FileCachePool(sys_get_temp_dir() . '/devtools-cache', defaultTtlSeconds: 3600);
+    ```
+  </Step>
+
+  <Step>
+    ### Записать и прочитать [#записать-и-прочитать]
+
+    Ключ может содержать `/` — на диске это подкаталог (`Translation/dict` → `…/Translation/dict.cache`).
+
+    ```php
+    $item = $pool->getItem('Translation/dict');
+    $item->set(['hello' => 'world']);
+    $pool->save($item);
+
+    $hit = $pool->getItem('Translation/dict');
+    $value = $hit->isHit() ? $hit->get() : null;
+    ```
+  </Step>
+
+  <Step>
+    ### Очистить namespace [#очистить-namespace]
+
+    `clearNamespace()` — расширение DevTools (не PSR-6): удаляет все ключи с префиксом `{prefix}/`.
+
+    ```php
+    $pool->clearNamespace('Translation');
+    ```
+  </Step>
+</Steps>
+
+## Полный пример [#полный-пример]
+
+```php
+use Devcraft\Cache\FileCachePool;
+
+$pool = new FileCachePool('/path/to/cache', defaultTtlSeconds: 3600);
+
+$item = $pool->getItem('Translation/dict');
+$item->set(['hello' => 'world']);
+$pool->save($item);
+
+$hit = $pool->getItem('Translation/dict');
+if ($hit->isHit()) {
+    $value = $hit->get();
+}
+
+$pool->clearNamespace('Translation'); // DevTools extension (not in PSR-6)
+```
+
+## Ключи и хранение [#ключи-и-хранение]
+
+| Правило    | Детали                                                      |
+| ---------- | ----------------------------------------------------------- |
+| Разрешено  | буквы, цифры, `/` как разделитель namespace                 |
+| Запрещено  | `{}()\@:` и `..`                                            |
+| Путь файла | `{baseDir}/{key}.cache`                                     |
+| Envelope   | JSON `{ "e": expiryUnix\|null, "f": "j"\|"s", "v": value }` |
+
+Формат `j` — JSON-значение; `s` — `serialize` + base64 для не-JSON данных.
+
+## DevCraft Admin [#devcraft-admin]
+
+В DevCraft Admin `CacheControl` — тонкий фасад: `setCache($type, $name, $data)` → ключ `{type}/{name}` → `FileCachePool`. Для нового кода предпочтителен `CacheControl::pool()`.
+
+## Связанные разделы [#связанные-разделы]
+
+* [FileCachePool](../reference/cache/FileCachePool)
+* [CacheItem](../reference/cache/CacheItem)
+* [InvalidArgument](../reference/exceptions/InvalidArgument)
+* [Справочник](../reference)
+* [Changelog](../changelog)
+
+
+# Reflection mapper (/dev/dev-tools/1.1.0/guides/reflection_mapper)
+
+
+
+## Введение [#введение]
+
+`AbstractReflection` — базовый класс для DTO с public typed свойствами. Даёт `fromArray()`, `toArray()` и `toJson()`. Гидратацию и сериализацию реализует `ReflectionMapper`.
+
+## Предварительные требования [#предварительные-требования]
+
+* [Начало работы](../getting_started)
+* [Установка](../install)
+
+## Пошаговое руководство [#пошаговое-руководство]
+
+```php
+use Devcraft\Abstracts\AbstractReflection;
+use Devcraft\Attributes\ArrayOf;
+use Devcraft\Attributes\Range;
+
+final class Address extends AbstractReflection
+{
+    public string $city;
+}
+
+final class Profile extends AbstractReflection
+{
+    public string $name;
+
+    public Address $address;
+
+    #[ArrayOf(Address::class)]
+    public array $locations = [];
+
+    #[Range(min: 0)]
+    public int $score = 0;
+}
+
+$profile = Profile::fromArray([
+    'name' => 'Ada',
+    'address' => ['city' => 'Berlin'],
+    'locations' => [
+        ['city' => 'Berlin'],
+        ['city' => 'Paris'],
+    ],
+    'score' => '10',
+]);
+
+$profile->toArray();
+$profile->toJson();
+```
+
+Канонический пример Proxy / Address:
+
+```php
+use Devcraft\Abstracts\AbstractReflection;
+use Devcraft\Attributes\ArrayOf;
+use Devcraft\Attributes\Range;
+use Devcraft\Attributes\Regex;
+
+final class Address extends AbstractReflection
+{
+    public string $city;
+}
+
+final class Proxy extends AbstractReflection
+{
+    #[Regex('/^[0-9a-f-]{36}$/i')]
+    public string $id;
+
+    #[Range(min: 1, max: 65535)]
+    public int $port;
+
+    public Address $address;
+
+    #[ArrayOf(Address::class)]
+    public array $locations = [];
+}
+
+$proxy = Proxy::fromArray([
+    'id' => '550e8400-e29b-41d4-a716-446655440000',
+    'port' => '8080',
+    'address' => ['city' => 'Berlin'],
+    'locations' => [
+        ['city' => 'Berlin'],
+        ['city' => 'Paris'],
+    ],
+]);
+
+$proxy->port;              // int 8080 (string coerced)
+$proxy->address->city;     // 'Berlin'
+$proxy->toArray();         // nested arrays
+echo $proxy->toJson();     // pretty-printed JSON
+```
+
+См. также: [AbstractReflection](../reference/abstracts/AbstractReflection), [ReflectionMapper](../reference/mapper/ReflectionMapper), [ArrayOf](../reference/attributes/ArrayOf).
+
+## API AbstractReflection [#api-abstractreflection]
+
+| Метод                                             | Описание                                                                          |
+| ------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `static fromArray(array $data): static`           | Создать экземпляр и гидратировать public-свойства                                 |
+| `toArray(): array`                                | Экспорт инициализированных public-свойств (вложенные DTO рекурсивно)              |
+| `toJson(): string`                                | Pretty JSON с Unicode и незаэкранированными слэшами; при ошибке — `JsonException` |
+| `static setLogger(LoggerInterface $logger): void` | Переопределить логгер для сбоев валидации                                         |
+| `static resetLogger(): void`                      | Сбросить кастомный логгер (тесты / teardown)                                      |
+
+В маппинге участвуют только **public, non-static** свойства. Private/protected mapper игнорирует.
+
+## Правила гидратации [#правила-гидратации]
+
+`ReflectionMapper::hydrate($target, $data)` обходит public-свойства:
+
+1. Отсутствующий ключ или явный `null` → null fallback.
+2. Значение конвертируется по типу свойства.
+3. `#[ArrayOf]` постобрабатывает list-свойства.
+4. Атрибуты валидации проверяют сконвертированное значение.
+5. Ошибки логируются и собираются; после прохода непустая карта ошибок → `ValidationException`.
+
+### Конверсия скаляров [#конверсия-скаляров]
+
+| Объявленный тип    | Принимаемый ввод                                                  |
+| ------------------ | ----------------------------------------------------------------- |
+| `string`           | только string                                                     |
+| `int`              | int или numeric string через `FILTER_VALIDATE_INT`                |
+| `float`            | float, int или numeric string через `FILTER_VALIDATE_FLOAT`       |
+| `bool`             | bool, `0`/`1` или boolean strings через `FILTER_VALIDATE_BOOLEAN` |
+| `array`            | array                                                             |
+| `object`           | object                                                            |
+| `mixed` / без типа | что угодно                                                        |
+
+Union и intersection типы свойств не поддерживаются и падают при конверсии.
+
+### Вложенные DTO [#вложенные-dto]
+
+Если тип свойства — подкласс `AbstractReflection`, а вход — array, mapper создаёт вложенный класс и гидратирует его с dotted path (`address.city`, `locations.0.city`).
+
+Если вход уже экземпляр объявленного типа (или интерфейса) — принимается as-is.
+
+### Null fallback [#null-fallback]
+
+Когда ключ отсутствует или значение `null`:
+
+* свойства с default сохраняют default
+* nullable без usable value становятся `null`
+* обязательные non-nullable без default получают `is required`
+
+При сбое конверсии/валидации у **nullable** свойства mapper ставит `null` вместо добавления пути в thrown error map (сбой всё равно логируется).
+
+## `#[ArrayOf]` [#arrayof]
+
+`ArrayOf` — и подсказка конверсии для mapper, и `ValidationRule`.
+
+При конверсии значение должно быть **list** (`array_is_list`). Каждый элемент конвертируется в объявленный тип (builtin или вложенный `AbstractReflection`).
+
+```php
+#[ArrayOf('int')]
+public array $ids = [];
+
+#[ArrayOf(Address::class)]
+public array $locations = [];
+```
+
+Ассоциативные массивы падают с `must be a list`. Ошибки элементов — `ids.1`, `locations.0.city` и т.д.
+
+## Сериализация [#сериализация]
+
+`toArray()` включает только инициализированные public-свойства. Вложенные `AbstractReflection` раскрываются рекурсивно. Обычные массивы обходятся поэлементно.
+
+`toJson()` кодирует `toArray()` с:
+
+* `JSON_THROW_ON_ERROR`
+* `JSON_UNESCAPED_UNICODE`
+* `JSON_PRETTY_PRINT`
+* `JSON_UNESCAPED_SLASHES`
+* `JSON_INVALID_UTF8_SUBSTITUTE`
+
+## Логирование [#логирование]
+
+По умолчанию `AbstractReflection` использует `Analog\Logger`. Вызовите `setLogger()` для тестов или прикладного логирования:
+
+```php
+AbstractReflection::setLogger($psrLogger);
+```
+
+Каждый сбой логируется на error с ключами контекста `class`, `property` (dotted path), `expected`, `actual_type`.
+
+## Прямое использование mapper [#прямое-использование-mapper]
+
+Можно гидратировать существующий объект без `fromArray()`:
+
+```php
+use Devcraft\Mapper\ReflectionMapper;
+use Psr\Log\NullLogger;
+
+$mapper = new ReflectionMapper(new NullLogger());
+$mapper->hydrate($profile, $payload);
+```
+
+Второй аргумент конструктора — опциональный кастомный `PropertyValidator`.
+
+## Связанные разделы [#связанные-разделы]
+
+* [AbstractReflection](../reference/abstracts/AbstractReflection)
+* [ReflectionMapper](../reference/mapper/ReflectionMapper)
+* [ArrayOf](../reference/attributes/ArrayOf)
+* [Валидация](validation)
+* [История изменений](../changelog)
+
+
+# Валидация (/dev/dev-tools/1.1.0/guides/validation)
+
+
+
+## Введение [#введение]
+
+Правила валидации — PHP-атрибуты, реализующие `Devcraft\Interfaces\ValidationRule`. Возвращают `null`, если значение валидно, иначе короткое сообщение. Вход `null` всегда проходит (обязательность обрабатывает null fallback mapper).
+
+## Предварительные требования [#предварительные-требования]
+
+* [Начало работы](../getting_started)
+* [Установка](../install)
+* [Reflection mapper](reflection_mapper)
+
+## Пошаговое руководство [#пошаговое-руководство]
+
+```php
+interface ValidationRule
+{
+    /** Returns null when valid, otherwise a value-free error message. */
+    public function validate(mixed $value): ?string;
+}
+```
+
+Сообщения описывают только ожидание (`must be numeric`), не фактическое значение. Пути и actual types добавляют `ReflectionMapper` / `ValidationException`.
+
+См. также: [ValidationRule](../reference/interfaces/ValidationRule), [PropertyValidator](../reference/validation/PropertyValidator), [ValidationException](../reference/exceptions/ValidationException).
+
+## Атрибуты [#атрибуты]
+
+Все validation-атрибуты нацелены на свойства и repeatable.
+
+### `Filter` [#filter]
+
+Обёртка над PHP `filter_var`:
+
+```php
+use Devcraft\Attributes\Filter;
+
+#[Filter(FILTER_VALIDATE_EMAIL)]
+public string $email;
+
+#[Filter(FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]])]
+public int $quantity;
+```
+
+Для `FILTER_VALIDATE_BOOLEAN` автоматически добавляется `FILTER_NULL_ON_FAILURE`, чтобы невалидные boolean отклонялись, а не coercились в `false`.
+
+Сообщение при ошибке: `must pass filter <id>`.
+
+См. [Filter](../reference/attributes/Filter).
+
+### `Range` [#range]
+
+Числовые границы для `int` или `float`:
+
+```php
+use Devcraft\Attributes\Range;
+
+#[Range(min: 1, max: 65535)]
+public int $port;
+
+#[Range(min: 0.0)]
+public float $ratio;
+```
+
+Любую границу можно опустить. Нечисловые значения → `must be numeric`.
+
+См. [Range](../reference/attributes/Range).
+
+### `Regex` [#regex]
+
+Совпадение строки с паттерном:
+
+```php
+use Devcraft\Attributes\Regex;
+
+#[Regex('/^[0-9a-f-]{36}$/i')]
+public string $id;
+```
+
+Конструктор проверяет паттерн через `preg_match` и бросает `InvalidArgumentException`, если выражение невалидно. Не-string → `must be a string`.
+
+См. [Regex](../reference/attributes/Regex).
+
+### `ArrayOf` [#arrayof]
+
+Гарантирует, что значение — list, элементы которого соответствуют имени типа:
+
+```php
+use Devcraft\Attributes\ArrayOf;
+
+#[ArrayOf('string')]
+public array $tags;
+
+#[ArrayOf(Address::class)]
+public array $locations;
+```
+
+Встроенные: `mixed`, `string`, `int`/`integer`, `float`/`double`, `bool`/`boolean`, `array`, `object`. Остальные имена — проверка class/interface через `instanceof`.
+
+В `ReflectionMapper` `ArrayOf` также управляет вложенной конверсией до валидации.
+
+См. [ArrayOf](../reference/attributes/ArrayOf).
+
+## PropertyValidator [#propertyvalidator]
+
+`Devcraft\Validation\PropertyValidator` запускает правила атрибутов без гидратации:
+
+```php
+use Devcraft\Validation\PropertyValidator;
+use ReflectionProperty;
+
+$validator = new PropertyValidator();
+$errors = $validator->validateValue(
+    new ReflectionProperty(Profile::class, 'port'),
+    0,
+);
+// ['must be greater than or equal to 1']
+
+$objectErrors = $validator->validateObject($profile);
+// ['port' => [...], ...]
+```
+
+`validateObject()` смотрит только public, non-static, initialized свойства. Атрибуты не из `ValidationRule` игнорируются. Несколько правил на одном свойстве дают несколько сообщений.
+
+## ValidationException [#validationexception]
+
+Бросается `ReflectionMapper`, когда один или несколько обязательных путей свойств не проходят:
+
+```php
+use Devcraft\Exceptions\ValidationException;
+
+try {
+    Profile::fromArray($payload);
+} catch (ValidationException $exception) {
+    $exception->getMessage();
+    // "Validation failed for: port, address.city"
+
+    $exception->getErrors();
+    // [
+    //   'port' => ['must be greater than or equal to 1'],
+    //   'address.city' => ['must be string'],
+    // ]
+}
+```
+
+`getErrors()` возвращает `array<string, list<string>>` с ключами — dotted property paths.
+
+## Связанные разделы [#связанные-разделы]
+
+* [ValidationRule](../reference/interfaces/ValidationRule)
+* [PropertyValidator](../reference/validation/PropertyValidator)
+* [ValidationException](../reference/exceptions/ValidationException)
+* [Справочник API](../reference)
+* [История изменений](../changelog)
+
+
+# Атрибуты With (/dev/dev-tools/1.1.0/guides/with_attributes)
+
+
+
+## Введение [#введение]
+
+Атрибуты `#[With]` и `#[WithItem]` генерируют fluent-сеттеры для private (или protected) свойств. Наследуйте `AbstractWith`: `__call` сначала отдаёт `with*` в `WithHandler`, затем в `\Lombok\Helper` (`get*` / `set*` / `is*`).
+
+## Предварительные требования [#предварительные-требования]
+
+* [Начало работы](../getting_started)
+* [Установка](../install)
+
+## Пошаговое руководство [#пошаговое-руководство]
+
+<Steps>
+  <Step>
+    ### Шаг 1: Объявить fluent-класс [#шаг-1-объявить-fluent-класс]
+
+    ```php
+    use Devcraft\Abstracts\AbstractWith;
+    use Devcraft\Attributes\With;
+    use Devcraft\Attributes\WithItem;
+
+    final class Query extends AbstractWith
+    {
+        #[With]
+        private ?int $page = null;
+
+        #[With]
+        private ?string $starting_after = null;
+
+        #[With, WithItem('string')]
+        private array $tags = [];
+
+        #[WithItem(['int', 'string'], ['string', 'null'])]
+        private array $labels = [];
+    }
+    ```
+  </Step>
+
+  <Step>
+    ### Шаг 2: Собрать цепочку `with*` [#шаг-2-собрать-цепочку-with]
+
+    ```php
+    $query = (new Query())
+        ->withPage(2)
+        ->withStartingAfter('cursor')
+        ->withTags(['a'])
+        ->withTagsItem('b')
+        ->withLabelsItem('status', 'ready');
+    ```
+  </Step>
+</Steps>
+
+Канонический пример (с `#[Getter]`):
+
+```php
+use Lombok\Getter;
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+use Devcraft\Attributes\WithItem;
+
+#[Getter]
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+
+    #[With, WithItem('string')]
+    private array $tags = [];
+
+    #[WithItem('string', ['string', 'null'])]
+    private array $labels = [];
+}
+
+$query = (new Query())
+    ->withPage(1)
+    ->withTagsItem('proxy')
+    ->withLabelsItem('status', 'ready');
+
+$query->getPage();  // 1
+$query->getTags();  // ['proxy']
+$query->getLabels(); // ['status' => 'ready']
+```
+
+См. также: [AbstractWith](../reference/abstracts/AbstractWith), [With](../reference/attributes/With), [WithItem](../reference/attributes/WithItem), [WithHandler](../reference/runtime/WithHandler), [Getter и Setter](accessors).
+
+## AbstractWith [#abstractwith]
+
+`Devcraft\Abstracts\AbstractWith` наследует `\Lombok\Helper`. Рекомендуемый базовый класс:
+
+```php
+public function __call(string $methodName, array $arguments): mixed
+{
+    if (WithHandler::handles($this, $methodName)) {
+        return WithHandler::call($this, $methodName, $arguments);
+    }
+
+    return parent::__call($methodName, $arguments);
+}
+```
+
+`with*` обрабатывает `WithHandler`. Всё остальное — Lombok. Неизвестный метод даёт `BadMethodCallException` из Helper.
+
+Если у наследника свой `__construct()`, вызовите `parent::__construct()`, чтобы Getter/Setter подключились сразу. Методы `with*` от этого вызова не зависят.
+
+Можно вызывать `WithHandler` вручную в своём `__call`, но тогда нужно самим проксировать остаток в Lombok.
+
+## Ограничения свойств [#ограничения-свойств]
+
+Атрибуты допустимы только на свойствах, которые:
+
+* не public (private или protected)
+* не static
+* не readonly
+
+`#[WithItem]` дополнительно требует non-nullable свойство типа `array`.
+
+Неверная конфигурация бросает `LogicException` при первой сборке метаданных (первый `handles()` / `call()` для класса).
+
+## Именование методов [#именование-методов]
+
+Имена свойств переводятся в StudlyCase:
+
+| Свойство          | Метод `#[With]`             | Метод `#[WithItem]`            |
+| ----------------- | --------------------------- | ------------------------------ |
+| `$page`           | `withPage($value)`          | —                              |
+| `$starting_after` | `withStartingAfter($value)` | —                              |
+| `$tags`           | `withTags($array)`          | `withTagsItem($item)`          |
+| `$labels`         | —                           | `withLabelsItem($key, $value)` |
+
+Поиск регистронезависимый (`WITHPAGE` работает). Имена методов должны быть уникальны по цепочке наследования; коллизии (в том числе только по регистру, `$name` / `$NAME`) бросают `LogicException`.
+
+## `#[With]` — заменить значение целиком [#with--заменить-значение-целиком]
+
+```php
+#[With]
+private ?int $page = null;
+
+$query->withPage(3);    // $page = 3
+$query->withPage(null); // допустимо, если свойство nullable
+```
+
+* Ровно один аргумент.
+* Обычная проверка типа PHP (без coercion string→int для typed properties).
+* Возвращает `$this`.
+
+## `#[WithItem]` — append или map [#withitem--append-или-map]
+
+### Append (один дескриптор типа) [#append-один-дескриптор-типа]
+
+```php
+#[WithItem('string')]
+private array $tags = [];
+
+$query->withTagsItem('proxy'); // $tags[] = 'proxy'
+```
+
+### Map (два дескриптора) [#map-два-дескриптора]
+
+```php
+#[WithItem('string', ['string', 'null'])]
+private array $labels = [];
+
+$query->withLabelsItem('status', 'ready');
+$query->withLabelsItem('status', null); // заменить
+```
+
+Ключи map могут быть только `int` и/или `string`.
+
+### Вместе с `#[With]` [#вместе-с-with]
+
+```php
+#[With, WithItem('string')]
+private array $tags = [];
+
+$query->withTags(['a', 'b']); // заменить весь массив
+$query->withTagsItem('c');    // append
+```
+
+## Дескрипторы типов [#дескрипторы-типов]
+
+Строка или список строк (union):
+
+```php
+#[WithItem('string')]
+#[WithItem(['int', 'string'])]
+#[WithItem(ItemContract::class)]
+#[WithItem(['int', 'string'], ['string', 'null'])]
+```
+
+Встроенные: `string`, `int`, `float`, `bool`, `true`, `false`, `null`, `array`, `object`, `iterable`, `callable`, `mixed`.
+
+Также: имена классов, интерфейсов и enum, существующие в runtime.
+
+Замечания:
+
+* `mixed` нельзя комбинировать с другими типами в одном union.
+* `float` не принимает integers (без numeric coercion).
+* `void` / `never` отклоняются.
+* Неизвестные имена классов → `LogicException` при сборке метаданных.
+
+## Ошибки runtime vs конфигурации [#ошибки-runtime-vs-конфигурации]
+
+| Ситуация                                                            | Исключение               |
+| ------------------------------------------------------------------- | ------------------------ |
+| Public / static / readonly свойство                                 | `LogicException`         |
+| Nullable или не-array цель `WithItem`                               | `LogicException`         |
+| Плохой count дескрипторов / пустой union / неверные типы ключей map | `LogicException`         |
+| Повтор атрибута / коллизия виртуального метода                      | `LogicException`         |
+| Неинициализированный array при append/map                           | `LogicException`         |
+| Неверное число аргументов                                           | `ArgumentCountError`     |
+| Значение не проходит проверку дескриптора                           | `TypeError`              |
+| Неизвестный виртуальный метод через `WithHandler::call`             | `BadMethodCallException` |
+
+Неверные аргументы item/map проверяются до мутации — неудачный вызов не частично обновляет массив.
+
+## Кэш метаданных [#кэш-метаданных]
+
+`WithHandler` строит и кэширует метаданные операций на runtime-класс при первом использовании. Кэш хранит closures, привязанные к declaring class, а не к экземплярам.
+
+## Наследование [#наследование]
+
+Атрибуты на private/protected свойствах родителей обнаруживаются и работают на дочерних экземплярах. Writers привязаны к declaring class, поэтому private-свойства родителя остаются записываемыми через виртуальные методы.
+
+## Связанные разделы [#связанные-разделы]
+
+* [AbstractWith](../reference/abstracts/AbstractWith)
+* [With](../reference/attributes/With)
+* [WithItem](../reference/attributes/WithItem)
+* [WithHandler](../reference/runtime/WithHandler)
+* [Getter и Setter](accessors)
+* [История изменений](../changelog)
+
+
+# Установка (/dev/dev-tools/1.1.0/install)
+
+
+
+## Системные требования [#системные-требования]
+
+* PHP 8.3 или новее
+* [Composer](/instructions/composer)
+* Runtime: [`psr/cache`](https://packagist.org/packages/psr/cache) `^3.0` (PSR-6)
+* Runtime: [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` (ставится вместе с пакетом)
+
+## Способы установки [#способы-установки]
+
+<Tabs groupId="packageManager" items="['Composer', 'Source']">
+  <Tab value="Composer">
+    ```bash
+    composer require devcraftclub/dev-tools:^1.1
+    ```
+
+    Composer подтянет [`marcin-orlowski/lombok-php`](https://packagist.org/packages/marcin-orlowski/lombok-php) `^1.2` и [`psr/cache`](https://packagist.org/packages/psr/cache) `^3.0` как транзитивные зависимости. lombok-php нужен `AbstractWith` (`\Lombok\Helper`); `psr/cache` — для `FileCachePool`.
+  </Tab>
+
+  <Tab value="Source">
+    <Callout type="info" title="Только в root consumer">
+      Path repositories настраиваются в корневом `composer.json` потребляющего проекта. Composer не наследует их транзитивно.
+    </Callout>
+
+    ```json
+    {
+      "repositories": [
+        {
+          "type": "path",
+          "url": "../DevTool",
+          "options": { "symlink": true }
+        }
+      ],
+      "require": {
+        "devcraftclub/dev-tools": "@dev"
+      }
+    }
+    ```
+
+    Then:
+
+    ```bash
+    composer update devcraftclub/dev-tools
+    ```
+
+    Подставьте в `url` относительный или абсолютный путь к пакету на диске. Для локальной разработки удобен constraint `^1.1` или `@dev`. Позже можно заменить path repository обычным VCS/Packagist.
+  </Tab>
+</Tabs>
+
+## Конфигурация [#конфигурация]
+
+Отдельный конфиг-файл не нужен. После установки Composer автозагружает пространства имён `Devcraft\\` из `vendor`.
+
+## Проверка установки [#проверка-установки]
+
+```bash
+composer show devcraftclub/dev-tools
+```
+
+Ожидается версия `1.1.0` (или совместимая `^1.1`) и PHP `>=8.3`.
+
+## Устранение проблем [#устранение-проблем]
+
+<Accordions type="single">
+  <Accordion title="Пакет не находится / path repository игнорируется">
+    Path repositories объявляются только в **корневом** `composer.json` потребителя. Вложенные пакеты их не наследуют.
+  </Accordion>
+
+  <Accordion title="Слишком старая версия PHP">
+    Пакет требует PHP 8.3 или новее. Проверьте `php -v` и platform-конфиг Composer.
+  </Accordion>
+
+  <Accordion title="Нет класса FileCachePool">
+    Убедитесь, что установлена версия `>=1.1.0` и что `psr/cache` присутствует в `composer show`.
+  </Accordion>
+</Accordions>
+
+
+# AbstractReflection (/dev/dev-tools/1.1.0/reference/abstracts/AbstractReflection)
+
+
+
+**Описание:** Абстрактный базовый класс для DTO с public typed свойствами. Реализует `ReflectionInterface`. Гидратацию и сериализацию делегирует `ReflectionMapper`.
+
+**Namespace:** `Devcraft\Abstracts`
+
+**Implements:** [ReflectionInterface](../interfaces/ReflectionInterface)
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [ReflectionMapper](../mapper/ReflectionMapper)
+* [ValidationException](../exceptions/ValidationException)
+* [Гайд: Reflection mapper](../../guides/reflection_mapper)
+
+## Методы [#методы]
+
+### `static fromArray(array $data): static` [#static-fromarrayarray-data-static]
+
+**Описание:** Создаёт экземпляр через `new static()` и гидратирует public-свойства через `ReflectionMapper::hydrate()`.
+
+**Параметры:**
+
+| Параметр | Тип     | Описание                                     |
+| -------- | ------- | -------------------------------------------- |
+| `$data`  | `array` | Ассоциативный массив (например decoded JSON) |
+
+**Возвращает:** `static` — гидратированный экземпляр
+
+**Исключения:**
+
+* [ValidationException](../exceptions/ValidationException) — ошибки обязательных путей
+
+### `toArray(): array` [#toarray-array]
+
+**Описание:** Экспорт инициализированных public non-static свойств. Вложенные `AbstractReflection` раскрываются рекурсивно.
+
+**Возвращает:** `array`
+
+### `toJson(): string` [#tojson-string]
+
+**Описание:** Pretty-printed JSON из `toArray()` с `JSON_THROW_ON_ERROR`, `JSON_UNESCAPED_UNICODE`, `JSON_PRETTY_PRINT`, `JSON_UNESCAPED_SLASHES`, `JSON_INVALID_UTF8_SUBSTITUTE`.
+
+**Возвращает:** `string`
+
+**Исключения:**
+
+* `JsonException`
+
+### `static setLogger(LoggerInterface $logger): void` [#static-setloggerloggerinterface-logger-void]
+
+**Описание:** Переопределяет PSR-3 логгер, используемый при сбоях валидации (по умолчанию `Analog\Logger`).
+
+**Параметры:**
+
+| Параметр  | Тип               | Описание     |
+| --------- | ----------------- | ------------ |
+| `$logger` | `LoggerInterface` | PSR-3 логгер |
+
+**Возвращает:** `void`
+
+### `static resetLogger(): void` [#static-resetlogger-void]
+
+**Описание:** Сбрасывает кастомный логгер (удобно в teardown тестов).
+
+**Возвращает:** `void`
+
+**Пример:**
+
+```php
+use Devcraft\Abstracts\AbstractReflection;
+use Devcraft\Attributes\ArrayOf;
+use Devcraft\Attributes\Range;
+use Devcraft\Attributes\Regex;
+
+final class Address extends AbstractReflection
+{
+    public string $city;
+}
+
+final class Proxy extends AbstractReflection
+{
+    #[Regex('/^[0-9a-f-]{36}$/i')]
+    public string $id;
+
+    #[Range(min: 1, max: 65535)]
+    public int $port;
+
+    public Address $address;
+
+    #[ArrayOf(Address::class)]
+    public array $locations = [];
+}
+
+$proxy = Proxy::fromArray([
+    'id' => '550e8400-e29b-41d4-a716-446655440000',
+    'port' => '8080',
+    'address' => ['city' => 'Berlin'],
+    'locations' => [
+        ['city' => 'Berlin'],
+        ['city' => 'Paris'],
+    ],
+]);
+
+$proxy->port;              // int 8080 (string coerced)
+$proxy->address->city;     // 'Berlin'
+$proxy->toArray();         // nested arrays
+echo $proxy->toJson();     // pretty-printed JSON
+```
+
+
+# AbstractWith (/dev/dev-tools/1.1.0/reference/abstracts/AbstractWith)
+
+
+
+**Описание:** Абстрактный базовый класс для fluent-билдеров. Наследует `\Lombok\Helper`. Неизвестные вызовы сначала отдаёт в `WithHandler` (`with*` / `with*Item`), иначе в `parent::__call()` (Lombok `get*` / `set*` / `is*`).
+
+**Namespace:** `Devcraft\Abstracts`
+
+**Extends:** `\Lombok\Helper`
+
+**С версии:** 1.0.0 (цепочка Lombok — с 1.0.1)
+
+**См. также:**
+
+* [WithHandler](../runtime/WithHandler)
+* [With](../attributes/With)
+* [WithItem](../attributes/WithItem)
+* [Гайд: атрибуты With](../../guides/with_attributes)
+* [Гайд: Getter и Setter](../../guides/accessors)
+
+## Методы [#методы]
+
+### `__call(string $methodName, array $arguments): mixed` [#__callstring-methodname-array-arguments-mixed]
+
+**Описание:** Если `WithHandler::handles($this, $methodName)` истинно — вызывает `WithHandler::call(...)` и возвращает результат (обычно `$this`). Иначе делегирует `\Lombok\Helper::__call()`.
+
+**Параметры:**
+
+| Параметр      | Тип      | Описание              |
+| ------------- | -------- | --------------------- |
+| `$methodName` | `string` | Имя вызванного метода |
+| `$arguments`  | `array`  | Аргументы вызова      |
+
+**Возвращает:** `mixed` — результат `WithHandler` или Lombok
+
+**Исключения:**
+
+* `BadMethodCallException` — ни `WithHandler`, ни Lombok не знают метод
+* Также исключения `WithHandler` и lombok-php
+
+## Конструктор и деструктор [#конструктор-и-деструктор]
+
+Не переопределяются. Их даёт Helper: `Lombok::construct($this)` / `Lombok::destruct($this)`.
+
+Если наследник объявляет `__construct()`, вызовите `parent::__construct()`. Без этого `with*` работают сразу; Getter/Setter подключаются при первом lombok-вызове.
+
+**Пример:**
+
+```php
+use Lombok\Getter;
+use Devcraft\Abstracts\AbstractWith;
+use Devcraft\Attributes\With;
+use Devcraft\Attributes\WithItem;
+
+#[Getter]
+final class Query extends AbstractWith
+{
+    #[With]
+    private ?int $page = null;
+
+    #[With, WithItem('string')]
+    private array $tags = [];
+
+    #[WithItem('string', ['string', 'null'])]
+    private array $labels = [];
+}
+
+$query = (new Query())
+    ->withPage(1)
+    ->withTagsItem('proxy')
+    ->withLabelsItem('status', 'ready');
+
+$query->getPage();  // 1
+$query->getTags();  // ['proxy']
+$query->getLabels(); // ['status' => 'ready']
+```
+
+
+# ArrayOf (/dev/dev-tools/1.1.0/reference/attributes/ArrayOf)
+
+
+
+**Описание:** Атрибут «список элементов типа T». В `ReflectionMapper` управляет конверсией элементов; как `ValidationRule` проверяет list и типы. Repeatable.
+
+**Namespace:** `Devcraft\Attributes`
+
+**Target:** `Attribute::TARGET_PROPERTY | Attribute::IS_REPEATABLE`
+
+**Implements:** [ValidationRule](../interfaces/ValidationRule)
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [ReflectionMapper](../mapper/ReflectionMapper)
+* [Гайд: Reflection mapper](../../guides/reflection_mapper)
+* [Гайд: валидация](../../guides/validation)
+
+## Public/Protected свойства [#publicprotected-свойства]
+
+| Свойство | Тип      | Описание                                                |
+| -------- | -------- | ------------------------------------------------------- |
+| `$type`  | `string` | Builtin (`string`, `int`, …) или FQCN класса/интерфейса |
+
+## Методы [#методы]
+
+### `__construct(string $type)` [#__constructstring-type]
+
+**Параметры:**
+
+| Параметр | Тип      | Описание                                                |
+| -------- | -------- | ------------------------------------------------------- |
+| `$type`  | `string` | Builtin (`string`, `int`, …) или FQCN класса/интерфейса |
+
+### `validate(mixed $value): ?string` [#validatemixed-value-string]
+
+**Описание:** `null` проходит. Не list → `must be a list of <type>`. Элемент не соответствует типу → то же сообщение.
+
+**Параметры:**
+
+| Параметр | Тип     | Описание             |
+| -------- | ------- | -------------------- |
+| `$value` | `mixed` | Проверяемое значение |
+
+**Возвращает:** `string\|null`
+
+Встроенные: `mixed`, `string`, `int`/`integer`, `float`/`double`, `bool`/`boolean`, `array`, `object`. Иначе — `instanceof`.
+
+```php
+#[ArrayOf(Address::class)]
+public array $locations = [];
+```
+
+
+# Filter (/dev/dev-tools/1.1.0/reference/attributes/Filter)
+
+
+
+**Описание:** Атрибут валидации, обёртка над PHP `filter_var`. Реализует `ValidationRule`. Repeatable.
+
+**Namespace:** `Devcraft\Attributes`
+
+**Target:** `Attribute::TARGET_PROPERTY | Attribute::IS_REPEATABLE`
+
+**Implements:** [ValidationRule](../interfaces/ValidationRule)
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [Гайд: валидация](../../guides/validation)
+* [PropertyValidator](../validation/PropertyValidator)
+
+## Методы [#методы]
+
+### `__construct(int $filter, array|int $options = 0)` [#__constructint-filter-arrayint-options--0]
+
+**Параметры:**
+
+| Параметр   | Тип          | Описание                                    |
+| ---------- | ------------ | ------------------------------------------- |
+| `$filter`  | `int`        | Константа `FILTER_VALIDATE_*`               |
+| `$options` | `array\|int` | Опции/флаги `filter_var`. По умолчанию: `0` |
+
+### `validate(mixed $value): ?string` [#validatemixed-value-string]
+
+**Описание:** `null` вход всегда проходит. Для `FILTER_VALIDATE_BOOLEAN` добавляется `FILTER_NULL_ON_FAILURE`. При ошибке: `must pass filter <id>`.
+
+**Параметры:**
+
+| Параметр | Тип     | Описание             |
+| -------- | ------- | -------------------- |
+| `$value` | `mixed` | Проверяемое значение |
+
+**Возвращает:** `string\|null`
+
+```php
+#[Filter(FILTER_VALIDATE_EMAIL)]
+public string $email;
+```
+
+
+# Range (/dev/dev-tools/1.1.0/reference/attributes/Range)
+
+
+
+**Описание:** Атрибут валидации числовых границ. Реализует `ValidationRule`. Repeatable.
+
+**Namespace:** `Devcraft\Attributes`
+
+**Target:** `Attribute::TARGET_PROPERTY | Attribute::IS_REPEATABLE`
+
+**Implements:** [ValidationRule](../interfaces/ValidationRule)
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [Гайд: валидация](../../guides/validation)
+
+## Методы [#методы]
+
+### `__construct(int|float|null $min = null, int|float|null $max = null)` [#__constructintfloatnull-min--null-intfloatnull-max--null]
+
+**Параметры:**
+
+| Параметр | Тип                | Описание                                             |
+| -------- | ------------------ | ---------------------------------------------------- |
+| `$min`   | `int\|float\|null` | Нижняя граница (включительно). По умолчанию: `null`  |
+| `$max`   | `int\|float\|null` | Верхняя граница (включительно). По умолчанию: `null` |
+
+### `validate(mixed $value): ?string` [#validatemixed-value-string]
+
+**Описание:** `null` проходит. Не `int`/`float` → `must be numeric`. Вне границ → `must be greater/less than or equal to …`.
+
+**Параметры:**
+
+| Параметр | Тип     | Описание             |
+| -------- | ------- | -------------------- |
+| `$value` | `mixed` | Проверяемое значение |
+
+**Возвращает:** `string\|null`
+
+```php
+#[Range(min: 1, max: 65535)]
+public int $port;
+```
+
+
+# Regex (/dev/dev-tools/1.1.0/reference/attributes/Regex)
+
+
+
+**Описание:** Атрибут валидации строки по PCRE-паттерну. Реализует `ValidationRule`. Repeatable.
+
+**Namespace:** `Devcraft\Attributes`
+
+**Target:** `Attribute::TARGET_PROPERTY | Attribute::IS_REPEATABLE`
+
+**Implements:** [ValidationRule](../interfaces/ValidationRule)
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [Гайд: валидация](../../guides/validation)
+
+## Методы [#методы]
+
+### `__construct(string $pattern)` [#__constructstring-pattern]
+
+**Параметры:**
+
+| Параметр   | Тип      | Описание       |
+| ---------- | -------- | -------------- |
+| `$pattern` | `string` | PCRE-выражение |
+
+**Исключения:**
+
+* `InvalidArgumentException` — паттерн невалиден (`preg_match` вернул `false`)
+
+### `validate(mixed $value): ?string` [#validatemixed-value-string]
+
+**Описание:** `null` проходит. Не string → `must be a string`. Нет совпадения → `must match <pattern>`.
+
+**Параметры:**
+
+| Параметр | Тип     | Описание             |
+| -------- | ------- | -------------------- |
+| `$value` | `mixed` | Проверяемое значение |
+
+**Возвращает:** `string\|null`
+
+```php
+#[Regex('/^[0-9a-f-]{36}$/i')]
+public string $id;
+```
+
+
+# With (/dev/dev-tools/1.1.0/reference/attributes/With)
+
+
+
+**Описание:** Маркерный PHP-атрибут для свойства. `WithHandler` генерирует метод `withPropertyName($value)` (StudlyCase имени свойства), который заменяет значение свойства целиком и возвращает `$this`.
+
+**Namespace:** `Devcraft\Attributes`
+
+**Target:** `Attribute::TARGET_PROPERTY`
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [WithItem](WithItem)
+* [WithHandler](../runtime/WithHandler)
+* [AbstractWith](../abstracts/AbstractWith)
+* [Гайд: атрибуты With](../../guides/with_attributes)
+* [Гайд: Getter и Setter](../../guides/accessors)
+
+## Поведение [#поведение]
+
+* Свойство должно быть non-public, non-static, non-readonly.
+* Ровно один аргумент.
+* Проверка типа — штатная PHP (без string→int coercion).
+* Nullable свойства допускают `null`.
+
+```php
+#[With]
+private ?int $page = null;
+
+$query->withPage(3);
+```
+
+
+# WithItem (/dev/dev-tools/1.1.0/reference/attributes/WithItem)
+
+
+
+**Описание:** PHP-атрибут для array-свойств. Один дескриптор типа — append (`withTagsItem($item)`); два — map set (`withLabelsItem($key, $value)`).
+
+**Namespace:** `Devcraft\Attributes`
+
+**Target:** `Attribute::TARGET_PROPERTY`
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [With](With)
+* [WithHandler](../runtime/WithHandler)
+* [Гайд: атрибуты With](../../guides/with_attributes)
+
+## Методы [#методы]
+
+### `__construct(string|array ...$types)` [#__constructstringarray-types]
+
+**Параметры:**
+
+| Параметр | Тип                 | Описание                                                   |
+| -------- | ------------------- | ---------------------------------------------------------- |
+| `$types` | `string\|array ...` | Один или два дескриптора (строка или список строк / union) |
+
+### `types(): array` [#types-array]
+
+**Описание:** Возвращает список переданных дескрипторов.
+
+**Возвращает:** `array`
+
+## Поведение [#поведение]
+
+* Цель — non-nullable `array`, non-public, non-static, non-readonly.
+* Append: один дескриптор → `$array[] = $item`.
+* Map: два дескриптора → `$array[$key] = $value`; ключи только `int`/`string`.
+* Можно комбинировать с `#[With]` на том же свойстве.
+
+```php
+#[WithItem('string')]
+private array $tags = [];
+
+#[WithItem('string', ['string', 'null'])]
+private array $labels = [];
+```
+
+
+# CacheItem (/dev/dev-tools/1.1.0/reference/cache/CacheItem)
+
+
+
+**Описание:** Элемент кэша для [FileCachePool](./FileCachePool). Реализует `Psr\Cache\CacheItemInterface`.
+
+**Namespace:** `Devcraft\Cache`
+
+**С версии:** 1.1.0
+
+**См. также:**
+
+* [FileCachePool](./FileCachePool)
+* [Гайд: файловый PSR-6 кэш](../../guides/file_cache)
+
+## Методы [#методы]
+
+### `getKey(): string` [#getkey-string]
+
+**Возвращает:** `string` — ключ item.
+
+### `get(): mixed` [#get-mixed]
+
+**Описание:** Значение при hit; иначе `null`.
+
+### `isHit(): bool` [#ishit-bool]
+
+**Возвращает:** `bool`
+
+### `set(mixed $value): static` [#setmixed-value-static]
+
+**Описание:** Устанавливает значение; возвращает `$this` для fluent-цепочки.
+
+### `expiresAt(?DateTimeInterface $expiration): static` [#expiresatdatetimeinterface-expiration-static]
+
+**Описание:** Абсолютный expiry; `null` — без истечения. Сбрасывает «default expiry» pool.
+
+### `expiresAfter(int|DateInterval|null $time): static` [#expiresafterintdateintervalnull-time-static]
+
+**Описание:** Относительный TTL. `null` или `<= 0` — без истечения.
+
+**Пример:**
+
+```php
+$item = $pool->getItem('cfg/flags');
+$item->set(['debug' => false])->expiresAfter(600);
+$pool->save($item);
+```
+
+
+# FileCachePool (/dev/dev-tools/1.1.0/reference/cache/FileCachePool)
+
+
+
+**Описание:** Файловый PSR-6 pool. Ключ может содержать `/` как разделитель namespace (расширение сверх reserved-символов PSR-6). На диске: `{baseDir}/{key}.cache` с JSON-envelope `{e, f, v}`.
+
+**Namespace:** `Devcraft\Cache`
+
+**С версии:** 1.1.0
+
+**См. также:**
+
+* [CacheItem](./CacheItem)
+* [InvalidArgument](../exceptions/InvalidArgument)
+* [Гайд: файловый PSR-6 кэш](../../guides/file_cache)
+
+## Конструктор [#конструктор]
+
+### `__construct(string $baseDir, ?int $defaultTtlSeconds = null)` [#__constructstring-basedir-int-defaultttlseconds--null]
+
+| Параметр             | Тип         | Описание                                                               |
+| -------------------- | ----------- | ---------------------------------------------------------------------- |
+| `$baseDir`           | `string`    | Корневой каталог кэша                                                  |
+| `$defaultTtlSeconds` | `int\|null` | TTL по умолчанию; `null` или `0` — без истечения. По умолчанию: `null` |
+
+## Методы PSR-6 [#методы-psr-6]
+
+### `getItem(string $key): CacheItemInterface` [#getitemstring-key-cacheiteminterface]
+
+**Описание:** Возвращает item (hit или miss). Просроченные и битые файлы удаляются.
+
+### `getItems(array $keys = []): iterable` [#getitemsarray-keys---iterable]
+
+**Параметры:** `$keys` — `array<string>`
+
+**Возвращает:** `iterable<string, CacheItemInterface>`
+
+### `hasItem(string $key): bool` [#hasitemstring-key-bool]
+
+**Возвращает:** `bool` — `true`, если ключ есть и не истёк.
+
+### `clear(): bool` [#clear-bool]
+
+**Описание:** Очищает deferred-очередь и всё содержимое `$baseDir`.
+
+### `deleteItem(string $key): bool` / `deleteItems(array $keys): bool` [#deleteitemstring-key-bool--deleteitemsarray-keys-bool]
+
+**Описание:** Удаляет файл(ы) и пустые родительские каталоги под `$baseDir`.
+
+### `save(CacheItemInterface $item): bool` [#savecacheiteminterface-item-bool]
+
+**Описание:** Сохраняет только экземпляры [CacheItem](./CacheItem). Если item ещё на default expiry — применяется `$defaultTtlSeconds`. Уже истёкший item удаляется.
+
+### `saveDeferred(CacheItemInterface $item): bool` / `commit(): bool` [#savedeferredcacheiteminterface-item-bool--commit-bool]
+
+**Описание:** Отложенная запись и сброс очереди на диск.
+
+## Расширение DevTools [#расширение-devtools]
+
+### `clearNamespace(string $prefix): bool` [#clearnamespacestring-prefix-bool]
+
+**Описание:** Удаляет все ключи с префиксом `{prefix}/` (и сам каталог). Пустой `$prefix` эквивалентен `clear()`. Не входит в PSR-6.
+
+**Пример:**
+
+```php
+$pool->clearNamespace('Translation');
+```
+
+### `getBaseDir(): string` [#getbasedir-string]
+
+**Возвращает:** `string` — нормализованный корневой путь.
+
+## Примеры использования [#примеры-использования]
+
+### Базовый пример [#базовый-пример]
+
+```php
+use Devcraft\Cache\FileCachePool;
+
+$pool = new FileCachePool('/path/to/cache', defaultTtlSeconds: 3600);
+
+$item = $pool->getItem('Translation/dict');
+$item->set(['hello' => 'world']);
+$pool->save($item);
+
+$hit = $pool->getItem('Translation/dict');
+if ($hit->isHit()) {
+    $value = $hit->get();
+}
+
+$pool->clearNamespace('Translation'); // DevTools extension (not in PSR-6)
+```
+
+
+# InvalidArgument (/dev/dev-tools/1.1.0/reference/exceptions/InvalidArgument)
+
+
+
+**Описание:** Расширяет `\InvalidArgumentException` и реализует `Psr\Cache\InvalidArgumentException`. Бросается [FileCachePool](../cache/FileCachePool) при пустом/слишком длинном ключе, reserved-символах (`{}()\@:`) или `..` в ключе.
+
+**Namespace:** `Devcraft\Exceptions`
+
+**С версии:** 1.1.0
+
+**См. также:**
+
+* [FileCachePool](../cache/FileCachePool)
+* [Гайд: файловый PSR-6 кэш](../../guides/file_cache)
+
+## Примеры использования [#примеры-использования]
+
+```php
+use Devcraft\Cache\FileCachePool;
+use Devcraft\Exceptions\InvalidArgument;
+
+try {
+    $pool->getItem('bad:key');
+} catch (InvalidArgument $e) {
+    // Cache key contains reserved characters
+}
+```
+
+
+# ValidationException (/dev/dev-tools/1.1.0/reference/exceptions/ValidationException)
+
+
+
+**Описание:** Расширяет `\InvalidArgumentException`. Бросается `ReflectionMapper`, когда один или несколько обязательных путей свойств не прошли конверсию/валидацию.
+
+**Namespace:** `Devcraft\Exceptions`
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [ReflectionMapper](../mapper/ReflectionMapper)
+* [Гайд: валидация](../../guides/validation)
+
+## Методы [#методы]
+
+### `__construct(array $errors)` [#__constructarray-errors]
+
+**Параметры:**
+
+| Параметр  | Тип                           | Описание                                    |
+| --------- | ----------------------------- | ------------------------------------------- |
+| `$errors` | `array<string, list<string>>` | Ключ — dotted path (`port`, `address.city`) |
+
+Сообщение исключения: `Validation failed for: <keys>`.
+
+### `getErrors(): array` [#geterrors-array]
+
+**Описание:** Возвращает ту же карту `array<string, list<string>>`.
+
+**Возвращает:** `array<string, list<string>>`
+
+```php
+try {
+    Profile::fromArray($payload);
+} catch (ValidationException $exception) {
+    $exception->getErrors();
+}
+```
+
+
+# Справочник (/dev/dev-tools/1.1.0/reference)
+
+
+
+Полный справочник по публичному API пакета `devcraftclub/dev-tools`.
+
+<Cards>
+  <Card title="Кэш (PSR-6)" href="/dev/dev-tools/1.1.0/reference/cache/FileCachePool">
+    FileCachePool, CacheItem
+  </Card>
+
+  <Card title="Абстрактные классы" href="/dev/dev-tools/1.1.0/reference/abstracts/AbstractWith">
+    AbstractWith (Lombok Helper), AbstractReflection
+  </Card>
+
+  <Card title="Атрибуты" href="/dev/dev-tools/1.1.0/reference/attributes/With">
+    With, WithItem, Filter, Range, Regex, ArrayOf
+  </Card>
+
+  <Card title="Runtime" href="/dev/dev-tools/1.1.0/reference/runtime/WithHandler">
+    WithHandler
+  </Card>
+
+  <Card title="Маппер" href="/dev/dev-tools/1.1.0/reference/mapper/ReflectionMapper">
+    ReflectionMapper
+  </Card>
+
+  <Card title="Валидация" href="/dev/dev-tools/1.1.0/reference/validation/PropertyValidator">
+    PropertyValidator
+  </Card>
+
+  <Card title="Интерфейсы" href="/dev/dev-tools/1.1.0/reference/interfaces/ReflectionInterface">
+    ReflectionInterface, ValidationRule
+  </Card>
+
+  <Card title="Исключения" href="/dev/dev-tools/1.1.0/reference/exceptions/ValidationException">
+    ValidationException, InvalidArgument
+  </Card>
+</Cards>
+
+
+# ReflectionInterface (/dev/dev-tools/1.1.0/reference/interfaces/ReflectionInterface)
+
+
+
+**Описание:** Интерфейс сериализуемых/гидратируемых DTO. Реализуется `AbstractReflection`.
+
+**Namespace:** `Devcraft\Interfaces`
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [AbstractReflection](../abstracts/AbstractReflection)
+
+## Методы [#методы]
+
+### `static fromArray(array $data): static` [#static-fromarrayarray-data-static]
+
+**Описание:** Создать и гидратировать экземпляр.
+
+**Параметры:**
+
+| Параметр | Тип     | Описание                     |
+| -------- | ------- | ---------------------------- |
+| `$data`  | `array` | Входной ассоциативный массив |
+
+**Возвращает:** `static`
+
+### `toArray(): array` [#toarray-array]
+
+**Описание:** Экспорт в ассоциативный массив.
+
+**Возвращает:** `array`
+
+### `toJson(): string` [#tojson-string]
+
+**Описание:** JSON-представление DTO.
+
+**Возвращает:** `string`
+
+**Исключения:**
+
+* `\JsonException`
+
+
+# ValidationRule (/dev/dev-tools/1.1.0/reference/interfaces/ValidationRule)
+
+
+
+**Описание:** Контракт правил валидации. Реализуют `Filter`, `Range`, `Regex`, `ArrayOf`.
+
+**Namespace:** `Devcraft\Interfaces`
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [Filter](../attributes/Filter)
+* [Range](../attributes/Range)
+* [Regex](../attributes/Regex)
+* [ArrayOf](../attributes/ArrayOf)
+* [PropertyValidator](../validation/PropertyValidator)
+* [Гайд: валидация](../../guides/validation)
+
+## Методы [#методы]
+
+### `validate(mixed $value): ?string` [#validatemixed-value-string]
+
+**Описание:** `null` — значение валидно; иначе короткое value-free сообщение ожидания (без фактического значения). Обычно `null`-вход проходит; обязательность — зона ответственности mapper.
+
+**Параметры:**
+
+| Параметр | Тип     | Описание             |
+| -------- | ------- | -------------------- |
+| `$value` | `mixed` | Проверяемое значение |
+
+**Возвращает:** `string\|null`
+
+
+# ReflectionMapper (/dev/dev-tools/1.1.0/reference/mapper/ReflectionMapper)
+
+
+
+**Описание:** Маппер public non-static свойств: конверсия типов, `#[ArrayOf]`, запуск `ValidationRule`, сериализация в массив. Используется из `AbstractReflection` и может вызываться напрямую.
+
+**Namespace:** `Devcraft\Mapper`
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [AbstractReflection](../abstracts/AbstractReflection)
+* [PropertyValidator](../validation/PropertyValidator)
+* [ValidationException](../exceptions/ValidationException)
+* [ArrayOf](../attributes/ArrayOf)
+* [Гайд: Reflection mapper](../../guides/reflection_mapper)
+
+## Методы [#методы]
+
+### `__construct(LoggerInterface $logger, PropertyValidator $validator = new PropertyValidator())` [#__constructloggerinterface-logger-propertyvalidator-validator--new-propertyvalidator]
+
+**Параметры:**
+
+| Параметр     | Тип                                                  | Описание                                                                  |
+| ------------ | ---------------------------------------------------- | ------------------------------------------------------------------------- |
+| `$logger`    | `LoggerInterface`                                    | Логгер сбоев валидации/конверсии                                          |
+| `$validator` | [PropertyValidator](../validation/PropertyValidator) | Опциональный кастомный валидатор. По умолчанию: `new PropertyValidator()` |
+
+### `hydrate(object $target, array $data): object` [#hydrateobject-target-array-data-object]
+
+**Описание:** Гидратирует public-свойства `$target` из `$data`. Собирает ошибки; при непустой карте бросает `ValidationException`.
+
+**Параметры:**
+
+| Параметр  | Тип      | Описание                                 |
+| --------- | -------- | ---------------------------------------- |
+| `$target` | `object` | DTO или любой объект с public-свойствами |
+| `$data`   | `array`  | Входной ассоциативный массив             |
+
+**Возвращает:** `object` — `$target`
+
+**Исключения:**
+
+* [ValidationException](../exceptions/ValidationException)
+
+### `toArray(object $source): array` [#toarrayobject-source-array]
+
+**Описание:** Экспорт инициализированных public-свойств. Вложенные `AbstractReflection` и массивы нормализуются рекурсивно.
+
+**Параметры:**
+
+| Параметр  | Тип      | Описание              |
+| --------- | -------- | --------------------- |
+| `$source` | `object` | Источник сериализации |
+
+**Возвращает:** `array`
+
+## Поток гидратации свойства [#поток-гидратации-свойства]
+
+1. Missing / `null` → null fallback (default / `null` / `is required`)
+2. Конверсия по declared type (+ nested DTO / `ArrayOf`)
+3. `PropertyValidator::validateValue`
+4. При сбое на nullable — свойство = `null` + log; иначе путь в error map
+
+Union/intersection property types не поддерживаются.
+
+
+# WithHandler (/dev/dev-tools/1.1.0/reference/runtime/WithHandler)
+
+
+
+**Описание:** Статический runtime-хелпер для виртуальных fluent-методов. Строит и кэширует метаданные операций по runtime-классу, проверяет типы дескрипторов и мутирует свойства через closures, привязанные к declaring class.
+
+**Namespace:** `Devcraft\Runtime`
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [AbstractWith](../abstracts/AbstractWith)
+* [With](../attributes/With)
+* [WithItem](../attributes/WithItem)
+* [Гайд: атрибуты With](../../guides/with_attributes)
+* [Гайд: Getter и Setter](../../guides/accessors)
+
+## Методы [#методы]
+
+### `static handles(object $target, string $methodName): bool` [#static-handlesobject-target-string-methodname-bool]
+
+**Описание:** Есть ли виртуальная операция для `$methodName` (регистронезависимо) на классе `$target`.
+
+**Параметры:**
+
+| Параметр      | Тип      | Описание                                         |
+| ------------- | -------- | ------------------------------------------------ |
+| `$target`     | `object` | Экземпляр с атрибутами `#[With]` / `#[WithItem]` |
+| `$methodName` | `string` | Имя виртуального метода                          |
+
+**Возвращает:** `bool`
+
+### `static call(object $target, string $methodName, array $arguments): object` [#static-callobject-target-string-methodname-array-arguments-object]
+
+**Описание:** Выполняет виртуальную операцию и возвращает `$target` (для chaining).
+
+**Параметры:**
+
+| Параметр      | Тип      | Описание                                  |
+| ------------- | -------- | ----------------------------------------- |
+| `$target`     | `object` | Экземпляр с атрибутами                    |
+| `$methodName` | `string` | Имя виртуального метода                   |
+| `$arguments`  | `array`  | Аргументы (`set`/`append` — 1; `map` — 2) |
+
+**Возвращает:** `object` — тот же `$target`
+
+**Исключения:**
+
+* `BadMethodCallException` — неизвестный метод
+* `ArgumentCountError` — неверное число аргументов
+* `TypeError` — значение не проходит дескриптор
+* `LogicException` — битая конфигурация / неинициализированный array
+
+## Виды операций [#виды-операций]
+
+| Kind     | Источник                        | Аргументы        |
+| -------- | ------------------------------- | ---------------- |
+| `set`    | `#[With]`                       | `($value)`       |
+| `append` | `#[WithItem]` с 1 дескриптором  | `($item)`        |
+| `map`    | `#[WithItem]` с 2 дескрипторами | `($key, $value)` |
+
+## Кэш [#кэш]
+
+Метаданные строятся один раз на class-string и переиспользуются. Writers — closures bound to declaring class, чтобы private-свойства родителей оставались записываемыми.
+
+
+# PropertyValidator (/dev/dev-tools/1.1.0/reference/validation/PropertyValidator)
+
+
+
+**Описание:** Утилита валидации: читает атрибуты свойства, инстанцирует `ValidationRule`, собирает сообщения. Используется `ReflectionMapper` и может вызываться отдельно.
+
+**Namespace:** `Devcraft\Validation`
+
+**С версии:** 1.0.0
+
+**См. также:**
+
+* [ValidationRule](../interfaces/ValidationRule)
+* [ReflectionMapper](../mapper/ReflectionMapper)
+* [Гайд: валидация](../../guides/validation)
+
+## Методы [#методы]
+
+### `validateValue(ReflectionProperty $property, mixed $value): array` [#validatevaluereflectionproperty-property-mixed-value-array]
+
+**Описание:** Возвращает `list<string>` сообщений для одного свойства. Атрибуты не из `ValidationRule` игнорируются.
+
+**Параметры:**
+
+| Параметр    | Тип                  | Описание                        |
+| ----------- | -------------------- | ------------------------------- |
+| `$property` | `ReflectionProperty` | Свойство с атрибутами-правилами |
+| `$value`    | `mixed`              | Проверяемое значение            |
+
+**Возвращает:** `array` — `list<string>` сообщений
+
+### `validateObject(object $object): array` [#validateobjectobject-object-array]
+
+**Описание:** Возвращает `array<string, list<string>>` по имени свойства. Смотрит только public, non-static, initialized свойства.
+
+**Параметры:**
+
+| Параметр  | Тип      | Описание               |
+| --------- | -------- | ---------------------- |
+| `$object` | `object` | Экземпляр для проверки |
+
+**Возвращает:** `array` — карта ошибок по имени свойства
+
+```php
+use Devcraft\Validation\PropertyValidator;
+use ReflectionProperty;
+
+$validator = new PropertyValidator();
+$errors = $validator->validateValue(
+    new ReflectionProperty(Profile::class, 'port'),
+    0,
+);
+```
+
+
 # Начало работы (/dev/dle/db_manager/200.1.3/getting_started)
 
 
