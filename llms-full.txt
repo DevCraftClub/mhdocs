@@ -96177,6 +96177,8 @@ use DevCraft\Builders\ModuleSiteAssetsBuilder;
 * Публичные скрипты — [PublicScriptsPage](../reference/back-end/classes/PublicScriptsPage)
 * Публичные заголовки — [PublicHeadersPage](../reference/back-end/classes/PublicHeadersPage)
 
+Коды проверки сайта у поисковиков (`google-site-verification`, Яндекс и т.п.) добавляйте здесь, а не отдельным плагином. Старый [Webmaster Verification](/dev/dle/simple/webmaster-verification) устарел.
+
 UI как у Connections: Metro-таблица (поиск), колонка с ручкой DnD (`mif-move`), переключатель «Активен». Добавление — модалка (`Добавить` → форма → сохранить → строка в таблице). Логика — `admin.js` (`DevCraftAdmin.PublicAssets`).
 
 Формы добавления — [PublicAssetAdminFormService](../reference/back-end/classes/PublicAssetAdminFormService) (FormSchema + Metro field\_row).
@@ -118018,22 +118020,27 @@ function get_breadcrumbcategories($id, $separator="»") {
 
 
 
-**Ссылка на
-разработку**: [Перейти к разработке](https://devcraft.club/downloads/webmaster-verification.21/)
+<Callout type="warn" title="Устарело">
+  Плагин **Webmaster Verification** больше не развивается. Коды проверки сайта (Google, Яндекс и другие `meta`-теги в `<head>`) задаются в **DevCraft Admin**: раздел **Публичные заголовки**. См. [Публичные ресурсы оболочки](/dev/dle/devcraft_admin/guides/public_assets) и страницу [PublicHeadersPage](/dev/dle/devcraft_admin/reference/back-end/classes/PublicHeadersPage). Старый плагин с сайта снимайте, чтобы не дублировать одни и те же теги.
+</Callout>
 
-**Версия модификации**: <i class="fa-duotone fa-code-branch" /> 1.0.0
+Ниже — исходное описание плагина **1.0.0** (только для истории).
+
+**Ссылка на разработку**: [Архив на сайте](https://devcraft.club/downloads/webmaster-verification.21/)
+
+**Версия модификации**: 1.0.0
 
 ## Установка [#установка]
 
-Установить плагин через менеджер плагинов
+Установить плагин через менеджер плагинов. Для новых сайтов не используйте: ставьте DevCraft Admin.
 
 ## Функции [#функции]
 
-| Иконка                                 | Описание                                                                                                    |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| <img alt="add.jpg" src="__img0" />     | Эта кнопка создаёт новое поле для содержимого                                                               |
-| <img alt="delete.jpg" src="__img1" />  | Удаляет содержимое. Однако, как минимум одно поле должно оставаться. Поэтому последняя строчка не удаляется |
-| <img alt="copy.jpg" src="__img2" />    | Клонирует текущую строку                                                                                    |
+| Иконка                                | Описание                                                                                                    |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| <img alt="add.jpg" src="__img0" />    | Эта кнопка создаёт новое поле для содержимого                                                               |
+| <img alt="delete.jpg" src="__img1" /> | Удаляет содержимое. Однако, как минимум одно поле должно оставаться. Поэтому последняя строчка не удаляется |
+| <img alt="copy.jpg" src="__img2" />   | Клонирует текущую строку                                                                                    |
 
 
 # XF List Generator (/dev/dle/simple/xflist)

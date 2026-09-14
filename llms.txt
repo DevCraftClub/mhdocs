@@ -951,7 +951,7 @@
         - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типизированные подписки, шаблоны темы
     - Хаки и простые модули
       - [Schema.Org - Документация DevCraft](/dev/dle/simple/schema): Документация по интеграции Schema.Org разметки в проекты DevCraft.
-      - [Webmaster Verification](/dev/dle/simple/webmaster-verification)
+      - [Webmaster Verification](/dev/dle/simple/webmaster-verification): Устаревший плагин проверки сайта у поисковиков. Функция перенесена в DevCraft Admin.
       - [XF List Generator](/dev/dle/simple/xflist)
       - [XF Select](/dev/dle/simple/xfselect)
       - [Отдельные страницы как на кинопоиске](/dev/dle/simple/hook-pages-like-kp): Хак для DLE: отдельные страницы как на кинопоиске.

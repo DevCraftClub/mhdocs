@@ -2,10 +2,10 @@
 
 Статическая сборка документации DevCraft на **Fumadocs + React Router**. 
 
-Деплой CI: ветка `deploy/deploy-2026-09-14-18-46` → Pull Request в `main`. GitHub Pages Source = `main`.
+Деплой CI: ветка `deploy/deploy-2026-09-14-19-00` → Pull Request в `main`. GitHub Pages Source = `main`.
 
 - **Ссылка на документации**: https://readme.devcraft.club/
 - **Ссылка на документации (GH Pages)**: https://devcraftclub.github.io/mhdocs
 - **Ссылка на сайт**: https://devcraft.club/
 
-**Последнее обновление**: 2026-09-14 18:46 UTC
+**Последнее обновление**: 2026-09-14 19:00 UTC
