@@ -1,0 +1,4 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`using-superpowers (перенесено)`,description:`Страница переехала в development_help/skills.`},i=new Date(1789411081e3),a=`
+
+Перенесено: [using-superpowers](../../development_help/skills/using-superpowers).
+`,o={contents:[{heading:void 0,content:`Перенесено: using-superpowers.`}],headings:[]},s=[];function c(e){let t={a:`a`,p:`p`,...e.components};return(0,n.jsxs)(t.p,{children:[`Перенесено: `,(0,n.jsx)(t.a,{href:`../../development_help/skills/using-superpowers`,children:`using-superpowers`}),`.`]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};

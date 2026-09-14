@@ -15,7 +15,11 @@
   - [Graphify](/instructions/graphify): Установка и использование Graphify — граф знаний по кодовой базе для ИИ-агентов.
   - [Code Review Graph](/instructions/code-review-graph): Установка и использование code-review-graph — структурный граф кода через MCP.
   - [Codebase Memory MCP](/instructions/codebase-memory-mcp): Установка и использование codebase-memory-mcp — граф памяти по коду для агентов.
-  - [sqz](/instructions/sqz): Установка и использование sqz — сжатие длинного вывода команд для экономии токенов ИИ.
+  - [Caveman](/instructions/caveman): Skill краткой речи и MCP compress — замена sqz для длинного stdout/JSON.
+  - [cavemem](/instructions/cavemem): Локальная память агента (SQLite): remember / recall / supersede / history / forget.
+  - [Sequential Thinking](/instructions/sequential-thinking): Official MCP server-sequential-thinking — пошаговые мысли с revision и branch.
+  - [Memory (MCP)](/instructions/memory): Official MCP server-memory — локальный knowledge graph: entities, relations, observations.
+  - [mem0](/instructions/mem0): Setup MEM0_API_KEY, Cursor/CLI auth, onboard; add_memory / search_memories; отличие от cavemem.
   - [Ponytail](/instructions/ponytail): Установка и идея Ponytail — режим «ленивого сеньора» для ИИ-агента: минимум кода.
 - Разработки
   - [Разработки](/dev)
@@ -322,13 +326,13 @@
     - [TurboBitApi](/dev/api_wrappers/turbobit): Unofficial Python API wrapper for turbobit.net.
   - DevCraft Dev Tools
     - 1.1.0
-      - [Начало работы](/dev/dev-tools/1.1.0/getting_started): Обзор DevCraft Dev Tools, архитектура, требования и первые шаги
-      - [Установка](/dev/dev-tools/1.1.0/install): Способы установки, системные требования и конфигурация DevCraft Dev Tools
+      - [Начало работы](/dev/dev-tools/1.1.0/getting_started): Что такое DevCraft Dev Tools: описание, возможности, для кого, выбор базового класса и быстрый старт.
+      - [Установка](/dev/dev-tools/1.1.0/install): Как поставить DevCraft Dev Tools через Composer или с диска, требования и типичные ошибки.
       - Руководства
-        - [Файловый PSR-6 кэш](/dev/dev-tools/1.1.0/guides/file_cache): FileCachePool: ключи с namespace, TTL, clearNamespace, формат на диске.
-        - [Атрибуты With](/dev/dev-tools/1.1.0/guides/with_attributes): Fluent-сеттеры через #[With], #[WithItem], AbstractWith и WithHandler.
-        - [Getter и Setter](/dev/dev-tools/1.1.0/guides/accessors): Accessors #[Getter] и #[Setter] через lombok-php на AbstractWith.
-        - [Reflection mapper](/dev/dev-tools/1.1.0/guides/reflection_mapper): Гидратация и сериализация DTO через AbstractReflection и ReflectionMapper.
+        - [Файловый кэш PSR-6](/dev/dev-tools/1.1.0/guides/file_cache): FileCachePool: ключи с префиксами, TTL, clearNamespace, формат файлов на диске.
+        - [Атрибуты With](/dev/dev-tools/1.1.0/guides/with_attributes): Цепочки with* через #[With], #[WithItem], AbstractWith и WithHandler.
+        - [Getter и Setter](/dev/dev-tools/1.1.0/guides/accessors): Как #[Getter] и #[Setter] из lombok-php работают вместе с AbstractWith.
+        - [Маппер по reflection](/dev/dev-tools/1.1.0/guides/reflection_mapper): DTO: fromArray, toArray, toJson через AbstractReflection и ReflectionMapper.
         - [Валидация](/dev/dev-tools/1.1.0/guides/validation): Filter, Range, Regex, ArrayOf, PropertyValidator и ValidationException.
       - Справочник
         - [Справочник](/dev/dev-tools/1.1.0/reference): Классы, атрибуты и интерфейсы DevCraft Dev Tools.
@@ -358,8 +362,8 @@
           - [ValidationException](/dev/dev-tools/1.1.0/reference/exceptions/ValidationException): Исключение гидратации: карта ошибок по dotted property paths.
           - [InvalidArgument](/dev/dev-tools/1.1.0/reference/exceptions/InvalidArgument): PSR-6 InvalidArgumentException для невалидного ключа кэша.
       - English
-        - [Getting started](/dev/dev-tools/1.1.0/en/getting_started): Overview of DevCraft Dev Tools, architecture, requirements, and first steps.
-        - [Installation](/dev/dev-tools/1.1.0/en/install): Install and configure DevCraft Dev Tools via Composer or a path repository.
+        - [Getting started](/dev/dev-tools/1.1.0/en/getting_started): What DevCraft Dev Tools is: capabilities, audience, base-class choice, and quick start.
+        - [Installation](/dev/dev-tools/1.1.0/en/install): Install DevCraft Dev Tools with Composer or a path repository, requirements, and common issues.
         - Guides
           - [PSR-6 file cache](/dev/dev-tools/1.1.0/en/guides/file_cache): FileCachePool: namespaced keys, TTL, clearNamespace, on-disk format.
           - [With attributes](/dev/dev-tools/1.1.0/en/guides/with_attributes): Fluent setters with #[With], #[WithItem], AbstractWith, and WithHandler.
@@ -448,12 +452,194 @@
   - Datalife Engine (DLE)
     - [Обзор](/dev/dle): Плагины и модули DevCraft для DataLife Engine 20.0.
     - DevCraft Admin
+      - 200.4.1
+        - [Начало работы](/dev/dle/devcraft_admin/200.4.1/getting_started): Что такое DevCraft Admin: описание для пользователей и разработчиков, возможности, структура, быстрый старт панели.
+        - [Установка](/dev/dle/devcraft_admin/200.4.1/install): Установка и обновление плагина DevCraft Admin для DLE 20.0.
+        - [Миграция на DevCraft Admin](/dev/dle/devcraft_admin/200.4.1/migration): Перенос с MH Admin (Legacy) на DevCraft Admin для DLE 20.0.
+        - Руководства
+          - [Условия в шаблонах DLE (\[if\]/\[has\])](/dev/dle/devcraft_admin/200.4.1/guides/template_conditionals): Как писать [if] с [else] и новый блок [has] в публичных шаблонах после установки DevCraft Admin.
+          - [Публичные ресурсы оболочки](/dev/dle/devcraft_admin/200.4.1/guides/public_assets): Теги {devcraft*}, siteAssets, страницы Admin, синк в БД и компрессия.
+          - [Создание модуля](/dev/dle/devcraft_admin/200.4.1/guides/create_module): Каркас модуля DevCraft: каталоги, manifest, settings, changelog, страницы, AJAX и install.xml.
+          - [PHP DevCraft Standards](/dev/dle/devcraft_admin/200.4.1/guides/php_devcraft_standards): Оверлей: русский PHPDoc, DLEPlugins::Check, публичный Controller include — без дубля конституции.
+          - [Генератор модулей](/dev/dle/devcraft_admin/200.4.1/guides/new_module): Создание нового модуля DevCraft через админ-панель.
+          - [Module Identity](/dev/dle/devcraft_admin/200.4.1/guides/module_identity): Единый источник mod и code модуля: ModuleIdentity, AbstractModuleIdentity и *Identity классы.
+          - [Fluent Types](/dev/dle/devcraft_admin/200.4.1/guides/fluent_types): Fluent-билдеры и dual accept: массив или готовый объект — manifest, формы, changelog.
+          - [DataLoader и QueryBuilder](/dev/dle/devcraft_admin/200.4.1/guides/data_loader): Загрузка и запись строк DLE через static DataLoaderService: массив или QueryBuilder.
+          - [Слои данных: Cycle, DLE SDK, QueryBuilder](/dev/dle/devcraft_admin/200.4.1/guides/data_layers): Какой слой брать под таблицу: Cycle ORM для таблиц модуля, DLE SDK для ядра DLE, QueryBuilder для generic-загрузки.
+          - [Схема шлюза БД и автор записи](/dev/dle/devcraft_admin/200.4.1/guides/gateway_schema): Как Admin приводит таблицы Cycle к моделям и кто пишется в creator / lastEditor.
+          - [Примеры Form](/dev/dle/devcraft_admin/200.4.1/guides/form_examples): Практические примеры декларативных форм DevCraft: layout, типы полей, filter schema.
+          - [Создание CRUD-страницы](/dev/dle/devcraft_admin/200.4.1/guides/crud_pages): Сквозной сценарий CRUD-страницы DevCraft: Entity, Repository, список с фильтром, форма создания/редактирования, Ajax, манифест, Twig.
+          - [Настройка](/dev/dle/devcraft_admin/200.4.1/guides/manage): Глобальные настройки плагина DevCraft Admin.
+          - [Генератор языковых файлов](/dev/dle/devcraft_admin/200.4.1/guides/generate_languages): Локализация модулей DevCraft: XLIFF и Translation.
+          - [Справочник: ИИ-инструменты](/dev/dle/devcraft_admin/200.4.1/guides/ai_tools): Единая точка входа: skills, MCP, Cursor-rules, update-policy и промпт модуля DevCraft.
+        - Помощь в разработке
+          - [Помощь в разработке](/dev/dle/devcraft_admin/200.4.1/development_help): Skills, MCP и Cursor-rules для разработки сателлитов на DevCraft Admin.
+          - Skills
+            - [Skills](/dev/dle/devcraft_admin/200.4.1/development_help/skills): Каталог Cursor skills для разработки модулей DevCraft Admin.
+            - [Using Superpowers](/dev/dle/devcraft_admin/200.4.1/development_help/skills/using-superpowers): Invoke process-skills до действий — канон obra/superpowers для цикла DevCraft.
+            - [Grill with docs](/dev/dle/devcraft_admin/200.4.1/development_help/skills/grill-with-docs): Уточнение терминов и ADR перед спекой — mattpocock/skills grill-with-docs.
+            - [Create DevCraft plugin](/dev/dle/devcraft_admin/200.4.1/development_help/skills/create-devcraft-plugin): Skill создания, переноса и обновления сателлита DevCraft Admin.
+            - [Caveman (skill)](/dev/dle/devcraft_admin/200.4.1/development_help/skills/caveman): Краткая речь в цикле DevCraft и когда звать MCP compress.
+            - [Codebase Memory (skill)](/dev/dle/devcraft_admin/200.4.1/development_help/skills/codebase-memory): search_graph / trace_path перед правками Settings и Registry.
+          - MCP
+            - [MCP-серверы](/dev/dle/devcraft_admin/200.4.1/development_help/mcp): MCP и CLI для графов кода, памяти и пошагового мышления в DevCraft.
+            - [Graphify (DevCraft)](/dev/dle/devcraft_admin/200.4.1/development_help/mcp/graphify): CLI-граф знаний: query и update после DLE / DevCraft.
+            - [Code Review Graph (DevCraft)](/dev/dle/devcraft_admin/200.4.1/development_help/mcp/code-review-graph): MCP CRG: ориентация и update локальной БД графа.
+            - [Codebase Memory MCP (DevCraft)](/dev/dle/devcraft_admin/200.4.1/development_help/mcp/codebase-memory): Граф кода: search_graph, index после структурных правок.
+            - [Caveman MCP (DevCraft)](/dev/dle/devcraft_admin/200.4.1/development_help/mcp/caveman): Сжатие длинных tool-output: caveman_compress / retrieve.
+            - [Cavemem (DevCraft)](/dev/dle/devcraft_admin/200.4.1/development_help/mcp/cavemem): Локальный SQLite remember/recall прошлых сессий.
+            - [Sequential Thinking (DevCraft)](/dev/dle/devcraft_admin/200.4.1/development_help/mcp/sequential-thinking): Пошаговая декомпозиция больших задач через MCP.
+            - [mem0 (DevCraft)](/dev/dle/devcraft_admin/200.4.1/development_help/mcp/mem0): Platform memory: setup MEM0_API_KEY, add/search, разведение с cavemem.
+          - Правила
+            - [Правила Cursor](/dev/dle/devcraft_admin/200.4.1/development_help/rules): Какие .cursor/rules скопировать для разработки на DevCraft Admin.
+            - [reuse-first](/dev/dle/devcraft_admin/200.4.1/development_help/rules/reuse-first): Правило: не изобретать то, что есть в DevCraft Core.
+            - [graphify.mdc](/dev/dle/devcraft_admin/200.4.1/development_help/rules/graphify): Cursor-rule для graphify query/update.
+            - [code-review-graph.mdc](/dev/dle/devcraft_admin/200.4.1/development_help/rules/code-review-graph): Cursor-rule для CRG.
+            - [codebase-memory.mdc](/dev/dle/devcraft_admin/200.4.1/development_help/rules/codebase-memory): Cursor-rule для Codebase Memory MCP.
+            - [caveman.mdc](/dev/dle/devcraft_admin/200.4.1/development_help/rules/caveman): Cursor-rule для Caveman MCP compress.
+            - [cavemem.mdc](/dev/dle/devcraft_admin/200.4.1/development_help/rules/cavemem): Cursor-rule для Cavemem.
+            - [sequential-thinking.mdc](/dev/dle/devcraft_admin/200.4.1/development_help/rules/sequential-thinking): Cursor-rule для Sequential Thinking.
+            - [mem0.mdc](/dev/dle/devcraft_admin/200.4.1/development_help/rules/mem0): Cursor-rule: mem0 auth и add/search.
+            - [php-devcraft-standards](/dev/dle/devcraft_admin/200.4.1/development_help/rules/php-devcraft-standards): Указатель на PHP DevCraft Standards.
+            - [ponytail](/dev/dle/devcraft_admin/200.4.1/development_help/rules/ponytail): YAGNI и минимальный diff.
+        - Справочник
+          - Back-End
+            - [Содержание классов для разработки в Back-End](/dev/dle/devcraft_admin/200.4.1/reference/back-end): Обзор API DevCraft Admin: константы, функции и классы.
+            - [Точки входа](/dev/dle/devcraft_admin/200.4.1/reference/back-end/entry_points): Точки входа DevCraft Admin: DLE, bootstrap, AJAX.
+            - [Манифест модуля](/dev/dle/devcraft_admin/200.4.1/reference/back-end/manifest): Структура manifest.php модуля DevCraft Admin.
+            - [Версионирование плагинов](/dev/dle/devcraft_admin/200.4.1/reference/back-end/versioning): Почему мажор DevCraft — 160/173/180/200/261: это ветка DLE, а не «версия фичи».
+            - [Composer-пакеты модулей](/dev/dle/devcraft_admin/200.4.1/reference/back-end/composer_packages): Manifest composer_required, синхронизация json/lock и использование Core-API.
+            - [Shared-пакеты и абстракции](/dev/dle/devcraft_admin/200.4.1/reference/back-end/shared_packages): Граница между DevCraft Admin и внешними shared-пакетами, включая devcraftclub/dev-tools.
+            - Classes
+              - [Класс: AbstractEntity](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AbstractEntity): Документация по плагину класс: abstractentity для DLE.
+              - [Класс: AbstractPage](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AbstractPage): Документация по плагину класс: abstractpage для DLE.
+              - [Класс: AbstractRepository](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AbstractRepository): Документация по плагину класс: abstractrepository для DLE.
+              - [Класс: AbstractType](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AbstractType): Документация по плагину класс: abstracttype для DLE.
+              - [Класс: AdminContext](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AdminContext): Документация по плагину класс: admincontext для DLE.
+              - [Перечисление: AdminErrorKind](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AdminErrorKind): Документация по плагину перечисление: adminerrorkind для DLE.
+              - [Класс: AdminErrorRenderer](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AdminErrorRenderer): Документация по плагину класс: adminerrorrenderer для DLE.
+              - [Класс: AdminLink](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AdminLink): Документация по плагину класс: adminlink для DLE.
+              - [Класс: AdminLinkResolver](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AdminLinkResolver): Документация по плагину класс: adminlinkresolver для DLE.
+              - [Класс: AjaxController](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AjaxController): Документация по плагину класс: ajaxcontroller для DLE.
+              - [Интерфейс: AjaxHandlerInterface](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AjaxHandlerInterface): Документация по плагину интерфейс: ajaxhandlerinterface для DLE.
+              - [Класс: AjaxRequest](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AjaxRequest): Документация по плагину класс: ajaxrequest для DLE.
+              - [Класс: AjaxRouteRegistry](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AjaxRouteRegistry): Документация по плагину класс: ajaxrouteregistry для DLE.
+              - [Класс: Application](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/Application): Документация по плагину класс: application для DLE.
+              - [Класс: AssetsCheckerService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/AssetsCheckerService): Документация по плагину класс: assetscheckerservice для DLE.
+              - [Класс: Author](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/Author): Документация по плагину класс: author для DLE.
+              - [Класс: BreadCrumb](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/BreadCrumb): Документация по плагину класс: breadcrumb для DLE.
+              - [Класс: CacheControl](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/CacheControl): Документация по плагину класс: cachecontrol для DLE.
+              - [Класс: Changelog](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/Changelog): Документация по плагину класс: changelog для DLE.
+              - [ChangelogBuilder](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ChangelogBuilder): Fluent-запись changelog: version, date, added/changed/fixed → Changelog.
+              - [Класс: ChangelogChange](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ChangelogChange): Документация по плагину класс: changelogchange для DLE.
+              - [Перечисление: ChangelogChangeType](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ChangelogChangeType): Документация по плагину перечисление: changelogchangetype для DLE.
+              - [Класс: ChangelogPage](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ChangelogPage): Документация по плагину класс: changelogpage для DLE.
+              - [Класс: CheckAssetsHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/CheckAssetsHandler): Документация по плагину класс: checkassetshandler для DLE.
+              - [Класс: CheckUpdateHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/CheckUpdateHandler): Документация по плагину класс: checkupdatehandler для DLE.
+              - [Класс: ComposerActionResult](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ComposerActionResult): DTO результата действия Composer.
+              - [Класс: ComposerData](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ComposerData): ORM-сущность пакета Composer (таблица devcraft_composer_data).
+              - [Класс: ComposerDbSyncService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ComposerDbSyncService): Синхронизация composer.json, lock и manifest с таблицей devcraft_composer_data.
+              - [Класс: ComposerRuntimeAdapter](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ComposerRuntimeAdapter): Выполнение команд Composer CLI из веб-контекста.
+              - [Класс: ComposerStateReader](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ComposerStateReader): Чтение установленных пакетов из composer.lock.
+              - [Класс: ContextLogger](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ContextLogger): Документация по плагину класс: contextlogger для DLE.
+              - [Класс: CreatedByHook](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/CreatedByHook): Поведение Cycle: при создании записи пишет creator и lastEditor.
+              - [Класс: CurrentDleUserId](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/CurrentDleUserId): Адаптер сессии DLE: ID пользователя для аудита записи.
+              - [Класс: DashboardPage](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DashboardPage): Документация по плагину класс: dashboardpage для DLE.
+              - [Класс: DatabaseGateway](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DatabaseGateway): Документация по плагину класс: databasegateway для DLE.
+              - [Класс: DataLoaderService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DataLoaderService): Static-фасад загрузки и записи строк DLE через Cycle Database с кешированием SELECT.
+              - [Класс: DataManager](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DataManager): Документация по плагину класс: datamanager для DLE.
+              - [Класс: DefaultPackagePolicyStore](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DefaultPackagePolicyStore): Хранение политик пакетов в devcraft/config/composer_admin.json.
+              - [Класс: DeleteLogHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DeleteLogHandler): Документация по плагину класс: deleteloghandler для DLE.
+              - [Класс: DevCraftConfig](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DevCraftConfig): Документация по плагину класс: devcraftconfig для DLE.
+              - [Класс: DevCraftException](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DevCraftException): Документация по плагину класс: devcraftexception для DLE.
+              - [Класс: DleDataService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DleDataService): Static-фасад справочных данных DLE: пользователи, группы, категории, xfields.
+              - [Класс: DleMenuBuilder](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/DleMenuBuilder): Документация по плагину класс: dlemenubuilder для DLE.
+              - [Класс: EntityPathResolver](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/EntityPathResolver): Документация по плагину класс: entitypathresolver для DLE.
+              - [Класс: EnvironmentFactory](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/EnvironmentFactory): Документация по плагину класс: environmentfactory для DLE.
+              - [Класс: FileResponse](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FileResponse): HTTP-ответ со скачиванием файла из AJAX-handler DevCraft.
+              - [Интерфейс: FilterableRepositoryInterface](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FilterableRepositoryInterface): Документация по плагину интерфейс: filterablerepositoryinterface для DLE.
+              - [Класс: FilterFormService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FilterFormService): Документация по плагину класс: filterformservice для DLE.
+              - [Класс: FilterSchema](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FilterSchema): Документация по плагину класс: filterschema для DLE.
+              - [Класс: FormField](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FormField): Документация по плагину класс: formfield для DLE.
+              - [Класс: FormFieldBuilder](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FormFieldBuilder): Документация по плагину класс: formfieldbuilder для DLE.
+              - [Перечисление: FormLayout](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FormLayout): Документация по плагину перечисление: formlayout для DLE.
+              - [Класс: FormSchema](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FormSchema): Документация по плагину класс: formschema для DLE.
+              - [Класс: FormSchemaBuilder](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FormSchemaBuilder): Документация по плагину класс: formschemabuilder для DLE.
+              - [Класс: FormSection](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FormSection): Документация по плагину класс: formsection для DLE.
+              - [Класс: FormSectionBuilder](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/FormSectionBuilder): Документация по плагину класс: formsectionbuilder для DLE.
+              - [Класс: JsonResponse](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/JsonResponse): Документация по плагину класс: jsonresponse для DLE.
+              - [Класс: LanguageData](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/LanguageData): Документация по плагину класс: languagedata для DLE.
+              - [Класс: LogGenerator](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/LogGenerator): Документация по плагину класс: loggenerator для DLE.
+              - [Класс: LogMessagePresenter](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/LogMessagePresenter): Представление сообщения журнала для readonly-страницы.
+              - [Класс: LogRecord](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/LogRecord): Документация по плагину класс: logrecord для DLE.
+              - [Класс: LogRecordRepository](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/LogRecordRepository): Документация по плагину класс: logrecordrepository для DLE.
+              - [Класс: LogsPage](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/LogsPage): Страница журнала событий и readonly-деталь записи.
+              - [Класс: LogsTableHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/LogsTableHandler): Документация по плагину класс: logstablehandler для DLE.
+              - [Класс: ManifestPackageReader](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ManifestPackageReader): Агрегация composer_required из всех модулей реестра.
+              - [Класс: MenuComposer](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/MenuComposer): Документация по плагину класс: menucomposer для DLE.
+              - [ModuleAjaxConfigBuilder](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ModuleAjaxConfigBuilder): Fluent AJAX-секция манифеста: admin methods и publicMethod (allow_guest).
+              - [Класс: ModuleData](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ModuleData): Документация по плагину класс: moduledata для DLE.
+              - [Класс: ModuleGeneratorInput](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ModuleGeneratorInput): Документация по плагину класс: modulegeneratorinput для DLE.
+              - [Класс: ModuleGeneratorService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ModuleGeneratorService): Документация по плагину класс: modulegeneratorservice для DLE.
+              - [ModuleManifestBuilder](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ModuleManifestBuilder): Fluent-строитель manifest.php: меню, ajax, changelog, assets, siteAssets → ModuleManifest.
+              - [Класс: ModuleSiteAssets](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ModuleSiteAssets): DTO секции `siteAssets` манифеста: js, css, meta.
+              - [Класс: ModuleSiteAssetsBuilder](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ModuleSiteAssetsBuilder): Fluent-строитель `siteAssets` для манифеста.
+              - [Класс: NewModuleHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/NewModuleHandler): Документация по плагину класс: newmodulehandler для DLE.
+              - [Класс: NewModulePage](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/NewModulePage): Документация по плагину класс: newmodulepage для DLE.
+              - [Класс: PackagePolicyService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PackagePolicyService): Проверка default-политик перед install/update/remove.
+              - [Интерфейс: PageInterface](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PageInterface): Документация по плагину интерфейс: pageinterface для DLE.
+              - [Класс: PageOrchestrator](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PageOrchestrator): Документация по плагину класс: pageorchestrator для DLE.
+              - [Класс: ParseTemplateTags](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ParseTemplateTags): Парсинг тегов шаблонов новости DLE для модулей DevCraft.
+              - [Класс: Paths](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/Paths): Документация по плагину класс: paths для DLE.
+              - [Класс: PluginContext](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PluginContext): Документация по плагину класс: plugincontext для DLE.
+              - [Класс: PublicAssetAdminFormService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetAdminFormService): View-model форм добавления через FormSchema + SettingsFormService.
+              - [Класс: PublicAssetBundleCacheService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetBundleCacheService): Кэш объединённых CSS/JS бандлов оболочки.
+              - [Класс: PublicAssetDeleteHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetDeleteHandler): AJAX-обработчик `PublicAssetDeleteHandler` публичных ресурсов (`devcraft/ajax.php`, `controller=admin`).
+              - [Класс: PublicAssetEntry](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetEntry): Запись списка публичных CSS/JS оболочки (таблица `dc_public_assets`).
+              - [Класс: PublicAssetEntryRepository](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetEntryRepository): Репозиторий публичных CSS/JS.
+              - [Класс: PublicAssetManifestSyncService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetManifestSyncService): Синхронизация `siteAssets` манифеста с таблицами Admin.
+              - [Класс: PublicAssetMinify](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetMinify): Минификация CSS/JS для сжатого бандла.
+              - [Класс: PublicAssetRemoteDownloadService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetRemoteDownloadService): Скачивание HTTPS remote CSS/JS в кэш (10s / 2 MiB).
+              - [Класс: PublicAssetReorderHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetReorderHandler): AJAX-обработчик `PublicAssetReorderHandler` публичных ресурсов (`devcraft/ajax.php`, `controller=admin`).
+              - [Класс: PublicAssetSaveHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetSaveHandler): AJAX-обработчик `PublicAssetSaveHandler` публичных ресурсов (`devcraft/ajax.php`, `controller=admin`).
+              - [Класс: PublicAssetSeedService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetSeedService): Однократный сид Admin `dc_public.js`.
+              - [Класс: PublicAssetTagService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetTagService): Подстановка тегов `{devcraft}` / `{devcraft-header}` / `{devcraft-scripts}` в `main.tpl`.
+              - [Класс: PublicAssetToggleHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetToggleHandler): AJAX-обработчик `PublicAssetToggleHandler` публичных ресурсов (`devcraft/ajax.php`, `controller=admin`).
+              - [Класс: PublicAssetWriteService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicAssetWriteService): CRUD и DnD публичных CSS/JS.
+              - [Класс: PublicHeaderDeleteHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicHeaderDeleteHandler): AJAX-обработчик `PublicHeaderDeleteHandler` публичных ресурсов (`devcraft/ajax.php`, `controller=admin`).
+              - [Класс: PublicHeaderEntry](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicHeaderEntry): Запись публичного meta name/content (таблица `dc_public_headers`).
+              - [Класс: PublicHeaderEntryRepository](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicHeaderEntryRepository): Репозиторий публичных meta-заголовков.
+              - [Класс: PublicHeaderReorderHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicHeaderReorderHandler): AJAX-обработчик `PublicHeaderReorderHandler` публичных ресурсов (`devcraft/ajax.php`, `controller=admin`).
+              - [Класс: PublicHeaderSaveHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicHeaderSaveHandler): AJAX-обработчик `PublicHeaderSaveHandler` публичных ресурсов (`devcraft/ajax.php`, `controller=admin`).
+              - [Класс: PublicHeadersPage](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicHeadersPage): Страница «Публичные заголовки».
+              - [Класс: PublicScriptsPage](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicScriptsPage): Страница «Публичные скрипты».
+              - [Класс: PublicStylesPage](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/PublicStylesPage): Страница «Публичные стили».
+              - [QueryBuilder](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/QueryBuilder): Fluent-аргументы для DataLoaderService (SELECT / INSERT / UPDATE / DELETE) на AbstractWith + #[With]/#[WithItem].
+              - [Класс: Registry](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/Registry): Документация по плагину класс: registry для DLE.
+              - [Интерфейс: ResponseInterface](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/ResponseInterface): Документация по плагину интерфейс: responseinterface для DLE.
+              - [Класс: Router](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/Router): Документация по плагину класс: router для DLE.
+              - [Класс: SaveAssetHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/SaveAssetHandler): Документация по плагину класс: saveassethandler для DLE.
+              - [Класс: SchemaSyncService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/SchemaSyncService): Готовит схему Cycle ORM: ожидающие файлы, затем debug или файлы изменений.
+              - [Класс: SettingsFormService](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/SettingsFormService): Документация по плагину класс: settingsformservice для DLE.
+              - [Класс: SettingsHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/SettingsHandler): Документация по плагину класс: settingshandler для DLE.
+              - [Класс: SettingsPage](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/SettingsPage): Документация по плагину класс: settingspage для DLE.
+              - [Интерфейс: SettingsPageInterface](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/SettingsPageInterface): Документация по плагину интерфейс: settingspageinterface для DLE.
+              - [SortDirection](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/SortDirection): Enum ASC/DESC для orderBy / DataLoader; обёртка над SelectQuery::SORT_*.
+              - [Класс: SyncAssetsHandler](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/SyncAssetsHandler): Документация по плагину класс: syncassetshandler для DLE.
+              - [Класс: Translation](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/Translation): Документация по плагину класс: translation для DLE.
+              - [Класс: TwigTranslatorBridge](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/TwigTranslatorBridge): Документация по плагину класс: twigtranslatorbridge для DLE.
+              - [Класс: UpdatedByHook](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/UpdatedByHook): Поведение Cycle: при обновлении записи пишет только lastEditor.
+              - [Класс: UploadedFile](/dev/dle/devcraft_admin/200.4.1/reference/back-end/classes/UploadedFile): Обёртка над $_FILES для multipart-загрузок в админке DevCraft.
+          - Front-End
+            - [Шаблоны](/dev/dle/devcraft_admin/200.4.1/reference/front-end/templates): Структура Twig-шаблонов DevCraft Admin.
+        - [История изменений](/dev/dle/devcraft_admin/200.4.1/changelog): Журнал изменений DevCraft Admin.
       - 200.4.0
         - [Начало работы](/dev/dle/devcraft_admin/200.4.0/getting_started): Что такое DevCraft Admin: описание, возможности, требования и куда идти дальше.
         - [Установка](/dev/dle/devcraft_admin/200.4.0/install): Установка и обновление плагина DevCraft Admin для DLE 20.0.
         - [Миграция на DevCraft Admin](/dev/dle/devcraft_admin/200.4.0/migration): Перенос с MH Admin (Legacy) на DevCraft Admin для DLE 20.0.
-        - Гайды
+        - Руководства
           - [Создание модуля](/dev/dle/devcraft_admin/200.4.0/guides/create_module): Каркас модуля DevCraft: каталоги, manifest, settings, changelog, страницы, AJAX и install.xml.
+          - [PHP DevCraft Standards](/dev/dle/devcraft_admin/200.4.0/guides/php_devcraft_standards): Оверлей: русский PHPDoc, DLEPlugins::Check, публичные templates — без дубля конституции.
           - [Генератор модулей](/dev/dle/devcraft_admin/200.4.0/guides/new_module): Создание нового модуля DevCraft через админ-панель.
           - [Module Identity](/dev/dle/devcraft_admin/200.4.0/guides/module_identity): Единый источник mod и code модуля: ModuleIdentity, AbstractModuleIdentity и *Identity классы.
           - [Fluent Types](/dev/dle/devcraft_admin/200.4.0/guides/fluent_types): Fluent-билдеры и dual accept: массив или готовый объект — manifest, формы, changelog.
@@ -462,7 +648,37 @@
           - [Создание CRUD-страницы](/dev/dle/devcraft_admin/200.4.0/guides/crud_pages): Сквозной сценарий CRUD-страницы DevCraft: Entity, Repository, список с фильтром, форма создания/редактирования, Ajax, манифест, Twig.
           - [Настройка](/dev/dle/devcraft_admin/200.4.0/guides/manage): Глобальные настройки плагина DevCraft Admin.
           - [Генератор языковых файлов](/dev/dle/devcraft_admin/200.4.0/guides/generate_languages): Локализация модулей DevCraft: XLIFF и Translation.
-          - [ИИ-инструменты](/dev/dle/devcraft_admin/200.4.0/guides/ai_tools): Промпты и инструменты для ИИ-агентов при разработке модулей DevCraft.
+          - [Справочник: ИИ-инструменты](/dev/dle/devcraft_admin/200.4.0/guides/ai_tools): Единая точка входа: skills, MCP, Cursor-rules, update-policy и промпт модуля DevCraft.
+        - Помощь в разработке
+          - [Помощь в разработке](/dev/dle/devcraft_admin/200.4.0/development_help): Skills, MCP и Cursor-rules для разработки сателлитов на DevCraft Admin.
+          - Skills
+            - [Skills](/dev/dle/devcraft_admin/200.4.0/development_help/skills): Каталог Cursor skills для разработки модулей DevCraft Admin.
+            - [Using Superpowers](/dev/dle/devcraft_admin/200.4.0/development_help/skills/using-superpowers): Invoke process-skills до действий — канон obra/superpowers для цикла DevCraft.
+            - [Grill with docs](/dev/dle/devcraft_admin/200.4.0/development_help/skills/grill-with-docs): Уточнение терминов и ADR перед спекой — mattpocock/skills grill-with-docs.
+            - [Create DevCraft plugin](/dev/dle/devcraft_admin/200.4.0/development_help/skills/create-devcraft-plugin): Skill создания, переноса и обновления сателлита DevCraft Admin.
+            - [Caveman (skill)](/dev/dle/devcraft_admin/200.4.0/development_help/skills/caveman): Краткая речь в цикле DevCraft и когда звать MCP compress.
+            - [Codebase Memory (skill)](/dev/dle/devcraft_admin/200.4.0/development_help/skills/codebase-memory): search_graph / trace_path перед правками Settings и Registry.
+          - MCP
+            - [MCP-серверы](/dev/dle/devcraft_admin/200.4.0/development_help/mcp): MCP и CLI для графов кода, памяти и пошагового мышления в DevCraft.
+            - [Graphify (DevCraft)](/dev/dle/devcraft_admin/200.4.0/development_help/mcp/graphify): CLI-граф знаний: query и update после DLE / DevCraft.
+            - [Code Review Graph (DevCraft)](/dev/dle/devcraft_admin/200.4.0/development_help/mcp/code-review-graph): MCP CRG: ориентация и update локальной БД графа.
+            - [Codebase Memory MCP (DevCraft)](/dev/dle/devcraft_admin/200.4.0/development_help/mcp/codebase-memory): Граф кода: search_graph, index после структурных правок.
+            - [Caveman MCP (DevCraft)](/dev/dle/devcraft_admin/200.4.0/development_help/mcp/caveman): Сжатие длинных tool-output: caveman_compress / retrieve.
+            - [Cavemem (DevCraft)](/dev/dle/devcraft_admin/200.4.0/development_help/mcp/cavemem): Локальный SQLite remember/recall прошлых сессий.
+            - [Sequential Thinking (DevCraft)](/dev/dle/devcraft_admin/200.4.0/development_help/mcp/sequential-thinking): Пошаговая декомпозиция больших задач через MCP.
+            - [mem0 (DevCraft)](/dev/dle/devcraft_admin/200.4.0/development_help/mcp/mem0): Platform memory: setup MEM0_API_KEY, add/search, разведение с cavemem.
+          - Правила
+            - [Правила Cursor](/dev/dle/devcraft_admin/200.4.0/development_help/rules): Какие .cursor/rules скопировать для разработки на DevCraft Admin.
+            - [reuse-first](/dev/dle/devcraft_admin/200.4.0/development_help/rules/reuse-first): Правило: не изобретать то, что есть в DevCraft Core.
+            - [graphify.mdc](/dev/dle/devcraft_admin/200.4.0/development_help/rules/graphify): Cursor-rule для graphify query/update.
+            - [code-review-graph.mdc](/dev/dle/devcraft_admin/200.4.0/development_help/rules/code-review-graph): Cursor-rule для CRG.
+            - [codebase-memory.mdc](/dev/dle/devcraft_admin/200.4.0/development_help/rules/codebase-memory): Cursor-rule для Codebase Memory MCP.
+            - [caveman.mdc](/dev/dle/devcraft_admin/200.4.0/development_help/rules/caveman): Cursor-rule для Caveman MCP compress.
+            - [cavemem.mdc](/dev/dle/devcraft_admin/200.4.0/development_help/rules/cavemem): Cursor-rule для Cavemem.
+            - [sequential-thinking.mdc](/dev/dle/devcraft_admin/200.4.0/development_help/rules/sequential-thinking): Cursor-rule для Sequential Thinking.
+            - [mem0.mdc](/dev/dle/devcraft_admin/200.4.0/development_help/rules/mem0): Cursor-rule: mem0 auth и add/search.
+            - [php-devcraft-standards](/dev/dle/devcraft_admin/200.4.0/development_help/rules/php-devcraft-standards): Указатель на PHP DevCraft Standards.
+            - [ponytail](/dev/dle/devcraft_admin/200.4.0/development_help/rules/ponytail): YAGNI и минимальный diff.
         - Справочник
           - Back-End
             - [Содержание классов для разработки в Back-End](/dev/dle/devcraft_admin/200.4.0/reference/back-end): Обзор API DevCraft Admin: константы, функции и классы.
@@ -567,10 +783,40 @@
             - [Шаблоны](/dev/dle/devcraft_admin/200.4.0/reference/front-end/templates): Структура Twig-шаблонов DevCraft Admin.
         - [История изменений](/dev/dle/devcraft_admin/200.4.0/changelog): Журнал изменений DevCraft Admin.
     - DLE API
+      - 200.1.1
+        - [Начало работы](/dev/dle/dle_api/200.1.1/getting_started): Что такое DLE API: REST /api/v2, ключи и OAuth, для кого, быстрый старт и карта документации.
+        - [Установка](/dev/dle/dle_api/200.1.1/install): Как поставить DLE API после DevCraft Admin: Composer в api/, таблицы, профиль, nginx.
+        - Руководства
+          - [Авторизация](/dev/dle/dle_api/200.1.1/guides/auth): Как получить пропуск (Bearer) и ходить в /api/v2: AuthToken, /me, /key/check.
+          - [OAuth-клиенты](/dev/dle/dle_api/200.1.1/guides/oauth-client): Как завести приложение в админке DLE API: ключ, grants, redirect, секрет.
+          - [OAuth Authorization Server](/dev/dle/dle_api/200.1.1/guides/oauth-server): Как сайт DLE выдаёт токены: discovery, authorize, credential_type и curl.
+          - [Проверка в Postman](/dev/dle/dle_api/200.1.1/guides/postman): Проверка OAuth-клиента DLE API в Postman: client_credentials, authorization_code + PKCE, GET /me.
+          - [Как работать с эндпоинтами](/dev/dle/dle_api/200.1.1/guides/endpoints): База /api/v2: пропуск Bearer, sugar vs /table/, ответы и типичные ошибки.
+          - [Инструкция .env](/dev/dle/dle_api/200.1.1/guides/env): Переменные ROOT/.env для DLE API: DEMO_MODE, DLEAPI_SECURE и настройки для локальных тестов.
+          - [Создание новости](/dev/dle/dle_api/200.1.1/guides/posts-create): Как создать новость через POST /post/ и править её через /table/post/.
+          - [Поиск новостей](/dev/dle/dle_api/200.1.1/guides/posts-search): Как получить список новостей с фильтрами: GET /post/ и GET /table/post/.
+          - [Доп. поля и новости](/dev/dle/dle_api/200.1.1/guides/xfields-news): Каталог xfields, encode в строку DLE, запись в новость и фильтр xf[].
+          - [Создание пользователя](/dev/dle/dle_api/200.1.1/guides/users-create): Как создать пользователя DLE через POST /user/ или /table/users/.
+          - [Поиск пользователей](/dev/dle/dle_api/200.1.1/guides/users-search): Как найти пользователей через GET /table/users/ с фильтрами.
+          - [Создание плагина](/dev/dle/dle_api/200.1.1/guides/plugins-create): Как зарегистрировать плагин DLE через POST /plugin/ с файлами правок.
+          - [SDK (DcApi)](/dev/dle/dle_api/200.1.1/guides/sdk): Как пользоваться DcApi из DevCraft Admin на том же PHP, что и сайт: новости, пользователи, плагины.
+          - [XenForo и DLE API](/dev/dle/dle_api/200.1.1/guides/xenforo): Два направления OAuth: логин на форуме через DLE и токены XenForo для XF API.
+          - [Настройки](/dev/dle/dle_api/200.1.1/guides/settings): Что крутить в DevCraft → DLE API → Настройки: ключи, TTL, профиль, уведомления.
+          - [Уровни доступа](/dev/dle/dle_api/200.1.1/guides/access-levels): Уровень = набор разрешений для API-ключа: read/write/edit/delete, own_only, cheater.
+          - [Синхронизация с группами](/dev/dle/dle_api/200.1.1/guides/access-sync): Как привязать группу пользователей DLE к уровню доступа API.
+          - [Шаблоны](/dev/dle/dle_api/200.1.1/guides/templates): Блок API-ключа в профиле (.tpl) и тексты писем/ЛС о заявках на ключ.
+          - [Безопасность](/dev/dle/dle_api/200.1.1/guides/security): Что API уже защищает сам и что проверить перед продакшеном.
+          - [Миграция API v1 → v2](/dev/dle/dle_api/200.1.1/guides/migrate-v1-v2): Чем v2 отличается от удалённого v1 и как перевести клиента.
+        - Справочник
+          - [Справочник](/dev/dle/dle_api/200.1.1/reference): HTTP /api/v2, SDK DcApi и OpenAPI для DLE API.
+          - [HTTP /api/v2](/dev/dle/dle_api/200.1.1/reference/http): REST-эндпоинты DLE API: Bearer, /table, фильтры, xfields, upload.
+          - [SDK (DcApi)](/dev/dle/dle_api/200.1.1/reference/sdk): Шпаргалка DcApi: фасады Schema, query, xfields. Код SDK — в DevCraft Admin, не в пакете DLE API.
+          - [OpenAPI](/dev/dle/dle_api/200.1.1/reference/openapi): Интерактивная спецификация OpenAPI для /api/v2.
+        - [История изменений](/dev/dle/dle_api/200.1.1/changelog): История изменений DLE API.
       - 200.1.0
         - [Начало работы](/dev/dle/dle_api/200.1.0/getting_started): Неофициальное REST API для DataLife Engine 20.0 (/api/v2).
         - [Установка](/dev/dle/dle_api/200.1.0/install): Особые шаги DLE API после общей установки плагина DevCraft.
-        - Гайды
+        - Руководства
           - [Авторизация](/dev/dle/dle_api/200.1.0/guides/auth): Как получить пропуск (Bearer) и ходить в /api/v2: AuthToken, /me, /key/check.
           - [OAuth-клиенты](/dev/dle/dle_api/200.1.0/guides/oauth-client): Как завести приложение в админке DLE API: ключ, grants, redirect, секрет.
           - [OAuth Authorization Server](/dev/dle/dle_api/200.1.0/guides/oauth-server): Как сайт DLE выдаёт токены: discovery, authorize, credential_type и curl.
@@ -601,7 +847,7 @@
         - [Начало работы](/dev/dle/dle_faker/200.1.4/getting_started): Обзор DLE Faker 200.1.4: требования и структура модуля.
         - [Установка](/dev/dle/dle_faker/200.1.4/install): Установка DLE Faker 200.1.4 для DLE 20.0 с DevCraft Admin.
         - [Настройки](/dev/dle/dle_faker/200.1.4/settings): Настройки модуля DLE Faker в DevCraft Admin.
-        - Гайды
+        - Руководства
           - [Генератор новостей](/dev/dle/dle_faker/200.1.4/guides/gen_news): Генерация новостей по шаблонам DLE Faker.
           - [Генератор пользователей](/dev/dle/dle_faker/200.1.4/guides/gen_users): Генерация пользователей DLE Faker.
           - [Парсер шаблонов](/dev/dle/dle_faker/200.1.4/guides/parser): Как DLE Faker разбирает теги шаблонов вида {{ … }}.
@@ -610,18 +856,60 @@
           - [Теги для шаблона пользователей](/dev/dle/dle_faker/200.1.4/guides/tag_for_users): Документация по плагину теги для шаблона пользователей для DLE.
         - [История изменений](/dev/dle/dle_faker/200.1.4/changelog): Changelog DLE Faker.
     - DB Manager
+      - 200.1.4
+        - [Начало работы](/dev/dle/db_manager/200.1.4/getting_started): Обзор DB Manager 200.1.4: экспорт и импорт таблиц MySQL для DLE.
+        - [Установка](/dev/dle/db_manager/200.1.4/install): Установка DB Manager 200.1.4 для DLE 20.0 с DevCraft Admin.
+        - [Миграция](/dev/dle/db_manager/200.1.4/migration): Перенос DB Manager с MHAdmin на DevCraft Admin 200.1.4.
       - 200.1.3
         - [Начало работы](/dev/dle/db_manager/200.1.3/getting_started): Обзор DB Manager 200.1.3: экспорт и импорт таблиц MySQL для DLE.
         - [Установка](/dev/dle/db_manager/200.1.3/install): Установка DB Manager 200.1.3 для DLE 20.0 с DevCraft Admin.
         - [Миграция](/dev/dle/db_manager/200.1.3/migration): Перенос DB Manager с MHAdmin на DevCraft Admin 200.1.3.
     - TagsAdd
       - 200.3.1
-        - [Начало работы](/dev/dle/usertags/200.3.1/getting_started): Обзор TagsAdd 200.3.1: требования и структура модуля.
-        - [Установка - TagsAdd (Пользовательские теги)](/dev/dle/usertags/200.3.1/install): Установка TagsAdd 200.3.1 для DLE 20.0 с DevCraft Admin.
-        - [Настройки](/dev/dle/usertags/200.3.1/settings): Настройки TagsAdd: уведомления, вставка тегов, шаблоны PM.
-        - Гайды
-          - [Подключение в теме](/dev/dle/usertags/200.3.1/guides/theme): Include TagsAdd в fullstory.tpl и теги шаблонов button/modal.
-        - [История изменений](/dev/dle/usertags/200.3.1/changelog): Changelog TagsAdd (Пользовательские теги) с привязкой к коммитам GitHub.
+        - [Начало работы](/dev/dle/usertags/200.3.1/getting_started): Что такое TagsAdd: предложение тегов к новостям, модерация, настройки и подключение в теме.
+        - [Установка](/dev/dle/usertags/200.3.1/install): Как поставить TagsAdd после DevCraft Admin: ZIP, Composer, первый запуск.
+        - [Настройки](/dev/dle/usertags/200.3.1/settings): Настройки TagsAdd: уведомления, вставка тегов, шаблоны ЛС.
+        - Руководства
+          - [Подключение в теме](/dev/dle/usertags/200.3.1/guides/theme): Include TagsAdd в fullstory.tpl: css, button, modal, js и теги шаблонов.
+        - [История изменений](/dev/dle/usertags/200.3.1/changelog): История изменений TagsAdd (пользовательские теги).
+    - UserLists
+      - 200.1.0
+        - [Начало работы](/dev/dle/user_lists/200.1.0/getting_started): Обзор UserLists 200.1.0: свои и общие списки новостей, кнопка на материале, каталог и предложения — без правок штатного «Избранного» DLE.
+        - [Установка](/dev/dle/user_lists/200.1.0/install): Как поставить UserLists 200.1.0: файлы, SQL-регистрация, Composer, первый запуск.
+        - Руководства
+          - [Подключение в теме](/dev/dle/user_lists/200.1.0/guides/theme): Includes UserLists на новости и публичные страницы списков.
+          - [Списки и видимость](/dev/dle/user_lists/200.1.0/guides/lists-and-visibility): Админ-списки, приват/публик, права групп и предложения новостей.
+        - [История изменений](/dev/dle/user_lists/200.1.0/changelog): Changelog UserLists 200.1.0.
+    - Связи
+      - 210.1.0
+        - [Начало работы](/dev/dle/connections/210.1.0/getting_started): Обзор плагина «Связи»: сборки новостей, админка и вывод на сайте.
+        - [Установка](/dev/dle/connections/210.1.0/install): Особые шаги установки плагина «Связи» после общей инструкции DevCraft.
+        - Руководства
+          - [Дерево в админке](/dev/dle/connections/210.1.0/guides/admin-tree): Разделы админки «Связи»: страницы, шаблоны и работа со сборками.
+          - [Вкладка на форме новости](/dev/dle/connections/210.1.0/guides/news-form): Черновик связей на формах добавления и правки новости в админке DLE.
+          - [Публичный вывод](/dev/dle/connections/210.1.0/guides/public-include): Как показать связанные новости на полной новости и на форме добавления с сайта.
+          - [Категории сборок](/dev/dle/connections/210.1.0/guides/collection-types): Категории сборок в плагине «Связи»: где создать и как используются.
+          - [Типы связей](/dev/dle/connections/210.1.0/guides/relation-types): Каталог типов связей в модуле «Связи».
+        - Справочник
+          - [Справочник](/dev/dle/connections/210.1.0/reference): Модели и службы модуля «Связи» 210.1.0.
+          - Классы
+            - [ConnectionCollection](/dev/dle/connections/210.1.0/reference/classes/ConnectionCollection): Сборка связанных новостей.
+            - [ConnectionItem](/dev/dle/connections/210.1.0/reference/classes/ConnectionItem): Новость внутри сборки связей.
+            - [ConnectionRelationType](/dev/dle/connections/210.1.0/reference/classes/ConnectionRelationType): Тип связи между новостями.
+          - Сервисы
+            - [CollectionService](/dev/dle/connections/210.1.0/reference/services/CollectionService): CRUD и дерево сборок Connections.
+            - [CollectionTypeService](/dev/dle/connections/210.1.0/reference/services/CollectionTypeService): CRUD категорий сборок Connections (type_id).
+            - [ItemService](/dev/dle/connections/210.1.0/reference/services/ItemService): Элементы сборок: add, move, visibility.
+            - [RelationTypeService](/dev/dle/connections/210.1.0/reference/services/RelationTypeService): CRUD типов связей.
+            - [PublicTreeService](/dev/dle/connections/210.1.0/reference/services/PublicTreeService): Дерево связей для публичного блока новости.
+        - [История изменений](/dev/dle/connections/210.1.0/changelog): История изменений плагина «Связи» 210.1.0.
+    - Связи: Автоматизация
+      - 1.0.0
+        - [Начало работы](/dev/dle/connections_automation/1.0.0/getting_started): Обзор сателлита «Связи: Автоматизация» — правила, шаблоны узоров и запуск в модуле Связи.
+        - [Установка](/dev/dle/connections_automation/1.0.0/install): Особые шаги установки «Связи: Автоматизация» после общей инструкции DevCraft.
+        - Руководства
+          - [Редактор правил и своя схема позиций](/dev/dle/connections_automation/1.0.0/guides/rule-editor): Как открыть редактор правил, разобрать линейный пример и настроить схему «Своя».
+        - [История изменений](/dev/dle/connections_automation/1.0.0/changelog): История изменений «Связи: Автоматизация» 1.0.0.
     - Re: Post - Пересылка новостей
       - 200.1.0
         - [Начало работы](/dev/dle/repost/200.1.0/getting_started)
@@ -629,7 +917,7 @@
         - Providers
           - [Telegram (RePost)](/dev/dle/repost/200.1.0/providers/telegram)
           - [RePost Provider: VK (платное)](/dev/dle/repost/200.1.0/providers/vk)
-        - Гайды
+        - Руководства
           - [Подключения RePost](/dev/dle/repost/200.1.0/guides/connections)
           - [Cron RePost](/dev/dle/repost/200.1.0/guides/cron)
           - [API RePost для парсеров](/dev/dle/repost/200.1.0/guides/custom_add)
@@ -650,12 +938,15 @@
           - [Шаблоны и теги](/dev/dle/notifications/200.1.0/guides/scenario_templates): Файлы .tpl темы, сценарии, обёртки, кнопка подписки и лента
           - [Сценарии событий](/dev/dle/notifications/200.1.0/guides/scenarios): Какое событие какой .tpl сценария вызывает и кому уходит
           - [Кастомное событие](/dev/dle/notifications/200.1.0/guides/custom_event): Свой notifySend: шаблон, права групп, настройки модуля и доп. поле
+          - [Свой канал доставки](/dev/dle/notifications/200.1.0/guides/custom_channel): Как реализовать ChannelInterface и зарегистрировать канал в ChannelRegistry
+          - [Сателлиты](/dev/dle/notifications/200.1.0/guides/satellites): Telegram, дайджест и статистика: установка, настройки, апселл-бандл
           - [Лента на сайте: стена и колокольчик](/dev/dle/notifications/200.1.0/guides/inbox_api): Список уведомлений, непрочитанные, автообновление и удаление
           - [Права групп](/dev/dle/notifications/200.1.0/guides/permissions): Флаги прав модуля по группам DLE
           - [Настройки пользователя](/dev/dle/notifications/200.1.0/guides/user_prefs): Цепочка прав, доп. поля профиля и галочки DLE для каналов
         - Справочник
           - [Справочник API](/dev/dle/notifications/200.1.0/reference): Функции notify* для хаков и сторонних модулей
           - [Notify](/dev/dle/notifications/200.1.0/reference/Notify): notifySend, onNewsSaved, onCommentAdded, рейтинг/удаление/подписка и класс Notify
+          - [ChannelInterface](/dev/dle/notifications/200.1.0/reference/ChannelInterface): Контракт канала доставки уведомлений и регистрация в ChannelRegistry
           - [Site/web.php](/dev/dle/notifications/200.1.0/reference/web): Параметры include: focus, stype, id и теги шаблона
         - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типизированные подписки, шаблоны темы
     - Хаки и простые модули
