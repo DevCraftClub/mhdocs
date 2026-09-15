@@ -475,12 +475,12 @@
         - Помощь в разработке
           - [Помощь в разработке](/dev/dle/devcraft_admin/200.4.1/development_help): Skills, MCP и Cursor-rules для разработки сателлитов на DevCraft Admin.
           - Skills
-            - [Skills](/dev/dle/devcraft_admin/200.4.1/development_help/skills): Каталог Cursor skills для разработки модулей DevCraft Admin.
-            - [Using Superpowers](/dev/dle/devcraft_admin/200.4.1/development_help/skills/using-superpowers): Invoke process-skills до действий — канон obra/superpowers для цикла DevCraft.
-            - [Grill with docs](/dev/dle/devcraft_admin/200.4.1/development_help/skills/grill-with-docs): Уточнение терминов и ADR перед спекой — mattpocock/skills grill-with-docs.
-            - [Create DevCraft plugin](/dev/dle/devcraft_admin/200.4.1/development_help/skills/create-devcraft-plugin): Skill создания, переноса и обновления сателлита DevCraft Admin.
-            - [Caveman (skill)](/dev/dle/devcraft_admin/200.4.1/development_help/skills/caveman): Краткая речь в цикле DevCraft и когда звать MCP compress.
-            - [Codebase Memory (skill)](/dev/dle/devcraft_admin/200.4.1/development_help/skills/codebase-memory): search_graph / trace_path перед правками Settings и Registry.
+            - [Skills](/dev/dle/devcraft_admin/200.4.1/development_help/skills): Каталог Cursor skills для разработки модулей DevCraft Admin. На каждой странице — полный текст skill.
+            - [Using Superpowers](/dev/dle/devcraft_admin/200.4.1/development_help/skills/using-superpowers): Полный текст skill using-superpowers: вызов skills до любого действия.
+            - [Grill with docs](/dev/dle/devcraft_admin/200.4.1/development_help/skills/grill-with-docs): Полный текст grill-with-docs: интервью, grilling и модель предметной области.
+            - [Create DevCraft plugin](/dev/dle/devcraft_admin/200.4.1/development_help/skills/create-devcraft-plugin): Полный текст skill создания, переноса и обновления сателлита DevCraft Admin.
+            - [Caveman (skill)](/dev/dle/devcraft_admin/200.4.1/development_help/skills/caveman): Полный текст skill краткой речи Caveman и граница с MCP compress.
+            - [Codebase Memory (skill)](/dev/dle/devcraft_admin/200.4.1/development_help/skills/codebase-memory): Полный текст skill графа кода: search_graph, trace_path, покрытие индекса.
           - MCP
             - [MCP-серверы](/dev/dle/devcraft_admin/200.4.1/development_help/mcp): MCP и CLI для графов кода, памяти и пошагового мышления в DevCraft.
             - [Graphify (DevCraft)](/dev/dle/devcraft_admin/200.4.1/development_help/mcp/graphify): CLI-граф знаний: query и update после DLE / DevCraft.
@@ -652,12 +652,12 @@
         - Помощь в разработке
           - [Помощь в разработке](/dev/dle/devcraft_admin/200.4.0/development_help): Skills, MCP и Cursor-rules для разработки сателлитов на DevCraft Admin.
           - Skills
-            - [Skills](/dev/dle/devcraft_admin/200.4.0/development_help/skills): Каталог Cursor skills для разработки модулей DevCraft Admin.
-            - [Using Superpowers](/dev/dle/devcraft_admin/200.4.0/development_help/skills/using-superpowers): Invoke process-skills до действий — канон obra/superpowers для цикла DevCraft.
-            - [Grill with docs](/dev/dle/devcraft_admin/200.4.0/development_help/skills/grill-with-docs): Уточнение терминов и ADR перед спекой — mattpocock/skills grill-with-docs.
-            - [Create DevCraft plugin](/dev/dle/devcraft_admin/200.4.0/development_help/skills/create-devcraft-plugin): Skill создания, переноса и обновления сателлита DevCraft Admin.
-            - [Caveman (skill)](/dev/dle/devcraft_admin/200.4.0/development_help/skills/caveman): Краткая речь в цикле DevCraft и когда звать MCP compress.
-            - [Codebase Memory (skill)](/dev/dle/devcraft_admin/200.4.0/development_help/skills/codebase-memory): search_graph / trace_path перед правками Settings и Registry.
+            - [Skills](/dev/dle/devcraft_admin/200.4.0/development_help/skills): Каталог Cursor skills для разработки модулей DevCraft Admin. На каждой странице — полный текст skill.
+            - [Using Superpowers](/dev/dle/devcraft_admin/200.4.0/development_help/skills/using-superpowers): Полный текст skill using-superpowers: вызов skills до любого действия.
+            - [Grill with docs](/dev/dle/devcraft_admin/200.4.0/development_help/skills/grill-with-docs): Полный текст grill-with-docs: интервью, grilling и модель предметной области.
+            - [Create DevCraft plugin](/dev/dle/devcraft_admin/200.4.0/development_help/skills/create-devcraft-plugin): Полный текст skill создания, переноса и обновления сателлита DevCraft Admin.
+            - [Caveman (skill)](/dev/dle/devcraft_admin/200.4.0/development_help/skills/caveman): Полный текст skill краткой речи Caveman и граница с MCP compress.
+            - [Codebase Memory (skill)](/dev/dle/devcraft_admin/200.4.0/development_help/skills/codebase-memory): Полный текст skill графа кода: search_graph, trace_path, покрытие индекса.
           - MCP
             - [MCP-серверы](/dev/dle/devcraft_admin/200.4.0/development_help/mcp): MCP и CLI для графов кода, памяти и пошагового мышления в DevCraft.
             - [Graphify (DevCraft)](/dev/dle/devcraft_admin/200.4.0/development_help/mcp/graphify): CLI-граф знаний: query и update после DLE / DevCraft.
@@ -951,7 +951,7 @@
         - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типизированные подписки, шаблоны темы
     - Хаки и простые модули
       - [Schema.Org - Документация DevCraft](/dev/dle/simple/schema): Документация по интеграции Schema.Org разметки в проекты DevCraft.
-      - [Webmaster Verification](/dev/dle/simple/webmaster-verification)
+      - [Webmaster Verification](/dev/dle/simple/webmaster-verification): Устаревший плагин проверки сайта у поисковиков. Функция перенесена в DevCraft Admin.
       - [XF List Generator](/dev/dle/simple/xflist)
       - [XF Select](/dev/dle/simple/xfselect)
       - [Отдельные страницы как на кинопоиске](/dev/dle/simple/hook-pages-like-kp): Хак для DLE: отдельные страницы как на кинопоиске.

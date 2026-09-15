@@ -81408,13 +81408,84 @@ Install: [инструкция](../../../../../instructions/sequential-thinking)
 
 
 
-Краткий workflow поверх [инструкции Caveman](../../../../../instructions/caveman). Полный API MCP — там и на странице [MCP Caveman](../mcp/caveman).
+Установка skill: [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman). API MCP — [MCP Caveman](../mcp/caveman) и [инструкция](../../../../../instructions/caveman). Ниже — полное содержимое **skill речи**.
 
-| Ситуация                  | Действие                                  |
-| ------------------------- | ----------------------------------------- |
-| Длинный ответ агента      | skill краткой речи                        |
-| Длинный CLI / schema dump | `caveman_compress` → при нужде `retrieve` |
-| Уже короткий diff         | Не трогать                                |
+Файл агента: skill `caveman` (JuliusBrussee/caveman). Сжатая речь агента. Уровни: `lite`, `full`, `ultra` и варианты wenyan. Триггеры: `/caveman`, «говори кратко», «меньше токенов».
+
+**Не путать** с MCP `caveman_compress` (сжатие длинного вывода CLI/JSON). Skill режет **прозу ответа**; MCP режет **вставку больших дампов**.
+
+## Стойкость [#стойкость]
+
+Стиль держать **всю сессию**, пока человек не скажет «stop caveman» / «обычный режим». По умолчанию уровень **full**. Переключение: `/caveman lite|full|ultra|wenyan-lite|wenyan-full|wenyan-ultra|off`.
+
+## Правила речи [#правила-речи]
+
+Убрать: артикли там, где они есть в языке; воду («просто», «на самом деле»); любезности; хеджирование. Обрывки предложений допустимы. Короткие синонимы. Не рассказывать про вызовы инструментов. Не декоративные таблицы и не сырые длинные логи — только решающая строка, если попросили цитату.
+
+Общеизвестные сокращения (`DB`, `HTTP`) можно. **Не** выдумывать `cfg` / `impl` / `req`: токенов не экономит, читать хуже. Полное слово дешевле и яснее. Стрелки «→» не ставить.
+
+Технические имена, блоки кода, тексты ошибок — **как есть**. Не выкидывать `не` / `никогда` / `только` — смысл важнее экономии. Числа и единицы точные.
+
+Не **добавлять** слов «под пещерный стиль». Сжатие не должно раздувать ответ. Если «пещерная» фраза не короче обычной — писать обычную.
+
+Регистр ясности: одна мысль — одно короткое предложение (цель ≤ 20 слов). Действительный залог. Настоящее время, если так и есть. Один термин — одно значение. Инструкция — повелительное наклонение: «Запусти X». Местоимение — только если ясно, на что оно.
+
+Вызовы инструментов: сразу, без предисловия. После результата — следующий вызов или финальный ответ. Текст перед вызовом — только уточнение, предупреждение о необратимом, снятие двусмысленности.
+
+Язык ответа = язык человека. Сжимать **стиль**, не переключать язык. Имена API, команд, `feat`/`fix`, строки ошибок не переводить, пока не попросили.
+
+«Убрать артикли» — только для языков с артиклями. Где мелкие служебные слова несут падеж/роль — их не резать; резать вежливость и воду.
+
+Прямой ответ в этом стиле. Без префикса «режим caveman». Не дублировать полный ответ + краткий.
+
+Шаблон: `[вещь] [действие] [зачем]. [следующий шаг].`
+
+Плохо: длинное «с удовольствием помогу… вероятно причина…». Хорошо: «Баг в проверке срока токена: `<` вместо `<=`. Правка:».
+
+## Уровни [#уровни]
+
+| Уровень       | Что меняется                                                                                             |
+| ------------- | -------------------------------------------------------------------------------------------------------- |
+| **lite**      | Без воды и хеджа. Артикли и полные предложения. Плотно, по-деловому                                      |
+| **full**      | Без артиклей (где уместно), обрывки ок, короткие синонимы. Без рассказа про tools                        |
+| **ultra**     | Резать союзы, если причинно-следственная связь ясна. Факт один раз. Без выдуманных аббревиатур и стрелок |
+| **wenyan-**\* | Классический китайский регистр; только если человек выбрал этот уровень                                  |
+
+Примеры формата (вопрос «почему компонент React перерисовывается»):
+
+* lite: «Компонент перерисовывается, потому что каждый раз создаётся новая ссылка на объект. Оберни в `useMemo`.»
+* full: «Новая ссылка на объект каждый кадр. Объект в пропе = новая ссылка = перерисовка. `useMemo`.»
+* ultra: «Объект в пропе, новая ссылка, перерисовка. `useMemo`.»
+
+Классические иероглифы — **только** уровни wenyan.
+
+## Когда снять сжатие [#когда-снять-сжатие]
+
+Временно обычная речь:
+
+* предупреждения безопасности;
+* подтверждение необратимого;
+* многошаговая последовательность, где без союзов легко перепутать порядок;
+* сжатие само делает формулировку двусмысленной;
+* человек просит пояснить или повторяет вопрос.
+
+После ясного куска — снова сжатие.
+
+Пример необратимого: сначала нормальное предупреждение и точная команда, потом снова сжатый стиль («сначала проверь запасную копию»).
+
+## Границы [#границы]
+
+В код, комментарии, коммиты, документацию, тикеты, письма наружу, файлы памяти — **обычная** проза. «Заведи дефект» = текст для других людей, не сжатый жаргон. `/caveman-compress` (MCP) от этого правила свободен.
+
+«stop caveman» / «обычный режим» — выключить. Уровень держать до смены или конца сессии.
+
+## Когда что звать [#когда-что-звать]
+
+| Ситуация                 | Действие                                 |
+| ------------------------ | ---------------------------------------- |
+| Длинный ответ агента     | этот skill                               |
+| Длинный CLI / дамп схемы | `caveman_compress`, при нужде `retrieve` |
+| Уже короткий diff        | не трогать                               |
 
 ## См. также [#см-также]
 
@@ -81426,11 +81497,85 @@ Install: [инструкция](../../../../../instructions/sequential-thinking)
 
 
 
-Workflow поверх [codebase-memory-mcp](../../../../../instructions/codebase-memory-mcp) и [MCP-страницы](../mcp/codebase-memory). Это граф **кода**, не факты о пользователе.
+MCP и установка: [codebase-memory-mcp](../../../../../instructions/codebase-memory-mcp), [страница MCP](../mcp/codebase-memory). Ниже — полное содержимое skill-обвязки.
 
-1. `search_graph` по символу (`Settings`, `FormSchemaBuilder`).
-2. `trace_path` / callers.
-3. Узкий набор файлов → правка.
+Файл агента: skill `codebase-memory`. Граф **кода** (символы, вызовы), не факты о человеке. Триггеры: устройство кода, кто вызывает X, что вызывает X, цепочка вызовов, влияние правок, мёртвый код, Cypher, `search_graph`.
+
+Инструменты графа дают узкий структурный ответ (\~сотни токенов) вместо огромного обхода файлов.
+
+## Какой tool [#какой-tool]
+
+| Вопрос                   | Вызов                                                   |
+| ------------------------ | ------------------------------------------------------- |
+| Кто вызывает X?          | `trace_path(direction="inbound")`                       |
+| Что вызывает X?          | `trace_path(direction="outbound")`                      |
+| Полный контекст вызовов  | `trace_path(direction="both")`                          |
+| Найти по имени           | `search_graph(name_pattern="...")`                      |
+| Мёртвый код              | `search_graph(max_degree=0, exclude_entry_points=true)` |
+| Рёбра между сервисами    | `query_graph` с Cypher                                  |
+| Влияние локальных правок | `detect_changes()`                                      |
+| Трасса с метками риска   | `trace_path(risk_labels=true)`                          |
+| Поиск по тексту          | `search_code` или Grep                                  |
+
+## Обзор кодовой базы [#обзор-кодовой-базы]
+
+1. `list_projects` — есть ли индекс.
+2. `get_graph_schema` — типы узлов и рёбер.
+3. `search_graph(label="Function", name_pattern=".*Pattern.*")` — найти код.
+4. `get_code_snippet(qualified_name="project.path.FuncName")` — прочитать исходник.
+
+## Трасса [#трасса]
+
+1. `search_graph(name_pattern=".*FuncName.*")` — точное имя.
+2. `trace_path(function_name="FuncName", direction="both", depth=3)` — цепочка.
+3. `detect_changes()` — git diff → затронутые символы.
+
+## Уровни доказательности [#уровни-доказательности]
+
+* **Scout (1):** быстрый поиск, мало вызовов графа, точечное чтение исходника. Результат предварительный. Нельзя утверждать «этого нет», «весь граф покрыт», «мёртвый код доказан».
+* **Verify (2, по умолчанию):** целевые поиски, нужные направления трассы, точные фрагменты для важных утверждений, все релевантные страницы результатов.
+* **Auditor (3):** полная проверка в ограниченном контуре: свежая генерация графа, полная пагинация, оба направления вызовов и смежные связи, явно перечислить, что не закрыто.
+* **Любой уровень:** когда пути-кандидаты известны — один раз `check_index_coverage` по всем путям-доказательствам. Для отрицательных и «исчерпывающих» утверждений — ещё и нужные scope. Чистый ответ = в индексе **нет записанного пробела**, не доказательство полноты. Дыры покрытия — читать/Grep по указанным диапазонам, не полагаться на граф.
+
+## Сессии и дочерние агенты [#сессии-и-дочерние-агенты]
+
+В начале сессии или после сжатия контекста: `list_projects` / `index_status`, затем выбрать Scout / Verify / Auditor.
+
+Перед делегированием родитель сам спрашивает граф и покрытие. Ребёнку передать: уровень, проект, свежесть индекса, границы, запросы и пагинацию, квалифицированные имена, пути, цепочки вызовов, покрытие, уже сделанный fallback на исходник, открытые вопросы.
+
+Изолированный ребёнок **не** наследует MCP. Без MCP он не имеет права вызывать граф и врать, что вызывал: работает по переданным фактам и читает исходник, особенно диапазоны с дырами покрытия.
+
+## Качество кода (по графу) [#качество-кода-по-графу]
+
+* Мёртвый код: `search_graph(max_degree=0, exclude_entry_points=true)`
+* Много исходящих вызовов: `search_graph(min_degree=10, relationship="CALLS", direction="outbound")`
+* Много входящих: то же с `direction="inbound"`
+
+## Tools MCP (15) [#tools-mcp-15]
+
+`index_repository`, `index_status`, `list_projects`, `delete_project`, `search_graph`, `search_code`, `trace_path`, `detect_changes`, `query_graph`, `get_graph_schema`, `get_code_snippet`, `get_architecture`, `check_index_coverage`, `manage_adr`, `ingest_traces`
+
+## Типы рёбер [#типы-рёбер]
+
+`CALLS`, `HTTP_CALLS`, `ASYNC_CALLS`, `DATA_FLOWS`, `IMPORTS`, `DEFINES`, `DEFINES_METHOD`, `HANDLES`, `IMPLEMENTS`, `OVERRIDE`, `USAGE`, `CALL_REFERENCE`, `CONFIGURES`, `FILE_CHANGES_WITH`, `SIMILAR_TO`, `SEMANTICALLY_RELATED`, `CONTAINS_FILE`, `CONTAINS_FOLDER`, `CONTAINS_PACKAGE`
+
+## Примеры Cypher (`query_graph`) [#примеры-cypher-query_graph]
+
+```cypher
+MATCH (a)-[r:HTTP_CALLS]->(b) RETURN a.name, b.name, r.url_path, r.confidence LIMIT 20
+MATCH (f:Function) WHERE f.name =~ '.*Handler.*' RETURN f.name, f.file_path
+MATCH (a)-[r:CALLS]->(b) WHERE a.name = 'main' RETURN b.name
+```
+
+## Ловушки [#ловушки]
+
+1. `search_graph(relationship="HTTP_CALLS")` фильтрует **узлы** по степени — сами рёбра смотреть через `query_graph` и Cypher.
+2. У `query_graph` потолок \~100k строк — в широких запросах ставить `LIMIT` или листать `search_graph`.
+3. `trace_path` хочет **точное** имя — сначала `search_graph(name_pattern=...)`.
+4. `direction="outbound"` не видит чужие сервисы-вызывающие — для полной картины `both`.
+5. У `search_graph` по умолчанию 50 записей на страницу — смотреть `has_more` и `offset`.
+
+В DevCraft primary-корень индекса — сайт `dle210.test`; `dle200test` — legacy. После правок `engine/**` и indexed `devcraft/src|config|locales|*.php` — обновить индекс (не после чистых docs / `.cursor`).
 
 ## См. также [#см-также]
 
@@ -81442,26 +81587,116 @@ Workflow поверх [codebase-memory-mcp](../../../../../instructions/codebase
 
 
 
-Project skill: `.cursor/skills/create-devcraft-plugin/SKILL.md` (в host вроде `dle200test`). Режимы: **создание** | **перенос** (MH Admin → DevCraft) | **обновление**.
+Project skill в host: `.cursor/skills/create-devcraft-plugin/SKILL.md`. Ниже — полное содержимое (интервью, канон, чеклист). Промпт для копирования в чат также в [Справочнике ИИ](../../guides/ai_tools).
+
+Файл агента: `.cursor/skills/create-devcraft-plugin/SKILL.md` (host: `dle210.test` / зеркало). Режимы: **создание** | **перенос** (MH Admin / legacy → DevCraft) | **обновление**.
+
+YAML `description`: создавать, переносить или обновлять сателлит DLE для DevCraft Admin (manifest, Pages/Ajax, install.xml, локали). Если требования неясны — сначала интервью `grill-with-docs` (1–2 вопроса за раунд).
 
 ## Интервью (MUST) [#интервью-must]
 
-Если неясны `{Name}` / `{code}` / `{mod}`, публичный фронт, settings, install — вызвать [grill-with-docs](grill-with-docs) (1–2 вопроса за раунд). Не угадывать.
+Перед кодом и до заполнения чеклиста вслепую:
 
-## Канон (кратко) [#канон-кратко]
+1. Собрать уже известное: режим (`создание` | `перенос` | `обновление`), `{Name}`, `{code}`, `{mod}`, `{version}`, есть ли legacy-путь, нужны ли settings / filter / public.
+2. Если чего-то нет или расходится с каноном / reuse-first / docs — **не угадывать**. Вызвать skill **grill-with-docs** (он подключает `grilling` + `domain-modeling`).
+3. Формат вопросов: интервью, **1–2 вопроса за раунд**, простым языком, без канцелярита.
+4. Типовые пробелы для гриля: режим; уникальность `mod`/`code`; админ-only vs публичный фронт; настройки / права групп; фильтры таблиц; установка (`install.xml` vs доп. SQL); миграция данных legacy; патчи core DLE; логирование.
+5. Когда пробелов нет (или человек сказал «всё ясно» / «делай») — выйти из гриля и идти по канону + чеклисту.
+6. ADR/glossary из grill-with-docs — только если grilling/domain-modeling этого требуют; не плодить docs без нужды (Constitution XI).
 
-* Дерево: `devcraft/src/modules/{Name}/` — manifest, settings.schema, changelog, Pages/, Ajax/, templates/, Public/, Filter/ при нужде.
-* Вход: `engine/inc/{mod}.php` → `Application::runAdmin(moduleDir: '{Name}')` через `DLEPlugins::Check`.
-* AJAX только `devcraft/ajax.php`; HTML админки — Twig/Metro; публичный HTML — `templates/{skin}/devcraft/`.
-* `install.xml` с `needplugin=DevCraft Admin`; `AdminLink::page(..., mod)` — 5-й аргумент обязателен.
-* После новых PHP: `composer dump-autoload` в `devcraft/`.
-* Стек: PHP ≥ 8.3 | DevCraft ≥ 200.4.0 | DLE ≥ 20.0.
+После интервью (или если всё уже ясно) — следовать канону **буквально**.
 
-Полный текст и чеклист — в SKILL.md skill; промпт для копипаста — в [Справочнике ИИ](../../guides/ai_tools).
+## Канон модуля [#канон-модуля]
+
+Ты разрабатываешь модуль для DLE на базе DevCraft Admin.
+
+| Поле        | Смысл                                                              |
+| ----------- | ------------------------------------------------------------------ |
+| Режим       | создание \| перенос (legacy/MH Admin → DevCraft) \| обновление     |
+| `{Name}`    | Имя каталога / Identity `MODULE`                                   |
+| `{code}`    | Тег конфигурации (латиница, `_` / `-`, напр. `dle_connections`)    |
+| `{mod}`     | Обычно = `{code}`; без лишних дефисов и подчёркиваний сверх канона |
+| `{version}` | Например `200.1.0`                                                 |
+
+Дерево `devcraft/src/modules/{Name}/`:
+
+* `manifest.php`, `settings.schema.php` (если есть настройки), `changelog.data.php`
+* `Pages/`, `Ajax/`, `Services/`, `Controller/` (публичный слой: классы + PHP-entry для include), `templates/*.twig`, `Public/`
+* при фильтрах таблиц: `Filter/*.filter.schema.php`
+* точка входа DLE admin: `engine/inc/{inc}.php`
+
+```php
+require_once DLEPlugins::Check(ROOT_DIR . '/devcraft/init.php');
+DevCraft\Core\Application::instance()->runAdmin(moduleDir: '{Name}');
+```
+
+Публичный include (канон): `Controller/show_{slug}.php` — **без** `engine/modules/devcraft/`.
+
+```smarty
+{include file="devcraft/src/modules/{Name}/Controller/show_{slug}.php?…"}
+```
+
+DLE в пути вырезает `..` — только путь **от корня сайта**. В `engine/` — только необходимое (admin glue + патчи с маркерами); не засорять дерево DLE.
+
+### Обязательные правила [#обязательные-правила]
+
+* PSR-4: `DevCraft\Modules\{Name}\` → `devcraft/src/modules/{Name}/`
+* Identity: `MODULE` = `{Name}` (каталог), `CODE` = `{code}`
+* Все `require` / `include` проектных файлов через `DLEPlugins::Check()`
+* Комментарии, PHPDoc и строки UI на русском; вывод человеку через `__()`
+* HTML админки только в Twig (Metro UI); публичный HTML в `templates/{skin}/devcraft/{module}/*.tpl`
+* AJAX только через `devcraft/ajax.php` — **не** создавать `engine/ajax/{mod}.php`
+* Обработчики реализуют `AjaxHandlerInterface`, возвращают `JsonResponse` или `FileResponse`
+* Загрузка файлов: `DevCraft.Ajax.postMultipart` + `DevCraft\Core\Http\UploadedFile`
+* Настройки: `settings.schema.php` (`FormSchemaBuilder`); конфиг в `devcraft/config/{code}.json`
+* `manifest.php`: mod, code, meta, menu, ajax, changelog; пункт dashboard/index для `AdminLinkResolver`
+* Патчи DLE (`plugins_files`): оборачивать `// DevCraft {Name}: start` … `// DevCraft {Name}: end`
+* `install.xml`: `needplugin=DevCraft Admin`; предпочтительно `PluginPresenter::export` после записи в БД
+* DevCraft Admin ≥ **200.4.0**; `AdminLink::page(name, action, pageClass, icon, mod)` — 5-й аргумент `mod` обязателен для сателлитов
+* `assets.js` подключать после `devcraft.js`; `ajax.controller = 'admin'`; URL: `devcraft/ajax.php?mod={mod}&controller=admin&method=...`
+* Слои Service / Repository / Controller / Entity / DTO; persistence через Cycle ORM; **без** `devcraft/bin`
+* После новых PHP-файлов: `composer dump-autoload` в `devcraft/`
+* Локали: `devcraft/locales/{locale}/{code}.xliff` (можно пустой каркас)
+
+**Перенос:** не копировать legacy `engine/ajax` и приёмы MH Admin; reuse API DevCraft; `mhadmin` — только как эталон поведения.
+
+**Обновление:** минимальный diff; не ломать `mod`/`code`; дописать `changelog.data.php`.
+
+**Стек:** PHP ≥ 8.3 | DevCraft Admin ≥ 200.4.0 | DLE ≥ 20.0
+
+### Документация [#документация]
+
+| Предназначение    | Ссылка                                                                                                                                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DevCraft Admin    | [https://github.com/DevCraftClub/mhdocs/tree/main/docs/dev/dle/devcraft\_admin](https://github.com/DevCraftClub/mhdocs/tree/main/docs/dev/dle/devcraft_admin)            |
+| Конституция PHP   | [https://github.com/DevCraftClub/mhdocs/tree/main/docs/instructions/constitution.md](https://github.com/DevCraftClub/mhdocs/tree/main/docs/instructions/constitution.md) |
+| Сайт документации | [https://readme.devcraft.club](https://readme.devcraft.club)                                                                                                             |
+| Readme Admin      | [https://readme.devcraft.club/dev/dle/devcraft\_admin/](https://readme.devcraft.club/dev/dle/devcraft_admin/)                                                            |
+| DLE               | [https://dle-news.ru/extras/online/](https://dle-news.ru/extras/online/)                                                                                                 |
+| Metro UI          | [https://github.com/olton/metroui-docs/tree/master/src/content/docs](https://github.com/olton/metroui-docs/tree/master/src/content/docs)                                 |
+| Cycle ORM         | [https://github.com/cycle/docs/tree/2.x/docs/en](https://github.com/cycle/docs/tree/2.x/docs/en)                                                                         |
+
+### Чеклист [#чеклист]
+
+* [ ] `manifest.php`
+* [ ] `settings.schema.php` (если нужны настройки)
+* [ ] `changelog.data.php`
+* [ ] `Pages/*.php`
+* [ ] `Ajax/*Handler.php`
+* [ ] `Controller/*` (публичный слой + PHP-entry `show_*.php` при include)
+* [ ] `templates/*.twig`
+* [ ] `Public/` (icon и т.п.)
+* [ ] `Filter/*.filter.schema.php` (если нужны фильтры)
+* [ ] `engine/inc/{inc}.php` (admin glue; без лишних файлов в `engine/`)
+* [ ] `install.xml` (export) + локали в `devcraft/locales/`
+* [ ] `composer dump-autoload`
+
+Детали в гайдах Admin: начало работы, конституция, CRUD-страницы.
 
 ## См. также [#см-также]
 
 * [Создание модуля](../../guides/create_module)
+* [grill-with-docs](grill-with-docs)
 * [using-superpowers](using-superpowers)
 * [reuse-first](../rules/reuse-first)
 
@@ -81470,19 +81705,80 @@ Project skill: `.cursor/skills/create-devcraft-plugin/SKILL.md` (в host вро�
 
 
 
-Канон: [mattpocock/skills — grill-with-docs](https://github.com/mattpocock/skills/blob/main/docs/engineering/grill-with-docs.md). Тянет grilling + domain-modeling. **Не** авто-invoke на каждую мелочь.
+Канон upstream: [mattpocock/skills — grill-with-docs](https://github.com/mattpocock/skills/blob/main/docs/engineering/grill-with-docs.md). Ниже — полный порядок: оболочка, grilling и domain-modeling.
 
-## Workflow для DevCraft [#workflow-для-devcraft]
+Файл агента: `grill-with-docs`. В YAML стоит `disable-model-invocation: true` — **не** вызывать сам на каждую мелочь. Подключать, когда план/дизайн нужно прожать вопросами **и** зафиксировать термины.
 
-1. Прояснить термины: `mod` / `code`, сателлит, Page vs Ajax → glossary.
-2. Жёсткие решения → ADR (только если skill требует; Constitution XI — не плодить docs без нужды).
-3. Затем implement по [create-devcraft-plugin](create-devcraft-plugin).
+Содержимое `SKILL.md` целиком:
 
-Внутри create-devcraft-plugin: при пробелах — **1–2 вопроса за раунд**, простым языком.
+```text
+Call the Skill tool twice, for "grilling" and "domain-modeling".
+```
+
+Дальше — полный порядок двух вложенных skills.
+
+## grilling [#grilling]
+
+Интервью до **общего понимания**. Дерево решений: каждый выбор открывает следующие. Работа **раундами**.
+
+**Граница** — все вопросы, на которые уже можно ответить (предпосылки закрыты). В одном раунде задать **всю** границу: пронумеровать вопросы и дать **свою рекомендуемую** формулировку. Ждать ответы человека, потом следующий раунд.
+
+Формат раунда:
+
+```text
+**Q1** — **<заголовок>**: тело вопроса (можно варианты).
+
+Рекомендую: <ответ агента>
+
+---
+
+**Q2** — …
+```
+
+Ответы сдвигают дерево: закрытые ветки открывают новые вопросы. Вопрос, который зависит от ещё открытого в **этом** раунде, уходит в **следующий**.
+
+**Факты** ищет агент (файлы, инструменты, дочерние агенты). Человека не спрашивать то, что можно посмотреть самому. Пока идёт поиск — это незакрытая предпосылка: ждать только вопросы **ниже** по дереву; остальную границу задавать сейчас.
+
+**Решения** — за человеком: каждый выбор положить ему и ждать.
+
+Сессия grilla кончена, когда граница пуста: молчаливых допущений нет. **Не** писать код, пока человек не подтвердил общее понимание.
+
+В DevCraft внутри `create-devcraft-plugin` гриль ужимают: **1–2 вопроса за раунд**, простым языком. Типовые пробелы: режим (создание / перенос / обновление); `{Name}` / `{code}` / `{mod}`; админка vs публичный сайт; настройки и права групп; фильтры; `install.xml`; миграция legacy; патчи ядра DLE; журналы.
+
+## domain-modeling [#domain-modeling]
+
+Активно точить **модель предметной области**: спорить с терминами, придумывать крайние случаи, писать словарь и решения **в момент**, когда они затвердели. Просто прочитать `CONTEXT.md` — это не этот skill. Skill — когда модель **меняют**.
+
+### Файлы [#файлы]
+
+Обычный репозиторий:
+
+```text
+/
+├── CONTEXT.md
+├── docs/adr/          ← решения
+└── src/
+```
+
+Если в корне есть `CONTEXT-MAP.md` — контекстов несколько, карта указывает, где какой `CONTEXT.md` и локальные ADR.
+
+Файлы создавать **лениво**: `CONTEXT.md` — когда зафиксирован первый термин; `docs/adr/` — когда нужно первое решение.
+
+В DevCraft **не** плодить `CONTEXT.md` / ADR без нужды (Constitution XI). ADR — только если grilling/domain-modeling сами этого требуют.
+
+### В сессии [#в-сессии]
+
+* Термин человека **бьётся** со словарём — сразу спросить, какой смысл верный.
+* Размытое слово — предложить канон («аккаунт» — посетитель сайта или запись `users`?).
+* Связи сущностей — проверить конкретным сценарием и границей понятий.
+* Человек говорит «как работает» — сверить с кодом; расхождение вынести явно.
+* Термин закрыт — сразу дописать `CONTEXT.md`. Это **только словарь**, не спека и не место для деталей реализации.
+* ADR предлагать, **если одновременно**: решение дорого менять; без контекста будущий читатель не поймёт «почему так»; был реальный выбор между вариантами. Иначе ADR не писать.
 
 ## См. также [#см-также]
 
 * [using-superpowers](using-superpowers)
+* [create-devcraft-plugin](create-devcraft-plugin)
 * [Справочник ИИ](../../guides/ai_tools)
 
 
@@ -81492,36 +81788,86 @@ Project skill: `.cursor/skills/create-devcraft-plugin/SKILL.md` (в host вро�
 
 Skill — инструкция `SKILL.md`, которую агент читает **до** кода. Кладите project skills в `.cursor/skills/{name}/` (или personal `~/.cursor/skills/`).
 
-| Skill                                            | Зачем                                     |
-| ------------------------------------------------ | ----------------------------------------- |
-| [using-superpowers](using-superpowers)           | Сначала skill check, потом код            |
-| [grill-with-docs](grill-with-docs)               | Интервью 1–2 вопроса, glossary/ADR        |
-| [create-devcraft-plugin](create-devcraft-plugin) | Создание / перенос / обновление сателлита |
-| [caveman](caveman)                               | Краткая речь + когда звать MCP compress   |
-| [codebase-memory](codebase-memory)               | Workflow поверх MCP графа кода            |
+На страницах ниже — **полное содержимое** skill (не краткое описание). Краткий каталог: [Справочник ИИ](../../guides/ai_tools).
 
-Сводная таблица: [Справочник ИИ](../../guides/ai_tools).
+| Skill                                            | Что внутри                               |
+| ------------------------------------------------ | ---------------------------------------- |
+| [using-superpowers](using-superpowers)           | Правило вызова, приоритет, красные флаги |
+| [grill-with-docs](grill-with-docs)               | grilling + domain-modeling целиком       |
+| [create-devcraft-plugin](create-devcraft-plugin) | Интервью, канон дерева, чеклист          |
+| [caveman](caveman)                               | Уровни речи, границы, отличие от MCP     |
+| [codebase-memory](codebase-memory)               | Матрица tools, трасса, Cypher, ловушки   |
 
 
 # Using Superpowers (/dev/dle/devcraft_admin/200.4.0/development_help/skills/using-superpowers)
 
 
 
-Канон: [obra/superpowers — using-superpowers](https://github.com/obra/superpowers/tree/main/skills/using-superpowers). Правило: **перед действием** вызвать подходящий skill; process-skills раньше «просто написать код».
+Канон upstream: [obra/superpowers — using-superpowers](https://github.com/obra/superpowers/tree/main/skills/using-superpowers). Ниже — полное рабочее содержимое, как его читает агент.
 
-## Workflow для DevCraft [#workflow-для-devcraft]
+<Callout type="warning">
+  Если агент запущен как **дочерний** (subagent) на узкую задачу — этот skill **не** применять: родитель уже выбрал порядок работы.
+</Callout>
+
+Файл агента: skill `using-superpowers` (obra/superpowers). Читать **до** любого ответа, в том числе до уточняющих вопросов.
+
+## Правило [#правило]
+
+Подходящий skill вызывать **до** любого действия: вопросов, обхода кода, чтения файлов. Если skill оказался не тем — его можно не продолжать.
+
+Перед режимом плана: если brainstorming ещё не был, сначала skill brainstorming.
+
+Затем сказать: «Using \[skill] to \[purpose]» и идти **по skill буквально**. Если в skill есть чеклист — завести todo на каждый пункт.
+
+## Приоритет skills [#приоритет-skills]
+
+Если подходит несколько: сначала **процесс** (как работать), потом **реализация** (как писать код). Частые процесс-skills Superpowers: brainstorming, systematic-debugging.
+
+| Запрос       | Сначала                                       |
+| ------------ | --------------------------------------------- |
+| «Сделай X»   | brainstorming, затем skills реализации        |
+| «Почини баг» | systematic-debugging, затем предметные skills |
+
+## Красные флаги [#красные-флаги]
+
+Эти мысли значат: **стоп**, идёт рационализация.
+
+| Мысль                         | Факт                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| «Это простой вопрос»          | Вопрос — тоже задача. Сначала проверка skills.               |
+| «Сначала нужен контекст»      | Проверка skills **раньше** уточняющих вопросов.              |
+| «Сначала посмотрю код»        | Skills говорят, **как** смотреть. Сначала skill.             |
+| «Быстро гляну git/файлы»      | В файлах нет контекста разговора. Сначала skill.             |
+| «Сначала соберу информацию»   | Skills говорят, **как** собирать.                            |
+| «Формальный skill не нужен»   | Если skill есть — его используют.                            |
+| «Я этот skill помню»          | Skills меняются. Читать текущую версию.                      |
+| «Это не задача»               | Действие = задача. Проверить skills.                         |
+| «Skill слишком тяжёлый»       | Простое часто раздувается. Skill всё равно.                  |
+| «Сначала сделаю вот это одно» | Проверка **до** любого шага.                                 |
+| «Так продуктивнее»            | Действие без дисциплины тратит время. Skills держат порядок. |
+| «Я знаю, что это значит»      | Знать понятие ≠ выполнить skill.                             |
+
+## Платформы [#платформы]
+
+Если среда указана в skill — читать её файл: Codex → `references/codex-tools.md`, Pi → `references/pi-tools.md`, Antigravity → `references/antigravity-tools.md`.
+
+## Инструкции пользователя [#инструкции-пользователя]
+
+Файлы вроде `AGENTS.md` / `CLAUDE.md` и прямые просьбы человека **важнее** skills. Skills важнее поведения модели по умолчанию. Пропускать workflow skill можно **только** если человек это явно сказал.
+
+## Как это ложится на DevCraft [#как-это-ложится-на-devcraft]
 
 <Steps>
   <Step>
     ### Skill check [#skill-check]
 
-    Перед созданием/миграцией модуля: есть ли brainstorming / writing-plans / domain skill? Не писать `manifest.php` «с нуля» без проверки.
+    Перед созданием или переносом модуля: есть ли brainstorming / writing-plans / [create-devcraft-plugin](create-devcraft-plugin)? Не писать `manifest.php` «с нуля» без проверки.
   </Step>
 
   <Step>
     ### Процесс [#процесс]
 
-    Сложный модуль → brainstorming/plan → затем php-pro / [create-devcraft-plugin](create-devcraft-plugin). Простые правки — краткий skill check (YAGNI через [ponytail](../rules/ponytail)).
+    Сложный модуль → brainstorming / план → затем php-pro / [create-devcraft-plugin](create-devcraft-plugin). Простые правки — короткий skill check (YAGNI через [ponytail](../rules/ponytail)).
   </Step>
 
   <Step>
@@ -81830,15 +82176,15 @@ AJAX: `devcraft/ajax.php` → handlers модуля. Сателлиты (Notific
 
 ## Каталог Skills [#каталог-skills]
 
-| Skill                   | Зачем                                      | Ссылка                                                                      |
-| ----------------------- | ------------------------------------------ | --------------------------------------------------------------------------- |
-| using-superpowers       | Проверить skills до действий               | [development\_help/skills](../development_help/skills/using-superpowers)    |
-| grill-with-docs         | Интервью 1–2 вопроса за раунд              | [grill-with-docs](../development_help/skills/grill-with-docs)               |
-| create-devcraft-plugin  | Создание / перенос / обновление сателлита  | [create-devcraft-plugin](../development_help/skills/create-devcraft-plugin) |
-| caveman (skill)         | Краткая речь; не путать с MCP compress     | [caveman](../development_help/skills/caveman)                               |
-| codebase-memory (skill) | Как пользоваться skill-обвязкой, если есть | [codebase-memory](../development_help/skills/codebase-memory)               |
+| Skill                   | Зачем                                     | Ссылка                                                            |
+| ----------------------- | ----------------------------------------- | ----------------------------------------------------------------- |
+| using-superpowers       | Проверить skills до действий              | [полный текст](../development_help/skills/using-superpowers)      |
+| grill-with-docs         | Интервью + словарь/ADR                    | [полный текст](../development_help/skills/grill-with-docs)        |
+| create-devcraft-plugin  | Создание / перенос / обновление сателлита | [полный текст](../development_help/skills/create-devcraft-plugin) |
+| caveman (skill)         | Краткая речь; не путать с MCP compress    | [полный текст](../development_help/skills/caveman)                |
+| codebase-memory (skill) | Граф кода: search\_graph / trace\_path    | [полный текст](../development_help/skills/codebase-memory)        |
 
-Подключение: каталог `.cursor/skills/` в host-проекте. Обзор: [Skills](../development_help/skills).
+Подключение: каталог `.cursor/skills/` в host-проекте. На страницах Skills — **полное** содержимое `SKILL.md`, не краткая выжимка. Обзор: [Skills](../development_help/skills).
 
 ## Каталог MCP / CLI [#каталог-mcp--cli]
 
@@ -93853,6 +94199,7 @@ $uploaded->moveTo($targetPath);
 
 ### Изменено [#изменено]
 
+* Документация skills (`development_help/skills`): на страницах полный текст инструкций агента (не только краткое «зачем»), общие фрагменты в `content/includes/devcraft_admin/skill-*-200.4.1.md`.
 * Namespace SDK — `DleApi\{Schema,Fluent,Xfield,Sdk}` → `DevCraft\Dle\...`. Фасад `DcApi` и сигнатуры методов не изменились.
 * **Публичный include сателлитов:** канон — `devcraft/src/modules/{Name}/Controller/show_*.php` (путь от корня сайта). **Не** `engine/modules/devcraft/` для новых модулей; в `engine/` только admin glue и патчи по необходимости. См. [PHP DevCraft Standards](guides/php_devcraft_standards).
 * **Шлюз БД / схема:** логика вынесена в [`SchemaSyncService`](reference/back-end/classes/SchemaSyncService). Debug Admin → `SyncTables` после наката ожидающих; без debug — файл только при реальном diff и сразу накат. Кэш схемы без лишней пересборки. Гайд: [Схема шлюза БД и автор записи](guides/gateway_schema).
@@ -94177,13 +94524,84 @@ Install: [инструкция](../../../../../instructions/sequential-thinking)
 
 
 
-Краткий workflow поверх [инструкции Caveman](../../../../../instructions/caveman). Полный API MCP — там и на странице [MCP Caveman](../mcp/caveman).
+Установка skill: [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman). API MCP — [MCP Caveman](../mcp/caveman) и [инструкция](../../../../../instructions/caveman). Ниже — полное содержимое **skill речи**.
 
-| Ситуация                  | Действие                                  |
-| ------------------------- | ----------------------------------------- |
-| Длинный ответ агента      | skill краткой речи                        |
-| Длинный CLI / schema dump | `caveman_compress` → при нужде `retrieve` |
-| Уже короткий diff         | Не трогать                                |
+Файл агента: skill `caveman` (JuliusBrussee/caveman). Сжатая речь агента. Уровни: `lite`, `full`, `ultra` и варианты wenyan. Триггеры: `/caveman`, «говори кратко», «меньше токенов».
+
+**Не путать** с MCP `caveman_compress` (сжатие длинного вывода CLI/JSON). Skill режет **прозу ответа**; MCP режет **вставку больших дампов**.
+
+## Стойкость [#стойкость]
+
+Стиль держать **всю сессию**, пока человек не скажет «stop caveman» / «обычный режим». По умолчанию уровень **full**. Переключение: `/caveman lite|full|ultra|wenyan-lite|wenyan-full|wenyan-ultra|off`.
+
+## Правила речи [#правила-речи]
+
+Убрать: артикли там, где они есть в языке; воду («просто», «на самом деле»); любезности; хеджирование. Обрывки предложений допустимы. Короткие синонимы. Не рассказывать про вызовы инструментов. Не декоративные таблицы и не сырые длинные логи — только решающая строка, если попросили цитату.
+
+Общеизвестные сокращения (`DB`, `HTTP`) можно. **Не** выдумывать `cfg` / `impl` / `req`: токенов не экономит, читать хуже. Полное слово дешевле и яснее. Стрелки «→» не ставить.
+
+Технические имена, блоки кода, тексты ошибок — **как есть**. Не выкидывать `не` / `никогда` / `только` — смысл важнее экономии. Числа и единицы точные.
+
+Не **добавлять** слов «под пещерный стиль». Сжатие не должно раздувать ответ. Если «пещерная» фраза не короче обычной — писать обычную.
+
+Регистр ясности: одна мысль — одно короткое предложение (цель ≤ 20 слов). Действительный залог. Настоящее время, если так и есть. Один термин — одно значение. Инструкция — повелительное наклонение: «Запусти X». Местоимение — только если ясно, на что оно.
+
+Вызовы инструментов: сразу, без предисловия. После результата — следующий вызов или финальный ответ. Текст перед вызовом — только уточнение, предупреждение о необратимом, снятие двусмысленности.
+
+Язык ответа = язык человека. Сжимать **стиль**, не переключать язык. Имена API, команд, `feat`/`fix`, строки ошибок не переводить, пока не попросили.
+
+«Убрать артикли» — только для языков с артиклями. Где мелкие служебные слова несут падеж/роль — их не резать; резать вежливость и воду.
+
+Прямой ответ в этом стиле. Без префикса «режим caveman». Не дублировать полный ответ + краткий.
+
+Шаблон: `[вещь] [действие] [зачем]. [следующий шаг].`
+
+Плохо: длинное «с удовольствием помогу… вероятно причина…». Хорошо: «Баг в проверке срока токена: `<` вместо `<=`. Правка:».
+
+## Уровни [#уровни]
+
+| Уровень       | Что меняется                                                                                             |
+| ------------- | -------------------------------------------------------------------------------------------------------- |
+| **lite**      | Без воды и хеджа. Артикли и полные предложения. Плотно, по-деловому                                      |
+| **full**      | Без артиклей (где уместно), обрывки ок, короткие синонимы. Без рассказа про tools                        |
+| **ultra**     | Резать союзы, если причинно-следственная связь ясна. Факт один раз. Без выдуманных аббревиатур и стрелок |
+| **wenyan-**\* | Классический китайский регистр; только если человек выбрал этот уровень                                  |
+
+Примеры формата (вопрос «почему компонент React перерисовывается»):
+
+* lite: «Компонент перерисовывается, потому что каждый раз создаётся новая ссылка на объект. Оберни в `useMemo`.»
+* full: «Новая ссылка на объект каждый кадр. Объект в пропе = новая ссылка = перерисовка. `useMemo`.»
+* ultra: «Объект в пропе, новая ссылка, перерисовка. `useMemo`.»
+
+Классические иероглифы — **только** уровни wenyan.
+
+## Когда снять сжатие [#когда-снять-сжатие]
+
+Временно обычная речь:
+
+* предупреждения безопасности;
+* подтверждение необратимого;
+* многошаговая последовательность, где без союзов легко перепутать порядок;
+* сжатие само делает формулировку двусмысленной;
+* человек просит пояснить или повторяет вопрос.
+
+После ясного куска — снова сжатие.
+
+Пример необратимого: сначала нормальное предупреждение и точная команда, потом снова сжатый стиль («сначала проверь запасную копию»).
+
+## Границы [#границы]
+
+В код, комментарии, коммиты, документацию, тикеты, письма наружу, файлы памяти — **обычная** проза. «Заведи дефект» = текст для других людей, не сжатый жаргон. `/caveman-compress` (MCP) от этого правила свободен.
+
+«stop caveman» / «обычный режим» — выключить. Уровень держать до смены или конца сессии.
+
+## Когда что звать [#когда-что-звать]
+
+| Ситуация                 | Действие                                 |
+| ------------------------ | ---------------------------------------- |
+| Длинный ответ агента     | этот skill                               |
+| Длинный CLI / дамп схемы | `caveman_compress`, при нужде `retrieve` |
+| Уже короткий diff        | не трогать                               |
 
 ## См. также [#см-также]
 
@@ -94195,11 +94613,85 @@ Install: [инструкция](../../../../../instructions/sequential-thinking)
 
 
 
-Workflow поверх [codebase-memory-mcp](../../../../../instructions/codebase-memory-mcp) и [MCP-страницы](../mcp/codebase-memory). Это граф **кода**, не факты о пользователе.
+MCP и установка: [codebase-memory-mcp](../../../../../instructions/codebase-memory-mcp), [страница MCP](../mcp/codebase-memory). Ниже — полное содержимое skill-обвязки.
 
-1. `search_graph` по символу (`Settings`, `FormSchemaBuilder`).
-2. `trace_path` / callers.
-3. Узкий набор файлов → правка.
+Файл агента: skill `codebase-memory`. Граф **кода** (символы, вызовы), не факты о человеке. Триггеры: устройство кода, кто вызывает X, что вызывает X, цепочка вызовов, влияние правок, мёртвый код, Cypher, `search_graph`.
+
+Инструменты графа дают узкий структурный ответ (\~сотни токенов) вместо огромного обхода файлов.
+
+## Какой tool [#какой-tool]
+
+| Вопрос                   | Вызов                                                   |
+| ------------------------ | ------------------------------------------------------- |
+| Кто вызывает X?          | `trace_path(direction="inbound")`                       |
+| Что вызывает X?          | `trace_path(direction="outbound")`                      |
+| Полный контекст вызовов  | `trace_path(direction="both")`                          |
+| Найти по имени           | `search_graph(name_pattern="...")`                      |
+| Мёртвый код              | `search_graph(max_degree=0, exclude_entry_points=true)` |
+| Рёбра между сервисами    | `query_graph` с Cypher                                  |
+| Влияние локальных правок | `detect_changes()`                                      |
+| Трасса с метками риска   | `trace_path(risk_labels=true)`                          |
+| Поиск по тексту          | `search_code` или Grep                                  |
+
+## Обзор кодовой базы [#обзор-кодовой-базы]
+
+1. `list_projects` — есть ли индекс.
+2. `get_graph_schema` — типы узлов и рёбер.
+3. `search_graph(label="Function", name_pattern=".*Pattern.*")` — найти код.
+4. `get_code_snippet(qualified_name="project.path.FuncName")` — прочитать исходник.
+
+## Трасса [#трасса]
+
+1. `search_graph(name_pattern=".*FuncName.*")` — точное имя.
+2. `trace_path(function_name="FuncName", direction="both", depth=3)` — цепочка.
+3. `detect_changes()` — git diff → затронутые символы.
+
+## Уровни доказательности [#уровни-доказательности]
+
+* **Scout (1):** быстрый поиск, мало вызовов графа, точечное чтение исходника. Результат предварительный. Нельзя утверждать «этого нет», «весь граф покрыт», «мёртвый код доказан».
+* **Verify (2, по умолчанию):** целевые поиски, нужные направления трассы, точные фрагменты для важных утверждений, все релевантные страницы результатов.
+* **Auditor (3):** полная проверка в ограниченном контуре: свежая генерация графа, полная пагинация, оба направления вызовов и смежные связи, явно перечислить, что не закрыто.
+* **Любой уровень:** когда пути-кандидаты известны — один раз `check_index_coverage` по всем путям-доказательствам. Для отрицательных и «исчерпывающих» утверждений — ещё и нужные scope. Чистый ответ = в индексе **нет записанного пробела**, не доказательство полноты. Дыры покрытия — читать/Grep по указанным диапазонам, не полагаться на граф.
+
+## Сессии и дочерние агенты [#сессии-и-дочерние-агенты]
+
+В начале сессии или после сжатия контекста: `list_projects` / `index_status`, затем выбрать Scout / Verify / Auditor.
+
+Перед делегированием родитель сам спрашивает граф и покрытие. Ребёнку передать: уровень, проект, свежесть индекса, границы, запросы и пагинацию, квалифицированные имена, пути, цепочки вызовов, покрытие, уже сделанный fallback на исходник, открытые вопросы.
+
+Изолированный ребёнок **не** наследует MCP. Без MCP он не имеет права вызывать граф и врать, что вызывал: работает по переданным фактам и читает исходник, особенно диапазоны с дырами покрытия.
+
+## Качество кода (по графу) [#качество-кода-по-графу]
+
+* Мёртвый код: `search_graph(max_degree=0, exclude_entry_points=true)`
+* Много исходящих вызовов: `search_graph(min_degree=10, relationship="CALLS", direction="outbound")`
+* Много входящих: то же с `direction="inbound"`
+
+## Tools MCP (15) [#tools-mcp-15]
+
+`index_repository`, `index_status`, `list_projects`, `delete_project`, `search_graph`, `search_code`, `trace_path`, `detect_changes`, `query_graph`, `get_graph_schema`, `get_code_snippet`, `get_architecture`, `check_index_coverage`, `manage_adr`, `ingest_traces`
+
+## Типы рёбер [#типы-рёбер]
+
+`CALLS`, `HTTP_CALLS`, `ASYNC_CALLS`, `DATA_FLOWS`, `IMPORTS`, `DEFINES`, `DEFINES_METHOD`, `HANDLES`, `IMPLEMENTS`, `OVERRIDE`, `USAGE`, `CALL_REFERENCE`, `CONFIGURES`, `FILE_CHANGES_WITH`, `SIMILAR_TO`, `SEMANTICALLY_RELATED`, `CONTAINS_FILE`, `CONTAINS_FOLDER`, `CONTAINS_PACKAGE`
+
+## Примеры Cypher (`query_graph`) [#примеры-cypher-query_graph]
+
+```cypher
+MATCH (a)-[r:HTTP_CALLS]->(b) RETURN a.name, b.name, r.url_path, r.confidence LIMIT 20
+MATCH (f:Function) WHERE f.name =~ '.*Handler.*' RETURN f.name, f.file_path
+MATCH (a)-[r:CALLS]->(b) WHERE a.name = 'main' RETURN b.name
+```
+
+## Ловушки [#ловушки]
+
+1. `search_graph(relationship="HTTP_CALLS")` фильтрует **узлы** по степени — сами рёбра смотреть через `query_graph` и Cypher.
+2. У `query_graph` потолок \~100k строк — в широких запросах ставить `LIMIT` или листать `search_graph`.
+3. `trace_path` хочет **точное** имя — сначала `search_graph(name_pattern=...)`.
+4. `direction="outbound"` не видит чужие сервисы-вызывающие — для полной картины `both`.
+5. У `search_graph` по умолчанию 50 записей на страницу — смотреть `has_more` и `offset`.
+
+В DevCraft primary-корень индекса — сайт `dle210.test`; `dle200test` — legacy. После правок `engine/**` и indexed `devcraft/src|config|locales|*.php` — обновить индекс (не после чистых docs / `.cursor`).
 
 ## См. также [#см-также]
 
@@ -94211,27 +94703,116 @@ Workflow поверх [codebase-memory-mcp](../../../../../instructions/codebase
 
 
 
-Project skill: `.cursor/skills/create-devcraft-plugin/SKILL.md` (в host вроде `dle200test`). Режимы: **создание** | **перенос** (MH Admin → DevCraft) | **обновление**.
+Project skill в host: `.cursor/skills/create-devcraft-plugin/SKILL.md`. Ниже — полное содержимое (интервью, канон, чеклист). Промпт для копирования в чат также в [Справочнике ИИ](../../guides/ai_tools).
+
+Файл агента: `.cursor/skills/create-devcraft-plugin/SKILL.md` (host: `dle210.test` / зеркало). Режимы: **создание** | **перенос** (MH Admin / legacy → DevCraft) | **обновление**.
+
+YAML `description`: создавать, переносить или обновлять сателлит DLE для DevCraft Admin (manifest, Pages/Ajax, install.xml, локали). Если требования неясны — сначала интервью `grill-with-docs` (1–2 вопроса за раунд).
 
 ## Интервью (MUST) [#интервью-must]
 
-Если неясны `{Name}` / `{code}` / `{mod}`, публичный фронт, settings, install — вызвать [grill-with-docs](grill-with-docs) (1–2 вопроса за раунд). Не угадывать.
+Перед кодом и до заполнения чеклиста вслепую:
 
-## Канон (кратко) [#канон-кратко]
+1. Собрать уже известное: режим (`создание` | `перенос` | `обновление`), `{Name}`, `{code}`, `{mod}`, `{version}`, есть ли legacy-путь, нужны ли settings / filter / public.
+2. Если чего-то нет или расходится с каноном / reuse-first / docs — **не угадывать**. Вызвать skill **grill-with-docs** (он подключает `grilling` + `domain-modeling`).
+3. Формат вопросов: интервью, **1–2 вопроса за раунд**, простым языком, без канцелярита.
+4. Типовые пробелы для гриля: режим; уникальность `mod`/`code`; админ-only vs публичный фронт; настройки / права групп; фильтры таблиц; установка (`install.xml` vs доп. SQL); миграция данных legacy; патчи core DLE; логирование.
+5. Когда пробелов нет (или человек сказал «всё ясно» / «делай») — выйти из гриля и идти по канону + чеклисту.
+6. ADR/glossary из grill-with-docs — только если grilling/domain-modeling этого требуют; не плодить docs без нужды (Constitution XI).
 
-* Дерево: `devcraft/src/modules/{Name}/` — manifest, settings.schema, changelog, Pages/, Ajax/, &#x2A;*Controller/** (публичный слой), templates/, Public/, Filter/ при нужде.
-* Вход админки: `engine/inc/{mod}.php` → `Application::runAdmin(moduleDir: '{Name}')` через `DLEPlugins::Check`.
-* Публичный include: `Controller/show_*.php` от корня сайта — **не** `engine/modules/devcraft/`. В `engine/` только необходимое.
-* AJAX только `devcraft/ajax.php`; HTML админки — Twig/Metro; публичный HTML — `templates/{skin}/devcraft/`.
-* `install.xml` с `needplugin=DevCraft Admin`; `AdminLink::page(..., mod)` — 5-й аргумент обязателен.
-* После новых PHP: `composer dump-autoload` в `devcraft/`.
-* Стек: PHP ≥ 8.3 | DevCraft ≥ 200.4.0 | DLE ≥ 20.0.
+После интервью (или если всё уже ясно) — следовать канону **буквально**.
 
-Полный текст и чеклист — в SKILL.md skill; промпт для копипаста — в [Справочнике ИИ](../../guides/ai_tools).
+## Канон модуля [#канон-модуля]
+
+Ты разрабатываешь модуль для DLE на базе DevCraft Admin.
+
+| Поле        | Смысл                                                              |
+| ----------- | ------------------------------------------------------------------ |
+| Режим       | создание \| перенос (legacy/MH Admin → DevCraft) \| обновление     |
+| `{Name}`    | Имя каталога / Identity `MODULE`                                   |
+| `{code}`    | Тег конфигурации (латиница, `_` / `-`, напр. `dle_connections`)    |
+| `{mod}`     | Обычно = `{code}`; без лишних дефисов и подчёркиваний сверх канона |
+| `{version}` | Например `200.1.0`                                                 |
+
+Дерево `devcraft/src/modules/{Name}/`:
+
+* `manifest.php`, `settings.schema.php` (если есть настройки), `changelog.data.php`
+* `Pages/`, `Ajax/`, `Services/`, `Controller/` (публичный слой: классы + PHP-entry для include), `templates/*.twig`, `Public/`
+* при фильтрах таблиц: `Filter/*.filter.schema.php`
+* точка входа DLE admin: `engine/inc/{inc}.php`
+
+```php
+require_once DLEPlugins::Check(ROOT_DIR . '/devcraft/init.php');
+DevCraft\Core\Application::instance()->runAdmin(moduleDir: '{Name}');
+```
+
+Публичный include (канон): `Controller/show_{slug}.php` — **без** `engine/modules/devcraft/`.
+
+```smarty
+{include file="devcraft/src/modules/{Name}/Controller/show_{slug}.php?…"}
+```
+
+DLE в пути вырезает `..` — только путь **от корня сайта**. В `engine/` — только необходимое (admin glue + патчи с маркерами); не засорять дерево DLE.
+
+### Обязательные правила [#обязательные-правила]
+
+* PSR-4: `DevCraft\Modules\{Name}\` → `devcraft/src/modules/{Name}/`
+* Identity: `MODULE` = `{Name}` (каталог), `CODE` = `{code}`
+* Все `require` / `include` проектных файлов через `DLEPlugins::Check()`
+* Комментарии, PHPDoc и строки UI на русском; вывод человеку через `__()`
+* HTML админки только в Twig (Metro UI); публичный HTML в `templates/{skin}/devcraft/{module}/*.tpl`
+* AJAX только через `devcraft/ajax.php` — **не** создавать `engine/ajax/{mod}.php`
+* Обработчики реализуют `AjaxHandlerInterface`, возвращают `JsonResponse` или `FileResponse`
+* Загрузка файлов: `DevCraft.Ajax.postMultipart` + `DevCraft\Core\Http\UploadedFile`
+* Настройки: `settings.schema.php` (`FormSchemaBuilder`); конфиг в `devcraft/config/{code}.json`
+* `manifest.php`: mod, code, meta, menu, ajax, changelog; пункт dashboard/index для `AdminLinkResolver`
+* Патчи DLE (`plugins_files`): оборачивать `// DevCraft {Name}: start` … `// DevCraft {Name}: end`
+* `install.xml`: `needplugin=DevCraft Admin`; предпочтительно `PluginPresenter::export` после записи в БД
+* DevCraft Admin ≥ **200.4.0**; `AdminLink::page(name, action, pageClass, icon, mod)` — 5-й аргумент `mod` обязателен для сателлитов
+* `assets.js` подключать после `devcraft.js`; `ajax.controller = 'admin'`; URL: `devcraft/ajax.php?mod={mod}&controller=admin&method=...`
+* Слои Service / Repository / Controller / Entity / DTO; persistence через Cycle ORM; **без** `devcraft/bin`
+* После новых PHP-файлов: `composer dump-autoload` в `devcraft/`
+* Локали: `devcraft/locales/{locale}/{code}.xliff` (можно пустой каркас)
+
+**Перенос:** не копировать legacy `engine/ajax` и приёмы MH Admin; reuse API DevCraft; `mhadmin` — только как эталон поведения.
+
+**Обновление:** минимальный diff; не ломать `mod`/`code`; дописать `changelog.data.php`.
+
+**Стек:** PHP ≥ 8.3 | DevCraft Admin ≥ 200.4.0 | DLE ≥ 20.0
+
+### Документация [#документация]
+
+| Предназначение    | Ссылка                                                                                                                                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DevCraft Admin    | [https://github.com/DevCraftClub/mhdocs/tree/main/docs/dev/dle/devcraft\_admin](https://github.com/DevCraftClub/mhdocs/tree/main/docs/dev/dle/devcraft_admin)            |
+| Конституция PHP   | [https://github.com/DevCraftClub/mhdocs/tree/main/docs/instructions/constitution.md](https://github.com/DevCraftClub/mhdocs/tree/main/docs/instructions/constitution.md) |
+| Сайт документации | [https://readme.devcraft.club](https://readme.devcraft.club)                                                                                                             |
+| Readme Admin      | [https://readme.devcraft.club/dev/dle/devcraft\_admin/](https://readme.devcraft.club/dev/dle/devcraft_admin/)                                                            |
+| DLE               | [https://dle-news.ru/extras/online/](https://dle-news.ru/extras/online/)                                                                                                 |
+| Metro UI          | [https://github.com/olton/metroui-docs/tree/master/src/content/docs](https://github.com/olton/metroui-docs/tree/master/src/content/docs)                                 |
+| Cycle ORM         | [https://github.com/cycle/docs/tree/2.x/docs/en](https://github.com/cycle/docs/tree/2.x/docs/en)                                                                         |
+
+### Чеклист [#чеклист]
+
+* [ ] `manifest.php`
+* [ ] `settings.schema.php` (если нужны настройки)
+* [ ] `changelog.data.php`
+* [ ] `Pages/*.php`
+* [ ] `Ajax/*Handler.php`
+* [ ] `Controller/*` (публичный слой + PHP-entry `show_*.php` при include)
+* [ ] `templates/*.twig`
+* [ ] `Public/` (icon и т.п.)
+* [ ] `Filter/*.filter.schema.php` (если нужны фильтры)
+* [ ] `engine/inc/{inc}.php` (admin glue; без лишних файлов в `engine/`)
+* [ ] `install.xml` (export) + локали в `devcraft/locales/`
+* [ ] `composer dump-autoload`
+
+Детали в гайдах Admin: начало работы, конституция, CRUD-страницы.
 
 ## См. также [#см-также]
 
 * [Создание модуля](../../guides/create_module)
+* [grill-with-docs](grill-with-docs)
 * [using-superpowers](using-superpowers)
 * [reuse-first](../rules/reuse-first)
 
@@ -94240,19 +94821,80 @@ Project skill: `.cursor/skills/create-devcraft-plugin/SKILL.md` (в host вро�
 
 
 
-Канон: [mattpocock/skills — grill-with-docs](https://github.com/mattpocock/skills/blob/main/docs/engineering/grill-with-docs.md). Тянет grilling + domain-modeling. **Не** авто-invoke на каждую мелочь.
+Канон upstream: [mattpocock/skills — grill-with-docs](https://github.com/mattpocock/skills/blob/main/docs/engineering/grill-with-docs.md). Ниже — полный порядок: оболочка, grilling и domain-modeling.
 
-## Workflow для DevCraft [#workflow-для-devcraft]
+Файл агента: `grill-with-docs`. В YAML стоит `disable-model-invocation: true` — **не** вызывать сам на каждую мелочь. Подключать, когда план/дизайн нужно прожать вопросами **и** зафиксировать термины.
 
-1. Прояснить термины: `mod` / `code`, сателлит, Page vs Ajax → glossary.
-2. Жёсткие решения → ADR (только если skill требует; Constitution XI — не плодить docs без нужды).
-3. Затем implement по [create-devcraft-plugin](create-devcraft-plugin).
+Содержимое `SKILL.md` целиком:
 
-Внутри create-devcraft-plugin: при пробелах — **1–2 вопроса за раунд**, простым языком.
+```text
+Call the Skill tool twice, for "grilling" and "domain-modeling".
+```
+
+Дальше — полный порядок двух вложенных skills.
+
+## grilling [#grilling]
+
+Интервью до **общего понимания**. Дерево решений: каждый выбор открывает следующие. Работа **раундами**.
+
+**Граница** — все вопросы, на которые уже можно ответить (предпосылки закрыты). В одном раунде задать **всю** границу: пронумеровать вопросы и дать **свою рекомендуемую** формулировку. Ждать ответы человека, потом следующий раунд.
+
+Формат раунда:
+
+```text
+**Q1** — **<заголовок>**: тело вопроса (можно варианты).
+
+Рекомендую: <ответ агента>
+
+---
+
+**Q2** — …
+```
+
+Ответы сдвигают дерево: закрытые ветки открывают новые вопросы. Вопрос, который зависит от ещё открытого в **этом** раунде, уходит в **следующий**.
+
+**Факты** ищет агент (файлы, инструменты, дочерние агенты). Человека не спрашивать то, что можно посмотреть самому. Пока идёт поиск — это незакрытая предпосылка: ждать только вопросы **ниже** по дереву; остальную границу задавать сейчас.
+
+**Решения** — за человеком: каждый выбор положить ему и ждать.
+
+Сессия grilla кончена, когда граница пуста: молчаливых допущений нет. **Не** писать код, пока человек не подтвердил общее понимание.
+
+В DevCraft внутри `create-devcraft-plugin` гриль ужимают: **1–2 вопроса за раунд**, простым языком. Типовые пробелы: режим (создание / перенос / обновление); `{Name}` / `{code}` / `{mod}`; админка vs публичный сайт; настройки и права групп; фильтры; `install.xml`; миграция legacy; патчи ядра DLE; журналы.
+
+## domain-modeling [#domain-modeling]
+
+Активно точить **модель предметной области**: спорить с терминами, придумывать крайние случаи, писать словарь и решения **в момент**, когда они затвердели. Просто прочитать `CONTEXT.md` — это не этот skill. Skill — когда модель **меняют**.
+
+### Файлы [#файлы]
+
+Обычный репозиторий:
+
+```text
+/
+├── CONTEXT.md
+├── docs/adr/          ← решения
+└── src/
+```
+
+Если в корне есть `CONTEXT-MAP.md` — контекстов несколько, карта указывает, где какой `CONTEXT.md` и локальные ADR.
+
+Файлы создавать **лениво**: `CONTEXT.md` — когда зафиксирован первый термин; `docs/adr/` — когда нужно первое решение.
+
+В DevCraft **не** плодить `CONTEXT.md` / ADR без нужды (Constitution XI). ADR — только если grilling/domain-modeling сами этого требуют.
+
+### В сессии [#в-сессии]
+
+* Термин человека **бьётся** со словарём — сразу спросить, какой смысл верный.
+* Размытое слово — предложить канон («аккаунт» — посетитель сайта или запись `users`?).
+* Связи сущностей — проверить конкретным сценарием и границей понятий.
+* Человек говорит «как работает» — сверить с кодом; расхождение вынести явно.
+* Термин закрыт — сразу дописать `CONTEXT.md`. Это **только словарь**, не спека и не место для деталей реализации.
+* ADR предлагать, **если одновременно**: решение дорого менять; без контекста будущий читатель не поймёт «почему так»; был реальный выбор между вариантами. Иначе ADR не писать.
 
 ## См. также [#см-также]
 
 * [using-superpowers](using-superpowers)
+* [create-devcraft-plugin](create-devcraft-plugin)
 * [Справочник ИИ](../../guides/ai_tools)
 
 
@@ -94262,36 +94904,86 @@ Project skill: `.cursor/skills/create-devcraft-plugin/SKILL.md` (в host вро�
 
 Skill — инструкция `SKILL.md`, которую агент читает **до** кода. Кладите project skills в `.cursor/skills/{name}/` (или personal `~/.cursor/skills/`).
 
-| Skill                                            | Зачем                                     |
-| ------------------------------------------------ | ----------------------------------------- |
-| [using-superpowers](using-superpowers)           | Сначала skill check, потом код            |
-| [grill-with-docs](grill-with-docs)               | Интервью 1–2 вопроса, glossary/ADR        |
-| [create-devcraft-plugin](create-devcraft-plugin) | Создание / перенос / обновление сателлита |
-| [caveman](caveman)                               | Краткая речь + когда звать MCP compress   |
-| [codebase-memory](codebase-memory)               | Workflow поверх MCP графа кода            |
+На страницах ниже — **полное содержимое** skill (не краткое описание). Краткий каталог: [Справочник ИИ](../../guides/ai_tools).
 
-Сводная таблица: [Справочник ИИ](../../guides/ai_tools).
+| Skill                                            | Что внутри                               |
+| ------------------------------------------------ | ---------------------------------------- |
+| [using-superpowers](using-superpowers)           | Правило вызова, приоритет, красные флаги |
+| [grill-with-docs](grill-with-docs)               | grilling + domain-modeling целиком       |
+| [create-devcraft-plugin](create-devcraft-plugin) | Интервью, канон дерева, чеклист          |
+| [caveman](caveman)                               | Уровни речи, границы, отличие от MCP     |
+| [codebase-memory](codebase-memory)               | Матрица tools, трасса, Cypher, ловушки   |
 
 
 # Using Superpowers (/dev/dle/devcraft_admin/200.4.1/development_help/skills/using-superpowers)
 
 
 
-Канон: [obra/superpowers — using-superpowers](https://github.com/obra/superpowers/tree/main/skills/using-superpowers). Правило: **перед действием** вызвать подходящий skill; process-skills раньше «просто написать код».
+Канон upstream: [obra/superpowers — using-superpowers](https://github.com/obra/superpowers/tree/main/skills/using-superpowers). Ниже — полное рабочее содержимое, как его читает агент.
 
-## Workflow для DevCraft [#workflow-для-devcraft]
+<Callout type="warning">
+  Если агент запущен как **дочерний** (subagent) на узкую задачу — этот skill **не** применять: родитель уже выбрал порядок работы.
+</Callout>
+
+Файл агента: skill `using-superpowers` (obra/superpowers). Читать **до** любого ответа, в том числе до уточняющих вопросов.
+
+## Правило [#правило]
+
+Подходящий skill вызывать **до** любого действия: вопросов, обхода кода, чтения файлов. Если skill оказался не тем — его можно не продолжать.
+
+Перед режимом плана: если brainstorming ещё не был, сначала skill brainstorming.
+
+Затем сказать: «Using \[skill] to \[purpose]» и идти **по skill буквально**. Если в skill есть чеклист — завести todo на каждый пункт.
+
+## Приоритет skills [#приоритет-skills]
+
+Если подходит несколько: сначала **процесс** (как работать), потом **реализация** (как писать код). Частые процесс-skills Superpowers: brainstorming, systematic-debugging.
+
+| Запрос       | Сначала                                       |
+| ------------ | --------------------------------------------- |
+| «Сделай X»   | brainstorming, затем skills реализации        |
+| «Почини баг» | systematic-debugging, затем предметные skills |
+
+## Красные флаги [#красные-флаги]
+
+Эти мысли значат: **стоп**, идёт рационализация.
+
+| Мысль                         | Факт                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| «Это простой вопрос»          | Вопрос — тоже задача. Сначала проверка skills.               |
+| «Сначала нужен контекст»      | Проверка skills **раньше** уточняющих вопросов.              |
+| «Сначала посмотрю код»        | Skills говорят, **как** смотреть. Сначала skill.             |
+| «Быстро гляну git/файлы»      | В файлах нет контекста разговора. Сначала skill.             |
+| «Сначала соберу информацию»   | Skills говорят, **как** собирать.                            |
+| «Формальный skill не нужен»   | Если skill есть — его используют.                            |
+| «Я этот skill помню»          | Skills меняются. Читать текущую версию.                      |
+| «Это не задача»               | Действие = задача. Проверить skills.                         |
+| «Skill слишком тяжёлый»       | Простое часто раздувается. Skill всё равно.                  |
+| «Сначала сделаю вот это одно» | Проверка **до** любого шага.                                 |
+| «Так продуктивнее»            | Действие без дисциплины тратит время. Skills держат порядок. |
+| «Я знаю, что это значит»      | Знать понятие ≠ выполнить skill.                             |
+
+## Платформы [#платформы]
+
+Если среда указана в skill — читать её файл: Codex → `references/codex-tools.md`, Pi → `references/pi-tools.md`, Antigravity → `references/antigravity-tools.md`.
+
+## Инструкции пользователя [#инструкции-пользователя]
+
+Файлы вроде `AGENTS.md` / `CLAUDE.md` и прямые просьбы человека **важнее** skills. Skills важнее поведения модели по умолчанию. Пропускать workflow skill можно **только** если человек это явно сказал.
+
+## Как это ложится на DevCraft [#как-это-ложится-на-devcraft]
 
 <Steps>
   <Step>
     ### Skill check [#skill-check]
 
-    Перед созданием/миграцией модуля: есть ли brainstorming / writing-plans / domain skill? Не писать `manifest.php` «с нуля» без проверки.
+    Перед созданием или переносом модуля: есть ли brainstorming / writing-plans / [create-devcraft-plugin](create-devcraft-plugin)? Не писать `manifest.php` «с нуля» без проверки.
   </Step>
 
   <Step>
     ### Процесс [#процесс]
 
-    Сложный модуль → brainstorming/plan → затем php-pro / [create-devcraft-plugin](create-devcraft-plugin). Простые правки — краткий skill check (YAGNI через [ponytail](../rules/ponytail)).
+    Сложный модуль → brainstorming / план → затем php-pro / [create-devcraft-plugin](create-devcraft-plugin). Простые правки — короткий skill check (YAGNI через [ponytail](../rules/ponytail)).
   </Step>
 
   <Step>
@@ -94568,15 +95260,15 @@ AJAX идёт в `devcraft/ajax.php` → обработчик модуля. Са
 
 ## Каталог Skills [#каталог-skills]
 
-| Skill                   | Зачем                                      | Ссылка                                                                      |
-| ----------------------- | ------------------------------------------ | --------------------------------------------------------------------------- |
-| using-superpowers       | Проверить skills до действий               | [development\_help/skills](../development_help/skills/using-superpowers)    |
-| grill-with-docs         | Интервью 1–2 вопроса за раунд              | [grill-with-docs](../development_help/skills/grill-with-docs)               |
-| create-devcraft-plugin  | Создание / перенос / обновление сателлита  | [create-devcraft-plugin](../development_help/skills/create-devcraft-plugin) |
-| caveman (skill)         | Краткая речь; не путать с MCP compress     | [caveman](../development_help/skills/caveman)                               |
-| codebase-memory (skill) | Как пользоваться skill-обвязкой, если есть | [codebase-memory](../development_help/skills/codebase-memory)               |
+| Skill                   | Зачем                                     | Ссылка                                                            |
+| ----------------------- | ----------------------------------------- | ----------------------------------------------------------------- |
+| using-superpowers       | Проверить skills до действий              | [полный текст](../development_help/skills/using-superpowers)      |
+| grill-with-docs         | Интервью + словарь/ADR                    | [полный текст](../development_help/skills/grill-with-docs)        |
+| create-devcraft-plugin  | Создание / перенос / обновление сателлита | [полный текст](../development_help/skills/create-devcraft-plugin) |
+| caveman (skill)         | Краткая речь; не путать с MCP compress    | [полный текст](../development_help/skills/caveman)                |
+| codebase-memory (skill) | Граф кода: search\_graph / trace\_path    | [полный текст](../development_help/skills/codebase-memory)        |
 
-Подключение: каталог `.cursor/skills/` в host-проекте. Обзор: [Skills](../development_help/skills).
+Подключение: каталог `.cursor/skills/` в host-проекте. На страницах Skills — **полное** содержимое `SKILL.md`, не краткая выжимка. Обзор: [Skills](../development_help/skills).
 
 ## Каталог MCP / CLI [#каталог-mcp--cli]
 
@@ -96176,6 +96868,8 @@ use DevCraft\Builders\ModuleSiteAssetsBuilder;
 * Публичные стили — [PublicStylesPage](../reference/back-end/classes/PublicStylesPage)
 * Публичные скрипты — [PublicScriptsPage](../reference/back-end/classes/PublicScriptsPage)
 * Публичные заголовки — [PublicHeadersPage](../reference/back-end/classes/PublicHeadersPage)
+
+Коды проверки сайта у поисковиков (`google-site-verification`, Яндекс и т.п.) добавляйте здесь, а не отдельным плагином. Старый [Webmaster Verification](/dev/dle/simple/webmaster-verification) устарел.
 
 UI как у Connections: Metro-таблица (поиск), колонка с ручкой DnD (`mif-move`), переключатель «Активен». Добавление — модалка (`Добавить` → форма → сохранить → строка в таблице). Логика — `admin.js` (`DevCraftAdmin.PublicAssets`).
 
@@ -118018,22 +118712,27 @@ function get_breadcrumbcategories($id, $separator="»") {
 
 
 
-**Ссылка на
-разработку**: [Перейти к разработке](https://devcraft.club/downloads/webmaster-verification.21/)
+<Callout type="warn" title="Устарело">
+  Плагин **Webmaster Verification** больше не развивается. Коды проверки сайта (Google, Яндекс и другие `meta`-теги в `<head>`) задаются в **DevCraft Admin**: раздел **Публичные заголовки**. См. [Публичные ресурсы оболочки](/dev/dle/devcraft_admin/guides/public_assets) и страницу [PublicHeadersPage](/dev/dle/devcraft_admin/reference/back-end/classes/PublicHeadersPage). Старый плагин с сайта снимайте, чтобы не дублировать одни и те же теги.
+</Callout>
 
-**Версия модификации**: <i class="fa-duotone fa-code-branch" /> 1.0.0
+Ниже — исходное описание плагина **1.0.0** (только для истории).
+
+**Ссылка на разработку**: [Архив на сайте](https://devcraft.club/downloads/webmaster-verification.21/)
+
+**Версия модификации**: 1.0.0
 
 ## Установка [#установка]
 
-Установить плагин через менеджер плагинов
+Установить плагин через менеджер плагинов. Для новых сайтов не используйте: ставьте DevCraft Admin.
 
 ## Функции [#функции]
 
-| Иконка                                 | Описание                                                                                                    |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| <img alt="add.jpg" src="__img0" />     | Эта кнопка создаёт новое поле для содержимого                                                               |
-| <img alt="delete.jpg" src="__img1" />  | Удаляет содержимое. Однако, как минимум одно поле должно оставаться. Поэтому последняя строчка не удаляется |
-| <img alt="copy.jpg" src="__img2" />    | Клонирует текущую строку                                                                                    |
+| Иконка                                | Описание                                                                                                    |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| <img alt="add.jpg" src="__img0" />    | Эта кнопка создаёт новое поле для содержимого                                                               |
+| <img alt="delete.jpg" src="__img1" /> | Удаляет содержимое. Однако, как минимум одно поле должно оставаться. Поэтому последняя строчка не удаляется |
+| <img alt="copy.jpg" src="__img2" />   | Клонирует текущую строку                                                                                    |
 
 
 # XF List Generator (/dev/dle/simple/xflist)
@@ -119156,7 +119855,9 @@ ACP → **Add-ons** → Uninstall **DLE API Connection Provider**. Удаляю�
 npx skills add JuliusBrussee/caveman
 ```
 
-В чате: `/caveman` (уровни lite / full / ultra — по документации upstream). Цель — меньше слов в ответах при том же диагнозе и фиксе.
+В чате: `/caveman` (уровни lite / full / ultra). Цель — меньше слов в ответах при том же диагнозе и фиксе.
+
+Полный текст skill (правила речи, уровни, когда не сжимать): [Caveman (skill)](../dev/dle/devcraft_admin/development_help/skills/caveman).
 
 ## MCP compress [#mcp-compress]
 
@@ -119327,6 +120028,7 @@ codebase-memory-mcp cli search_graph --project my-project --name-pattern '.*Hand
 
 ## См. также [#см-также]
 
+* [Skill: Codebase Memory](../dev/dle/devcraft_admin/development_help/skills/codebase-memory) — полный текст skill
 * [Graphify](graphify)
 * [Code Review Graph](code-review-graph)
 * [ИИ-инструменты DevCraft](../dev/dle/devcraft_admin/guides/ai_tools)
