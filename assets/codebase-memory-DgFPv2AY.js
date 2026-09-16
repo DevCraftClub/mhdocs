@@ -1,4 +1,0 @@
-import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`codebase-memory.mdc`,description:`Cursor-rule для Codebase Memory MCP.`},i=new Date(1789477657e3),a=`
-
-Файл: \`.cursor/rules/codebase-memory.mdc\`. Суть: [MCP Codebase Memory](../mcp/codebase-memory).
-`,o={contents:[{heading:void 0,content:"Файл: `.cursor/rules/codebase-memory.mdc`. Суть: MCP Codebase Memory."}],headings:[]},s=[];function c(e){let t={a:`a`,code:`code`,p:`p`,...e.components};return(0,n.jsxs)(t.p,{children:[`Файл: `,(0,n.jsx)(t.code,{children:`.cursor/rules/codebase-memory.mdc`}),`. Суть: `,(0,n.jsx)(t.a,{href:`../mcp/codebase-memory`,children:`MCP Codebase Memory`}),`.`]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};

@@ -870,7 +870,19 @@
         - [Установка](/dev/dle/usertags/200.3.1/install): Как поставить TagsAdd после DevCraft Admin: ZIP, Composer, первый запуск.
         - [Настройки](/dev/dle/usertags/200.3.1/settings): Настройки TagsAdd: уведомления, вставка тегов, шаблоны ЛС.
         - Руководства
-          - [Подключение в теме](/dev/dle/usertags/200.3.1/guides/theme): Include TagsAdd в fullstory.tpl: css, button, modal, js и теги шаблонов.
+          - [Подключение в теме](/dev/dle/usertags/200.3.1/guides/theme): Include TagsAdd в fullstory.tpl: кнопка, окно и публичные CSS/JS оболочки.
+          - [Очередь предложений](/dev/dle/usertags/200.3.1/guides/moderation): Как модерировать пользовательские теги в админке TagsAdd.
+        - Справочник
+          - [Справочник](/dev/dle/usertags/200.3.1/reference): Классы TagsAdd: публичный вывод, очередь, вставка тегов, AJAX.
+          - [TagsAddIdentity](/dev/dle/usertags/200.3.1/reference/TagsAddIdentity): Константы MODULE и CODE модуля TagsAdd.
+          - [FullstoryController](/dev/dle/usertags/200.3.1/reference/FullstoryController): Публичный вывод кнопки и окна TagsAdd; CSS/JS сайта — через siteAssets.
+          - [TagSuggestion](/dev/dle/usertags/200.3.1/reference/TagSuggestion): Модель очереди предложений тегов, таблица tags_add.
+          - [SuggestService](/dev/dle/usertags/200.3.1/reference/SuggestService): Создание предложения тегов с публичной страницы новости.
+          - [ModerationService](/dev/dle/usertags/200.3.1/reference/ModerationService): Одобрение, отклонение, удаление и массовые действия очереди TagsAdd.
+          - [TagSyncService](/dev/dle/usertags/200.3.1/reference/TagSyncService): Добавление одобренных тегов в новость или доп. поле без дублей.
+          - [TagNormalizer](/dev/dle/usertags/200.3.1/reference/TagNormalizer): Разбор списка тегов: запятая, точка с запятой, без дублей.
+          - [MailTemplateService](/dev/dle/usertags/200.3.1/reference/MailTemplateService): Подстановка тегов в шаблоны ЛС и отправка личного сообщения DLE.
+          - [AJAX](/dev/dle/usertags/200.3.1/reference/ajax): Методы TagsAdd в devcraft/ajax.php: сайт и админка.
         - [История изменений](/dev/dle/usertags/200.3.1/changelog): История изменений TagsAdd (пользовательские теги).
     - UserLists
       - 200.1.0
@@ -951,7 +963,6 @@
         - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типизированные подписки, шаблоны темы
     - Хаки и простые модули
       - [Schema.Org - Документация DevCraft](/dev/dle/simple/schema): Документация по интеграции Schema.Org разметки в проекты DevCraft.
-      - [Webmaster Verification](/dev/dle/simple/webmaster-verification): Устаревший плагин проверки сайта у поисковиков. Функция перенесена в DevCraft Admin.
       - [XF List Generator](/dev/dle/simple/xflist)
       - [XF Select](/dev/dle/simple/xfselect)
       - [Отдельные страницы как на кинопоиске](/dev/dle/simple/hook-pages-like-kp): Хак для DLE: отдельные страницы как на кинопоиске.
@@ -1017,3 +1028,4 @@
     - [Теги для оформления шаблонов](/deprecated/telegramposting/template_tags): Документация по плагину теги для оформления шаблонов для DLE.
     - [Изменения в версиях](/deprecated/telegramposting/changelog): Документация по плагину изменения в версиях для DLE.
   - [LastNews списком аля seasonvar](/deprecated/paid-lastnews): Документация по плагину lastnews списком аля seasonvar для DLE.
+  - [Webmaster Verification](/deprecated/webmaster-verification): Устаревший плагин проверки сайта у поисковиков. Функция перенесена в DevCraft Admin.
