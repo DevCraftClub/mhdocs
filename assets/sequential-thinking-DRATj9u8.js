@@ -1,0 +1,4 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`sequential-thinking.mdc`,description:`Cursor-rule для Sequential Thinking.`},i=new Date(1789555699e3),a=`
+
+Файл: \`.cursor/rules/sequential-thinking.mdc\`. Суть: [MCP Sequential Thinking](../mcp/sequential-thinking).
+`,o={contents:[{heading:void 0,content:"Файл: `.cursor/rules/sequential-thinking.mdc`. Суть: MCP Sequential Thinking."}],headings:[]},s=[];function c(e){let t={a:`a`,code:`code`,p:`p`,...e.components};return(0,n.jsxs)(t.p,{children:[`Файл: `,(0,n.jsx)(t.code,{children:`.cursor/rules/sequential-thinking.mdc`}),`. Суть: `,(0,n.jsx)(t.a,{href:`../mcp/sequential-thinking`,children:`MCP Sequential Thinking`}),`.`]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};
