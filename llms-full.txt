@@ -16810,6 +16810,39 @@ $allow_cron =
 Теги &#x2A;*\[telegram\_media\_** будут обработаны в том случае, если выбран медийный шаблон. Иначе - станут пустышкой. Если загруженный файл не будет являться разрешённым форматом, то он будет загружен как документ. Максимальное кол-во медиа файлов: 10.
 
 
+# Webmaster Verification (/deprecated/webmaster-verification)
+
+
+
+
+
+
+
+
+
+<Callout type="warn" title="Устарело">
+  Плагин **Webmaster Verification** больше не развивается. Коды проверки сайта (Google, Яндекс и другие `meta`-теги в `<head>`) задаются в **DevCraft Admin**: раздел **Публичные заголовки**. См. [Публичные ресурсы оболочки](/dev/dle/devcraft_admin/guides/public_assets) и страницу [PublicHeadersPage](/dev/dle/devcraft_admin/reference/back-end/classes/PublicHeadersPage). Старый плагин с сайта снимайте, чтобы не дублировать одни и те же теги.
+</Callout>
+
+Ниже — исходное описание плагина **1.0.0** (только для истории).
+
+**Ссылка на разработку**: [Архив на сайте](https://devcraft.club/downloads/webmaster-verification.21/)
+
+**Версия модификации**: 1.0.0
+
+## Установка [#установка]
+
+Установить плагин через менеджер плагинов. Для новых сайтов не используйте: ставьте DevCraft Admin.
+
+## Функции [#функции]
+
+| Иконка                                | Описание                                                                                                    |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| <img alt="add.jpg" src="__img0" />    | Эта кнопка создаёт новое поле для содержимого                                                               |
+| <img alt="delete.jpg" src="__img1" /> | Удаляет содержимое. Однако, как минимум одно поле должно оставаться. Поэтому последняя строчка не удаляется |
+| <img alt="copy.jpg" src="__img2" />   | Клонирует текущую строку                                                                                    |
+
+
 # ApiField (/dev/api_wrappers/kinopoiskdev/Attributes/ApiField)
 
 
@@ -96869,7 +96902,7 @@ use DevCraft\Builders\ModuleSiteAssetsBuilder;
 * Публичные скрипты — [PublicScriptsPage](../reference/back-end/classes/PublicScriptsPage)
 * Публичные заголовки — [PublicHeadersPage](../reference/back-end/classes/PublicHeadersPage)
 
-Коды проверки сайта у поисковиков (`google-site-verification`, Яндекс и т.п.) добавляйте здесь, а не отдельным плагином. Старый [Webmaster Verification](/dev/dle/simple/webmaster-verification) устарел.
+Коды проверки сайта у поисковиков (`google-site-verification`, Яндекс и т.п.) добавляйте здесь, а не отдельным плагином. Старый [Webmaster Verification](/deprecated/webmaster-verification) не поддерживается.
 
 UI как у Connections: Metro-таблица (поиск), колонка с ручкой DnD (`mif-move`), переключатель «Активен». Добавление — модалка (`Добавить` → форма → сохранить → строка в таблице). Логика — `admin.js` (`DevCraftAdmin.PublicAssets`).
 
@@ -116863,6 +116896,7 @@ ZMW|ZMW - Замбийская Квача
 * DLE-теги через ParseTemplateTags; префикс медиа-тегов `[repost_media_*]`
 * Telegram: album photo/video; `media_audio` / `media_document` через SendMediaGroup; одиночные audio/video — один файл
 * Список шаблонов: колонка прокси (Нет / Случайный / ip:port)
+* Хуки DLE: `Controller/hooks.php` и `Controller/news_form.php` от корня сайта
 
 ### Fixed [#fixed]
 
@@ -116871,6 +116905,7 @@ ZMW|ZMW - Замбийская Квача
 ### Removed [#removed]
 
 * Зависимость от MH Admin и `engine/ajax/maharder/*`
+* `engine/modules/devcraft/repost.php` и соседние обёртки — хуки в `Controller/`
 
 
 # Начало работы (/dev/dle/repost/200.1.0/getting_started)
@@ -117025,7 +117060,7 @@ POST: `repost_defer`, `repost_plan_date`, `repost_plan_time`, `repost_tpl_mode`,
 После сохранения новости в БД:
 
 ```php
-include_once (DLEPlugins::Check(ENGINE_DIR . '/modules/devcraft/repost.php'));
+include_once (DLEPlugins::Check(ROOT_DIR . '/devcraft/src/modules/RePost/Controller/hooks.php'));
 sendRepost($id, 'addnews', [
 	'defer'         => 'yes',       // yes|no|template
 	'planned'       => null,        // ?DateTimeImmutable
@@ -117104,7 +117139,7 @@ repostOptionsFromRequest();      // разобрать POST формы ново�
 
 * DLE ≥ 20.0
 * PHP ≥ 8.3
-* **DevCraft Admin ≥ 200.4.0** (`needplugin`)
+* **DevCraft Admin ≥ 200.4.1** (`needplugin`)
 * Composer-пакеты в `devcraft/`: `luzrain/telegram-bot-api`, `guzzlehttp/guzzle` (vendor **не** входит в архив плагина)
 
 ## Шаги [#шаги]
@@ -117147,14 +117182,17 @@ composer dump-autoload
 * удаление новости → очистка очереди
 * `engine/modules/cron.php` → `repostRunCron()` в конце авто-cron DLE
 
+Патчи подключают `devcraft/src/modules/RePost/Controller/hooks.php` и `news_form.php` (путь от корня сайта), с маркерами `// DevCraft RePost: start` … `end`.
+
 Корневой `cron.php` **не** патчится.
 
 ## Структура модуля [#структура-модуля]
 
 ```text
 devcraft/src/modules/RePost/
+devcraft/src/modules/RePost/Controller/hooks.php
+devcraft/src/modules/RePost/Controller/news_form.php
 engine/inc/repost.php
-engine/modules/devcraft/repost.php
 devcraft/config/repost.json
 ```
 
@@ -118702,39 +118740,6 @@ function get_breadcrumbcategories($id, $separator="»") {
 ```
 
 
-# Webmaster Verification (/dev/dle/simple/webmaster-verification)
-
-
-
-
-
-
-
-
-
-<Callout type="warn" title="Устарело">
-  Плагин **Webmaster Verification** больше не развивается. Коды проверки сайта (Google, Яндекс и другие `meta`-теги в `<head>`) задаются в **DevCraft Admin**: раздел **Публичные заголовки**. См. [Публичные ресурсы оболочки](/dev/dle/devcraft_admin/guides/public_assets) и страницу [PublicHeadersPage](/dev/dle/devcraft_admin/reference/back-end/classes/PublicHeadersPage). Старый плагин с сайта снимайте, чтобы не дублировать одни и те же теги.
-</Callout>
-
-Ниже — исходное описание плагина **1.0.0** (только для истории).
-
-**Ссылка на разработку**: [Архив на сайте](https://devcraft.club/downloads/webmaster-verification.21/)
-
-**Версия модификации**: 1.0.0
-
-## Установка [#установка]
-
-Установить плагин через менеджер плагинов. Для новых сайтов не используйте: ставьте DevCraft Admin.
-
-## Функции [#функции]
-
-| Иконка                                | Описание                                                                                                    |
-| ------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| <img alt="add.jpg" src="__img0" />    | Эта кнопка создаёт новое поле для содержимого                                                               |
-| <img alt="delete.jpg" src="__img1" /> | Удаляет содержимое. Однако, как минимум одно поле должно оставаться. Поэтому последняя строчка не удаляется |
-| <img alt="copy.jpg" src="__img2" />   | Клонирует текущую строку                                                                                    |
-
-
 # XF List Generator (/dev/dle/simple/xflist)
 
 
@@ -119213,8 +119218,16 @@ composer dump-autoload
 
 ### Изменено [#изменено]
 
+* Канон публичного include: `devcraft/src/modules/TagsAdd/Controller/show_tags_add.php` от корня сайта
+* CSS и JS сайта — `siteAssets` (`Public/tags_add.css`, `Public/tags_add_site.js`); include `focus=css` / `focus=js` пустые
+* Манифест через `ModuleManifestBuilder`, `TagsAddIdentity`, публичный `suggest` через `publicMethod`
+* Фронт поднимает DevCraft и читает конфиг через `DataManager`
 * Рендер button/modal через нативный `$tpl` и шаблоны темы
 * Блок `author` в manifest убран — используется дефолт `ModuleManifest`
+
+### Удалено [#удалено]
+
+* `engine/modules/devcraft/tags_add.php` — в теме только `Controller/show_tags_add.php`
 
 ## 200.3.0 (2026-07-17) [#20030-2026-07-17]
 
@@ -119249,7 +119262,7 @@ composer dump-autoload
 * Отмена отклонения больше не удаляет запись
 * HTML-ссылки в шаблонах PM после двойного экранирования (`htmlspecialchars_decode` при normalize)
 
-### Удалено [#удалено]
+### Удалено [#удалено-1]
 
 * Legacy Semantic UI, arcticModal, tokenfield, maharder AJAX и доверие к `userid` из POST
 
@@ -119292,7 +119305,7 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
 
 ## Возможности [#возможности]
 
-* Кнопка и модальное окно на полной новости (шаблоны темы).
+* Кнопка и окно на полной новости (шаблоны темы).
 * Предложения от гостей (если разрешено в настройках) и от авторизованных.
 * Очередь в админке: одобрить / отклонить с причиной / удалить / массовые действия.
 * Вставка при одобрении в `tags` новости или в доп. поле (`xfield`), опционально в xfsearch.
@@ -119336,6 +119349,10 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
 
         <File name="changelog.data.php — история в панели" />
 
+        <File name="TagsAddIdentity.php — MODULE/CODE" />
+
+        <Folder name="Controller — публичный include show_tags_add.php" />
+
         <Folder name="Pages — главная, очередь, настройки, шаблоны ЛС…" />
 
         <Folder name="Ajax — suggest, approve, reject, delete…" />
@@ -119344,7 +119361,7 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
 
         <Folder name="templates — Twig экранов админки" />
 
-        <Folder name="Public — ресурсы модуля" />
+        <Folder name="Public — tags_add.css, tags_add_site.js, admin tags_add.js" />
       </Folder>
 
       <Folder name="config — tags_add.json после сохранения" />
@@ -119356,25 +119373,20 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
       <Folder name="inc">
         <File name="tags_add.php — glue админки" />
       </Folder>
-
-      <Folder name="modules/devcraft">
-        <File name="tags_add.php — include для fullstory (focus=…)" />
-      </Folder>
     </Folder>
 
     <Folder name="templates/{skin}/devcraft/tags_add">
       <File name="button.tpl / modal.tpl" />
-
-      <File name="tags_add.css / tags_add.js" />
     </Folder>
   </Folder>
 </Files>
 
 Кратко:
 
-* **`devcraft/src/modules/TagsAdd/`** — админка и бизнес-логика.
-* **`engine/modules/devcraft/tags_add.php`** — вывод кнопки/модалки на новости.
-* **`templates/…/tags_add/`** — вёрстка и скрипт темы.
+* **`devcraft/src/modules/TagsAdd/`** — админка, бизнес-логика и публичный Controller.
+* **`Controller/show_tags_add.php`** — канон include в теме (от корня сайта).
+* **`Public/`** — CSS/JS сайта (`siteAssets`) и JS админки (`assets`).
+* **`templates/…/tags_add/`** — разметка кнопки и окна.
 
 ## Быстрый старт [#быстрый-старт]
 
@@ -119394,7 +119406,7 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
   <Step>
     ### Тема [#тема]
 
-    В `fullstory.tpl` добавьте includes с `focus=css|button|modal|js`. Скопируйте шаблоны в свой скин при необходимости. См. [Подключение в теме](guides/theme).
+    В `main.tpl` поставьте `{devcraft}`. В `fullstory.tpl` — includes с `focus=button` и `focus=modal`. Скопируйте шаблоны в свой скин при необходимости. См. [Подключение в теме](guides/theme).
   </Step>
 
   <Step>
@@ -119411,6 +119423,8 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
 | [Установка](./install)             | ZIP, Composer, первый запуск, отличие от legacy |
 | [Настройки](./settings)            | PM, xfield prefs, куда писать теги, шаблоны ЛС  |
 | [Подключение в теме](guides/theme) | Includes в fullstory, теги button/modal         |
+| [Очередь](guides/moderation)       | Одобрение, отклонение, массовые действия        |
+| [Справочник](./reference)          | Классы PHP и AJAX                               |
 | [История изменений](./changelog)   | 200.3.1 и ранее                                 |
 
 <Cards>
@@ -119426,7 +119440,15 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
     fullstory.tpl и шаблоны кнопки
   </Card>
 
-  <Card title="Changelog" href="./changelog">
+  <Card title="Очередь" href="./guides/moderation">
+    Одобрить, отклонить, массово
+  </Card>
+
+  <Card title="Справочник" href="./reference">
+    Классы и AJAX
+  </Card>
+
+  <Card title="История изменений" href="./changelog">
     Что изменилось в 200.3.1
   </Card>
 </Cards>
@@ -119438,13 +119460,71 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
 3. Настроить [шаблоны ЛС и вставку](./settings), проверить кнопку на новости.
 
 
+# Очередь предложений (/dev/dle/usertags/200.3.1/guides/moderation)
+
+
+
+## Введение [#введение]
+
+Посетитель предлагает теги на полной новости. Запись попадает в очередь. Модератор одобряет (теги пишутся в новость), отклоняет с причиной или удаляет без письма.
+
+## Предварительные требования [#предварительные-требования]
+
+* [Начало работы](../getting_started)
+* [Установка](../install)
+* [Настройки](../settings) — куда вставлять теги и шаблоны ЛС
+
+## Пошагово [#пошагово]
+
+<Steps>
+  <Step>
+    ### Откройте очередь [#откройте-очередь]
+
+    Адрес: `?mod=tags_add&action=suggestions`. Фильтры списка — схема `Filter/filter.schema.php`.
+  </Step>
+
+  <Step>
+    ### Карточка [#карточка]
+
+    Скрытая страница `?mod=tags_add&action=edit&id=…`. Можно поправить список тегов (`save_suggestion`) и затем одобрить.
+  </Step>
+
+  <Step>
+    ### Одобрение [#одобрение]
+
+    Теги дописываются к уже существующим ([TagSyncService](../reference/TagSyncService)). Автор получает ЛС, если в профиле разрешено `onadd`. Заявка из очереди исчезает.
+  </Step>
+
+  <Step>
+    ### Отклонение [#отклонение]
+
+    Окно Metro: причина или стандартная из настроек. Отмена окна **не** удаляет запись. После отклонения заявка удаляется, автору уходит ЛС (`ondel`).
+  </Step>
+
+  <Step>
+    ### Массовые действия [#массовые-действия]
+
+    Выберите строки и действие `approve` / `reject` / `delete`. См. [AJAX](../reference/ajax).
+  </Step>
+</Steps>
+
+## Связанные разделы [#связанные-разделы]
+
+* [Справочник: модерация](../reference/ModerationService)
+* [История изменений](../changelog)
+
+
 # Подключение в теме (/dev/dle/usertags/200.3.1/guides/theme)
 
 
 
 ## Введение [#введение]
 
-На полной новости модуль рисует кнопку и окно предложения тегов. Логика include — в `engine/modules/devcraft/tags_add.php`; разметка и скрипт — в теме `templates/{skin}/devcraft/tags_add/`.
+На полной новости модуль рисует кнопку и окно предложения тегов. Логика include — в `devcraft/src/modules/TagsAdd/Controller/show_tags_add.php`; разметка кнопки и окна — в теме `templates/{skin}/devcraft/tags_add/`.
+
+Стили и скрипт сайта идут из `Public/` через `siteAssets` манифеста (списки публичных ресурсов Admin). В `main.tpl` нужен тег `{devcraft}` или пара `{devcraft-header}` / `{devcraft-scripts}`. Подробности: [публичные ресурсы оболочки](/dev/dle/devcraft_admin/200.4.1/guides/public_assets).
+
+Include с `focus=css` и `focus=js` ничего не выводят: их можно убрать, чтобы не путать со старой схемой.
 
 ## Предварительные требования [#предварительные-требования]
 
@@ -119452,27 +119532,36 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
 * [Установка](../install)
 * [Настройки](../settings) — хотя бы текст кнопки и права гостей
 
-## fullstory.tpl [#fullstorytpl]
+## main.tpl [#maintpl]
 
-В шаблон полной новости добавьте:
+Один раз в оболочке:
 
 ```html
-{include file="engine/modules/devcraft/tags_add.php?newsid={news-id}&focus=css"}
-{include file="engine/modules/devcraft/tags_add.php?newsid={news-id}&focus=button"}
-{include file="engine/modules/devcraft/tags_add.php?newsid={news-id}&focus=modal"}
-{include file="engine/modules/devcraft/tags_add.php?newsid={news-id}&focus=js"}
+{devcraft}
 ```
+
+Либо раздельно: `{devcraft-header}` в `<head>` и `{devcraft-scripts}` перед закрытием `</body>`. Так на страницу попадут `tags_add.css`, `tags_add_site.js` и общий `dc_public.js` Admin.
+
+## fullstory.tpl [#fullstorytpl]
+
+В шаблон полной новости добавьте (путь от корня сайта; DLE вырезает `..` в include):
+
+```html
+{include file="devcraft/src/modules/TagsAdd/Controller/show_tags_add.php?news_id={news-id}&focus=button"}
+{include file="devcraft/src/modules/TagsAdd/Controller/show_tags_add.php?news_id={news-id}&focus=modal"}
+```
+
+Параметр `news_id` — канон; `newsid` принят как синоним.
 
 Параметр `focus`:
 
-| Значение | Результат                |
-| -------- | ------------------------ |
-| `css`    | Стили модуля             |
-| `button` | Кнопка предложения       |
-| `modal`  | Разметка модального окна |
-| `js`     | Скрипт отправки          |
+| Значение    | Результат                    |
+| ----------- | ---------------------------- |
+| `button`    | Кнопка предложения           |
+| `modal`     | Разметка окна                |
+| `css`, `js` | Пусто (файлы уже в оболочке) |
 
-Файлы темы: `button.tpl`, `modal.tpl`, `tags_add.css`, `tags_add.js`. Если скин не Default — скопируйте каталог из пакета `Default`.
+Файлы темы: `button.tpl`, `modal.tpl`. Если скин не Default — скопируйте каталог из пакета `Default`.
 
 ## Теги шаблонов темы [#теги-шаблонов-темы]
 
@@ -119491,15 +119580,17 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
 | `{button-label}` | Текст кнопки / заголовок окна |
 | `{user-hash}`    | `dle_login_hash` для AJAX     |
 
-При правке модалки сохраняйте имена полей формы и endpoint AJAX — иначе отправка сломается.
+При правке окна сохраняйте имена полей формы и вызов AJAX — иначе отправка сломается. Публичный скрипт `Public/tags_add_site.js` шлёт `DevCraftPublic.Ajax.post('tags_add', 'suggest', { news_id, tags })`. Подробности: [AJAX](../reference/ajax).
 
 ## Модерация [#модерация]
 
 Очередь: `?mod=tags_add&action=suggestions`.\
-Одобрение / отклонение / удаление — диалоги Metro; отклонение с причиной или стандартной из [настроек](../settings).
+Одобрение / отклонение / удаление — окна Metro; отклонение с причиной или стандартной из [настроек](../settings).
 
 ## Связанные разделы [#связанные-разделы]
 
+* [Очередь в админке](./moderation)
+* [AJAX](../reference/ajax)
 * [Настройки](../settings)
 * [История изменений](../changelog)
 
@@ -119522,9 +119613,9 @@ Legacy TagsAdd+ для прежней схемы `engine/inc/maharder/` / `engin
 2. Загрузите в **Панель управления DLE → Плагины → Установить плагин**.
 3. Убедитесь, что на сайте есть:
    * `engine/inc/tags_add.php`
-   * `engine/modules/devcraft/tags_add.php`
-   * `devcraft/src/modules/TagsAdd/`
-   * `templates/Default/devcraft/tags_add/` (при другой теме — скопируйте каталог в свой скин)
+   * `devcraft/src/modules/TagsAdd/` (включая `Controller/show_tags_add.php`)
+   * `devcraft/src/modules/TagsAdd/Public/` (`tags_add.css`, `tags_add_site.js`)
+   * `templates/Default/devcraft/tags_add/` (кнопка и окно; при другой теме — скопируйте каталог в свой скин)
 
 Пути legacy `engine/inc/maharder/`, `engine/modules/maharder/tagsadd.php` и корневой `install.php` в пакет **200.x не входят**.
 
@@ -119548,6 +119639,351 @@ composer dump-autoload
 * [Настройки](settings)
 * [Подключение в теме](guides/theme)
 * [История изменений](changelog)
+
+
+# FullstoryController (/dev/dle/usertags/200.3.1/reference/FullstoryController)
+
+
+
+**Описание:** Рисует фрагмент полной новости по параметру `focus` (`button` / `modal`). Берёт настройки через `DataManager` и `ConfigNormalizer` (поле `button_label`, гости). Если гостям нельзя и посетитель не вошёл — возвращает пустую строку. CSS и JS сайта не вставляет: они идут из `siteAssets` манифеста.
+
+**Namespace:** `DevCraft\Modules\TagsAdd\Controller`
+
+**С версии:** 200.3.1
+
+**См. также:** [тема](../guides/theme), [TagsAddIdentity](./TagsAddIdentity)
+
+Тонкий вход: `show_tags_add.php` (канон include от корня сайта).
+
+Шаблоны: `templates/{skin}/devcraft/tags_add/` (`button.tpl`, `modal.tpl`). Если в текущем скине каталога нет — берётся `Default`.
+
+## Методы [#методы]
+
+### `render(int $newsId, string $focus = 'button'): string` [#renderint-newsid-string-focus--button-string]
+
+**Описание:** Собирает HTML кнопки или окна. Для `css` и `js` возвращает пустую строку.
+
+**Параметры:**
+
+| Параметр  | Тип      | Описание                                                                 |
+| --------- | -------- | ------------------------------------------------------------------------ |
+| `$newsId` | `int`    | ID новости. Если `≤ 0` — пустая строка                                   |
+| `$focus`  | `string` | `button` или `modal`. `css`/`js` — пустая строка. По умолчанию: `button` |
+
+**Возвращает:** `string` — разметка для вставки в шаблон DLE.
+
+**Пример:**
+
+```php
+echo (new \DevCraft\Modules\TagsAdd\Controller\FullstoryController())->render(12, 'button');
+```
+
+В `show_tags_add.php` принимаются и `news_id`, и синоним `newsid`.
+
+
+# MailTemplateService (/dev/dle/usertags/200.3.1/reference/MailTemplateService)
+
+
+
+**Описание:** Собирает тему и текст письма: теги новости DLE через `ParseTemplateTags` плюс модульные `{user}`, `{suggested_tags}` и остальные. Отправка — штатные личные сообщения DLE (очистка HTML как у `engine/ajax/pm.php`).
+
+**Namespace:** `DevCraft\Modules\TagsAdd\Services`
+
+**С версии:** 200.3.1
+
+**См. также:** [настройки](../settings), [ModerationService](./ModerationService)
+
+## Методы [#методы]
+
+### `render(string $template, array $vars, array $news = []): string` [#renderstring-template-array-vars-array-news---string]
+
+Если `$news` не пустой — `ParseTemplateTags::apply`. Иначе только замена ключей `$vars`.
+
+### `sendPm(string $toName, string $fromName, string $subject, string $body): bool` [#sendpmstring-toname-string-fromname-string-subject-string-body-bool]
+
+ЛС по нику. `false`, если получатель не найден.
+
+### `userWantsNotify(array $userRow, string $field, string $event): bool` [#userwantsnotifyarray-userrow-string-field-string-event-bool]
+
+Смотрит доп. поле профиля (`onsend` / `onadd` / `ondel` / `all` / `none`). Пустое имя поля или пустое значение → письма разрешены. `none` — не слать.
+
+События: `onsend` (новое предложение), `onadd` (одобрили), `ondel` (отклонили).
+
+
+# ModerationService (/dev/dle/usertags/200.3.1/reference/ModerationService)
+
+
+
+**Описание:** Работа модератора над [TagSuggestion](./TagSuggestion). Одобрение вызывает [TagSyncService](./TagSyncService) и ЛС автору (`onadd`). Отклонение шлёт ЛС (`ondel`) и удаляет запись. Удаление без письма.
+
+**Namespace:** `DevCraft\Modules\TagsAdd\Services`
+
+**С версии:** 200.3.1
+
+**См. также:** [очередь](../guides/moderation), [ajax](./ajax)
+
+## Методы [#методы]
+
+### `config(): array` [#config-array]
+
+Нормализованные настройки модуля (`tags_add` / файл `tagsadd`).
+
+### `approve(int $id, ?string $tagsOverride = null): void` [#approveint-id-string-tagsoverride--null-void]
+
+Пишет теги в новость (или доп. поле), уведомляет автора, удаляет заявку.
+
+| Параметр        | Тип            | Описание                                                        |
+| --------------- | -------------- | --------------------------------------------------------------- |
+| `$id`           | `int`          | ID заявки                                                       |
+| `$tagsOverride` | `string\|null` | Замена списка перед записью. По умолчанию: `null` (теги заявки) |
+
+**Исключения:** `\RuntimeException` — заявка не найдена.
+
+### `reject(int $id, string $reason = ''): void` [#rejectint-id-string-reason---void]
+
+Пустая причина → `decline_reason_default` из настроек. Запись после письма удаляется.
+
+### `delete(int $id): void` [#deleteint-id-void]
+
+Только удаление из очереди, без ЛС.
+
+### `saveTags(int $id, string $tags): void` [#savetagsint-id-string-tags-void]
+
+Правит текст заявки (карточка «Редактировать»), не пишет в новость.
+
+### `bulk(string $action, array $ids, string $reason = ''): int` [#bulkstring-action-array-ids-string-reason---int]
+
+`$action`: `approve`, `reject`, `delete`. Битые id пропускаются. Возвращает число обработанных.
+
+### `buildVars(array $news, string $userName, TagSuggestion $entity): array` [#buildvarsarray-news-string-username-tagsuggestion-entity-array]
+
+Плейсхолдеры `{user}`, `{suggested_tags}`, `{moderate_suggested_tags}`, `{decline_reason}` для шаблонов ЛС.
+
+### `loadNewsRow(int $newsId): array` [#loadnewsrowint-newsid-array]
+
+Строка `post` (+ `post_extras` при наличии) для тегов новости в письмах.
+
+### `newsUrl(array $news): string` [#newsurlarray-news-string]
+
+Устарело: используйте `ParseTemplateTags::fullLink()`.
+
+
+# SuggestService (/dev/dle/usertags/200.3.1/reference/SuggestService)
+
+
+
+**Описание:** Проверяет права гостей, наличие новости и непустой список тегов, пишет [TagSuggestion](./TagSuggestion), при необходимости шлёт ЛС админу и автору.
+
+**Namespace:** `DevCraft\Modules\TagsAdd\Services`
+
+**С версии:** 200.3.1
+
+**См. также:** [ajax](./ajax), [MailTemplateService](./MailTemplateService)
+
+Вызов с сайта: обработчик `SuggestHandler` (`method=suggest`, `controller=public`).
+
+## Методы [#методы]
+
+### `suggest(int $newsId, string $rawTags): TagSuggestion` [#suggestint-newsid-string-rawtags-tagsuggestion]
+
+**Описание:** Создаёт запись очереди.
+
+**Параметры:**
+
+| Параметр   | Тип      | Описание                                   |
+| ---------- | -------- | ------------------------------------------ |
+| `$newsId`  | `int`    | ID новости                                 |
+| `$rawTags` | `string` | Сырой список (запятая или точка с запятой) |
+
+**Возвращает:** [TagSuggestion](./TagSuggestion)
+
+**Исключения:**
+
+* `\RuntimeException` — гости запрещены, нет новости, пустые теги
+
+Конфиг читается как `DataManager::getConfig('tags_add', null, 'tagsadd')` и нормализуется `ConfigNormalizer`.
+
+
+# TagNormalizer (/dev/dle/usertags/200.3.1/reference/TagNormalizer)
+
+
+
+**Описание:** Режет сырую строку, сжимает пробелы, отбрасывает повторы без учёта регистра, сохраняет исходный регистр первого вхождения.
+
+**Namespace:** `DevCraft\Modules\TagsAdd\Services`
+
+**С версии:** 200.3.1
+
+## Методы [#методы]
+
+### `parse(string $raw): array` [#parsestring-raw-array]
+
+Возвращает `list<string>`. Разделители: `,` и `;`.
+
+### `toCsv(array $tags): string` [#tocsvarray-tags-string]
+
+Склеивает список через запятую без пробела.
+
+### `missing(array $existing, array $proposed): array` [#missingarray-existing-array-proposed-array]
+
+Теги из `$proposed`, которых ещё нет в `$existing` (сравнение в нижнем регистре).
+
+
+# TagSuggestion (/dev/dle/usertags/200.3.1/reference/TagSuggestion)
+
+
+
+**Описание:** Одна заявка в очереди модерации. Таблица `{prefix}_tags_add` создаётся Cycle ORM по этой модели при первом обращении к модулю в админке.
+
+**Namespace:** `DevCraft\Modules\TagsAdd\Models`
+
+**С версии:** 200.3.1
+
+**См. также:** [SuggestService](./SuggestService), [ModerationService](./ModerationService)
+
+Role Cycle: `tag_suggestion`. Репозиторий: `TagSuggestionRepository`. Индексы: `news_id`, `date`.
+
+## Public свойства [#public-свойства]
+
+| Свойство   | Тип                  | Описание                                          |
+| ---------- | -------------------- | ------------------------------------------------- |
+| `$news_id` | `int`                | Новость. По умолчанию: `0`                        |
+| `$user_id` | `int`                | Автор предложения; `0` — гость. По умолчанию: `0` |
+| `$tags`    | `string`             | Теги через запятую                                |
+| `$date`    | `\DateTimeImmutable` | Когда предложили                                  |
+
+`id` и служебные поля даты — у `AbstractEntity`.
+
+## Методы [#методы]
+
+### `getColumnVal(string $name): string\|int\|null\|\DateTimeImmutable` [#getcolumnvalstring-name-stringintnulldatetimeimmutable]
+
+Чтение колонки по имени для таблиц админки (`id`, `news_id`, `user_id`, `tags`, `date`).
+
+
+# TagSyncService (/dev/dle/usertags/200.3.1/reference/TagSyncService)
+
+
+
+**Описание:** Сравнивает предложенные теги с уже стоящими (без учёта регистра) и дописывает только новые. Режим задаёт настройка `insert_target`: `tags` или `xfield`.
+
+**Namespace:** `DevCraft\Modules\TagsAdd\Services`
+
+**С версии:** 200.3.1
+
+**См. также:** [ModerationService](./ModerationService), [настройки](../settings)
+
+## Методы [#методы]
+
+### `apply(int $newsId, array $proposed, array $config): array` [#applyint-newsid-array-proposed-array-config-array]
+
+**Параметры:**
+
+| Параметр    | Тип            | Описание                         |
+| ----------- | -------------- | -------------------------------- |
+| `$newsId`   | `int`          | Новость                          |
+| `$proposed` | `list<string>` | Уже разобранные теги             |
+| `$config`   | `array`        | Нормализованные настройки модуля |
+
+**Возвращает:** `list<string>` — фактически добавленные значения (пустой список, если нечего писать).
+
+Для `tags` обновляет `post.tags` и строки `{prefix}_tags`. Для `xfield` правит `post.xfields`; при включённом `xfield_link` — ещё `{prefix}_xfsearch`. После записи сбрасывает кэш новости (`full_*`, `news_*`, `related_*`, `stats`), если в DLE есть `clear_cache`.
+
+
+# TagsAddIdentity (/dev/dle/usertags/200.3.1/reference/TagsAddIdentity)
+
+
+
+**Описание:** Identity модуля: одно имя для админки DLE (`?mod=tags_add`) и кода манифеста.
+
+**Namespace:** `DevCraft\Modules\TagsAdd`
+
+**С версии:** 200.3.1
+
+**См. также:** [FullstoryController](./FullstoryController), [манифест](../getting_started)
+
+Файл: `TagsAddIdentity.php`. Наследник `AbstractModuleIdentity` (DevCraft Admin ≥ 200.4.0).
+
+## Public константы [#public-константы]
+
+| Константа | Тип             | Описание                                    |
+| --------- | --------------- | ------------------------------------------- |
+| `MODULE`  | `const(string)` | Идентификатор админки. Значение: `tags_add` |
+| `CODE`    | `const(string)` | Код модуля / конфиг. Значение: `tags_add`   |
+
+Каталог модуля на диске — `TagsAdd`, это не то же самое, что `MODULE`.
+
+## Методы [#методы]
+
+Наследуются от базы: `mod()` и `code()` возвращают константы.
+
+**Пример:**
+
+```php
+use DevCraft\Modules\TagsAdd\TagsAddIdentity;
+
+TagsAddIdentity::mod(); // tags_add
+```
+
+Вход админки: `engine/inc/tags_add.php` вызывает `runAdmin(moduleDir: 'TagsAdd', mod: TagsAddIdentity::mod())`.
+
+
+# AJAX (/dev/dle/usertags/200.3.1/reference/ajax)
+
+
+
+Все вызовы идут в `devcraft/ajax.php`. Модуль: `mod=tags_add`. Отдельных файлов в `engine/ajax/` нет.
+
+Клиент сайта: `DevCraftPublic.Ajax.post('tags_add', 'suggest', { news_id, tags })` (скрипт `Public/tags_add_site.js`, в оболочке через `siteAssets`). Нужны `dc_public.js` (его даёт Admin) и `controller=public`.
+
+## Сайт (`controller=public`) [#сайт-controllerpublic]
+
+| Метод     | Класс            | Гости                  | Поля                           | Смысл          |
+| --------- | ---------------- | ---------------------- | ------------------------------ | -------------- |
+| `suggest` | `SuggestHandler` | да (проверка в службе) | `news_id` или `newsid`, `tags` | Создать заявку |
+
+Гостям отказ, если в настройках выключено «Разрешить предложения гостям».
+
+## Админка (`controller=admin`) [#админка-controlleradmin]
+
+| Метод             | Класс                   | Поля                        | Смысл                                    |
+| ----------------- | ----------------------- | --------------------------- | ---------------------------------------- |
+| `settings`        | `SettingsHandler`       | поля формы настроек         | Сохранить конфиг                         |
+| `approve`         | `ApproveHandler`        | `id`, опционально `tags`    | Одобрить                                 |
+| `reject`          | `RejectHandler`         | `id`, `reason`              | Отклонить                                |
+| `delete`          | `DeleteHandler`         | `id`                        | Удалить без письма                       |
+| `save_suggestion` | `SaveSuggestionHandler` | `id`, `tags`                | Править заявку                           |
+| `bulk_moderation` | `BulkModerationHandler` | `action`, `ids[]`, `reason` | Массово: `approve` / `reject` / `delete` |
+
+Логика — в [ModerationService](./ModerationService) и [SuggestService](./SuggestService). Окна подтверждения в админке — Metro (`DevCraft.Metro.dialogCreate`), не системный `confirm`.
+
+
+# Справочник (/dev/dle/usertags/200.3.1/reference)
+
+
+
+Исходники: `devcraft/src/modules/TagsAdd/`. Версия модуля **200.3.1**. Настройка сайта — в [руководствах](../guides/theme).
+
+## Публичный слой [#публичный-слой]
+
+* [TagsAddIdentity](./TagsAddIdentity) — `mod` / `code` = `tags_add`
+* [FullstoryController](./FullstoryController) — кнопка, окно, CSS, JS на полной новости
+* Include: `devcraft/src/modules/TagsAdd/Controller/show_tags_add.php`
+
+## Домен [#домен]
+
+* [TagSuggestion](./TagSuggestion) — строка очереди, таблица `{prefix}_tags_add`
+* [SuggestService](./SuggestService) — создание предложения с сайта
+* [ModerationService](./ModerationService) — одобрить / отклонить / удалить / массово
+* [TagSyncService](./TagSyncService) — запись в теги новости или доп. поле
+* [TagNormalizer](./TagNormalizer) — разбор списка тегов
+* [MailTemplateService](./MailTemplateService) — личные сообщения
+
+## AJAX [#ajax]
+
+Таблица методов: [AJAX](./ajax). Точка входа: `devcraft/ajax.php`.
+
+Практические сценарии: [тема](../guides/theme), [очередь](../guides/moderation), [настройки](../settings).
 
 
 # Настройки (/dev/dle/usertags/200.3.1/settings)
@@ -119614,6 +120050,8 @@ none|Не присылать уведомления
 **Стандартная причина отклонения** (`decline_reason_default`) подставляется в `{decline_reason}`, если модератор оставил поле пустым. Отмена в диалоге отклонения **не** удаляет запись.
 
 Старые плейсхолдеры `%tags%` / `%adminlink%` / `%reason%` при сохранении настроек мигрируют автоматически.
+
+Подстановка и отправка ЛС: [MailTemplateService](./reference/MailTemplateService).
 
 
 # Разработки (/dev)
