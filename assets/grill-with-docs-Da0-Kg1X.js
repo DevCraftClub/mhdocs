@@ -1,4 +1,0 @@
-import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`grill-with-docs (перенесено)`,description:`Страница переехала в development_help/skills.`},i=new Date(1789560091e3),a=`
-
-Перенесено: [grill-with-docs](../../development_help/skills/grill-with-docs).
-`,o={contents:[{heading:void 0,content:`Перенесено: grill-with-docs.`}],headings:[]},s=[];function c(e){let t={a:`a`,p:`p`,...e.components};return(0,n.jsxs)(t.p,{children:[`Перенесено: `,(0,n.jsx)(t.a,{href:`../../development_help/skills/grill-with-docs`,children:`grill-with-docs`}),`.`]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};
