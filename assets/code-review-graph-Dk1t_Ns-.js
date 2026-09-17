@@ -1,4 +1,0 @@
-import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`code-review-graph.mdc`,description:`Cursor-rule для CRG.`},i=new Date(1789631874e3),a=`
-
-Файл: \`.cursor/rules/code-review-graph.mdc\`. Суть: [MCP CRG](../mcp/code-review-graph).
-`,o={contents:[{heading:void 0,content:"Файл: `.cursor/rules/code-review-graph.mdc`. Суть: MCP CRG."}],headings:[]},s=[];function c(e){let t={a:`a`,code:`code`,p:`p`,...e.components};return(0,n.jsxs)(t.p,{children:[`Файл: `,(0,n.jsx)(t.code,{children:`.cursor/rules/code-review-graph.mdc`}),`. Суть: `,(0,n.jsx)(t.a,{href:`../mcp/code-review-graph`,children:`MCP CRG`}),`.`]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};
