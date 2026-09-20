@@ -458,12 +458,29 @@
         - [Миграция на DevCraft Admin](/dev/dle/devcraft_admin/200.4.1/migration): Перенос с MH Admin (Legacy) на DevCraft Admin для DLE 20.0.
         - Руководства
           - [Условия в шаблонах DLE (\[if\]/\[has\])](/dev/dle/devcraft_admin/200.4.1/guides/template_conditionals): Как писать [if] с [else] и новый блок [has] в публичных шаблонах после установки DevCraft Admin.
-          - [Публичные ресурсы оболочки](/dev/dle/devcraft_admin/200.4.1/guides/public_assets): Теги {devcraft*}, siteAssets, страницы Admin, синк в БД и компрессия.
+          - [Публичные ресурсы оболочки](/dev/dle/devcraft_admin/200.4.1/guides/public_assets): Теги {devcraft*}, siteAssets, зависимости, разделы показа и сжатие.
           - [Создание модуля](/dev/dle/devcraft_admin/200.4.1/guides/create_module): Каркас модуля DevCraft: каталоги, manifest, settings, changelog, страницы, AJAX и install.xml.
+          - [Сторонние модули со своим пространством имён](/dev/dle/devcraft_admin/200.4.1/guides/third_party_namespaces): Как подключить модуль не из DevCraft\Modules\: namespace в манифесте, PSR-4 при старте, настройки в third_party, два пути установки.
           - [PHP DevCraft Standards](/dev/dle/devcraft_admin/200.4.1/guides/php_devcraft_standards): Оверлей: русский PHPDoc, DLEPlugins::Check, публичный Controller include — без дубля конституции.
           - [Генератор модулей](/dev/dle/devcraft_admin/200.4.1/guides/new_module): Создание нового модуля DevCraft через админ-панель.
           - [Module Identity](/dev/dle/devcraft_admin/200.4.1/guides/module_identity): Единый источник mod и code модуля: ModuleIdentity, AbstractModuleIdentity и *Identity классы.
           - [Fluent Types](/dev/dle/devcraft_admin/200.4.1/guides/fluent_types): Fluent-билдеры и dual accept: массив или готовый объект — manifest, формы, changelog.
+          - Конструкторы билдеров
+            - [Интерактивные конструкторы](/dev/dle/devcraft_admin/200.4.1/guides/builders): Собрать Fluent-цепочку PHP-билдера на странице гайда и скопировать код.
+            - [QueryBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/query_builder): Сборка запросов к таблицам DLE через DataLoaderService.
+            - [ModuleManifestBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/module_manifest_builder): Манифест сателлита: код, меню, AJAX, ресурсы.
+            - [ModuleSiteAssetsBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/module_site_assets_builder): Публичные JS, CSS и meta оболочки сайта: путь, зависимости, разделы.
+            - [ModuleAssetsBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/module_assets_builder): JS и CSS панели администратора.
+            - [ModuleAjaxConfigBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/module_ajax_config_builder): Регистрация admin и public AJAX.
+            - [AuthorBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/author_builder): Автор модуля: контакты и пожертвования.
+            - [ChangelogBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/changelog_builder): Одна запись истории версий.
+            - [ComposerTypeBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/composer_type_builder): Правило зависимости Composer.
+            - [AdminLinkBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/admin_link_builder): Пункт меню, скрытая страница или разделитель.
+            - [BreadCrumbBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/bread_crumb_builder): Крошка навигации.
+            - [LanguageDataBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/language_data_builder): Описание языка для списка локалей.
+            - [FilterSchemaBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/filter_schema_builder): Порядок и колонки сортировки фильтра.
+            - [CacheInputTypeBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/cache_input_type_builder): Входные данные кэша.
+            - [FormSchemaBuilder](/dev/dle/devcraft_admin/200.4.1/guides/builders/form_schema_builder): Собрать схему настроек модуля: секции, поля, раскладка.
           - [DataLoader и QueryBuilder](/dev/dle/devcraft_admin/200.4.1/guides/data_loader): Загрузка и запись строк DLE через static DataLoaderService: массив или QueryBuilder.
           - [Слои данных: Cycle, DLE SDK, QueryBuilder](/dev/dle/devcraft_admin/200.4.1/guides/data_layers): Какой слой брать под таблицу: Cycle ORM для таблиц модуля, DLE SDK для ядра DLE, QueryBuilder для generic-загрузки.
           - [Схема шлюза БД и автор записи](/dev/dle/devcraft_admin/200.4.1/guides/gateway_schema): Как Admin приводит таблицы Cycle к моделям и кто пишется в creator / lastEditor.
@@ -844,17 +861,17 @@
         - [Журнал изменений](/dev/dle/dle_api/200.1.0/changelog): Журнал изменений DLE API.
     - DLE Faker
       - 200.1.4
-        - [Начало работы](/dev/dle/dle_faker/200.1.4/getting_started): Обзор DLE Faker 200.1.4: требования и структура модуля.
-        - [Установка](/dev/dle/dle_faker/200.1.4/install): Установка DLE Faker 200.1.4 для DLE 20.0 с DevCraft Admin.
-        - [Настройки](/dev/dle/dle_faker/200.1.4/settings): Настройки модуля DLE Faker в DevCraft Admin.
+        - [Начало работы](/dev/dle/dle_faker/200.1.4/getting_started): Что такое DLE Faker: тестовые пользователи, новости и категории в админке DevCraft.
+        - [Установка](/dev/dle/dle_faker/200.1.4/install): Установка DLE Faker: Admin ≥ 200.4.1, архив плагина, fakerphp/faker.
+        - [Настройки](/dev/dle/dle_faker/200.1.4/settings): Настройки DLE Faker: локаль, пулы авторов и категорий, доп. поля.
         - Руководства
-          - [Генератор новостей](/dev/dle/dle_faker/200.1.4/guides/gen_news): Генерация новостей по шаблонам DLE Faker.
+          - [Генератор новостей](/dev/dle/dle_faker/200.1.4/guides/gen_news): Генерация новостей по шаблонам DLE Faker через DcApi.
           - [Генератор пользователей](/dev/dle/dle_faker/200.1.4/guides/gen_users): Генерация пользователей DLE Faker.
           - [Парсер шаблонов](/dev/dle/dle_faker/200.1.4/guides/parser): Как DLE Faker разбирает теги шаблонов вида {{ … }}.
           - [Теги для всех шаблонов](/dev/dle/dle_faker/200.1.4/guides/tag_for_all): Документация по плагину теги для всех шаблонов для DLE.
           - [Теги для шаблонов новостей](/dev/dle/dle_faker/200.1.4/guides/tag_for_news): Документация по плагину теги для шаблонов новостей для DLE.
           - [Теги для шаблона пользователей](/dev/dle/dle_faker/200.1.4/guides/tag_for_users): Документация по плагину теги для шаблона пользователей для DLE.
-        - [История изменений](/dev/dle/dle_faker/200.1.4/changelog): Changelog DLE Faker.
+        - [История изменений](/dev/dle/dle_faker/200.1.4/changelog): История изменений DLE Faker: 200.1.5 и раньше.
     - DB Manager
       - 200.1.4
         - [Начало работы](/dev/dle/db_manager/200.1.4/getting_started): Обзор DB Manager 200.1.4: экспорт и импорт таблиц MySQL для DLE.
@@ -886,12 +903,12 @@
         - [История изменений](/dev/dle/usertags/200.3.1/changelog): История изменений TagsAdd (пользовательские теги).
     - UserLists
       - 200.1.0
-        - [Начало работы](/dev/dle/user_lists/200.1.0/getting_started): Обзор UserLists 200.1.0: свои и общие списки новостей, кнопка на материале, каталог и предложения — без правок штатного «Избранного» DLE.
-        - [Установка](/dev/dle/user_lists/200.1.0/install): Как поставить UserLists 200.1.0: файлы, SQL-регистрация, Composer, первый запуск.
+        - [Начало работы](/dev/dle/user_lists/200.1.0/getting_started): Обзор UserLists: свои и общие списки новостей, кнопка на материале, каталог и предложения — без правок штатного «Избранного» DLE.
+        - [Установка](/dev/dle/user_lists/200.1.0/install): Как поставить UserLists: общая схема плагинов, install.xml, первый запуск.
         - Руководства
-          - [Подключение в теме](/dev/dle/user_lists/200.1.0/guides/theme): Includes UserLists на новости и публичные страницы списков.
+          - [Подключение в теме](/dev/dle/user_lists/200.1.0/guides/theme): Вставки UserLists на новости и страницы списков; стили через оболочку сайта.
           - [Списки и видимость](/dev/dle/user_lists/200.1.0/guides/lists-and-visibility): Админ-списки, приват/публик, права групп и предложения новостей.
-        - [История изменений](/dev/dle/user_lists/200.1.0/changelog): Changelog UserLists 200.1.0.
+        - [История изменений](/dev/dle/user_lists/200.1.0/changelog): История изменений UserLists.
     - Связи
       - 210.1.0
         - [Начало работы](/dev/dle/connections/210.1.0/getting_started): Обзор плагина «Связи»: сборки новостей, админка и вывод на сайте.
@@ -940,27 +957,62 @@
         - [Changelog RePost](/dev/dle/repost/200.1.0/changelog)
     - DLE Уведомления
       - 200.1.0
-        - [Начало работы](/dev/dle/notifications/200.1.0/getting_started): Обзор модуля DLE Уведомления: каналы, подписки, требования и первые шаги
-        - [Установка](/dev/dle/notifications/200.1.0/install): Установка плагина, autoload, схема БД и шаблоны темы
+        - [Начало работы](/dev/dle/notifications/200.1.0/getting_started): DLE Уведомления для DataLife Engine: подписки на новости, разделы и авторов, колокольчик, лента, почта и личные сообщения. Цена — 35 €.
+        - [Установка](/dev/dle/notifications/200.1.0/install): Как поставить DLE Уведомления после DevCraft Admin: ZIP, Composer, первый запуск. Цена — 35 €.
         - Руководства
-          - [Вставка в шаблоны темы](/dev/dle/notifications/200.1.0/guides/subscribe_wall): include: подписка, стена, колокольчик, стили и скрипты
-          - [Include в шаблонах темы](/dev/dle/notifications/200.1.0/guides/template_includes): Где вставить css/js/badge/wall и кнопки подписки на news/cat/tag/xfield/user/all
-          - [Страница уведомлений](/dev/dle/notifications/200.1.0/guides/notifications_page): Отдельная страница списка: index.php?do=notifications и ЧПУ /notifications/
-          - [Типы подписок](/dev/dle/notifications/200.1.0/guides/subscription_types): news, cat, user, tag, xfield, all: объект подписки и момент срабатывания
-          - [Шаблоны и теги](/dev/dle/notifications/200.1.0/guides/scenario_templates): Файлы .tpl темы, сценарии, обёртки, кнопка подписки и лента
-          - [Сценарии событий](/dev/dle/notifications/200.1.0/guides/scenarios): Какое событие какой .tpl сценария вызывает и кому уходит
-          - [Кастомное событие](/dev/dle/notifications/200.1.0/guides/custom_event): Свой notifySend: шаблон, права групп, настройки модуля и доп. поле
-          - [Свой канал доставки](/dev/dle/notifications/200.1.0/guides/custom_channel): Как реализовать ChannelInterface и зарегистрировать канал в ChannelRegistry
-          - [Сателлиты](/dev/dle/notifications/200.1.0/guides/satellites): Telegram, дайджест и статистика: установка, настройки, апселл-бандл
-          - [Лента на сайте: стена и колокольчик](/dev/dle/notifications/200.1.0/guides/inbox_api): Список уведомлений, непрочитанные, автообновление и удаление
-          - [Права групп](/dev/dle/notifications/200.1.0/guides/permissions): Флаги прав модуля по группам DLE
-          - [Настройки пользователя](/dev/dle/notifications/200.1.0/guides/user_prefs): Цепочка прав, доп. поля профиля и галочки DLE для каналов
+          - [Колокольчик, стена и кнопка подписки](/dev/dle/notifications/200.1.0/guides/subscribe_wall): Как вставить в тему стили, скрипты, колокольчик, стену и кнопку «Подписаться»
+          - [Куда вставить в тему](/dev/dle/notifications/200.1.0/guides/template_includes): Где в теме поставить стили, скрипты, колокольчик и кнопки подписки
+          - [Страница уведомлений](/dev/dle/notifications/200.1.0/guides/notifications_page): Отдельная страница списка: index.php?do=notifications и /notifications/
+          - [Типы подписок](/dev/dle/notifications/200.1.0/guides/subscription_types): Новость, раздел, автор, тег, доп. поле, все: на что подписан человек и когда приходит сообщение
+          - [Шаблоны и теги](/dev/dle/notifications/200.1.0/guides/scenario_templates): Краткий указатель: полное описание файлов .tpl темы перенесено в раздел «Шаблоны»
+          - [События](/dev/dle/notifications/200.1.0/guides/scenarios): Какое событие какой файл .tpl вызывает и кому уходит
+          - [Своё событие](/dev/dle/notifications/200.1.0/guides/custom_event): Свой notifySend: шаблон, права групп, настройки модуля и доп. поле
+          - [Свой канал доставки](/dev/dle/notifications/200.1.0/guides/custom_channel): Как реализовать ChannelInterface и зарегистрировать канал
+          - [Дополнительные модули](/dev/dle/notifications/200.1.0/guides/satellites): Указатель на отдельные ZIP: Telegram, сводка и статистика. В ядро не входят.
+          - [Лента на сайте: стена и колокольчик](/dev/dle/notifications/200.1.0/guides/inbox_api): Список уведомлений, непрочитанные, самообновление и удаление
+          - [Права групп](/dev/dle/notifications/200.1.0/guides/permissions): Какие флаги прав есть у групп DLE в модуле уведомлений
+          - [Настройки пользователя](/dev/dle/notifications/200.1.0/guides/user_prefs): Как права группы, доп. поля профиля и галочки DLE отсекают каналы
+        - Шаблоны
+          - [Шаблоны](/dev/dle/notifications/200.1.0/templates): Файлы .tpl темы для колокольчика, стены, кнопок, событий и писем модуля Уведомления
+          - [Страница кабинета](/dev/dle/notifications/200.1.0/templates/page): Шаблон page.tpl для /notifications/ — навигация по стене, подпискам и публикациям
+          - [Стена](/dev/dle/notifications/200.1.0/templates/wall): Шаблон wall.tpl — лента уведомлений на сайте и на странице кабинета
+          - [Колокольчик](/dev/dle/notifications/200.1.0/templates/badge): Шаблон badge.tpl — колокольчик в шапке со счётчиком и выпадающим списком
+          - [Строка ленты](/dev/dle/notifications/200.1.0/templates/item): Шаблоны item.tpl, item_actions и боковых кнопок «Прочесть» / «Закрыть»
+          - [Кнопка подписки](/dev/dle/notifications/200.1.0/templates/subscribe): Шаблоны subscribe/*.tpl и запасной subscribe.tpl — кнопка «Подписаться» на сайте
+          - [Мои подписки](/dev/dle/notifications/200.1.0/templates/subscriptions): Шаблоны subscriptions.tpl и subscription_item.tpl — список подписок пользователя
+          - [Новые публикации](/dev/dle/notifications/200.1.0/templates/publications): Шаблоны publications.tpl и publication_item.tpl — свежие материалы по подпискам
+          - [Обёртки писем](/dev/dle/notifications/200.1.0/templates/wrappers): Шаблоны wrappers/email_body.tpl и pm_body.tpl — оболочка письма и личного сообщения
+          - [События](/dev/dle/notifications/200.1.0/templates/scenarios): Шаблоны scenarios/*.tpl — тексты уведомлений по сценариям модуля
         - Справочник
-          - [Справочник API](/dev/dle/notifications/200.1.0/reference): Функции notify* для хаков и сторонних модулей
+          - [Справочник](/dev/dle/notifications/200.1.0/reference): Функции notify* для хаков и сторонних модулей
           - [Notify](/dev/dle/notifications/200.1.0/reference/Notify): notifySend, onNewsSaved, onCommentAdded, рейтинг/удаление/подписка и класс Notify
           - [ChannelInterface](/dev/dle/notifications/200.1.0/reference/ChannelInterface): Контракт канала доставки уведомлений и регистрация в ChannelRegistry
-          - [Site/web.php](/dev/dle/notifications/200.1.0/reference/web): Параметры include: focus, stype, id и теги шаблона
-        - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типизированные подписки, шаблоны темы
+          - [show_notifications.php](/dev/dle/notifications/200.1.0/reference/web): Параметры include: focus, stype, id и теги шаблона
+        - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типы подписок, шаблоны темы
+    - Уведомления — Telegram
+      - 200.1.0
+        - [Начало работы](/dev/dle/notifications_telegram/200.1.0/getting_started): Соседний модуль DLE Уведомлений: доставка в Telegram и привязка аккаунта через бота.
+        - [Установка](/dev/dle/notifications_telegram/200.1.0/install): Как поставить Уведомления — Telegram: ZIP, needplugin, Composer, cron и патч social.class.php для DLE 21.
+        - Руководства
+          - [Привязка Telegram](/dev/dle/notifications_telegram/200.1.0/guides/bind): Два пути привязки: секретная строка на DLE 20 и вход Telegram в профиле на DLE 21.
+          - [Настройки бота](/dev/dle/notifications_telegram/200.1.0/guides/settings): Ключ бота, имя без @, срок ссылки привязки и сколько сообщений забирать за раз.
+        - [История изменений](/dev/dle/notifications_telegram/200.1.0/changelog): История изменений Уведомления — Telegram 200.1.0.
+    - Уведомления — сводка
+      - 200.1.0
+        - [Начало работы](/dev/dle/notifications_digest/200.1.0/getting_started): Соседний модуль DLE Уведомлений: накопление уведомлений и отправка сводкой по интервалу.
+        - [Установка](/dev/dle/notifications_digest/200.1.0/install): Как поставить Уведомления — сводка: ZIP, needplugin и cron notifyDigestFlush.
+        - Руководства
+          - [Настройки сводки](/dev/dle/notifications_digest/200.1.0/guides/settings): Интервал, способы доставки, лимит записей и текст сводки.
+          - [Очередь сводки](/dev/dle/notifications_digest/200.1.0/guides/queue): Страница очереди action=digest_queue, ручная отправка и роль notifyDigestFlush.
+        - [История изменений](/dev/dle/notifications_digest/200.1.0/changelog): История изменений Уведомления — сводка 200.1.0.
+    - Уведомления — статистика
+      - 200.1.0
+        - [Начало работы](/dev/dle/notifications_stats/200.1.0/getting_started): Соседний модуль DLE Уведомлений: сводка по подпискам и событиям в админке.
+        - [Установка](/dev/dle/notifications_stats/200.1.0/install): Как поставить Уведомления — статистика: ZIP, needplugin и право notifications_stats_view.
+        - Руководства
+          - [Сводка в админке](/dev/dle/notifications_stats/200.1.0/guides/dashboard): Что показывает страница статистики уведомлений и кто может её открыть.
+          - [Настройки статистики](/dev/dle/notifications_stats/200.1.0/guides/settings): Период отчёта в днях и число строк в топе событий.
+        - [История изменений](/dev/dle/notifications_stats/200.1.0/changelog): История изменений Уведомления — статистика 200.1.0.
     - Хаки и простые модули
       - [Schema.Org - Документация DevCraft](/dev/dle/simple/schema): Документация по интеграции Schema.Org разметки в проекты DevCraft.
       - [XF List Generator](/dev/dle/simple/xflist)
