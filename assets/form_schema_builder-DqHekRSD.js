@@ -1,0 +1,10 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`FormSchemaBuilder`,description:`Собрать схему настроек модуля: секции, поля, раскладка.`,version:`200.4.1`},i=new Date(1790413881e3),a=`
+
+Схема формы настроек (\`settings.schema.php\`). Пресет — учебный срез настроек Admin, не полная копия.
+
+<InteractiveBuilder schemaId="form-schema-builder" />
+
+Обзор: [Fluent Types](../fluent_types). Примеры полей: [Примеры Form](../form_examples). Справочник: [FormSchemaBuilder](../../reference/back-end/classes/FormSchemaBuilder).
+`,o={contents:[{heading:void 0,content:"Схема формы настроек (`settings.schema.php`). Пресет — учебный срез настроек Admin, не полная копия."},{heading:void 0,content:`Обзор: Fluent Types. Примеры полей: Примеры Form. Справочник: FormSchemaBuilder.`}],headings:[]},s=[];function c(e){let t={a:`a`,code:`code`,p:`p`,...e.components},{InteractiveBuilder:r}=t;return r||u(`InteractiveBuilder`,!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(t.p,{children:[`Схема формы настроек (`,(0,n.jsx)(t.code,{children:`settings.schema.php`}),`). Пресет — учебный срез настроек Admin, не полная копия.`]}),`
+`,(0,n.jsx)(r,{schemaId:`form-schema-builder`}),`
+`,(0,n.jsxs)(t.p,{children:[`Обзор: `,(0,n.jsx)(t.a,{href:`../fluent_types`,children:`Fluent Types`}),`. Примеры полей: `,(0,n.jsx)(t.a,{href:`../form_examples`,children:`Примеры Form`}),`. Справочник: `,(0,n.jsx)(t.a,{href:`../../reference/back-end/classes/FormSchemaBuilder`,children:`FormSchemaBuilder`}),`.`]})]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}function u(e,t){throw Error(`Expected `+(t?`component`:`object`)+" `"+e+"` to be defined: you likely forgot to import, pass, or provide it.")}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};

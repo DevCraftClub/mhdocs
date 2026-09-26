@@ -321,6 +321,356 @@
           - [SubUsers](/dev/api_wrappers/webshare-proxy/1.0.0/en/subusers): SubUser CRUD, refresh proxy list, and masqueradeAs (X-Subuser).
           - [Stats and config](/dev/api_wrappers/webshare-proxy/1.0.0/en/stats_and_config): ProxyStats, ProxyConfig, GET caching, and error handling.
         - [Changelog WebShare Proxy](/dev/api_wrappers/webshare-proxy/1.0.0/changelog): История изменений WebShare Proxy PHP Wrapper.
+    - Shikimori PHP
+      - 1.0.0
+        - [Начало работы](/dev/api_wrappers/shikimori-api/1.0.0/getting_started): Обзор PHP-клиента GraphQL API Shikimori.
+        - [Установка](/dev/api_wrappers/shikimori-api/1.0.0/install): Composer, PHP и переменные окружения клиента Shikimori.
+        - Руководства
+          - [Поиск](/dev/api_wrappers/shikimori-api/1.0.0/guides/search): Как искать аниме и мангу и какой набор полей запрашивать.
+          - [Вход](/dev/api_wrappers/shikimori-api/1.0.0/guides/oauth): Как получить токен пользователя Shikimori.
+          - [Хранение](/dev/api_wrappers/shikimori-api/1.0.0/guides/persistence): Файловый кэш, Cycle ORM и повторный запрос к API.
+        - Справочник
+          - [Справочник](/dev/api_wrappers/shikimori-api/1.0.0/reference): Классы пакета devcraftclub/shikimori-api-php.
+          - Классы
+            - [OAuth2Helper](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/OAuth2Helper): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [TokenResponse](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/TokenResponse): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [ClientFactory](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/ClientFactory): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [NullRateLimiter](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/NullRateLimiter): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [RateLimiterInterface](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/RateLimiterInterface): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [ShikimoriGraphQLClient](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/ShikimoriGraphQLClient): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [SlidingWindowRateLimiter](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/SlidingWindowRateLimiter): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [SdkConfig](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/SdkConfig): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [CycleEntityStore](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/CycleEntityStore): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [CycleOrmFactory](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/CycleOrmFactory): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [EntityStoreInterface](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/EntityStoreInterface): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [PersistenceEngine](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/PersistenceEngine): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [StorableEntity](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/StorableEntity): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [ShikimoriClient](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/ShikimoriClient): Фасад клиента Shikimori: каталог, вход и хранение.
+            - [ArrayUtil](/dev/api_wrappers/shikimori-api/1.0.0/reference/classes/ArrayUtil): Служебный класс SDK: клиент, настройки, вход или хранение.
+          - Репозитории
+            - [AnimeRepository](/dev/api_wrappers/shikimori-api/1.0.0/reference/repositories/AnimeRepository): Методы одного раздела API.
+            - [CharacterRepository](/dev/api_wrappers/shikimori-api/1.0.0/reference/repositories/CharacterRepository): Методы одного раздела API.
+            - [ContestRepository](/dev/api_wrappers/shikimori-api/1.0.0/reference/repositories/ContestRepository): Методы одного раздела API.
+            - [GenreRepository](/dev/api_wrappers/shikimori-api/1.0.0/reference/repositories/GenreRepository): Методы одного раздела API.
+            - [MangaRepository](/dev/api_wrappers/shikimori-api/1.0.0/reference/repositories/MangaRepository): Методы одного раздела API.
+            - [PersonRepository](/dev/api_wrappers/shikimori-api/1.0.0/reference/repositories/PersonRepository): Методы одного раздела API.
+            - [UserRateRepository](/dev/api_wrappers/shikimori-api/1.0.0/reference/repositories/UserRateRepository): Методы одного раздела API.
+            - [UserRepository](/dev/api_wrappers/shikimori-api/1.0.0/reference/repositories/UserRepository): Методы одного раздела API.
+          - Запросы
+            - [AnimeQuery](/dev/api_wrappers/shikimori-api/1.0.0/reference/queries/AnimeQuery): Сборка текста GraphQL-запроса.
+            - [CharacterQuery](/dev/api_wrappers/shikimori-api/1.0.0/reference/queries/CharacterQuery): Сборка текста GraphQL-запроса.
+            - [ContestQuery](/dev/api_wrappers/shikimori-api/1.0.0/reference/queries/ContestQuery): Сборка текста GraphQL-запроса.
+            - [MangaQuery](/dev/api_wrappers/shikimori-api/1.0.0/reference/queries/MangaQuery): Сборка текста GraphQL-запроса.
+            - [PersonQuery](/dev/api_wrappers/shikimori-api/1.0.0/reference/queries/PersonQuery): Сборка текста GraphQL-запроса.
+            - [UserQuery](/dev/api_wrappers/shikimori-api/1.0.0/reference/queries/UserQuery): Сборка текста GraphQL-запроса.
+            - [UserRateQuery](/dev/api_wrappers/shikimori-api/1.0.0/reference/queries/UserRateQuery): Сборка текста GraphQL-запроса.
+          - Фильтры
+            - [AnimeListFilter](/dev/api_wrappers/shikimori-api/1.0.0/reference/filters/AnimeListFilter): Параметры списка. Собираются цепочкой with*.
+            - [CharacterListFilter](/dev/api_wrappers/shikimori-api/1.0.0/reference/filters/CharacterListFilter): Параметры списка. Собираются цепочкой with*.
+            - [ContestListFilter](/dev/api_wrappers/shikimori-api/1.0.0/reference/filters/ContestListFilter): Параметры списка. Собираются цепочкой with*.
+            - [MangaListFilter](/dev/api_wrappers/shikimori-api/1.0.0/reference/filters/MangaListFilter): Параметры списка. Собираются цепочкой with*.
+            - [PersonListFilter](/dev/api_wrappers/shikimori-api/1.0.0/reference/filters/PersonListFilter): Параметры списка. Собираются цепочкой with*.
+            - [UserListFilter](/dev/api_wrappers/shikimori-api/1.0.0/reference/filters/UserListFilter): Параметры списка. Собираются цепочкой with*.
+            - [UserRateListFilter](/dev/api_wrappers/shikimori-api/1.0.0/reference/filters/UserRateListFilter): Параметры списка. Собираются цепочкой with*.
+          - Объекты данных
+            - [AnimeDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/AnimeDTO): Поля ответа API. Собирается из массива через fromArray().
+            - [CharacterDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/CharacterDTO): Поля ответа API. Собирается из массива через fromArray().
+            - [ContestDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/ContestDTO): Поля ответа API. Собирается из массива через fromArray().
+            - [GenreDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/GenreDTO): Поля ответа API. Собирается из массива через fromArray().
+            - [MangaDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/MangaDTO): Поля ответа API. Собирается из массива через fromArray().
+            - [PersonDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/PersonDTO): Поля ответа API. Собирается из массива через fromArray().
+            - [PosterDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/PosterDTO): Поля ответа API. Собирается из массива через fromArray().
+            - [StudioDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/StudioDTO): Поля ответа API. Собирается из массива через fromArray().
+            - [UserDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/UserDTO): Поля ответа API. Собирается из массива через fromArray().
+            - [UserRateDTO](/dev/api_wrappers/shikimori-api/1.0.0/reference/dto/UserRateDTO): Поля ответа API. Собирается из массива через fromArray().
+          - Сущности
+            - [AnimeEntity](/dev/api_wrappers/shikimori-api/1.0.0/reference/entities/AnimeEntity): Запись для сохранения в базе через Cycle ORM.
+          - Перечисления
+            - [AnimeKind](/dev/api_wrappers/shikimori-api/1.0.0/reference/enums/AnimeKind): Фиксированный набор значений.
+            - [AnimeOrder](/dev/api_wrappers/shikimori-api/1.0.0/reference/enums/AnimeOrder): Фиксированный набор значений.
+            - [AnimeRating](/dev/api_wrappers/shikimori-api/1.0.0/reference/enums/AnimeRating): Фиксированный набор значений.
+            - [AnimeStatus](/dev/api_wrappers/shikimori-api/1.0.0/reference/enums/AnimeStatus): Фиксированный набор значений.
+            - [EntityOrder](/dev/api_wrappers/shikimori-api/1.0.0/reference/enums/EntityOrder): Фиксированный набор значений.
+            - [GenreEntryType](/dev/api_wrappers/shikimori-api/1.0.0/reference/enums/GenreEntryType): Фиксированный набор значений.
+            - [UserRateStatus](/dev/api_wrappers/shikimori-api/1.0.0/reference/enums/UserRateStatus): Фиксированный набор значений.
+            - [UserRateTargetType](/dev/api_wrappers/shikimori-api/1.0.0/reference/enums/UserRateTargetType): Фиксированный набор значений.
+            - [Profile](/dev/api_wrappers/shikimori-api/1.0.0/reference/enums/Profile): Фиксированный набор значений.
+          - Исключения
+            - [AuthException](/dev/api_wrappers/shikimori-api/1.0.0/reference/exceptions/AuthException): Ошибка SDK, которую можно поймать отдельно.
+            - [ConfigurationException](/dev/api_wrappers/shikimori-api/1.0.0/reference/exceptions/ConfigurationException): Ошибка SDK, которую можно поймать отдельно.
+            - [GraphQLQueryException](/dev/api_wrappers/shikimori-api/1.0.0/reference/exceptions/GraphQLQueryException): Ошибка SDK, которую можно поймать отдельно.
+            - [NetworkException](/dev/api_wrappers/shikimori-api/1.0.0/reference/exceptions/NetworkException): Ошибка SDK, которую можно поймать отдельно.
+            - [RateLimitException](/dev/api_wrappers/shikimori-api/1.0.0/reference/exceptions/RateLimitException): Ошибка SDK, которую можно поймать отдельно.
+            - [ShikimoriException](/dev/api_wrappers/shikimori-api/1.0.0/reference/exceptions/ShikimoriException): Ошибка SDK, которую можно поймать отдельно.
+        - English
+          - [Getting started](/dev/api_wrappers/shikimori-api/1.0.0/en/getting_started): Overview of the Shikimori GraphQL PHP client.
+          - [Install](/dev/api_wrappers/shikimori-api/1.0.0/en/install): Composer, PHP, and environment variables for the Shikimori client.
+          - Guides
+            - [Search](/dev/api_wrappers/shikimori-api/1.0.0/en/guides/search): How to search anime and manga, and which field set to request.
+            - [Sign-in](/dev/api_wrappers/shikimori-api/1.0.0/en/guides/oauth): How to obtain a Shikimori user token.
+            - [Storage](/dev/api_wrappers/shikimori-api/1.0.0/en/guides/persistence): File cache, Cycle ORM, and a fresh request to the API.
+          - Reference
+            - [Reference](/dev/api_wrappers/shikimori-api/1.0.0/en/reference): Package classes for devcraftclub/shikimori-api-php.
+            - Classes
+              - [OAuth2Helper](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/OAuth2Helper): SDK helper: client, settings, sign-in, or storage.
+              - [TokenResponse](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/TokenResponse): SDK helper: client, settings, sign-in, or storage.
+              - [ClientFactory](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/ClientFactory): SDK helper: client, settings, sign-in, or storage.
+              - [NullRateLimiter](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/NullRateLimiter): SDK helper: client, settings, sign-in, or storage.
+              - [RateLimiterInterface](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/RateLimiterInterface): SDK helper: client, settings, sign-in, or storage.
+              - [ShikimoriGraphQLClient](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/ShikimoriGraphQLClient): SDK helper: client, settings, sign-in, or storage.
+              - [SlidingWindowRateLimiter](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/SlidingWindowRateLimiter): SDK helper: client, settings, sign-in, or storage.
+              - [SdkConfig](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/SdkConfig): SDK helper: client, settings, sign-in, or storage.
+              - [CycleEntityStore](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/CycleEntityStore): SDK helper: client, settings, sign-in, or storage.
+              - [CycleOrmFactory](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/CycleOrmFactory): SDK helper: client, settings, sign-in, or storage.
+              - [EntityStoreInterface](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/EntityStoreInterface): SDK helper: client, settings, sign-in, or storage.
+              - [PersistenceEngine](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/PersistenceEngine): SDK helper: client, settings, sign-in, or storage.
+              - [StorableEntity](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/StorableEntity): SDK helper: client, settings, sign-in, or storage.
+              - [ShikimoriClient](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/ShikimoriClient): Shikimori client facade: catalog, sign-in, and storage.
+              - [ArrayUtil](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/classes/ArrayUtil): SDK helper: client, settings, sign-in, or storage.
+            - Repositories
+              - [AnimeRepository](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/repositories/AnimeRepository): Methods for one API section.
+              - [CharacterRepository](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/repositories/CharacterRepository): Methods for one API section.
+              - [ContestRepository](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/repositories/ContestRepository): Methods for one API section.
+              - [GenreRepository](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/repositories/GenreRepository): Methods for one API section.
+              - [MangaRepository](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/repositories/MangaRepository): Methods for one API section.
+              - [PersonRepository](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/repositories/PersonRepository): Methods for one API section.
+              - [UserRateRepository](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/repositories/UserRateRepository): Methods for one API section.
+              - [UserRepository](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/repositories/UserRepository): Methods for one API section.
+            - Queries
+              - [AnimeQuery](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/queries/AnimeQuery): Builds a GraphQL query string.
+              - [CharacterQuery](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/queries/CharacterQuery): Builds a GraphQL query string.
+              - [ContestQuery](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/queries/ContestQuery): Builds a GraphQL query string.
+              - [MangaQuery](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/queries/MangaQuery): Builds a GraphQL query string.
+              - [PersonQuery](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/queries/PersonQuery): Builds a GraphQL query string.
+              - [UserQuery](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/queries/UserQuery): Builds a GraphQL query string.
+              - [UserRateQuery](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/queries/UserRateQuery): Builds a GraphQL query string.
+            - Filters
+              - [AnimeListFilter](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/filters/AnimeListFilter): List parameters, composed with a with* chain.
+              - [CharacterListFilter](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/filters/CharacterListFilter): List parameters, composed with a with* chain.
+              - [ContestListFilter](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/filters/ContestListFilter): List parameters, composed with a with* chain.
+              - [MangaListFilter](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/filters/MangaListFilter): List parameters, composed with a with* chain.
+              - [PersonListFilter](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/filters/PersonListFilter): List parameters, composed with a with* chain.
+              - [UserListFilter](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/filters/UserListFilter): List parameters, composed with a with* chain.
+              - [UserRateListFilter](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/filters/UserRateListFilter): List parameters, composed with a with* chain.
+            - Data objects
+              - [AnimeDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/AnimeDTO): API response fields. Built from an array via fromArray().
+              - [CharacterDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/CharacterDTO): API response fields. Built from an array via fromArray().
+              - [ContestDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/ContestDTO): API response fields. Built from an array via fromArray().
+              - [GenreDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/GenreDTO): API response fields. Built from an array via fromArray().
+              - [MangaDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/MangaDTO): API response fields. Built from an array via fromArray().
+              - [PersonDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/PersonDTO): API response fields. Built from an array via fromArray().
+              - [PosterDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/PosterDTO): API response fields. Built from an array via fromArray().
+              - [StudioDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/StudioDTO): API response fields. Built from an array via fromArray().
+              - [UserDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/UserDTO): API response fields. Built from an array via fromArray().
+              - [UserRateDTO](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/dto/UserRateDTO): API response fields. Built from an array via fromArray().
+            - Entities
+              - [AnimeEntity](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/entities/AnimeEntity): Record stored in the database through Cycle ORM.
+            - Enums
+              - [AnimeKind](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/enums/AnimeKind): Fixed set of values.
+              - [AnimeOrder](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/enums/AnimeOrder): Fixed set of values.
+              - [AnimeRating](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/enums/AnimeRating): Fixed set of values.
+              - [AnimeStatus](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/enums/AnimeStatus): Fixed set of values.
+              - [EntityOrder](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/enums/EntityOrder): Fixed set of values.
+              - [GenreEntryType](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/enums/GenreEntryType): Fixed set of values.
+              - [UserRateStatus](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/enums/UserRateStatus): Fixed set of values.
+              - [UserRateTargetType](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/enums/UserRateTargetType): Fixed set of values.
+              - [Profile](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/enums/Profile): Fixed set of values.
+            - Exceptions
+              - [AuthException](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/exceptions/AuthException): SDK error that can be caught on its own.
+              - [ConfigurationException](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/exceptions/ConfigurationException): SDK error that can be caught on its own.
+              - [GraphQLQueryException](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/exceptions/GraphQLQueryException): SDK error that can be caught on its own.
+              - [NetworkException](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/exceptions/NetworkException): SDK error that can be caught on its own.
+              - [RateLimitException](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/exceptions/RateLimitException): SDK error that can be caught on its own.
+              - [ShikimoriException](/dev/api_wrappers/shikimori-api/1.0.0/en/reference/exceptions/ShikimoriException): SDK error that can be caught on its own.
+          - [Changelog](/dev/api_wrappers/shikimori-api/1.0.0/en/changelog): Versions of the Shikimori PHP client.
+        - [История изменений](/dev/api_wrappers/shikimori-api/1.0.0/changelog): Версии PHP-клиента Shikimori.
+    - MyShows PHP
+      - 1.0.0
+        - [Начало работы](/dev/api_wrappers/myshows-api/1.0.0/getting_started): Обзор PHP-обёртки JSON-RPC API MyShows.
+        - [Установка](/dev/api_wrappers/myshows-api/1.0.0/install): Composer, PHP и переменные окружения клиента MyShows.
+        - Руководства
+          - [Сериалы](/dev/api_wrappers/myshows-api/1.0.0/guides/shows): Карточка шоу, поиск, топ и серия.
+          - [Вход](/dev/api_wrappers/myshows-api/1.0.0/guides/oauth): Разрешение пользователя, профиль и отметка серии.
+          - [Кэш](/dev/api_wrappers/myshows-api/1.0.0/guides/cache): Когда SDK отдаёт сохранённый ответ и когда идёт в сеть.
+        - Справочник
+          - [Справочник](/dev/api_wrappers/myshows-api/1.0.0/reference): Классы пакета devcraftclub/myshows-api-php.
+          - Классы
+            - [FileTokenStore](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/FileTokenStore): Файловое хранилище токенов в JSON.
+            - [OAuth2Helper](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/OAuth2Helper): Помощник OAuth2 MyShows: authorization code, refresh и password grant.
+            - [TokenResponse](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/TokenResponse): Служебный класс SDK: клиент, настройки, вход или хранение.
+            - [TokenStoreInterface](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/TokenStoreInterface): Хранилище OAuth-токенов.
+            - [ClientFactory](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/ClientFactory): Фабрика JSON-RPC клиента.
+            - [MyShowsJsonRpcClient](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/MyShowsJsonRpcClient): JSON-RPC клиент для MyShows API.
+            - [NullRateLimiter](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/NullRateLimiter): Заглушка лимитера: не ограничивает запросы.
+            - [RateLimiterInterface](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/RateLimiterInterface): Интерфейс ограничения скорости запросов.
+            - [SlidingWindowRateLimiter](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/SlidingWindowRateLimiter): Клиентский rate limiter по скользящему окну: запросов в секунду и в минуту.
+            - [TokenProvider](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/TokenProvider): Поставщик Bearer-токена из хранилища с автоматическим refresh.
+            - [TokenProviderInterface](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/TokenProviderInterface): Поставщик Bearer-токена для JSON-RPC клиента.
+            - [SdkConfig](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/SdkConfig): Конфигурация SDK. Читает переменные окружения `MYSHOWS_*` и позволяет переопределить явно.
+            - [MyShowsClient](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/MyShowsClient): Фасад SDK MyShows.
+            - [CacheKeyGenerator](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/CacheKeyGenerator): Помощник для построения ключей кэша.
+            - [CycleOrmStore](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/CycleOrmStore): Адаптер Cycle ORM для локального хранилища (опционально).
+            - [PersistenceEngine](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/PersistenceEngine): Движок локальной персистентности: PSR-6 кэш первичный, ORM опционально.
+            - [PersistenceStoreInterface](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/PersistenceStoreInterface): Интерфейс локального хранилища для PersistenceEngine.
+            - [Psr6CacheStore](/dev/api_wrappers/myshows-api/1.0.0/reference/classes/Psr6CacheStore): Адаптер PSR-6 кэша для локального хранилища SDK.
+          - Репозитории
+            - [AbstractRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/AbstractRepository): Базовый репозиторий SDK.
+            - [AuthRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/AuthRepository): Методы одного раздела API.
+            - [IapRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/IapRepository): Методы одного раздела API.
+            - [ListsRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/ListsRepository): Методы одного раздела API.
+            - [ManageRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/ManageRepository): Методы одного раздела API.
+            - [NewsRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/NewsRepository): Методы одного раздела API.
+            - [NotesRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/NotesRepository): Методы одного раздела API.
+            - [ProfileRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/ProfileRepository): Методы одного раздела API.
+            - [PushRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/PushRepository): Методы одного раздела API.
+            - [RecommendationRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/RecommendationRepository): Методы одного раздела API.
+            - [ShowsRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/ShowsRepository): Методы одного раздела API.
+            - [SiteRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/SiteRepository): Методы одного раздела API.
+            - [UsersRepository](/dev/api_wrappers/myshows-api/1.0.0/reference/repositories/UsersRepository): Методы одного раздела API.
+          - Фильтры
+            - [AbstractFilter](/dev/api_wrappers/myshows-api/1.0.0/reference/filters/AbstractFilter): Базовый фильтр для fluent-конструирования параметров запроса.
+            - [NewsSearchFilter](/dev/api_wrappers/myshows-api/1.0.0/reference/filters/NewsSearchFilter): Фильтр новостей.
+            - [NotesSearchFilter](/dev/api_wrappers/myshows-api/1.0.0/reference/filters/NotesSearchFilter): Фильтр заметок.
+            - [ShowsSearchFilter](/dev/api_wrappers/myshows-api/1.0.0/reference/filters/ShowsSearchFilter): Фильтр поиска шоу.
+            - [UsersSearchFilter](/dev/api_wrappers/myshows-api/1.0.0/reference/filters/UsersSearchFilter): Фильтр поиска пользователей.
+          - Объекты данных
+            - [AbstractDto](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/AbstractDto): Базовый DTO с гидратацией из массива и обратным преобразованием.
+            - [Achievement](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/Achievement): Поля ответа API. Собирается из массива через fromArray().
+            - [AchievementFriend](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/AchievementFriend): Поля ответа API. Собирается из массива через fromArray().
+            - [DtoMapper](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/DtoMapper): Помощник для преобразования списка массивов в список DTO.
+            - [Episode](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/Episode): Поля ответа API. Собирается из массива через fromArray().
+            - [EpisodeRating](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/EpisodeRating): Поля ответа API. Собирается из массива через fromArray().
+            - [EpisodeSummary](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/EpisodeSummary): Поля ответа API. Собирается из массива через fromArray().
+            - [Genre](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/Genre): Поля ответа API. Собирается из массива через fromArray().
+            - [MetaApps](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/MetaApps): Поля ответа API. Собирается из массива через fromArray().
+            - [MetaOpenGraph](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/MetaOpenGraph): Поля ответа API. Собирается из массива через fromArray().
+            - [MetaTwitter](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/MetaTwitter): Поля ответа API. Собирается из массива через fromArray().
+            - [MetaVerification](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/MetaVerification): Поля ответа API. Собирается из массива через fromArray().
+            - [Network](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/Network): Поля ответа API. Собирается из массива через fromArray().
+            - [News](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/News): Поля ответа API. Собирается из массива через fromArray().
+            - [NewsAuthor](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/NewsAuthor): Поля ответа API. Собирается из массива через fromArray().
+            - [NewsCategory](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/NewsCategory): Поля ответа API. Собирается из массива через fromArray().
+            - [NewsComment](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/NewsComment): Поля ответа API. Собирается из массива через fromArray().
+            - [NewsTag](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/NewsTag): Поля ответа API. Собирается из массива через fromArray().
+            - [Note](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/Note): Поля ответа API. Собирается из массива через fromArray().
+            - [OnlineLink](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/OnlineLink): Поля ответа API. Собирается из массива через fromArray().
+            - [PaymentType](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/PaymentType): Поля ответа API. Собирается из массива через fromArray().
+            - [Product](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/Product): Поля ответа API. Собирается из массива через fromArray().
+            - [PushTokenResponse](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/PushTokenResponse): Поля ответа API. Собирается из массива через fromArray().
+            - [Show](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/Show): Поля ответа API. Собирается из массива через fromArray().
+            - [ShowSummary](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/ShowSummary): Поля ответа API. Собирается из массива через fromArray().
+            - [SiteMeta](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/SiteMeta): Поля ответа API. Собирается из массива через fromArray().
+            - [User](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/User): Поля ответа API. Собирается из массива через fromArray().
+            - [UserEpisodeStatus](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/UserEpisodeStatus): Поля ответа API. Собирается из массива через fromArray().
+            - [UserRanks](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/UserRanks): Поля ответа API. Собирается из массива через fromArray().
+            - [UserShowStatus](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/UserShowStatus): Поля ответа API. Собирается из массива через fromArray().
+            - [UserSocial](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/UserSocial): Поля ответа API. Собирается из массива через fromArray().
+            - [UserStats](/dev/api_wrappers/myshows-api/1.0.0/reference/dto/UserStats): Поля ответа API. Собирается из массива через fromArray().
+          - Перечисления
+            - [ShowStatus](/dev/api_wrappers/myshows-api/1.0.0/reference/enums/ShowStatus): Фиксированный набор значений.
+            - [UserEpisodeStatus](/dev/api_wrappers/myshows-api/1.0.0/reference/enums/UserEpisodeStatus): Фиксированный набор значений.
+            - [UserShowStatus](/dev/api_wrappers/myshows-api/1.0.0/reference/enums/UserShowStatus): Фиксированный набор значений.
+          - Исключения
+            - [AuthException](/dev/api_wrappers/myshows-api/1.0.0/reference/exceptions/AuthException): Проблема аутентификации или авторизации в MyShows API.
+            - [ConfigurationException](/dev/api_wrappers/myshows-api/1.0.0/reference/exceptions/ConfigurationException): Неверная или неполная конфигурация SDK.
+            - [JsonRpcException](/dev/api_wrappers/myshows-api/1.0.0/reference/exceptions/JsonRpcException): MyShows API вернул ошибку в JSON-RPC конверте.
+            - [MyShowsException](/dev/api_wrappers/myshows-api/1.0.0/reference/exceptions/MyShowsException): Базовое исключение SDK MyShows.
+            - [NetworkException](/dev/api_wrappers/myshows-api/1.0.0/reference/exceptions/NetworkException): Ошибка сети, таймаута или DNS при обращении к MyShows API.
+            - [RateLimitException](/dev/api_wrappers/myshows-api/1.0.0/reference/exceptions/RateLimitException): Превышен лимит запросов или получен HTTP 429.
+        - English
+          - [Getting started](/dev/api_wrappers/myshows-api/1.0.0/en/getting_started): Overview of the MyShows JSON-RPC PHP client.
+          - [Install](/dev/api_wrappers/myshows-api/1.0.0/en/install): Composer, PHP, and environment variables for the MyShows client.
+          - Guides
+            - [Shows](/dev/api_wrappers/myshows-api/1.0.0/en/guides/shows): Show card, search, top list, and episode.
+            - [Sign-in](/dev/api_wrappers/myshows-api/1.0.0/en/guides/oauth): User authorization, profile, and episode check-in.
+            - [Cache](/dev/api_wrappers/myshows-api/1.0.0/en/guides/cache): When the SDK returns a stored response and when it goes to the network.
+          - Reference
+            - [Reference](/dev/api_wrappers/myshows-api/1.0.0/en/reference): Package classes for devcraftclub/myshows-api-php.
+            - Classes
+              - [FileTokenStore](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/FileTokenStore): JSON file storage for tokens.
+              - [OAuth2Helper](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/OAuth2Helper): MyShows OAuth2 helper: authorization code, refresh, and password grant.
+              - [TokenResponse](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/TokenResponse): SDK helper: client, settings, sign-in, or storage.
+              - [TokenStoreInterface](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/TokenStoreInterface): OAuth token storage.
+              - [ClientFactory](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/ClientFactory): JSON-RPC client factory.
+              - [MyShowsJsonRpcClient](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/MyShowsJsonRpcClient): JSON-RPC client for the MyShows API.
+              - [NullRateLimiter](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/NullRateLimiter): Limiter stub: does not limit requests.
+              - [RateLimiterInterface](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/RateLimiterInterface): Request rate limit interface.
+              - [SlidingWindowRateLimiter](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/SlidingWindowRateLimiter): Client sliding-window rate limiter: requests per second and per minute.
+              - [TokenProvider](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/TokenProvider): Bearer token provider that reads storage and refreshes automatically.
+              - [TokenProviderInterface](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/TokenProviderInterface): Bearer token provider for the JSON-RPC client.
+              - [SdkConfig](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/SdkConfig): SDK configuration. Reads `MYSHOWS_*` environment variables and allows explicit overrides.
+              - [MyShowsClient](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/MyShowsClient): MyShows SDK facade.
+              - [CacheKeyGenerator](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/CacheKeyGenerator): Helper that builds cache keys.
+              - [CycleOrmStore](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/CycleOrmStore): Optional Cycle ORM adapter for local storage.
+              - [PersistenceEngine](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/PersistenceEngine): Local storage engine: PSR-6 cache first, ORM optional.
+              - [PersistenceStoreInterface](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/PersistenceStoreInterface): Local storage interface for PersistenceEngine.
+              - [Psr6CacheStore](/dev/api_wrappers/myshows-api/1.0.0/en/reference/classes/Psr6CacheStore): PSR-6 cache adapter for the SDK local storage.
+            - Repositories
+              - [AbstractRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/AbstractRepository): Base SDK repository.
+              - [AuthRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/AuthRepository): Methods for one API section.
+              - [IapRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/IapRepository): Methods for one API section.
+              - [ListsRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/ListsRepository): Methods for one API section.
+              - [ManageRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/ManageRepository): Methods for one API section.
+              - [NewsRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/NewsRepository): Methods for one API section.
+              - [NotesRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/NotesRepository): Methods for one API section.
+              - [ProfileRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/ProfileRepository): Methods for one API section.
+              - [PushRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/PushRepository): Methods for one API section.
+              - [RecommendationRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/RecommendationRepository): Methods for one API section.
+              - [ShowsRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/ShowsRepository): Methods for one API section.
+              - [SiteRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/SiteRepository): Methods for one API section.
+              - [UsersRepository](/dev/api_wrappers/myshows-api/1.0.0/en/reference/repositories/UsersRepository): Methods for one API section.
+            - Filters
+              - [AbstractFilter](/dev/api_wrappers/myshows-api/1.0.0/en/reference/filters/AbstractFilter): Base filter for building request parameters in a chain.
+              - [NewsSearchFilter](/dev/api_wrappers/myshows-api/1.0.0/en/reference/filters/NewsSearchFilter): News filter.
+              - [NotesSearchFilter](/dev/api_wrappers/myshows-api/1.0.0/en/reference/filters/NotesSearchFilter): Notes filter.
+              - [ShowsSearchFilter](/dev/api_wrappers/myshows-api/1.0.0/en/reference/filters/ShowsSearchFilter): Show search filter.
+              - [UsersSearchFilter](/dev/api_wrappers/myshows-api/1.0.0/en/reference/filters/UsersSearchFilter): User search filter.
+            - Data objects
+              - [AbstractDto](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/AbstractDto): Base DTO hydrated from an array and converted back.
+              - [Achievement](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/Achievement): API response fields. Built from an array via fromArray().
+              - [AchievementFriend](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/AchievementFriend): API response fields. Built from an array via fromArray().
+              - [DtoMapper](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/DtoMapper): Helper that maps a list of arrays to a list of DTOs.
+              - [Episode](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/Episode): API response fields. Built from an array via fromArray().
+              - [EpisodeRating](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/EpisodeRating): API response fields. Built from an array via fromArray().
+              - [EpisodeSummary](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/EpisodeSummary): API response fields. Built from an array via fromArray().
+              - [Genre](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/Genre): API response fields. Built from an array via fromArray().
+              - [MetaApps](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/MetaApps): API response fields. Built from an array via fromArray().
+              - [MetaOpenGraph](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/MetaOpenGraph): API response fields. Built from an array via fromArray().
+              - [MetaTwitter](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/MetaTwitter): API response fields. Built from an array via fromArray().
+              - [MetaVerification](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/MetaVerification): API response fields. Built from an array via fromArray().
+              - [Network](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/Network): API response fields. Built from an array via fromArray().
+              - [News](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/News): API response fields. Built from an array via fromArray().
+              - [NewsAuthor](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/NewsAuthor): API response fields. Built from an array via fromArray().
+              - [NewsCategory](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/NewsCategory): API response fields. Built from an array via fromArray().
+              - [NewsComment](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/NewsComment): API response fields. Built from an array via fromArray().
+              - [NewsTag](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/NewsTag): API response fields. Built from an array via fromArray().
+              - [Note](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/Note): API response fields. Built from an array via fromArray().
+              - [OnlineLink](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/OnlineLink): API response fields. Built from an array via fromArray().
+              - [PaymentType](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/PaymentType): API response fields. Built from an array via fromArray().
+              - [Product](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/Product): API response fields. Built from an array via fromArray().
+              - [PushTokenResponse](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/PushTokenResponse): API response fields. Built from an array via fromArray().
+              - [Show](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/Show): API response fields. Built from an array via fromArray().
+              - [ShowSummary](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/ShowSummary): API response fields. Built from an array via fromArray().
+              - [SiteMeta](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/SiteMeta): API response fields. Built from an array via fromArray().
+              - [User](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/User): API response fields. Built from an array via fromArray().
+              - [UserEpisodeStatus](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/UserEpisodeStatus): API response fields. Built from an array via fromArray().
+              - [UserRanks](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/UserRanks): API response fields. Built from an array via fromArray().
+              - [UserShowStatus](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/UserShowStatus): API response fields. Built from an array via fromArray().
+              - [UserSocial](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/UserSocial): API response fields. Built from an array via fromArray().
+              - [UserStats](/dev/api_wrappers/myshows-api/1.0.0/en/reference/dto/UserStats): API response fields. Built from an array via fromArray().
+            - Enums
+              - [ShowStatus](/dev/api_wrappers/myshows-api/1.0.0/en/reference/enums/ShowStatus): Fixed set of values.
+              - [UserEpisodeStatus](/dev/api_wrappers/myshows-api/1.0.0/en/reference/enums/UserEpisodeStatus): Fixed set of values.
+              - [UserShowStatus](/dev/api_wrappers/myshows-api/1.0.0/en/reference/enums/UserShowStatus): Fixed set of values.
+            - Exceptions
+              - [AuthException](/dev/api_wrappers/myshows-api/1.0.0/en/reference/exceptions/AuthException): Authentication or authorization problem in the MyShows API.
+              - [ConfigurationException](/dev/api_wrappers/myshows-api/1.0.0/en/reference/exceptions/ConfigurationException): Invalid or incomplete SDK configuration.
+              - [JsonRpcException](/dev/api_wrappers/myshows-api/1.0.0/en/reference/exceptions/JsonRpcException): The MyShows API returned an error in the JSON-RPC envelope.
+              - [MyShowsException](/dev/api_wrappers/myshows-api/1.0.0/en/reference/exceptions/MyShowsException): Base exception of the MyShows SDK.
+              - [NetworkException](/dev/api_wrappers/myshows-api/1.0.0/en/reference/exceptions/NetworkException): Network, timeout, or DNS error while calling the MyShows API.
+              - [RateLimitException](/dev/api_wrappers/myshows-api/1.0.0/en/reference/exceptions/RateLimitException): Request limit exceeded or HTTP 429 received.
+          - [Changelog](/dev/api_wrappers/myshows-api/1.0.0/en/changelog): Versions of the MyShows PHP client.
+        - [История изменений](/dev/api_wrappers/myshows-api/1.0.0/changelog): Версии PHP-обёртки MyShows.
     - [NotKinoPoiskAPI](/dev/api_wrappers/notkinopoiskapi): Неофициальная Python-библиотека для Kinopoisk API Unofficial.
     - [StreamTape](/dev/api_wrappers/streamtape): Unofficial Python API wrapper for streamtape.com.
     - [TurboBitApi](/dev/api_wrappers/turbobit): Unofficial Python API wrapper for turbobit.net.
@@ -1022,6 +1372,16 @@
     - [MyStatus - Статус сериалов](/dev/dle/mystatus): Документация по модулю MyStatus для DLE. Отображение статуса пользователей.
     - [Release Status - Документация DevCraft](/dev/dle/releasestatus): Документация по модулю Release Status для DLE. Управление статусами релизов.
     - [Цены по курсу валют](/dev/dle/paid-currencies_rate): Документация по плагину цены по курсу валют для DLE.
+    - ParserKit
+      - 210.1.0
+        - [Начало работы](/dev/dle/parserkit/210.1.0/getting_started): Обзор ParserKit 210.1.0: доноры, alias/типы, Twig-карта, параметры {search}, окно схемы строки.
+        - [Установка](/dev/dle/parserkit/210.1.0/install): Как поставить ParserKit 210.1.0: install.xml, DevCraft Admin, панель fill на форме новости.
+        - Руководства
+          - [Доноры](/dev/dle/parserkit/210.1.0/guides/donors): Настройка донора ParserKit: URL, узел списка list_node, режим «корень», опрос схемы.
+          - [Вложенные поля](/dev/dle/parserkit/210.1.0/guides/nested_fields): Схема донора ParserKit: вложенные пути, flatten, группы, is_terminal и обрезка веток.
+          - [Шаблоны заполнения](/dev/dle/parserkit/210.1.0/guides/templates): Шаблон ParserKit: field_graph, Twig expr, условия and/or, первичный ключ, окно схемы.
+          - [Заполнение на форме новости](/dev/dle/parserkit/210.1.0/guides/fill): Fill ParserKit на addnews/editnews: донор, шаблон, список записей, apply и перезапись полей.
+        - [История изменений](/dev/dle/parserkit/210.1.0/changelog): История изменений ParserKit: релиз 210.1.0 и каркас 200.0.0.
   - XenForo
     - DLE API Connection Provider
       - 1.0.0
