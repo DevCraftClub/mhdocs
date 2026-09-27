@@ -1,0 +1,10 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`Шаблоны и теги`,description:`Краткий указатель: полное описание файлов .tpl темы перенесено в раздел «Шаблоны»`,version:`200.1.0`},i=new Date(1790523217e3),a=`
+
+Полное описание файлов темы, тегов и классов скрипта — в разделе [Шаблоны](/dev/dle/notifications/200.1.0/templates).
+
+Там же: страница кабинета, стена, колокольчик, строка ленты, кнопки подписки, списки подписок и публикаций, обёртки писем и события \`scenarios/\`.
+
+Старый адрес этой страницы оставлен, чтобы ссылки не ломались.
+`,o={contents:[{heading:void 0,content:`Полное описание файлов темы, тегов и классов скрипта — в разделе Шаблоны.`},{heading:void 0,content:"Там же: страница кабинета, стена, колокольчик, строка ленты, кнопки подписки, списки подписок и публикаций, обёртки писем и события `scenarios/`."},{heading:void 0,content:`Старый адрес этой страницы оставлен, чтобы ссылки не ломались.`}],headings:[]},s=[];function c(e){let t={a:`a`,code:`code`,p:`p`,...e.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(t.p,{children:[`Полное описание файлов темы, тегов и классов скрипта — в разделе `,(0,n.jsx)(t.a,{href:`/dev/dle/notifications/200.1.0/templates`,children:`Шаблоны`}),`.`]}),`
+`,(0,n.jsxs)(t.p,{children:[`Там же: страница кабинета, стена, колокольчик, строка ленты, кнопки подписки, списки подписок и публикаций, обёртки писем и события `,(0,n.jsx)(t.code,{children:`scenarios/`}),`.`]}),`
+`,(0,n.jsx)(t.p,{children:`Старый адрес этой страницы оставлен, чтобы ссылки не ломались.`})]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};
