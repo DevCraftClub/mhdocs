@@ -1307,8 +1307,8 @@
         - [Changelog RePost](/dev/dle/repost/200.1.0/changelog)
     - DLE Уведомления
       - 200.1.0
-        - [Начало работы](/dev/dle/notifications/200.1.0/getting_started): DLE Уведомления для DataLife Engine: подписки на новости, разделы и авторов, колокольчик, лента, почта и личные сообщения. Цена — 35 €.
-        - [Установка](/dev/dle/notifications/200.1.0/install): Как поставить DLE Уведомления после DevCraft Admin: ZIP, Composer, первый запуск. Цена — 35 €.
+        - [Начало работы](/dev/dle/notifications/200.1.0/getting_started): DLE Уведомления для DataLife Engine: подписки на новости, разделы и авторов, колокольчик, лента, почта и личные сообщения.
+        - [Установка](/dev/dle/notifications/200.1.0/install): Как поставить DLE Уведомления после DevCraft Admin: ZIP, Composer, первый запуск.
         - Руководства
           - [Колокольчик, стена и кнопка подписки](/dev/dle/notifications/200.1.0/guides/subscribe_wall): Как вставить в тему стили, скрипты, колокольчик, стену и кнопку «Подписаться»
           - [Куда вставить в тему](/dev/dle/notifications/200.1.0/guides/template_includes): Где в теме поставить стили, скрипты, колокольчик и кнопки подписки
@@ -1318,7 +1318,6 @@
           - [События](/dev/dle/notifications/200.1.0/guides/scenarios): Какое событие какой файл .tpl вызывает и кому уходит
           - [Своё событие](/dev/dle/notifications/200.1.0/guides/custom_event): Свой notifySend: шаблон, права групп, настройки модуля и доп. поле
           - [Свой канал доставки](/dev/dle/notifications/200.1.0/guides/custom_channel): Как реализовать ChannelInterface и зарегистрировать канал
-          - [Дополнительные модули](/dev/dle/notifications/200.1.0/guides/satellites): Указатель на отдельные ZIP: Telegram, сводка и статистика. В ядро не входят.
           - [Лента на сайте: стена и колокольчик](/dev/dle/notifications/200.1.0/guides/inbox_api): Список уведомлений, непрочитанные, самообновление и удаление
           - [Права групп](/dev/dle/notifications/200.1.0/guides/permissions): Какие флаги прав есть у групп DLE в модуле уведомлений
           - [Настройки пользователя](/dev/dle/notifications/200.1.0/guides/user_prefs): Как права группы, доп. поля профиля и галочки DLE отсекают каналы
@@ -1339,30 +1338,6 @@
           - [ChannelInterface](/dev/dle/notifications/200.1.0/reference/ChannelInterface): Контракт канала доставки уведомлений и регистрация в ChannelRegistry
           - [show_notifications.php](/dev/dle/notifications/200.1.0/reference/web): Параметры include: focus, stype, id и теги шаблона
         - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типы подписок, шаблоны темы
-    - Уведомления — Telegram
-      - 200.1.0
-        - [Начало работы](/dev/dle/notifications_telegram/200.1.0/getting_started): Соседний модуль DLE Уведомлений: доставка в Telegram и привязка аккаунта через бота.
-        - [Установка](/dev/dle/notifications_telegram/200.1.0/install): Как поставить Уведомления — Telegram: ZIP, needplugin, Composer, cron и патч social.class.php для DLE 21.
-        - Руководства
-          - [Привязка Telegram](/dev/dle/notifications_telegram/200.1.0/guides/bind): Два пути привязки: секретная строка на DLE 20 и вход Telegram в профиле на DLE 21.
-          - [Настройки бота](/dev/dle/notifications_telegram/200.1.0/guides/settings): Ключ бота, имя без @, срок ссылки привязки и сколько сообщений забирать за раз.
-        - [История изменений](/dev/dle/notifications_telegram/200.1.0/changelog): История изменений Уведомления — Telegram 200.1.0.
-    - Уведомления — сводка
-      - 200.1.0
-        - [Начало работы](/dev/dle/notifications_digest/200.1.0/getting_started): Соседний модуль DLE Уведомлений: накопление уведомлений и отправка сводкой по интервалу.
-        - [Установка](/dev/dle/notifications_digest/200.1.0/install): Как поставить Уведомления — сводка: ZIP, needplugin и cron notifyDigestFlush.
-        - Руководства
-          - [Настройки сводки](/dev/dle/notifications_digest/200.1.0/guides/settings): Интервал, способы доставки, лимит записей и текст сводки.
-          - [Очередь сводки](/dev/dle/notifications_digest/200.1.0/guides/queue): Страница очереди action=digest_queue, ручная отправка и роль notifyDigestFlush.
-        - [История изменений](/dev/dle/notifications_digest/200.1.0/changelog): История изменений Уведомления — сводка 200.1.0.
-    - Уведомления — статистика
-      - 200.1.0
-        - [Начало работы](/dev/dle/notifications_stats/200.1.0/getting_started): Соседний модуль DLE Уведомлений: сводка по подпискам и событиям в админке.
-        - [Установка](/dev/dle/notifications_stats/200.1.0/install): Как поставить Уведомления — статистика: ZIP, needplugin и право notifications_stats_view.
-        - Руководства
-          - [Сводка в админке](/dev/dle/notifications_stats/200.1.0/guides/dashboard): Что показывает страница статистики уведомлений и кто может её открыть.
-          - [Настройки статистики](/dev/dle/notifications_stats/200.1.0/guides/settings): Период отчёта в днях и число строк в топе событий.
-        - [История изменений](/dev/dle/notifications_stats/200.1.0/changelog): История изменений Уведомления — статистика 200.1.0.
     - Хаки и простые модули
       - [Schema.Org - Документация DevCraft](/dev/dle/simple/schema): Документация по интеграции Schema.Org разметки в проекты DevCraft.
       - [XF List Generator](/dev/dle/simple/xflist)
@@ -1378,6 +1353,7 @@
         - [Установка](/dev/dle/parserkit/210.1.0/install): Как поставить ParserKit 210.1.0: install.xml, DevCraft Admin, панель fill на форме новости.
         - Руководства
           - [Доноры](/dev/dle/parserkit/210.1.0/guides/donors): Настройка донора ParserKit: URL, узел списка list_node, режим «корень», опрос схемы.
+          - [User-Agents](/dev/dle/parserkit/210.1.0/guides/user_agents): Пул User-Agent: структура полей, auto_renew, API, локальный разбор, авто-cron DLE.
           - [Вложенные поля](/dev/dle/parserkit/210.1.0/guides/nested_fields): Схема донора ParserKit: вложенные пути, flatten, группы, is_terminal и обрезка веток.
           - [Шаблоны заполнения](/dev/dle/parserkit/210.1.0/guides/templates): Шаблон ParserKit: field_graph, Twig expr, условия and/or, первичный ключ, окно схемы.
           - [Заполнение на форме новости](/dev/dle/parserkit/210.1.0/guides/fill): Fill ParserKit на addnews/editnews: донор, шаблон, список записей, apply и перезапись полей.
