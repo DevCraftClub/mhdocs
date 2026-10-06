@@ -837,6 +837,7 @@
           - [Примеры Form](/dev/dle/devcraft_admin/200.4.1/guides/form_examples): Практические примеры декларативных форм DevCraft: layout, типы полей, filter schema.
           - [Создание CRUD-страницы](/dev/dle/devcraft_admin/200.4.1/guides/crud_pages): Сквозной сценарий CRUD-страницы DevCraft: Entity, Repository, список с фильтром, форма создания/редактирования, Ajax, манифест, Twig.
           - [Настройка](/dev/dle/devcraft_admin/200.4.1/guides/manage): Глобальные настройки плагина DevCraft Admin.
+          - [Отладка](/dev/dle/devcraft_admin/200.4.1/guides/debugging): Как включить режим отладки Admin, снять журнал и прислать его разработчику
           - [Генератор языковых файлов](/dev/dle/devcraft_admin/200.4.1/guides/generate_languages): Локализация модулей DevCraft: XLIFF и Translation.
           - [Справочник: ИИ-инструменты](/dev/dle/devcraft_admin/200.4.1/guides/ai_tools): Единая точка входа: skills, MCP, Cursor-rules, update-policy и промпт модуля DevCraft.
         - Помощь в разработке
