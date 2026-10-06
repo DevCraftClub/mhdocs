@@ -1,0 +1,41 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{t}from"./jsx-runtime-By8HlURe.js";var n=e(t()),r={title:`Права групп`,description:`Какие флаги прав есть у групп DLE в модуле уведомлений`,version:`200.1.0`},i=new Date(1791275402e3),a=`
+
+Админка → **DLE Уведомления → Права групп**. Набор флагов свой у каждой группы.
+
+| Флаг                                                                  | Что даёт                                              |
+| --------------------------------------------------------------------- | ----------------------------------------------------- |
+| Группа администраторов?                                               | полный доступ                                         |
+| Разрешить использование уведомлений                                   | лента на сайте / получение сообщений модуля           |
+| Просматривать стену уведомлений                                       | \`focus=wall\` и страница \`/notifications/\`             |
+| Получать личные сообщения при уведомлении                             | канал личных сообщений                                |
+| Получать почту при уведомлении                                        | канал почты                                           |
+| Разрешить отписку от личных сообщений                                 | человек может выключить личные сообщения в настройках |
+| Разрешить отписку от почты                                            | то же для почты / профиля DLE                         |
+| Подписываться на новости / разделы / авторов / теги / доп. поля / все | соответствующие кнопки                                |
+| Упоминать пользователей в комментариях                                | \`@ник\` шлёт уведомление                               |
+| Менять настройки пользователя                                         | правка настроек чужих учётных записей                 |
+
+<Callout type="info">
+  Пока у группы нет своей записи прав: обычные пользовательские флаги считаются включёнными, админские и модераторские — выключенными.
+</Callout>
+
+Без «Разрешить отписку от почты / личных сообщений» человек не снимет канал в настройках: письма или личные сообщения продолжат уходить, если канал включён в настройках модуля.
+
+Новый флаг для своего события — в \`permissions.defs.php\`, без смены таблиц. Пошагово: [Своё событие](./custom_event#advanced).
+
+## См. также [#см-также]
+
+* [Своё событие](./custom_event)
+* [Настройки пользователя](./user_prefs)
+* [Типы подписок](./subscription_types)
+`,o={contents:[{heading:void 0,content:`Админка → **DLE Уведомления → Права групп**. Набор флагов свой у каждой группы.`},{heading:void 0,content:`Флаг`},{heading:void 0,content:`Что даёт`},{heading:void 0,content:`Группа администраторов?`},{heading:void 0,content:`полный доступ`},{heading:void 0,content:`Разрешить использование уведомлений`},{heading:void 0,content:`лента на сайте / получение сообщений модуля`},{heading:void 0,content:`Просматривать стену уведомлений`},{heading:void 0,content:"`focus=wall` и страница `/notifications/`"},{heading:void 0,content:`Получать личные сообщения при уведомлении`},{heading:void 0,content:`канал личных сообщений`},{heading:void 0,content:`Получать почту при уведомлении`},{heading:void 0,content:`канал почты`},{heading:void 0,content:`Разрешить отписку от личных сообщений`},{heading:void 0,content:`человек может выключить личные сообщения в настройках`},{heading:void 0,content:`Разрешить отписку от почты`},{heading:void 0,content:`то же для почты / профиля DLE`},{heading:void 0,content:`Подписываться на новости / разделы / авторов / теги / доп. поля / все`},{heading:void 0,content:`соответствующие кнопки`},{heading:void 0,content:`Упоминать пользователей в комментариях`},{heading:void 0,content:"`@ник` шлёт уведомление"},{heading:void 0,content:`Менять настройки пользователя`},{heading:void 0,content:`правка настроек чужих учётных записей`},{heading:void 0,content:`Пока у группы нет своей записи прав: обычные пользовательские флаги считаются включёнными, админские и модераторские — выключенными.`},{heading:void 0,content:`Без «Разрешить отписку от почты / личных сообщений» человек не снимет канал в настройках: письма или личные сообщения продолжат уходить, если канал включён в настройках модуля.`},{heading:void 0,content:"Новый флаг для своего события — в `permissions.defs.php`, без смены таблиц. Пошагово: Своё событие."},{heading:`см-также`,content:`Своё событие`},{heading:`см-также`,content:`Настройки пользователя`},{heading:`см-также`,content:`Типы подписок`}],headings:[{id:`см-также`,content:`См. также`}]},s=[{depth:2,url:`#см-также`,title:(0,n.jsx)(n.Fragment,{children:`См. также`})}];function c(e){let t={a:`a`,code:`code`,h2:`h2`,li:`li`,p:`p`,strong:`strong`,table:`table`,tbody:`tbody`,td:`td`,th:`th`,thead:`thead`,tr:`tr`,ul:`ul`,...e.components},{Callout:r}=t;return r||u(`Callout`,!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(t.p,{children:[`Админка → `,(0,n.jsx)(t.strong,{children:`DLE Уведомления → Права групп`}),`. Набор флагов свой у каждой группы.`]}),`
+`,(0,n.jsxs)(t.table,{children:[(0,n.jsx)(t.thead,{children:(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.th,{children:`Флаг`}),(0,n.jsx)(t.th,{children:`Что даёт`})]})}),(0,n.jsxs)(t.tbody,{children:[(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Группа администраторов?`}),(0,n.jsx)(t.td,{children:`полный доступ`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Разрешить использование уведомлений`}),(0,n.jsx)(t.td,{children:`лента на сайте / получение сообщений модуля`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Просматривать стену уведомлений`}),(0,n.jsxs)(t.td,{children:[(0,n.jsx)(t.code,{children:`focus=wall`}),` и страница `,(0,n.jsx)(t.code,{children:`/notifications/`})]})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Получать личные сообщения при уведомлении`}),(0,n.jsx)(t.td,{children:`канал личных сообщений`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Получать почту при уведомлении`}),(0,n.jsx)(t.td,{children:`канал почты`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Разрешить отписку от личных сообщений`}),(0,n.jsx)(t.td,{children:`человек может выключить личные сообщения в настройках`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Разрешить отписку от почты`}),(0,n.jsx)(t.td,{children:`то же для почты / профиля DLE`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Подписываться на новости / разделы / авторов / теги / доп. поля / все`}),(0,n.jsx)(t.td,{children:`соответствующие кнопки`})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Упоминать пользователей в комментариях`}),(0,n.jsxs)(t.td,{children:[(0,n.jsx)(t.code,{children:`@ник`}),` шлёт уведомление`]})]}),(0,n.jsxs)(t.tr,{children:[(0,n.jsx)(t.td,{children:`Менять настройки пользователя`}),(0,n.jsx)(t.td,{children:`правка настроек чужих учётных записей`})]})]})]}),`
+`,(0,n.jsx)(r,{type:`info`,children:(0,n.jsx)(t.p,{children:`Пока у группы нет своей записи прав: обычные пользовательские флаги считаются включёнными, админские и модераторские — выключенными.`})}),`
+`,(0,n.jsx)(t.p,{children:`Без «Разрешить отписку от почты / личных сообщений» человек не снимет канал в настройках: письма или личные сообщения продолжат уходить, если канал включён в настройках модуля.`}),`
+`,(0,n.jsxs)(t.p,{children:[`Новый флаг для своего события — в `,(0,n.jsx)(t.code,{children:`permissions.defs.php`}),`, без смены таблиц. Пошагово: `,(0,n.jsx)(t.a,{href:`./custom_event#advanced`,children:`Своё событие`}),`.`]}),`
+`,(0,n.jsx)(t.h2,{id:`см-также`,children:`См. также`}),`
+`,(0,n.jsxs)(t.ul,{children:[`
+`,(0,n.jsx)(t.li,{children:(0,n.jsx)(t.a,{href:`./custom_event`,children:`Своё событие`})}),`
+`,(0,n.jsx)(t.li,{children:(0,n.jsx)(t.a,{href:`./user_prefs`,children:`Настройки пользователя`})}),`
+`,(0,n.jsx)(t.li,{children:(0,n.jsx)(t.a,{href:`./subscription_types`,children:`Типы подписок`})}),`
+`]})]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(c,{...e})}):c(e)}function u(e,t){throw Error(`Expected `+(t?`component`:`object`)+" `"+e+"` to be defined: you likely forgot to import, pass, or provide it.")}export{a as _markdown,l as default,r as frontmatter,i as lastModified,o as structuredData,s as toc};
