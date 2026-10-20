@@ -1540,6 +1540,13 @@
           - [show_notifications.php](/dev/dle/notifications/200.1.0/reference/web): Параметры include: focus, stype, id и теги шаблона
         - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типы подписок, шаблоны темы
     - DLE Уведомление: Push
+      - 1.0.0
+        - [Начало работы](/dev/dle/notifications_push/1.0.0/getting_started): Соседний модуль DLE Уведомлений: системные окна браузера (Web Push).
+        - [Установка](/dev/dle/notifications_push/1.0.0/install): Как поставить DLE Уведомления: Push после Admin и DLE Уведомлений.
+        - Руководства
+          - [Кнопка на сайте](/dev/dle/notifications_push/1.0.0/guides/site_button): Как посетителю включить системные окна браузера.
+          - [Ключи VAPID](/dev/dle/notifications_push/1.0.0/guides/vapid): Как создать ключи и проверить отправку себе.
+        - [История изменений](/dev/dle/notifications_push/1.0.0/changelog): Релиз 1.0.0: канал Web Push для DLE Уведомлений.
       - 200.1.0
         - [Начало работы](/dev/dle/notifications_push/200.1.0/getting_started): Соседний модуль DLE Уведомлений: системные окна браузера (Web Push).
         - [Установка](/dev/dle/notifications_push/200.1.0/install): Как поставить DLE Уведомление: Push после Admin и DLE Уведомлений.
