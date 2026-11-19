@@ -835,6 +835,7 @@
           - [DataLoader и QueryBuilder](/dev/dle/devcraft_admin/200.4.2/guides/data_loader): Загрузка и запись строк DLE через static DataLoaderService: массив или QueryBuilder.
           - [Слои данных: Cycle, DLE SDK, QueryBuilder](/dev/dle/devcraft_admin/200.4.2/guides/data_layers): Какой слой брать под таблицу: Cycle ORM для таблиц модуля, DLE SDK для ядра DLE, QueryBuilder для generic-загрузки.
           - [Схема шлюза БД и автор записи](/dev/dle/devcraft_admin/200.4.2/guides/gateway_schema): Как Admin приводит таблицы Cycle к моделям и кто пишется в creator / lastEditor.
+          - [Миграции](/dev/dle/devcraft_admin/200.4.2/guides/migrations): Раздел «Миграции» в DevCraft Admin: где лежат файлы, что делают кнопки и как скачать SQL.
           - [Примеры Form](/dev/dle/devcraft_admin/200.4.2/guides/form_examples): Практические примеры декларативных форм DevCraft: layout, типы полей, filter schema.
           - [Создание CRUD-страницы](/dev/dle/devcraft_admin/200.4.2/guides/crud_pages): Сквозной сценарий CRUD-страницы DevCraft: Entity, Repository, список с фильтром, форма создания/редактирования, Ajax, манифест, Twig.
           - [Настройка](/dev/dle/devcraft_admin/200.4.2/guides/manage): Глобальные настройки плагина DevCraft Admin.
@@ -1508,6 +1509,39 @@
           - [Теги шаблонов RePost](/dev/dle/repost/200.1.0/reference/template_tags)
         - [Changelog RePost](/dev/dle/repost/200.1.0/changelog)
     - DLE Уведомления
+      - 200.2.0
+        - [Начало работы](/dev/dle/notifications/200.2.0/getting_started): DLE Уведомления для DataLife Engine: подписки на новости, разделы и авторов, колокольчик, лента, почта и личные сообщения.
+        - [Установка](/dev/dle/notifications/200.2.0/install): Как поставить DLE Уведомления после DevCraft Admin: ZIP, Composer, первый запуск.
+        - Руководства
+          - [Колокольчик, стена и кнопка подписки](/dev/dle/notifications/200.2.0/guides/subscribe_wall): Как вставить в тему стили, скрипты, колокольчик, стену и кнопку «Подписаться»
+          - [Куда вставить в тему](/dev/dle/notifications/200.2.0/guides/template_includes): Где в теме поставить стили, скрипты, колокольчик и кнопки подписки
+          - [Страница уведомлений](/dev/dle/notifications/200.2.0/guides/notifications_page): Отдельная страница списка: index.php?do=notifications и /notifications/
+          - [Типы подписок](/dev/dle/notifications/200.2.0/guides/subscription_types): Новость, раздел, автор, тег, доп. поле, все: на что подписан человек и когда приходит сообщение
+          - [Шаблоны и теги](/dev/dle/notifications/200.2.0/guides/scenario_templates): Краткий указатель: полное описание файлов .tpl темы перенесено в раздел «Шаблоны»
+          - [События](/dev/dle/notifications/200.2.0/guides/scenarios): Какое событие какой файл .tpl вызывает и кому уходит
+          - [Своё событие](/dev/dle/notifications/200.2.0/guides/custom_event): Свой notifySend: шаблон, права групп, настройки модуля и доп. поле
+          - [Свой канал доставки](/dev/dle/notifications/200.2.0/guides/custom_channel): Как реализовать ChannelInterface и зарегистрировать канал
+          - [Лента на сайте: стена и колокольчик](/dev/dle/notifications/200.2.0/guides/inbox_api): Список уведомлений, непрочитанные, самообновление и удаление
+          - [Права групп](/dev/dle/notifications/200.2.0/guides/permissions): Какие флаги прав есть у групп DLE в модуле уведомлений
+          - [Настройки пользователя](/dev/dle/notifications/200.2.0/guides/user_prefs): Как права группы, доп. поля профиля и галочки DLE отсекают каналы
+        - Шаблоны
+          - [Шаблоны](/dev/dle/notifications/200.2.0/templates): Файлы .tpl темы для колокольчика, стены, кнопок, событий и писем модуля Уведомления
+          - [Страница кабинета](/dev/dle/notifications/200.2.0/templates/page): Шаблон page.tpl для /notifications/ — навигация по стене, подпискам и публикациям
+          - [Стена](/dev/dle/notifications/200.2.0/templates/wall): Шаблон wall.tpl — лента уведомлений на сайте и на странице кабинета
+          - [Колокольчик](/dev/dle/notifications/200.2.0/templates/badge): Шаблон badge.tpl — колокольчик в шапке со счётчиком и выпадающим списком
+          - [Строка ленты](/dev/dle/notifications/200.2.0/templates/item): Шаблоны item.tpl, item_actions и боковых кнопок «Прочесть» / «Закрыть»
+          - [Кнопка подписки](/dev/dle/notifications/200.2.0/templates/subscribe): Шаблоны subscribe/*.tpl и запасной subscribe.tpl — кнопка «Подписаться» на сайте
+          - [Модальное окно подписок](/dev/dle/notifications/200.2.0/templates/subscription_button): subscription_button.tpl — колокольчик и оболочка окна выбора
+          - [Мои подписки](/dev/dle/notifications/200.2.0/templates/subscriptions): Шаблоны subscriptions.tpl и subscription_item.tpl — список подписок пользователя
+          - [Новые публикации](/dev/dle/notifications/200.2.0/templates/publications): Шаблоны publications.tpl и publication_item.tpl — свежие материалы по подпискам
+          - [Обёртки писем](/dev/dle/notifications/200.2.0/templates/wrappers): Шаблоны wrappers/email_body.tpl и pm_body.tpl — оболочка письма и личного сообщения
+          - [События](/dev/dle/notifications/200.2.0/templates/scenarios): Шаблоны scenarios/*.tpl — тексты уведомлений по сценариям модуля
+        - Справочник
+          - [Справочник](/dev/dle/notifications/200.2.0/reference): Функции notify* для хаков и сторонних модулей
+          - [Notify](/dev/dle/notifications/200.2.0/reference/Notify): notifySend, onNewsSaved, onCommentAdded, рейтинг/удаление/подписка и класс Notify
+          - [ChannelInterface](/dev/dle/notifications/200.2.0/reference/ChannelInterface): Контракт канала доставки уведомлений и регистрация в ChannelRegistry
+          - [show_notifications.php](/dev/dle/notifications/200.2.0/reference/web): Параметры include: focus, stype, id и теги шаблона
+        - [История изменений](/dev/dle/notifications/200.2.0/changelog): Релиз 200.2.0: окно выбора подписок, comments, notify_push, mark-all
       - 200.1.0
         - [Начало работы](/dev/dle/notifications/200.1.0/getting_started): DLE Уведомления для DataLife Engine: подписки на новости, разделы и авторов, колокольчик, лента, почта и личные сообщения.
         - [Установка](/dev/dle/notifications/200.1.0/install): Как поставить DLE Уведомления после DevCraft Admin: ZIP, Composer, первый запуск.
@@ -1540,7 +1574,14 @@
           - [ChannelInterface](/dev/dle/notifications/200.1.0/reference/ChannelInterface): Контракт канала доставки уведомлений и регистрация в ChannelRegistry
           - [show_notifications.php](/dev/dle/notifications/200.1.0/reference/web): Параметры include: focus, stype, id и теги шаблона
         - [История изменений](/dev/dle/notifications/200.1.0/changelog): Релиз 200.1.0: лента на сайте, типы подписок, шаблоны темы
-    - DLE Уведомление: Push
+    - DLE Уведомления: Push
+      - 1.1.0
+        - [Начало работы](/dev/dle/notifications_push/1.1.0/getting_started): Соседний модуль DLE Уведомлений: системные окна браузера (Web Push).
+        - [Установка](/dev/dle/notifications_push/1.1.0/install): Как поставить DLE Уведомления: Push после Admin и DLE Уведомлений.
+        - Руководства
+          - [Кнопка на сайте](/dev/dle/notifications_push/1.1.0/guides/site_button): Как посетителю включить системные окна браузера.
+          - [Ключи VAPID](/dev/dle/notifications_push/1.1.0/guides/vapid): Как создать ключи и проверить отправку себе.
+        - [История изменений](/dev/dle/notifications_push/1.1.0/changelog): Релиз 1.1.0: CHPU lifecycle, VAPID recovery, multi-endpoint
       - 1.0.0
         - [Начало работы](/dev/dle/notifications_push/1.0.0/getting_started): Соседний модуль DLE Уведомлений: системные окна браузера (Web Push).
         - [Установка](/dev/dle/notifications_push/1.0.0/install): Как поставить DLE Уведомления: Push после Admin и DLE Уведомлений.
