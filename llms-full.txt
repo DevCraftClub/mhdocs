@@ -92729,6 +92729,7 @@ DLE в пути вырезает `..` — только путь **от корн�
 * Слои Service / Repository / Controller / Entity / DTO; persistence через Cycle ORM; **без** `devcraft/bin`
 * После новых PHP-файлов: `composer dump-autoload` в `devcraft/`
 * Локали: `devcraft/locales/{locale}/{code}.xliff` (можно пустой каркас)
+* Логи (MUST): `use DevCraft\Core\Logging\LogGenerator;` канал `LogGenerator::for({Name}Identity::name())`. `->log(..., 'error')` в `catch`; `->log(..., 'info')` после изменения данных; `->debug(...)` только при отладке Admin. Не `error_log` и не свой файл. Эталон: Notifications, Admin `MigrationsActionHandler`.
 
 **Перенос:** не копировать legacy `engine/ajax` и приёмы MH Admin; reuse API DevCraft; `mhadmin` — только как эталон поведения.
 
@@ -92762,6 +92763,7 @@ DLE в пути вырезает `..` — только путь **от корн�
 * [ ] `engine/inc/{inc}.php` (admin glue; без лишних файлов в `engine/`)
 * [ ] `install.xml` (export) + локали в `devcraft/locales/`
 * [ ] `composer dump-autoload`
+* [ ] Логи: `LogGenerator::for(Identity::name())` в Ajax/Services (`error` в catch, `info` на изменении данных)
 
 Детали в гайдах Admin: начало работы, конституция, CRUD-страницы.
 
@@ -105879,6 +105881,7 @@ DLE в пути вырезает `..` — только путь **от корн�
 * Слои Service / Repository / Controller / Entity / DTO; persistence через Cycle ORM; **без** `devcraft/bin`
 * После новых PHP-файлов: `composer dump-autoload` в `devcraft/`
 * Локали: `devcraft/locales/{locale}/{code}.xliff` (можно пустой каркас)
+* Логи (MUST): `use DevCraft\Core\Logging\LogGenerator;` канал `LogGenerator::for({Name}Identity::name())`. `->log(..., 'error')` в `catch`; `->log(..., 'info')` после изменения данных; `->debug(...)` только при отладке Admin. Не `error_log` и не свой файл. Эталон: Notifications, Admin `MigrationsActionHandler`.
 
 **Перенос:** не копировать legacy `engine/ajax` и приёмы MH Admin; reuse API DevCraft; `mhadmin` — только как эталон поведения.
 
@@ -105912,6 +105915,7 @@ DLE в пути вырезает `..` — только путь **от корн�
 * [ ] `engine/inc/{inc}.php` (admin glue; без лишних файлов в `engine/`)
 * [ ] `install.xml` (export) + локали в `devcraft/locales/`
 * [ ] `composer dump-autoload`
+* [ ] Логи: `LogGenerator::for(Identity::name())` в Ajax/Services (`error` в catch, `info` на изменении данных)
 
 Детали в гайдах Admin: начало работы, конституция, CRUD-страницы.
 
@@ -120121,17 +120125,29 @@ $uploaded->moveTo($targetPath);
 
 ### Добавлено [#добавлено]
 
+* **Схема базы:** если миграция отвечает, что таблица или колонка уже есть, очередь не останавливается. Эта запись помечается выполненной, остальные накатываются. Недостающие таблицы и правки колонок по-прежнему создаёт сам Cycle при генерации миграций.
+* **Страница 500 и AJAX:** при ошибке схемы Cycle (`Undefined schema`) в описании видны класс, файл, цепочка причин, роли в сохранённой схеме и каталоги Models. Старая неполная схема сбрасывается один раз; классы моделей подгружаются до сборки ORM.
 * **Верхняя панель админки:** справа язык, тема и имя с картинкой пользователя. В меню — профиль на сайте и выход. Смена языка и темы сохраняется в настройки Admin и обновляет страницу. Язык — значок `mif-translate` и список названий, текущий пункт в списке подсвечен, тема — значок `mif-dark-light` ([темы Metro](https://panda.metroui.org.ua/common/themes)), без картинки пользователя — `mif-user-settings`. Рядом кнопка «Очистить кеш» (`mif-bin`): чистит кэш DLE и DevCraft и возвращает в тот же раздел.
 * **Гайд [Скрипты админки и сайта](guides/admin_scripts):** как подключать и вызывать `translator.js`, `devcraft.js`, `filter.js`, `composer.js` и `dc_public.js`.
 * **Кнопка «Создать / обновить таблицы»** на главной панели. Создаёт недостающие таблицы моделей. Если файлы миграций на чистой базе не создали таблицы, один запасной проход создаёт их сам. Гайд: [Схема шлюза БД](guides/gateway_schema).
 * **Быстрая очистка кэша на странице ошибки 500:** рядом с кнопкой «На главную» доступна кнопка «Очистить кеш». Действие очищает кэш DLE и DevCraft, затем возвращает на `dashboard` текущего модуля.
+* **Раздел [Миграции](guides/migrations):** миграции всех модулей со статусами. Кнопки «Создать из моделей», «Накатить ожидающие», «Откатить шаг», «Пометить выполненной» и скачивание SQL (вперёд, назад или оба) без изменения базы.
+* **Миграции в каталоге модуля:** новые файлы пишутся в `modules/{Name}/Migrations` модуля-владельца модели; генератор модулей создаёт этот каталог.
+* **Ссылка на миграции при ошибке схемы:** на странице 500 кнопка «Проверить миграции» рядом с «Очистить кеш»; при `Undefined schema` в AJAX открывается окно с той же ссылкой.
+* **Скачать логи:** в «Выводе логов» отмеченные строки скачиваются одним ZIP. Внутри — `{плагин}/{функция}/{тип}.log`, записи с одинаковым путём идут в один файл.
 
 ### Изменено [#изменено]
+
+* **Общий каталог `src/database/migrations` удалён.** Записи учёта, для которых нет файла, удаляются сами; таблицы с данными не трогаются. Гайд: [Схема шлюза БД](guides/gateway_schema).
 
 * **Гайд [Отладка](guides/debugging):** добавлен раздел про кнопку очистки кэша на странице 500 и проверку `user_hash`.
 
 ### Исправлено [#исправлено]
 
+* **Скачать логи:** в ZIP исходный текст сообщения, без экранирования HTML из базы (`&lt;b&gt;`, `&quot;`, `&lt;br /&gt;`).
+* **Скачать SQL миграции:** в файл идёт `CREATE`/`ALTER`, а не исходник PHP, даже если таблица уже есть в базе. В откате перед `DROP TABLE` пишутся `DROP INDEX`.
+* **Composer:** из таблицы убрана строка «Все пакеты» — установка всех зависимостей только кнопкой сверху.
+* **Журнал:** ошибки AJAX (кроме проверки полей), сбои админки, Composer, схема таблиц и сохранения настроек пишутся в «Вывод логов».
 * **Тёмная тема:** плоские и контурные кнопки (язык, тема и имя сверху, ссылки на панели) больше не остаются чёрным текстом на тёмном фоне. Верхняя полоса берёт цвет фона темы.
 
 ## 200.4.1 — 2026-09-10 [#20041--2026-09-10]
@@ -120753,6 +120769,7 @@ DLE в пути вырезает `..` — только путь **от корн�
 * Слои Service / Repository / Controller / Entity / DTO; persistence через Cycle ORM; **без** `devcraft/bin`
 * После новых PHP-файлов: `composer dump-autoload` в `devcraft/`
 * Локали: `devcraft/locales/{locale}/{code}.xliff` (можно пустой каркас)
+* Логи (MUST): `use DevCraft\Core\Logging\LogGenerator;` канал `LogGenerator::for({Name}Identity::name())`. `->log(..., 'error')` в `catch`; `->log(..., 'info')` после изменения данных; `->debug(...)` только при отладке Admin. Не `error_log` и не свой файл. Эталон: Notifications, Admin `MigrationsActionHandler`.
 
 **Перенос:** не копировать legacy `engine/ajax` и приёмы MH Admin; reuse API DevCraft; `mhadmin` — только как эталон поведения.
 
@@ -120786,6 +120803,7 @@ DLE в пути вырезает `..` — только путь **от корн�
 * [ ] `engine/inc/{inc}.php` (admin glue; без лишних файлов в `engine/`)
 * [ ] `install.xml` (export) + локали в `devcraft/locales/`
 * [ ] `composer dump-autoload`
+* [ ] Логи: `LogGenerator::for(Identity::name())` в Ajax/Services (`error` в catch, `info` на изменении данных)
 
 Детали в гайдах Admin: начало работы, конституция, CRUD-страницы.
 
@@ -121892,6 +121910,21 @@ return [
 
 CRUD-паттерн: [CRUD-страница](./crud_pages).
 
+## Журнал [#журнал]
+
+В Ajax и Services сразу подключать [LogGenerator](../reference/back-end/classes/LogGenerator):
+
+```php
+use DevCraft\Core\Logging\LogGenerator;
+
+$log = LogGenerator::for(MyModuleIdentity::name());
+$log->log(__('Запись сохранена: {id}', ['{id}' => $id]), 'info');
+$log->log($e->getMessage(), 'error');
+$log->debug('разбор фильтра', ['rules' => $rules]);
+```
+
+Канал — `{Name}Identity::name()` (то же, что `<name>` в `install.xml`). `debug` пишется только при отладке Admin. Не заменять журнал на `error_log` или свой файл. Подробно: [Отладка](./debugging).
+
 ## install.xml [#installxml]
 
 * `dleversion` **20.0**, `needplugin`: DevCraft Admin
@@ -121904,7 +121937,8 @@ CRUD-паттерн: [CRUD-страница](./crud_pages).
 1. `composer dump-autoload` в `devcraft/`
 2. Открыть `?mod=your_mod` в админке
 3. Проверить пункт меню и одну AJAX-кнопку
-4. При отдельном ZIP — `install.xml` и каталог `upload/`
+4. Проверить, что ошибки и сохранения пишутся в «Вывод логов»
+5. При отдельном ZIP — `install.xml` и каталог `upload/`
 
 ## См. также [#см-также]
 
@@ -122522,6 +122556,8 @@ QueryBuilder::create('tags')
 
 Подробные записи пишутся через [LogGenerator](../reference/back-end/classes/LogGenerator): метод `debug()` вызывается только если включён режим отладки Admin (`debug` или `?dc_debug=1`). Отдельный переключатель «отладка» в каждом сателлите для этого не нужен — общий флаг Admin как раз для таких случаев.
 
+В сателлите канал — `{Name}Identity::name()`. В Ajax/Services: `error` в `catch`, `info` после изменения данных. Ядро пишет сбои AJAX (`JsonResponse::fail`, кроме проверки полей) и необработанные ошибки админки в тот же журнал.
+
 В колонке **Плагин** журнала стоит строка из `<name>` файла `install.xml&#x60; модуля, не имя каталога. У DLE Уведомлений это &#x2A;*`DLE Уведомления`**: фильтр по этому значению находит и ЧПУ, и отправку. Строка `Notifications` туда больше не пишется.
 
 При включённой отладке каждый AJAX-ответ может содержать замер `pipeline_ms` (миллисекунды от старта `devcraft/ajax.php`: переводчик, реестр модулей, проверка входа, обработчик). Это поле **не** запись журнала. В таблице «Вывод логов» оно не должно появляться отдельной строкой из одних чисел.
@@ -122929,9 +122965,11 @@ $order         = FilterFormService::normalizeOrder((string) ($query['order'] ?? 
 
 Шлюз [`DatabaseGateway`](../reference/back-end/classes/DatabaseGateway) перед работой ORM вызывает [`SchemaSyncService::ensureSchemaReady()`](../reference/back-end/classes/SchemaSyncService).
 
-1. Сначала накатываются **все** ещё не применённые файлы в `devcraft/src/database/migrations/` (и при включённом debug тоже).
+1. Сначала накатываются **все** ещё не применённые файлы из каталогов `devcraft/src/modules/{Name}/Migrations/` всех модулей (и при включённом debug тоже). Записи учёта, для которых файла больше нет, удаляются; таблицы с данными не трогаются.
 2. Если в настройках Admin включён **debug** — отличия схемы и базы применяются «на лету» (`SyncTables`), новые файлы не появляются.
-3. Если debug выключен — на каждую изменившуюся таблицу пишется свой файл и сразу накатывается.
+3. Если debug выключен — на каждую изменившуюся таблицу пишется свой файл в `Migrations` модуля, которому принадлежит модель, и сразу накатывается. Модели Composer (`classes/Composer/Models`) пишутся в `modules/Admin/Migrations`.
+
+Посмотреть и запустить миграции вручную можно в разделе [Миграции](./migrations).
 
 Пока модели не менялись, схема берётся из кэша (`devcraft/cache/cycle_orm_schema.ser`). Повторные запросы не плодят CREATE и не падают с «таблица уже существует».
 
@@ -123067,6 +123105,75 @@ devcraft/locales/ru_RU/my_module.xliff
 ## Проверка целостности файлов [#проверка-целостности-файлов]
 
 Раз в сутки выполняется автоматическая проверка ассетов модуля. При расхождениях в шапке админки отображается индикатор; подробности — в диалоге синхронизации (см. класс `AssetsCheckerService` в [справочнике API](../reference/back-end/classes/AssetsCheckerService)).
+
+
+# Миграции (/dev/dle/devcraft_admin/200.4.2/guides/migrations)
+
+
+
+
+
+## Введение [#введение]
+
+Миграции описывают, как поменять таблицы базы под модели Cycle ORM. Admin создаёт и накатывает их сам при первом заходе в админку. Раздел **Миграции** нужен, чтобы посмотреть, что уже сделано, и запустить шаг вручную — без консоли.
+
+## Где лежат файлы [#где-лежат-файлы]
+
+Каждый модуль хранит свои миграции рядом с моделями:
+
+<Files>
+  <Folder name="devcraft/src/modules/Notifications">
+    <Folder name="Models" />
+
+    <Folder name="Migrations" />
+  </Folder>
+</Files>
+
+* Новый файл попадает в `Migrations` модуля, которому принадлежит модель.
+* Модели Composer (`classes/Composer/Models`) пишутся в `modules/Admin/Migrations`.
+* Генератор модулей сразу создаёт пустой каталог `Migrations`.
+* Старый общий каталог `src/database/migrations` удалён. Записи учёта, для которых нет файла, удаляются сами; таблицы с данными остаются.
+
+## Что на странице [#что-на-странице]
+
+Откройте **DevCraft Admin → Миграции**. В таблице — модуль, имя миграции, дата создания, статус и время выполнения.
+
+| Статус    | Что значит                                                     |
+| --------- | -------------------------------------------------------------- |
+| выполнена | Шаг уже применён к базе                                        |
+| ожидает   | Файл есть, но ещё не накатан                                   |
+| нет файла | Запись учёта есть, файла нет (например, после удаления модуля) |
+
+Кнопки над таблицей:
+
+* **Создать из моделей** — сравнивает модели с базой и пишет новые файлы, ничего не меняя в базе. Недоступна, пока есть ожидающие миграции.
+* **Накатить ожидающие** — применяет все ожидающие файлы.
+* **Откатить шаг** — отменяет последнюю выполненную миграцию (метод `down`).
+* **Удалить учёт без файлов** — видна, если есть статус «нет файла».
+
+Кнопки в строке:
+
+* **SQL** — скачивает SQL миграции (`CREATE TABLE` / `ALTER TABLE` / `DROP INDEX` / `DROP TABLE`, не PHP). Если у миграции есть откат, откроется окно: «Вперёд (up)», «Назад (down)» или «Оба». Схема для сборки берётся пустой: живые таблицы не мешают. В `down` индексы снимаются отдельными `DROP INDEX` до удаления таблицы.
+* **Пометить выполненной** — для ожидающей миграции: записывает её в учёт без запуска SQL. Полезно, если таблицу уже создали руками.
+
+<img alt="Раздел «Миграции»: кнопки сверху и таблица шагов" src="__img0" />
+
+Сверху — сколько шагов уже сделано и сколько ещё ждут. Три кнопки: создать файлы из моделей, накатить очередь, откатить последний шаг. В таблице — модуль, имя файла, даты, статус. Справа в строке — **SQL**: скачать команды без изменения базы.
+
+## Когда модель «не найдена» [#когда-модель-не-найдена]
+
+Если админка падает с ошибкой `Undefined schema … not found`:
+
+* На странице ошибки 500 рядом с «Очистить кеш» есть кнопка **Проверить миграции**.
+* В запросах AJAX откроется окно с той же ссылкой.
+
+Обычно хватает нажать **Накатить ожидающие** или **Создать из моделей**, затем очистить кэш.
+
+## Связанные разделы [#связанные-разделы]
+
+* [Схема шлюза БД](./gateway_schema)
+* [SchemaSyncService](../reference/back-end/classes/SchemaSyncService)
+* [Отладка](./debugging)
 
 
 # Module Identity (/dev/dle/devcraft_admin/200.4.2/guides/module_identity)
@@ -133349,14 +133456,46 @@ AJAX-обработчик загрузки одного отсутствующе
 
 **Описание:** С файловой блокировкой рядом с кэшем схемы:
 
-1. Накатывает все ожидающие файлы в `devcraft/src/database/migrations/`.
+1. Удаляет записи учёта без файлов и накатывает все ожидающие файлы из `modules/{Name}/Migrations/`.
 2. Если в настройках Admin включён **debug** — применяет `SyncTables` (без новых файлов).
-3. Если debug выключен — `GenerateMigrations` только при реальном расхождении: отдельный файл на таблицу, сразу накат.
+3. Если debug выключен — `ModuleMigrationsGenerator` только при реальном расхождении: отдельный файл на таблицу в `Migrations` модуля-владельца модели, сразу накат.
 4. Пишет кэш `cycle_orm_schema.ser` с подписью Models.
 
 Повтор без смены сущностей и без ожидающих файлов читает кэш и не пишет миграции.
 
 **Возвращает:** массив схемы Cycle ORM.
+
+### `migrator(?EntityPathResolver $path_resolver = null): Migrator` [#migratorentitypathresolver-path_resolver--null-migrator]
+
+**Описание:** `Migrator` Cycle над каталогами `Migrations` всех модулей: Admin — основной `directory`, остальные — `vendorDirectories`.
+
+### `generateMigrations(): array` [#generatemigrations-array]
+
+**Описание:** Создаёт файлы миграций по отличиям моделей от базы, ничего не накатывая (как `makemigrations` в Django).
+
+**Возвращает:** `list<string>` — пути новых файлов.
+
+**Исключения:** `RuntimeException` — есть ожидающие миграции (сначала их нужно накатить).
+
+### `applyPending(): int` [#applypending-int]
+
+**Описание:** Накатывает ожидающие миграции; уже существующие таблицы помечаются выполненными.
+
+**Возвращает:** `int` — сколько миграций стало выполненными.
+
+### `markExecuted(State $state): void` [#markexecutedstate-state-void]
+
+**Описание:** Помечает миграцию выполненной без запуска SQL.
+
+### `pruneRecordsWithoutFiles(Migrator $migrator): int` [#prunerecordswithoutfilesmigrator-migrator-int]
+
+**Описание:** Удаляет из `devcraft_migrations` записи, для которых нет файла. Таблицы с данными не меняются.
+
+**Возвращает:** `int` — сколько записей удалено.
+
+### `dropCachedSchema(): void` [#dropcachedschema-void]
+
+**Описание:** Удаляет кэш `cycle_orm_schema.ser`.
 
 
 # Класс: SettingsFormService (/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/SettingsFormService)
@@ -143705,6 +143844,2445 @@ devcraft/notifications/
 * [Личные настройки каналов](../guides/user_prefs)
 
 
+# История изменений (/dev/dle/notifications/200.2.0/changelog)
+
+
+
+Тот же текст показывается во вкладке **История изменений** в админке модуля.
+
+## 200.2.0 (2026-11-18) [#20020-2026-11-18]
+
+* тип подписки `comments` — сообщения о новых комментариях к новости;
+* include `focus=subscription_button`: колокольчик, окно выбора подписок, фильтры `only` / `category` / `xfields` / `tags`, кэш `dc_notify_btn_*`;
+* канал `notify_push` у тематической подписки (рядом с сайтом, почтой и ЛС) — колонка и UI через патчи сателлита Push, не в исходниках ядра;
+* «Отметить все прочитанными» через один SQL UPDATE, без лимита 500;
+* конструктор include: пример `subscription_button`;
+* стена без кнопки Push в ядре; фоновый опрос колокольчика без всплывающих ошибок при устаревшем хеше сессии (нужен Admin с новым `dc_public.js`).
+
+## 200.1.1 (2026-10-09) [#20011-2026-10-09]
+
+* автоматическая интеграция дополнений;
+* пользовательское соглашение с проверкой по ключу покупки;
+* правки мета-информации плагина.
+
+## 200.1.0 (2026-08-26) [#20010-2026-08-26]
+
+Первый выпуск под DLE 20 и DevCraft Admin.
+
+* доставка: сайт, почта, личные сообщения;
+* подписки: новость, раздел, автор, тег, доп. поле, все новые материалы;
+* колокольчик, стена, страница `/notifications/`;
+* шаблоны `.tpl` в теме; права групп; `notify*`; соседние модули отдельным ZIP.
+
+
+# Начало работы (/dev/dle/notifications/200.2.0/getting_started)
+
+
+
+## Описание плагина [#описание-плагина]
+
+**DLE Уведомления** — плагин [DevCraft Admin](/dev/dle/devcraft_admin/200.4.1/getting_started) для **DataLife Engine**. Коротко: человек выбирает, за чем следить (новость, раздел, автор, тег, доп. поле, комментарии к новости или все новые материалы), и получает сообщение, когда что-то случилось — публикация, правка, комментарий, `@ник`, оценка, модерация.
+
+На сайте есть **колокольчик**, **стена** и страница `/notifications/`. Те же события можно слать **письмом**, **личным сообщением** и (с сателлитом) **Push в браузер**. Тексты — обычные `.tpl` в теме. Стили/скрипты — через `{devcraft}`; блоки — через `{include}` к `show_notifications.php`.
+
+С версии **200.2.0** удобнее одна кнопка с окном выбора подписок (`focus=subscription_button`) и «прочитать все» без лимита. Push в браузер — отдельный сателлит (патчи ядра только через его `install.xml&#x60;). Версия рассчитана на DLE 20+ и Admin **≥ 200.4.1**.
+
+<Callout type="info" title="Цена">
+  * **Цена:** 35 €
+  * **Купить:** [DLE Уведомления и подписки](https://devcraft.club/downloads/dle-uvedomleniya-i-podpiski.41/)
+  * **Как оплатить:** [Как совершать покупки](/site/how-to-buy)
+</Callout>
+
+## Возможности [#возможности]
+
+* простая кнопка `focus=subscribe` или окно выбора `focus=subscription_button` (несколько подписок сразу);
+* типы: новость, раздел, автор, тег, доп. поле, комментарии к новости, все материалы;
+* колокольчик, стена, страница `/notifications/`, «прочитать все»;
+* каналы: сайт, почта, ЛС; Push — через [сателлит](/dev/dle/notifications_push/1.1.0/getting_started);
+* шаблоны `.tpl`, права групп, функции `notify*` для своего кода.
+
+## Что включено сразу [#что-включено-сразу]
+
+После установки, **без сохранения настроек**, действуют значения из схемы модуля. Колокольчик на сайте всё равно появится только после вставки в тему и входа человека с правом группы.
+
+### Способы доставки (уже в коде) [#способы-доставки-уже-в-коде]
+
+| Код     | Где                          | В комплекте ядра | Включён сразу              |
+| ------- | ---------------------------- | ---------------- | -------------------------- |
+| `site`  | колокольчик и стена на сайте | да               | да (запись в ленту всегда) |
+| `email` | письмо на почту профиля      | да               | **да** (`send_email`)      |
+| `pm`    | личное сообщение DLE         | да               | **нет** (`send_pm`)        |
+| `push`  | окно браузера                | сателлит Push    | после установки сателлита  |
+
+### Подписки и события [#подписки-и-события]
+
+**Включено:** подписки на новость, раздел, автора, тег и на все новые материалы; письма о публикации и о правке новости (режим «любая правка»; при режиме «только доп. поле» — поле новости из настройки `xf_edit_notify`); правке новости из закладок; одобрении и отклонении модерации; упоминании `@ник`; ответе на комментарий; рейтинге новости и комментария; удалении комментария; подписке на человека. Самообновление колокольчика — **15 секунд**. На стене до **20** записей, в блоке «Новые публикации» — **10**.
+
+**Выключено:** подписка на доп. поле; рассылка любого комментария всем подписчикам новости; автоподписка при комментарии или голосе; мягкое удаление записей ленты; личные сообщения как канал.
+
+Доп. поля профиля для «не слать почту / не слать событие» по умолчанию пустые: личных выключателей нет, пока вы их не укажете. Отдельной галочки «Уведомить подписчиков» в форме новости **нет** — для ручного режима заведите доп. поле новости (удобно «Да/Нет») и выберите его в настройках. Права групп задаются отдельно: [права групп](guides/permissions).
+
+## Для кого [#для-кого]
+
+### Владельцы сайта и модераторы [#владельцы-сайта-и-модераторы]
+
+Ставите Admin, затем Уведомления, сохраняете типы подписок и каналы, вставляете `{include}` в тему. Дальше люди сами подписываются; вы смотрите права групп.
+
+### Разработчики темы [#разработчики-темы]
+
+Копируете `templates/Default/devcraft/notifications/` в свой скин, правите кнопки и колокольчик, не ломая имена полей и классы вроде `dc-notify-subscribe`. См. [Куда вставить в тему](guides/template_includes).
+
+## Требования [#требования]
+
+| Что             | Минимум       |
+| --------------- | ------------- |
+| DataLife Engine | **20.0+**     |
+| PHP             | **8.3+**      |
+| DevCraft Admin  | **≥ 200.4.1** |
+
+Полный список шагов: [Установка](./install).
+
+## Дерево структуры [#дерево-структуры]
+
+Корень сайта после установки. В скобках — зачем папка.
+
+<Files>
+  <Folder name="корень сайта DLE">
+    <Folder name="devcraft">
+      <Folder name="src/modules/Notifications">
+        <File name="manifest.php — меню, запросы, meta" />
+
+        <File name="settings.schema.php — форма настроек" />
+
+        <File name="permissions.defs.php — права групп" />
+
+        <File name="changelog.data.php — история в панели" />
+
+        <File name="NotificationsIdentity.php — MODULE/CODE" />
+
+        <Folder name="Controller — show_notifications.php, страница списка" />
+
+        <Folder name="Public — стили и скрипты сайта" />
+
+        <Folder name="Site — include.php (функции notify*)" />
+
+        <Folder name="Pages — главная, конструктор, настройки, права" />
+
+        <Folder name="Ajax — публичные list, subscribe, mark_read…" />
+
+        <Folder name="Services / Models / Repositories" />
+
+        <Folder name="templates — экраны админки (Twig)" />
+      </Folder>
+
+      <Folder name="config — notifications.json после сохранения" />
+
+      <Folder name="locales — dle_notifications.xliff" />
+    </Folder>
+
+    <Folder name="engine/inc">
+      <File name="notifications.php — вход админки" />
+    </Folder>
+
+    <Folder name="templates/{skin}/devcraft/notifications">
+      <File name="badge.tpl / wall.tpl / subscribe/*.tpl" />
+
+      <File name="scenarios / wrappers — тексты событий и писем" />
+    </Folder>
+  </Folder>
+</Files>
+
+Кратко:
+
+* **`devcraft/src/modules/Notifications/`** — админка, логика и вставки на сайт.
+* **`Controller/show_notifications.php`** — `{include}` в теме (`focus=badge|wall|subscribe|…`).
+* **`Public/`** — стили и скрипты сайта через `siteAssets` (в теме нужен тег `{devcraft}`).
+* **`templates/…/notifications/`** — разметка колокольчика, стены и кнопок.
+
+## Быстрый старт [#быстрый-старт]
+
+<Steps>
+  <Step>
+    ### Поставьте Admin и Уведомления [#поставьте-admin-и-уведомления]
+
+    Сначала [DevCraft Admin](/dev/dle/devcraft_admin/200.4.1/install), затем ZIP через менеджер плагинов. В `devcraft/` выполните `composer dump-autoload`. Подробности: [Установка](./install).
+  </Step>
+
+  <Step>
+    ### Настройки [#настройки]
+
+    Откройте `?mod=notifications`, включите типы подписок и каналы (сайт, почта, личные сообщения). Права групп — отдельная страница модуля.
+  </Step>
+
+  <Step>
+    ### Тема [#тема]
+
+    В шапке — `{devcraft}` и колокольчик (`focus=badge`). На полной новости — либо простая кнопка, либо окно выбора подписок. См. [Куда вставить в тему](guides/template_includes).
+  </Step>
+
+  <Step>
+    ### Проверка [#проверка]
+
+    Войдите как пользователь с правом подписки, нажмите кнопку на новости, откройте колокольчик. Страница списка: [Страница уведомлений](guides/notifications_page).
+  </Step>
+</Steps>
+
+## Руководства и разделы [#руководства-и-разделы]
+
+| Страница                                     | О чём                                         |
+| -------------------------------------------- | --------------------------------------------- |
+| [Установка](./install)                       | ZIP, Composer, таблицы, копия шаблонов        |
+| [Колокольчик и стена](guides/subscribe_wall) | `focus` в теме                                |
+| [Куда вставить](guides/template_includes)    | новость, раздел, тег, автор                   |
+| [Типы подписок](guides/subscription_types)   | что срабатывает при новой записи и при правке |
+| [Справочник](./reference)                    | `notify*` и `show_notifications.php`          |
+| [История изменений](./changelog)             | 200.2.0                                       |
+
+<Cards>
+  <Card title="Установка" href="./install">
+    Admin, ZIP, dump-autoload, таблицы
+  </Card>
+
+  <Card title="Тема" href="./guides/subscribe_wall">
+    Колокольчик, стена, кнопка
+  </Card>
+
+  <Card title="Шаблоны" href="./templates">
+    Файлы .tpl, теги и классы
+  </Card>
+
+  <Card title="Типы подписок" href="./guides/subscription_types">
+    Новость, раздел, автор, все
+  </Card>
+
+  <Card title="Своё событие" href="./guides/custom_event">
+    notifySend из хака
+  </Card>
+
+  <Card title="Справочник" href="./reference">
+    PHP и вставка на сайт
+  </Card>
+
+  <Card title="История изменений" href="./changelog">
+    Что вошло в 200.2.0
+  </Card>
+</Cards>
+
+## Дальше [#дальше]
+
+1. [Установить](./install) плагин.
+2. Пройти [быстрый старт](#быстрый-старт).
+3. Настроить [права групп](guides/permissions) и [шаблоны темы](./templates).
+
+
+# Свой канал доставки (/dev/dle/notifications/200.2.0/guides/custom_channel)
+
+
+
+Базовые каналы модуля: **сайт**, **почта**, **личные сообщения**. Свой канал — отдельный класс с `ChannelInterface` и регистрация в `ChannelRegistry`.
+
+*Когда* слать — другой текст: [Своё событие](./custom_event). Здесь — *куда* слать.
+
+## Контракт [#контракт]
+
+### `ChannelInterface` [#channelinterface]
+
+```php
+namespace DevCraft\Modules\Notifications\Channels;
+
+interface ChannelInterface {
+	public function id(): string;
+	public function deliver(ChannelDeliveryContext $ctx): bool;
+}
+```
+
+| Метод       | Назначение                                                                                        |
+| ----------- | ------------------------------------------------------------------------------------------------- |
+| `id()`      | Короткий ключ канала, например `webhook`. Им же передают флаг в `$channels` у `notifySend`.       |
+| `deliver()` | Отправка одному получателю. `true` — успех, `false` — пропуск или ошибка (без исключения наружу). |
+
+### `ChannelDeliveryContext` [#channeldeliverycontext]
+
+Поля контекста (readonly, кроме `entity`):
+
+| Поле                                        | Тип             | Смысл                                          |
+| ------------------------------------------- | --------------- | ---------------------------------------------- |
+| `recipientId`                               | `int`           | Кому слать                                     |
+| `senderId`                                  | `int`           | Кто инициировал (0 — система)                  |
+| `body`                                      | `string`        | Готовый текст (уже из сценария / `$message`)   |
+| `vars`                                      | `array`         | Плейсхолдеры `{title}`, `{full-link}`, …       |
+| `cfg`                                       | `array`         | Конфиг модуля Notifications                    |
+| `level`                                     | `string`        | `info` / `success` / `warning` / …             |
+| `contentType` / `contentTypeId`             |                 | Тип сущности в ленте                           |
+| `verb` / `targetType` / `targetId` / `data` |                 | служебные поля события                         |
+| `entity`                                    | `?Notification` | Запись ленты (если уже создана каналом `site`) |
+| `newsRow`                                   | `array`         | Строка новости, если событие о материале       |
+
+Права и «включён ли канал» соседний модуль проверяет **сам** в `deliver()`. Ядро только решает, вызывать ли канал.
+
+## Когда вызывается ваш канал [#когда-вызывается-ваш-канал]
+
+1. `notifySend` / штатный сценарий собирает тело.
+2. Для `site` / `email` / `pm` — настройки модуля + права + личные настройки.
+3. Для **любого другого** `id` из реестра:
+   * если `$channels === []` → канал считается желаемым (`true`);
+   * если передан массив → нужен `'ваш_id' => true`;
+   * затем `UserPrefsService::wants($scenario, $channelId, …)`;
+   * затем `deliver($ctx)`.
+
+Пример принудительно только свой канал:
+
+```php
+notifySend(
+	$userId,
+	'Текст',
+	'custom',
+	0,
+	0,
+	'info',
+	['site' => false, 'email' => false, 'pm' => false, 'discord' => true],
+);
+```
+
+## Минимальный канал [#минимальный-канал]
+
+<Steps>
+  <Step>
+    ### Шаг 1: класс канала [#шаг-1-класс-канала]
+
+    Файл, например, в своём модуле DevCraft:
+
+    `devcraft/src/modules/MyNotifyDiscord/Channels/DiscordChannel.php`
+
+    ```php
+    <?php
+
+    declare(strict_types=1);
+
+    namespace DevCraft\Modules\MyNotifyDiscord\Channels;
+
+    use DevCraft\Modules\Notifications\Channels\ChannelDeliveryContext;
+    use DevCraft\Modules\Notifications\Channels\ChannelInterface;
+
+    final class DiscordChannel implements ChannelInterface {
+
+    	public function id(): string {
+    		return 'discord';
+    	}
+
+    	public function deliver(ChannelDeliveryContext $ctx): bool {
+    		$webhook = trim((string) ($ctx->cfg['discord_webhook'] ?? ''));
+    		// лучше брать из конфига своего модуля через DataManager::getConfig(...)
+
+    		if($webhook === '' || $ctx->body === '') {
+    			return false;
+    		}
+
+    		$text = strip_tags($ctx->body);
+    		$link = trim((string) ($ctx->vars['{full-link}'] ?? ''));
+
+    		if($link !== '') {
+    			$text .= "\n" . $link;
+    		}
+
+    		$payload = json_encode(['content' => $text], JSON_UNESCAPED_UNICODE);
+
+    		if($payload === false) {
+    			return false;
+    		}
+
+    		$ch = curl_init($webhook);
+    		curl_setopt_array($ch, [
+    			CURLOPT_POST           => true,
+    			CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+    			CURLOPT_POSTFIELDS     => $payload,
+    			CURLOPT_RETURNTRANSFER => true,
+    			CURLOPT_TIMEOUT        => 10,
+    		]);
+    		curl_exec($ch);
+    		$code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    		curl_close($ch);
+
+    		return $code >= 200 && $code < 300;
+    	}
+
+    }
+    ```
+  </Step>
+
+  <Step>
+    ### Шаг 2: регистрация при boot [#шаг-2-регистрация-при-boot]
+
+    Два рабочих варианта.
+
+    **А. Соседний модуль уведомлений** — каталог `Notifications*` рядом с модулем уведомлений, файл `boot.php`. `SatelliteLoader` подхватит его сам:
+
+    ```php
+    <?php
+
+    declare(strict_types=1);
+
+    use DevCraft\Modules\Notifications\Channels\ChannelRegistry;
+    use DevCraft\Modules\MyNotifyDiscord\Channels\DiscordChannel;
+
+    if(!defined('DATALIFEENGINE') || !defined('DEVCRAFT_BOOTSTRAPPED')) {
+    	return;
+    }
+
+    // Включайте канал только если настройка соседнего модуля активна
+    ChannelRegistry::instance()->register(new DiscordChannel());
+    ```
+
+    Имя каталога: `NotificationsDiscord` (префикс `Notifications` обязателен для автозагрузки `boot.php`).
+
+    **Б. Свой модуль DevCraft** — зарегистрируйте канал из своего запуска / `include` после `DEVCRAFT_BOOTSTRAPPED`, тем же `ChannelRegistry::instance()->register(...)`.
+  </Step>
+
+  <Step>
+    ### Шаг 3: права и настройки (рекомендуется) [#шаг-3-права-и-настройки-рекомендуется]
+
+    | Что                    | Куда                                                                                                                     |
+    | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+    | Включатель канала      | `settings.schema.php` вашего модуля                                                                                      |
+    | Право группы           | `permissions.defs.php` → подхватывается страницей «Права групп» Notifications через `SatelliteLoader::permissionFiles()` |
+    | Проверка в `deliver()` | `PermissionService::allows($ctx->recipientId, 'notifications_receive_discord')`                                          |
+
+    Файл `permissions.defs.php` в каталоге соседнего модуля:
+
+    ```php
+    <?php
+
+    declare(strict_types=1);
+
+    return [
+    	'notifications_receive_discord' => [
+    		'label'   => __('Получать уведомления в Discord'),
+    		'default' => false,
+    	],
+    ];
+    ```
+  </Step>
+
+  <Step>
+    ### Шаг 4: пункт в админке [#шаг-4-пункт-в-админке]
+
+    Запись в `dle_admin_sections` (`name` = `mod` из манифеста) или положитесь на `SatelliteLoader::ensureAdminSections()` для известных каталогов / пропишите секцию в `install.xml`.
+
+    После этого: **Админка → Уведомления — … → Настройки**.
+  </Step>
+</Steps>
+
+## Чеклист [#чеклист]
+
+1. Класс реализует `ChannelInterface`, `id()` уникален.
+2. `deliver()` не бросает наружу — ловит ошибки и возвращает `false`.
+3. Канал зарегистрирован до первой отправки (`boot.php` / запуск DevCraft).
+4. При `$channels === []` канал будет вызываться всегда (если prefs не запретят) — держите выключатель внутри `deliver()`.
+5. Для подписки пользователя на свой канал в кабинете нужна отдельная логика; базовый кабинет знает `site` / `email` / `pm`.
+
+## См. также [#см-также]
+
+* [Своё событие](./custom_event)
+* [Справочник ChannelInterface](../reference/ChannelInterface)
+* [Справочник Notify](../reference/Notify)
+
+
+# Своё событие (/dev/dle/notifications/200.2.0/guides/custom_event)
+
+
+
+Штатные события (новость, комментарий, упоминание) закрывают обычные случаи. Свой триггер — через `notifySend` / `Notify::send`.
+
+Предварительно: [шаблоны и теги](./scenario_templates), [справочник Notify](../reference/Notify).
+
+## Два способа [#два-способа]
+
+1. **Готовый текст** — без файла в `scenarios/`.
+2. **Свой сценарий** — `.tpl` в теме + имя в параметре `$scenario`.
+
+## Вариант 1: текст без сценария [#вариант-1-текст-без-сценария]
+
+```php
+if (function_exists('notifySend')) {
+	notifySend(
+		$recipientId,
+		'Вам назначена новая задача №' . $taskId,
+		'task',           // contentType — тип сущности в ленте
+		$taskId,          // contentTypeId
+		$senderId,        // кто инициировал
+		'info',           // level: info|success|warning|…
+		[],               // channels: [] = настройки модуля
+		null,             // scenario не нужен
+	);
+}
+```
+
+Тело берётся из `$message`. Каналы «сайт» / почта / ЛС — по настройкам модуля и настройкам получателя.
+
+## Вариант 2: свой `.tpl` сценарий [#вариант-2-свой-tpl-сценарий]
+
+<Steps>
+  <Step>
+    ### Шаг 1: файл сценария [#шаг-1-файл-сценария]
+
+    В скине (или `Default`):
+
+    `templates/ВАША_ТЕМА/devcraft/notifications/scenarios/order_paid.tpl`
+
+    ```text
+    Заказ #{order_id} оплачен
+    Сумма: {amount}
+    {full-link}
+    ```
+
+    Имя файла **без** `.tpl` = значение `$scenario`.
+  </Step>
+
+  <Step>
+    ### Шаг 2: вызов из кода [#шаг-2-вызов-из-кода]
+
+    Хак DLE, задание по расписанию или другой модуль DevCraft — после запуска DevCraft:
+
+    ```php
+    if (function_exists('notifySend')) {
+    	notifySend(
+    		$buyerId,
+    		null,                    // текст из сценария
+    		'order',
+    		$orderId,
+    		0,                       // системное событие без отправителя
+    		'success',
+    		[],
+    		'order_paid',            // → scenarios/order_paid.tpl
+    		[
+    			'{order_id}'  => (string) $orderId,
+    			'{amount}'    => $amountFormatted,
+    			'{full-link}' => $orderUrl,
+    			'{title}'     => 'Заказ #' . $orderId,
+    			'{sender}'    => 'Система',
+    		],
+    		[],                      // newsRow: опционально строка новости для тегов DLE
+    	);
+    }
+    ```
+
+    `$message = null` — тело только из `.tpl`. Если шаблон пуст или не найден, а `$message` тоже пуст — уведомление не уйдёт.
+  </Step>
+
+  <Step>
+    ### Шаг 3: каналы (по желанию) [#шаг-3-каналы-по-желанию]
+
+    Пустой `$channels` — берутся флаги модуля `send_email` / `send_pm` и site по умолчанию.
+
+    Принудительно только сайт:
+
+    ```php
+    notifySend($uid, 'Текст', 'custom', 0, 0, 'info', ['site' => true, 'email' => false, 'pm' => false]);
+    ```
+  </Step>
+</Steps>
+
+## Параметры, которые важны для кастома [#параметры-которые-важны-для-кастома]
+
+| Параметр                          | Зачем                                            |
+| --------------------------------- | ------------------------------------------------ |
+| `$recipientId`                    | кому                                             |
+| `$message`                        | готовый текст **или** `null`, если есть сценарий |
+| `$scenario`                       | имя файла в `scenarios/` без расширения          |
+| `$extraVars`                      | плейсхолдеры `{'{…}'}` для `.tpl`                |
+| `$contentType` / `$contentTypeId` | связь в ленте (фильтры, клик)                    |
+| `$newsRow`                        | если нужны штатные теги новости DLE в шаблоне    |
+| `$channels`                       | сузить сайт / почту / ЛС                         |
+
+Через класс: `DevCraft\Modules\Notifications\Services\Notify::send(…)`.
+
+## Куда вешать вызов [#куда-вешать-вызов]
+
+Типичные точки:
+
+* PHP-хак после сохранения сущности (`addnews`, свой обработчик, оплата);
+* сервис другого модуля DevCraft после бизнес-действия;
+* задание по расписанию — тот же `notifySend`, если DevCraft уже загружен.
+
+Проверка: `function_exists('notifySend')` (функции подключает плагин через `devcraft/src/modules/Notifications/Site/include.php`).
+
+## Настройки и права (базово) [#настройки-и-права-базово]
+
+Без доработок модуля:
+
+* Получатель должен иметь `notifications_allow_view_notifications`.
+* Email / ЛС — `notifications_receive_mail` / `notifications_receive_message` + каналы в настройках.
+* Свой `$scenario` **не** привязан к штатным доп. полям (`news_update`, `mention`, …).
+* `$recipientId === $senderId` — отправка молча пропускается.
+
+Чтобы событие можно было **выключать в админке**, ограничивать **по группам** и давать человеку **свой выключатель** — см. ниже.
+
+<span id="advanced" />
+
+## Продвинутое подключение [#продвинутое-подключение]
+
+Пример: событие `order_paid`. Цель — как у штатных событий: глобальный флаг, право группы, необязательное доп. поле профиля.
+
+Цепочка при отправке:
+
+```text
+выключатель в настройках модуля
+  → право группы (получатель / отправитель)
+    → доп. поле пользователя (если привязан)
+      → notifySend / Notify::send
+```
+
+Файлы модуля: `devcraft/src/modules/Notifications/`.
+
+### 1. Настройка модуля (глобальный выключатель) [#1-настройка-модуля-глобальный-выключатель]
+
+В `settings.schema.php` добавьте checkbox рядом с остальными `notify_*`:
+
+```php
+->checkbox('notify_order_paid', __('Уведомлять об оплате заказа'))
+	->description(__('Сценарий order_paid из хака / модуля заказов.'))
+	->default(true)
+```
+
+Конфиг читается так же, как у штатных событий:
+
+```php
+use DevCraft\Core\Support\DataManager;
+use DevCraft\Modules\Notifications\NotificationsIdentity;
+
+$cfg = DataManager::getConfig(NotificationsIdentity::code());
+
+if (empty($cfg['notify_order_paid'])) {
+	return; // событие выключено в админке
+}
+```
+
+После изменения схемы откройте **DLE Уведомления → Настройки** и сохраните форму (значение попадёт в `devcraft/config/…`).
+
+### 2. Право группы [#2-право-группы]
+
+Права хранятся JSON-картой (`dc_notification_permissions.settings`) — **миграция БД не нужна**. Достаточно описания в `permissions.defs.php`:
+
+```php
+[
+	'id'          => 'notifications_receive_order_paid',
+	'title'       => __('Получать уведомления об оплате заказа?'),
+	'description' => __('Сценарий order_paid.'),
+	'level'       => 'user', // user | mod | admin
+],
+```
+
+Страница **Права групп** подхватит флаг сама (`PermissionService::defs()`).
+
+В коде отправки:
+
+```php
+use DevCraft\Modules\Notifications\Services\PermissionService;
+
+$perms = new PermissionService();
+
+if (!$perms->allows($recipientId, 'notifications_receive_order_paid')) {
+	return;
+}
+
+// опционально: кто может инициировать
+if ($senderId > 0 && !$perms->allows($senderId, 'notifications_allow_view_notifications')) {
+	return;
+}
+```
+
+<Callout type="info">
+  Пока у группы **нет** сохранённой строки прав, базовые `user`-флаги считаются включёнными, `admin` / `mod` — выключенными. После первого сохранения матрицы в админке действуют явные галочки — включите новый флаг нужным группам.
+</Callout>
+
+См. также [Права групп](./permissions).
+
+### 3. Доп. поле пользователя (отписка от сценария) [#3-доп-поле-пользователя-отписка-от-сценария]
+
+Штатные события сопоставляются в [`UserPrefsService`](./user_prefs). Для своего события — три правки.
+
+**a)** select в `settings.schema.php` (секция «Настройки пользователя»):
+
+```php
+->select('xf_notify_order_paid', __('Доп. поле: оплата заказа'))
+	->description(__('Пусто = не ограничивать. 0/off/no у пользователя — отказ.'))
+	->options([])
+	->default('')
+```
+
+**b)** список опций в `Pages/SettingsPage.php` → `supplementFormData()`:
+
+```php
+return [
+	// …существующие ключи…
+	'xf_notify_order_paid' => $options,
+];
+```
+
+**c)** ветка в `UserPrefsService::wants()`:
+
+```php
+$scenarioXf = match ($scenario) {
+	'news_update', 'news_published' => 'xf_notify_news_update',
+	'moderation_approve', 'moderation_reject' => 'xf_notify_moderation',
+	'mention'     => 'xf_notify_mention',
+	'order_paid'  => 'xf_notify_order_paid',
+	default       => null,
+};
+```
+
+Имя сценария в `match` должно совпадать с `$scenario` в `notifySend`. В настройках модуля выберите доп. поле профиля; логика значений — как в [Настройки пользователя](./user_prefs).
+
+`notifySend` уже вызывает `UserPrefsService::wants($scenarioKey, …)` для каналов — отдельная проверка настроек в хаке не нужен, если сценарий заведён в `match`.
+
+### 4. Сборка вызова [#4-сборка-вызова]
+
+Файл сценария: `templates/…/devcraft/notifications/scenarios/order_paid.tpl`.
+
+```php
+use DevCraft\Core\Support\DataManager;
+use DevCraft\Modules\Notifications\NotificationsIdentity;
+use DevCraft\Modules\Notifications\Services\PermissionService;
+
+function notifyOrderPaid(int $buyerId, int $orderId, string $amount, string $url, int $senderId = 0): void
+{
+	if (!function_exists('notifySend') || $buyerId <= 0) {
+		return;
+	}
+
+	$cfg = DataManager::getConfig(NotificationsIdentity::code());
+	if (empty($cfg['notify_order_paid'])) {
+		return;
+	}
+
+	$perms = new PermissionService();
+	if (!$perms->allows($buyerId, 'notifications_receive_order_paid')) {
+		return;
+	}
+
+	notifySend(
+		$buyerId,
+		null,
+		'order',
+		$orderId,
+		$senderId,
+		'success',
+		[],
+		'order_paid',
+		[
+			'{order_id}'  => (string) $orderId,
+			'{amount}'    => $amount,
+			'{full-link}' => $url,
+			'{title}'     => 'Заказ #' . $orderId,
+			'{sender}'    => 'Система',
+		],
+	);
+}
+```
+
+Права ленты / почты / ЛС (`notifications_allow_view_notifications`, `notifications_receive_mail`, …) и каналы модуля по-прежнему проверяет `NotificationService::send`.
+
+### 5. Свой модуль DevCraft (без патча Notifications) [#5-свой-модуль-devcraft-без-патча-notifications]
+
+Если событие живёт в **вашем** модуле:
+
+| Что                    | Где                                                                                      |
+| ---------------------- | ---------------------------------------------------------------------------------------- |
+| Выключатель            | `settings.schema.php` **вашего** модуля + `DataManager::getConfig(YourIdentity::code())` |
+| Права                  | свои defs **или** проверка существующих флагов Notifications через `PermissionService`   |
+| Текст / tpl            | `notifySend` + сценарий в скине Notifications (шаблоны общие)                            |
+| Доп. поле пользователя | либо патч `UserPrefsService` как выше, либо своя проверка доп. поля до `notifySend`      |
+
+Патч Notifications нужен только если хотите единый вид: флаг в «Правах групп» уведомлений и выбор доп. поля на их странице настроек.
+
+### Чеклист продвинутого подключения [#чеклист-продвинутого-подключения]
+
+1. `scenarios/{имя}.tpl`
+2. Checkbox `notify_*` в `settings.schema.php` + проверка `empty($cfg[…])`
+3. Флаг в `permissions.defs.php` + `PermissionService::allows`
+4. (Опционально) `xf_notify_*` + `SettingsPage::supplementFormData` + ветка в `UserPrefsService`
+5. Включить флаг группам в админке; выбрать доп. поле; сохранить настройки
+6. Вызов `notifySend` с тем же `$scenario`
+
+## Минимальный чеклист [#минимальный-чеклист]
+
+1. Файл `scenarios/{имя}.tpl` (или готовый `$message`).
+2. `notifySend(...)` с `$scenario = '{имя}'` и нужными `extraVars`.
+3. Проверка на сайте: колокольчик / стена; при необходимости email и ЛС в настройках модуля.
+
+## См. также [#см-также]
+
+* [Свой канал доставки](./custom_channel) — куда слать (ChannelInterface)
+* [Сценарии событий](./scenarios) — штатная таблица событий
+* [Шаблоны и теги](./scenario_templates)
+* [Права групп](./permissions)
+* [Настройки пользователя](./user_prefs)
+* [Notify](../reference/Notify)
+
+
+# Лента на сайте: стена и колокольчик (/dev/dle/notifications/200.2.0/guides/inbox_api)
+
+
+
+Лента на сайте доступна только вошедшим:
+
+* **стена** — полный список;
+* **колокольчик** — счётчик и короткий список по нажатию.
+
+Отдельный адрес: [Страница уведомлений](./notifications_page).
+
+## Разметка [#разметка]
+
+В шапке — тег `{devcraft}` (стили и скрипты); в меню — колокольчик:
+
+```
+{devcraft}
+…
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=badge"}
+```
+
+Стена:
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=wall"}
+```
+
+## Действия [#действия]
+
+* нажатие на колокольчик — непрочитанные;
+* нажатие на запись — отметить прочитанным;
+* «Прочитать все»;
+* удаление, если в шаблоне есть кнопка (запрос на сервер).
+
+## Самообновление [#самообновление]
+
+Настройка &#x2A;*«Интервал автообновления колокольчика»**: период в секундах. `0` — только после действий человека. Период читается из `data-live-period` на колокольчике и стене.
+
+Фоновый опрос не показывает всплывающие ошибки. При нескольких открытых вкладках опрос ведёт только одна (остальные молчат, чтобы не дёргать сервер). Если вы вошли в аккаунт в **другом браузере**, DLE обновляет хеш сессии в профиле: старая вкладка подтягивает новый хеш сама при следующем опросе или действии (нужен Admin с актуальным `dc_public.js`).
+
+## Удаление [#удаление]
+
+По умолчанию запись стирается. &#x2A;*«Мягкое удаление записей ленты»** помечает строку (`deleted`), не удаляет её. Имеет смысл для журнала; обычному сайту достаточно полного удаления.
+
+## Лимит стены [#лимит-стены]
+
+**«Лимит записей на стене»** — сколько последних записей отдать за один запрос.
+
+Оформление: `badge.tpl`, `wall.tpl`, `item.tpl`, `item_actions.tpl` — [шаблоны и теги](./scenario_templates).
+
+Ответ списка содержит поле `html` — готовая разметка через `item.tpl` (браузер не собирает HTML сам).
+
+## См. также [#см-также]
+
+* [Страница уведомлений](./notifications_page)
+* [Колокольчик, стена и кнопка](./subscribe_wall)
+* [Права групп](./permissions)
+
+
+# Страница уведомлений (/dev/dle/notifications/200.2.0/guides/notifications_page)
+
+
+
+Отдельный адрес со стеной уведомлений — не колокольчик в шапке и не вставка в профиле.
+
+## Адреса [#адреса]
+
+| Вид      | Адрес                                                   |
+| -------- | ------------------------------------------------------- |
+| Обычный  | `/index.php?do=notifications`                           |
+| Короткий | `/notifications/` (если в DLE включены короткие адреса) |
+
+<Callout type="info">
+  Правило короткого адреса `/notifications/` должно стоять **перед** правилом категории (`/{category}`). Иначе разбор адресов сайта ломается. Плагин вставляет правило в штатный список DLE перед `category.page`. Если в уже сохранённом файле правил `/notifications/` оказался **после** категории, модуль сам переставляет его при загрузке. Если короткие адреса «поехали» после установки: включите отладку Admin по гайду [Отладка](/dev/dle/devcraft_admin/200.4.1/guides/debugging), откройте проблемную страницу и пришлите журнал модуля Notifications (поля `notifications_index` и `category_index`: индекс уведомлений должен быть **меньше** индекса категории).
+</Callout>
+
+Маршрут ставит плагин. Ссылка в коде: `notifyPageUrl()`; в шаблонах — тег `{notifications-url}`.
+
+При загрузке `Site/include.php` модуль добавляет ключ `notifications` в справочник разделов публичных ресурсов (`DleSiteSectionRegistry`). В админке Admin его можно выбрать в «Разделы показа» / «Разделы-исключения». На самой странице оболочка берёт текущий ключ из `$do`.
+
+## Кто может открыть [#кто-может-открыть]
+
+* нужна авторизация;
+* право «Разрешить просматривать стену уведомлений» **или** «Разрешить использование уведомлений»;
+* иначе страница недоступна, показывается ошибка.
+
+Гостю страница закрыта.
+
+## Как устроено [#как-устроено]
+
+1. `do=notifications` → `devcraft/src/modules/Notifications/Controller/show_notifications_page.php`
+2. Шаблон темы `templates/{тема}/devcraft/notifications/page.tpl`
+3. Внутри — вставка стены: `show_notifications.php?focus=wall`
+
+Типичный кабинет с тремя блоками — в [шаблоне page.tpl](../templates/page). Оформление записей — `wall.tpl`, `item.tpl`, `item_actions.tpl` ([стена](../templates/wall), [строка ленты](../templates/item)).
+
+## Отличие от вставки стены [#отличие-от-вставки-стены]
+
+|                    | Страница `do=`                       | `focus=wall` в профиле     |
+| ------------------ | ------------------------------------ | -------------------------- |
+| Адрес              | свой (`/notifications/`)             | страница профиля или любая |
+| Заголовок страницы | задаёт `show_notifications_page.php` | у родителя                 |
+| Разметка           | обёртка `page.tpl`                   | только блок стены          |
+
+Список и права одни и те же.
+
+## См. также [#см-также]
+
+* [Шаблон page.tpl](../templates/page)
+* [Колокольчик, стена и кнопка](./subscribe_wall)
+* [Лента на сайте](./inbox_api)
+* [Права групп](./permissions)
+
+
+# Права групп (/dev/dle/notifications/200.2.0/guides/permissions)
+
+
+
+Админка → **DLE Уведомления → Права групп**. Набор флагов свой у каждой группы.
+
+| Флаг                                                                  | Что даёт                                              |
+| --------------------------------------------------------------------- | ----------------------------------------------------- |
+| Группа администраторов?                                               | полный доступ                                         |
+| Разрешить использование уведомлений                                   | лента на сайте / получение сообщений модуля           |
+| Просматривать стену уведомлений                                       | `focus=wall` и страница `/notifications/`             |
+| Получать личные сообщения при уведомлении                             | канал личных сообщений                                |
+| Получать почту при уведомлении                                        | канал почты                                           |
+| Разрешить отписку от личных сообщений                                 | человек может выключить личные сообщения в настройках |
+| Разрешить отписку от почты                                            | то же для почты / профиля DLE                         |
+| Подписываться на новости / разделы / авторов / теги / доп. поля / все | соответствующие кнопки                                |
+| Упоминать пользователей в комментариях                                | `@ник` шлёт уведомление                               |
+| Менять настройки пользователя                                         | правка настроек чужих учётных записей                 |
+
+<Callout type="info">
+  Пока у группы нет своей записи прав: обычные пользовательские флаги считаются включёнными, админские и модераторские — выключенными.
+</Callout>
+
+Без «Разрешить отписку от почты / личных сообщений» человек не снимет канал в настройках: письма или личные сообщения продолжат уходить, если канал включён в настройках модуля.
+
+Новый флаг для своего события — в `permissions.defs.php`, без смены таблиц. Пошагово: [Своё событие](./custom_event#advanced).
+
+## См. также [#см-также]
+
+* [Своё событие](./custom_event)
+* [Настройки пользователя](./user_prefs)
+* [Типы подписок](./subscription_types)
+
+
+# Шаблоны и теги (/dev/dle/notifications/200.2.0/guides/scenario_templates)
+
+
+
+Полное описание файлов темы, тегов и классов скрипта — в разделе [Шаблоны](/dev/dle/notifications/200.2.0/templates).
+
+Там же: страница кабинета, стена, колокольчик, строка ленты, кнопки подписки, списки подписок и публикаций, обёртки писем и события `scenarios/`.
+
+
+# События (/dev/dle/notifications/200.2.0/guides/scenarios)
+
+
+
+Цепочка: событие → получатели (подписки + правила) → `scenarios/*.tpl` → при почте / личных сообщениях обёртка `wrappers/`.
+
+Подстановки: [шаблоны и теги](./scenario_templates).
+
+## Соответствие [#соответствие]
+
+| Событие                  | Файл                     | Получатели                      |
+| ------------------------ | ------------------------ | ------------------------------- |
+| Правка новости           | `news_update.tpl`        | подписчики `news`               |
+| Новая публикация         | `news_published.tpl`     | cat / user / tag / xfield / all |
+| Одобрение модерации      | `moderation_approve.tpl` | автор                           |
+| Снятие с публикации      | `moderation_reject.tpl`  | автор                           |
+| Ответ на комментарий     | `comment_reply.tpl`      | автор родительского комментария |
+| Комментарий к новости    | `comment_on_news.tpl`    | автор новости                   |
+| `@ник`                   | `mention.tpl`            | упомянутый пользователь         |
+| Рейтинг новости          | `news_rating.tpl`        | автор новости                   |
+| Рейтинг комментария      | `comment_rating.tpl`     | автор комментария               |
+| Удаление комментария     | `comment_deleted.tpl`    | автор комментария               |
+| Подписка на пользователя | `user_subscribed.tpl`    | цель подписки (автор профиля)   |
+
+### Ответ на комментарий (`comment_reply`) [#ответ-на-комментарий-comment_reply]
+
+Человек **A** пишет комментарий. Человек **B** отвечает (родитель = комментарий A). **A** получает уведомление со ссылкой на ответ. Себе (если A отвечает сам себе) — не уходит. Отдельный тип события не нужен: это тот же `comment_reply`.
+
+### Рейтинг [#рейтинг]
+
+* Новость: любой голос за чужую новость → автору; за свою — нет.
+* Комментарий: любой голос за чужой комментарий → автору комментария.
+* В шаблоне доступен `{rating}` (значение голоса со знаком, например `+1` / `-1`).
+
+### Удаление комментария [#удаление-комментария]
+
+Уведомление автору удалённого комментария, если удаляет другой человек. При древовидных комментариях — **одно** уведомление на явно удалённый корневой id (дети удаляются без отдельного сообщения). Массовое удаление через `deletecommentsbynewsid` / `deletecommentsbyuserid` — без шторма писем.
+
+### Подписка на пользователя [#подписка-на-пользователя]
+
+Только при **новой** подписке `stype=user` (не cat/tag/news/xfield/all, не отписка, не повторное нажатие). Ссылка в ленте — профиль подписчика. Кнопка в теме: [Куда вставить](./template_includes).
+
+## Глобальные выключатели [#глобальные-выключатели]
+
+В настройках модуля можно отключить группы:
+
+* публикация;
+* обновление новости;
+* ответы на комментарии;
+* упоминания;
+* модерация (одобрение / отклонение);
+* рейтинг новости / комментария;
+* удаление комментария;
+* подписка на пользователя.
+
+Выключенный флаг — событие не уходит, даже если `.tpl` на месте.
+
+## Своё событие [#своё-событие]
+
+Хак или другой модуль: готовый текст или свой `.tpl` — пошагово в [Своё событие](./custom_event).
+
+## См. также [#см-также]
+
+* [Своё событие](./custom_event)
+* [Шаблоны и теги](./scenario_templates)
+* [Настройки пользователя](./user_prefs)
+* [Справочник Notify](../reference/Notify)
+
+
+# Колокольчик, стена и кнопка подписки (/dev/dle/notifications/200.2.0/guides/subscribe_wall)
+
+
+
+На сайте точка входа — файл `devcraft/src/modules/Notifications/Controller/show_notifications.php` через обычный `{include}` DLE. Разметка берётся из:
+
+`templates/ВАША_ТЕМА/devcraft/notifications/`
+
+Нет файла в активной теме — используется `Default`.
+
+Полный список мест вставки: [Куда вставить в тему](./template_includes).
+
+## Параметр `focus` [#параметр-focus]
+
+| `focus`     | Куда в теме          | Что отдаёт      |
+| ----------- | -------------------- | --------------- |
+| `badge`     | меню / шапка         | колокольчик     |
+| `wall`      | профиль / содержимое | стена списка    |
+| `subscribe` | новость / раздел / … | кнопка подписки |
+
+Пример шапки:
+
+```
+{devcraft}
+…
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=badge"}
+```
+
+Стили и скрипты модуля подставляет `{devcraft}` (списки публичных ресурсов Admin). Колокольчик, стена и кнопка подписки — только вошедшим.
+
+## Подписка на новость [#подписка-на-новость]
+
+В `fullstory.tpl`:
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=news&id={news-id}"}
+```
+
+Рисуется кнопка «Подписаться» / «Отписаться» из `subscribe/news.tpl`.
+
+## Другие типы [#другие-типы]
+
+| Объект    | Строка в `{include}`                                                                 |
+| --------- | ------------------------------------------------------------------------------------ |
+| Раздел    | `...?focus=subscribe&stype=cat&id={category-id}` (в `main.tpl`: `[available=cat]`)   |
+| Тег       | `...?focus=subscribe&stype=tag&id={cloudstag}` (в `main.tpl`: `[available=tags]`)    |
+| Доп. поле | `...?focus=subscribe&stype=xfield` на странице поиска по полю или `id=поле/значение` |
+| Автор     | `...?focus=subscribe&stype=user&id={user-id}`                                        |
+| Все новые | `...?focus=subscribe&stype=all`                                                      |
+
+Готовые фрагменты: [Куда вставить в тему](./template_includes). Смысл типов: [типы подписок](./subscription_types).
+
+## Стена [#стена]
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=wall"}
+```
+
+Отдельный адрес списка: [Страница уведомлений](./notifications_page).
+
+## Колокольчик [#колокольчик]
+
+В меню / шапке:
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=badge"}
+```
+
+Скрипты и стили — через `{devcraft}` в `main.tpl&#x60;. Интервал самообновления — &#x2A;*«Интервал автообновления колокольчика»** в настройках модуля (секунды; `0` — не обновлять самому). Период читается из `data-live-period` на колокольчике и стене.
+
+## Кто видит блоки [#кто-видит-блоки]
+
+| Блок        | Право группы                           |
+| ----------- | -------------------------------------- |
+| Подписка    | «Разрешить подписываться…» на этот тип |
+| Стена       | «Разрешить просматривать стену»        |
+| Колокольчик | «Разрешить использование уведомлений»  |
+
+Гостям колокольчик, стена и кнопка не показываются. Стили и скрипты на странице есть у всех через `{devcraft}`.
+
+## Файлы оформления [#файлы-оформления]
+
+```text
+templates/ВАША_ТЕМА/devcraft/notifications/
+  subscribe/          кнопки по типам
+  wall.tpl            стена
+  item.tpl            одна запись
+  item_actions.tpl    кнопка «Открыть»
+  badge.tpl           колокольчик
+```
+
+Стили и скрипты сайта: `devcraft/src/modules/Notifications/Public/` (`notifications.css`, `notifications.js`, `timeago.full.min.js`).
+
+Подстановки в шаблонах: [шаблоны и теги](./scenario_templates).
+
+## См. также [#см-также]
+
+* [Куда вставить в тему](./template_includes)
+* [Страница уведомлений](./notifications_page)
+* [Типы подписок](./subscription_types)
+* [Права групп](./permissions)
+* [Установка](../install)
+
+
+# Типы подписок (/dev/dle/notifications/200.2.0/guides/subscription_types)
+
+
+
+Подписка — пара `subscription_type` + `subscription_id` (всегда строка). Совпадение с событием ищет модуль; дальше работают права, личные настройки и каналы.
+
+## Когда срабатывает [#когда-срабатывает]
+
+| Тип        | Объект                                | Событие                              |
+| ---------- | ------------------------------------- | ------------------------------------ |
+| `news`     | номер новости                         | **правка** этой новости              |
+| `comments` | номер новости                         | **новый комментарий** к этой новости |
+| `cat`      | номер раздела                         | **новая** публикация в разделе       |
+| `user`     | номер автора                          | **новая** публикация этого автора    |
+| `tag`      | текст тега                            | **новая** новость с тегом            |
+| `xfield`   | `поле/значение`, например `year/2019` | **новая** новость с таким значением  |
+| `all`      | не используется                       | **любая новая** новость              |
+
+<Callout type="info">
+  `news` — только правка. `comments` — новые комментарии к новости (не путать с подпиской на правки). `cat` / `user` / `tag` / `xfield` / `all` — только новая публикация. Так задумано: иначе подписчик раздела получал бы и каждую правку чужих статей.
+</Callout>
+
+## Включение в админке [#включение-в-админке]
+
+Настройки модуля:
+
+* флаги типов подписок;
+* «Уведомлять при публикации» — новая запись;
+* «Уведомлять об обновлении новости» — правка;
+* «Режим уведомления при правке»: **любое редактирование** или **только при включённом доп. поле**;
+* «Доп. поле новости: уведомить подписчиков» (`xf_edit_notify`) — поле новости (удобно «Да/Нет»). Нужно для ручного режима; отдельной галочки в форме редактирования нет.
+
+В **Правах групп** тип можно запретить отдельно.
+
+## Примеры вставки [#примеры-вставки]
+
+Раздел (`main.tpl`, только страница раздела):
+
+```
+[available=cat]
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=cat&id={category-id}"}
+[/available]
+```
+
+Тег (`main.tpl`, только страница тега; `{cloudstag}` — тег из адреса):
+
+```
+[available=tags]
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=tag&id={cloudstag}"}
+[/available]
+```
+
+Доп. поле (`main.tpl`; `id` собирается модулем из адреса, формат `поле/значение`):
+
+```
+[available=xfsearch]
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=xfield"}
+[/available]
+```
+
+Все новости:
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=all"}
+```
+
+Число подписчиков на кнопке — `{count}` в `subscribe/*.tpl`. Полный разбор: [Куда вставить в тему](./template_includes).
+
+## Каналы одной подписки [#каналы-одной-подписки]
+
+У записи в ядре: сайт, почта, личные сообщения. Канал **Push** добавляет сателлит [DLE Уведомления: Push](/dev/dle/notifications_push/1.1.0/getting_started) патчами `install.xml` (колонка `notify_push`, чекбоксы в теме). Это не отдельная «push-подписка на тему», а флажок доставки у той же тематической подписки.
+
+## См. также [#см-также]
+
+* [Колокольчик, стена и кнопка](./subscribe_wall)
+* [События](./scenarios)
+* [Шаблоны и теги](./scenario_templates)
+
+
+# Куда вставить в тему (/dev/dle/notifications/200.2.0/guides/template_includes)
+
+
+
+Точка входа: `devcraft/src/modules/Notifications/Controller/show_notifications.php` через `{include}` DLE. Разметка — из `templates/ВАША_ТЕМА/devcraft/notifications/` (нет файла — берётся `Default`).
+
+В админке модуля есть страница **Конструктор подключения** (`?mod=notifications&action=include_builder`):
+
+1. сборка тега `{include}` для темы;
+2. готовые примеры;
+3. конструктор вызовов PHP API (`notifySend`, `notifyOnNewsSaved`, текст из шаблона темы) с копированием в буфер.
+
+Стили и скрипты сайта лежат в `devcraft/src/modules/Notifications/Public/` (`notifications.css`, `notifications.js`, `timeago…`) и подключаются через `siteAssets` манифеста. В `main.tpl` нужен тег `{devcraft}` или пара `{devcraft-header}` / `{devcraft-scripts}`. Не дублируйте файлы в `templates/*/devcraft/notifications/assets/`. Подробности: [публичные ресурсы оболочки](/dev/dle/devcraft_admin/200.4.1/guides/public_assets). Include с `focus=css` и `focus=js` ничего не выводят: их можно убрать.
+
+## Раздел сайта для оболочки [#раздел-сайта-для-оболочки]
+
+Страница кабинета идёт как `do=notifications`. Чтобы в админке Admin в «Разделы показа» / «Разделы-исключения» был пункт «Уведомления», а оболочка узнавала эту страницу, модуль при загрузке `Site/include.php` (после запуска DevCraft, и на сайте, и в админке) вызывает:
+
+```php
+use DevCraft\Modules\Admin\Services\DleSiteSectionRegistry;
+
+DleSiteSectionRegistry::instance()->register('notifications', __('Уведомления'));
+```
+
+Ключ должен совпадать с `$do`. Пустой `do` ядро считает `main`. Свой `$do` другого сателлита регистрируйте так же из глобального `include` после `DEVCRAFT_BOOTSTRAPPED`. Канон и список штатных ключей — в [публичных ресурсах оболочки](/dev/dle/devcraft_admin/200.4.1/guides/public_assets). Как устроена страница: [Страница уведомлений](./notifications_page).
+
+Краткий обзор блоков: [Колокольчик, стена и кнопка](./subscribe_wall). Смысл типов: [типы подписок](./subscription_types).
+
+## Базовые `focus` [#базовые-focus]
+
+| `focus`               | Куда в теме          | Что                                           |
+| --------------------- | -------------------- | --------------------------------------------- |
+| `badge`               | меню / шапка         | колокольчик непрочитанных                     |
+| `wall`                | профиль / содержимое | стена списка                                  |
+| `subscribe`           | новость / раздел / … | одна кнопка подписки                          |
+| `subscription_button` | полная новость       | колокольчик + окно выбора нескольких подписок |
+
+```
+{devcraft}
+…
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=badge"}
+```
+
+`badge` / `wall` / `subscribe` / `subscription_button` — только вошедшим (и при правах группы).
+
+## Окно выбора подписок [#окно-выбора-подписок]
+
+Одна кнопка на полной новости открывает окно (штатный диалог темы): человек отмечает новость, разделы, теги, доп. поля, комментарии и выбирает каналы (сайт / почта / ЛС / Push).
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscription_button&id={news-id}"}
+```
+
+Опциональные фильтры (пустой = без фильтра; `-имя` = исключить):
+
+| Параметр   | Пример                    | Смысл                |
+| ---------- | ------------------------- | -------------------- |
+| `only`     | `only=news,comments,tags` | какие ветки показать |
+| `category` | `category=1,2,-3`         | id разделов          |
+| `xfields`  | `xfields=year,-genre`     | имена доп. полей     |
+| `tags`     | `tags=dle,php`            | теги новости         |
+
+Разметка — `subscription_button.tpl` в теме. HTML окна только в `.tpl`, логика — в `notifications.js`.
+
+Не ставьте рядом и `subscribe`, и `subscription_button` на одну и ту же новость — получите две кнопки.
+
+## Файл темы → вставка [#файл-темы--вставка]
+
+| Файл темы                           | Типичная вставка                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------ |
+| `main.tpl` (шапка)                  | `{devcraft}`, `focus=badge`                                                                |
+| `main.tpl` (`[available=cat]`)      | `stype=cat&id={category-id}`                                                               |
+| `main.tpl` (`[available=tags]`)     | `stype=tag&id={cloudstag}`                                                                 |
+| `main.tpl` (`[available=xfsearch]`) | `stype=xfield` (`id` из адреса)                                                            |
+| `fullstory.tpl`                     | `focus=subscribe&stype=news&id={news-id}` **или** `focus=subscription_button&id={news-id}` |
+| `userinfo.tpl`                      | `stype=user` и при желании `focus=wall`                                                    |
+| страница «все новости»              | `stype=all`                                                                                |
+
+В теме Default нет отдельного `category.tpl` — кнопки раздела, тега и поиска по полю удобнее ставить в `main.tpl` внутри `[available=…]`.
+
+## Тема Air [#тема-air]
+
+Менеджер плагинов DLE **не применяет** правки файлов в `templates/`. Колокольчик и символ `#i-bell` нужно добавить вручную (или скопировать готовые файлы темы из архива модуля, если правите тему целиком).
+
+В комплекте есть разметка `templates/Air/devcraft/notifications/` (в т.ч. `badge.tpl` со ссылкой на `#i-bell`). Стили шапки (`.header-actions`) — в `Public/notifications.css` через `siteAssets` → `{devcraft-header}` / `{devcraft}`.
+
+<Callout type="info">
+  Общий гайд по блокам: [Колокольчик, стена и кнопка](./subscribe_wall). Ниже — только шаги для Air.
+</Callout>
+
+<Steps>
+  <Step>
+    ### Шаг 1: теги оболочки в `main.tpl` [#шаг-1-теги-оболочки-в-maintpl]
+
+    В `<head>` — `{devcraft-header}` (или один `{devcraft}`). Перед `</body>` — `{devcraft-scripts}`, если используете split.
+  </Step>
+
+  <Step>
+    ### Шаг 2: колокольчик в шапке [#шаг-2-колокольчик-в-шапке]
+
+    В `templates/Air/main.tpl` в блоке `header-actions` **перед** `{login}` вставьте:
+
+    ```
+    {include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=badge"}
+    ```
+
+    Ориентир: сразу после кнопки переключения светлой/тёмной темы (`#themeToggle`), до `{login}`.
+  </Step>
+
+  <Step>
+    ### Шаг 3: символ `#i-bell` в спрайте [#шаг-3-символ-i-bell-в-спрайте]
+
+    В `templates/Air/modules/icons.tpl` рядом с другими `<symbol>` добавьте (если ещё нет `id="i-bell"`):
+
+    ```
+    	<symbol id="i-bell" viewBox="0 0 24 24"><path d="M18.75 9v.7c0 .85.24 1.67.69 2.38l1.11 1.72c1.01 1.57.24 3.71-1.52 4.21a21.1 21.1 0 0 1-14.06 0c-1.76-.5-2.53-2.64-1.52-4.21l1.11-1.72c.45-.71.69-1.53.69-2.38V9a6.75 6.75 0 1 1 13.5 0Z"/><path d="M7.24 18.55A5.25 5.25 0 0 0 12 22a5.25 5.25 0 0 0 4.76-3.45 22.4 22.4 0 0 1-9.52 0Z"/></symbol>
+    ```
+
+    Без этого в кнопке колокольчика иконка будет пустой.
+  </Step>
+
+  <Step>
+    ### Шаг 4: каталог разметки [#шаг-4-каталог-разметки]
+
+    Скопируйте `templates/Air/devcraft/notifications/` из архива модуля в скин сайта (если ещё нет). Для другой темы достаточно `templates/Default/devcraft/notifications/` → ваш скин.
+  </Step>
+</Steps>
+
+## Готовые фрагменты подписки [#готовые-фрагменты-подписки]
+
+<Callout type="warning">
+  Параметр типа — &#x2A;*`stype`**, не `type`. В ядре DLE `load_file()` уже занимает `$type` расширением `.php`, поэтому `type=xfield` из вставки до модуля не доходит.
+</Callout>
+
+### Новость [#новость]
+
+В `fullstory.tpl`:
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=news&id={news-id}"}
+```
+
+### Раздел [#раздел]
+
+В `main.tpl`. Id — тег DLE `{category-id}`:
+
+```
+[available=cat]
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=cat&id={category-id}"}
+[/available]
+```
+
+Пример: на `https://сайт/news/` подписчик получит сообщения о **новых** материалах в разделе `news`.
+
+### Тег [#тег]
+
+На странице тега DLE выставляет `{cloudstag}` (текущий тег из адреса). В `main.tpl`:
+
+```
+[available=tags]
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=tag&id={cloudstag}"}
+[/available]
+```
+
+Пример: `https://сайт/tags/информация/` → подписка на тег `информация`. В сравнении `id` приводится к нижнему регистру.
+
+Можно и фиксированное значение: `stype=tag&id=информация` — кнопка не зависит от `{cloudstag}`, но подходит только для одной страницы.
+
+### Доп. поле [#доп-поле]
+
+Формат `id`: `имя_поля/значение`, например `year/2019`.
+
+На странице поиска по доп. полю (`/xfsearch/{поле}/{значение}/`) у DLE нет готового тега вроде `{cloudstag}`. Модуль сам собирает `id` из адреса, если в вставке **не** передан `id`:
+
+```
+[available=xfsearch]
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=xfield"}
+[/available]
+```
+
+Пример: `https://сайт/xfsearch/year/2019/` → подписка на `year/2019`.
+
+Явное значение (любая страница):
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=xfield&id=year/2019"}
+```
+
+Срабатывает при **новой** публикации с таким значением поля. Нужны флаг `subscriptions_xfield` и право `notifications_allow_subscribe_xfield`. Подробнее: [типы подписок](./subscription_types).
+
+### Автор (профиль) [#автор-профиль]
+
+В `userinfo.tpl` — `id` это **номер пользователя** автора профиля (не логин):
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=user&id={user-id}"}
+```
+
+Подписчик получает сообщения о **новых** публикациях этого автора. Сам автор профиля при **новой** подписке на него получает событие `user_subscribed` (если включено в настройках модуля), со ссылкой на профиль подписчика. Повторная подписка, отписка и подписка на себя — без лишнего сообщения.
+
+### Все новые материалы [#все-новые-материалы]
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=all"}
+```
+
+## Права и флаги [#права-и-флаги]
+
+Чтобы кнопка реально работала:
+
+1. В настройках модуля включён флаг типа: `subscriptions_news`, `subscriptions_cat`, `subscriptions_user`, `subscriptions_tag`, `subscriptions_xfield`, `subscriptions_all`.
+2. В **Правах групп** разрешена подписка на этот тип.
+3. Для событий публикации / правки — глобальные «Уведомлять при публикации» / «Уведомлять об обновлении новости».
+
+Без права или при выключенном типе запрос вернёт ошибку, а на странице кнопка может не показаться.
+
+## Стена в профиле [#стена-в-профиле]
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=wall"}
+```
+
+Отдельный адрес: [Страница уведомлений](./notifications_page).
+
+## См. также [#см-также]
+
+* [Колокольчик, стена и кнопка](./subscribe_wall)
+* [Типы подписок](./subscription_types)
+* [События](./scenarios)
+* [Права групп](./permissions)
+* [Справочник: show\_notifications.php](../reference/web)
+
+
+# Настройки пользователя (/dev/dle/notifications/200.2.0/guides/user_prefs)
+
+
+
+Даже при включённом модуле канал может отсечься настройками человека. Проверки идут сверху вниз; первый отказ останавливает этот канал.
+
+1. **Права группы** — действие разрешено.
+2. **Общий выключатель** (необязательное доп. поле) — уведомления не отключены целиком.
+3. **Доп. поле по классу событий** — не отключён класс (новости, упоминания, …).
+4. **Почта и профиль DLE:**
+   * «Подписка на ответы в комментариях» → событие ответа;
+   * «Подписка на комментарии к новостям» → комментарий к своей статье.
+5. **Глобальные каналы модуля** — почта / личные сообщения включены в настройках.
+
+Лента на сайте и личные сообщения **не** зависят от `news_subscribe` / `comments_reply_subscribe`: эти флаги DLE относятся только к почте.
+
+## Доп. поля в настройках модуля [#доп-поля-в-настройках-модуля]
+
+| Настройка                          | Роль                   |
+| ---------------------------------- | ---------------------- |
+| Доп. поле: включить уведомления    | общий выключатель      |
+| Доп. поле: почта при уведомлении   | отдельно почта         |
+| Доп. поле: обновление / публикация | события новостей       |
+| Доп. поле: модерация               | одобрение / отклонение |
+| Доп. поле: упоминания              | `@ник`                 |
+
+Поле не выбрано в настройках — не участвует. Пустое значение у человека — «разрешено». `0` / `off` / `no` — отказ.
+
+Своё событие и своё доп. поле: [Своё событие — подробно](./custom_event#advanced).
+
+## См. также [#см-также]
+
+* [Права групп](./permissions)
+* [Своё событие](./custom_event)
+* [События](./scenarios)
+* [Шаблоны и теги](./scenario_templates)
+
+
+# Установка (/dev/dle/notifications/200.2.0/install)
+
+
+
+Как поставить ZIP через менеджер плагинов DLE — в общей инструкции: &#x2A;*[Установка плагинов](/instructions/install_instructions)**. Ниже — только шаги этого модуля.
+
+<Callout type="warn" title="Сначала DevCraft Admin">
+  Установите и включите [DevCraft Admin](/dev/dle/devcraft_admin/200.4.1/install&#x29; (**≥ 200.4.1**), затем Уведомления. Без оболочки модуль не поднимется как задумано.
+</Callout>
+
+Обзор: [Начало работы](getting_started).
+
+## Требования [#требования]
+
+| Что             | Минимум       |
+| --------------- | ------------- |
+| DataLife Engine | **20.0+**     |
+| PHP             | **8.3+**      |
+| DevCraft Admin  | **≥ 200.4.1** |
+
+## 1. Архив плагина [#1-архив-плагина]
+
+1. Скачайте ZIP из [репозитория](https://github.com/DevCraftClub/DLE-Notifications) или [соберите архив](/instructions/install_instructions#три-способа-поставить-плагин): `./create_install_archive.sh`.
+2. [Загрузите в Панель управления DLE → Плагины → Установить плагин](/instructions/install_instructions#три-способа-поставить-плагин).
+3. Убедитесь, что на сайте есть:
+   * `engine/inc/notifications.php`
+   * `devcraft/src/modules/Notifications/` (включая `Controller/show_notifications.php`)
+   * `templates/Default/devcraft/notifications/` (при другой теме — скопируйте каталог в свой скин)
+
+<Callout type="warn" title="Шаблоны темы — вручную">
+  Менеджер плагинов DLE **не меняет** файлы в `templates/`. Колокольчик в шапке Air, символ `#i-bell` и другие вставки делаются руками по [Куда вставить в тему](guides/template_includes).
+</Callout>
+
+## 2. Composer [#2-composer]
+
+[В каталоге `devcraft/`](/instructions/composer#установка-зависимостей):
+
+```bash
+composer dump-autoload
+```
+
+То же действие есть в панели DevCraft Admin: на главной, в блоке Composer, кнопка **dump-autoload**.
+
+## 3. Первый запуск [#3-первый-запуск]
+
+1. Откройте `?mod=notifications` в админке DevCraft.
+2. Таблицы создаются при первом обращении к модулю.
+3. В настройках включите типы подписок и каналы (сайт / почта / личные сообщения).
+4. Подключите блоки в [теме](guides/template_includes) (менеджер плагинов **не** правит `templates/` — колокольчик и `#i-bell` для Air вручную). В `main.tpl` нужны теги `{devcraft}` или `{devcraft-header}` / `{devcraft-scripts}`.
+
+После установки функции `notify*` доступны на обычных страницах сайта. В своём хаке достаточно `function_exists('notifySend')` — отдельный `include` не нужен.
+
+Плагин регистрирует страницу списка: `/index.php?do=notifications` и, если включены человекопонятные адреса DLE, `/notifications/`. См. [Страница уведомлений](guides/notifications_page).
+
+На сайте колокольчик и кнопки сами не появляются: нужны вставки в шаблоны темы ([Куда вставить в тему](guides/template_includes)). Тексты сообщений — `.tpl` в той же папке, см. [Шаблоны и теги](guides/scenario_templates).
+
+Свой канал доставки: [Свой канал](guides/custom_channel).
+
+## Если блока нет [#если-блока-нет]
+
+* человек не вошёл на сайт;
+* у группы нет права на подписку / стену / ленту ([права групп](guides/permissions));
+* тип подписки выключен в настройках модуля.
+
+## См. также [#см-также]
+
+* [Начало работы](getting_started)
+* [Страница уведомлений](guides/notifications_page)
+* [Права групп](guides/permissions)
+* [История изменений](changelog)
+
+
+# ChannelInterface (/dev/dle/notifications/200.2.0/reference/ChannelInterface)
+
+
+
+**Описание:** интерфейс канала доставки. Реализации в ядре: `SiteChannel`, `EmailChannel`, `PmChannel`. Свой канал — отдельный класс с тем же контрактом.
+
+**Namespace:** `DevCraft\Modules\Notifications\Channels`
+
+**С версии:** 200.2.0
+
+**См. также:**
+
+* [Свой канал доставки](../guides/custom_channel)
+* [Notify](./Notify)
+
+## Методы [#методы]
+
+### `id(): string` [#id-string]
+
+**Описание:** уникальный ключ канала (`site`, `email`, `pm` или свой ключ).
+
+**Возвращает:** `string`
+
+### `deliver(ChannelDeliveryContext $ctx): bool` [#deliverchanneldeliverycontext-ctx-bool]
+
+**Описание:** отправляет одно уведомление получателю. При ошибке возвращает `false` (исключения лучше ловить внутри).
+
+**Параметры:**
+
+| Параметр | Тип                      | Описание                                            |
+| -------- | ------------------------ | --------------------------------------------------- |
+| `$ctx`   | `ChannelDeliveryContext` | Получатель, тело, vars, cfg, служебные поля события |
+
+**Возвращает:** `bool` — успех доставки
+
+## ChannelRegistry [#channelregistry]
+
+Синглтон `ChannelRegistry::instance()`:
+
+| Метод                                 | Описание                                                          |
+| ------------------------------------- | ----------------------------------------------------------------- |
+| `register(ChannelInterface $channel)` | Добавить / заменить канал по `id()`                               |
+| `get(string $id)`                     | Канал или `null`                                                  |
+| `all()`                               | Все каналы (сначала базовые site/email/pm, затем соседние модули) |
+| `ids()`                               | Список id                                                         |
+
+При первом обращении к реестру вызывается `SatelliteLoader::boot()`.
+
+## Пример [#пример]
+
+```php
+use DevCraft\Modules\Notifications\Channels\ChannelRegistry;
+
+ChannelRegistry::instance()->register(new \DevCraft\Modules\MyMod\Channels\DiscordChannel());
+
+$channel = ChannelRegistry::instance()->get('discord');
+```
+
+Практическое руководство: [Свой канал доставки](../guides/custom_channel).
+
+
+# Notify (/dev/dle/notifications/200.2.0/reference/Notify)
+
+
+
+Публичный фасад для хаков. Админка и шаблоны — [руководства](../guides/subscribe_wall).
+
+**С версии:** 200.2.0
+
+Плагин при установке подключает `devcraft/src/modules/Notifications/Site/include.php` после запуска DevCraft. На обычной странице DLE функции уже доступны — достаточно `function_exists`. В запросах без `init.php` хуки вызывают `notifyEnsureReady()`.
+
+## Функции [#функции]
+
+```php
+notifySend(int $recipientId, ?string $message = null, …): void
+notifyOnNewsSaved(int $newsId, string $event): void
+notifyOnCommentAdded(int $commentId, int $newsId, int $parentId, string $text, int $authorId): void
+notifyOnNewsRated(int $newsId, int $voterId, int $goRate): void
+notifyOnCommentRated(int $commentId, int $voterId, int $goRate): void
+notifyOnCommentDeleted(int $commentId, int $newsId, int $authorId, int $actorId): void
+notifyOnUserSubscribed(int $targetUserId, int $subscriberId): void
+notifyFormatMentionsHtml(string $text): string
+```
+
+| Функция                    | Назначение                                 |
+| -------------------------- | ------------------------------------------ |
+| `notifySend`               | произвольное уведомление получателю        |
+| `notifyOnNewsSaved`        | `add` / `edit` / `approve` / `reject`      |
+| `notifyOnCommentAdded`     | ответ, mention, автор новости              |
+| `notifyOnNewsRated`        | рейтинг новости → автор                    |
+| `notifyOnCommentRated`     | рейтинг комментария → автор комментария    |
+| `notifyOnCommentDeleted`   | удаление комментария → автор (корневой id) |
+| `notifyOnUserSubscribed`   | новая подписка `type=user` → цель          |
+| `notifyFormatMentionsHtml` | `@ник` → ссылка в HTML комментария         |
+
+## Класс `Notify` [#класс-notify]
+
+Namespace: `DevCraft\Modules\Notifications\Services`
+
+Те же операции: `Notify::send`, `::onNewsSaved`, `::onCommentAdded`, `::onNewsRated`, `::onCommentRated`, `::onCommentDeleted`, `::onUserSubscribed`, `::formatMentionsHtml`, `::subscriptions()`.
+
+### `notifySend` / `Notify::send` [#notifysend--notifysend]
+
+| Параметр         | Назначение                                              |
+| ---------------- | ------------------------------------------------------- |
+| `$recipientId`   | получатель                                              |
+| `$message`       | готовый текст; `null`, если рендерится сценарий         |
+| `$contentType`   | связанная сущность (`news`, `comment`, `user`, …)       |
+| `$contentTypeId` | её id                                                   |
+| `$senderId`      | инициатор                                               |
+| `$level`         | `info`, `success`, …                                    |
+| `$channels`      | пусто = настройки модуля; иначе `site` / `email` / `pm` |
+| `$scenario`      | имя файла в `scenarios/` без `.tpl`                     |
+| `$extraVars`     | доп. плейсхолдеры, ключи вида {'{title}'}               |
+| `$newsRow`       | строка новости для тегов DLE                            |
+
+```php
+if (function_exists('notifySend')) {
+	notifySend(
+		$authorId,
+		null,
+		'news',
+		$newsId,
+		$senderId,
+		'success',
+		[],
+		'moderation_approve',
+		['{title}' => $title, '{full-link}' => $link],
+		$newsRow
+	);
+}
+```
+
+Хуки рейтинга и удаления комментария ставятся плагином (`rating.php`, `ratingcomments.php`, `deletecomments`). Подписка на пользователя вызывается из `SubscriptionService::subscribe` без отдельного DLE-хака.
+
+## См. также [#см-также]
+
+* [Сценарии событий](../guides/scenarios)
+* [Своё событие](../guides/custom_event)
+* [Шаблоны и теги](../guides/scenario_templates)
+* [show\_notifications.php](./web)
+
+
+# Справочник (/dev/dle/notifications/200.2.0/reference)
+
+
+
+Раздел для разработчиков. Настройка сайта — в [руководствах](../guides/subscribe_wall).
+
+* PHP: [Notify](./Notify) (`notifySend`, хуки событий).
+* Каналы: [ChannelInterface](./ChannelInterface) — свой канал доставки.
+* Вставка на сайте: [show\_notifications.php](./web) — параметры `focus`, `stype`, `id`.
+
+После установки `notify*` уже в глобальной области. Отдельный `include` не нужен.
+
+```php
+if (function_exists('notifySend')) {
+	notifySend($userId, 'Текст уведомления');
+}
+notifyOnNewsSaved($newsId, 'add'); // add | edit | approve | reject
+notifyOnCommentAdded($commentId, $newsId, $parentId, $text, $authorId);
+$html = notifyFormatMentionsHtml($commentHtml);
+```
+
+Сигнатуры: [Notify](./Notify). Каналы: [ChannelInterface](./ChannelInterface). Разметка `{include}`: [show\_notifications.php](./web).
+
+Практические тексты: [своё событие](../guides/custom_event), [свой канал](../guides/custom_channel).
+
+
+# show_notifications.php (/dev/dle/notifications/200.2.0/reference/web)
+
+
+
+**Описание:** публичная точка входа модуля на сайте. Подключается через DLE `{include}`; разметка берётся из `templates/{skin}/devcraft/notifications/` (нет файла — `Default`). Стили и скрипты сайта — из `Public/` через `siteAssets` (тег `{devcraft}` в `main.tpl`).
+
+**Файл:** `devcraft/src/modules/Notifications/Controller/show_notifications.php`
+
+**Было:** `Site/web.php` (оставлен как тонкая совместимость). Логика — класс `ShowController`.
+
+**С версии:** 200.2.0
+
+**См. также:**
+
+* [Куда вставить в тему](../guides/template_includes)
+* [Колокольчик, стена и кнопка](../guides/subscribe_wall)
+* [Типы подписок](../guides/subscription_types)
+* [Публичные ресурсы Admin](/dev/dle/devcraft_admin/200.4.1/guides/public_assets)
+
+## Синтаксис [#синтаксис]
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=…&stype=…&id=…"}
+```
+
+Параметры передаются в query-строке include (стандартный механизм DLE: становятся локальными переменными модуля).
+
+<Callout type="warning">
+  Используйте &#x2A;*`stype`**, не `type`. В `dle_template::load_file()` переменная `$type` уже занята расширением файла (`php`), а `extract(...,
+  	EXTR_SKIP)` отбрасывает `type=` из query — подписка всегда сваливалась бы в `news`.
+</Callout>
+
+## Параметры [#параметры]
+
+| Параметр  | Тип         | По умолчанию | Описание                                        |
+| --------- | ----------- | ------------ | ----------------------------------------------- |
+| `focus`   | string      | `subscribe`  | Режим вывода: что именно рендерить              |
+| `stype`   | string      | `news`       | Тип подписки; имеет смысл при `focus=subscribe` |
+| `id`      | string      | `''`         | Идентификатор объекта подписки (см. тип)        |
+| `newsid`  | string\|int | —            | Алиас `id` (если `id` не задан)                 |
+| `news_id` | string\|int | —            | Алиас `id` (если `id` и `newsid` не заданы)     |
+
+Неизвестный `stype` → трактуется как `news`. Значение `id` нормализуется по типу (`SubscriptionType::normalizeId`).
+
+## `focus` [#focus]
+
+| Значение    | Гости | Авторизованные | Что выводит                                                           |
+| ----------- | ----- | -------------- | --------------------------------------------------------------------- |
+| `css`       | да    | да             | ничего (стили идут из `siteAssets`; старый include оставлен пустым)   |
+| `js`        | да    | да             | ничего (скрипты идут из `siteAssets`; старый include оставлен пустым) |
+| `badge`     | нет   | да\*           | `badge.tpl` — колокольчик и список непрочитанных                      |
+| `wall`      | нет   | да\*           | `wall.tpl` — стена уведомлений                                        |
+| `subscribe` | нет   | да\*           | `subscribe/{stype}.tpl` — кнопка подписки / отписки                   |
+
+\* Плюс права группы и (для `subscribe`) флаг типа в настройках модуля. Без права или при выключенном типе модуль молча ничего не выводит.
+
+Для гостей любые `focus`, кроме пустых `css` и `js`, завершаются сразу (пустая строка).
+
+<Callout type="info">
+  В `main.tpl` нужен тег `{devcraft}` (или пара `{devcraft-header}` / `{devcraft-scripts}`). Стили `notifications.css`, скрипты `timeago` и `notifications.js` подставляет Admin из списков публичных ресурсов.
+</Callout>
+
+## `stype` (только `focus=subscribe`) [#stype-только-focussubscribe]
+
+| `stype`  | Формат `id`                                      | Пример                                  |
+| -------- | ------------------------------------------------ | --------------------------------------- |
+| `news`   | ID новости (int > 0)                             | `id={news-id}`                          |
+| `cat`    | ID категории                                     | `id={category-id}`                      |
+| `user`   | `user_id` автора                                 | `id={user-id}`                          |
+| `tag`    | slug/текст тега (`{cloudstag}` на странице тега) | `id={cloudstag}`                        |
+| `xfield` | `поле/значение`                                  | `id=year/2019` или без `id` на xfsearch |
+| `all`    | не используется (пустая строка)                  | без `id`                                |
+
+Для `stype=news` при `id ≤ 0` кнопка не выводится. Для `stype=xfield` без `id` на странице `do=xfsearch` модуль собирает `id` из URL (например `/xfsearch/year/2019/` → `year/2019`). Семантика срабатывания (add vs edit): [типы подписок](../guides/subscription_types).
+
+Рекомендуемая обёртка в `main.tpl`: `[available=cat]` / `[available=tags]` / `[available=xfsearch]`.
+
+## Примеры [#примеры]
+
+```
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=badge"}
+
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=wall"}
+
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=news&id={news-id}"}
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=cat&id={category-id}"}
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=user&id={user-id}"}
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=tag&id={cloudstag}"}
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=xfield"}
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=xfield&id=linked_data/dasdasd"}
+{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscribe&stype=all"}
+```
+
+На страницах раздела, тега и поиска по полю удобнее обернуть вставку в `[available=cat]` / `[available=tags]` / `[available=xfsearch]` (см. [руководство](../guides/template_includes)).
+
+## Теги шаблона [#теги-шаблона]
+
+Модуль выставляет плейсхолдеры перед `load_template` / `compile`:
+
+| Тег                     | Когда        | Значение                                               |
+| ----------------------- | ------------ | ------------------------------------------------------ |
+| `{news-id}`             | всегда       | числовой `id` (для news)                               |
+| `{subscription-id}`     | всегда       | нормализованный id подписки                            |
+| `{subscription-type}`   | всегда       | `news` / `cat` / …                                     |
+| `{user-hash}`           | всегда       | `$dle_login_hash` для запросов без обновления страницы |
+| `{subscribe-label}`     | subscribe    | «Подписаться» / «Отписаться»                           |
+| `{subscribed}`          | subscribe    | `1` или `0`                                            |
+| `{count}`               | subscribe    | число подписчиков                                      |
+| `{items}`               | wall / badge | HTML списка записей                                    |
+| `{unread-count}`        | wall / badge | число непрочитанных                                    |
+| `{notifications-title}` | wall / badge | заголовок                                              |
+| `{mark-all-label}`      | wall / badge | «Прочитать все»                                        |
+| `{empty-label}`         | wall / badge | «Нет уведомлений»                                      |
+| `{empty-hidden}`        | wall / badge | пусто или ` hidden`                                    |
+| `{wall-limit}`          | всегда       | лимит из настроек                                      |
+| `{live-refresh-period}` | всегда       | интервал автообновления (сек; `0` — выкл.)             |
+| `{notifications-url}`   | всегда       | URL страницы уведомлений                               |
+| `{view-all-label}`      | всегда       | «Все уведомления»                                      |
+| `{theme-path}`          | всегда       | URL каталога активной темы                             |
+
+Шаблоны: `subscribe/{type}.tpl`, `wall.tpl`, `badge.tpl`, `item.tpl` и др. — см. [шаблоны и теги](../guides/scenario_templates).
+
+
+# Колокольчик (/dev/dle/notifications/200.2.0/templates/badge)
+
+
+
+Файл: `badge.tpl`.
+
+Вставка: `show_notifications.php?focus=badge`. Строки списка — из [item.tpl](./item) (`mode=badge`: боковая кнопка «Закрыть»).
+
+## Теги [#теги]
+
+| Тег                     | Значение                                          |
+| ----------------------- | ------------------------------------------------- |
+| `{unread-count}`        | число непрочитанных                               |
+| `{notifications-title}` | заголовок выпадающего блока                       |
+| `{items}`               | короткий HTML списка                              |
+| `{empty-label}`         | текст пустого списка                              |
+| `{empty-hidden}`        | пусто, если список пуст; иначе ` hidden`          |
+| `{mark-all-label}`      | «Прочитать все» (и подсказка кнопки колокольчика) |
+| `{notifications-url}`   | адрес страницы кабинета                           |
+| `{view-all-label}`      | подпись ссылки «Все уведомления»                  |
+| `{live-refresh-period}` | период самообновления в секундах                  |
+
+## Обязательные классы и атрибуты [#обязательные-классы-и-атрибуты]
+
+* корень: `dc-notify`, атрибут `data-live-period="{live-refresh-period}"`;
+* кнопка: `dc-notify-badge`, `data-unread-count="{unread-count}"`;
+* счётчик: `dc-notify-badge__count`;
+* выпадающий блок: `dc-notify-dropdown`;
+* список / пусто: `dc-notify-dropdown__list`, `dc-notify-dropdown__empty`;
+* «Прочитать все»: `dc-notify-mark-all`;
+* ссылка на кабинет: `dc-notify-view-all` с `href="{notifications-url}"`.
+
+## Фрагмент подвала [#фрагмент-подвала]
+
+```html
+<button type="button" class="dc-notify-mark-all">{mark-all-label}</button>
+<a class="dc-notify-view-all" href="{notifications-url}">{view-all-label}</a>
+```
+
+## См. также [#см-также]
+
+* [Строка ленты](./item)
+* [Страница кабинета](./page)
+* [Колокольчик, стена и кнопка](../guides/subscribe_wall)
+
+
+# Шаблоны (/dev/dle/notifications/200.2.0/templates)
+
+
+
+Тексты и разметка сайта живут в теме, не в формах админки. Каталог:
+
+`templates/{тема}/devcraft/notifications/`
+
+Нет каталога в активной теме — берётся `templates/Default/devcraft/notifications/`. Скопируйте дерево из `Default` в свой скин и правьте там.
+
+Пути к папкам событий и обёрток задаются в настройках модуля; имена файлов по умолчанию совпадают с таблицами ниже.
+
+Подстановки в событиях и письмах делает `ParseTemplateTags` (строка новости + доп. поля вроде `{sender}`), а не простая замена строк. Разметку колокольчика, стены и кнопок собирает обычный `dle_template` через `{include}` к `show_notifications.php`.
+
+<Callout type="info">
+  Файлы стилей и скриптов в `assets/`, а также `.htaccess`, — не шаблоны с тегами. Их не описываем в этом разделе. На сайте стили и скрипты модуля подставляет тег `{devcraft}`.
+</Callout>
+
+## Дерево [#дерево]
+
+```text
+devcraft/notifications/
+├── page.tpl                 кабинет /notifications/
+├── wall.tpl                 стена ленты
+├── badge.tpl                колокольчик
+├── item.tpl                 строка ленты
+├── item_actions.tpl         кнопка «Открыть»
+├── item_side_mark_read.tpl  «Прочесть» на стене
+├── item_side_dismiss.tpl    «Закрыть» в колокольчике
+├── subscribe.tpl            запасная кнопка подписки
+├── subscribe/               кнопки по типу (news, cat, …)
+├── subscriptions.tpl        список подписок
+├── subscription_item.tpl    строка подписки
+├── publications.tpl         блок новых публикаций
+├── publication_item.tpl     строка публикации
+├── scenarios/               тексты событий
+├── wrappers/                письмо и личное сообщение
+└── assets/                  css / js (не теги)
+```
+
+## Классы, которые ждёт скрипт [#классы-которые-ждёт-скрипт]
+
+Не переименовывайте без нужды — иначе кнопки и обновление списка перестанут работать.
+
+| Класс / атрибут                        | Зачем                                                          |
+| -------------------------------------- | -------------------------------------------------------------- |
+| `dc-notify-subscribe`                  | кнопка подписки / отписки                                      |
+| `dc-notify-subscribe-count`            | число подписчиков рядом с кнопкой                              |
+| `dc-notify`                            | корень колокольчика                                            |
+| `dc-notify-badge`                      | кнопка колокольчика; атрибут `data-unread-count`               |
+| `dc-notify-dropdown`                   | выпадающий список                                              |
+| `dc-notify-dropdown__list` / `__empty` | список и пустое состояние                                      |
+| `dc-notify-mark-all`                   | «Прочитать все»                                                |
+| `dc-notify-view-all`                   | ссылка на страницу списка                                      |
+| `dc-notify-wall`                       | стена; `data-live-wall`, `data-wall-limit`, `data-live-period` |
+| `dc-notify-wall__list` / `__empty`     | список и пустое состояние стены                                |
+| `dc-notify-item`                       | строка ленты                                                   |
+| `is-unread`                            | непрочитанная строка (пусто, если прочитана — не `is-read`)    |
+| `dc-notify-mark-read`                  | «Прочесть» на стене                                            |
+| `dc-notify-dismiss`                    | «Закрыть» в колокольчике                                       |
+| `dc-notify-subs` / `dc-notify-sub`     | список и строка подписки                                       |
+| `dc-notify-sub-channel`                | переключатели каналов (`data-channel`)                         |
+| `dc-notify-sub-unsubscribe`            | отписка из списка                                              |
+| `timeago` + `datetime`                 | относительное время в строках                                  |
+
+На корне колокольчика или стены скрипт читает `data-live-period` (секунды самообновления; `0` — выключено).
+
+## Страницы раздела [#страницы-раздела]
+
+| Страница                           | Файлы                                        |
+| ---------------------------------- | -------------------------------------------- |
+| [Страница кабинета](./page)        | `page.tpl`                                   |
+| [Стена](./wall)                    | `wall.tpl`                                   |
+| [Колокольчик](./badge)             | `badge.tpl`                                  |
+| [Строка ленты](./item)             | `item*.tpl`                                  |
+| [Кнопка подписки](./subscribe)     | `subscribe/*.tpl`                            |
+| [Мои подписки](./subscriptions)    | `subscriptions.tpl`, `subscription_item.tpl` |
+| [Новые публикации](./publications) | `publications.tpl`, `publication_item.tpl`   |
+| [Обёртки писем](./wrappers)        | `wrappers/*.tpl`                             |
+| [События](./scenarios)             | `scenarios/*.tpl`                            |
+
+## См. также [#см-также]
+
+* [Куда вставить в тему](../guides/template_includes)
+* [Колокольчик, стена и кнопка](../guides/subscribe_wall)
+* [Страница уведомлений](../guides/notifications_page)
+
+
+# Строка ленты (/dev/dle/notifications/200.2.0/templates/item)
+
+
+
+Сборку делает `InboxItemHtmlRenderer`. Сначала вложенные фрагменты (`item_actions`, боковая кнопка), затем `item.tpl`.
+
+Первая строка текста уведомления → `{title}`; остальное → `{message}` (переносы строк как HTML).
+
+## `item.tpl` [#itemtpl]
+
+| Тег              | Значение                                                   |
+| ---------------- | ---------------------------------------------------------- |
+| `{id}`           | id записи ленты                                            |
+| `{title}`        | краткий заголовок                                          |
+| `{message}`      | текст (уже с экранированием и `<br>`)                      |
+| `{level}`        | исходный уровень из записи (`info`, `success`, …)          |
+| `{level-class}`  | класс оформления: `info`, `success`, `warning`, `critical` |
+| `{level-icon}`   | SVG-пути иконки для выбранного уровня                      |
+| `{unread}`       | `1` / `0`                                                  |
+| `{unread-class}` | `is-unread` или **пусто** (не `is-read`)                   |
+| `{date}`         | дата в виде `д.м.г ч:м`                                    |
+| `{datetime}`     | дата в формате ISO для `timeago`                           |
+| `{verb}`         | код действия (`updated`, `commented`, …)                   |
+| `{actions}`      | HTML из `item_actions.tpl` (или пусто)                     |
+| `{side-action}`  | HTML боковой кнопки или пусто                              |
+
+Корень строки: класс `dc-notify-item`, атрибуты `data-id`, `data-unread`. Для непрочитанных добавьте `{unread-class}` → `is-unread`.
+
+```html
+<div class="alert alert-{level-class} dc-notify-item {unread-class}"
+	data-id="{id}" data-unread="{unread}">
+	…
+	<span class="timeago" datetime="{datetime}" title="{date}">{date}</span>
+	…
+	{actions}
+	{side-action}
+</div>
+```
+
+## `item_actions.tpl` [#item_actionstpl]
+
+Подключается, если у записи есть ссылка на объект.
+
+| Тег            | Значение      |
+| -------------- | ------------- |
+| `{object-url}` | адрес объекта |
+| `{open-label}` | «Открыть»     |
+
+## `item_side_mark_read.tpl` [#item_side_mark_readtpl]
+
+Только на **стене** и только для непрочитанных. Класс кнопки: `dc-notify-mark-read`.
+
+| Тег                 | Значение   |
+| ------------------- | ---------- |
+| `{mark-read-label}` | «Прочесть» |
+
+## `item_side_dismiss.tpl` [#item_side_dismisstpl]
+
+В **колокольчике** для каждой строки. Класс кнопки: `dc-notify-dismiss`.
+
+| Тег               | Значение  |
+| ----------------- | --------- |
+| `{dismiss-label}` | «Закрыть» |
+
+На стене у уже прочитанных `{side-action}` пустой.
+
+## См. также [#см-также]
+
+* [Стена](./wall)
+* [Колокольчик](./badge)
+
+
+# Страница кабинета (/dev/dle/notifications/200.2.0/templates/page)
+
+
+
+Файл: `page.tpl`.
+
+Открывается по адресу `/index.php?do=notifications` или короткому `/notifications/`. Собирает `PageController`: выставляет заголовки разделов и подключает шаблон темы.
+
+Внутри страницы — три `{include}` с разным `focus`: стена, список подписок, новые публикации.
+
+## Теги [#теги]
+
+| Тег                     | Значение                                          |
+| ----------------------- | ------------------------------------------------- |
+| `{notifications-title}` | заголовок раздела стены («Уведомления»)           |
+| `{subscriptions-title}` | заголовок раздела подписок («Мои подписки»)       |
+| `{publications-title}`  | заголовок раздела публикаций («Новые публикации») |
+
+## Пример [#пример]
+
+```html
+<div class="dc-notify-cabinet">
+	<nav class="dc-notify-cabinet__nav" aria-label="Уведомления">
+		<a href="#dc-notify-wall">{notifications-title}</a>
+		<a href="#dc-notify-subs">{subscriptions-title}</a>
+		<a href="#dc-notify-pubs">{publications-title}</a>
+	</nav>
+
+	<section id="dc-notify-wall" class="dc-notify-cabinet__section">
+		{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=wall"}
+	</section>
+
+	<section id="dc-notify-subs" class="dc-notify-cabinet__section">
+		{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=subscriptions"}
+	</section>
+
+	<section id="dc-notify-pubs" class="dc-notify-cabinet__section">
+		{include file="devcraft/src/modules/Notifications/Controller/show_notifications.php?focus=publications"}
+	</section>
+</div>
+```
+
+Классы `dc-notify-cabinet*` — оформление кабинета; на работу скрипта колокольчика они не влияют. Разметка стены и списков — в [стене](./wall), [подписках](./subscriptions) и [публикациях](./publications).
+
+## См. также [#см-также]
+
+* [Руководство: страница уведомлений](../guides/notifications_page)
+* [Стена](./wall)
+
+
+# Новые публикации (/dev/dle/notifications/200.2.0/templates/publications)
+
+
+
+Вставка: `show_notifications.php?focus=publications`. Данные — недавние публикации по подпискам пользователя (`SubscriptionFeedService` → `SubscriptionListRenderer`).
+
+## `publications.tpl` [#publicationstpl]
+
+| Тег                           | Значение                                 |
+| ----------------------------- | ---------------------------------------- |
+| `{publications-title}`        | заголовок блока                          |
+| `{publications}`              | HTML строк                               |
+| `{publications-empty-label}`  | текст пустого списка                     |
+| `{publications-empty-hidden}` | пусто, если список пуст; иначе ` hidden` |
+
+Корень: `dc-notify-pubs`. Список: `dc-notify-pubs__list`. Пусто: `dc-notify-pubs__empty`.
+
+## `publication_item.tpl` [#publication_itemtpl]
+
+| Тег          | Значение                      |
+| ------------ | ----------------------------- |
+| `{id}`       | id новости                    |
+| `{title}`    | заголовок                     |
+| `{url}`      | ссылка на полную новость      |
+| `{category}` | название раздела              |
+| `{date}`     | дата публикации (как в ленте) |
+| `{datetime}` | дата в формате ISO            |
+
+```html
+<div class="dc-notify-pub" data-id="{id}">
+	<a class="dc-notify-pub__title" href="{url}">{title}</a>
+	<span class="dc-notify-pub__cat">{category}</span>
+	<span class="dc-notify-pub__date timeago" datetime="{datetime}" title="{date}">{date}</span>
+</div>
+```
+
+Лимит записей задаётся настройкой модуля (по умолчанию 10).
+
+## См. также [#см-также]
+
+* [Страница кабинета](./page)
+* [Мои подписки](./subscriptions)
+
+
+# События (/dev/dle/notifications/200.2.0/templates/scenarios)
+
+
+
+Файлы в `scenarios/`. Имя файла без `.tpl` — код сценария. Рендер: `TemplateRenderService::renderScenario` → `ParseTemplateTags`.
+
+Пустой или отсутствующий файл события — канал для этого события не отправляется.
+
+## Список файлов [#список-файлов]
+
+| Файл                       | Когда                                                        |
+| -------------------------- | ------------------------------------------------------------ |
+| `news_update.tpl`          | подписчики `news`: новость изменена                          |
+| `news_published.tpl`       | подписчики cat / user / tag / xfield / all: новая публикация |
+| `bookmark_news_update.tpl` | новость из закладок обновлена                                |
+| `moderation_approve.tpl`   | автору: материал одобрен                                     |
+| `moderation_reject.tpl`    | автору: снят с публикации                                    |
+| `comment_reply.tpl`        | ответ на комментарий                                         |
+| `comment_on_news.tpl`      | комментарий к вашей новости                                  |
+| `comment_deleted.tpl`      | ваш комментарий удалён                                       |
+| `comment_rating.tpl`       | изменили рейтинг вашего комментария                          |
+| `news_rating.tpl`          | изменили рейтинг новости                                     |
+| `mention.tpl`              | упоминание `@ник`                                            |
+| `user_subscribed.tpl`      | кто-то подписался на ваши публикации                         |
+
+## Общие теги [#общие-теги]
+
+| Тег           | Значение                                                   |
+| ------------- | ---------------------------------------------------------- |
+| `{title}`     | заголовок новости                                          |
+| `{full-link}` | адрес полной новости                                       |
+| `{author}`    | автор новости (в mention — упомянутый ник)                 |
+| `{sender}`    | кто вызвал событие                                         |
+| `{message}`   | уже собранный текст (обычно в обёртке, не в самом событии) |
+
+Если передана строка новости — также штатные теги DLE: `{category}`, `{date}`, `{views}`, `[xfvalue_…]` и т.д.
+
+## Особые теги сценариев [#особые-теги-сценариев]
+
+| Тег        | Где                                              | Значение                                 |
+| ---------- | ------------------------------------------------ | ---------------------------------------- |
+| `{rating}` | `news_rating.tpl`, `comment_rating.tpl`          | новое значение рейтинга                  |
+| `{sender}` | `user_subscribed.tpl` (и другие, где передаётся) | ник того, кто подписался / вызл действие |
+
+## Примеры [#примеры]
+
+`news_update.tpl`:
+
+```text
+Новость «{title}» была обновлена
+{full-link}
+```
+
+`news_rating.tpl`:
+
+```text
+Новости «{title}» изменили рейтинг ({rating})
+{full-link}
+```
+
+`user_subscribed.tpl`:
+
+```text
+{sender} подписался на ваши публикации
+{full-link}
+```
+
+Собранный текст попадает в ленту сайта и в `{message}` обёртки письма / личного сообщения.
+
+## См. также [#см-также]
+
+* [Обёртки писем](./wrappers)
+* [События (логика)](../guides/scenarios)
+* [Своё событие](../guides/custom_event)
+
+
+# Кнопка подписки (/dev/dle/notifications/200.2.0/templates/subscribe)
+
+
+
+Вставка: `show_notifications.php?focus=subscribe` (и параметры типа / id). Сначала ищется файл `subscribe/{тип}.tpl`; если его нет — `subscribe.tpl`.
+
+## Файлы по типу [#файлы-по-типу]
+
+| Файл                   | Тип                           |
+| ---------------------- | ----------------------------- |
+| `subscribe/news.tpl`   | `news`                        |
+| `subscribe/cat.tpl`    | `cat`                         |
+| `subscribe/user.tpl`   | `user`                        |
+| `subscribe/tag.tpl`    | `tag`                         |
+| `subscribe/xfield.tpl` | `xfield`                      |
+| `subscribe/all.tpl`    | `all`                         |
+| `subscribe.tpl`        | запасной, если файла типа нет |
+
+## Теги [#теги]
+
+| Тег                   | Значение                                      |
+| --------------------- | --------------------------------------------- |
+| `{subscribe-label}`   | «Подписаться» или «Отписаться»                |
+| `{subscribed}`        | `1` / `0`                                     |
+| `{subscription-id}`   | id объекта подписки                           |
+| `{subscription-type}` | `news`, `cat`, …                              |
+| `{news-id}`           | id новости (для type=news)                    |
+| `{count}`             | число подписчиков                             |
+| `{user-hash}`         | хеш сессии DLE (доступен в общих тегах блока) |
+
+## Обязательное для скрипта [#обязательное-для-скрипта]
+
+Класс кнопки: `dc-notify-subscribe`. Атрибуты: `data-type`, `data-id`, `data-subscribed`. Для новости удобно ещё `data-news-id="{news-id}"`. Счётчик — класс `dc-notify-subscribe-count`.
+
+```html
+<button type="button"
+	class="dc-notify-subscribe"
+	data-type="news"
+	data-id="{subscription-id}"
+	data-news-id="{news-id}"
+	data-subscribed="{subscribed}">
+	{subscribe-label}
+	<span class="dc-notify-subscribe-count">{count}</span>
+</button>
+```
+
+Тип подписки должен быть включён в настройках модуля, иначе блок пустой.
+
+## См. также [#см-также]
+
+* [Куда вставить в тему](../guides/template_includes)
+* [Типы подписок](../guides/subscription_types)
+
+
+# Модальное окно подписок (/dev/dle/notifications/200.2.0/templates/subscription_button)
+
+
+
+Вставка: `show_notifications.php?focus=subscription_button&id={news-id}` (+ опциональные фильтры). Файл: `subscription_button.tpl`.
+
+## Теги [#теги]
+
+| Тег                                                                      | Значение                            |
+| ------------------------------------------------------------------------ | ----------------------------------- |
+| `{news-id}`                                                              | id новости                          |
+| `{subscribe-tree-json}`                                                  | JSON дерева опций (для `data-tree`) |
+| `{bell-label}`                                                           | подпись кнопки                      |
+| `{modal-title}`                                                          | заголовок окна (имя тега в шаблоне) |
+| `{save-label}`                                                           | кнопка сохранить                    |
+| `{channel-site}` / `{channel-email}` / `{channel-pm}` / `{channel-push}` | подписи каналов                     |
+
+## Обязательное для скрипта [#обязательное-для-скрипта]
+
+* корень: `.dc-notify-sub-btn` с `data-news-id` и `data-tree`;
+* открытие: `.dc-notify-sub-open`;
+* окно: `.dc-notify-sub-dialog` (title = заголовок окна);
+* дерево рисует JS в `.dc-notify-sub-tree`;
+* каналы: `input[name=notify_site|notify_email|notify_pm|notify_push]`;
+* сохранение: `.dc-notify-sub-save` (или кнопка окна темы).
+
+Дерево и чекбоксы листьев собирает `notifications.js` (accordion через `<details>`). HTML окна — только в `.tpl`, без PHP в теме.
+
+
+# Мои подписки (/dev/dle/notifications/200.2.0/templates/subscriptions)
+
+
+
+Вставка: `show_notifications.php?focus=subscriptions`. Список собирает `SubscriptionListRenderer`.
+
+## `subscriptions.tpl` [#subscriptionstpl]
+
+| Тег                            | Значение                                 |
+| ------------------------------ | ---------------------------------------- |
+| `{subscriptions-title}`        | заголовок блока                          |
+| `{subscriptions}`              | HTML строк                               |
+| `{subscriptions-empty-label}`  | текст пустого списка                     |
+| `{subscriptions-empty-hidden}` | пусто, если список пуст; иначе ` hidden` |
+
+Корень: `dc-notify-subs`. Список: `dc-notify-subs__list`. Пусто: `dc-notify-subs__empty`.
+
+## `subscription_item.tpl` [#subscription_itemtpl]
+
+| Тег                   | Значение                       |
+| --------------------- | ------------------------------ |
+| `{id}`                | id записи подписки             |
+| `{type}`              | код типа (`news`, `cat`, …)    |
+| `{type-title}`        | человекочитаемое название типа |
+| `{subscription-id}`   | id объекта подписки            |
+| `{title}`             | заголовок объекта              |
+| `{url}`               | ссылка на объект               |
+| `{date}`              | дата создания подписки         |
+| `{datetime}`          | дата в формате ISO             |
+| `{site-checked}`      | ` checked` или пусто           |
+| `{email-checked}`     | ` checked` или пусто           |
+| `{pm-checked}`        | ` checked` или пусто           |
+| `{site-label}`        | «На сайте»                     |
+| `{email-label}`       | «Почта»                        |
+| `{pm-label}`          | «ЛС»                           |
+| `{unsubscribe-label}` | «Отписаться»                   |
+
+Строка: класс `dc-notify-sub`, атрибуты `data-id`, `data-type`, `data-subscription-id`.
+
+Переключатели каналов: `dc-notify-sub-channel` и `data-channel="site|email|pm"`. Кнопка отписки: `dc-notify-sub-unsubscribe`.
+
+```html
+<div class="dc-notify-sub" data-id="{id}" data-type="{type}" data-subscription-id="{subscription-id}">
+	…
+	<label><input type="checkbox" class="dc-notify-sub-channel" data-channel="site"{site-checked}> {site-label}</label>
+	…
+	<button type="button" class="dc-notify-sub-unsubscribe">{unsubscribe-label}</button>
+</div>
+```
+
+## См. также [#см-также]
+
+* [Страница кабинета](./page)
+* [Новые публикации](./publications)
+
+
+# Стена (/dev/dle/notifications/200.2.0/templates/wall)
+
+
+
+Файл: `wall.tpl`.
+
+Вставка: `show_notifications.php?focus=wall`. Строки списка — из [item.tpl](./item) (`mode=wall`: боковая кнопка «Прочесть»).
+
+## Теги [#теги]
+
+| Тег                     | Значение                                                            |
+| ----------------------- | ------------------------------------------------------------------- |
+| `{notifications-title}` | заголовок блока                                                     |
+| `{items}`               | HTML списка строк                                                   |
+| `{mark-all-label}`      | подпись «Прочитать все»                                             |
+| `{empty-label}`         | текст пустого списка                                                |
+| `{empty-hidden}`        | пусто, если список пуст; иначе ` hidden` (атрибут на блоке пустоты) |
+| `{wall-limit}`          | сколько записей показывать (из настроек)                            |
+| `{live-refresh-period}` | период самообновления в секундах; `0` — без опроса                  |
+
+## Обязательные классы и атрибуты [#обязательные-классы-и-атрибуты]
+
+* корень: `dc-notify-wall`, `data-mod="notifications"`, `data-live-wall="1"`, `data-wall-limit="{wall-limit}"`, `data-live-period="{live-refresh-period}"`;
+* список: `dc-notify-wall__list` с `{items}`;
+* пусто: `dc-notify-wall__empty` и `{empty-hidden}` на том же элементе;
+* кнопка: `dc-notify-mark-all`.
+
+Кнопку системных окон браузера в ядре стены **нет**: её добавляет сателлит Push (`push.js`) в блок `.dashboard-header__actions`, если модуль Push установлен. См. [Кнопка на сайте](/dev/dle/notifications_push/1.1.0/guides/site_button).
+
+## Пример корня [#пример-корня]
+
+```html
+<div class="dc-notify-wall dashboard-container"
+	data-mod="notifications"
+	data-live-wall="1"
+	data-wall-limit="{wall-limit}"
+	data-live-period="{live-refresh-period}">
+	…
+	<div class="dc-notify-wall__list">{items}</div>
+	<div class="dc-notify-wall__empty"{empty-hidden}>
+		<p>{empty-label}</p>
+	</div>
+</div>
+```
+
+## См. также [#см-также]
+
+* [Строка ленты](./item)
+* [Колокольчик](./badge)
+* [Колокольчик, стена и кнопка](../guides/subscribe_wall)
+
+
+# Обёртки писем (/dev/dle/notifications/200.2.0/templates/wrappers)
+
+
+
+После текста события модуль оборачивает его в файл обёртки и подставляет `{message}`. Рендер — `TemplateRenderService` + `ParseTemplateTags`.
+
+| Файл                      | Канал                |
+| ------------------------- | -------------------- |
+| `wrappers/email_body.tpl` | письмо               |
+| `wrappers/pm_body.tpl`    | личное сообщение DLE |
+
+Пути можно переопределить в настройках (`tpl_wrappers_dir`, отдельные файлы).
+
+## Теги [#теги]
+
+| Тег                               | Значение                                     |
+| --------------------------------- | -------------------------------------------- |
+| `{message}`                       | уже собранный текст события                  |
+| `{full-link}`                     | ссылка на новость (если есть строка новости) |
+| `{unsubscribe-url}`               | подписанная ссылка отписки (для письма)      |
+| `{title}`, `{author}`, `{sender}` | как в событии, если переданы                 |
+
+Если есть строка новости, доступны и штатные теги DLE (`{category}`, `{date}`, `{views}`, `[xfvalue_…]` и т.д.).
+
+Тема письма и тема личного сообщения — строки настроек `email_subject` / `pm_subject`; там те же подстановки.
+
+## Примеры [#примеры]
+
+`email_body.tpl`:
+
+```html
+{message}<br><br>
+{full-link}<br><br>
+<a href="{unsubscribe-url}">Отписаться</a>
+```
+
+`pm_body.tpl`:
+
+```text
+{message}
+```
+
+<Callout type="warn">
+  Пустой или отсутствующий файл обёртки (ни в теме, ни по пути из настроек) — канал не отправляет сообщение.
+</Callout>
+
+## См. также [#см-также]
+
+* [События](./scenarios)
+* [Личные настройки каналов](../guides/user_prefs)
+
+
 # История изменений (/dev/dle/notifications_push/1.0.0/changelog)
 
 
@@ -143841,6 +146419,193 @@ devcraft/notifications/
 
 * правило ЧПУ DLEUrl: `/dc-push-sw` → `index.php?do=dc_push_sw` (перед категорией). Адрес **без** `.js`: штатный корневой `.htaccess` отдаёт 404 на несуществующие js и не пускает запрос в `index.php`. Правка `.htaccess` плагином не поддерживается.
 * вставку в `engine/init.php` **после** `DLEUrl::Route()`, с маркерами `// DevCraft NotificationsPush: start` … `end`. Если ЧПУ выключено, worker: `index.php?do=dc_push_sw`.
+
+Таблица `{prefix}_dc_notify_push` появится при первом заходе в админку модуля (Cycle), отдельный SQL в установке не нужен.
+
+## 2. Composer [#2-composer]
+
+В каталоге `devcraft/`:
+
+```bash
+composer require minishlink/web-push
+composer dump-autoload
+```
+
+То же доступно в блоке Composer на главной DevCraft Admin.
+
+## 3. Права и настройки [#3-права-и-настройки]
+
+1. В **DLE Уведомления → права групп** включите `notifications_receive_push` нужным группам и `notifications_push_admin` администраторам.
+2. Откройте карточку **Уведомления — Push**, включите канал, создайте ключи VAPID и сохраните форму.
+
+<Callout type="warning">
+  Без HTTPS подписка в браузере не заработает. Локальный стенд `http://dle210.test` для приёмки окон не подходит.
+</Callout>
+
+
+# История изменений (/dev/dle/notifications_push/1.1.0/changelog)
+
+
+
+## 1.1.0 (2026-11-18) [#110-2026-11-18]
+
+* правило ЧПУ `/dc-push-sw` только в `phpenable` / `phpdisable` / `phpdelete` — без AddRule в `phpinstall` и boot;
+* VAPID: при несовпадении ключа клиент отписывается и подписывается с актуальным публичным ключом; смена ключей в админке чистит старые endpoint;
+* доставка по всем endpoint пользователя при канале `notify_push` тематической подписки;
+* кнопка «Окна браузера» на стене вставляется скриптом сателлита (не из `wall.tpl` ядра);
+* адрес worker в ответе — относительный (удобно при HTTPS);
+* открытый ключ VAPID для сайта можно запросить без входа (`vapid_public`).
+
+## 1.0.0 (2026-10-06) [#100-2026-10-06]
+
+* канал Web Push в реестре DLE Уведомлений;
+* несколько устройств; пауза через доп. поле профиля;
+* ключи VAPID и пробная отправка; кнопка подписки на сайте;
+* права `notifications_receive_push`, `notifications_push_admin`;
+* меню через `extends`; worker `/dc-push-sw`.
+
+
+# Начало работы (/dev/dle/notifications_push/1.1.0/getting_started)
+
+
+
+**DLE Уведомления: Push** — соседний модуль к [DLE Уведомления](/dev/dle/notifications/200.2.0/getting_started). Он добавляет способ доставки `push`: браузер показывает системное окно, даже если вкладка закрыта.
+
+Это **не** отдельная тематическая подписка. Push — канал вроде почты: при установке сателлит патчит ядро Уведомлений (`notify_push` на подписке, чекбоксы в теме). Человек подписывается на тему и включает канал Push. Несколько устройств одного пользователя получают одно и то же событие.
+
+Ставится отдельным ZIP. Отдельного пункта в меню DLE нет: страница живёт внутри `?mod=notifications`.
+
+Нужны **HTTPS**, вошедший пользователь и право группы `notifications_receive_push`. Гости не подписываются.
+
+<Cards>
+  <Card title="Установка" href="./install">
+    ZIP, Composer, правило ЧПУ для worker
+  </Card>
+
+  <Card title="Кнопка на сайте" href="./guides/site_button">
+    Как включить подписку браузера в теме
+  </Card>
+
+  <Card title="Ключи VAPID" href="./guides/vapid">
+    Генерация ключей и пробная отправка
+  </Card>
+</Cards>
+
+## Что умеет (1.1.0) [#что-умеет-110]
+
+* несколько устройств (endpoint) на одного пользователя;
+* доставка при `notify_push` у тематической подписки;
+* правило ЧПУ `/dc-push-sw` только при включении/выключении/удалении плагина (без «тихого» AddRule при каждом запросе);
+* при смене VAPID ключей браузер сам отписывается и подписывается заново;
+* пауза через доп. поле профиля; ответы 410/404 снимают endpoint;
+* журнал Admin с именем плагина **DLE Уведомления**.
+
+<Callout type="info">
+  Сам себе ядро не пишет: если автор правит свою новость, окно себе не придёт. Пробная отправка из админки идёт мимо этого правила.
+</Callout>
+
+
+# Кнопка на сайте (/dev/dle/notifications_push/1.1.0/guides/site_button)
+
+
+
+Скрипт `Public/push.js` уже подключается через `{devcraft-scripts}` (или `{devcraft}`).
+
+## Кнопка [#кнопка]
+
+На странице нужна кнопка с атрибутом `data-dc-push-subscribe`:
+
+```html
+<button type="button" data-dc-push-subscribe>Окна браузера</button>
+```
+
+На **стене** ядра кнопки в `wall.tpl` нет: при установленном Push скрипт сам вставляет её в шапку блока стены. В своей теме можно оставить ручную кнопку где угодно.
+
+Посетитель должен быть вошедшим. По нажатию браузер зарегистрирует worker (`/dc-push-sw` или `index.php?do=dc_push_sw`), запросит разрешение и отправит адрес подписки на `devcraft/ajax.php`. Один человек может подписаться с **нескольких браузеров** — у каждого свой endpoint.
+
+Клик по системному окну открывает ссылку из нагрузки (`{full-link}` события).
+
+<Callout type="warning">
+  Без HTTPS браузер запрещает worker и подписку. Нужен HTTPS или `localhost`. Скрипт покажет это при нажатии.
+</Callout>
+
+<Callout type="info">
+  Если в профиле доп. поле паузы выключено, рассылка молчит, а строка подписки в таблице остаётся.
+</Callout>
+
+<Callout type="info">
+  Часть сборок Brave режет службу Google для окон. Firefox, Vivaldi и обычный Chrome обычно проходят. После сбоя можно очистить данные сайта и обновить страницу с очисткой кэша.
+</Callout>
+
+
+# Ключи VAPID (/dev/dle/notifications_push/1.1.0/guides/vapid)
+
+
+
+
+
+## Шаги [#шаги]
+
+<Steps>
+  <Step>
+    ### Откройте Push [#откройте-push]
+
+    В DLE Уведомлениях на главной — карточка **Уведомления — Push**, либо меню **Push: Настройки**.
+
+        <img alt="Настройки канала Push: поля VAPID, переключатель и кнопки проверки" src="__img0" />
+  </Step>
+
+  <Step>
+    ### Создайте ключи [#создайте-ключи]
+
+    Кнопка **Создать ключи VAPID**. Ключи сразу пишутся в настройки и попадают в поля формы (имена полей с префиксом соседнего модуля). Включите канал, укажите `mailto:` и сохраните форму, если правили другие поля. Пока ключей нет, доставка считается неготовой — даже если переключатель канала включён.
+  </Step>
+
+  <Step>
+    ### Подпишитесь на сайте [#подпишитесь-на-сайте]
+
+    Войдите как тот же человек и нажмите кнопку с `data-dc-push-subscribe`.
+  </Step>
+
+  <Step>
+    ### Проверка себе [#проверка-себе]
+
+    Кнопка **Тестовое окно себе** шлёт напрямую, без правила «не писать самому себе».
+  </Step>
+</Steps>
+
+## Смена ключей [#смена-ключей]
+
+1. В админке нажмите **Создать ключи VAPID** ещё раз — старые endpoint в таблице Push очищаются, закрытый ключ пишется только в настройки (в ответ окна админки он не попадает).
+2. На сайте снова нажмите «Окна браузера» (или кнопку с `data-dc-push-subscribe`).
+3. Скрипт `push.js` при несовпадении ключа сам снимает старую подписку браузера и оформляет новую с актуальным открытым ключом; при сбое службы окон один раз сбрасывает worker и повторяет.
+4. Проверьте **Тестовое окно себе** — окно должно прийти без ошибки 401 от push-службы.
+
+Нужны HTTPS (или `localhost`) и право группы на приём Push. Если подписка не встаёт — очистите данные сайта для этого адреса и обновите страницу с очисткой кэша.
+
+
+# Установка (/dev/dle/notifications_push/1.1.0/install)
+
+
+
+Сначала должны стоять [DevCraft Admin](/dev/dle/devcraft_admin/200.4.2/install&#x29; (**≥ 200.4.2**) и [DLE Уведомления](/dev/dle/notifications/200.2.0/install). В менеджере плагинов зависимость указана как **DLE Уведомления** (имя из `install.xml` ядра).
+
+Общий порядок ZIP: &#x2A;*[Установка плагинов](/instructions/install_instructions)**.
+
+## Требования [#требования]
+
+* DataLife Engine &#x2A;*20.0+**
+* PHP &#x2A;*8.3+**
+* HTTPS на сайте (без него браузер не даст системные окна)
+* пакет `minishlink/web-push` в `devcraft/`
+
+## 1. Архив [#1-архив]
+
+Загрузите ZIP в **Панель управления DLE → Плагины**.
+
+При **включении** плагина (`phpenable`) добавляется правило ЧПУ DLEUrl: `/dc-push-sw` → `index.php?do=dc_push_sw` (перед категорией). При **выключении** и **удалении** правило снимается. В `phpinstall` и при обычной загрузке сайта правило **не** пересоздаётся — так оно не «уползает» после категории. Адрес **без** `.js`: штатный `.htaccess` иначе отдаёт 404. Если ЧПУ выключено, worker: `index.php?do=dc_push_sw`.
+
+Также ставится вставка в `engine/init.php` **после** `DLEUrl::Route()` (маркеры `// DevCraft NotificationsPush: start` … `end`).
 
 Таблица `{prefix}_dc_notify_push` появится при первом заходе в админку модуля (Cycle), отдельный SQL в установке не нужен.
 
