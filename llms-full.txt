@@ -120125,6 +120125,7 @@ $uploaded->moveTo($targetPath);
 
 ### Добавлено [#добавлено]
 
+* **Настройки → Отладка:** показ панели SQL (админка / сайт), группы с доступом и выбор источников (`$db`, Cycle, прочие) — по тому же принципу, что у DLEToolbar. Гайды: [Отладка](guides/debugging), [Настройка](guides/manage).
 * **Схема базы:** если миграция отвечает, что таблица или колонка уже есть, очередь не останавливается. Эта запись помечается выполненной, остальные накатываются. Недостающие таблицы и правки колонок по-прежнему создаёт сам Cycle при генерации миграций.
 * **Страница 500 и AJAX:** при ошибке схемы Cycle (`Undefined schema`) в описании видны класс, файл, цепочка причин, роли в сохранённой схеме и каталоги Models. Старая неполная схема сбрасывается один раз; классы моделей подгружаются до сборки ORM.
 * **Верхняя панель админки:** справа язык, тема и имя с картинкой пользователя. В меню — профиль на сайте и выход. Смена языка и темы сохраняется в настройки Admin и обновляет страницу. Язык — значок `mif-translate` и список названий, текущий пункт в списке подсвечен, тема — значок `mif-dark-light` ([темы Metro](https://panda.metroui.org.ua/common/themes)), без картинки пользователя — `mif-user-settings`. Рядом кнопка «Очистить кеш» (`mif-bin`): чистит кэш DLE и DevCraft и возвращает в тот же раздел.
@@ -120144,6 +120145,9 @@ $uploaded->moveTo($targetPath);
 
 ### Исправлено [#исправлено]
 
+* **Публичный hit / автозагрузка:** prepend-обработчик в `devcraft/init.php` больше не вызывает `findFile` на каждый класс DLE и темы — только на `DevCraft\*` и `JetBrains\PhpStorm\*`. Иначе при включённом Admin «генерация страницы» раздувалась сотнями миллисекунд.
+* **Панель отладки:** по умолчанию выключена; SQL не собирается у гостей (нужны `$member_id` и группа из списка). Cycle-логгер и интерполяция SQL — только когда панель реально запущена. Ядро ходит в панель через [DebugHooks](reference/back-end/classes/DebugHooks), без жёсткого `use` Admin. Карта PSR-4 читает `module_psr4.php` без `scandir` на каждый запрос (сброс — `resetManifestCache`). Гайды: [Отладка](guides/debugging), [Настройка](guides/manage).
+* **Фильтр по диапазону:** границы колонки (`columnBounds`) считаются через `MIN`/`MAX` в SQL, без загрузки всех строк. Страница «Вывод логов» больше не падает по памяти на больших журналах.
 * **Скачать логи:** в ZIP исходный текст сообщения, без экранирования HTML из базы (`&lt;b&gt;`, `&quot;`, `&lt;br /&gt;`).
 * **Скачать SQL миграции:** в файл идёт `CREATE`/`ALTER`, а не исходник PHP, даже если таблица уже есть в базе. В откате перед `DROP TABLE` пишутся `DROP INDEX`.
 * **Composer:** из таблицы убрана строка «Все пакеты» — установка всех зависимостей только кнопкой сверху.
@@ -122498,6 +122502,17 @@ QueryBuilder::create('tags')
         <img alt="Переключатель режима отладки" src="__img0" />
 
     Для разовой проверки **без** сохранения настроек добавьте в адрес админки `?dc_debug=1` (сессия DLE, действует во всех вкладках браузера).
+
+    На той же вкладке — настройки нижней панели SQL (как у DLEToolbar). Панель **не** требует «Режим отладки» и `?dc_debug=1`.
+
+    * **Показывать панель отладки** (`debug_toolbar`) — главный выключатель; &#x2A;*по умолчанию выкл.**;
+    * **Панель в админке** / **Панель на сайте** — тоже &#x2A;*по умолчанию выкл.**;
+    * **Группы с доступом** — кому видна панель и у кого идёт сбор SQL (по умолчанию группа администраторов; пустой список — никому);
+    * **Источники SQL** — вкладки `$db`, Cycle, прочие.
+
+    <Callout type="info">
+      Гости и пользователи вне списка групп панель не видят и SQL для них **не собирается**. Сбор начинается только когда уже есть `$member_id` и группа в списке. Ядро дергает панель через [DebugHooks](../reference/back-end/classes/DebugHooks); логгер Cycle к SQL подключается только пока панель реально запущена.
+    </Callout>
   </Step>
 
   <Step>
@@ -122564,7 +122579,8 @@ QueryBuilder::create('tags')
 
 ## См. также [#см-также]
 
-* [Настройка](./manage) — таблица полей `debug`, `logs`, `logs_db`
+* [Настройка](./manage) — таблица полей `debug`, `debug_toolbar*`, `logs`, `logs_db`
+* [DebugHooks](../reference/back-end/classes/DebugHooks) — мост ядра к панели без жёсткой связи с модулем Admin
 * [LogGenerator](../reference/back-end/classes/LogGenerator)
 
 
@@ -123078,11 +123094,16 @@ devcraft/locales/ru_RU/my_module.xliff
 
 ## Отладка [#отладка]
 
-| Настройка               | Описание                                                                                                                                      | Тип           |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Режим отладки (`debug`) | Подробные сообщения в консоль браузера, `error_log` и журнал (тип `debug`). Для разовой проверки без сохранения: `?dc_debug=1` в URL админки. | Переключатель |
+| Настройка                                   | Описание                                                                                                                                                      | Тип                 |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| Режим отладки (`debug`)                     | Подробные сообщения в консоль браузера, `error_log` и журнал (тип `debug`). Для разовой проверки без сохранения: `?dc_debug=1` в URL админки.                 | Переключатель       |
+| Показывать панель отладки (`debug_toolbar`) | Нижняя панель с SQL ($db, Cycle и прочие). **Не** зависит от `debug` / `?dc_debug=1`. По умолчанию &#x2A;*выкл.**                                             | Переключатель       |
+| Панель в админке (`debug_toolbar_admin`)    | Показывать панель на всех страницах `admin.php` (настройки DLE, чужие модули и DevCraft). По умолчанию &#x2A;*выкл.**                                         | Переключатель       |
+| Панель на сайте (`debug_toolbar_public`)    | Показывать панель на публичных страницах. По умолчанию &#x2A;*выкл.** Сбор SQL только у групп из списка.                                                      | Переключатель       |
+| Группы с доступом (`debug_toolbar_groups`)  | Кому видна панель и у кого идёт сбор SQL. По умолчанию — администраторы. Пустой список — панель скрыта для всех. В выборе только группы с доступом в админку. | Множественный выбор |
+| Источники SQL (`debug_toolbar_panels`)      | Вкладки `$db` / Cycle / прочие. Вкладка All собирает выбранные источники.                                                                                     | Множественный выбор |
 
-Пошагово: включить отладку, снять журнал и прислать разработчику — [Как включить отладку и прислать журнал](./debugging).
+Пошагово: включить отладку, снять журнал и прислать разработчику — [Отладка](./debugging). Мост ядра к панели — [DebugHooks](../reference/back-end/classes/DebugHooks).
 
 ## Пути [#пути]
 
@@ -123526,6 +123547,10 @@ if(defined('DEVCRAFT_BOOTSTRAPPED') && class_exists(DleSiteSectionRegistry::clas
 Настройка Admin «Публичные ресурсы» → `public_assets_compress`. Сборка: [PublicAssetBundleCacheService](../reference/back-end/classes/PublicAssetBundleCacheService) + [PublicAssetMinify](../reference/back-end/classes/PublicAssetMinify).
 
 Собранные файлы лежат в `devcraft/cache/public_assets/` **отдельно по разделу сайта** (ключ `$do`), чтобы главная и полная новость не делили один и тот же набор. Корень `devcraft/.htaccess` закрывает HTTP-доступ ко всему каталогу DevCraft, поэтому при сборке в `public_assets/` автоматически пишется `.htaccess` с `Require all granted` (иначе браузер получит 403). Без `AllowOverride` для этого каталога на сервере файл не поможет — проверьте настройки Apache.
+
+## Кэш списков в базе [#кэш-списков-в-базе]
+
+Сами списки из `dc_public_assets` / `dc_public_headers` тоже не читаются из базы на каждом заходе: [PublicAssetCatalogCache](../reference/back-end/classes/PublicAssetCatalogCache) кладёт их в `CacheControl` (тип `public_assets`, TTL = `cache_timer`). После правки в админке или sync манифестов пул сбрасывается вместе со собранными файлами. Если в настройках Admin включён `debug`, `CacheControl` не отдаёт кэш — списки снова идут через Cycle (как у любого другого чтения через этот пул).
 
 ## Что не класть в siteAssets [#что-не-класть-в-siteassets]
 
@@ -127688,6 +127713,66 @@ DELETE по `conditions`. Без conditions не выполняется (защ�
 Подключает dbconfig.php DLE, если константы БД ещё не определены.
 
 **С версии:** 171.3.0
+
+
+# Класс: DebugHooks (/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DebugHooks)
+
+
+
+**Описание:** Тонкий фасад в ядре: метки времени, запуск панели и подключение перехвата SQL Cycle. Если класса `ToolbarService` нет, вызовы ничего не делают — ядро не обязано импортировать модуль Admin.
+
+**Namespace:** `DevCraft\Core\Debug`
+
+**С версии:** 200.4.2
+
+**См. также:**
+
+* [Гайд: Отладка](../../../guides/debugging)
+* [Application](Application)
+* [DatabaseGateway](DatabaseGateway)
+
+## Путь [#путь]
+
+`devcraft/src/classes/Debug/DebugHooks.php`
+
+## Методы [#методы]
+
+### `mark(string $name): void` [#markstring-name-void]
+
+Ставит метку времени для таймлайна панели («куда ушло»). Без Admin — пустой вызов.
+
+### `boot(string $surface): void` [#bootstring-surface-void]
+
+Запускает сбор панели на поверхности `admin` или `public`. Реальный `ToolbarService::boot` сам проверяет настройки, `$member_id` и группу.
+
+### `hookDleAdmin(): void` [#hookdleadmin-void]
+
+Ранний хук для страниц `admin.php` (не только раздел DevCraft).
+
+### `isBooted(): bool` [#isbooted-bool]
+
+`true`, если панель уже запущена в этом запросе.
+
+### `refreshCycleSqlTap(): void` [#refreshcyclesqltap-void]
+
+Просит [Application](Application) / [DatabaseGateway](DatabaseGateway) повесить логгер Cycle SQL, если панель уже запущена и шлюз БД создан. Ошибки ORM глотаются — boot панели не должен требовать базу.
+
+<Callout type="info">
+  `Application`, `Router` и `DatabaseGateway` ходят в панель через этот класс (`class_exists`), а не через прямой `use` `ToolbarService`.
+</Callout>
+
+## Пример [#пример]
+
+```php
+use DevCraft\Core\Debug\DebugHooks;
+
+DebugHooks::mark('devcraft_boot_start');
+DebugHooks::boot('public');
+
+if (DebugHooks::isBooted()) {
+	DebugHooks::refreshCycleSqlTap();
+}
+```
 
 
 # Класс: DefaultPackagePolicyStore (/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DefaultPackagePolicyStore)
@@ -132434,6 +132519,51 @@ $body = ParseTemplateTags::apply(
 ### `invalidate(string $kind): void` [#invalidatestring-kind-void]
 
 Удаляет файл бандла и его meta для указанного вида.
+
+
+# Класс: PublicAssetCatalogCache (/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetCatalogCache)
+
+
+
+**Описание:** Хранит списки записей из `dc_public_assets` и `dc_public_headers` в файловом пуле `CacheControl` (тип `public_assets`, TTL = `cache_timer`). В пул кладутся массивы полей; при чтении собираются сущности без SQL. Сброс — вместе с инвалидацией собранных бандлов.
+
+**Namespace:** `DevCraft\Modules\Admin\Services`
+
+**С версии:** 200.4.2
+
+**См. также:**
+
+* [Гайд: Публичные ресурсы оболочки](../../../guides/public_assets)
+* [PublicAssetBundleCacheService](PublicAssetBundleCacheService)
+* [PublicAssetEntryRepository](PublicAssetEntryRepository)
+
+## Путь [#путь]
+
+`devcraft/src/modules/Admin/Services/PublicAssetCatalogCache.php`
+
+## Константы [#константы]
+
+| Константа | Тип             | Описание                              |
+| --------- | --------------- | ------------------------------------- |
+| `TYPE`    | `const(string)` | Тип в `CacheControl`: `public_assets` |
+
+## Методы [#методы]
+
+### `assets(string $kind, callable $loader): array` [#assetsstring-kind-callable-loader-array]
+
+Возвращает список `PublicAssetEntry` для `css` / `js`. При промахе вызывает `$loader`, пишет результат в пул.
+
+### `headers(callable $loader): array` [#headerscallable-loader-array]
+
+То же для `PublicHeaderEntry` (ключ `list_meta`).
+
+### `invalidate(): void` [#invalidate-void]
+
+Чистит namespace `public_assets` в `CacheControl`.
+
+<Callout type="info">
+  При `debug` в настройках Admin `CacheControl::getCache` всегда даёт промах — списки снова читаются через Cycle.
+</Callout>
 
 
 # Класс: PublicAssetDeleteHandler (/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetDeleteHandler)

@@ -840,7 +840,7 @@
           - [Создание CRUD-страницы](/dev/dle/devcraft_admin/200.4.2/guides/crud_pages): Сквозной сценарий CRUD-страницы DevCraft: Entity, Repository, список с фильтром, форма создания/редактирования, Ajax, манифест, Twig.
           - [Настройка](/dev/dle/devcraft_admin/200.4.2/guides/manage): Глобальные настройки плагина DevCraft Admin.
           - [Скрипты админки и сайта](/dev/dle/devcraft_admin/200.4.2/guides/admin_scripts): Как подключать и вызывать общие скрипты DevCraft: ядро админки, фильтр, перевод, Composer и публичный клиент
-          - [Отладка](/dev/dle/devcraft_admin/200.4.2/guides/debugging): Как включить режим отладки Admin, снять журнал и прислать его разработчику
+          - [Отладка](/dev/dle/devcraft_admin/200.4.2/guides/debugging): Режим отладки, нижняя панель SQL, журнал: как включить, снять и прислать разработчику
           - [Генератор языковых файлов](/dev/dle/devcraft_admin/200.4.2/guides/generate_languages): Локализация модулей DevCraft: XLIFF и Translation.
           - [Справочник: ИИ-инструменты](/dev/dle/devcraft_admin/200.4.2/guides/ai_tools): Единая точка входа: skills, MCP, Cursor-rules, update-policy и промпт модуля DevCraft.
         - Помощь в разработке
@@ -919,6 +919,7 @@
               - [Класс: DatabaseGateway](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DatabaseGateway): Документация по плагину класс: databasegateway для DLE.
               - [Класс: DataLoaderService](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DataLoaderService): Static-фасад загрузки и записи строк DLE через Cycle Database с кешированием SELECT.
               - [Класс: DataManager](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DataManager): Документация по плагину класс: datamanager для DLE.
+              - [Класс: DebugHooks](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DebugHooks): Мост ядра к панели отладки Admin без жёсткой зависимости Core → Modules\Admin.
               - [Класс: DefaultPackagePolicyStore](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DefaultPackagePolicyStore): Хранение политик пакетов в devcraft/config/composer_admin.json.
               - [Класс: DeleteLogHandler](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DeleteLogHandler): Документация по плагину класс: deleteloghandler для DLE.
               - [Класс: DevCraftConfig](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DevCraftConfig): Документация по плагину класс: devcraftconfig для DLE.
@@ -965,6 +966,7 @@
               - [Класс: PluginContext](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PluginContext): Документация по плагину класс: plugincontext для DLE.
               - [Класс: PublicAssetAdminFormService](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetAdminFormService): View-model форм добавления через FormSchema + SettingsFormService.
               - [Класс: PublicAssetBundleCacheService](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetBundleCacheService): Кэш объединённых CSS/JS бандлов оболочки.
+              - [Класс: PublicAssetCatalogCache](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetCatalogCache): Кэш списков dc_public_assets / dc_public_headers через CacheControl.
               - [Класс: PublicAssetDeleteHandler](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetDeleteHandler): AJAX-обработчик `PublicAssetDeleteHandler` публичных ресурсов (`devcraft/ajax.php`, `controller=admin`).
               - [Класс: PublicAssetEntry](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetEntry): Запись списка публичных CSS/JS оболочки (таблица `dc_public_assets`).
               - [Класс: PublicAssetEntryRepository](/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetEntryRepository): Репозиторий публичных CSS/JS.
