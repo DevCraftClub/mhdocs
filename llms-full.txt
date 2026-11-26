@@ -120125,6 +120125,7 @@ $uploaded->moveTo($targetPath);
 
 ### Добавлено [#добавлено]
 
+* **Настройки → Отладка:** показ панели SQL (админка / сайт), группы с доступом и выбор источников (`$db`, Cycle, прочие) — по тому же принципу, что у DLEToolbar. Гайды: [Отладка](guides/debugging), [Настройка](guides/manage).
 * **Схема базы:** если миграция отвечает, что таблица или колонка уже есть, очередь не останавливается. Эта запись помечается выполненной, остальные накатываются. Недостающие таблицы и правки колонок по-прежнему создаёт сам Cycle при генерации миграций.
 * **Страница 500 и AJAX:** при ошибке схемы Cycle (`Undefined schema`) в описании видны класс, файл, цепочка причин, роли в сохранённой схеме и каталоги Models. Старая неполная схема сбрасывается один раз; классы моделей подгружаются до сборки ORM.
 * **Верхняя панель админки:** справа язык, тема и имя с картинкой пользователя. В меню — профиль на сайте и выход. Смена языка и темы сохраняется в настройки Admin и обновляет страницу. Язык — значок `mif-translate` и список названий, текущий пункт в списке подсвечен, тема — значок `mif-dark-light` ([темы Metro](https://panda.metroui.org.ua/common/themes)), без картинки пользователя — `mif-user-settings`. Рядом кнопка «Очистить кеш» (`mif-bin`): чистит кэш DLE и DevCraft и возвращает в тот же раздел.
@@ -120144,6 +120145,11 @@ $uploaded->moveTo($targetPath);
 
 ### Исправлено [#исправлено]
 
+* **404 с чужим `mod`:** если действие есть у другого модуля (в т.ч. страница сателлита в меню хозяина), админка перенаправляет на верный `mod`. Кнопка «На главную» на ошибках ведёт на стартовое действие текущего модуля, а не всегда на `dashboard` у `devcraft`.
+* **Очистка кэша:** `mod` берётся из загруженного модуля (даже если `runAdmin` вызвали только с каталогом). При неверном `user_hash` «На главную» остаётся в том же модуле; с страницы 500 после очистки возврат на то действие, где произошла ошибка (`return=`).
+* **Публичный hit / автозагрузка:** prepend-обработчик в `devcraft/init.php` больше не вызывает `findFile` на каждый класс DLE и темы — только на `DevCraft\*` и `JetBrains\PhpStorm\*`. Иначе при включённом Admin «генерация страницы» раздувалась сотнями миллисекунд.
+* **Панель отладки:** по умолчанию выключена; SQL не собирается у гостей (нужны `$member_id` и группа из списка). Cycle-логгер и интерполяция SQL — только когда панель реально запущена. Ядро ходит в панель через [DebugHooks](reference/back-end/classes/DebugHooks), без жёсткого `use` Admin. Карта PSR-4 читает `module_psr4.php` без `scandir` на каждый запрос (сброс — `resetManifestCache`). Гайды: [Отладка](guides/debugging), [Настройка](guides/manage).
+* **Фильтр по диапазону:** границы колонки (`columnBounds`) считаются через `MIN`/`MAX` в SQL, без загрузки всех строк. Страница «Вывод логов» больше не падает по памяти на больших журналах.
 * **Скачать логи:** в ZIP исходный текст сообщения, без экранирования HTML из базы (`&lt;b&gt;`, `&quot;`, `&lt;br /&gt;`).
 * **Скачать SQL миграции:** в файл идёт `CREATE`/`ALTER`, а не исходник PHP, даже если таблица уже есть в базе. В откате перед `DROP TABLE` пишутся `DROP INDEX`.
 * **Composer:** из таблицы убрана строка «Все пакеты» — установка всех зависимостей только кнопкой сверху.
@@ -122498,6 +122504,17 @@ QueryBuilder::create('tags')
         <img alt="Переключатель режима отладки" src="__img0" />
 
     Для разовой проверки **без** сохранения настроек добавьте в адрес админки `?dc_debug=1` (сессия DLE, действует во всех вкладках браузера).
+
+    На той же вкладке — настройки нижней панели SQL (как у DLEToolbar). Панель **не** требует «Режим отладки» и `?dc_debug=1`.
+
+    * **Показывать панель отладки** (`debug_toolbar`) — главный выключатель; &#x2A;*по умолчанию выкл.**;
+    * **Панель в админке** / **Панель на сайте** — тоже &#x2A;*по умолчанию выкл.**;
+    * **Группы с доступом** — кому видна панель и у кого идёт сбор SQL (по умолчанию группа администраторов; пустой список — никому);
+    * **Источники SQL** — вкладки `$db`, Cycle, прочие.
+
+    <Callout type="info">
+      Гости и пользователи вне списка групп панель не видят и SQL для них **не собирается**. Сбор начинается только когда уже есть `$member_id` и группа в списке. Ядро дергает панель через [DebugHooks](../reference/back-end/classes/DebugHooks); логгер Cycle к SQL подключается только пока панель реально запущена.
+    </Callout>
   </Step>
 
   <Step>
@@ -122564,7 +122581,8 @@ QueryBuilder::create('tags')
 
 ## См. также [#см-также]
 
-* [Настройка](./manage) — таблица полей `debug`, `logs`, `logs_db`
+* [Настройка](./manage) — таблица полей `debug`, `debug_toolbar*`, `logs`, `logs_db`
+* [DebugHooks](../reference/back-end/classes/DebugHooks) — мост ядра к панели без жёсткой связи с модулем Admin
 * [LogGenerator](../reference/back-end/classes/LogGenerator)
 
 
@@ -123078,11 +123096,16 @@ devcraft/locales/ru_RU/my_module.xliff
 
 ## Отладка [#отладка]
 
-| Настройка               | Описание                                                                                                                                      | Тип           |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Режим отладки (`debug`) | Подробные сообщения в консоль браузера, `error_log` и журнал (тип `debug`). Для разовой проверки без сохранения: `?dc_debug=1` в URL админки. | Переключатель |
+| Настройка                                   | Описание                                                                                                                                                      | Тип                 |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| Режим отладки (`debug`)                     | Подробные сообщения в консоль браузера, `error_log` и журнал (тип `debug`). Для разовой проверки без сохранения: `?dc_debug=1` в URL админки.                 | Переключатель       |
+| Показывать панель отладки (`debug_toolbar`) | Нижняя панель с SQL ($db, Cycle и прочие). **Не** зависит от `debug` / `?dc_debug=1`. По умолчанию &#x2A;*выкл.**                                             | Переключатель       |
+| Панель в админке (`debug_toolbar_admin`)    | Показывать панель на всех страницах `admin.php` (настройки DLE, чужие модули и DevCraft). По умолчанию &#x2A;*выкл.**                                         | Переключатель       |
+| Панель на сайте (`debug_toolbar_public`)    | Показывать панель на публичных страницах. По умолчанию &#x2A;*выкл.** Сбор SQL только у групп из списка.                                                      | Переключатель       |
+| Группы с доступом (`debug_toolbar_groups`)  | Кому видна панель и у кого идёт сбор SQL. По умолчанию — администраторы. Пустой список — панель скрыта для всех. В выборе только группы с доступом в админку. | Множественный выбор |
+| Источники SQL (`debug_toolbar_panels`)      | Вкладки `$db` / Cycle / прочие. Вкладка All собирает выбранные источники.                                                                                     | Множественный выбор |
 
-Пошагово: включить отладку, снять журнал и прислать разработчику — [Как включить отладку и прислать журнал](./debugging).
+Пошагово: включить отладку, снять журнал и прислать разработчику — [Отладка](./debugging). Мост ядра к панели — [DebugHooks](../reference/back-end/classes/DebugHooks).
 
 ## Пути [#пути]
 
@@ -123526,6 +123549,10 @@ if(defined('DEVCRAFT_BOOTSTRAPPED') && class_exists(DleSiteSectionRegistry::clas
 Настройка Admin «Публичные ресурсы» → `public_assets_compress`. Сборка: [PublicAssetBundleCacheService](../reference/back-end/classes/PublicAssetBundleCacheService) + [PublicAssetMinify](../reference/back-end/classes/PublicAssetMinify).
 
 Собранные файлы лежат в `devcraft/cache/public_assets/` **отдельно по разделу сайта** (ключ `$do`), чтобы главная и полная новость не делили один и тот же набор. Корень `devcraft/.htaccess` закрывает HTTP-доступ ко всему каталогу DevCraft, поэтому при сборке в `public_assets/` автоматически пишется `.htaccess` с `Require all granted` (иначе браузер получит 403). Без `AllowOverride` для этого каталога на сервере файл не поможет — проверьте настройки Apache.
+
+## Кэш списков в базе [#кэш-списков-в-базе]
+
+Сами списки из `dc_public_assets` / `dc_public_headers` тоже не читаются из базы на каждом заходе: [PublicAssetCatalogCache](../reference/back-end/classes/PublicAssetCatalogCache) кладёт их в `CacheControl` (тип `public_assets`, TTL = `cache_timer`). После правки в админке или sync манифестов пул сбрасывается вместе со собранными файлами. Если в настройках Admin включён `debug`, `CacheControl` не отдаёт кэш — списки снова идут через Cycle (как у любого другого чтения через этот пул).
 
 ## Что не класть в siteAssets [#что-не-класть-в-siteassets]
 
@@ -127688,6 +127715,66 @@ DELETE по `conditions`. Без conditions не выполняется (защ�
 Подключает dbconfig.php DLE, если константы БД ещё не определены.
 
 **С версии:** 171.3.0
+
+
+# Класс: DebugHooks (/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DebugHooks)
+
+
+
+**Описание:** Тонкий фасад в ядре: метки времени, запуск панели и подключение перехвата SQL Cycle. Если класса `ToolbarService` нет, вызовы ничего не делают — ядро не обязано импортировать модуль Admin.
+
+**Namespace:** `DevCraft\Core\Debug`
+
+**С версии:** 200.4.2
+
+**См. также:**
+
+* [Гайд: Отладка](../../../guides/debugging)
+* [Application](Application)
+* [DatabaseGateway](DatabaseGateway)
+
+## Путь [#путь]
+
+`devcraft/src/classes/Debug/DebugHooks.php`
+
+## Методы [#методы]
+
+### `mark(string $name): void` [#markstring-name-void]
+
+Ставит метку времени для таймлайна панели («куда ушло»). Без Admin — пустой вызов.
+
+### `boot(string $surface): void` [#bootstring-surface-void]
+
+Запускает сбор панели на поверхности `admin` или `public`. Реальный `ToolbarService::boot` сам проверяет настройки, `$member_id` и группу.
+
+### `hookDleAdmin(): void` [#hookdleadmin-void]
+
+Ранний хук для страниц `admin.php` (не только раздел DevCraft).
+
+### `isBooted(): bool` [#isbooted-bool]
+
+`true`, если панель уже запущена в этом запросе.
+
+### `refreshCycleSqlTap(): void` [#refreshcyclesqltap-void]
+
+Просит [Application](Application) / [DatabaseGateway](DatabaseGateway) повесить логгер Cycle SQL, если панель уже запущена и шлюз БД создан. Ошибки ORM глотаются — boot панели не должен требовать базу.
+
+<Callout type="info">
+  `Application`, `Router` и `DatabaseGateway` ходят в панель через этот класс (`class_exists`), а не через прямой `use` `ToolbarService`.
+</Callout>
+
+## Пример [#пример]
+
+```php
+use DevCraft\Core\Debug\DebugHooks;
+
+DebugHooks::mark('devcraft_boot_start');
+DebugHooks::boot('public');
+
+if (DebugHooks::isBooted()) {
+	DebugHooks::refreshCycleSqlTap();
+}
+```
 
 
 # Класс: DefaultPackagePolicyStore (/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/DefaultPackagePolicyStore)
@@ -132434,6 +132521,51 @@ $body = ParseTemplateTags::apply(
 ### `invalidate(string $kind): void` [#invalidatestring-kind-void]
 
 Удаляет файл бандла и его meta для указанного вида.
+
+
+# Класс: PublicAssetCatalogCache (/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetCatalogCache)
+
+
+
+**Описание:** Хранит списки записей из `dc_public_assets` и `dc_public_headers` в файловом пуле `CacheControl` (тип `public_assets`, TTL = `cache_timer`). В пул кладутся массивы полей; при чтении собираются сущности без SQL. Сброс — вместе с инвалидацией собранных бандлов.
+
+**Namespace:** `DevCraft\Modules\Admin\Services`
+
+**С версии:** 200.4.2
+
+**См. также:**
+
+* [Гайд: Публичные ресурсы оболочки](../../../guides/public_assets)
+* [PublicAssetBundleCacheService](PublicAssetBundleCacheService)
+* [PublicAssetEntryRepository](PublicAssetEntryRepository)
+
+## Путь [#путь]
+
+`devcraft/src/modules/Admin/Services/PublicAssetCatalogCache.php`
+
+## Константы [#константы]
+
+| Константа | Тип             | Описание                              |
+| --------- | --------------- | ------------------------------------- |
+| `TYPE`    | `const(string)` | Тип в `CacheControl`: `public_assets` |
+
+## Методы [#методы]
+
+### `assets(string $kind, callable $loader): array` [#assetsstring-kind-callable-loader-array]
+
+Возвращает список `PublicAssetEntry` для `css` / `js`. При промахе вызывает `$loader`, пишет результат в пул.
+
+### `headers(callable $loader): array` [#headerscallable-loader-array]
+
+То же для `PublicHeaderEntry` (ключ `list_meta`).
+
+### `invalidate(): void` [#invalidate-void]
+
+Чистит namespace `public_assets` в `CacheControl`.
+
+<Callout type="info">
+  При `debug` в настройках Admin `CacheControl::getCache` всегда даёт промах — списки снова читаются через Cycle.
+</Callout>
 
 
 # Класс: PublicAssetDeleteHandler (/dev/dle/devcraft_admin/200.4.2/reference/back-end/classes/PublicAssetDeleteHandler)
@@ -140956,6 +141088,90 @@ composer dump-autoload
 Меню **Файлы** (`static-images` / `static-files` / `static-audio` / `static-video`) — библиотека для медиа-xfields и тегов `{{ static_* }}`. Загрузка идёт через общий API DevCraft (`DevCraftAjax.postMultipart`).
 
 
+# История изменений (/dev/dle/dle_notifications_watchman/1.0.0/changelog)
+
+
+
+## 1.0.0 [#100]
+
+* Крон-скан новостей, комментариев и оценок мимо хуков DLE.
+* Холодный старт: полные снимки и сверка с лентой до первой отправки.
+* Дельта правок новости в шаблонах сценария (поля из настроек).
+* Пункт меню внутри DLE Уведомления (`extends`).
+* Публичный URL скана для внешнего крона (секрет в настройках, адрес на странице статуса).
+
+
+# Начало работы (/dev/dle/dle_notifications_watchman/1.0.0/getting_started)
+
+
+
+**DLE Уведомления: Наблюдатель** — соседний модуль к [DLE Уведомления](/dev/dle/notifications). По расписанию DLE cron смотрит новости, комментарии и оценки, которые попали в базу в обход штатных хуков (например из граббера), и вызывает те же `notifyOn*`, что и обычный путь.
+
+Отдельного пункта в меню DLE нет: статус и история живут внутри `?mod=notifications`.
+
+<Cards>
+  <Card title="Установка" href="./install">
+    ZIP, крон, холодный старт
+  </Card>
+
+  <Card title="История изменений" href="./changelog">
+    Что вошло в 1.0.0
+  </Card>
+</Cards>
+
+## Что умеет [#что-умеет]
+
+* холодный старт: сначала полные снимки и сверка с лентой, **без** рассылки;
+* после базы — только новое и изменённое, без дублей;
+* дельта полей правки новости в шаблоне (`{changes}`, `{watchman-body}`) по списку из настроек;
+* внешний URL скана для crontab / сервиса крона (секрет в настройках);
+* эталон поведения скана — Series Push Universal (без Web Push).
+
+## Требования [#требования]
+
+* DLE ≥ 21.0
+* DevCraft Admin ≥ 200.4.0
+* установленный модуль **DLE Уведомления**
+
+
+# Установка (/dev/dle/dle_notifications_watchman/1.0.0/install)
+
+
+
+## Системные требования [#системные-требования]
+
+* DLE ≥ 21.0
+* плагин **DLE Уведомления**
+* DevCraft Admin ≥ 200.4.0
+
+## Установка [#установка]
+
+1. Установите ZIP через «Плагины» DLE (нужен уже стоящий модуль Уведомлений).
+2. Включите плагин — создастся таблица снимков, в `cron.php` появится вызов `notifyWatchmanScan`.
+3. В админке Уведомлений откройте «Наблюдатель: Статус» и включите сканирование в настройках модуля (`dle_notifications_watchman`).
+
+## Холодный старт [#холодный-старт]
+
+Пока статус «Ещё собирается», наблюдатель **не** вызывает `notifyOn*`. Несколько проходов cron обходят сущности пакетами. Когда обход закончен — «Готово», дальше только дельта.
+
+## Дельта в шаблоне [#дельта-в-шаблоне]
+
+В сценарии `news_update` после установки патчей доступны теги `{changes}` / `{watchman-body}` (текст строк) и `{watchman-changes-json}` (массив). Список полей — multi-выбор в настройках Наблюдателя (основные поля и доп. поля новости).
+
+## Крон [#крон]
+
+Два способа (можно оба сразу):
+
+1. **Штатный cron DLE** — в конце `engine/modules/cron.php` вызывается `notifyWatchmanScan` (\~раз в 2 часа при обычном трафике сайта). Секрет не нужен.
+2. **Внешний URL** — в настройках задайте «Секрет URL крона». На странице «Наблюдатель: Статус» появится готовый адрес. Его можно повесить на любой планировщик:
+
+```bash
+*/15 * * * * curl -fsS "https://example.com/devcraft/ajax.php?controller=public&mod=notifications_watchman&method=watchman_scan&token=ВАШ_СЕКРЕТ"
+```
+
+Пустой секрет — внешние вызовы отклоняются (ответ 403). Сканирование должно быть включено.
+
+
 # Обзор (/dev/dle)
 
 
@@ -143852,12 +144068,27 @@ devcraft/notifications/
 
 ## 200.2.0 (2026-11-18) [#20020-2026-11-18]
 
+* дашборд `/notifications/` с виджетами (скелет + Ajax) и страницы inbox / subscriptions / updates;
+* ЧПУ кабинета через `DLEUrl::AddRule` при включении плагина (без патча `urls.class.php`);
+* профильные списки `/notifications/{name}/subscriptions|subscribers/` и 4 настройки приватности (`xf_privacy_*`);
+* `page_size` модуля перекрывает Admin `list_count`; старые `wall_limit` / `publications_limit` — запас размера;
+* `NotificationsParseTemplateTags` — теги DLE в шаблонах модуля;
+* нормализация custom xfield при просмотре и по крону; отправка по xfield не глушится `notify_on_add`;
 * тип подписки `comments` — сообщения о новых комментариях к новости;
 * include `focus=subscription_button`: колокольчик, окно выбора подписок, фильтры `only` / `category` / `xfields` / `tags`, кэш `dc_notify_btn_*`;
 * канал `notify_push` у тематической подписки (рядом с сайтом, почтой и ЛС) — колонка и UI через патчи сателлита Push, не в исходниках ядра;
 * «Отметить все прочитанными» через один SQL UPDATE, без лимита 500;
 * конструктор include: пример `subscription_button`;
 * стена без кнопки Push в ядре; фоновый опрос колокольчика без всплывающих ошибок при устаревшем хеше сессии (нужен Admin с новым `dc_public.js`).
+* подписка на доп. поле целиком или на значение (в т.ч. своё + regex); режимы `value_appeared` / `value_present` / `field_changed`; снимок полей при правке; без дублей на одного пользователя;
+* в дереве подписок — поля `select` и да/нет с вариантами из схемы **только если поле есть у этой новости**; «своё значение» только у имён из настройки `xfield_custom_value_fields` (пусто — ни у кого);
+* в кабинете «Мои подписки» — кнопка «Добавить подписку»: каталог разделов, тегов и доп. полей (список — все варианты схемы, текст — уникальные значения из опубликованных); подписи на новости отделяют «новые материалы» от «обновления этой публикации»;
+* кнопка «Отписаться от всего» в кабинете подписок;
+* список подписок рисует доп. каналы (в т.ч. Push) из `ChannelRegistry` с учётом сохранённых флагов;
+* шаблоны только из активной темы сайта (`tpl_path`); запаса на Default нет — при отсутствии папки на сайте показывается ошибка;
+* своё значение: на сохранении `filter_var` для любого `поле/значение` (в т.ч. без флага `custom`); allowlist — для своего (флаг или значение не из опций select/да-нет); regex из `xfield_custom_value_regex` при сверке только для своего (флаг `i` — без учёта регистра), не для опций дерева;
+* в уведомлении о рейтинге — только текст (`+1`), без HTML звёзд сайта;
+* шаблоны разложены по папкам `inbox/`, `subscribe/`, `publications/`, `labels/` (+ `scenarios/`, `wrappers/`); подпись поля — `labels/xfield_label.tpl` (`{id}`, `{name}`, `{count}`).
 
 ## 200.1.1 (2026-10-09) [#20011-2026-10-09]
 
@@ -144711,10 +144942,10 @@ function notifyOrderPaid(int $buyerId, int $orderId, string $amount, string $url
 ## Как устроено [#как-устроено]
 
 1. `do=notifications` → `devcraft/src/modules/Notifications/Controller/show_notifications_page.php`
-2. Шаблон темы `templates/{тема}/devcraft/notifications/page.tpl`
+2. Шаблон темы `templates/{тема}/devcraft/notifications/inbox/page.tpl`
 3. Внутри — вставка стены: `show_notifications.php?focus=wall`
 
-Типичный кабинет с тремя блоками — в [шаблоне page.tpl](../templates/page). Оформление записей — `wall.tpl`, `item.tpl`, `item_actions.tpl` ([стена](../templates/wall), [строка ленты](../templates/item)).
+Типичный кабинет с тремя блоками — в [шаблоне inbox/page.tpl](../templates/page). Оформление записей — `inbox/wall.tpl`, `inbox/item.tpl`, `inbox/item_actions.tpl` ([стена](../templates/wall), [строка ленты](../templates/item)).
 
 ## Отличие от вставки стены [#отличие-от-вставки-стены]
 
@@ -144766,6 +144997,58 @@ function notifyOrderPaid(int $buyerId, int $orderId, string $amount, string $url
 * [Своё событие](./custom_event)
 * [Настройки пользователя](./user_prefs)
 * [Типы подписок](./subscription_types)
+
+
+# Приватность профиля и размер страницы (/dev/dle/notifications/200.2.0/guides/privacy_page_size)
+
+
+
+## Введение [#введение]
+
+В настройках модуля четыре поля привязки к доп. полям профиля пользователя. Они решают, видят ли чужие люди **числа** и **полные списки** подписок / подписчиков.
+
+## Предварительные требования [#предварительные-требования]
+
+* [Начало работы](../getting_started)
+* В профиле DLE заведены нужные доп. поля (да/нет или текст)
+
+## Поля `xf_privacy_*` [#поля-xf_privacy_]
+
+| Ключ настройки               | Смысл                                     |
+| ---------------------------- | ----------------------------------------- |
+| `xf_privacy_subs_count`      | показывать чужим **число** «мои подписки» |
+| `xf_privacy_subs_list`       | показывать чужим **список** подписок      |
+| `xf_privacy_followers_count` | показывать чужим **число** подписчиков    |
+| `xf_privacy_followers_list`  | показывать чужим **список** подписчиков   |
+
+### Как завести доп. поле в DLE [#как-завести-доп-поле-в-dle]
+
+В админке DLE: доп. поле **профиля** типа «да/нет» (или список значений с теми же ответами). Имя поля любое — в настройках модуля выберите его в соответствующем списке.
+
+| Значение у пользователя          | Смысл                            |
+| -------------------------------- | -------------------------------- |
+| `да`, `1`, `on`, `yes`, `true`   | показывать                       |
+| `нет`, `0`, `off`, `no`, `false` | скрыть                           |
+| пусто                            | как при пустой привязке в модуле |
+
+Если привязка в модуле пустая или у пользователя пустое значение:
+
+* **число** — по умолчанию **да** (видно чужим);
+* **список** — по умолчанию **нет** (скрыт).
+
+Владелец профиля и пользователь с правом `notifications_is_admin` видят всё всегда.
+
+URL списков: `/notifications/{name}/subscriptions/`, `/notifications/{name}/subscribers/`.
+
+## Размер страницы [#размер-страницы]
+
+Настройка `page_size` модуля задаёт, сколько строк на странице в кабинете и списках. Если пусто — берётся Admin `list_count`. Отдельные `wall_limit` и `publications_limit` больше не используются.
+
+## Отправка по доп. полям [#отправка-по-доп-полям]
+
+Флаг `notify_on_add` по-прежнему глушит разделы / автора / теги / «всё», но **не** подписки на доп. поля: для них работают режимы `xfield_notify_modes`.
+
+При просмотре новости и по крону срабатывает нормализация: кэш каталога сбрасывается, если в новости есть значения, на которые уже есть подписки `xfield`/`поле/значение` (в т.ч. после «своего» значения).
 
 
 # Шаблоны и теги (/dev/dle/notifications/200.2.0/guides/scenario_templates)
@@ -144958,19 +145241,37 @@ templates/ВАША_ТЕМА/devcraft/notifications/
 
 ## Когда срабатывает [#когда-срабатывает]
 
-| Тип        | Объект                                | Событие                              |
-| ---------- | ------------------------------------- | ------------------------------------ |
-| `news`     | номер новости                         | **правка** этой новости              |
-| `comments` | номер новости                         | **новый комментарий** к этой новости |
-| `cat`      | номер раздела                         | **новая** публикация в разделе       |
-| `user`     | номер автора                          | **новая** публикация этого автора    |
-| `tag`      | текст тега                            | **новая** новость с тегом            |
-| `xfield`   | `поле/значение`, например `year/2019` | **новая** новость с таким значением  |
-| `all`      | не используется                       | **любая новая** новость              |
+| Тип        | Объект                                                                       | Событие                                                          |
+| ---------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `news`     | номер новости                                                                | **правка** этой новости                                          |
+| `comments` | номер новости                                                                | **новый комментарий** к этой новости                             |
+| `cat`      | номер раздела                                                                | **новая** публикация в разделе                                   |
+| `user`     | номер автора                                                                 | **новая** публикация этого автора                                |
+| `tag`      | текст тега                                                                   | **новая** новость с тегом                                        |
+| `xfield`   | имя поля **или** `поле/значение` (например `ozvuchka` или `ozvuchka/Дубляж`) | **новая** новость и **правка**, если сработали режимы (см. ниже) |
+| `all`      | не используется                                                              | **любая новая** новость                                          |
 
 <Callout type="info">
-  `news` — только правка. `comments` — новые комментарии к новости (не путать с подпиской на правки). `cat` / `user` / `tag` / `xfield` / `all` — только новая публикация. Так задумано: иначе подписчик раздела получал бы и каждую правку чужих статей.
+  `news` — только правка. `comments` — новые комментарии к новости (не путать с подпиской на правки). `cat` / `user` / `tag` / `all` — только новая публикация. `xfield` — и публикация, и правка по настройкам режимов. Так задумано: иначе подписчик раздела получал бы и каждую правку чужих статей.
 </Callout>
+
+## Доп. поле: поле целиком, значение и режимы [#доп-поле-поле-целиком-значение-и-режимы]
+
+В окне подписок (`focus=subscription_button`) у каждого текстового доп. поля:
+
+* **поле целиком** — id без `/` (например `ozvuchka`): срабатывает при любом изменении этого поля;
+* **готовое значение** — чекбокс из значений новости (`поле/значение`);
+* **своё значение** — текстовое поле; в настройках модуля regex (`xfield_custom_value_regex`, без учёта регистра) проверяет только свой ввод.
+
+Режимы в настройках (`xfield_notify_modes`, можно несколько):
+
+| Режим            | Смысл                                                            |
+| ---------------- | ---------------------------------------------------------------- |
+| `value_appeared` | значение появилось при правке (нужен снимок полей до сохранения) |
+| `value_present`  | значение есть в новости после сохранения                         |
+| `field_changed`  | поле изменилось (для подписки на поле целиком)                   |
+
+Одному человеку за одно сохранение уходит не больше одного уведомления по этой подписке, даже если сработали несколько режимов.
 
 ## Включение в админке [#включение-в-админке]
 
@@ -145327,10 +145628,10 @@ DleSiteSectionRegistry::instance()->register('notifications', __('Уведомл
 3. Убедитесь, что на сайте есть:
    * `engine/inc/notifications.php`
    * `devcraft/src/modules/Notifications/` (включая `Controller/show_notifications.php`)
-   * `templates/Default/devcraft/notifications/` (при другой теме — скопируйте каталог в свой скин)
+   * `templates/{ваша тема}/devcraft/notifications/` (из поставки — `templates/Default/…`; при другой теме каталог нужно скопировать в активный скин)
 
 <Callout type="warn" title="Шаблоны темы — вручную">
-  Менеджер плагинов DLE **не меняет** файлы в `templates/`. Колокольчик в шапке Air, символ `#i-bell` и другие вставки делаются руками по [Куда вставить в тему](guides/template_includes).
+  Менеджер плагинов DLE **не меняет** файлы в `templates/`. Колокольчик в шапке Air, символ `#i-bell` и другие вставки делаются руками по [Куда вставить в тему](guides/template_includes). Запаса на тему Default нет: если папки `tpl_path` нет в активной теме сайта, модуль покажет ошибку на странице.
 </Callout>
 
 ## 2. Composer [#2-composer]
@@ -145592,7 +145893,7 @@ $html = notifyFormatMentionsHtml($commentHtml);
 | `css`       | да    | да             | ничего (стили идут из `siteAssets`; старый include оставлен пустым)   |
 | `js`        | да    | да             | ничего (скрипты идут из `siteAssets`; старый include оставлен пустым) |
 | `badge`     | нет   | да\*           | `badge.tpl` — колокольчик и список непрочитанных                      |
-| `wall`      | нет   | да\*           | `wall.tpl` — стена уведомлений                                        |
+| `wall`      | нет   | да\*           | `inbox/wall.tpl` — стена уведомлений                                  |
 | `subscribe` | нет   | да\*           | `subscribe/{stype}.tpl` — кнопка подписки / отписки                   |
 
 \* Плюс права группы и (для `subscribe`) флаг типа в настройках модуля. Без права или при выключенном типе модуль молча ничего не выводит.
@@ -145661,14 +145962,14 @@ $html = notifyFormatMentionsHtml($commentHtml);
 | `{view-all-label}`      | всегда       | «Все уведомления»                                      |
 | `{theme-path}`          | всегда       | URL каталога активной темы                             |
 
-Шаблоны: `subscribe/{type}.tpl`, `wall.tpl`, `badge.tpl`, `item.tpl` и др. — см. [шаблоны и теги](../guides/scenario_templates).
+Шаблоны: `subscribe/{type}.tpl`, `inbox/wall.tpl`, `inbox/badge.tpl`, `inbox/item.tpl` и др. — см. [шаблоны и теги](../guides/scenario_templates).
 
 
 # Колокольчик (/dev/dle/notifications/200.2.0/templates/badge)
 
 
 
-Файл: `badge.tpl`.
+Файл: `inbox/badge.tpl`.
 
 Вставка: `show_notifications.php?focus=badge`. Строки списка — из [item.tpl](./item) (`mode=badge`: боковая кнопка «Закрыть»).
 
@@ -145718,36 +146019,41 @@ $html = notifyFormatMentionsHtml($commentHtml);
 
 `templates/{тема}/devcraft/notifications/`
 
-Нет каталога в активной теме — берётся `templates/Default/devcraft/notifications/`. Скопируйте дерево из `Default` в свой скин и правьте там.
+Нет файла в активной теме — берётся тот же путь из `templates/Default/devcraft/notifications/`. Скопируйте дерево из `Default` в свой скин и правьте там.
 
 Пути к папкам событий и обёрток задаются в настройках модуля; имена файлов по умолчанию совпадают с таблицами ниже.
 
-Подстановки в событиях и письмах делает `ParseTemplateTags` (строка новости + доп. поля вроде `{sender}`), а не простая замена строк. Разметку колокольчика, стены и кнопок собирает обычный `dle_template` через `{include}` к `show_notifications.php`.
+Подстановки в событиях и письмах делает `ParseTemplateTags` (строка новости + доп. поля вроде `{sender}`), а не простая замена строк. Плейсхолдеры из модуля (в том числе `{rating}`) подставляются **после** разбора новости, чтобы в тексте не оставался HTML рейтинга сайта. Разметку колокольчика, стены и кнопок собирает обычный `dle_template` через `{include}` к `show_notifications.php`.
 
 <Callout type="info">
-  Файлы стилей и скриптов в `assets/`, а также `.htaccess`, — не шаблоны с тегами. Их не описываем в этом разделе. На сайте стили и скрипты модуля подставляет тег `{devcraft}`.
+  Файлы стилей и скриптов модуля — в `Public/` и через теги `{devcraft*}` на сайте, не в этой папке шаблонов.
 </Callout>
 
 ## Дерево [#дерево]
 
 ```text
 devcraft/notifications/
-├── page.tpl                 кабинет /notifications/
-├── wall.tpl                 стена ленты
-├── badge.tpl                колокольчик
-├── item.tpl                 строка ленты
-├── item_actions.tpl         кнопка «Открыть»
-├── item_side_mark_read.tpl  «Прочесть» на стене
-├── item_side_dismiss.tpl    «Закрыть» в колокольчике
-├── subscribe.tpl            запасная кнопка подписки
-├── subscribe/               кнопки по типу (news, cat, …)
-├── subscriptions.tpl        список подписок
-├── subscription_item.tpl    строка подписки
-├── publications.tpl         блок новых публикаций
-├── publication_item.tpl     строка публикации
+├── inbox/                   лента и кабинет
+│   ├── page.tpl
+│   ├── wall.tpl
+│   ├── badge.tpl
+│   ├── item.tpl
+│   ├── item_actions.tpl
+│   ├── item_side_mark_read.tpl
+│   └── item_side_dismiss.tpl
+├── subscribe/               подписки и кнопка
+│   ├── subscribe.tpl
+│   ├── news.tpl / cat.tpl / …
+│   ├── subscription_button.tpl
+│   ├── subscriptions.tpl
+│   └── subscription_item.tpl
+├── publications/            новые материалы по подпискам
+│   ├── publications.tpl
+│   └── publication_item.tpl
+├── labels/
+│   └── xfield_label.tpl     подпись доп. поля ({id} {name} {count})
 ├── scenarios/               тексты событий
-├── wrappers/                письмо и личное сообщение
-└── assets/                  css / js (не теги)
+└── wrappers/                письмо и личное сообщение
 ```
 
 ## Классы, которые ждёт скрипт [#классы-которые-ждёт-скрипт]
@@ -145779,17 +146085,19 @@ devcraft/notifications/
 
 ## Страницы раздела [#страницы-раздела]
 
-| Страница                           | Файлы                                        |
-| ---------------------------------- | -------------------------------------------- |
-| [Страница кабинета](./page)        | `page.tpl`                                   |
-| [Стена](./wall)                    | `wall.tpl`                                   |
-| [Колокольчик](./badge)             | `badge.tpl`                                  |
-| [Строка ленты](./item)             | `item*.tpl`                                  |
-| [Кнопка подписки](./subscribe)     | `subscribe/*.tpl`                            |
-| [Мои подписки](./subscriptions)    | `subscriptions.tpl`, `subscription_item.tpl` |
-| [Новые публикации](./publications) | `publications.tpl`, `publication_item.tpl`   |
-| [Обёртки писем](./wrappers)        | `wrappers/*.tpl`                             |
-| [События](./scenarios)             | `scenarios/*.tpl`                            |
+| Страница                                      | Файлы                                                  |
+| --------------------------------------------- | ------------------------------------------------------ |
+| [Страница кабинета](./page)                   | `inbox/page.tpl`                                       |
+| [Стена](./wall)                               | `inbox/wall.tpl`                                       |
+| [Колокольчик](./badge)                        | `inbox/badge.tpl`                                      |
+| [Строка ленты](./item)                        | `inbox/item*.tpl`                                      |
+| [Кнопка подписки](./subscribe)                | `subscribe/*.tpl`                                      |
+| [Окно выбора подписок](./subscription_button) | `subscribe/subscription_button.tpl`                    |
+| [Мои подписки](./subscriptions)               | `subscribe/subscriptions.tpl`, `subscription_item.tpl` |
+| [Новые публикации](./publications)            | `publications/*.tpl`                                   |
+| [Подпись доп. поля](./labels)                 | `labels/xfield_label.tpl`                              |
+| [Обёртки писем](./wrappers)                   | `wrappers/*.tpl`                                       |
+| [События](./scenarios)                        | `scenarios/*.tpl`                                      |
 
 ## См. также [#см-также]
 
@@ -145802,7 +146110,7 @@ devcraft/notifications/
 
 
 
-Сборку делает `InboxItemHtmlRenderer`. Сначала вложенные фрагменты (`item_actions`, боковая кнопка), затем `item.tpl`.
+Сборку делает `InboxItemHtmlRenderer`. Сначала вложенные фрагменты (`item_actions`, боковая кнопка), затем `inbox/item.tpl`.
 
 Первая строка текста уведомления → `{title}`; остальное → `{message}` (переносы строк как HTML).
 
@@ -145870,11 +146178,34 @@ devcraft/notifications/
 * [Колокольчик](./badge)
 
 
+# Подпись доп. поля (/dev/dle/notifications/200.2.0/templates/labels)
+
+
+
+Файл: `labels/xfield_label.tpl`.
+
+Используется в дереве окна подписок и в подписях типа `xfield` (список «Мои подписки»). По умолчанию в теме лежит `{name}`.
+
+## Теги [#теги]
+
+| Тег       | Значение                                                                                                                            |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `{id}`    | латинское имя поля (например `ozvuchka`)                                                                                            |
+| `{name}`  | описание из схемы доп. полей сайта; если пусто — то же, что `{id}`                                                                  |
+| `{count}` | сколько значений поля учтено в текущем контексте (в дереве новости — число значений; в списке подписок на пару поле/значение — `1`) |
+
+## Пример [#пример]
+
+```html
+{name} ({id}) · {count}
+```
+
+
 # Страница кабинета (/dev/dle/notifications/200.2.0/templates/page)
 
 
 
-Файл: `page.tpl`.
+Файл: `inbox/page.tpl`.
 
 Открывается по адресу `/index.php?do=notifications` или короткому `/notifications/`. Собирает `PageController`: выставляет заголовки разделов и подключает шаблон темы.
 
@@ -145926,7 +146257,7 @@ devcraft/notifications/
 
 Вставка: `show_notifications.php?focus=publications`. Данные — недавние публикации по подпискам пользователя (`SubscriptionFeedService` → `SubscriptionListRenderer`).
 
-## `publications.tpl` [#publicationstpl]
+## `publications/publications.tpl` [#publicationspublicationstpl]
 
 | Тег                           | Значение                                 |
 | ----------------------------- | ---------------------------------------- |
@@ -146098,7 +146429,9 @@ devcraft/notifications/
 
 
 
-Вставка: `show_notifications.php?focus=subscription_button&id={news-id}` (+ опциональные фильтры). Файл: `subscription_button.tpl`.
+Вставка: `show_notifications.php?focus=subscription_button&id={news-id}` (+ опциональные фильтры). Файл: `subscribe/subscription_button.tpl`.
+
+В дереве: поле целиком, чекбоксы значений, своё значение (regex из настроек только на свой ввод). Подписи полей — [labels/xfield\_label.tpl](./labels).
 
 ## Теги [#теги]
 
@@ -146129,7 +146462,7 @@ devcraft/notifications/
 
 Вставка: `show_notifications.php?focus=subscriptions`. Список собирает `SubscriptionListRenderer`.
 
-## `subscriptions.tpl` [#subscriptionstpl]
+## `subscribe/subscriptions.tpl` [#subscribesubscriptionstpl]
 
 | Тег                            | Значение                                 |
 | ------------------------------ | ---------------------------------------- |
@@ -146183,7 +146516,7 @@ devcraft/notifications/
 
 
 
-Файл: `wall.tpl`.
+Файл: `inbox/wall.tpl`.
 
 Вставка: `show_notifications.php?focus=wall`. Строки списка — из [item.tpl](./item) (`mode=wall`: боковая кнопка «Прочесть»).
 
